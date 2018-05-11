@@ -10,4 +10,4 @@ permalink: /book_datasci/
 ### Hong Kong University of Science and Technology
 ### Clear Water Bay, Hong Kong SAR
 
-### [https://github.com/yuany-pku/data/blob/master/book_datasci.pdf](https://github.com/yuany-pku/data/blob/master/book_datasci.pdf)
+### [https://github.com/yao-lab/yao-lab.github.io/blob/master/book_datasci.pdf](https://github.com/yao-lab/yao-lab.github.io/blob/master/book_datasci.pdf)
