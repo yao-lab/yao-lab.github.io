@@ -1,0 +1,782 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <META http-equiv=Content-Type content="text/html; charset=gb2312">
+   <title>CSIC 5011: Topological and Geometric Data Reduction and Visualization</title>
+</head>
+<body background="../../images/crysback.jpg">
+
+<!-- PAGE HEADER -->
+
+<div class="Section1">
+<table border="0" cellpadding="0" width="100%" style="width: 100%;">
+      <tbody>
+        <tr>
+
+       <td style="padding: 0.75pt;" width="80" align="center">
+
+      <p class="MsoNormal">&nbsp;<img width="64"
+ id="_x0000_i1025"
+ src="../images/HKUST_logo.jpg" alt="HKUST">
+          </p>
+       </td>
+       <td style="padding: 0.75pt;">
+      <p>
+<span style="font-size: 18pt;">
+<b><big>CSIC 5011: Topological and Geometric Data Reduction and Visualization<br>
+   Fall 2019</big></b>
+<br>
+</p>
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<div class="MsoNormal" align="center" style="text-align: center;">
+<hr size="2" width="100%" align="center">  </div>
+
+<ul type="disc">
+
+</ul>
+
+<!-- COURSE INFORMATION BANNER -->
+
+<table border="0" cellpadding="0" width="100%" bgcolor="#990000"
+ style="background: rgb(153,0,0) none repeat scroll 0% 50%; width: 100%;">
+      <tbody>
+
+        <tr>
+       <td style="padding: 2.25pt;">
+      <p class="MsoNormal"><b><span
+ style="font-size: 13.5pt; color: white;">Course Information</span></b></p>
+       </td>
+      </tr>
+
+  </tbody>
+</table>
+
+<!-- COURSE INFORMATION -->
+
+<!-- 
+    <p style="margin-left: 0.5in;">
+    <img height="200" src="boya_starry.png">
+    <img height="200" src="boya_wreck.png">
+    <img height="200" src="boya_twilight.png">
+    </p>
+-->
+
+<h3>Synopsis (&#25688;&#35201;)</h3>
+<p style="margin-left: 0.5in;">
+<big> This course is open to graduates and senior undergraduates in applied mathematics, statistics, and engineering, who are interested in learning from data.
+Students with other backgrounds such as life sciences are also welcome, provided you have certain maturity of mathematics. It will cover wide topics in geometric (principal component analysis and manifold learning, etc.) and topological data reduction (clustering and computational homology group, etc.). 
+<br>
+Prerequisite: linear and abstract algebra, basic probability and multivariate statistics, basic stochastic process (Markov chains), convex optimization; familiarity with Matlab, R, and/or Python, etc.
+</big>
+</p>
+
+
+<h3>Reference (&#21442;&#32771;&#25945;&#26448;)</h3>
+<p style="margin-left: 0.5in;">
+ <big> <a href="https://yao-lab.github.io/book_datasci/"> [pdf download] </a> <img src="../../images/new.jpg" height="40">
+ </big>
+ </p>
+
+<h3>Instructors: </h3>
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="http://yao-lab.github.io/">Yuan YAO</a>  </em>
+</big>
+</p>
+
+<h3>Time and Place:</h3>
+<p style="margin-left: 0.5in;">
+<big><em>Monday 3:00pm-4:20pm, Friday 10:30am-11:50am Rm 1027, LSK Bldg </em> <br> </big>
+This term we will be using Piazza for class discussion. The system is highly catered to getting you help fast and efficiently from classmates and myself. Rather than emailing questions to the teaching staff, I encourage you to post your questions on Piazza. If you have any problems or feedback for the developers, email team@piazza.com. <br>
+<big><em>Find our class page at: <a href="https://piazza.com/ust.hk/fall2017/csic5011/home">https://piazza.com/ust.hk/fall2017/csic5011/home</a></em></big> <br>
+</p>
+
+<h3>Homework and Projects:</h3>
+
+<p style="margin-left: 0.5in;">
+<big><em>Weekly homeworks(?), monthly mini-projects, and a final major project. No final exam. </em>
+</big></p>
+
+<!-- <h3>Teaching Assistant (&#21161;&#25945;):</h3>
+    <p style="margin-left: 0.5in;">
+    <big>SUN, Xinwei; XIONG, Jiechao; YUAN, Huizhuo; WU, Bingzhe. <br>
+    Email:<em> statlearning_hw (add "@ 126 DOT com" afterwards) </em>
+    </big>
+    </p>
+-->
+				
+<h3>Schedule (&#26102;&#38388;&#34920;)</h3>
+
+<table border="1" cellspacing="0">
+<tbody>
+
+<tr>
+<td align="left"><strong>Date</strong></td>
+<td align="left"><strong>Topic</strong></td>
+<td align="left"><strong>Instructor</strong></td>
+<td align="left"><strong>Scriber</strong></td>
+</tr>
+
+<tr>
+<td>01/09/2017, Fri </td>
+<td>Lecture 01: Introduction to Geometric and Topological Data Reduction <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/syllabus.pdf">[ syllabus ]</a><br>
+<ul>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>04/09/2017, Mon </td>
+<td>Lecture 02: Principal Component Analysis <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/lecture02.pdf">[ lecture02.pdf ]</a><br>
+<ul>[Reference]:
+<li> To view .jpynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+<li> PCA in iPython Notebook <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/pca.ipynb"> [ pca.ipynb ] </a> <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/pca.py"> [ pca.py ] </a> </li>
+<!-- <li> PCA with Logistic regression for digit classification: <a href="pca_logistic.ipynb"> [ pca_logistic.ipynb ] </a> <a href="pca_logistic.py"> [ pca_logistic.py ] </a> </li> -->
+<!-- <li> <a href="http://pan.baidu.com/s/1kTw7Ogv"> [ slides in pdf ] </a> </li> -->
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>08/09/2017, Fri </td>
+<td>Lecture 03: Multidimensional Scaling <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/lecture02.pdf">[ lecture02.pdf ]</a><br>
+<ul>[Reference]:
+<li> MDS in Python <a href="http://scikit-learn.org/stable/auto_examples/manifold/plot_mds.html#sphx-glr-auto-examples-manifold-plot-mds-py"> [ scikit-learn MDS] </a> </li>
+<!-- <li> PCA with Logistic regression for digit classification: <a href="pca_logistic.ipynb"> [ pca_logistic.ipynb ] </a> <a href="pca_logistic.py"> [ pca_logistic.py ] </a> </li> -->
+<!-- <li> <a href="http://pan.baidu.com/s/1kTw7Ogv"> [ slides in pdf ] </a> </li> -->
+</ul>
+<ul>[Homework 1]:
+<li> <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/homework01.pdf">Homework 1 [pdf]</a>. Just for fun, no grading. </li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>11/09/2017, Mon </td>
+<td>Lecture 04: High Dimensional PCA and Random Projections (Chap 3: 1,2,3) <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/lecture04.pdf">[ lecture04.pdf ]</a><br>
+<ul>[Reference]:
+<li> Joseph Salmon's lecture on Johnson-Lindenstrauss Theory <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/lecture_JLlemma.pdf"> [ lecture_JLlemma.pdf ] </a> </li> 
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>15/09/2017, Fri </td>
+<td>Lecture 05: Compressed Sensing and Random Projections (Chap 3: 4) <a href="https://yao-lab.github.io/book_datasci/">[ new lecture notes updated on Sep 17, 2017 ]</a><br>
+<ul>[Homework 2]:
+<li> <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/homework02.pdf">Homework 2 [pdf]</a>. Just for fun, no grading. </li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>18/09/2017, Mon </td>
+<td>Lecture 06: Random Matrix Theory for PCA and Horn's Parallel Analysis (Chap 2: 3) <a href="https://yao-lab.github.io/book_datasci/">[ new lecture notes updated on Sep 18, 2017 ]</a> <a href="lecture06.pdf">[ lecture notes on Parallel Analysis by LI, Zhen ] </a><br>
+<ul>[Reference]:
+<li> Marcenko-Pastur Law of Wishart matrices in Matlab: <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/mp.m"> [ mp.m ] </a> </li> 
+<li> Horn's Parallel Analysis in R: <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/paran.R"> [ paran.R ] </a> </li> 
+<li> Parallel Analysis in Matlab: <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/papca.m"> [ papca.m ] </a> </li>
+<li> Parallel Analysis in Python by LI, Zhen: <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/paPCA_curve.py"> [ paPCA_curve.py ] </a> <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/paPCA_image.py"> [ paPCA_image.py ] </a> </li>
+<li> S&P500 dataset in class: <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/snp500.Rda"> [ snp500.Rda ] </a> <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/snp452-data.mat"> [ snp452-data.mat ] </a> <a href="http://math.stanford.edu/~yuany/course/data/snp500.txt"> [ snp500.txt ] </a> </li> 
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Johnstone06">[Johnstone06]</a> shows that in high-dimensional inference when p/n is fixed, PCA will not converge by random matrix theory.</li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Nadakuditi10">[Nadakuditi10]</a> gives a brief treatment on phase transitions appeared in PCA when p/n is fixed.</li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/reference/Tao.random_matrix-2009-08.pdf">[Terry Tao's talk slides on Random Matrix Theory with Universality]</a></li>
+<li>  <a href="https://link.springer.com/article/10.1007/BF02289447">[Parallel Analysis: Horn (1965) original paper]</a> 
+<li>  <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.43.3813&rep=rep1&type=pdf">[Parallel Analysis: Buja-Eyuboglu (1992) with random permutation]</a> 
+</ul>
+</td>
+<td>Y.Y.</td>
+<td>LI, Zhen</td>
+</tr>
+
+<tr>
+<td>22/09/2017, Fri </td>
+<td>Lecture 07: Sample Mean as MLE? James-Stein Estimator and Shrinkages (Chap 2: 1-2)<a href="https://yao-lab.github.io/book_datasci/">[ new lecture notes updated on Sep 22, 2017 ]</a><br>
+<ul>[Reference]:
+<li> Comparing Maximum Likelihood Estimator and James-Stein Estimator in R: <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/JSE.R"> [ JSE.R ] </a> </li> 
+</ul>
+<ul>[Homework 3]:
+<li> <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/homework03.pdf">Homework 3 [pdf]</a>. Just for fun, no grading. </li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>25/09/2017, Mon </td>
+<td>Lecture 08: Robust PCA and Sparse PCA (Chap 4: 1-5)<a href="https://yao-lab.github.io/book_datasci">[ new update on Sep 27, 2017 ]</a><br>
+<ul>[Reference]:
+<li> You need Matlab <a href="http://cvxr.com/cvx/">CVX</a> optimization toolbox to run the following demo codes.
+<li> Robust PCA demo: <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/testRPCA.m"> [ testRPCA.m ] </a> </li>
+<li> Sparse PCA demo: <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/testSPCA.m"> [ testSPCA.m ] </a> </li>
+<li> Robust PCA via ADMM in Python <a href="https://jeremykarnowski.wordpress.com/2015/08/31/robust-principal-component-analysis-via-admm-in-python/"> [ weblink ] </a> </li>
+<li> Sparse PCA in Python <a href="http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.SparsePCA.html"> [ sklearn ] </a></li>
+<li> Teng ZHANG's Tyler's M-estimator <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/tyler_m_estimator.m"> [ tyler_m_estimator.m ] </a></li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>29/09/2017, Fri </td>
+<td>Lecture 09: MDS with Uncertainty -- Sensor Network Localization (Chap 4: 6-)<a href="https://yao-lab.github.io/book_datasci/">[ new update on Sep 27, 2017 ]</a><br>
+<ul>[Reference]:
+<li> Sensor Network Localization in Matlab: <a href="http://www.math.nus.edu.sg/~mattohkc/SNLSDP.html"> [ SNLSDP ] </a> </li>
+</ul>
+<ul>[Homework 4]:
+<li> <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/homework04.pdf">Homework 4 [pdf]</a>. Just for fun, no grading. </li>
+</ul>
+<ul>[Project 1]:
+<li> <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/project1.pdf">  Project 1 [pdf] </a>.  </li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>06/10/2017, Fri </td>
+<td>Lecture 10: Manifold Learning I: ISOMAP and LLE (Chap 5: 1-2)<a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/lecture10_key.pdf">[ slides ]</a><br>
+<ul>[Reference]:
+<li>  <a href="http://web.mit.edu/cocosci/isomap/isomap.html">[ISOMAP]</a>: Tenenbaum's website on science paper with datasets; 
+</li>
+<li>  <a href="https://www.cs.nyu.edu/~roweis/lle/">[LLE]</a>: Roweis' website on science paper; 
+</li>
+</ul>
+<ul>[Matlab]:
+<li> <a href="http://math.stanford.edu/~yuany/course/data/IsomapR1/"> IsomapR1 </a>: isomap codes by Tennenbaum, de Silva (isomapII.m with sparsity, fast mex with dijkstra.cpp and fibheap.h </li>
+</li> 
+<li> <a href="http://math.stanford.edu/~yuany/course/data/lle.m"> lle.m </a>: lle with k-nearest neighbors
+</li>
+<li> <a href="http://math.stanford.edu/~yuany/course/data/kcenter.m"> kcenter.m </a>: k-center algorithm to find 'landmarks' in a metric space
+</ul>
+<ul>[Python]: 
+<li> <a href="https://nbviewer.jupyter.org/url/github.com/yuany-pku/2017_CSIC5011/blob/master/slides/plot_mani_digits.ipynb"> plot_mani_digits.ipynb </a>: demo of digits in class </li>
+<li> <a href="http://scikit-learn.org/stable/modules/manifold.html#manifold"> scikit-learn manifold module </a> </li>
+</ul>
+<ul>[Homework 5]:
+<li> <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/homework05.pdf">Homework 5 [pdf]</a>. Just for fun, no grading. </li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>09/10/2017, Fri </td>
+<td>Lecture 11: Manifold Learning II: Extended LLEs (Chap 5: 3-6) <a href="https://yao-lab.github.io/book_datasci/">[ new update on Oct 9, 2017 ]</a><a href="lecture11_key.pdf">[ slides ]</a><br>
+<ul>[Reference]:
+<li><cite>Mikhail Belkin &amp; Partha Niyogi, Laplacian Eigenmaps and Spectral Techniques for Embedding and Clustering, Advances in Neural Information Processing Systems 14, 2001, p. 586?691, MIT Press</cite>
+<a href="https://papers.nips.cc/paper/1961-laplacian-eigenmaps-and-spectral-techniques-for-embedding-and-clustering"> [nips link] </a> </li>
+<li><cite>Zhang, Z. &amp; Wang, J. MLLE: Modified Locally Linear
+Embedding Using Multiple Weights.</cite> <a class="reference external" href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.70.382">http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.70.382</a></li>
+<li>  <cite>Donoho, D. &amp; Grimes, C. Hessian eigenmaps: Locally
+linear embedding techniques for high-dimensional data.
+Proc Natl Acad Sci U S A.  100:5591 (2003).</cite> <a href="http://www.pnas.org/content/100/10/5591.full">doi: 10.1073/pnas.1031596100</a> </li>
+<li><cite>Zhang, Z. &amp; Zha, H. (2005) Principal manifolds and nonlinear
+dimensionality reduction via tangent space alignment.
+SIAM Journal on Scientific Computing. 26 (1): 313?338. </cite> <a href="https://doi.org/10.1137/S1064827502419154"> doi:10.1137/s1064827502419154</a> </li>
+</ul>
+<ul>[Python]: 
+<li> <a href="https://nbviewer.jupyter.org/url/github.com/yuany-pku/2017_CSIC5011/blob/master/slides/plot_compare_methods.ipynb"> plot_compare_methods.ipynb </a>: demo in class </li>
+<li> <a href="https://nbviewer.jupyter.org/url/github.com/yuany-pku/2017_CSIC5011/blob/master/slides/plot_mani_digits.ipynb"> plot_mani_digits.ipynb </a>: demo of digits in class </li>
+<li> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.manifold.locally_linear_embedding.html#sklearn.manifold.locally_linear_embedding"> scikit-learn manifold LLE </a>: MLLE, Hessian, LTSA, Laplacian (Spectral) </li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>13/10/2017, Fri </td>
+<td>Lecture 12: Diffusion Map and Stochastic Neighbour Embedding <a href="lecture12.pdf">[ slides ]</a><br>
+<ul>[Reference]:
+<li> R. R. Coifman, S. Lafon, A. B. Lee, M. Maggioni, B. Nadler, F. Warner, and S. W. Zucker. Geometric diffusions as a tool for harmonic analysis and structure definition of data: Diffusion maps. PNAS 102 (21):7426-7431, 2005 <a href="http://www.pnas.org/content/102/21/7426.long"> [doi: 10.1073/pnas.0500334102] </a> </li>
+<li> <cite>Nadler, Boaz; Stéphane Lafon; Ronald R. Coifman; Ioannis G. Kevrekidis (2005). <a href="http://www.wisdom.weizmann.ac.il/~nadler/Publications/dm_nips05.pdf">"Diffusion Maps, Spectral Clustering and Eigenfunctions of Fokker–Planck Operators"</a> <span>(PDF)</span> <i>in Advances in Neural Information Processing Systems (NIPS) 18</i>.</cite></li>
+<li> <cite>Coifman, R.R.; S. Lafon. (2006). "Diffusion maps". <i>Applied and Computational Harmonic Analysis.</i> 21: 5–30. <a href="//doi.org/10.1016%2Fj.acha.2006.04.006">10.1016/j.acha.2006.04.006</a>.</cite></li>
+<li> Stochastic Neighbor Embedding <a href="http://www.cs.toronto.edu/~hinton/absps/sne.pdf"> [ .pdf ] </a></li>
+<li> Visualizing Data using t-SNE <a href="http://www.cs.toronto.edu/~hinton/absps/tsnefinal.pdf"> [ .pdf ] </a></li>
+<li> A paper that relates SNE to Laplacian Eigenmaps <a href="http://www.cs.toronto.edu/~hinton/csc2535/readings/miguel.pdf"> [ .pdf ] </a></li>
+<li> A helpful website: How to use t-SNE effectively? <a href="https://distill.pub/2016/misread-tsne/"> [ link ]</a></li>
+</ul>
+<ul>[Matlab]
+<li> Matlab code to compare manifold learning algorithms <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/mani.m"> [ mani.m ] </a>: PCA, MDS, ISOMAP, LLE, Hessian LLE, LTSA, Laplacian, Diffusion (no SNE!)</li>
+</ul>
+<ul>[Python]: 
+<li> <a href="https://nbviewer.jupyter.org/url/github.com/yuany-pku/2017_CSIC5011/blob/master/slides/plot_compare_methods.ipynb"> plot_compare_methods.ipynb </a>: demo in class </li>
+<li> <a href="https://nbviewer.jupyter.org/url/github.com/yuany-pku/2017_CSIC5011/blob/master/slides/plot_mani_digits.ipynb"> plot_mani_digits.ipynb </a>: demo of digits in class </li>
+<li> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.manifold.locally_linear_embedding.html#sklearn.manifold.locally_linear_embedding"> scikit-learn manifold LLE </a>: PCA/MDS, ISOMAP, LLE/MLLE, Hessian, LTSA, Laplacian (Spectral), t-SNE (no Diffusion)</li>
+<li> <a href="http://lvdmaaten.github.io/tsne/"> Laurens van der Maaten's website for t-SNE codes </a></li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>16/10/2017, Mon </td>
+<td>Lecture 13: Random Walk on Graphs: Perron-Frobenius Theory vs. PageRank and Fiedler Theory <br>
+<ul>[Reference]:
+<li> Amy N. Langville and Carl D. Meyer's book: <a href="http://geza.kzoo.edu/~erdi/patent/langvillebook.pdf"> Google's PageRank and Beyond </a> </li>
+</ul>
+<ul>[Project 1 Report Repository]
+<li> GitHub Repository for reports of Project 1 <a href="https://github.com/yuany-pku/2017_CSIC5011/tree/master/project1"> [ GitHub ] </a></li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>20/10/2017, Fri </td>
+<td>Lecture 14: Random Walk on Graphs: Cheeger Inequality, Lumpability and Transition Path Theory etc.<br>
+<ul>[Reference]:
+<li> Jim Demmel's courseweb at UC Berkeley for Fiedler Theory and Graph Bipartition: <a href="https://people.eecs.berkeley.edu/~demmel/cs267/lecture20/lecture20.html"> [ link ] </a></li>
+<li> T. Buehler, M. Hein. <span class="bibbook"> <a href="http://www.ml.uni-saarland.de/Publications/BueHei-pSpectralClustering2009.pdf">Spectral Clustering based on the graph p-Laplacian</a>. roceedings of the 26th International Conference on Machine Learning (ICML 2009), 81-88. </span> 
+</li>
+<li> James R. Lee, Shayan Oveis Gharan, Luca Trevisan. <span class="bibbook"> <a href="https://arxiv.org/abs/1111.1055">Multi-way spectral partitioning and higher-order Cheeger inequalities</a>. Proceeding STOC'12 Proceedings of the forty-fourth annual ACM symposium on Theory of computing, Pages 1117-1130. arXiv:1111.1055. </span>
+</li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>20/10/2017, Mon </td>
+<td>Lecture 15: Poster workshop on project 1.<br>
+<ul>[ Reference ]
+<li> Doodle voting for top 3 posters <a href="https://doodle.com/poll/7n9x4qcvf478d9yz"> [ link ]</a>
+</li>
+<li> GitHub Repository of report collection for Project 1 <a href="https://github.com/yuany-pku/2017_CSIC5011/tree/master/project1"> [ GitHub ] </a>
+</li>
+</ul>
+</td>
+<td>Jinshan ZENG<br> Haixia LIU</td>
+<td></td>
+</tr>
+
+<tr>
+<td>27/10/2017, Fri </td>
+<td>Lecture 16: Stochastic semidefinite optimization via low-rank factorization:
+algorithms, theory and applications <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/lecture16.Zeng.SDP_SGD.pdf">[ slides ]</a><br>
+</td>
+<td>Jinshan ZENG</td>
+<td></td>
+</tr>
+
+<tr>
+<td>30/10/2017, Mon </td>
+<td>Lecture 17: Restricted Boltzmann Machine and Deep Belief Nets <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/lecture17.LI-Zhen.RBM.pdf">[ slides ]</a><br>
+<ul>[Reference]:
+<li> Hinton, G. E.; Salakhutdinov, R. R. (2006). <a href="http://www.cs.toronto.edu/~hinton/science.pdf"> Reducing the Dimensionality of Data with Neural Networks</a>, <span style="font-size:85%;">(PDF)</span>. <i>Science</i>. <b>313</b> (5786): 504–507. 
+</li>
+<li> Hinton's web of matlab codes <a href="http://www.cs.toronto.edu/~hinton/MatlabForSciencePaper.html">[ Matlab for science paper ]</a>
+</li>
+</ul>
+</td>
+<td>Zhen LI</td>
+<td></td>
+</tr>
+
+<tr>
+<td>3/11/2017, Fri </td>
+<td>Lecture 18: Summary, Supervised PCA as Sufficient Dimensionality Reduction <a href="https://yao-lab.github.io/book_datasci/">[ Chapter 2:2 in new update on Nov 3rd, 2017 ]</a>, and Project 2 <br>
+<ul>[Project 2 Description]
+<li> <a href="project2.pdf">  Mini Project 2 [pdf]</a>.  
+</li>
+</ul>
+<ul>[Reference]:
+<li> Dennis Cook, <span class="bibbook"> <a href="http://arxiv.org/pdf/0708.3774.pdf">Fisher Lecture: Dimensionality Reduction in Regression</a>. Statistical Science, 22(1):1-26, 2007. </span>
+</li>
+<li> Ker-Chau Li, <a href="http://www.tandfonline.com/doi/abs/10.1080/01621459.1991.10475035"> Sliced Inverse Regression for Dimension Reduction </a>. Journal of the American Statistical Association, 86(414):316-327, 1991 
+</li>
+<li> Wu, Liang, and Mukherjee. <span class="bibbook"> <a href="http://www2.stat.duke.edu/~km68/files/Wu-LSIR.pdf">Localized Sliced Inverse Regression</a>. NIPS 2009. <a href="http://www2.stat.duke.edu/~km68/lsir.htm"> [Matlab codes]</a></span>
+</li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>6/11/2017, Mon </td>
+<td>Lecture 19: Introduction to Topological Data Analysis I - Simplicial Complexes, Nerve, Reeb Graph, and Mapper <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/lecture19.pdf">[ slides ]</a> <br>
+<ul>[Reference]:
+<li>
+<B>Topological Methods for Exploring Low-density States in Biomolecular Folding Pathways.</B>
+<br>
+Yuan Yao, Jian Sun, Xuhui Huang, Gregory Bowman, Gurjeet Singh, Michael Lesnick, <a href="http://folding.stanford.edu/Pande/Main">Vijay Pande</a>, <a href="http://www-graphics.stanford.edu/~guibas/ ">Leonidas Guibas</a> and  <a href="http://math.stanford.edu/~gunnar/">Gunnar Carlsson</a>.
+<br>
+ <i>J. Chem. Phys</i>. <B>130</B>, 144115 (2009).
+<br>
+[<a href="publications/RNA_mapper_JCP2009.pdf">pdf</a>][<a href="http://link.aip.org/link/?JCP/130/144115">Online Publication</a>][<a href="https://simtk.org/home/rna-mapper">SimTK Link: Data and Mapper Matlab Codes</a>] [Selected by <a href="http://www.vjbio.org/">Virtual Journal of Biological Physics Research, 04/15/2009</a>]. 
+</li>
+<li>
+<B>Structural insight into RNA hairpin folding intermediates.</B>
+<br>
+Bowman, Gregory R., <a href="http://csb.stanford.edu/~xhuang/">Xuhui Huang</a>, Yuan Yao, <a href="http://www.stanford.edu/~sunjian/">Jian Sun</a>, <a href="http://math.stanford.edu/~gunnar/">Gunnar Carlsson</a>, <a href="http://www-graphics.stanford.edu/~guibas/ ">Leonidas Guibas</a> and <a href="http://folding.stanford.edu/Pande/Main">Vijay Pande</a>. 
+<br>
+<i>Journal of American Chemistry Society</i>, 2008, 130 (30): 9676-9678. 
+<br> 
+[<a href="http://pubs.acs.org/cgi-bin/abstract.cgi/jacsat/2008/130/i30/abs/ja8032857.html">link</a>]
+</li>
+</li>
+<li> <B> Single-cell topological RNA-seq analysis reveals insights into cellular differentiation and development. </B>
+<br>
+Abbas H Rizvi, Pablo G Camara, Elena K Kandror, Thomas J Roberts, Ira Schieren, Tom Maniatis & Raul Rabadan.
+<br>
+<i>Nature Biotechnology</i>. 2017 May. doi:10.1038/nbt.3854
+</li>
+<li>
+<B>Spatiotemporal genomic architecture informs precision oncology in glioblastoma.</B>
+<br> Lee JK, Wang J, Sa JK, Ladewig E, Lee HO, Lee IH, Kang HJ, Rosenbloom DS, Camara PG, Liu Z, van Nieuwenhuizen P, Jung SW, Choi SW, Kim J, Chen A, Kim KT, Shin S, Seo YJ, Oh JM, Shin YJ, Park CK, Kong DS, Seol HJ, Blumberg A, Lee JI, Iavarone A, Park WY, Rabadan R, Nam DH.
+<br>
+<I>Nat Genet.</I> 2017 Apr. doi: 10.1038/ng.3806.
+</li>
+<li> A Python Implementation of Mapper <a href="https://github.com/szairis/sakmapper"> [ sakmapper ] </a> in single cell data analysis. 
+<li> Single Cell TDA <a href="https://github.com/pcamara/scTDA"> [ scTDA ] </a> with <a href="https://github.com/pcamara/scTDA/blob/master/doc/scTDA%20Tutorial.html"> [ tutorial in html ]</a>
+</ul>
+<ul>[Seminar]
+<li> Speaker: <B>Prof. Raul RABADAN</B>, 
+Department of Systems Biology, 
+Department of Biomedical Informatics, 
+Center for Computational Biology & Bioinformatics, 
+Columbia University
+</li>
+<li> Title: <B>Exploring biological dynamical processes using Topological Data Analysis applied to Single Cell Expression Data </B>
+ <a href="http://math.stanford.edu/~yuany/course/reference/"> [ slides? ]</a> </li>
+<li> Time: 5:00-6:00pm </li>
+<li> Venue: LTK (Lift 31/32) </li>
+<li> Abstract: Transcriptional programs control cellular lineage commitment and differentiation during development. Understanding of cell fate has been advanced by studying single-cell RNA-sequencing (RNA-seq) but is limited by the assumptions of current analytic methods regarding the structure of data. We present single-cell topological data analysis (scTDA), an algorithm for topology-based computational analyses to study temporal, unbiased transcriptional regulation. Unlike other methods, scTDA is a nonlinear, model-independent, unsupervised statistical framework that can characterize transient cellular states. We applied scTDA to the analysis of murine embryonic stem cell (mESC) differentiation in vitro in response to inducers of motor neuron differentiation. scTDA resolved asynchrony and continuity in cellular identity over time and identified four transient states (pluripotent, precursor, progenitor, and fully differentiated cells) based on changes in stage-dependent combinations of transcription factors, RNA-binding proteins, and long noncoding RNAs (lncRNAs). scTDA can be applied to study asynchronous cellular responses to either developmental cues or environmental perturbations.
+</li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>10/11/2017, Fri </td>
+<td>Lecture 20: Introduction to Topological Data Analysis II: Persistent Homology <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/lecture20.pdf">[ slides ]</a><br>
+<ul>[Reference]:
+<li> A Java package for persistent homology and barcodes: <span class="bibbook"> <a href="https://github.com/appliedtopology/javaplex/wiki/Tutorial">Javaplex Tutorial</a>. </span>
+</li>
+<li>
+Guo-Wei Wei, <B>Persistent Homology Analysis of Biomolecular Data</B>, <a href="http://users.math.msu.edu/users/wei/SIAM_News2017.pdf"> SIAM News 2017</a>
+</li>
+<li> <B> Topological Data Analysis Generates High-Resolution, Genome-wide Maps of Human Recombination. </B>
+<br>
+Pablo G. Camara, Daniel I.S. Rosenbloom, Kevin J. Emmett, Arnold J. Levine, Raul Rabadan.
+<br>
+<i>Cell Systems</i>. 2016 June. doi: 10.1016/j.cels.2016.05.008.
+</li>
+<li> <B> Topology of viral evolution.</B>
+<br>
+Chan JM, Carlsson G, Rabadan R.
+<br>
+<i></i>Proc Natl Acad Sci USA</i> 2013 Oct 29. doi: 10.1073/pnas.1313480110.
+</li>
+<li> Robert Ghrist's monograph on applied Topology <B> <a href="https://www.math.upenn.edu/~ghrist/notes.html"> Elementary Applied Topology </a> </B> 
+</li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>17/11/2017, Fri </td>
+<td>Lecture 21: Applied Hodge Theory I: Social Choice, Crowdsourced Ranking, and Hodge Decomposition <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/lecture21.pdf">[ slides ]</a><br>
+<ul>[Reference]:
+<li> Professor Don Saari: <span class="bibbook"> <a href="https://www.math.uci.edu/~dsaari/">[ UCI homepage ]</a> <a href="https://ac.els-cdn.com/S0895717708001738/1-s2.0-S0895717708001738-main.pdf?_tid=019776d4-cdd3-11e7-b9af-00000aab0f6b&acdnat=1511169360_f28a9308e65cf0032e95525053dcb3a3"> [ Book Info: Disposing Dictators, Demstifying Voting Paradoxes ] </a> <a href="https://www.amazon.com/Disposing-Dictators-Demystifying-Voting-Paradoxes/dp/0521731607"> [ Amazon link ]</a> </span>
+</li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>18/11/2017, Sat </td>
+<td>Lecture 22: Tutorial on Single Cell TDA <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/scTDA_tutorial.pptx">[ pptx ]</a><br>
+<ul>[Reference]:
+<li> Raul Rabadan's website: <a href="https://github.com/pcamara/scTDA">[ scTDA ]</a>
+</li>
+<li> Tutorial data and ipynb: <a href="https://www.dropbox.com/s/ma80a641miteyxf/scTDA%20Tutorial.tar.gz?dl=1">[ scTDA Tutorial ]</a>
+</li>
+</ul>
+</td>
+<td>Quanhua MU</td>
+<td></td>
+</tr>
+
+
+<tr>
+<td>20/11/2017, Mon </td>
+<td>Lecture 23: Applied Hodge Theory II: Hodge Decomposition for Pairwise Ranking and Game Theory <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/lecture22.pdf">[ slides ]</a> and a Tutorial on Word Embedding <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/project2/08.MaoYe_report.pdf"> [ MaoYe Report ] </a> <br>
+<ul>[Project 2]
+<li> <a href="https://github.com/yuany-pku/2017_CSIC5011/tree/master/project2">[ Report Repository ] </a>.  
+</li>
+<li> <a href="https://doodle.com/poll/r84hneqzd4sqbubp"> [ Doodle Voting for Peer Review ] </a>: Vote your top 3 favourite reports, excluding your own team
+</li>
+<li> Just for fun: <a href="http://allourideas.org/csic5011-project2"> [ Allourideas Crowdsourced Ranking ] </a>: Which report do you prefer? If one report is from your own team, choose 'I can't decide' to avoid conflict of interests. Data will be released to you in final project.
+</li>
+<li> Just for fun: <a href="http://allourideas.org/worldcollege"> [ World college ranking ] </a>: Which university would you rather attend? Data will be released to you in final project. 
+</li>
+</ul>
+<ul>[Reference]:
+<li>
+<B>Statistical Ranking and Combinatorial Hodge Theory.</B>
+<br>
+<a href="http://graphics.stanford.edu/projects/lgl/person.php?id=xiaoyej">Xiaoye Jiang</a>, <a href="https://www.stat.uchicago.edu/~lekheng/">Lek-Heng Lim</a>, Yuan Yao and <a href="http://www.stanford.edu/~yyye/">Yinyu Ye</a>. 
+<br>
+<i>Mathematical Programming</i>, Volume 127, Number 1, Pages 203-244, 2011. 
+<br>
+[<a href="http://math.stanford.edu/~yuany/publications/HodgeRank.MathProg.B.2010.pdf">pdf</a>][<a href=" http://arxiv.org/abs/0811.1067"> arxiv.org/abs/0811.1067</a>][<a href="http://math.stanford.edu/~yuany/publications//MathProg.zip"> Matlab Codes</a>]
+<p>
+</li>
+<li> 
+<B>Flows and Decompositions of Games: Harmonic and Potential Games</B>
+<br>
+Ozan Candogan, Ishai Menache, Asuman Ozdaglar, and Pablo A. Parrilo
+<br> 
+<a href=""> </a>Mathematics of Operations Research, 36(3): 474 - 503, 2011
+<br>
+[<a href="https://arxiv.org/abs/1005.2405">arXiv.org/abs/1005.2405</a>][<a href="http://pubsonline.informs.org/doi/abs/10.1287/moor.1110.0500"> doi:10.1287/moor.1110.0500 </a>]
+<p> 
+</li>
+<li> 
+<B>HodgeRank on Random Graphs for Subjective Video Quality Assessment.</B>
+<br>
+Qianqian Xu, Qingming Huang, Tingting Jiang, Bowei Yan, Weisi Lin, and Yuan Yao.
+<br> 
+<a href=""> </a> IEEE Transactions on Multimedia, 14(3):844-857, 2012 
+<br>
+[<a href="http://math.stanford.edu/~yuany/publications/TMM12-final.pdf">pdf</a>][<a href="http://math.stanford.edu/~yuany/publications/BatchHodge.zip"> Matlab codes in zip </a>]
+<p> 
+</li>
+<li>
+<B>Robust Evaluation for Quality of Experience in Crowdsourcing.
+</B>
+<br>
+Qianqian Xu, Jiechao Xiong, Qingming Huang, and Yuan Yao
+<br> 
+<a href="http://www.acmmm13.org/"> <I>ACM Multimedia 2013</I>.</a>
+<br>
+[<a href="publications/ACMMM13.pdf">pdf</a>]
+<p> 
+</li>
+<li>
+<B>Online HodgeRank on Random Graphs for Crowdsourceable QoE Evaluation.
+</B>
+<br>
+Qianqian Xu, Jiechao Xiong, Qingming Huang, and Yuan Yao
+<br> 
+<I>IEEE Transactions on Multimedia</I>, 16(2):373-386, Feb. 2014.
+<br>
+[<a href="http://math.stanford.edu/~yuany/publications/TMM13.pdf">pdf</a>]
+<p> 
+</li>
+<li>
+<B>Analysis of Crowdsourced Sampling Strategies for HodgeRank with Sparse Random Graphs
+</B>
+<br>
+Braxton Osting, Jiechao Xiong, Qianqian Xu, and Yuan Yao
+<br>
+<I>Applied and Computational Harmonic Analysis</I>, 41 (2): 540-560, 2016
+<br>
+[<a href="http://arxiv.org/abs/1503.00164"> arXiv:1503.00164 </a>] [<a href="http://authors.elsevier.com/sd/article/S1063520316000300
+"> ACHA online </a>] [<a href="http://math.stanford.edu/~yuany/data/TIP_matlab.zip">Matlab codes to reproduce our results</a>] 
+<p> 
+</li>
+<li>
+<B>
+False Discovery Rate Control and Statistical Quality Assessment of Annotators in Crowdsourced Ranking
+</B>
+<br>
+Qianqian Xu, Jiechao Xiong, Xiaochun Cao, Yuan Yao
+<br>
+<I>Proceedings of The 33rd International Conference on Machine Learning (ICML)</I>, New York, June 19-24, 2016.
+<br>
+[<a href="http://arxiv.org/abs/1605.05860"> arXiv:1605.05860 </a>] [<a href="http://math.stanford.edu/~yuany/publications/ICML2016_cameraready_ID_600.pdf"> pdf </a>] [<a href="http://math.stanford.edu/~yuany/publications/ICML2016_camerareadySI_ID_600.pdf"> supplementary </a>]
+<p> 
+</li>
+<li>
+<B>
+Parsimonious Mixed-Effects HodgeRank for Crowdsourced Preference Aggregation
+</B>
+<br>
+Qianqian Xu, Jiechao Xiong, Xiaochun Cao, Yuan Yao
+<br>
+<I>ACM Multimedia Conference (ACMMM)</I>, Amsterdam, Netherlands, October 15-19, 2016.
+<br>
+[<a href="http://arxiv.org/abs/1607.03401"> arXiv:1607.03401 </a>] [<a href="http://math.stanford.edu/~yuany/publications/AMM-20160712.pdf"> pdf </a>] 
+<p> 
+</li>
+<li>
+<B>
+HodgeRank with Information Maximization for Crowdsourced Pairwise Ranking Aggregation
+</B>
+<br>
+Qianqian Xu, Jiechao Xiong, Xi Chen, Qingming Huang, Yuan Yao
+<br>
+to appear in <I>AAAI</I>, 2018.
+<br>
+[<a href="https://arxiv.org/abs/1711.05957"> arXiv:1711.05957 </a>] [<a href="https://github.com/yuany-pku/activesample"> Matlab Source Codes </a>] 
+<p> 
+</li>
+</ul>
+</td>
+<td>Y.Y.<br> Hongyu MAO </td>
+<td></td>
+</tr>
+
+<tr>
+<td>24/11/2017, Fri </td>
+<td>Lecture 24: Clustering Methods <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/lecture23.pdf">[ slides in pdf ]</a> and Presentation on Bayesian Deep Learning <br>
+<ul>[Reference]:
+<li> Furthest-First Traversal algorithm for k-center in matlab: <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/kcenter.m"> kcenter.m </a>: a.k.a. 'landmarks' in ISOMAP 
+</li>
+<li> Cover Tree in Python <a href="https://github.com/patvarilly/CoverTree"> https://github.com/patvarilly/CoverTree </a> </li>
+<li> Ye and Mao's presentation on Bayesian Deep Learning <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/BayesianDeepLearning.pptx">[ pptx ]</a>
+</li>
+</ul>
+</td>
+<td>Y.Y. <br> Yushi Ye</td>
+<td></td>
+</tr>
+
+
+<tr>
+<td>27/11/2017, Mon </td>
+<td>Lecture 25: Final Project <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/project3.pdf">[ pdf ]</a><br>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+</tbody>
+</table>
+
+<br>
+
+<h3><a name="data">Datasets (to-be-updated)</a></h3>
+
+<ul>
+<br>
+<li> [Animal Sleep Data] <a href="http://math.stanford.edu/~yuany/course/data/sleep1.csv"> Animal species sleeping hours vs. other features </a>
+</li>
+<br>
+<li> [Anzhen Heart Data] <a href="http://math.stanford.edu/~yuany/course/data/heartData_20140401.xlsx"> Heart Operation Effect Prediction</a>, provided by Dr. Jinwen Wang, Anzhen Hospital
+</li>
+<br>
+<li> [Beer Data] <a href="http://math.stanford.edu/~yuany/course/data/Beers_20140514.xlsx"> 877 beers dataset </a>, provided by Mr. Richard Sun, Shanghai
+</li>
+<br>
+<li> [Crime Data] <a href="http://math.stanford.edu/~yuany/course/data/crime.zip"> Crime rates in 59 US cities during 1970-1992 </a>
+</li>
+<br>
+<li> [Real-Time-Bidding Algorithm Competition Data] <a href="http://contest.ipinyou.com/"> Contest Website </a>
+</li>
+<br>
+<li> <a name="hongloumeng">[&#32418;&#27004;&#26790;&#20154;&#29289;&#20107;&#20214;&#30697;&#38453;]</a> a 376-by-475 matrix (374-by-475 updated by WAN, Mengting) for character-event appearance in A Dream of Red Mansion (Xueqin Cao) <a href="https://yao-lab.github.io/dream-of-the-red-chamber">[ Dataset in Github ]</a> <a href="http://math.stanford.edu/~yuany/course/data/dream.RData"> [374 Characters dream.RData (for R load)] </a><a href="http://math.stanford.edu/~yuany/course/data/dream.Rd"> [dream.Rd (for R manual)] </a>  <a href="http://math.stanford.edu/~yuany/course/data/HongLouMeng374.txt"> [HongLouMeng374.txt] </a>  <a href="http://math.stanford.edu/~yuany/course/data/HongLouMeng376.csv"> [HongLouMeng376.csv] </a> <a href="http://math.stanford.edu/~yuany/course/data/hongloumeng376.mat"> [.mat] </a>
+<a href="http://math.stanford.edu/~yuany/course/data/readme.m"> [readme.m] </a>
+</li>
+<br>
+<li> <a name="data_xiyouji">[&#35199;&#28216;&#35760;]</a> characters-scene occurance matrices for 100 chapters <a href="https://yao-lab.github.io/journey-to-the-west">[ Dataset in GitHub ]</a> <a href="http://math.stanford.edu/~yuany/course/data/west.RData">[data in RData]</a> <a href="http://math.stanford.edu/~yuany/course/data/xiyouji.mat"> [data in matlab (302-by-408 matrix)] </a>
+<br>
+<table border="1" cellspacing="0">
+<tbody>
+<tr>
+<td align="left"><strong><a href="http://math.stanford.edu/~yuany/course/data/xiyouji/chap001-005.xls">chap001-005</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap006-009.xls">chap006-009</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap010-013.xls">chap010-013</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap014-017.xls">chap014-017</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap018-021.xls">chap018-021</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap022-025.xls">chap022-025</a></strong></td>
+</tr>
+<tr>
+<td align="left"><strong><a href="../data/xiyouji/chap026-029.xls">chap026-029</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap030-033.xls">chap030-033</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap034-037.xls">chap034-037</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap038-041.xls">chap038-041</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap042-045.xls">chap042-045</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap046-049.xls">chap046-049</a></strong></td>
+</tr>
+<tr>
+<td align="left"><strong><a href="../data/xiyouji/chap050-053.xls">chap050-053</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap054-057.xls">chap054-057</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap058-061.xls">chap058-061</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap062-065.xls">chap062-065</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap066-069.xls">chap066-069</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap070-073.xls">chap070-073</a></strong></td>
+</tr>
+<tr>
+<td align="left"><strong><a href="../data/xiyouji/chap074-077.xls">chap074-077</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap078-081.xls">chap078-081</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap082-085.xls">chap082-085</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap086-088.xls">chap086-088</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap089-091.xls">chap089-091</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap092-094.xls">chap092-094</a></strong></td>
+</tr>
+<tr>
+<td align="left"><strong><a href="../data/xiyouji/chap095-097.xls">chap095-097</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap098-100.xls">chap098-100</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap001-100_txt.zip">All in TXT</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/readData.m">readData.m</a></strong></td>
+</tr>
+</tbody>
+</table>
+</li>
+<br>
+<li> <a name="keywords">[Keywords Pricing]</a> Keywords and profit index in paid search advertising, by Hansheng Wang (Guanghua, PKU). <a href="http://math.stanford.edu/~yuany/course/2010.spring/Keyword/SE_slice.jpg"> [sample file] </a> <a href="http://math.stanford.edu/~yuany/course/2010.spring/Keyword/readme.txt"> [readme.txt] </a>  <a href="http://math.stanford.edu/~yuany/course/2010.spring/Keyword/SE.csv"> [data in csv] </a>
+</li>
+<br>
+<li> [Radon Data] <a href="http://math.stanford.edu/~yuany/course/data/radon.csv"> Radon measurements of 12,687 houses in US </a>
+</li>
+<br>
+<li> [Wells Data] <a href="http://math.stanford.edu/~yuany/course/data/wells.csv"> Switch unsafe wells for arsenic pollution in Bangladesh </a>
+</li>
+<br>
+<li> to-be-done...
+</li>
+</ul>
+
+<hr>
+
+<address>
+by <a href="http://www.math.pku.edu.cn/teachers/yaoy">YAO, Yuan</a>.
+</address>
+
+</body>
+</html>
+© 2019 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
