@@ -1,0 +1,551 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <META http-equiv=Content-Type content="text/html; charset=gb2312">
+   <title>2013 Spring: Statistical Learning </title>
+</head>
+<body background="../images/crysback.jpg">
+
+<!-- PAGE HEADER -->
+
+<div class="Section1">      
+<table border="0" cellpadding="0" width="100%" style="width: 100%;">
+      <tbody>
+        <tr>
+
+       <td style="padding: 0.75pt;" width="80" align="center">          
+                    
+      <p class="MsoNormal">&nbsp;<img width="64" height="64"
+ id="_x0000_i1025"
+ src="../icon.jpg" alt="PKU">
+          </p>
+       </td>
+       <td style="padding: 0.75pt;">
+      <p>
+<span style="font-size: 18pt;">
+<b><big>Statistical Learning (&#32479;&#35745;&#23398;&#20064;)<br>
+   Spring 2013</big></b>
+<br>
+</p>
+</td>
+</tr>
+           
+</tbody>   
+</table>
+
+<div class="MsoNormal" align="center" style="text-align: center;">      
+<hr size="2" width="100%" align="center">  </div>
+           
+<ul type="disc">
+        
+</ul>
+
+<!-- COURSE INFORMATION BANNER -->
+                  
+<table border="0" cellpadding="0" width="100%" bgcolor="#990000"
+ style="background: rgb(153,0,0) none repeat scroll 0% 50%; width: 100%;">
+      <tbody>
+
+        <tr>
+       <td style="padding: 2.25pt;">                               
+      <p class="MsoNormal"><b><span
+ style="font-size: 13.5pt; color: white;">Course Information</span></b></p>
+       </td>
+      </tr>
+                 
+  </tbody>    
+</table>
+
+<!-- COURSE INFORMATION -->
+
+<h3>Synopsis (&#25688;&#35201;)</h3> 
+<p style="margin-left: 0.5in;">
+<big> This course is open to graduates and senior undergraduates in applied mathematics, statistics, and engineering who are involved in learning from data. 
+It covers some topics statistical learning, featured with several in-class projects in computational advertisement, bioinformatics, and social networks. 
+<br> 
+
+Prerequisite: linear algebra, basic probability and multivariate statistics, convex optimization; familarity with R and Matlab (better enhanced by C/++).  
+</big>
+</p>    
+
+<h3>Reference (&#21442;&#32771;&#25945;&#26448;)</h3>
+<p style="margin-left: 0.5in;">
+<big> 
+<em> <a href="http://www-stat.stanford.edu/~tibs/ElemStatLearn/">The Elements of Statistical Learning.</a> 2nd Ed. By Hastie, Tibshirani, and Friedman </em>
+</big>
+</p>
+
+<h3>Instructors: </h3>
+<p style="margin-left: 0.5in;">
+<big> 
+<em> <a href="http://www.math.pku.edu.cn/teachers/jjia/">Jinzhu Jia</a> and <a href="http://www.math.pku.edu.cn/teachers/yaoy/">Yuan Yao</a>  </em>
+</big>
+</p>
+                                    
+<h3>Time and Place:</h3>
+<p style="margin-left: 0.5in;">
+<big><em>Thurday 6:40-9:30pm; <br>
+From the second week: <em>&#29702;&#25945; 309</em> (The first week in Rm 1114 Sci. Bldg 1st, Tuesday 2/26/2013) <br>
+<em>2 hour lectures plus 1 hour discussion</em>
+</big></p>
+
+<h3>Homework and Projects:</h3>
+          
+<p style="margin-left: 0.5in;">
+<big><em>Irregular assigned homeworks with projects, and a final major project. No final exam. </em>
+</big></p>
+
+<h3>Teaching Assistant (&#21161;&#25945;):</h3>
+          
+<p style="margin-left: 0.5in;">
+<big>Chen, Xinyu (&#38472;&#34218;&#32701;) Email:<em> xycbaker (add "AT gmail DOT com" afterwards) </em>
+</big>
+</p>
+<p style="margin-left: 0.5in;">
+<big>YAN, Bowei (&#38379;&#21338;&#24013;) Email:<em> bwyan (add "AT pku DOT edu DOT cn" afterwards)</em>
+</big></p>
+				
+<h3>Schedule (&#26102;&#38388;&#34920;)</h3>
+                              
+<table border="1" cellspacing="0">
+<tbody>
+
+<tr>
+<td align="left"><strong>Date</strong></td>
+<td align="left"><strong>Topic</strong></td>
+<td align="left"><strong>Instructor</strong></td>
+<td align="left"><strong>Scriber</strong></td>
+</tr>
+                              
+<tr>
+<td>02/26/2013, Tue</td>
+<td>Lecture 01: Introduction  <br>
+<ul>[Reference]:
+<li> <a href="CourseDescription.pdf"> Course Description </a> </li>
+<li> <a href="weinan.pdf">[Weinan's note on Data Science in Chinese, please don't circulate it.]</a> </li>
+<li> <a href="wasserman.pdf">[Larry Wasserman's article on Statistics vs. Machine Learning]</a> </li>
+<li> <a href="Xuehua_20130226_DSPCompetition_PKU.pptx">[Xuehua Shen's Talk Slides on DSP Bidding Competition]</a> </li>
+<li> <a href="RTB101_iPinYou_XuehuaShen_English.pdf">[Xuehua Shen's Tutorial on Real Time Bidding]</a> </li>
+</ul>
+<ul>[Speaker's Bio] 
+<li> Xuehua Shen received B.S. of Computer Science in Nanjing University, China, and Ph.D. of Computer Science at University of Illinois at Urbana-Champaign, USA. His Ph.D. thesis is personalized search. After Ph.D. research, he worked in Google search quality at Mountain View, CA, doing personalized search, and search quality live experiment platform based on real user interactions. He then worked in BlueKai, the biggest data exchange and data management platform (DMP) in Silicon Valley, using Hadoop cloud-computing platform to do personalized ads and predictive modeling. Now, he is co-founder and CTO in iPinyou (www.ipinyou.com), the leader of real-time advertising and audience targeting in China.
+</li>
+</ul>
+<td>Y.Y.<br>Dr. Xuehua Shen</td>
+<td></td>
+</tr>
+
+<tr>
+<td>03/07/2013, Thu</td>
+<td>Lecture 02: Overview on Supervised Learning [<a href="Lecture02.pptx"> Lecture 2 slides </a>]  <br>
+<ul>[Reference]:
+<li> <a href="dsp_bidding_data_format.pdf"> DSP Bidding Data Format </a> </li>
+</ul>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+
+<tr>
+<td>03/14/2013, Thu</td>
+<td>Lecture 03: Linear Models for Classification [<a href="http://www.math.pku.edu.cn/teachers/yaoy/Spring2013/Lecture03.pptx"> Lecture 3 slides </a>]  <br>
+<ul>[Further Reading]:
+<li> <a href="http://gking.harvard.edu/files/abs/0s-abs.shtml"> King, Gary, and Zeng, Langche. 2001. Logistic Regression in Rare Events Data. </a> Political Analysis 9: 137-163. Copy at <a href="http://j.mp/lBzoIi"> http://j.mp/lBZoIi</a> </li>
+</ul>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>03/21/2013, Thu</td>
+<td>Lecture 04: Linear Models for Regression [<a href="http://www.math.pku.edu.cn/teachers/yaoy/Spring2013/Lecture04.pptx"> Lecture 4 slides </a>]  <br>
+<ul>[Project I]:
+<li> <a href="http://www.math.pku.edu.cn/teachers/yaoy/Spring2013/project01.pdf"> Project 1 Description </a> Due: April 11, 2013. </li>
+</ul>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>03/28/2013, Thu</td>
+<td> Lecture 05: Machine Learning in Sponsored Search and Online Advertisement <br>
+<ul> [Invited Talk I] <I>Click Prediction in Sponsored Search and Online Advertisement</I>
+<li> [Speaker] Taifeng Wang and Jiang Bian, Microsoft Research Asia </li>
+<li> [Abstract] 
+In this talk, we will first give a brief introduction to the online advertising and sponsored search, and point out interesting computational problems in the area. Then, we will take more discussions on the problem of click prediction in sponsored search. In particular, we will talk about why click prediction is critical for sponsored search and introduce some state-of-the-art research, followed by a couple of open challenges in this direction.
+</li>
+<li> 
+[Bio] <a href="http://research.microsoft.com/en-us/people/taifengw/">Taifeng Wang</a> is an associate researcher in Internet Economics and Computational Advertising Group (IECA), Microsoft Research Asia (MSRA). His research focuses on modeling users' behavior in ads system and help the search engine deliver better ads. His current research topic includes ads click prediction, user modeling, ads optimization etc. He is also interested in machine learning, distributed system and HCI design. Prior to joining Microsoft, he got his Master degree and Bachelor degree from University of Science and Technology of China.  He has served as a PC member for multiple top conferences including WWW, SIGIR, KDD, IJCAI, AIRS.
+</li>
+<li> 
+<a href="http://sites.google.com/site/jiangbianhome/">Jiang Bian</a> is an associate researcher in Internet Economics and Computational Advertising Group (IECA), Microsoft Research Asia (MSRA). His research interests include computational advertising, information retrieval, machine learning and data mining. Prior to joining Microsoft, he worked as a scientist at Yahoo! Labs in the US. Jiang received the Ph.D. degree in Computer Science at Georgia Institute of Technology, U.S. in 2010. He has served as PC Member for several international conferences, such as WWW, SIGIR, KDD, etc., and Peer Reviewer for a few journals, such as TOIS, TKDE, TIST, IPM, etc.
+</li>
+</ul>
+<ul> [Invited Talk II] <I> Sponsored Search Auctions: A Brief Introduction </I>
+<li> [Speaker] Tao Qin, Microsoft Research-Asia </li>
+<li> [Abstract]
+I will give a brief introduction to sponsored search auctions. Topics include: sponsored search market, several basic concepts in game theory, current practice of keyword auctions in industry, research focus on sponsored search auctions, and an outlook for future research directions.
+</li> 
+<li> [Bio]
+Dr. <a href="http://research.microsoft.com/en-us/people/taoqin/">Tao Qin</a> is a researcher in Internet Economics and Computational Advertising Group (IECA), Microsoft Research Asia (MSRA). His research interests include mechanism design, computational advertising, information retrieval, machine learning  and data mining. Prior to joining Microsoft, he got both his PhD degree and Bachelor degree from Tsinghua University.  He has served as a Co-Chair for multiple international workshops about online advertising, as an Area Chair for SIGIR 2012 and SIGIR 2013, as a PC member for multiple top conferences including WWW, SIGIR, EC, CIKM and SDM.
+</li>
+</ul>
+<ul> [Discussion] <I>DSP Competition of Online Advertisement: New Training Dataset</I> <a href="Xuehua_20130328_DSPCompetitionLecture2_PKU.pptx">[Slides]</a>
+<li> [Speaker] Xuehua Shen </li>
+</ul>
+<td>Taifeng Wang,<br> Jiang Bian,<br>Tao Qin,<br>Xuehua Shen</td>
+<td></td>
+</tr>
+
+ </tr>
+ <tr style='mso-yfti-irow:6'>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>04/11/2013, Thu</span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>Lecture 06: Basis Expansions and
+  Regularization [<a
+  href="http://www.math.pku.edu.cn/teachers/jjia/2013%20Spring%20%20Statistical%20Learning_files/Lecture06.pptx">
+  Lecture 6 slides </a>] </span></p>
+  <p class=MsoNormal><span lang=EN-US>[Homework] See the last slide in <a
+  href="http://www.math.pku.edu.cn/teachers/jjia/2013%20Spring%20%20Statistical%20Learning_files/Lecture06.pptx"><span
+  style='mso-spacerun:yes'>&nbsp;</span>Lecture 6 <span class=GramE>slides </span></a>.
+  Due: April 25, 2013.</span></p>
+  <p class=MsoNormal><span lang=EN-US>[Readings] 1. Chapter 5, Elements of
+  statistical learning.</span></p>
+  <p class=MsoNormal style='mso-pagination:none;mso-layout-grid-align:none;
+  text-autospace:none'><span lang=EN-US><span
+  style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span>2. <span class=SpellE>Wahba</span>, G. (1990). Spline Models for
+  Observational Data, SIAM, Philadelphia.</span></p>
+  <p class=MsoNormal style='margin-left:96.0pt;text-indent:-96.0pt;mso-char-indent-count:
+  -8.0;mso-pagination:none;mso-layout-grid-align:none;text-autospace:none'><span
+  lang=EN-US><span
+  style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span>3. Lin Y and Zhang H. (2006) Component selection and smoothing in
+  smoothing splines of variance models. Annals of Statistics 34(5) 2272-2297.</span></p>
+  <p class=MsoNormal style='mso-pagination:none;mso-layout-grid-align:none;
+  text-autospace:none'><span lang=EN-US><span
+  style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span>4. Michal <span class=SpellE>Aharon</span> Michael <span class=SpellE>Elad</span>
+  Alfred <span class=SpellE>Bruckstein</span>.<span
+  style='mso-spacerun:yes'>&nbsp; </span>K-SVD: DESIGN OF DICTIONARIES FOR
+  SPARSE REPRESENTATION. </span></p>
+  <p class=MsoNormal style='margin-left:84.0pt;text-indent:-84.0pt;mso-char-indent-count:
+  -7.0;mso-pagination:none;mso-layout-grid-align:none;text-autospace:none'><span
+  lang=EN-US><span
+  style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span>5. <span class=SpellE>Julien</span> <span class=SpellE>Mairal</span>,
+  Francis Bach , Jean Ponce , Guillermo <span class=SpellE>Sapiro</span>,
+  Andrew <span class=SpellE>Zisserman</span> (2008) Supervised Dictionary
+  Learning</span></p>
+  <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>Jinzhu Jia</span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:7'>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>04/18/2013, Thu</span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>Continue with Lecture 06</span></p>
+  <p class=MsoNormal><span lang=EN-US>Students give presentation on the home
+  projects</span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>Jinzhu Jia</span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:8'>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>04/25/2013, Thu</span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>Lecture 07: Basis Expansions and
+  Regularization [<a
+  href="http://www.math.pku.edu.cn/teachers/jjia/2013%20Spring%20%20Statistical%20Learning_files/Lecture07.pptx">
+  Lecture 7 slides </a>] </span></p>
+  <p class=MsoNormal><span lang=EN-US>[Homework] See the last slide in <a
+  href="http://www.math.pku.edu.cn/teachers/jjia/2013%20Spring%20%20Statistical%20Learning_files/Lecture07.pptx"><span
+  style='mso-spacerun:yes'>&nbsp;</span>Lecture 7 <span class=GramE>slides </span></a>.
+  Due: May 9, 2013.</span></p>
+  <p class=MsoNormal><span lang=EN-US>[Readings]<span
+  style='mso-spacerun:yes'>&nbsp; </span>Chapter 6, Elements of statistical
+  learning.</span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>Jinzhu Jia </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:9'>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>05/02/2013, Thu</span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>Lecture 08: Model Assessment and
+  Selection [<a
+  href="http://www.math.pku.edu.cn/teachers/jjia/2013%20Spring%20%20Statistical%20Learning_files/Lecture08.pptx">
+  Lecture 8 slides </a>] </span></p>
+  <p class=MsoNormal><span lang=EN-US>[Homework] See the last slide in <a
+  href="http://www.math.pku.edu.cn/teachers/jjia/2013%20Spring%20%20Statistical%20Learning_files/Lecture08.pptx"><span
+  style='mso-spacerun:yes'>&nbsp;</span>Lecture 8 <span class=GramE>slides </span></a>.
+  Due: May 16, 2013.</span></p>
+  <p class=MsoNormal><span lang=EN-US>[Readings]<span
+  style='mso-spacerun:yes'>&nbsp; </span>Chapter 7, Elements of statistical
+  learning.</span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>Jinzhu Jia </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+ 
+ <tr style='mso-yfti-irow:10'>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>05/09/2013, Thu</span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>Lecture 09: Model Inference and Averaging
+  [<a href="http://www.math.pku.edu.cn/teachers/jjia/2013%20Spring%20%20Statistical%20Learning_files/Lecture09.pptx">
+  Lecture 9 slides </a>] </span></p>
+  <p class=MsoNormal><span lang=EN-US>[Homework] See the last slide in <a
+  href="http://www.math.pku.edu.cn/teachers/jjia/2013%20Spring%20%20Statistical%20Learning_files/Lecture09.pptx"><span
+  style='mso-spacerun:yes'>&nbsp;</span>Lecture 9 <span class=GramE>slides </span></a>.
+  Due: May 23, 2013.</span></p>
+  <p class=MsoNormal><span lang=EN-US>[Readings]<span
+  style='mso-spacerun:yes'>&nbsp; </span>1. Chapter 8, Elements of statistical
+  learning.</span></p>
+  <p class=MsoNormal style='text-indent:72.0pt;mso-char-indent-count:6.0'><span
+  lang=EN-US>2. Chapter 1, <a href="CS20129/CS.pdf">Computational Statistics.</a></span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>Jinzhu Jia </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+  </td>
+ 
+ 
+ <tr style='mso-yfti-irow:11'>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>05/16/2013, Thu</span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>Lecture 10: Model Inference and Averaging
+  [<a href="http://www.math.pku.edu.cn/teachers/jjia/2013%20Spring%20%20Statistical%20Learning_files/Lecture09.pptx">
+  Lecture 9 slides </a>] </span></p>
+  <p class=MsoNormal><span lang=EN-US>[Homework] See the last slide in <a
+  href="http://www.math.pku.edu.cn/teachers/jjia/2013%20Spring%20%20Statistical%20Learning_files/Lecture09.pptx"><span
+  style='mso-spacerun:yes'>&nbsp;</span>Lecture 9 <span class=GramE>slides </span></a>.
+  Due: May 30, 2013.</span></p>
+  <p class=MsoNormal><span lang=EN-US>[Project II] Due: May 30, 2013</span></p>
+  <p class=MsoNormal style='text-indent:84.0pt;mso-char-indent-count:7.0'><span
+  lang=EN-US><a href="http://www.math.pku.edu.cn/teachers/yaoy/Spring2013/project02.pptx">Project
+  2 Description</a></span></p>
+  <p class=MsoNormal style='text-indent:84.0pt;mso-char-indent-count:7.0'><span
+  lang=EN-US><a
+  href="http://www.math.pku.edu.cn/teachers/yaoy/Spring2013/Honglongmeng_project.xls">Project
+  2 assignments</a></span></p>
+  <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+  <p class=MsoNormal><span lang=EN-US>[Readings]<span
+  style='mso-spacerun:yes'>&nbsp; </span>1. Chapter 8, Elements of statistical
+  learning.</span></p>
+  <p class=MsoNormal style='text-indent:78.0pt;mso-char-indent-count:6.5'><span
+  lang=EN-US>2. Chapter 1, <a href="CS20129/CS.pdf">Computational Statistics.</a></span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>Jinzhu Jia </span></p>
+  <p class=MsoNormal><span lang=EN-US>Yuan Yao</span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+ 
+ <tr style='mso-yfti-irow:12;mso-yfti-lastrow:yes'>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>05/23/2013, Thu<o:p></o:p></span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>Lecture 11: Trees and Boosting [<a
+  href="http://www.math.pku.edu.cn/teachers/jjia/2013%20Spring%20%20Statistical%20Learning_files/Lecture10.pptx">
+  Lecture 11 slides </a>] <o:p></o:p></span></p>
+  <p class=MsoNormal><span lang=EN-US>[Readings]<span
+  style='mso-spacerun:yes'>&nbsp; </span>1. Chapter 9, Elements of statistical
+  learning.</span></p>
+  <p class=MsoNormal style='text-indent:72.0pt;mso-char-indent-count:6.0'><span
+  lang=EN-US>2</span>. <span lang=EN-US>Chapter 10, Elements of statistical
+  learning.</span></p>
+  <p class=MsoNormal style='text-indent:72.0pt;mso-char-indent-count:6.0'><span
+  lang=EN-US>3</span>. <span lang=EN-US>Friedman, J. H (1991). <span
+  class=GramE>&quot; Multivariate</span> Adaptive Regression Splines&quot;
+  (with discussion). <i>Annals of Statistics</i><b> 19</b>, 1. (<a
+  href="http://www.salford-systems.com/products-mars.html">software</a>) <span
+  style='mso-spacerun:yes'>&nbsp;</span></span></p>
+  <p class=MsoNormal style='text-indent:72.0pt;mso-char-indent-count:6.0'><span
+  lang=EN-US>4</span>. <span lang=EN-US>Friedman, J. H., Hastie, T. and <span
+  class=SpellE>Tibshirani</span>, R. <a
+  href="http://www-stat.stanford.edu/%7Ejhf/ftp/boost.pdf">&quot;Additive
+  Logistic Regression: a Statistical View of Boosting.&quot;</a> (Aug. 1998)</span></p>
+  <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+  text-indent:61.0pt;mso-char-indent-count:4.5;mso-outline-level:3'><b><span
+  lang=EN-US style='font-size:13.5pt'>5. </span></b><span lang=EN-US>Y Freund,
+  RE <span class=SpellE>Schapire</span></span><b><span lang=EN-US
+  style='font-size:13.5pt'> (1997) <a
+  href="http://www.sciencedirect.com/science/article/pii/S002200009791504X">A
+  decision-theoretic generalization of on-line learning and an application to
+  boosting</a>. </span></b><span lang=EN-US>Journal of computer and system
+  sciences </span><b><span lang=EN-US style='font-size:13.5pt'><o:p></o:p></span></b></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>Jinzhu Jia <o:p></o:p></span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+ 
+<tr>
+<td>05/30/2013, Thu</td>
+<td>Lecture 12: Machine Learning from Computer Science and Boosting, by Prof. <a href="http://www.cis.pku.edu.cn/faculty/vision/wangliwei/">Liwei Wang</a> <br>
+<ul> [Yuan Yao] <I> An application of LASSO: Robust Ranking with Hodge Decomposition</I>
+</ul>
+<td>Liwei Wang, <br> Yuan Yao</td>
+<td></td>
+</tr>
+
+<tr>
+<td>06/06/2013, Thu</td>
+<td>Lecture 13: Final Projects <a href="http://www.math.pku.edu.cn/teachers/yaoy/Spring2013/project_final.pdf">[project_final.pdf]</a> <img src="../Fall2012/new.jpg" height="40"><br>
+<ul> [ML_Rush Team] <I> Introduction of Winning Stage I in iPinyou Global RTB Competition </I>
+</ul>
+<ul> [Yuan Yao] <I> Graphical Model: Protein Folding Prediction by Sequence Variations</I>
+</ul>
+<ul>[Reference]:
+<li> Marcos et al., Direct-coupling analysis of residue coevolution captures native contacts across many protein families, PNAS, 2011, 108(49): E1293-E1301. <a href="http://www.pnas.org/content/108/49/E1293">[weblink]</a><a href="http://dca.upmc.fr/DCA/DCA.html">[matlab DCA package]</a></li>
+<li> Jones et al. PSICOV: precise structural contact prediction using sparse inverse covariance estimation on large multiple sequence alignments, Bioinformatics. 2012, 28(2):184-90. <a href="http://www.ncbi.nlm.nih.gov/pubmed/22101153">[weblink]</a> <a href="http://bioinfadmin.cs.ucl.ac.uk/downloads/PSICOV/">[PSICOV source]</a></li>
+<li> Meinshausen and Buhlmann, High-dimensional graphs and variable selection with the Lasso, Ann. Statist. 2006, 34(3): 1436-1462.<a href="http://projecteuclid.org/DPubS?service=UI&version=1.0&verb=Display&handle=euclid.aos/1152540754">[Paperlink]</a>  </li>
+<li> Banerjee, O., El Ghaoui, L. and d'Aspremont, A. (2008). Model selection through sparse maximum likelihood estimation. J. Machine Learning Research, 9, 485-516. <a href="http://www.math.pku.edu.cn/teachers/yaoy/reference/BED_jmlr2008">[paperlink]</a> </li>
+<li> Friedman, J., Hastie, T. and Tibshirani, R. (2008). Sparse inverse covariance estimation with the graphical Lasso. Biostatistics, 9, 432-441. <a href="http://www-stat.stanford.edu/~tibs/ftp/glasso-bio.pdf">[Paperlink]</a> <a href="http://www-stat.stanford.edu/~tibs/glasso/index.html">[Graphical Lasso package] </a> </li>
+<li> Ravikumar, Wainwright and Lafferty (2010). High-dimensional Ising model selection using l1-regularized logistic regression. Ann. Stat. 2010, 38(3): 1287-1319. <a href="http://arxiv.org/pdf/1010.0311.pdf">[Paperlink]</a> </li>
+</ul>
+<td>Yuan Yao;<br>Xingqiang Wang et al. (CAS)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>06/13/2013, Thu</td>
+<td>Lecture 14: Neural Networks and Deep Learning <a href="http://www.math.pku.edu.cn/teachers/yaoy/Spring2013/project_final.pdf">[project_final.pdf]</a> <img src="../Fall2012/new.jpg" height="40"> <br>
+<ul> [Yuan Yao] <I> Chapter 11: Neural Networks</I> <a href="http://www.math.pku.edu.cn/teachers/yaoy/Spring2013/Lecture11.pptx">[ slides(pptx) ]</a>
+</ul>
+<ul> [<a href="JIA-Lei.pdf">Dr. Lei JIA (&#36158;&#30922;)</a>, Baidu Co. Ltd.] <I> Deep Learning and Speech Technique in Baidu </I> (slides are noncirculate)
+</ul>
+<ul> [Reference]:
+<li> Chapter 11 Neural Networks, <a href="http://www-stat.stanford.edu/~tibs/ElemStatLearn/">The Elements of Statistical Learning.</a> </li>
+<li> The MNIST Database, by Yann LeCun et al. <a href="http://yann.lecun.com/exdb/mnist/">[weblink]</a></li>
+<li> Hinton, G. E. and Salakhutdinov, R. R. (2006) Reducing the dimensionality of data with neural networks. <br> <I>Science</I>, Vol. 313. no. 5786, pp. 504 - 507, 28 July 2006.<br><a href="http://www.cs.toronto.edu/~hinton/science.pdf">[ full paper ]</a> <a href="http://www.cs.toronto.edu/~hinton/absps/science_som.pdf">[ supporting online material (pdf) ] </a> <a href="http://www.cs.toronto.edu/~hinton/MatlabForSciencePaper.html">[ Matlab code ]</a>  </li>
+<li> Hinton, G. E., Osindero, S. and Teh, Y. (2006) <br>
+A fast learning algorithm for deep belief nets. <br>
+Neural Computation, 18, pp 1527-1554. <a href="http://www.cs.toronto.edu/~hinton/absps/ncfast.pdf">[ pdf ]</a> <a href="http://www.cs.toronto.edu/~hinton/digits.html">[ movies ]</a> </li>
+<li> <a href="http://www.ipam.ucla.edu/programs/gss2012/">[IPAM-UCLA 2012 Summer School on Deep Learning]</a> </li>
+</ul>
+
+<td>Yuan Yao;<br> Lei Jia (Baidu)</td>
+<td></td>
+</tr>
+
+</tbody>
+</table>
+
+<br>
+
+<h3><a name="data">Datasets</a></h3>
+<ul>
+<br>
+<li> [Anzhen Heart Data] <a href="http://www.math.pku.edu.cn/teachers/yaoy/data/HeartData_20130201.zip"> Heart Operation Effect Prediction</a>, provided by Dr. Jinwen Wang, Anzhen Hospital   
+</li>
+<br>
+<li> [DSP-Bidding Competition Data] <a href="http://contest.ipinyou.com/"> Contest Website </a>, provided by Dr. Xuehua Shen, iPinyou Co. Ltd.   
+</li>
+<br>
+<li> <a name="keywords">[Keywords Pricing]</a> Keywords and profit index in paid search advertising, by Hansheng Wang (Guanghua, PKU). <a href="http://www.math.pku.edu.cn/teachers/yaoy/math2010_spring/Keyword/SE_slice.jpg"> [sample file] </a> <a href="http://www.math.pku.edu.cn/teachers/yaoy/math2010_spring/Keyword/readme.txt"> [readme.txt] </a>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/math2010_spring/Keyword/SE.csv"> [data in csv] </a> 
+</li>
+<br>
+<li> <a name="protein">[Protein Folding]</a> Protein Folding prediction from sequence variations, by Steve Smale and Massimo Andreatta (CityUHK). <a href="http://www.math.pku.edu.cn/teachers/yaoy/data/protein.zip"> [compressed .zip] </a> <a href="http://www.math.pku.edu.cn/teachers/yaoy/data/protein/readme.txt"> [readme.txt] </a> 
+</li>
+<br>
+<li> <a name="hongloumeng">[&#32418;&#27004;&#26790;&#20154;&#29289;&#20107;&#20214;&#30697;&#38453;]</a> a 376-by-475 matrix (374-by-475 updated by WAN, Mengting) for character-event appearance in A Dream of Red Mansion (Xueqin Cao) <a href="http://www.math.pku.edu.cn/teachers/yaoy/data/hongloumeng/HongLouMeng374.txt"> [374 Characters.txt (for R/read.table)] </a> <a href="http://www.math.pku.edu.cn/teachers/yaoy/data/hongloumeng/HongLouMeng374.csv"> [HongLouMeng374.csv] </a>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/data/hongloumeng/HongLouMeng376.xls"> [HongLouMeng376.xls] </a> <a href="http://www.math.pku.edu.cn/teachers/yaoy/data/hongloumeng/hongloumeng376.mat"> [.mat] </a> 
+<a href="http://www.math.pku.edu.cn/teachers/yaoy/data/hongloumeng/readme.m"> [readme.m] </a>   
+  
+
+</li>
+<br>
+<li> <a name="xiyouji">[&#35199;&#28216;&#35760;&#20154;&#29289;&#20107;&#20214;&#30697;&#38453;]</a> characters-event occurance matrices for 100 chapters <a href="../Fall2011/xiyouji/xiyouji.mat"> [data in matlab (302-by-408 matrix)] </a>
+<br>
+<table border="1" cellspacing="0">
+<tbody>
+<tr>
+<td align="left"><strong><a href="../data/xiyouji/chap001-005.xls">chap001-005</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap006-009.xls">chap006-009</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap010-013.xls">chap010-013</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap014-017.xls">chap014-017</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap018-021.xls">chap018-021</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap022-025.xls">chap022-025</a></strong></td>
+</tr>
+<tr>
+<td align="left"><strong><a href="../data/xiyouji/chap026-029.xls">chap026-029</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap030-033.xls">chap030-033</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap034-037.xls">chap034-037</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap038-041.xls">chap038-041</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap042-045.xls">chap042-045</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap046-049.xls">chap046-049</a></strong></td>
+</tr>
+<tr>
+<td align="left"><strong><a href="../data/xiyouji/chap050-053.xls">chap050-053</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap054-057.xls">chap054-057</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap058-061.xls">chap058-061</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap062-065.xls">chap062-065</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap066-069.xls">chap066-069</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap070-073.xls">chap070-073</a></strong></td>
+</tr>
+<tr>
+<td align="left"><strong><a href="../data/xiyouji/chap074-077.xls">chap074-077</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap078-081.xls">chap078-081</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap082-085.xls">chap082-085</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap086-088.xls">chap086-088</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap089-091.xls">chap089-091</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap092-094.xls">chap092-094</a></strong></td>
+</tr>
+<tr>
+<td align="left"><strong><a href="../data/xiyouji/chap095-097.xls">chap095-097</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap098-100.xls">chap098-100</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap001-100_txt.zip">All in TXT</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/readData.m">readData.m</a></strong></td>
+</tr>
+</tbody>
+</table>
+</li>
+<br>
+</ul>
+           
+<hr>
+
+<address>
+by <a href="http://www.math.pku.edu.cn/teachers/yaoy">YAO, Yuan</a>.
+</address>
+
+</body>
+</html>

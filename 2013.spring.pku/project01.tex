@@ -1,0 +1,133 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\def\N{{\mathcal N}}
+\def\R{{\mathcal R}}
+\def\E{{\mathbb E}}
+
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0.25 in}
+\setlength{\parskip}{0.1 in}
+
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{page}{1}
+   \setcounter{section}{0}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Statistical Learning \hfill #4} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\Large \hfill #1  \hfill} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\it Instructor: #2\hfill #3} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{#1}{#1}
+   \vspace*{4mm}
+}
+
+
+\begin{document}
+
+\lecture{Project I}{Jinzhu Jia and Yuan Yao}{Due: April 11, 2013}{March 23, 2013}
+
+\section{Requirement}
+
+\begin{enumerate}
+\item Pick up ONE (or more if you like) favorite problem below to attack. If you would like to work on a different problem outside the candidates we proposed, please email course instructors about your proposal.  
+\item Team work: we encourage you to form small team, up to THREE persons per group, to work on the same problem. Each team just submit ONE report, with a clear remark on each person's contribution. 
+\item In the report, show your results with your careful analysis of the results. Remember: scientific analysis and reasoning are more important than merely the performance results. Source codes may be submitted through email as a zip file, or as an appendix if it is not large.    
+\item Submit your report by email or paper version no later than the deadline, to Teaching Assistants (TA), Xinyu Chen (\href{mailto:xycbaker@gmail.com}{xycbaker@gmail.com}) and Bowei Yan (\href{mailto:yanbowei@gmail.com}{yanbowei@gmail.com}). 
+\end{enumerate}
+
+\section{Problem I (Regression): Keyword Pricing}
+
+The following data, collected by Prof. Hansheng Wang in Guanghua Business School at PKU, 
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/math2010_spring/Keyword/SE.csv} 
+
+\noindent contains two columns: the first column is a list of keywords; the second column is the profit value (positive for earning and negative for loss). Figure \ref{fig:keywords} gives some example.
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{keywords.png}  
+\caption{Keywords and profit value}
+\label{fig:keywords}
+\end{center}
+\end{figure}
+
+The purpose is to predict the profit value based on features extracted from the keywords, which might be linguistic, geographic, and any new features in your creation. Since the profit values are of real numbers, this problem is regarded as a regression problem by default. 
+
+\section{Problem II (Classification): click-prediction}
+
+The way to access data is announced in class. Here we give one example for Linux users:
+\begin{enumerate}
+\item {\texttt{sftp einstein@162.105.68.237}}
+\item {\texttt{INPUT your password}}
+\item {\texttt{cd /data/ipinyou/}}
+\item {\texttt{get all$\_$txt$\_$data.zip}}        \# containing all .txt data files, of size 170MB
+\item {\texttt{quit}}
+\end{enumerate}
+
+Unzip the file {\texttt{all$\_$txt$\_$data.zip}} to your local directory, you will find the following files:
+
+\begin{itemize}
+\item bid.20130301.txt: Bidding log file, 1.2M rows, 470MB
+\item imp.20130301.txt: Impression log, 0.8M rows,  360MB
+\item clk.20130301.txt: Click log file, 796 rows, 330KB
+\item conv.20130301.txt: Conversion log file, 1 rows, 809B.
+\item Region\&citys.txt: Region and City code
+\item region$\_$en.txt: region name in English
+\item region$\_$zh.txt: region name in simplified Chinese
+\end{itemize}
+
+\noindent which are just some sample data from iPinyou. Further updates of training data will be released soon. A short introduction on the data format can be found at
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/Spring2013/dsp_bidding_data_format.pdf}
+
+As a warm-up, the first stage in the DSP-bidding competition is the so called \emph{click-prediction}: find a model to predict the click of impressions. 
+To be specific, the file {\texttt{imp.20130301.txt}} (0.8M rows,  360MB) contains 0.8M impressions after winning the bidding, among which only 796 impressions are clicked in the file {\texttt{clk.20130301.txt}} (796 rows, 330KB). The task is to design your features and predict the class of clicks. 
+
+For those R users, the following commands can be used to read the data
+
+{\texttt{imp <- read.table("/data/ipinyou/imp.20130301.txt", sep='$\backslash$t', comment.char='')}}
+
+\noindent This is because that R {\texttt{read.table}}Êby default uses '\#' as a comment character, that is, it has {\texttt{comment.char = '\#'}} parameter by default. But the user-agent field in data file may have '\#' character. Hence to read correctly, it is necessary to turn off {\texttt{comment.char=''}}.Ê
+
+One challenge lies in the imbalance of the problem, with 1000 zeroes for a single one. So this is a rare event classification problem. The following paper, Logistic Regression in Rare Events Data, by King and Zeng 2001, might be helpful for you.
+
+\url{http://gking.harvard.edu/files/abs/0s-abs.shtml}
+
+\section{Problem III (Classification): Heart Operation Effect Prediction}
+
+The following data, provided by Dr. Jinwen Wang at Anzhen Hospital, 
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/HeartData_20130201.zip}
+
+\noindent contains 2581 patients with 73 measurements (inputs) as well as a response variable indicating if after the heart operation there is a null-reflux state. 
+This is a classification problem, with a challenge from the large amount of missing values. 
+
+The following two reports by LU, Yu and WANG, Qing, are probably inspiring to you.
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/LuYu_201303_BigHeart.pdf} 
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/WangQing_201303_BigHeart.pdf} 
+
+
+\end{document}
+
+
