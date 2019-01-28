@@ -1,0 +1,1007 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <META http-equiv=Content-Type content="text/html; charset=gb2312">
+   <title>2012 Fall: Mathematical Introduction to Data Science</title>
+</head>
+<body background="../images/crysback.jpg">
+
+<!-- PAGE HEADER -->
+
+<div class="Section1">      
+<table border="0" cellpadding="0" width="100%" style="width: 100%;">
+      <tbody>
+        <tr>
+
+       <td style="padding: 0.75pt;" width="80" align="center">          
+                    
+      <p class="MsoNormal">&nbsp;<img width="64" height="64"
+ id="_x0000_i1025"
+ src="../icon.jpg" alt="PKU">
+          </p>
+       </td>
+       <td style="padding: 0.75pt;">
+      <p>
+<span style="font-size: 18pt;">
+<b><big>Mathematical Introduction to Data Science (&#25968;&#25454;&#20013;&#30340;&#25968;&#23398;)<br>
+   Fall 2012</big></b>
+<br>
+</p>
+</td>
+</tr>
+           
+</tbody>   
+</table>
+
+<div class="MsoNormal" align="center" style="text-align: center;">      
+<hr size="2" width="100%" align="center">  </div>
+           
+<ul type="disc">
+        
+</ul>
+
+<!-- COURSE INFORMATION BANNER -->
+                  
+<table border="0" cellpadding="0" width="100%" bgcolor="#990000"
+ style="background: rgb(153,0,0) none repeat scroll 0% 50%; width: 100%;">
+      <tbody>
+
+        <tr>
+       <td style="padding: 2.25pt;">                               
+      <p class="MsoNormal"><b><span
+ style="font-size: 13.5pt; color: white;">Course Information</span></b></p>
+       </td>
+      </tr>
+                 
+  </tbody>    
+</table>
+
+<!-- COURSE INFORMATION -->
+
+<h3>Synopsis (&#25688;&#35201;)</h3> 
+<p style="margin-left: 0.5in;">
+<big> This course is open to graduates and senior undergraduates in applied mathematics and statistics who are involved in dealing with data. It covers some topics on high 
+dimensional statistics, manifold learning, diffusion geometry, random walks on graphs, concentration of measure, random matrix theory, geometric and topological methods, etc. 
+<br> 
+
+Prerequisite: linear algebra, basic probability and multivariate statistics, basic stochastic process (Markov chains); familarity with Matlab or R.  
+</big>
+</p>    
+
+<h3>Lecture Notes</h3> 
+ <p style="margin-left: 0.5in;">
+ <big> <a href="lectures.pdf">[pdf download] </a> <img src="new.jpg" height="40">
+ </big>
+ </p>
+                                    
+<h3>Time and Place:</h3>
+<p style="margin-left: 0.5in;">
+<big><em>Monday 3:10-5:00pm; <br>
+Thursday (odd weeks) 1:00-2:50pm </em> 
+&nbsp; <br>
+<em>Rm 316 Lecture Hall 2nd; &#20108;&#25945; 316 </em> <br>
+<em>Biweekly Seminars will be notified separately (Friday).</em>
+</big></p>
+
+<h3>Homework and Projects:</h3>
+          
+<p style="margin-left: 0.5in;">
+<big><em>We are targeting weekly homeworks with monthly mini-projects, and a final major project. No final exam. Scribers will get bonus credit for their work!</em>
+</big></p>
+
+<h3>Teaching Assistant (&#21161;&#25945;):</h3>
+          
+<p style="margin-left: 0.5in;">
+<big>LV, Yuan (&#21525;&#28170;) Email:<em> shirleybluely (add "AT gmail DOT com" afterwards) </em>
+</big>
+</p>
+				
+<h3>Schedule (&#26102;&#38388;&#34920;)</h3>
+                              
+<table border="1" cellspacing="0">
+<tbody>
+
+<tr>
+<td align="left"><strong>Date</strong></td>
+<td align="left"><strong>Topic</strong></td>
+<td align="left"><strong>Instructor</strong></td>
+<td align="left"><strong>Scriber</strong></td>
+</tr>
+                              
+<tr>
+<td>09/10/2012, Mon</td>
+<td>Lecture 01: Introduction: Data Representation, Sample Mean, Variance, and PCA <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2011/lecture01.pdf">[lecture note 1.pdf]</a><br>
+<ul>[Reference]:
+<li> For PCA, see <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#ESL">[ESL]</a> Chapter 14.5 </li>
+<li> For SVD, see <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Matrix">[Matrix]</a> Chapter 2.5 etc. </li>
+<li> PCA in the analysis of SNPs: <a href="http://www.sciencemag.org/content/319/5866/1100.abstract"> Li et al. Science 319(5866):1100-1104, 2008 </a> </li>
+</ul>
+<ul>[data]:
+<li> <a href="http://www-stat.stanford.edu/~tibs/ElemStatLearn/datasets/zip.digits/train.3">Handwritten digit 3 </a>
+</li>
+<li> <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Data_SNP500">1258_by_452-stock closed prices for 4 years, SNP'500</a>
+</li>
+<li> <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Data_HGDP">650K-SNPs_by_1000-persons, Human Genome Diversity Project</a>
+</li>
+</ul>
+</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>09/11/2012, Tue</td>
+<td>Seminar: <a href="http://www.stanford.edu/~yyye/LPProgresses-Berlin.pdf">Recent Progresses on Linear Programming and the Simplex Method</a><br>
+<ul>
+<li>Speaker: <a href="http://www.stanford.edu/~yyye/"> Yinyu Ye (Stanford University) </a> </li>
+<li>Location: 1114 Science Building 1st (&#29702;&#31185;&#19968;&#21495;&#27004; 1114)</li>
+<li>Time:  3-4pm, Tue 9/11 </li>
+</ul>
+<ul>Abstract: Linear programming (LP), together with the simplex method, remain a core Operations Research, Computer Science and Mathematics topic since 1947. Due to the relentless research effort, a linear program can be solved today one million times faster than it was done thirty years ago. Businesses, large and small, now use LP models to control manufacture inventories, price commodities, design civil/communication networks, and plan investments. LP even becomes a popular subject taught in under/graduate and MBA curriculums, advancing human knowledge and promoting science education. The aim of the talk is to describe several recent exciting progresses on LP and the simplex method, include counter examples to the Hirsch conjecture, some pivoting rules and their exponential behavior, strongly polynomial-time bounds of the simplex and policy-iteration methods for solving Markov decision process (MDP) and turn-based zero-sum game with any constant discount factor, the strongly polynomial-time complexity of the simplex method for solving deterministic MDP regardless discounts, etc.
+</ul>
+<ul>Bio: Yinyu Ye is currently a full Professor of Management Science and Engineering and Institute of Computational and Mathematical Engineering and the Director of the MS&E Industrial Affiliates Program, Stanford University. He received the B.S. degree in System Engineering from the Huazhong University of Science and Technology, China, and the M.S. and Ph.D. degrees in Engineering-Economic Systems and Operations Research from Stanford University. His current research interests include Continuous and Discrete Optimization, Algorithm Design and Analysis, Computational Game/Market Equilibrium, Metric Distance Geometry, Dynamic Resource Allocation, and Stochastic and Robust Decision Making, etc. He is an INFORMS (The Institute for Operations Research and The Management Science) Fellow, and has received several research awards including the inaugural 2012 ISMP Tseng Lectureship Prize for outstanding contribution to continuous optimization, the 2009 John von Neumann Theory Prize for fundamental sustained contributions to theory in Operations Research and the Management Sciences, the inaugural 2006 Farkas prize on Optimization, and the 2009 IBM Faculty Award. He has supervised numerous doctoral students at Stanford who received the 2008 Nicholson Prize and the 2006 and 2010 INFORMS Optimization Prizes for Young Researchers.
+</ul>
+</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>09/13/2012, Thu</td>
+<td>Lecture 02: Stein's Phenomenon and Shrinkage <a href="lecture02_Sheng,Hu.pdf">[lecture note 2.pdf]</a><br>
+<ul>[Reference]:
+
+<li> [Tsybakov09] <a href="../Fall2011/Tsybakov-Chap3.4.pdf">Chapter 3.4 [pdf]</a> describes Stein's phenomenon and derives James-Stein's estimators.</li>
+<li>  Charles Stein (1956) <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Stein56">[Stein56]</a> firstly defines the inadmissiblity and finds better estimators than sample mean in terms of uniformly smaller mean square error, 
+which starts a new Odyssey toward high dimensional inference. </li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#EfronMorris74">[EfronMorris74]</a> <a href="../Fall2011/Efron_SteinsEstimator.pdf">[pdf]</a> gives 3 data examples that JS estimator is significantly better than sample mean. </li>
+</ul>
+<ul>[Homework 1]:
+<li> <a href="homework01.pdf">Homework 1 [pdf]</a>. Deadline: 09/24/2012, Friday. Two ways for submissions:  
+</li>
+<li> Submit your electronic version to TAs by email before deadline; or 
+<li> Hand in your paper version to TA on the class 09/24/2011, Monday. 
+<li> Mark on the head of your homework: <I> Name - Student ID</I></li>
+</li>
+</ul>
+
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>09/17/2012, Mon</td>
+<td>Lecture 03: Random Matrix Theory and PCA <a href="lecture03.pdf">[lecture note 3.pdf]</a><br>
+<ul>[Reference]:
+
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Johnstone06">[Johnstone06]</a> shows that in high-dimensional inference when p/n is fixed, PCA will not converge by random matrix theory.</li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Nadakuditi10">[Nadakuditi10]</a> gives a brief treatment on phase transitions appeared in PCA when p/n is fixed.</li>
+</ul>
+</td>
+<td> Y.Y.</td>
+<td>Tengyuan Liang;<br>Bowei Yan</td>
+</tr>
+
+<tr>
+<td>09/21/2012, Fri</td>
+<td>Seminar: Amazing growth of Real-time advertising ecosystem <br>
+<ul>
+<li>Speaker: <a href="http://sifaka.cs.uiuc.edu/xshen/">Dr. Xuehua Shen </a> </li>
+<li>Location: 1560 Science Building 1st (&#29702;&#31185;&#19968;&#21495;&#27004; 1560)</li>
+<li>Time:  2-3pm, Friday 9/21 </li>
+</ul>
+<ul>Abstract: We have been witnessing the amazing growth of real-time bidding in USA in the past two years and China since late 2011. In this talk, I discuss three things about real-time bidding in display advertising. First what is real-time bidding (RTB) and important players such as DSP and ad exchanges in this ecosystem; second, what is the current status of RTB in USA and China and technical challenges; third, how do we grow to make RTB ecosystem even bigger. In the third part, I particularly mention the difference of BigData and cloud computing work between academia and industry, and describe three challenging research problems in computational advertising. 
+</ul>
+<ul>Bio: Xuehua Shen received B.S. of Computer Science in Nanjing University, China, and Ph.D. of Computer Science at University of Illinois at Urbana-Champaign, USA. His Ph.D. thesis is personalized search. After Ph.D. research, he worked in Google search quality at Mountain View, CA, doing personalized search, and search quality live experiment platform based on real user interactions. He then worked in BlueKai, the biggest data exchange and data management platform (DMP) in Silicon Valley, using Hadoop cloud-computing platform to do personalized ads and predictive modeling. Now, he is co-founder and CTO in iPinyou (www.ipinyou.com), the leader of real-time advertising and audience targeting in China.
+</ul>
+</td>
+<td></td>
+<td></td>
+</tr>
+
+
+<tr>
+<td>09/24/2012, Mon</td>
+<td>Lecture 04: Random Matrix Theory and PCA (continued) </a><br>
+<ul>[Reference]:
+
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Johnstone06">[Johnstone06]</a> shows that in high-dimensional inference when p/n is fixed, PCA will not converge by random matrix theory.</li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Nadakuditi10">[Nadakuditi10]</a> gives a brief treatment on phase transitions appeared in PCA when p/n is fixed.</li>
+</ul>
+
+<ul>[Homework 2]:
+<li> <a href="homework02.pdf">Homework 2 [pdf]</a>. Deadline: 10/8/2012, Monday.   
+</li>
+</li>
+</ul>
+
+<ul>[Mini-Project 1]:
+<li> <a href="project01.pdf">Mini-Project 1 [pdf]</a>. Deadline: 10/8/2012, Monday.   
+</li>
+<li> Mark on the head of your homework: <I> Name - Student ID</I></li>
+<li> Submit your report with source codes (as appendix in report or .zip files).
+</li>
+</ul>
+</td>
+<td> </td>
+<td> </td>
+</tr>
+
+<tr>
+<td>09/26/2012, Wed</td>
+<td>Seminar:Geometric Inference Using Distance-like Functions  <a href="../seminar/Chazal_PKUTalk.pdf">[slides]</a> <br>
+<ul>
+<li>Speaker: Prof. Frederic Chazal (INRIA Saclay -- Ile-de-France) </li>
+<li>Location: 1st Science Building, Rm 1273 </li>
+<li>Time:  10:30-11:30am, Wednesday 9/26 </li>
+</ul>
+<ul>Abstract: Data often comes in the form of a point cloud sampled from an unknown compact subset of Euclidean space. The general goal of geometric inference is then to recover geometric and topological features of this subset from the approximating point cloud data. In recent years, it appeared that the study of distance functions allows to address many of these questions successfully. However, one of the main limitations of this framework is that it does not cope well with outliers nor with background noise. In this talk, we will show how to extend the framework of distance functions to overcome this problem. Replacing compact subsets by probability measures, we will introduce a notion of distance-to-measure functions. These functions share many properties with classical distance functions, which makes them suitable for inference purposes. In particular, by considering appropriate level sets of these distance functions, it is possible to associate in a robust way topological and geometric features to a probability measure.
+</ul> 
+<ul>Bio: Frederic Chazal is a Senior Researcher in the GEOMETRICA team at INRIA Saclay, France. He obtained his Ph.d in Mathematics from University of Burgundy. 
+His research interests are in computational geometry and topology. He has made significant contributions to this area. His work includes geometric inference for probability measure, sampling theory for compact sets in Euclidean spaces, stability of persistence diagram, etc.
+</ul>
+</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>09/27/2012, Thu</td>
+<td>Lecture 5: Multidimensional Scaling <br>
+<ul>[Reference]:
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Bavaud10">[Bavaud10]</a>: a survey on MDS and Schoeberg Transformation in data analysis. </li>
+</ul>
+<ul>[data]:
+<li> <a href="../data/city9.mat">Pairwise Distances among 9 Cities in US</a>
+</li>
+</ul>
+</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>10/08/2012, Mon</td>
+<td>Lecture 6: Random Projections and Almost Isometry: Johnson-Lindenstrauss Lemma </a><br>
+<ul>[Reference]:
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Dasgupta99">[Dasgupta99]</a>: an elementary proof of Johnson-Lindenstrauss Lemma. 
+</li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Achlioptas01">[Achlioptas01]</a>: easy-to-operate random projections in database search. 
+</li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Indyk98">[Indyk98]</a>: random projections for approximate nearest neighbors. 
+</li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Jones11">[Jones11]</a>: randomized approximate nearest neighbors. 
+</li>
+</ul>
+<ul>[Homework 3]:
+<li> <a href="homework03.pdf">Homework 3 [pdf]</a>. Deadline: 10/15/2012, Monday.   
+</li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td>Y.Y.</td>
+
+<tr>
+<td>10/11/2012, Tue</td>
+<td>Lecture 7: Robust and Sparse PCA: SDP Extensions <br>
+<ul>[Reference]:
+<li> <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#RPCA">[RPCA]</a>: Robust Pricipal Component Analysis.  </li>
+<li> <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#spca_sdp">[SPCA]</a>: Sparse Pricipal Component Analysis formulated by a Semidefinite Programming.  </li>
+<li> <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Parrilo_SIAM09">[Parrilo_SIAM09]</a>: Robust PCA with a view of convex Algebraic Geometry.  </li>
+<li> <a href="../Fall2011/Emmanuel_PKU11.pdf"> Emmanuel Candes talk at PKU, Oct 2011</a> </li> 
+</ul>
+<ul>[Matlab]:
+<li> <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2011/testRPCA.m"> testRPCA.m </a>: my matlab codes for RPCA, based on CVX.
+</li>
+<li> <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2011/testSPCA.m"> testSPCA.m </a>: my matlab codes for SPCA, based on CVX.
+</li>
+<li> <a href="http://cvxr.com/cvx/"> CVX </a>: Matlab software for Disciplined Convex Programming, a basic package for semidefinite programming.
+</li>
+<li> <a href="http://perception.csl.uiuc.edu/matrix-rank/"> Yi MA's webpage of Low-Rank Matrix Recovery at UIUC </a>: many references and matlab codes
+</ul>
+</td>
+<td>Y.Y.</td>
+<td>Y.Y.</td>
+</tr>
+
+<tr>
+<td>10/12/2012, Fri</td>
+<td>Seminar: Topological Landscape of Complex Networks<br>
+<ul>
+<li>Speaker: <a href="http://www.math.pku.edu.cn/teachers/yaoy/">Yuan Yao (PKU)</a> </li>
+<li>Location: 1114 Science Building 1st (&#29702;&#31185;&#19968;&#21495;&#27004; 1114)</li>
+<li>Time: 10-11am, Friday 10/12 </li>
+</ul>
+<ul>Abstract: Topological landscape is introduced for networks with functions defined on the nodes. By extending the notion of gradient flows to the network setting, 
+critical nodes of different indices are defined. This leads to a concise and hierarchical representation of the network. Persistent homology from computational 
+topology is used to design efficient algorithms for performing such analysis. Applications to some examples in social and biological networks are demonstrated, 
+which show that critical nodes carry important information about structures and dynamics of such networks. This is a joint work with Weinan E and Jianfeng Lu, et al. 
+</ul>
+</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>10/15/2012, Monday</td>
+<td>Presentation of the first project<br>
+
+<ul>[Homework 4]:
+<li> <a href="homework04.pdf">Homework 4 [pdf]</a>. Deadline: 10/22/2012, Monday. (problems marked by * are optional)  
+</li>
+</ul>
+
+</td>
+<td></td>
+<td></td>
+</tr>
+
+
+
+<tr>
+<td>10/16/2012, Tuesday</td>
+<td>Seminar: Learning Theory for Kernel and Metric Learning <br>
+<ul>
+<li>Speaker: Prof. Yiming Ying (University of Exeter, UK) </li>
+<li>Location: 1st Science Building, Rm 1560 </li>
+<li>Time:  3-4pm, Tuesday 10/16 </li>
+</ul>
+<ul>Abstract:  The performance of many machine learning algorithms largely depends on the data representation via the choice of 
+kernel function or distance metric. Hence, one central issue is the problem of learning a kernel and metric from data. In this talk, 
+I will present our work on theoretical  analysis of kernel learning methods, and also present our recent results on the analysis of 
+metric and similarity learning.  
+</ul> 
+<ul>Bio: Dr. Yiming Ying received his B.S. degree in mathematics from Hangzhou University
+in 1997, Hangzhou, China and his PhD degree in mathematics from Zhejiang University
+in 2002, Hangzhou, China. Currently he is a Lecturer (Assistant Professor) in Computer
+Science in the School of Engineering, Computing and Mathematics at the University of
+Exeter, United Kingdom. His research interests include machine learning, learning theory, optimization, 
+probabilistic graphical models and the applications to computer vision, bioinformatics and multimedia data analysis.
+</ul>
+</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>10/18/2012, Thursday</td>
+<td>Seminar: Multi-component models for object detection <br>
+<ul>
+<li>Speaker: Dr. Chunhui Gu (Google) </li>
+<li>Location: 1st Science Building, Rm 1114 </li>
+<li>Time:  2-3pm, Thursday 10/18 </li>
+</ul>
+<ul>Abstract: In this talk, I will present a multi-component approach for object detection. Rather than attempting to represent an object category with a monolithic model, or pre-defining a reduced set of aspects, we form visual clusters from the data that are tight in appearance and configuration spaces. We train individual classifiers for each component, and then learn a second classifier that operates at the category level by aggregating responses from multiple components. In order to reduce computation cost during detection, we adopt the idea of object window selection, and our segmentation-based selection mechanism produces fewer than 500 windows per image while preserving high object recall. When compared to the leading methods in the challenging VOC PASCAL 2010 dataset, our multi-component approach obtains highly competitive results. Furthermore, unlike monolithic detection methods, our approach allows the transfer of finer-grained semantic information from the components, such as keypoint location and segmentation masks.  
+</ul> 
+<ul>Bio: Chunhui Gu's research focuses on computer vision and machine learning, specifically in object detection and segmentation. He joined Google in January 2012 and works on applying computer vision techniques to various Google products. Before that, he received his PhD in Electrical Engineering and Computer Sciences from UC Berkeley in 2012, and bachelor's degree in Electrical Engineering from California Institute of Technology in 2006. 
+</ul>
+</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>10/22/2012, Monday</td>
+<td>Lecture 8: Random Projections and Compressed Sensing (Chapter 3.4) <br>
+
+<ul>[Homework 5]:
+<li> <a href="homework05.pdf">Homework 5 [pdf]</a>. Deadline: 10/29/2012, Monday. (problems marked by * are optional)  
+</li>
+</ul>
+</td>
+<td></td>
+<td></td>
+</tr>
+</td>
+<td></td>
+<td></td>
+</tr>
+
+
+<tr>
+<td>10/25/2012, Thursday</td>
+<td>Lecture 9: MDS with uncertainty: SDP embedding  [Chapter 4.5-4.7] </a> <br>
+<ul>[Reference]:
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Ye06">[Ye06]</a>: a semidefinite programming (SDP) approach for MDS with missing values (Sensor Network Localization). 
+</li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#MVU">[MVU]</a>: another use of SDP in manifold learning, Maximum Variance Unfolding (MVU). 
+</li>
+<li>  <a href="http://www.fields.utoronto.ca/audio/11-12/conf_geomopt/ye/">[Ye11]</a>: Yinyu Ye's talk at Fields Insitute (2011) on Universal Rigidity and SDP, some state-of-the-art open problems. 
+</li>
+</ul>
+<ul>[Matlab]:
+<li> <a href="http://www.math.nus.edu.sg/~mattohkc/SNLSDP.html">SNLSDP</a>: SDP for SNL problem with up to 200 sensors
+</li>
+<li> <a href="http://www.math.nus.edu.sg/~mattohkc/disco.html">DISCO</a>: SDP for anchor-free SNL problem with a few thousands sensors
+</li>
+</ul>
+</td>
+<td></td>
+<td></td>
+</tr>
+
+
+<tr>
+<td>10/29/2012, Mon </td>
+<td>Lecture 10: Manifold Learning (Nonlinear Dimensionality Reduction): ISOMAP vs. LLE <a href="http://www.math.pku.edu.cn/teachers/yaoy/Spring2011/lecture08.pdf">[my slides before] </a><br>
+<ul>[Reference]:
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#ISOMAP">[ISOMAP]</a>: a science (2000) paper on MDS with geodesic distance (graph shortest path distance); 
+</li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#LLE">[LLE]</a>: a science (2000) paper on Locally Linear Embedding, i.e. local pca (complement) with global alignment; 
+</li>
+</ul>
+<ul>[Matlab]:
+<li> <a href="http://www.math.pku.edu.cn/teachers/yaoy/Spring2011/matlab/isomap.m"> isomap.m </a>: isomap by Tennenbaum, de Silva
+</li> 
+<li> <a href="http://www.math.pku.edu.cn/teachers/yaoy/Spring2011/matlab/isomapII.m"> isomapII.m </a>: isomap by Tennenbaum, de Silva with sparsity, fast mex with <a href="http://www.math.pku.edu.cn/teachers/yaoy/Spring2011/matlab/dijkstra.cpp"> dijkstra.cpp</a> and <a href="http://www.math.pku.edu.cn/teachers/yaoy/Spring2011/matlab/fibheap.h">fibheap.h</a>
+</li> 
+<li> <a href="http://www.math.pku.edu.cn/teachers/yaoy/Spring2011/matlab/lle.m"> lle.m </a>: lle with k-nearest neighbors
+</li> 
+</ul>
+</td>
+<td>Sun, Jian (Tsinghua)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>11/05/2012, Mon</td>
+<td>Lecture 11: Other Manifold Learning Techniques: Laplacian, Diffusion, Hessian, LTSA <a href="lecture11.pdf">[slides]</a><br>
+<ul>[Reference]:
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Laplacian">[Laplacian]</a>: Laplacian Eigenmap (LLE) by Misha Belkin and Partha Niyogi 2003; 
+</li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Hessian">[Hessian]</a>: Hessian Eigenmap (LLE) by David Donoho and Carrie Grimes 2003; 
+</li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#LTSA">[LTSA]</a>: Local Tangent Space Alignment by Hongyuan Zha and Zhenyue Zhang 2005; 
+</li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Hein05">[Hein05]</a>: consistency of Laplacian Eigenmap 
+</li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Luxburg08">[Luxburg08]</a>: consistency of Spectral Clustering 
+</li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#ZhaZha09">[ZhaZha09]</a>: consistency of LTSA -- Necessary and Sufficient conditions for recovery of global parameterization 
+</li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Spring2011/lecture11_3_mani.pdf">Todd Wittman's slides on comparison of manifold learning techniques</a> 
+</li>
+</ul>
+<ul>[Matlab]:
+<li> <a href="http://www.math.pku.edu.cn/teachers/yaoy/Spring2011/matlab/hlle.m"> hlle.m </a>: Hessian LLE (eigenmap) matlab codes. </li>
+<li> <a href="http://www.math.pku.edu.cn/teachers/yaoy/Spring2011/matlab/mani.m"> mani.m </a>: Todd Wittman's manifold learning demo (MDS, ISOMAP, LLE, Hessian LLE, Laplacian, Diffusion, LTSA) </li> 
+</ul>
+
+<ul>[Mini-Project 2]:
+<li> <a href="project02.pdf">Mini-Project 2 [pdf]</a>. Deadline: 11/19/2012, Monday.   
+</li>
+<li> Mark on the head of your homework: <I> Name - Student ID</I></li>
+<li> Submit your report with source codes (as appendix in report or .zip files).
+</li>
+</ul>
+
+</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>11/12/2012, Mon</td>
+<td>Lecture 12: Vector Laplacian and Diffusion Map <a href="lecture12_vdm.pdf"> [lecture notes] </a> <br>
+<ul>[Reference]:
+<li>  <a href="http://arxiv.org/abs/1102.0075">[VDM]</a>: Singer and Wu, Vector diffusion maps and the connection Laplacian, Comm. Pure Appl. Math. 65(8):1067-1144, 2012; 
+</li>
+<li>  <a href="http://projecteuclid.org/DPubS?service=UI&version=1.0&verb=Display&handle=euclid.aos/1291388369">[ABT]</a>: Aswani, Bickel and Tomlin, Regression on manifolds: Estimation of the exterior derivative, Ann. Stat. 39(1):48-81, 2011; 
+</li>
+<li>  <a href="http://arxiv.org/abs/1201.0327">[MALLER]</a>: Cheng and Wu, Local linear regression on manifolds and its geometric interpretation, arxiv.org/abs/1201.0327.
+</li>
+</ul>
+</td>
+<td></td>
+<td>Yuwei Jiang; Chendi Huang</td>
+</tr>
+
+<tr>
+<td>11/19/2011, Mon</td>
+<td>Lecture 13: Random Walk on Graphs: Perron-Frobenius Vector and PageRank </a> <br>
+<ul>[Reference]:
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#PageRank">[PageRank]</a>: A book on mathematics for Google's PageRank. <a href="Perron-Frobenius-Theory.pdf"> Perron-Frobenius Theory on pp. 168-174.</a> </li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2011/Chapter8_Meyer.pdf">[Meyer]</a>: Chapter 8 Perron-Frobenius Theory for Nonnegative Matrices. </li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#BrinPage98">[BrinPage98]</a> Have you ever read the original paper by Brin-Page on PageRank?</li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Kleinberg99">[Kleinberg99]</a> Another important class of ranking of authorities and hubs, based on singular value decomposition of link matrix, by Jon Kleinberg.</li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Chang08">[Chang08]</a>: Chang-Pearson-Zhang generalizes this to nonnegative tensors. Can you develop it into an application as "PageRank" on hypergraphs? </li>
+</ul>
+<ul>[data]:
+<li> <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2011/univ_cn.mat"> Chinese (mainland) University Weblink during 12/2001-1/2002</a>, more can be found at <a href="http://cybermetrics.wlv.ac.uk/database/"> The Academic Web Link Database</a> 
+</li>
+<li> <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2011/pagerank.m"> Matlab codes for PageRank, HITS etc. </a>
+</li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>11/22/2011, Thu</td>
+<td>Lecture 14: Random Walk on Graphs: Fiedler Theory and Cheeger inequality <br>
+<ul>[Reference]:
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Chung97">[Chung97]</a>: a classic on Spectral Graph Theory, whose <a href="http://www.math.ucsd.edu/~fan/research/revised.html"> first four chapters can be found here</a>. </li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Chung07">[Chung07]</a>: four proofs for the cheeger inequality</li>
+<li>  <a href="http://www.cs.berkeley.edu/~demmel/cs267/lecture20/lecture20.html">Jim Demmel's Lecture notes on Fiedler Theory at UC Berkeley</a>: why we use unnormalized Laplacian eigenvectors for spectral partition</li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Kleinberg99">[ChungLu06]</a>: if you wanna read more random graph theory and complex networks.</li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+
+<tr>
+<td>11/26/2011, Mon</td>
+<td>Lecture 15: Random Walk on Graphs: Lumpability (metastability) and MNcut <br>
+<ul>[Reference]:
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#KemenySnell76">[KemenySnell76]</a>: <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2011/Kemeny-Snell_Chapter6.3-4.pdf"> Chapter 6.3, 6.4</a> give definitions of lumpability. </li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#MeilaShi01">[MeilaShi01]</a>: relationship between lumpability and multiple spectral clustering (MNcut). </li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#ShiMalik00">[ShiMalik00]</a>: spectral clustering and image segmentation (Ncut). </li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Luxburg07">[Luxburg07]</a>: a tutorial on spectral clustering. </li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2012/index.html#Hochbaum10">[Hochbaum10]</a>: shows that a variant Ncut without 1/2 volume constraint, is surprisingly of polyonomial complexity although original one is NP-hard. </li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>11/28/2012, Wed</td>
+<td>Seminar: Laplacian and Commute Time of Directed Graphs  <a href="seminar_Wu-Tianqi.pdf">[lecture note.pdf] <br>
+<ul>[Reference]:
+<li>  <a href="http://people.cs.umass.edu/~mahadeva/cs791bb/reading/dichee.pdf">F. R. K. Chung. Laplacians and the cheeger inequality for directed graphs. Annals of Combinatorics, 9:1–19, sep 2005.</a> Asymptotic theory of Diffusion Map.</li>
+<li>  <a href="http://www-users.cs.umn.edu/~yanhua/Includes/mainWAW10.pdf">Li, Yanhua and Zhili Zhang (2010) Random Walks on Digraphs, The Generalized Digraph Laplacian, and The Degree of Asymmetry, </a> The first paper on Diffusion Map and Diffusion Distance.</li>
+</ul>
+</td>
+<td>Tianqi Wu (Tsinghua)</td>
+<td>Foling Zou <br> Liying Li </td>
+</tr>
+
+<tr>
+<td>12/3/2012, Mon</td>
+<td>Lecture 16: Diffusion Map and Diffusion Distance <br>
+<ul>[Reference]:
+
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2011/index.html#Coifman05">[Coifman05]</a> The first paper on Diffusion Map and Diffusion Distance.</li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2011/index.html#CoifmanLafon06">[CoifmanLafon06]</a> Asymptotic theory of Diffusion Map.</li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2011/Diffusion_Distances_Amit.pdf">Amit Singer's Note on Diffusion Distances</a>: An introduction to Diffusion Distances, which was used in the class.</li>
+</ul>
+<ul>[data]:
+<li> <a href="face.mat">UMIST face data subset </a> (33 faces of the same person in different angles)
+</li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+
+
+
+<tr>
+<td>12/6/2012, Thu</td>
+<td>Lecture 17: Commute Time Map and Distance <br>
+<ul>[Reference]:
+
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2011/index.html#QiuHancock07">[QiuHancock07]</a>: diffusion distance vs. commute time distance, in applications of spectral embedding and clustering. </li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2011/index.html#Fouss07">[Fouss06-CommuteDistance]</a>: shows applications of average commute time distance, or the pseudoinverse of the Laplacian matrix of the graph, in measuring stochastic similiary between nodes on large graphs. </li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2011/index.html#RadLuxHei09">[RadLuxHei09]</a>: however, shows in large geometric random graphs commute distance converges to something meaningless for similarity measure! </li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2011/index.html#GobelJagers74">[GobelJagers74-CommuteDistance]</a>: shows that the average commuting time derived from mean first passage time is in fact an Euclidean distance metric </li>
+<li>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/Fall2011/index.html#KleinRandic93">[KleinRandic93]</a>: shows that effective resistance is a distance, which is upto a constant equivalent to average commuting time distance. </li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+
+<tr>
+<td>12/10/2012, Mon</td>
+<td>Lecture 18: Introduction to Topic Models <a href="topicmodel-zhaoxin1210.pdf">[slides]</a> <br>
+<ul>[Reference]:
+
+<li>  <a href="http://www.cs.princeton.edu/~blei/papers/Blei2012.pdf">http://www.cs.princeton.edu/~blei/papers/Blei2012.pdf</a>:  </li>
+<li>  <a href="http://www.cs.princeton.edu/~mimno/topics.html">http://www.cs.princeton.edu/~mimno/topics.html</a>
+</li>
+<li>  <a href="http://www.cs.princeton.edu/~blei/topicmodeling.html">http://www.cs.princeton.edu/~blei/topicmodeling.html</a>
+</li>
+<li>  <a href="http://net.pku.edu.cn/~zhaoxin/Topic-model-xin-zhao-wayne.pdf">http://net.pku.edu.cn/~zhaoxin/Topic-model-xin-zhao-wayne.pdf</a> </li>
+</ul>
+<ul>[Homework 6]:
+<li> <a href="homework06.pdf">Homework 6 [pdf]</a>. Deadline: 12/17/2012, Monday. (problems marked by * are optional)  
+</li>
+</ul>
+</td>
+<td>Xin Zhao (PKU)</td>
+<td></td>
+</tr>
+
+
+<tr>
+<td>12/17/2012, Mon</td>
+<td>Lecture 19: Smoothed Sparse Optimization and Parallel LASSO<br>
+<ul>[Reference]:
+
+<li>  As the slides contains some unpublished content, we will withhold the slides from the public at the speaker's request. Please email me if you attended the class and would like his slides.  </li>
+</ul>
+</td>
+<td><a href="http://www.caam.rice.edu/~wy1/">Wotao Yin</a> (Rice)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>12/20/2012, Thu</td>
+<td>Lecture 20: Project 2 presentation<br>
+</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>12/24/2012, Mon</td>
+<td>Lecture 21: Final Project <br>
+<ul>[Final Project]:
+<li> <a href="project_final.pdf">Final Project [pdf]</a>. Deadline: 1/3/2013, Thursday.  
+You may send me the report after the presentation on Jan 3rd, 2013.</li>
+</ul>
+</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>1/3/2012, Thu</td>
+<td>Lecture 22: Final Project Presentation<br>
+</td>
+<td></td>
+<td></td>
+</tr>
+
+</tbody>
+</table>
+             
+<h3>Reference</h3>
+             
+<ul>
+<li>Books</li>
+             
+<ul>
+<li><span class="bibauthor"><a name="Boyd09">[Boyd09]</a> Boyd and Vandenbergh. </span> <span 
+class="bibtitle">Convex Optimization, 7th ed. </span><span class="bibbook"> (2009). </span> <a href="../reference/convex_opt.pdf">[pdf]</a>
+</li>
+<br>
+<li><span class="bibauthor"><a name="Chung97">[Chung97]</a> Chung, Fan R.K.</span> <span 
+class="bibtitle">Spectral Graph Theory. </span><span class="bibbook"> 1997, AMS-CBMS. </span> <a href="http://www.math.ucsd.edu/~fan/research/revised.html">[Chapter 1-4]</a>
+</li>
+<br>
+<li><span class="bibauthor"><a name="ChungLu06">[ChungLu06]</a> Chung and Lu.</span> <span 
+class="bibtitle">Complex Graphs and Networks. </span><span class="bibbook">  2006, AMS-CBMS. <a href="http://www.math.ucsd.edu/~fan/complex/">[Some chapters]</a></span> 
+</li>
+<br>
+<li><span class="bibauthor"><a name="ESL">[ESL]</a> Hastie, Tibshirani, and Friedman.</span> <span 
+class="bibtitle">The Elements of Statistical Learning.</span><span class="bibbook"></span> 2008, Springer. <a href="http://www-stat.stanford.edu/~tibs/ElemStatLearn/">[Online book]</a>
+</li>
+<br>
+<li><span class="bibauthor"><a name="KemenySnell76">[KemenySnell76]</a> Kemeny and Snell.</span> <span 
+class="bibtitle">Finite Markov Chains. </span><span class="bibbook"> 1976. </span> <a href="../reference/Kemeny-Snell1976.pdf">[pdf]</a>
+</li>
+<br>
+<li><span class="bibauthor"><a name="Kleinberg10">[Kleinberg10]</a> Easley and Kleinberg. </span> <span 
+class="bibtitle">Networks, Crowds, and Markets. </span><span class="bibbook">  2010, Cambridge. </span> 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Matrix">[Matrix]</a> Golub and Van Loan.</span> <span 
+class="bibtitle">Matrix Computation. </span><span class="bibbook"> </span>  1996.
+</li>
+<br>
+<li><span class="bibauthor"><a name="PageRank">[PageRank]</a> Langville and Meyer.</span> <span 
+class="bibtitle">Google's PageRank and Beyond: The Science of Search Engine Rankings. </span><span class="bibbook"> </span> 2006, Princeton University Press.  <a href="http://books.google.com/books/about/Google_page_rank_and_beyond.html?id=hxvB14-I0twC">[Google book]</a> 
+</li>
+<br>
+<li><span class="bibauthor"><a name="SHDD">[SHDD]</a> Buhlmann and van de Geer.</span> <span 
+class="bibtitle">Statistics for High-Dimensional Data. </span><span class="bibbook">  2011, Springer. </span> 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Tao">[Tao]</a> Tao, Terrence.</span> <span 
+class="bibtitle">Topics in random matrix theory.</span><span class="bibbook"> Lecture Notes in UCLA. </span> <a href="../reference/Tao-RMT.pdf">[pdf]</a> <a href="http://terrytao.wordpress.com/category/254a-random-matrices/">[Online Book from Terry's BLOG]</a>
+</li>
+<br>
+<li><span class="bibauthor"><a name="Tsybakov09">[Tsybakov09]</a> Tsybakov.</span> <span 
+class="bibtitle">Introduction to Nonparametric Estimation.</span><span class="bibbook"> 2009, Springer. </span> <a href="http://www.springerlink.com/content/978-0-387-79052-7#section=115850&page=1&locus=0">[Online Book]</a>
+</li>
+<br>
+</ul>
+<li>Papers</li> 
+<ul>
+<li><span class="bibauthor"><a name="Achlioptas01">[Achlioptas01]</a> Achlioptas, Dimitris (2001)</span> <span 
+class="bibtitle">"Database-friendly Random Projections". </span><span class="bibbook"> Proc 20th ACM Symp Principles of Database Systems, Santa Barbara, CA, 2001, 274-281. <a href="../Falll2011/Achlioptas01_jl.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Coifman05">[Arun87]</a> Arun, K. S., Huang, T. S., and Blostein, S. D. (1987)</span> <span 
+class="bibtitle">Least-squares fitting of two 3-D point sets. </span><span class="bibbook"> IEEE Transactions on Pattern Analysis and Machine Intelligence, 9 (5), pp. 698-700. <a href="arun.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Bavaud10">[Bavaud10]</a> Bavaud, Francois (2010)</span> <span 
+class="bibtitle">"On the Schoenberg Transformations in Data Analysis: Theory and Illustrations". </span><span class="bibbook"> <a href="http://arxiv.org/pdf/1004.0089">[arXiv]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Laplacian">[Laplacian]</a> Belkin, M. and P. Niyogi (2003)</span> <span 
+class="bibtitle">"Laplacian eigenmaps for dimensionality reduction and data representation.". </span><span class="bibbook"> Neural Computation 15:1373-1396. <a href="Laplacian.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="SSL_BelNiy_NIPS2002">[Belkin_Niyogi_NIPS2002]</a> Belkin, M. and P. Niyogi (2002)</span> <span 
+class="bibtitle">"Using Manifold Structure for Partially Labelled Classification". </span><span class="bibbook"> NIPS 2002 <a href="SSL_Belkin_Niyogi_NIPS2002.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Ye06">[Ye06]</a> P. Biswas, T.-C. Liang, K.-C. Toh, T.-C. Wang, and Y. Ye (2006)</span> <span 
+class="bibtitle">"Semidefinite programming approaches for sensor network localization with noisy distance measurements". </span><span class="bibbook">IEEE Transactions on Automation Science and Engineering, 3 (2006), pp. 360--371. <a href="Ye06.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="BrinPage98">[BrinPage98]</a> Sergey Brin, Larry Page (1998)</span> <span 
+class="bibtitle">"The Anatomy of a Large-Scale Hypertextual Web Search Engine". </span><span class="bibbook"> Proceedings of the 7th international conference on World Wide Web (WWW). Brisbane, Australia. pp. 107-117. <a href="pagerank.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="RPCA">[RPCA]</a> E. J. Candes, X. Li, Y. Ma, and J. Wright (2009)   </span> <span 
+class="bibtitle">"Robust Principal Component Analysis?". </span><span class="bibbook"> Journal of ACM, 58(1), 1-37. <a href="../Fall2011/rpca.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="parrilo_siam09">[Parrilo_SIAM09]</a> V. Chandrasekaran, S. Sanghavi, P.A. Parrilo, A. Willsky (2009)</span> <span 
+class="bibtitle">"Rank-Sparsity Incoherence for Matrix Decomposition". </span><span class="bibbook"> http://arxiv.org/pdf/0906.2220 . <a href="../Fall2011/parrilo_siam09.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Chang08">[Chang08]</a> Chang, Kung Ching, Kelly Pearson, and Tan Zhang (2008)</span> <span 
+class="bibtitle">"Perron-Frobenius theorem for nonnegative tensors". </span><span class="bibbook"> Commun. Math. Sci. Volume 6, Number 2 (2008), 507-520. <a href="cpz08_pf_tensor.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Chung07">[Chung07]</a> Chung, Fan R.K. (2007)</span> <span 
+class="bibtitle">"Four proofs for the Cheeger inequality and graph partition algorithms". </span><span class="bibbook"> ICCM 2007. <a href="cheeger_chung.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Coifman05">[Coifman05]</a> Coifman, Lafon, Lee, Maggioni, Nadler, Warner, and Zucker (2005)</span> <span 
+class="bibtitle">Geometric diffusions as a tool for harmonic analysis and structure definition of data: Diffusion maps I; Multiscale Methods II. </span><span class="bibbook"> PNAS <a href="DiffusionMap_I.pdf">[I.pdf]</a><a href="DiffusionMap_II.pdf">[II.pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="CoifmanLafon06">[CoifmanLafon06]</a> Coifman and Lafon (2006) </span> <span 
+class="bibtitle">Diffusion maps. </span><span class="bibbook"> Applied and Computational Harmonic Analysis. <a href="Lafon06.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Dasgupta99">[Dasgupta99]</a> Dasgupta and Gupta (1999) </span> <span 
+class="bibtitle">"An Elementary Proof of Johnson-Lindenstrauss Lemma" </span><span class="bibbook"> <a href="../Fall2011/dasgupta_jltr.pdf">Technical Report, ICSI Berkeley. </a> Extended version at <a href="../Fall2011/Dasgupta02_jl.pdf"> Random Structures and Algorithms, 2003, 22(1):60-65. </a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="spca_sdp">[SPCA_SDP]</a> A. d'Aspremont, L. El Ghaoui, M. Jordan, and G. Lanckriet (2006) </span> <span 
+class="bibtitle">"A Direct Formulation of Sparse PCA using Semidefinite Programming". </span><span class="bibbook"> preprint <a href="../Fall2011/spca_sdp.pdf">arxiv.org/pdf/cs/0406021. </a> Published at <a href="http://www.eecs.berkeley.edu/~elghaoui/Pubs/DSPCA_SIREV2007.pdf"> SIAM Review, vol. 49, no. 3, 2007. </a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Hessian">[Hessian]</a> Donoho, D.L. and C. Grimes (2003) </span> <span 
+class="bibtitle">"Hessian Eigenmaps: New Locally Linear Embedding techniques for high dimensional data" </span><span class="bibbook"> <a href="Hessian.pdf"> PNAS 100 (10):5591-5596. </a> </span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="EfronMorris74">[EfronMorris74]</a> Efron, Bradley and Carl Morris (1974). </span> <span 
+class="bibtitle">Data Analysis using Stein's Estimator and Its Generalizations. </span><span class="bibbook">  <a href="Efron_SteinsEstimator.pdf">[pdf]</a></span> 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Coifman05">[FanHoffman55]</a> Fan, K. and Hoffman, A. J. (1987)</span> <span 
+class="bibtitle">Some Metric Inequalities in the Space of Matrices. </span><span class="bibbook"> Proceedings of the American Mathematical Society, 6 (1), pp. 111-116. <a href="Fan_Hoffman1955.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Fouss07">[Fouss07-CommuteDistance]</a> Fouss, Francois, Alain Pirotte, Jean-michel Renders, and Marco Saerens (2007)</span> <span 
+class="bibtitle">Random-walk computation of similarities between nodes of a graph, with application to collaborative recommendation. </span><span class="bibbook"> IEEE Transactions on Knowledge and Data Engineering, 19(3), pp. 355-369. <a href="Fouss2006.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="GobelJagers74">[GobelJagers74]</a> Gobel, F. and A. Jagers (1974).</span> <span 
+class="bibtitle"> "Random Walks on Graphs". </span><span class="bibbook"> Stochastic Processes and Their Applications, 2: 311-336. <a href="GobelJagers1974.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Hein05">[Hein05]</a> Hein, M., J. Audibert, and U. von Luxburg (2005)</span> <span 
+class="bibtitle">From graphs to manifolds: weak and strong pointwise consistency of graph Laplacians, </span><span class="bibbook"> COLT, 2005. <a href="Hein05.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Hochbaum10">[Hochbaum10]</a> Hochbaum, Dorit (2010)</span> <span 
+class="bibtitle"> "Polynomial Time Algorithms for Ratio Regions and a Variant of Normalized Cut". </span><span class="bibbook"> IEEE Trans. Pattern Analysis and Machine Intelligence, 32, 2010. <a href="Hochbaum10.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Hunter06">[Hunter06]</a> Hunter, J.J. (2006)</span> <span 
+class="bibtitle"> "Variances of first passage times in a Markov chain with applications to mixing times". </span><span class="bibbook"> Res. Lett. Inf. Math. Sci., 10:17-48, 2010. <a href="Hunter06.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Indyk98">[Indyk98]</a> Indyk, P. and R. Motwani (1998)</span> <span 
+class="bibtitle"> "Approximate nearest neighbors: Towards removing the curse of dimensionality". </span><span class="bibbook"> Proc 30th Annu ACM Symp Theory of Computing, Dallas, TX, 1998, pp. 604-613. <a href="../Fall2011/Indyk98_jl.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Johnstone06">[Johnstone06]</a> Johnstone, I (2006)</span> <span 
+class="bibtitle">High Dimensional Statistical Inference and Random Matrices. </span><span class="bibbook">  <a href="http://arxiv.org/abs/math/0611589">arXiv:0611589</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Jones11">[Jones11]</a> Peter Wilcox Jones, Andrei Osipov, and Vladimir Rokhlin (2011)</span> <span 
+class="bibtitle">Randomized Approximate Nearest Neighbhors Algorithm. </span><span class="bibbook"> PNAS, 2011 <a href="http://www.pnas.org/content/early/2011/08/30/1107769108.full.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Keller75">[Keller75]</a> Keller, J. B. (1975)</span> <span 
+class="bibtitle">Closest Unitary, Orthogonal and Hermitian Operators to a Given Operator. </span><span class="bibbook"> Mathematics Magazine, 48 (4), pp. 192-197. <a href="Keller_1975.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Kleinberg99">[Kleinberg99]</a> Kleinberg, Jon (1999).</span> <span 
+class="bibtitle">"Authoritative sources in a hyperlinked environment". </span><span class="bibbook"> Journal of the ACM 46 (5): 604-632. <a href="hits.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="KleinRandic93">[KleinRandic93]</a> Klein, D.J. and M. Randic (1993).</span> <span 
+class="bibtitle">"Resistance Distance". </span><span class="bibbook"> J. Math. Chemistry 12: 81-95. <a href="KleinRandic1993.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Li2008">[Li2008]</a> Li J.Z., et al. (2008).</span> <span 
+class="bibtitle">"Worldwide Human Relationships Inferred from Genome-Wide Patterns of Variation". </span><span class="bibbook"> <a href="http://www.sciencemag.org/content/319/5866/1100.abstract">Science 319(5866):1100-1104, 2008</a> </span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Luxburg07">[Luxburg07]</a> Ulrike von Luxburg (2007). </span> <span 
+class="bibtitle"> A tutorial on spectral clustering. </span><span class="bibbook"> <a href="Spectral_Clustering_Tutorial.pdf">[pdf]</a></span> 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Luxburg08">[Luxburg08]</a> Ulrike von Luxburg, Mikhail Belkin, and Olivier Bousquet (2008). </span> <span 
+class="bibtitle"> Consistency of Spectral Clustering. </span><span class="bibbook"> Ann. Stat. 36(2): 555-586. <a href="Luxburg08.pdf">[pdf]</a></span> 
+</li>
+<br>
+<li><span class="bibauthor"><a name="MeilaShi01">[MeilaShi01]</a> Meila and Shi (2001).</span> <span 
+class="bibtitle">"A random walk view of spectral segmentation". </span><span class="bibbook"> AISTAT'01 <a href="MeilaShi.pdf">[pdf, 7.7 MB]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="SSL_Nadler_Srebro_NIPS2009">[Nadler_Srebro_NIPS2009]</a> Nalder, Boaz, Nathan Srebro, and Xueyuan Zhou (2009)</span> <span 
+class="bibtitle">"Semi-Supervised Learning with the Graph Laplacian: The Limit of Infinite Unlabelled Data". </span><span class="bibbook">   NIPS 2009 <a href="SSL_Nadler_Srebro_NIPS2009.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Nadakuditi10">[Nadakuditi10]</a> Nadakuditi, R. R. and F. Benaych-Georges (2010)</span> <span 
+class="bibtitle">The breakdown point of signal subspace estimation. </span><span class="bibbook">   IEEE Sensor Array and Multichannel Signal Processing Workshop (October 2010), pg. 177-180 <a href="../Fall2011/raj_rao2.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="QiuHancock07">[QiuHancock07]</a> Qiu, Huaijun, and E.R. Hancock (2007)</span> <span 
+class="bibtitle"> "Clustering and Embedding Using Commute Times", </span><span class="bibbook"> IEEE Trans. Pattern Analysis and Machine Intelligence, 29(11): 1873-1890. <a href="QiuHancock2007.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="RadLuxHei09">[RadLuxHei09]</a> Radl, Agnes, Ulrike von Luxburg, and Matthias Hein (2007)</span> <span 
+class="bibtitle">The Resistance Distance is Meaningless for Large Random Geometric Graphs. </span><span class="bibbook"> <a href="http://snap.stanford.edu/nipsgraphs2009/"> Workshop on Analyzing Networks and Learning with Graphs
+NIPS 2009</a> <a href="Radl2009.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="LLE">[LLE]</a> Roweis, Sam T. and Saul K. Lawrence (2000)</span> <span 
+class="bibtitle">Locally Linear Embedding. </span><span class="bibbook"> Science, 290:2323-2326. <a href="http://cs.nyu.edu/~roweis/lle/">[LLE Website]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="ShiMalik00">[ShiMalik00]</a> Shi, Jianbo and Jitendra Malik (2000).</span> <span 
+class="bibtitle">"Normalized Cuts and Image Segmentation". </span><span class="bibbook"> IEEE Transactions on Pattern Analysis and Machine Intelligence,22(8): 888-905. <a href="ShiMalik.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Singer06">[Singer06]</a> Singer, Amit (2006)</span> <span 
+class="bibtitle">From graph to manifold Laplacian: The convergence rate. </span><span class="bibbook"> Applied and Computational Harmonic Analysis. <a href="Amit06_laplacian.pdf">[pdf]</a></span>. 
+</li>
+<br>
+<li><span class="bibauthor"><a name="Stein56">[Stein56]</a> Stein, Charles (1956). </span> <span 
+class="bibtitle">Inadmissibility of the usual estimator for the mean of a multivariate distribution. 1974. </span><span class="bibbook">Proceedings of the Third Berkeley Symposium on Mathematical Statistics and Probability. 1. pp. 197-206. <a href="../Fall2011/Stein56-Inadmissibility.pdf">[pdf]</a></span> 
+</li>
+<br>
+<li><span class="bibauthor"><a name="ISOMAP">[ISOMAP]</a> Tenenbaum, J.B., V. de Silva and J. C. Langford (2000). </span> <span 
+class="bibtitle">A Global Geometric Framework for Nonlinear 
+Dimensionality Reduction. </span><span class="bibbook">Science, 290:2319-2323. <a href="http://isomap.stanford.edu">[ISOMAP Website]</a></span> 
+</li>
+<br>
+<li><span class="bibauthor"><a name="MVU">[MVU]</a> Weinberger, Killian Q. and Lawrence K. Saul (2006). </span> <span 
+class="bibtitle">"Unsupervised Learning of Image Manifolds by Semidefinite Programming". </span><span class="bibbook">International Journal of Computer Vision 70(1), 77-90, 2006 <a href="mvu2006.pdf">[pdf]</a></span> 
+</li>
+<br>
+<li><span class="bibauthor"><a name="ZhaZha09">[ZhaZha09]</a> Hongyuan Zha and Zhenyue Zhang (2009). </span> <span 
+class="bibtitle">"Spectral properties of the alignment matrices in manifold learning". </span><span class="bibbook">SIAM Review. <a href="zhazha09.pdf">[pdf]</a></span> 
+</li>
+<br>
+<li><span class="bibauthor"><a name="LTSA">[LTSA]</a> Zhenyue Zhang and Hongyuan Zha (2005). </span> <span 
+class="bibtitle">"Principal Manifolds and Nonlinear Dimension Reduction via Local Tangent Space Alignment". </span><span class="bibbook">SIAM Journal of Scientific Computing 26(1)<a href="ltsa.pdf">[pdf]</a></span> 
+</li>
+<br>
+<li><span class="bibauthor"><a name="SSL_ZhuLaf_ICML2003">[ZhuLaf_ICML2003]</a> Xiaojin Zhu, Zoubin Ghahramani and John Lafferty (2003). </span> <span 
+class="bibtitle">"Semi-Supervised Learning Using Gaussian Fields and Harmonic Functions". </span><span class="bibbook"> ICML 2003 <a href="SSL_ZhuLaf_ICML2003.pdf">[pdf]</a></span> 
+</li>
+<br>
+</ul>
+
+<li><a name="data">Datasets</a></li>
+<ul>
+<br>
+<li> <span class="bibauthor"><a name="Data_Univ">[Data_Univ]</a> <a href="http://cybermetrics.wlv.ac.uk/database/"> The Academic Web Link Database</a>  
+</li>
+<br>
+<li> <span class="bibauthor"><a name="Data_ESL">[Data_ESL]</a><a href="http://www-stat.stanford.edu/~tibs/ElemStatLearn/data.html"> Datasets for "The Elements of Statistical Learning"</a>  
+</li>
+<br>
+<li> <span class="bibauthor"><a name="Data_ESL">[Data_Roweis]</a> <a href="http://cs.nyu.edu/~roweis/data.html"> Sam Roweis's Data for Matlab Hackers</a>  
+</li>
+<br>
+<li> <span class="bibauthor"><a name="Data_ESL">[Data_Stanford]</a> <a href="http://snap.stanford.edu/data/"> Stanford Large Network Dataset Collection</a>  
+</li>
+<br>
+<li> <span class="bibauthor"><a name="Data_Newman">[Data_Newman]</a> <a href="http://www-personal.umich.edu/~mejn/netdata/"> Mark Newman's Network Data at U Michigan: small and medium networks </a>  
+</li>
+<br>
+<li> <span class="bibauthor"><a name="Data_HGDP">[Data_HGDP]</a> Human Genome Diversity Project <a href="http://www.cephb.fr/en/hgdp/">[Website]</a> <a href="http://www.math.pku.edu.cn/teachers/yaoy/data/ceph_hgdp_minor_code_XNA.txt.zip">[data 1064 individuals with 650K SNPs]</a><a href="http://www.math.pku.edu.cn/teachers/yaoy/data/HGDPid_populations_ALL.xls">[Information about 1064 individuals]</a>  
+</li>
+<br>
+<li> <span class="bibauthor"><a name="Data_SNP500">[Data_SNP500]</a> <a href="http://www.math.pku.edu.cn/teachers/yaoy/data/snp452-data.mat"> S&P 500 stock price time series</a>, Courtesy by Han Liu.  
+</li>
+<br>
+<li> [Data_Karate] <a href="http://www.math.pku.edu.cn/teachers/yaoy/data/karate.mat"> Zachery's Karate Club Network in matlab: karate.mat with 'A: 34-by-34 matrix' </a>  
+</li>
+<br>
+<li> [Data_Lesmis] <a href="http://www.math.pku.edu.cn/teachers/yaoy/data/lesmis.mat"> Les Miserables Main Character Coappearance Network in matlab, by Don Knuth, 'X: 77-by-77 coappearance frequency matrix; nodesName: character names' </a>  
+</li>
+<br>
+<li> [Data_Gonewind] <a href="http://www.math.pku.edu.cn/teachers/yaoy/data/gonewind.mat"> Gone with Wind Interaction Network in matlab, by Xiuyuan Cheng, 'A: 68-by-68 adjacency matrix; name: 68 character names' </a>  
+</li>
+<br>
+<li> <a name="data_xiyouji">[&#35199;&#28216;&#35760;]</a> characters-scene occurance matrices for 100 chapters <a href="../Fall2011/xiyouji/xiyouji.mat"> [data in matlab (302-by-408 matrix)] </a>
+<br>
+<table border="1" cellspacing="0">
+<tbody>
+<tr>
+<td align="left"><strong><a href="../data/xiyouji/chap001-005.xls">chap001-005</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap006-009.xls">chap006-009</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap010-013.xls">chap010-013</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap014-017.xls">chap014-017</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap018-021.xls">chap018-021</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap022-025.xls">chap022-025</a></strong></td>
+</tr>
+<tr>
+<td align="left"><strong><a href="../data/xiyouji/chap026-029.xls">chap026-029</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap030-033.xls">chap030-033</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap034-037.xls">chap034-037</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap038-041.xls">chap038-041</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap042-045.xls">chap042-045</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap046-049.xls">chap046-049</a></strong></td>
+</tr>
+<tr>
+<td align="left"><strong><a href="../data/xiyouji/chap050-053.xls">chap050-053</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap054-057.xls">chap054-057</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap058-061.xls">chap058-061</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap062-065.xls">chap062-065</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap066-069.xls">chap066-069</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap070-073.xls">chap070-073</a></strong></td>
+</tr>
+<tr>
+<td align="left"><strong><a href="../data/xiyouji/chap074-077.xls">chap074-077</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap078-081.xls">chap078-081</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap082-085.xls">chap082-085</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap086-088.xls">chap086-088</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap089-091.xls">chap089-091</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap092-094.xls">chap092-094</a></strong></td>
+</tr>
+<tr>
+<td align="left"><strong><a href="../data/xiyouji/chap095-097.xls">chap095-097</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap098-100.xls">chap098-100</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap001-100_txt.zip">All in TXT</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/readData.m">readData.m</a></strong></td>
+</tr>
+</tbody>
+</table>
+</li>
+<br>
+<li> <a name="keywords">[Data_Keywords]</a> Keywords and profit index in paid search advertising, by Hansheng Wang (Guanghua, PKU). <a href="http://www.math.pku.edu.cn/teachers/yaoy/math2010_spring/Keyword/SE_slice.jpg"> [sample file] </a> <a href="http://www.math.pku.edu.cn/teachers/yaoy/math2010_spring/Keyword/readme.txt"> [readme.txt] </a>  <a href="http://www.math.pku.edu.cn/teachers/yaoy/math2010_spring/Keyword/SE.csv"> [data in csv] </a> 
+</li>
+<br>
+</ul>
+
+<li>Latex Template for Lecture Notes</li>
+<ul>
+<br>
+<li><span class="bibauthor"><a name="Johnstone97">[lecture00]</a></span> <span 
+class="bibtitle"><a href="../Fall2011/lecture00.tex"> lecture00.tex</a> </span><span class="bibbook">  </span>. 
+</li>
+</ul>
+</ul>
+           
+<hr>
+
+<address>
+by <a href="http://www.math.pku.edu.cn/teachers/yaoy">YAO, Yuan</a>.
+</address>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+\documentclass[twoside]{article}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{pb-diagram}
+
+\usepackage{color}
+% \usepackage{psfig}
+
+\theoremstyle{definition}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+%\newenvironment{pf}{{\noindent\sc Proof. }}{\qed}
+\newenvironment{map}{\[\begin{array}{cccc}} {\end{array}\]}
+\newcommand{\DS}{\displaystyle}
+
+\theoremstyle{definition}
+\newtheorem*{defn}{Definition}
+\newtheorem*{exmp}{Example}
+\newtheorem*{prob}{Problem}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+\newtheorem*{note}{Note}
+\newtheorem*{exer}{Exercise}
+
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0.25 in}
+\setlength{\parskip}{0.1 in}
+
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{page}{1}
+   \setcounter{section}{0}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Mathematics for Data Sciences \hfill #4} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\Large \hfill #1  \hfill} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\it Instructor: #2, Peking University \hfill Scribe: #3} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{#1}{#1}
+   \vspace*{4mm}
+}
+
+
+%%%%%%%
+% Some commonly used notations in Learning Theory
+%%%%%%%
+
+\def\R{{\mathbb R}}
+\def\N{{\mathbb N}}
+\def\L{{\mathcal L}}
+\def\Z{{\mathbb Z}}
+\def\X{{\mathcal X}}
+\def\Y{{\mathcal Y}}
+\def\E{{\mathbb E}}
+\def\diag{{\rm diag}}
+\def\sign{{\rm sign}}
+\def\span{{\rm span}}
+\def\supp{{\rm supp}}
+\def\Pr{{\rm Prob}}
+\def\H{{\cal{H}}}
+\def\D{{\cal{D}}}
+\def\U{{\cal{U}}}
+\def\ie{{\it i.e. }}
+\def\etc{{\it etc. }}
+\def\etal{{\it et al. }}
+
+\def\De{{\Delta}}
+\def\P{{\rm Prob}}
+
+\begin{document}
+
+\lecture{Lecture X. Title Here}{Yuan Yao}{Your Name}{Date here}
+
+%\setcounter{section}{0}
+\section*{Introduction}
+
+\section{First Section}
+
+
+\end{document}
+
+

@@ -1,0 +1,190 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\def\N{{\mathcal N}}
+\def\R{{\mathcal R}}
+\def\E{{\mathbb E}}
+
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0.25 in}
+\setlength{\parskip}{0.1 in}
+
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{page}{1}
+   \setcounter{section}{0}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Mathematical Introduction to Data Science \hfill #4} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\Large \hfill #1  \hfill} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\it Instructor: #2\hfill #3} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{#1}{#1}
+   \vspace*{4mm}
+}
+
+
+\begin{document}
+
+\lecture{Final Project}{Yuan Yao}{Due: Thursday Jan 3rd, 2013}{December 20, 2012}
+
+The final project encourages students to work in small team, but write the final report \emph{independently}. Teammates may share their data, methodology, and results. But in the report, you have to 
+\begin{itemize}
+\item \emph{make your own analysis};
+\item \emph{give proper credit to the work of your partner}. 
+\end{itemize}
+
+%\item Choose one or more datasets, either from those listed in the first project or by your own. Write in your report what kind of \emph{problems} you would like to attack with the data. (It is even more important to find a proper problem than solving it eventually!)
+\section{Topic Models} 
+You can login my server:
+
+\texttt{ssh einstein@162.105.68.237}
+
+\noindent using the password I provided on class. Some data are provided there:
+
+\begin{itemize}
+\item \texttt{/data/twitter7/}   contains 
+\subitem June-Dec 2009 tweets, in \texttt{tweets2009-**.txt} files
+\subitem \texttt{twitter\_rv.net}  a who-follow-whom network ($9M$), whose id-name correspondence is in file \texttt{numeric2screen}
+\item \texttt{/home/einstein/ZHAOXIN/TweetMerged}, Zhao Xin's Singapore tweet data, one line consists of all the tweets of a user
+\item \texttt{/data/nytimes/}   contains 50k articles about China in NewYork Times since 1989
+\item \texttt{/data/wikipedia/dbpedia}   contains wikipedia articles
+\end{itemize}
+
+The following softwares are helpful 
+\begin{itemize}
+\item \texttt{/home/einstein/ZHAOXIN/GibbsLDA++-0.2/src}, whose usage can be found at \url{http://gibbslda.sourceforge.net/}
+\item if you like matlab, you may try 
+\url{http://psiexp.ss.uci.edu/research/programs_data/toolbox.htm}
+\end{itemize}
+
+\section{Big Matrix Factorization}
+
+For those who are interested to do matrix factorization (SVD etc.) with big matrices, the following paper
+
+Divide-and-Conquer Matrix Factorization, by Lester Mackey, Ameet Talwalkar, Michael I. Jordan, version 6, Aug 2012. 
+\url{http://arxiv.org/abs/1107.0789v6} 
+
+\noindent summarizes two important class of methods:
+\begin{itemize}
+\item random projection (including column projection)
+\item subsampling as generalized Nystr\"{o}m Method for SVD
+\end{itemize}
+
+You may implement one or two of these methods on your problem and test their efficiency. 
+
+\section{Chess Player Rating} 
+
+For those interested in Chess player rating in the Kaggle competition, the following data and algorithm are for your reference 
+\begin{itemize}
+\item \texttt{/data/chess/data/} contains the following data
+\subitem \texttt{training\_data.csv}: training data
+\subitem \texttt{cross\_validation\_dataset.csv}  
+\subitem \texttt{test\_scores.csv}: test data with game scores
+\subitem \texttt{players.csv} contains 8k chess players in the data
+\item \texttt{/data/chess/R/}  contains two algorithms
+\subitem \texttt{elopp.R}  is the kaggle award winner algorithm (MSRE=0.69), whose reference can be found at 
+\subitem \texttt{/data/chess/Reference/}, or the paper:  
+How I won the "Chess Ratings - Elo vs the Rest of the World" Competition, by Yannis Sismanis, 2010, \url{http://arxiv.org/abs/1012.4571}
+\subitem \texttt{hodgeRank1.R} is a prototype algorithm for hodgeRank by Dr. Quanwu Xiao.
+\end{itemize}
+
+\section{Other topics}
+
+You can choose other datasets for the following tasks
+
+\begin{itemize}
+\item dimensionality reduction and estimation (PCA, MDS, ISOMAP, LLE, Diffusion, Laplacian, LTSA)
+\item spectral clustering 
+\item RPCA and SPCA  
+\end{itemize}
+
+In these tasks, explore the ``criteria" to justify whether your method and choice of parameters is good or not.  
+
+\section{Paper Reading Project}
+
+If you prefer to a solid paper reading project, please email me with your interested paper (if not listed on the class) or general interests. A paper presentation will be assigned to you.  
+
+\section*{Old Datasets}
+
+\begin{enumerate}
+
+\item {\em Bird Flu Dataset:} (courtesy of Steve Smale and Cissy) This dataset 162 H5N1 (bird flu) virus sequences discovered around the world:
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/birdflu_seq162.txt} 
+
+Locations of such virus discovered are reported with latitude and longitude coordinates on the globe:
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/birdflu_latgrat.txt} 
+
+Pairwise geodesic distances between these 162 sites are constructed as  
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/birdflu_geodist.txt}
+
+A kernel-induced $l_2$-distances between 162 virus sequences are given in 
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/birdflu_l2dist.txt}
+
+\item {\em Chinese Medicine Dataset:} (courtesy of Zhi Geng) This dataset contains a 2885-by-965 matrix $X$ with 2885 diseases (mostly flu) and 965 Chinese herbal prescription drugs collected from traditional Chinese medicine literature. Each element contains either $0$ or $1$ indicating if the herbal drug is used for the disease. Variable {\tt{desease2885}} is a 1-by-2885 cell collecting the description of deseases and {\tt{herb965}} contains the names of those herbal drugs. 
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/cmed965.mat} 
+
+\item {\em Journey to the West:} This dataset contains a 302-by-408 matrix $X$ with 302 characters and 408 scenes collected from one hundred chapters in
+the classic novel by WU, Cheng-En. Each element contains either 0 or 1 indicating if the character appears in the scene. 
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/xiyouji/xiyouji.mat} 
+
+The construction of this matrix from original data can be found in Matlab file: 
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/xiyouji/readData.m}
+
+\item {\em Hand-written Digits:} The website 
+
+\url{http://www-stat.stanford.edu/\~tibs/ElemStatLearn/datasets/zip.digits/}
+
+contains images of 10 handwritten digits (`$0$',...,`9');
+
+\item {\em S$\&$P500 Prices:} This dataset contains a data matrix $X\in \R^{n\times p}$ of $n=1258$ consecutive observation days and $p=452$ daily closing stock prices, and the cell variable ``${\rm stock}$" collects the names, codes, and the affiliated industrial sectors of the 452 stocks.
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/snp452-data.mat}
+
+contains images of 10 handwritten digits (`$0$',...,`9');
+
+\item {\em SNPs of World-wide Populations:} This dataset contains a data matrix $X\in \R^{p\times n}$ of about $n=650,000$ columns of SNPs (Single Nucleid Polymorphisms) and $p=1064$ rows of peoples around the world. Each element is of three choices, $0$ (for `AA'), $1$ (for `AC'), $2$ (for `CC'), and some missing values marked by $9$. 
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/ceph_hgdp_minor_code_XNA.txt.zip}
+
+Moreover, the following file contains the region where each people comes from, as well as two variables {\texttt{ind1}} and{\texttt{ind2}} such that $X({\texttt{ind1}},{\texttt{ind2}})$ removes all missing values. 
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/HGDP_region.mat}
+
+Some results by PCA can be found in the following paper, Supplementary Information. 
+
+\url{http://www.sciencemag.org/content/319/5866/1100.abstract}
+
+Attention: this last dataset is relatively big with about 2GB size. 
+
+\end{enumerate}
+
+
+
+\end{document}
+
+

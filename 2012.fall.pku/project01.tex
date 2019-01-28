@@ -1,0 +1,93 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\def\N{{\mathcal N}}
+\def\R{{\mathcal R}}
+\def\E{{\mathbb E}}
+
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0.25 in}
+\setlength{\parskip}{0.1 in}
+
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{page}{1}
+   \setcounter{section}{0}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Mathematical Introduction to Data Science \hfill #4} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\Large \hfill #1  \hfill} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\it Instructor: #2\hfill #3} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{#1}{#1}
+   \vspace*{4mm}
+}
+
+
+\begin{document}
+
+\lecture{Project I}{Yuan Yao}{Due: Monday Oct 8, 2012}{Sep 15, 2012}
+
+The first project aims to have more experiments on PCA/MDS. Team work is encouraged, but you have to \emph{write your proposal yourself} with a full citation of partners' work. Submit to TA your report with your source codes (as appendix in report or zipped files). 
+
+On course website, you will find the following datasets
+
+\begin{enumerate}
+
+\item {\em Journey to the West:} This dataset contains a 302-by-408 matrix $X$ with 302 characters and 408 scenes collected from one hundred chapters in
+the classic novel by WU, Cheng-En. Each element contains either 0 or 1 indicating if the character appears in the scene. 
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/Fall2011/xiyouji/xiyouji.mat} 
+
+The construction of this matrix from original data can be found in Matlab file: 
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/Fall2011/xiyouji/readData.m}
+
+\item {\em Hand-written Digits:} The website 
+
+\url{http://www-stat.stanford.edu/\~{}tibs/ElemStatLearn/datasets/zip.digits/}
+
+contains images of 10 handwritten digits (`$0$',...,`9');
+
+\item {\em S$\&$P500 Prices:} This dataset contains a data matrix $X\in \R^{n\times p}$ of $n=1258$ consecutive observation days and $p=452$ daily closing stock prices, and the cell variable ``${\rm stock}$" collects the names, codes, and the affiliated industrial sectors of the 452 stocks.
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/snp452-data.mat}
+
+contains images of 10 handwritten digits (`$0$',...,`9');
+
+\item {\em SNPs of World-wide Populations:} This dataset contains a data matrix $X\in \R^{p\times n}$ of about $n=650,000$ columns of SNPs (Single Nucleid Polymorphisms) and $p=1064$ rows of peoples around the world. Each element is of three choices, $0$ (for `AA'), $1$ (for `AC'), $2$ (for `CC'), and some missing values marked by $9$. 
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/ceph_hgdp_minor_code_XNA.txt.zip}
+
+Moreover, the following file contains the region where each people comes from, as well as two variables {\texttt{ind1}} and{\texttt{ind2}} such that $X({\texttt{ind1}},{\texttt{ind2}})$ removes all missing values. 
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/HGDP_region.mat}
+
+Some results by PCA can be found in the following paper, Supplementary Information. 
+
+\url{http://www.sciencemag.org/content/319/5866/1100.abstract}
+
+\end{enumerate}
+
+Pick up your favorite dataset(s), perform PCA or MDS to analyze and visualize the data, with denoising and outliers removal if necessary. Attention: the last dataset is relatively big with about 2GB size. 
+
+\end{document}
+
+
