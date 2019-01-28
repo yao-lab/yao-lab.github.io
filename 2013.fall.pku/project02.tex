@@ -1,0 +1,299 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\def\N{{\mathcal N}}
+\def\R{{\mathcal R}}
+\def\E{{\mathbb E}}
+
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0.25 in}
+\setlength{\parskip}{0.1 in}
+
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{page}{1}
+   \setcounter{section}{0}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Mathematical Introduction to Data Science \hfill #4} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\Large \hfill #1  \hfill} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\it Instructor: #2\hfill #3} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{#1}{#1}
+   \vspace*{4mm}
+}
+
+
+\begin{document}
+
+\lecture{Final Project}{Yuan Yao}{Due: Sunday Jan 12, 2014}{Dec 25, 2013}
+
+The final project encourages you to work in small teams, with each team consisting no more than THREE persons and submitting one report before midnight of Sunday Jan 12, 2014. In your report, please state clearly \emph{the contributions of each teammate}. Send your submission to me (\url{yyao04@gmail.com}), cc-ed to teaching assistants. 
+
+
+\section{Big Matrix Factorization}
+
+For those who are interested to do matrix factorization (SVD etc.) with big matrices, the following paper
+
+Divide-and-Conquer Matrix Factorization, by Lester Mackey, Ameet Talwalkar, Michael I. Jordan, version 6, Aug 2012. 
+\url{http://arxiv.org/abs/1107.0789v6} 
+
+\noindent summarizes two important class of methods:
+\begin{itemize}
+\item random projection (including column projection)
+\item subsampling as generalized Nystr\"{o}m Method for SVD
+\end{itemize}
+
+You may implement one or two of these methods on your problem and test their efficiency. SNPs data is a good candidate for example. 
+
+\section{Chess Player Rating} 
+You can login my server:
+
+\texttt{ssh einstein@162.105.205.92}
+
+\noindent using the password I provided on class. 
+
+For those interested in Chess player rating in the Kaggle competition, the following data and algorithm are for your reference 
+\begin{itemize}
+\item \texttt{/data/chess/data/} contains the following data
+\subitem \texttt{training\_data.csv}: training data
+\subitem \texttt{cross\_validation\_dataset.csv}  
+\subitem \texttt{test\_scores.csv}: test data with game scores
+\subitem \texttt{players.csv} contains 8k chess players in the data
+\item \texttt{/data/chess/R/}  contains two algorithms
+\subitem \texttt{elopp.R}  is the kaggle award winner algorithm (MSRE=0.69), whose reference can be found at 
+\subitem \texttt{/data/chess/Reference/}, or the paper:  
+How I won the "Chess Ratings - Elo vs the Rest of the World" Competition, by Yannis Sismanis, 2010, \url{http://arxiv.org/abs/1012.4571}
+\subitem \texttt{hodgeRank1.R} is a prototype algorithm for hodgeRank by Dr. Quanwu Xiao.
+\end{itemize}
+
+Note: please create your own folder at /home/einstein/ if you would like to work on the server. Otherwise download the data and codes to your local computer.  
+
+\section{World College Rating} 
+
+\begin{itemize}
+\item \texttt{/data/worldcollege} contains the following data
+\subitem $\texttt{export$\_$4271\_ideas\_20131117.csv}$: 261 colleges in the world 
+\subitem \texttt{export$\_$4271\_votes\_20131128\_n5k.csv}: about 5000 votes up to Nov 28, 2013  
+\subitem $\texttt{export\_4271\_non\_votes\_20131128.csv}$: non-votes marked as ``I can't decide" with various reasons 
+\end{itemize}
+
+Explore this data with Hodge decomposition of paired comparison data. No one has ever tried it yet. 
+
+\section{Protein Folding}
+
+There are two problems related to the following datasets.
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/protein.zip}
+
+\begin{itemize}
+\item prediction of \emph{contact map} by multiple aligned sequences in the same family;
+\item 3D structure reconstruction based on incomplete MDS with uncertainty.
+\end{itemize}
+
+
+\noindent In the file, you will find PF00013 (PCBP1\_HUMAN/281-343, PDB 1WVN), PF00018 (YES\_HUMAN/97-144, PDB 2HDA), and PF00254 (O45418\_CAEEL/24-118, PDB 1R9H). Data format information can be found at 
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/protein/readme.txt}
+
+For example, file \url{http://www.math.pku.edu.cn/teachers/yaoy/data/protein/sequence/PF00018\_match.aln} contains 3610 sequences of length 48 for the same family PF00018, where the first sequence is 
+
+{\tt{-----------------ENEIVQVFSIVDESWWSGKLRRNGAEGIFPK}}
+
+\noindent Here 
+\begin{itemize}
+\item {\tt{-}} denotes the gap,
+\item other alphabets denotes the Amino Acid code, from 20 characters. 
+\end{itemize} 
+Therefore in total the sequence is coded by 21 characters. Correspondingly file \url{http://www.math.pku.edu.cn/teachers/yaoy/data/protein/sequence/PF00018\_2HDA.pdb} contains the 3D coordinates of alpha-carbons for a particular amino acid sequence in the family, YES\_HUMAN/97-144, read as
+
+{\tt{VALYDYEARTTEDLSFKKGERFQIINNTEGDWWEARSIATGKNGYIPS}}
+
+\noindent where the first line in the file is 
+
+97	V	0.967	18.470	4.342
+
+\noindent Here
+\begin{itemize}
+\item `97': start position 97 in the sequence
+\item `V': first character in the sequence
+\item $[x,y,z]$: 3D coordinates in unit $\AA$.
+\end{itemize}
+
+\noindent Figure \ref{yes_human} gives the 3D representation of its structure. 
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.5\textwidth]{../2013_Spring_PKU/Yes_Human.png}  
+\caption{default}
+\label{yes_human}
+\end{center}
+\end{figure}
+
+Given the 3D coordinates of the amino acids in the sequence, one can computer pairwise distance between amino acids, $[d_{ij}]^{l\times l}$ where $l$ is the sequence length. A \emph{contact map} is defined to be a graph $G_\theta=(V,E)$ consisting $l$ vertices for amino acids such that and edge $(i,j)\in E$ if $d_{ij} \leq \theta$, where the threshold $\theta=8\AA$ here. 
+
+\emph{Non-local contact map} $G_{\theta,\tau}$ considers the restricted contact map with only edges $(i,j)$ with $i$ and $j$ are $\tau$-separated way in sequence distance. Here we choose $\tau=5$, \emph{i.e.} $|i-j|> 5$. 
+
+%\begin{figure}[htbp]
+%\begin{center}
+%\includegraphics[width=0.9\textwidth]{chendi.png}  
+%\caption{True Positive Rates on non-local contact predictions by Directed Information vs. Graphical Lasso on Yes\_Human, courtesy by Chendi Huang, indicating that graphical lasso performs better.}
+%\label{chendi}
+%\end{center}
+%\end{figure}
+
+In contact map prediction, we are going to learn a graphical model from multiple aligned sequences, to predict the non-local contact map $G_{\theta=8\AA,\tau=5}$. Performance is evaluated in terms of the fraction of correct predicted non-local contacts (true-positive-rates) among the top $k$ pairs with highest scores, \emph{e.g.} $k=l/5, l/3, l/2, l$, etc. Figure \ref{chendi}, courtesy by Chendi Huang, gives you a reference on comparing the Directed Information by Morcos and the graphical lasso. For your reference, Chendi's report can be found at 
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/Huang_protein_report_2013-04-28.pdf} 
+
+\noindent and a recent paper by Steve Smale's group is found at
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/SmaleContactPredictions.pdf} 
+
+
+In 3D structure recovery, we can try to find the 3D coordinates given in .pdb files, assumed that we are given incomplete pairwise distances contaminated by noise. We can construct such
+data based on information given in .pdb files.
+
+\section{iPinyou Global Bidding Algorithm Competition}
+
+Original data can be downloaded from iPinYou Global Bidding Algorithm Competition at 
+
+\url{http://contest.ipinyou.com/}
+
+\noindent where Stage III ended last week already. To register the contest and submit your algorithm, you need to fill in your algorithm in a Java interface found at
+
+\url{http://contest.ipinyou.com/submission.shtml}
+
+You may still pursue the CTR (click-through-rate) prediction using the data provided by iPinyou. For example, you may pursue online (stochastic gradient descent) logistic regression for CTR, with other variations like linearized Bregman iteration or mirror descent.   
+
+\section{Spectral Methods}
+
+You can choose other datasets for the following tasks
+
+\begin{itemize}
+\item dimensionality reduction and estimation (PCA, MDS, ISOMAP, LLE, Diffusion, Laplacian, LTSA)
+\item spectral clustering 
+\item RPCA and SPCA  
+\end{itemize}
+
+This project aims to exercise the tools in the class, such as random projections, robust PCA, sparse PCA, and MDS with uncertainty, etc., based on the real datasets. In the below, we list some candidate datasets for your reference. 
+\begin{enumerate}
+%\item Choose one or more datasets, either from those listed in the first project or by your own. Write in your report what kind of \emph{problems} you would like to attack with the data. (It is even more important to find a proper problem than solving it eventually!)
+\item Choose the dataset in your favorite. In your report, raise a problem that you are interested to attack with the tools you learned. The following problems are for your examples:
+\subitem  Robust PCA will decompose the data matrices into two parts, a low-rank and a sparse, which can be applied to all the datasets below. What's the meaning of sparse part and what's the meaning of low-rank part in your data? 
+\subitem Sparse PCA will find PCA whose support are only subsets of the variables. Journey to the West and Chinese Medicine datasets are probably suitable for such a tool, as we would like to find small teams of characters dominating the story, or small sets of essential herb curing most of similar deseases (flu). 
+\subitem Random Projection is to do dimensionality reduction if one wants to find SVD of $X$ of large dimensionality. This particularly suits the analysis of SNPs data with $650k$ sites, where you can random projects the matrix into a subset of SNPs and see if top eigenvectors are still approximately correct. 
+\subitem MDS with uncertainty is to reconstruct Euclidean coordinates when pairwise distances are partially observed and contaminated.  Can one reconstruct Euclidean coordinates of Bird Flu virus from geodesic distances and sequence distances, respectively, and compare one against another?  
+\item Try to apply the methods to analyze your data. Analyze the phenomena you observed and explain whether or not the results answer your problems in the first step and \emph{why}. Finally in your report list the kind of \emph{open problems} in your project and possible future directions in your mind. 
+\end{enumerate}
+
+
+\section{Paper Reading Project}
+
+If you prefer to a solid paper reading project, please email me with your interested paper and we can assign some paper to you.  
+
+
+
+
+\section*{Datasets}
+
+\begin{enumerate}
+
+\item {\em Bird Flu Dataset:} (courtesy of Steve Smale and Cissy) This dataset 162 H5N1 (bird flu) virus sequences discovered around the world:
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/birdflu_seq162.txt} 
+
+Locations of such virus discovered are reported with latitude and longitude coordinates on the globe:
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/birdflu_latgrat.txt} 
+
+Pairwise geodesic distances between these 162 sites are constructed as  
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/birdflu_geodist.txt}
+
+A kernel-induced $l_2$-distances between 162 virus sequences are given in 
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/birdflu_l2dist.txt}
+
+\item{\em Protein Folding Data:} (courtesy of Steve Smale) 
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/protein/readme.txt} 
+
+%\item {\em Chinese Medicine Dataset:} (courtesy of Zhi Geng) This dataset contains a 2885-by-965 matrix $X$ with 2885 diseases (mostly flu) and 965 Chinese herbal prescription drugs collected from traditional Chinese medicine literature. Each element contains either $0$ or $1$ indicating if the herbal drug is used for the disease. Variable {\tt{desease2885}} is a 1-by-2885 cell collecting the description of deseases and {\tt{herb965}} contains the names of those herbal drugs. 
+
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/data/cmed965.mat} 
+
+\item {\em A Dream of Red Mansion:} This dataset contains a 376-by-475 matrix $X$ with 376 characters and 475 scenes collected from 120 chapters in
+the classic novel by CAO, Xueqin. Each element contains either 0 or 1 indicating if the character appears in the scene.  The construction of this matrix from original data can be found in Matlab file: 
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/hongloumeng/readme.m}
+
+Thanks to Ms. WAN, Mengting (now at UIUC), an update of data matrix consisting 374 characters (two of 376 are repeated) which is readable by R read.table() can be found at 
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/hongloumeng/HongLouMeng374.txt}
+
+\noindent She also kindly shares her BS thesis for your reference
+ 
+ \url{http://www.math.pku.edu.cn/teachers/yaoy/reference/WANMengTing2013_HLM.pdf}
+
+Among various choices of analysis, with this data matrix $X$, you may form a weighted graph $W=X * X'$, pursue PCA of $X$. 
+
+\item {\em Journey to the West:} This dataset contains a 302-by-408 matrix $X$ with 302 characters and 408 scenes collected from one hundred chapters in
+the classic novel by WU, Cheng-En. Each element contains either 0 or 1 indicating if the character appears in the scene. 
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/xiyouji/xiyouji.mat} 
+
+The construction of this matrix from original data can be found in Matlab file: 
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/xiyouji/readData.m}
+
+\item {\em Hand-written Digits:} The website 
+
+\url{http://www-stat.stanford.edu/\~tibs/ElemStatLearn/datasets/zip.digits/}
+
+contains images of 10 handwritten digits (`$0$',...,`9');
+
+\item {\em S$\&$P500 Prices:} This dataset contains a data matrix $X\in \R^{n\times p}$ of $n=1258$ consecutive observation days and $p=452$ daily closing stock prices, and the cell variable ``${\rm stock}$" collects the names, codes, and the affiliated industrial sectors of the 452 stocks.
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/snp452-data.mat}
+
+You may use PCA to explore the `invisible hands' of markets.
+
+\item {\em SNPs of World-wide Populations:} This dataset contains a data matrix $X\in \R^{p\times n}$ of about $n=650,000$ columns of SNPs (Single Nucleid Polymorphisms) and $p=1064$ rows of peoples around the world. Each element is of three choices, $0$ (for `AA'), $1$ (for `AC'), $2$ (for `CC'), and some missing values marked by $9$. 
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/ceph_hgdp_minor_code_XNA.txt.zip}
+
+Moreover, the following file contains the region where each people comes from, as well as two variables {\texttt{ind1}} and{\texttt{ind2}} such that $X({\texttt{ind1}},{\texttt{ind2}})$ removes all missing values. 
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/HGDP_region.mat}
+
+Some results by PCA can be found in the following paper, Supplementary Information. 
+
+\url{http://www.sciencemag.org/content/319/5866/1100.abstract}
+
+Attention: this last dataset is relatively big with about 2GB size. 
+
+\end{enumerate}
+
+
+
+\end{document}
+
+

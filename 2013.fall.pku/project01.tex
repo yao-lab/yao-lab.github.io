@@ -1,0 +1,106 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\def\N{{\mathcal N}}
+\def\R{{\mathcal R}}
+\def\E{{\mathbb E}}
+
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0.25 in}
+\setlength{\parskip}{0.1 in}
+
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{page}{1}
+   \setcounter{section}{0}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Statistical Learning \hfill #4} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\Large \hfill #1  \hfill} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\it Instructor: #2\hfill #3} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{#1}{#1}
+   \vspace*{4mm}
+}
+
+
+\begin{document}
+
+\lecture{Project I: PCA}{Yuan Yao}{Due: October 16, 2013}{September 28, 2013}
+
+\section{Requirement}
+
+\begin{enumerate}
+\item Pick up ONE (or more if you like) favorite problem below to attack. If you would like to work on a different problem outside the candidates we proposed, please email course instructor about your proposal.  
+\item Team work: we encourage you to form small team, up to THREE persons per group, to work on the same problem. Each team just submit ONE report, with a clear remark on each person's contribution. 
+\item In the report, show your results with your careful analysis of the results. Remember: scientific analysis and reasoning are more important than merely the performance results. Source codes may be submitted through email as a zip file, or as an appendix if it is not large.    
+\item Submit your report by email or paper version no later than the deadline, to Teaching Assistants (TA), Junliang Huang (\href{mailto:jlhwung@gmail.com}{jlhwung@gmail.com}) and Qing Wang (\href{mailto:wangqing.linus@gmail.com}{wangqing.linus@gmail.com}). 
+\end{enumerate}
+
+\section{Social Network Data}
+
+\subsection{The Characters in A Dream of Red Mansion} 
+
+A 376-by-475 matrix of character-event can be found at the course website, in .XLS, .CSV, and .MAT formats. For example the Matlab format is found at
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/hongloumeng/hongloumeng376.mat} 
+
+\noindent with a readme file:
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/hongloumeng/readme.m}
+
+Thanks to Ms. WAN, Mengting (now at UIUC), an update of data matrix consisting 374 characters (two of 376 are repeated) which is readable by R read.table() can be found at 
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/hongloumeng/HongLouMeng374.txt}
+
+\noindent She also kindly shares her BS thesis for your reference
+ 
+ \url{http://www.math.pku.edu.cn/teachers/yaoy/reference/WANMengTing2013_HLM.pdf}
+
+Among various choices of analysis, with this data matrix $X$, you may form a weighted graph $W=X * X'$, pursue PCA of $X$. 
+
+\subsection{A Journal to the West} On course website, you may also find the link to this dataset with a 302-by-408 matrix, whose matlab format is saved at
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/Fall2011/xiyouji/xiyouji.mat}
+
+For your reference, here is a project presentation by Mr. LI, Liying (at PKU) which gives an analysis based on PCA
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/LiyingLI_Xiyouji2012_slides.pdf}
+
+
+\section{SNPs Data}
+
+The following dataset contains 650K-SNPs by 1000-persons scattered around the globe, published by Human Genome Diversity Project
+
+\url{http://www.cephb.fr/en/hgdp/}
+
+You may choose other SNPs datasets at your interests. PCA has been used to disclose geographic information (mapping the Human Evolution history) in literature
+
+\url{http://www.sciencemag.org/content/319/5866/1100.abstract}
+
+\section{Finance Data}
+The following data contains 1258-by-452 matrix with closed prices of 452 stocks in SNP'500 for workdays in 4 years.
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/snp452-data.mat}
+
+You may use PCA to explore the `invisible hands' of markets.
+\end{document}
+
+
