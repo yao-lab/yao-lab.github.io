@@ -1,0 +1,361 @@
+\documentclass[10pt,mathserif]{beamer}
+
+\usepackage{graphicx,amsmath,amssymb,tikz,psfrag,hyperref}
+
+\input defs.tex
+
+%% formatting
+
+\mode<presentation>
+{
+\usetheme{default}
+}
+\setbeamertemplate{navigation symbols}{}
+\usecolortheme[rgb={0.13,0.28,0.59}]{structure}
+\setbeamertemplate{itemize subitem}{--}
+\setbeamertemplate{frametitle} {
+	\begin{center}
+	  {\large\bf \insertframetitle}
+	\end{center}
+}
+
+\newcommand\footlineon{
+  \setbeamertemplate{footline} {
+    \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,leftskip=.8cm,rightskip=.6cm]{structure}
+      \footnotesize \insertsection
+      \hfill
+      {\insertframenumber}
+    \end{beamercolorbox}
+    \vskip 0.45cm
+  }
+}
+\footlineon
+
+\AtBeginSection[] 
+{ 
+	\begin{frame}<beamer> 
+		\frametitle{Outline} 
+		\tableofcontents[currentsection,currentsubsection] 
+	\end{frame} 
+} 
+
+%% begin presentation
+
+\title{\large \bfseries Lecture 1. Introduction and Syllabus}
+
+\author{Yuan Yao\\[3ex]
+Hong Kong University of Science and Technology}
+
+\date{\today}
+
+\begin{document}
+
+\frame{
+\thispagestyle{empty}
+\titlepage
+}
+
+\section{Geometric Data Analysis}
+
+\begin{frame}
+\frametitle{Part I. Geometric Data Analysis}
+\begin{itemize}\itemsep=12pt
+\item A duality in linear dimensionality reduction
+\vspace*{0.5em}
+\begin{itemize}
+\item Principal Component Analysis (PCA)
+\item Multidimensional Scaling (MDS)
+\item Random matrix theory and phase transitions
+\item Random projection and restricted isometry property
+\end{itemize}
+\vspace*{0.5em}
+\item Extended PCA/MDS via SDP
+\vspace*{0.5em}
+\begin{itemize}
+\item Robust PCA
+\item Sparse PCA
+\item Graph Realization or Sensor Network Localization
+\end{itemize}
+\item Manifold Learning: nonlinear dimensionality reduction via spectral method on graphs
+\vspace*{0.5em}
+\begin{itemize}
+\item Locally Linear Embedding (PCA+), Isomap (MDS+)
+\item Laplacian LLE, Diffusion Map, LTSA
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Part I. Geometric Data Analysis (continued)}
+\begin{itemize}\itemsep=12pt
+\item Supervised PCA
+\vspace*{0.5em}
+\begin{itemize}
+\item Ridge Regression and PCA
+\item Slice Inverse Regression and Linear Discriminant Analysis
+\end{itemize}
+\vspace*{0.5em}
+\item *Other topics in representation learning
+\vspace*{0.5em}
+\begin{itemize}
+\item $t$SNE
+\item Steerable PCA
+\item Dictionary learning and Matrix Factorization
+\item Deep learning
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+%\begin{frame}
+%\frametitle{Pictures with tikz}
+%\begin{center}
+%\begin{tikzpicture}
+%	[scale=1.5,dot/.style={circle,draw=black!100,fill=black!100,thick,inner sep=0pt,minimum size=2pt}]
+%    \node[dot] at (-1,0) (n1) {};
+%    \node[dot] at (0,1)  (n2) {};
+%    \node[dot] at (1,0)  (n3) {};
+%    \node[dot] at (0,-1) (n4) {};
+%    \draw[gray] (-1.5,0) -- (1.5,0);
+%    \draw[gray] (0,-1.5) -- (0,1.5);
+%    \draw[black,thick] (n1) -- (n2) -- (n3) -- (n4) -- (n1) -- cycle;
+%    \draw[orange,thick] (-1,0.5) -- (0,1) -- (1,1.5);
+%\end{tikzpicture}
+%\qquad
+%\begin{tikzpicture}
+%	[scale=1.5,dot/.style={circle,draw=black!100,fill=black!100,thick,inner sep=0pt,minimum size=2pt}]
+%    \draw[gray] (-1.5,0) -- (1.5,0);
+%    \draw[gray] (0,-1.5) -- (0,1.5);
+%    \draw[black,thick] (-1,1) -- (0,0) -- (1,1);
+%\end{tikzpicture}
+%\end{center}
+%\end{frame}
+%
+%\begin{frame}
+%\frametitle{Pictures with tikz}
+%\begin{itemize}\itemsep=12pt
+%	\item convex envelope of (nonconvex) $f$ is the largest convex underestimator $g$
+%    \item \ie, the best convex lower bound to a function
+%        \vspace*{1em}
+%\begin{center}
+%\begin{tikzpicture}
+%    \draw[gray] (-1.5,0) -- (1.5,0);
+%    \draw[gray] (0,-0.5) -- (0,1.5);
+%    \draw[black,thick] (-1,1) -- (0,0) -- (0.5,0.5) -- (1,-0.25) -- (2,1);
+%    \draw[black,dashed] (0,0) -- (1,-0.25);
+%\end{tikzpicture}
+%\end{center}
+%    \item \textbf{example}: $\ell_1$ is the envelope of $\card$ (on unit $\ell_\infty$ ball)
+%    \item \textbf{example}: $\|\cdot\|_*$ is the envelope of $\rank$ (on unit spectral norm ball)
+%    \item various characterizations: \eg, $f^{**}$ or convex hull of epigraph
+%\end{itemize}
+%\end{frame}
+
+\section{Topological Data Analysis}
+
+\begin{frame}
+\frametitle{Part II. Topological Data Analysis}
+\begin{itemize}\itemsep=12pt
+\item Clustering method (0-homology)
+\vspace*{0.5em}
+\begin{itemize}
+\item $k$-center
+\item $k$-means
+\item hierarchical linakge
+\end{itemize}
+\vspace*{0.5em}
+\item Topological Data Analysis and Morse Theory
+\vspace*{0.5em}
+\begin{itemize}
+\item Reeb graph and mapper
+\item Persistent homology and discrete Morse theory
+\item *Critical nodes and graphs
+\end{itemize}
+\item *Euler Calculus and signal processing
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Part I. Topological Data Analysis (continued)}
+\begin{itemize}\itemsep=12pt
+\item Hodge Theory: a bridge connecting geometry and topology
+\vspace*{0.5em}
+\begin{itemize}
+\item Spectral clustering and graph Laplacian
+\item Statistical ranking and graph Helmoholtzian/Hodge Laplacian
+\begin{itemize}
+\item Experimental design and random graph theory
+\item Online ranking and stochastic algorithms
+\item Budget control and information maximization
+\item Individual learning vs. social choice theory
+\end{itemize}
+\item Game theory
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\section{Planned Schedule}
+
+\begin{frame}
+\frametitle{Planned Schedule}
+\begin{itemize}\itemsep=12pt
+\item The course runs for about 13 weeks.
+\vspace*{0.5em}
+\item Week 1: 
+\vspace*{0.5em}
+\begin{itemize}
+\item Jan 30: Introduction 
+\item Feb 1:  seminar by Ruohan ZHAN (Stanford University) with title "Safety masked reinforcement learning"
+\end{itemize}
+\item Week 2: spring festival break (Feb 8 will be rescheduled to later)
+\vspace*{0.5em}
+\item Week 3: 
+\vspace*{0.5em}
+\begin{itemize}
+\item Feb 13: PCA
+\item Feb 15: MDS
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Planned Schedule (continued)}
+\begin{itemize}\itemsep=12pt
+\item Feb 20 - May 8: to-be-announced on courseweb
+\vspace*{0.5em}
+\begin{itemize}
+\item \url{https://yao-lab.github.io/2019_csic5011/}
+\end{itemize}
+\item Occasionally invited speakers from academia or industry will present
+\vspace*{0.5em}
+\item Discussions on piazza (by invitation only):
+\vspace*{0.5em}
+\begin{itemize}
+\item \url{https://piazza.com/ust.hk/spring2019/csic5011/home}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+%\begin{frame}
+%\frametitle{Group lasso \\[-0.3em] 
+%{\footnotesize \textmd{(\eg, Yuan \& Lin; Meier, van de Geer, B\"uhlmann; Jacob, Obozinski, Vert)}}}
+%\begin{itemize}\itemsep=12pt
+%\item problem:
+%\[
+%\begin{array}{ll}
+%\mbox{minimize} & f(x) + \lambda \sum_{i=1}^N \|x_i\|_2
+%\end{array}
+%\]
+%\ie, like lasso, but require groups of variables to be zero or not
+%\item also called $\ell_{1,2}$ mixed norm regularization
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}{Structured group lasso \\[-0.3em] 
+%{\footnotesize \textmd{(Jacob, Obozinski, Vert; Bach et al.; Zhao, Rocha, Yu; \dots)}}}
+%\begin{itemize}\itemsep=12pt
+%\item problem:
+%\[
+%\begin{array}{ll}
+%\mbox{minimize} & f(x) + \sum_{i=1}^N \lambda_i \|x_{g_i}\|_2
+%\end{array}
+%\]
+%where $g_i \subseteq [n]$ and $\mathcal G = \{g_1, \dots, g_N\}$
+%\item like group lasso, but the groups can overlap arbitrarily
+%\item particular choices of groups can impose `structured' sparsity
+%\item \eg, topic models, selecting interaction terms for (graphical) models,
+%    tree structure of gene networks, fMRI data
+%\item generalizes to the \textbf{composite absolute penalties family}:
+%\[
+%r(x) = \|(\|x_{g_1}\|_{p_1}, \dots, \|x_{g_N}\|_{p_N})\|_{p_0}
+%\]
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}{Structured group lasso \\[-0.3em] 
+%{\footnotesize \textmd{(Jacob, Obozinski, Vert; Bach et al.; Zhao, Rocha, Yu; \dots)}}}
+%\textbf{hierarchical selection}:
+%\begin{center}
+%\begin{tikzpicture}
+%[dot/.style={rectangle,draw=black,fill=white,inner sep=5pt,minimum size=5pt}]
+%\node[dot,draw=orange,thick] at (0,5) (n1) {1};
+%\node[dot] at (-1,4) (n2) {2};
+%\node[dot,draw=orange,thick] at (1,4) (n3) {3};
+%\node[dot] at (-1,3) (n4) {4};
+%\node[dot,draw=orange,thick] at (0.5,3) (n5) {5};
+%\node[dot] at (1.5,3) (n6) {6};
+%\draw[->] (n1) -- (n2);
+%\draw[->] (n1) -- (n3);
+%\draw[->] (n2) -- (n4);
+%\draw[->] (n3) -- (n5);
+%\draw[->] (n3) -- (n6);
+%\end{tikzpicture}
+%\end{center}
+%\begin{itemize}\itemsep=8pt
+%    \item $\mathcal G = \{ \{4\}, \textcolor{orange}{\{5\}}, \{6\}, \{2,4\}, 
+%        \textcolor{orange}{\{3,5,6\}}, \textcolor{orange}{\{1,2,3,4,5,6\} \}}$
+%\item nonzero variables form a rooted and connected subtree
+%    \begin{itemize}
+%        \item if node is selected, so are its ancestors
+%        \item if node is not selected, neither are its descendants
+%    \end{itemize}
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}[fragile]{Sample ADMM implementation: lasso}
+%\begin{verbatim}
+%prox_f = @(v,rho) (rho/(1 + rho))*(v - b) + b;
+%prox_g = @(v,rho) (max(0, v - 1/rho) - max(0, -v - 1/rho));
+%
+%AA = A*A';
+%L  = chol(eye(m) + AA);
+%
+%for iter = 1:MAX_ITER
+%    xx = prox_g(xz - xt, rho);
+%    yx = prox_f(yz - yt, rho);
+%
+%    yz = L \ (L' \ (A*(xx + xt) + AA*(yx + yt)));
+%    xz = xx + xt + A'*(yx + yt - yz);
+%  
+%    xt = xt + xx - xz;
+%    yt = yt + yx - yz;
+%end
+%\end{verbatim}
+%\end{frame}
+%
+%\begin{frame}{Figure}
+%\begin{center}
+%\psfrag{k}[t][b]{$k$}
+%\psfrag{fbest - fmin}[b][t]{$f_\mathrm{best}^{(k)} - f^\star$}
+%\psfrag{noise-free realize}{noise-free case}
+%\psfrag{realize1}{realization 1}
+%\psfrag{realize2}{realization 2}
+%\includegraphics[height=0.8\textheight]{figures/pwl_error_fbest_realize.eps}
+%\end{center}
+%\end{frame}
+%
+%\begin{frame}{Algorithm}
+%    if $L$ is not known (usually the case), can use the following line search:
+%    \noindent\rule[-5pt]{\textwidth}{0.4pt}
+%    {\footnotesize
+%    \begin{tabbing}
+%        {\bf given} $x^k$, $\lambda^{k-1}$, and parameter $\beta \in (0,1)$. \\*[\smallskipamount]
+%        Let $\lambda := \lambda^{k-1}$. \\*[\smallskipamount]
+%        {\bf repeat} \\
+%        \qquad \= 1.\ Let $z := \prox_{\lambda g}(x^{k} - \lambda \nabla f(x^{k}))$. \\
+%        \> 2.\ {\bf break if} $f(z) \leq \hat{f}_{\lambda}(z, x^{k})$. \\
+%        \> 3.\ Update $\lambda := \beta \lambda$. \\*[\smallskipamount]
+%        {\bf return} $\lambda^{k} := \lambda$, $x^{k+1}:=z$.
+%    \end{tabbing}}
+%    \noindent\rule[10pt]{\textwidth}{0.4pt}
+%
+%    typical value of $\beta$ is $1/2$, and 
+%    \[
+%    \hat{f}_\lambda(x,y) = f(y) + \nabla f(y)^T (x - y) + 
+%    (1/2\lambda)\|x - y\|_2^2
+%    \]
+%\end{frame}
+
+
+\end{document}
