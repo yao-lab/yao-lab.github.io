@@ -1,0 +1,2219 @@
+%!TEX encoding = UTF-8 Unicode
+\documentclass[slidestop,compress,9pt,epsfig,color]{beamer}
+
+\usepackage{listings}
+%\usepackage[dvipsnames]{xcolor}
+ \definecolor{dkgreen}{rgb}{0,0.6,0}
+ \definecolor{mauve}{rgb}{0.58,0,0.82}
+ \definecolor{lightyellow}{rgb}{1,1,.88}
+\lstset{ %
+  language=R,                     % the language of the code
+  basicstyle=\footnotesize\ttfamily,
+%  basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+%  numbers=left,                   % where to put the line-numbers
+%  numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  stepnumber=1,                   % the step between two line-numbers. If it's 1, each line
+                                  % will be numbered
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{lightyellow},  % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+%  frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+%  title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                  % also try caption instead of title
+%  keywordstyle=\color{blue},      % keyword style
+  commentstyle=\color{dkgreen},   % comment style
+  stringstyle=\color{mauve},      % string literal style
+  escapeinside={\%*}{*)},         % if you want to add a comment within your code
+  morekeywords={*,...}            % if you want to add more keywords to the set
+}
+
+\usepackage{booktabs} 
+\usepackage{pstricks}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+%\usepackage{beamerthemesplit}
+\usetheme{Warsaw}
+\mode<presentation>
+\useoutertheme{shadow}
+\useoutertheme{miniframes} %miniframes
+%\useoutertheme[subsection=false]{smoothbars}
+\useinnertheme{rectangles}
+\usepackage{CJKutf8}
+\usepackage{amsbsy}
+\usepackage{animate}
+
+\input{bmacros}
+
+\setbeamercolor{frametitle}{fg=white}
+
+%\beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{15}}
+
+\providecommand{\RR}{\mathbb{R}}
+\providecommand{\NN}{\mathbb{N}}
+\providecommand{\Nm}{\mathcal{N}}
+\providecommand{\X}{\mathcal{X}}
+\providecommand{\Y}{\mathcal{Y}}
+\providecommand{\Z}{\mathcal{Z}}
+\providecommand{\E}{\mathbb{E}}
+\providecommand{\H}{\mathcal{H}}
+\providecommand{\D}{\mathcal{D}}
+\providecommand{\U}{\mathcal{U}}
+\providecommand{\De}{\Delta}
+\providecommand{\de}{\delta}
+\providecommand{\hg}{\hat{g}}
+
+\theoremstyle{example}
+\newtheorem{thm}{}
+%\newtheorem{fact}{}
+
+\providecommand{\subitem}{\\ \textcolor{yellow}{$\bullet\ $}}
+%\DeclareMathOperator{\sign}{sign}
+%\DeclareMathOperator{\span}{span}
+%\DeclareMathOperator{\supp}{supp}
+%\DeclareMathOperator{\ker}{ker}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\prox}{prox}
+%\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\dive}{div}
+\DeclareMathOperator{\ASL}{\mathfrak{sl}}
+
+
+
+\title[Differential Inclusion Method in High Dimensional Statistics]{Differential Inclusion Method in High Dimensional Statistics}
+\author{Yuan Yao}
+\institute{HKUST} %Department of Mathematics, Chemical & Biological Engineering \\ and by courtesy Computer Science and Engineering \\ HKUST} %School of Mathematical Sciences \\ Peking University}
+%\date{\tiny MISDA 2016 \\ August 4-5, 2016}
+% \\with Stanley Osher (UCLA), Feng Ruan (PKU \& Stanford), Jiechao Xiong (PKU), \\ and Wotao Yin (UCLA), et al.}
+\addtobeamertemplate{title page}{}{}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Acknowledgements}
+\begin{itemize}
+\item Theory
+\subitem \emph{Stanley Osher}, \emph{Wotao Yin} (UCLA)
+\subitem \emph{Feng Ruan} (Stanford \& PKU)
+\subitem \emph{Jiechao Xiong}, \emph{Chendi Huang} (PKU)
+\item Applications: 
+\subitem \emph{Qianqian Xu}, \emph{Jiechao Xiong}, \emph{Chendi Huang}, \emph{Xinwei Sun} (PKU)
+\subitem \emph{Lingjing Hu} (BCMU)
+%\subitem \emph{Yongyi Guo} (PKU \& Princeton), \emph{Anshu Wang} (PKU \& UCLA) 
+\subitem \emph{Yifei Huang}, \emph{Weizhi Zhu} (HKUST)
+\subitem \emph{Ming Yan}, \emph{Zhimin Peng} (UCLA)
+%\item Discussions: \emph{Ming Yuan} (U Wisconsin), \emph{Lie Wang} (MIT), \emph{Jianqing Fan} (Princeton), \emph{Peter Bickel} and \emph{Bin Yu} (UCB)
+\item Grants:
+\subitem National Basic Research Program of China (973 Program), NSFC
+\end{itemize}
+\end{frame}
+
+
+\section[Outline]{}
+\frame{\tableofcontents}
+
+\section[R Package: Libra]{R Package: \tt{Libra}}
+\begin{frame}{Cran R package: Libra}
+\url{http://cran.r-project.org/web/packages/Libra/}
+\begin{figure}[!h]
+%\centering
+%\includegraphics[width=0.7\textwidth]{figures/cran-libra.pdf}  \\
+\includegraphics[width=\textwidth]{figures/Libra1_5.png}  \\	%face picture
+%\includegraphics[width=\textwidth]{figures/Libra1_5.pdf}  \\ 	%clean picture
+\end{figure}
+\end{frame}
+
+\begin{frame}{Libra (1.6) currently includes}
+Sparse statistical models:
+\begin{itemize}
+\item linear regression: ISS (differential inclusion), LB
+\item logistic regression (binomial, multinomial): LB
+\item graphical models (Gaussian, Ising, Potts): LB
+\end{itemize}
+Two types of regularization:
+\begin{itemize}
+\item LASSO: $l_1$-norm penalty
+\item Group LASSO: $l_2-l_1$ penalty
+\end{itemize}
+\end{frame}
+
+\begin{frame}{{\tt{Libra}} computes regularization paths via Linearized Bregman Iteration (LB)}
+for $\theta_0=z_0=\vzero$ and $k\in \NN$,
+\begin{subequations}
+\begin{align}
+z_{k+1} & = z_k - \frac{ \alpha_k }{n} \sum_{i=1}^n \nabla_{\theta} \ell (x_i,\theta_k)\\
+ \theta_{k+1} & = \kappa \cdot \prox_{\|\cdot\|_\ast}(z_{k+1})
+\end{align}
+\end{subequations}
+where
+\begin{itemize}
+\item $\ell (x,\theta)$ is the \emph{loss} function to minimize
+\item $\prox_{\|\cdot\|_\ast}(z) := \arg\min_u \left( \frac{1}{2}\| u - z\|^2 + \|u\|_\ast \right )$ 
+\item $\alpha_k>0$ is step-size 
+\item $\kappa>0$ while $\alpha_k \kappa \|\nabla^2_\theta\hat{\E} \ell (x,\theta)\|<2$
+\item as simple as ISTA, easy to parallel implementation
+\end{itemize}
+%\textcolor{red}{How does it work?}
+\end{frame}
+
+%\begin{frame}{Comparison with ISTA}
+%\textbf{Linearized Bregman (LB)} iteration: for $\ell(x,y)= \frac{1}{2n}\|y - X \theta\|^2$, 
+%\[  z_{t+1} = z_t - \alpha_t X^T ( \kappa X \textcolor{red}{Shrink}(z_t, 1) - y) \]
+%which is not \textbf{ISTA} (Iterative Soft-Thresholding Alg.):
+%\[ z_{t+1} = \textcolor{red}{Shrink}(z_t - \alpha_t X^T(X z_t -y), \lambda). \]
+%Comparison:
+%\begin{itemize}
+%\item \textbf{ISTA}: 
+%\subitem as $t\to\infty$ solves {\bf LASSO}: $\frac{1}{n}\|y-X\beta\|_2^2 + \lambda \|\beta\|_1$
+%\subitem \textcolor{red}{parallel run} ISTA with $\{\lambda_k\}$ for LASSO regularization paths
+%\item \textbf{LB}: \textcolor{red}{a single run} generates the whole regularization path at same cost of ISTA-LASSO estimator for a fixed regularization
+%\end{itemize}
+%\end{frame}
+
+
+%\subsection{Cran R package: Libra}
+\subsection{Examples: Linear/Logistic Regression, Ising graphical models}
+%
+\begin{frame}{Linear Regression}
+Linear Regression:
+$$y = X\beta + \epsilon$$
+%Logistic Regression:
+%$$\frac{P(y=1|X)}{P(y=-1|X)} = e^{X\beta}$$
+$\beta$ is sparse or group sparse, with two types of penalty:
+\begin{itemize}
+\item "ungrouped": $\sum_i |\beta_i|$
+\item "grouped": $\sum_{g}\sqrt{\sum_{g_i=g}\beta_i^2}$
+\end{itemize}
+\begin{figure}[!h]
+\includegraphics[width=0.45\textwidth]{figures/Linear_regression.png}  
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{Linear Regression Example: Diabetes Data}
+\tiny{\lstinputlisting{2.R}}
+\end{frame}
+
+
+\begin{frame}{LB generates iterative regularization paths}
+\begin{figure}[!h]
+%\centering
+%\includegraphics[width=0.7\textwidth]{figures/cran-libra.pdf}  \\
+\includegraphics[width=0.6\textwidth]{figures/diabetes_path4.png}  \\
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{Logistic Regression}
+%Linear Regression:
+%$$y = X\beta + \epsilon$$
+Logistic Regression:
+$$\log \frac{P(y=1|X)}{P(y=-1|X)} = X \beta \Leftrightarrow P(y=1|X) = \frac{e^{X\beta}}{1+e^{X\beta}}=:\sigma(X\beta) $$
+$\beta$ is sparse or group sparse, with two types of penalty:
+\begin{itemize}
+\item "ungrouped": $\sum_i |\beta_i|$
+\item "grouped": $\sum_{g}\sqrt{\sum_{g_i=g}\beta_i^2}$
+\end{itemize}
+\begin{figure}[!h]
+\includegraphics[width=0.45\textwidth]{figures/Logistic.png}  
+\end{figure}
+\end{frame}
+
+\begin{frame}{Example: Publications of COPSS Award Winners}
+\begin{itemize}
+\item dataset is provided by Prof. \textcolor{blue}{Jiashun Jin} @CMU
+\item 3248 papers by 3607 authors between 2003 and the first quarter of 2012 from:
+\subitem the Annals of Statistics, Journal of the American Statistical Association, Biometrika and Journal of the Royal Statistical Society Series B
+\item a subset of 382 papers by 35 COPSS award winners
+\item Question: can we \textcolor{red}{model the coauthorship structure to predict the out-of-sample behavior}?
+\end{itemize}
+\centering
+\includegraphics[width=0.25\textwidth]{figures/copssCoauthor1.pdf}
+\end{frame}
+
+\begin{frame}{A logistic regression path with early stopping regularization}
+\begin{figure}
+\centering
+\includegraphics[width=0.45\textwidth]{figures/peter_hall_logic.pdf}
+\includegraphics[width=0.45\textwidth]{figures/copssCoauthor1.pdf}
+\caption{Peter Hall vs. other COPSS award winners in sparse logistic regression [papers from AoS/JASA/Biometrika/JRSSB, 2003-2012]: true coauthors are merely Tony Cai, R.J. Carroll, and J. Fan}
+\end{figure}
+%\begin{itemize}
+%\item dataset is provided by Prof. \textcolor{blue}{Jiashun Jin} @CMU
+%\item 3248 papers by 3607 authors between 2003 and the first quarter of 2012 from:
+%\subitem the Annals of Statistics, Journal of the American Statistical Association, Biometrika and Journal of the Royal Statistical Society Series B
+%\item a subset of 382 papers by 35 COPSS award winners
+%\item Question: can we \textcolor{red}{model the coauthorship structure to predict the out-of-sample behavior}?
+%\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Sparse Ising Model}
+\textbf{All models are wrong, but some are useful} (\textcolor{blue}{George Box}):
+ $$P(x_1, \ldots, x_p) \sim \exp \left( \sum_i H_i x_i + \sum_{i,j} J_{ij} x_i x_j \right) $$
+\begin{itemize}
+\item Ising model: $x_i=1$ if author $i$ appears in a paper, otherwise 0
+\item $H_{i}$ describes the mean publication rate of author $i$  
+\item $J_{ij}$ describes the interactions between author $i$ and $j$
+\subitem $J_{ij}>0$: author $i$ and $j$ collaborate more often than others 
+\subitem $J_{ij}<0$: author $i$ and $j$ collaborate less frequently than others 
+\subitem sparsity: $J_{ij}=0$ mostly, a model of collaboration network
+\subitem learned by maximum composite conditional likelihood with LB
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Early stopping against overfitting in sparse Ising model learning}
+\begin{center}
+      \begin{minipage}[b]{0.4\textwidth}
+       \centering
+      \includegraphics[width=\textwidth]{figures/Grid_true.png} \\
+      a true Ising model of 2-D grid
+     \end{minipage}
+      \begin{minipage}[b]{0.4\textwidth}
+       \centering
+	\animategraphics[controls,buttonsize=3mm,width=\textwidth]{3}{figures/Grid_lb/Grid_lb_}{1}{100} \\
+      a movie of LB path
+     \end{minipage}
+\end{center}
+\end{frame}
+
+\begin{frame}{Application: Sparse Ising Model of COPSS Award Winners}
+\begin{figure}[!h]
+%\centering
+%\includegraphics[width=0.4\textwidth]{figures/copssIsing_s0_1.pdf}  \\
+\animategraphics[controls,buttonsize=3mm,width=0.4\textwidth]{3}{figures/copssIsing_lb/copssIsing_s}{1}{100}
+%\animategraphics[controls,buttonsize=3mm,width=0.4\textwidth]{3}{figures/copssGGMcor_lb/copssGGM_s}{1}{100}
+%\animategraphics[controls,buttonsize=3mm,width=0.4\textwidth]{3}{figures/copssGGMcov_lb/copssGGM_s}{1}{100}
+\includegraphics[width=0.4\textwidth]{figures/copssCoauthor1.pdf}
+\caption{Left: LB path of Ising Model learning; Right: coauthorship network of existing data. Typically COPSS winners do not like working together; Peter Hall (1951-2016) is the hub of statisticians, like Erd\"{o}s for mathematicians}
+\end{figure}
+\end{frame}
+
+%\begin{frame}{Example: Gaussian Graphical Model is better?}
+%\begin{figure}[!h]
+%%\centering
+%\includegraphics[width=0.4\textwidth]{figures/copssGGM_s0_03.pdf}
+%\includegraphics[width=0.4\textwidth]{figures/copssCoauthor.pdf}  \\
+%\caption{Left: Gaussian Graphical Model with 3\% sparsity; Right: Coauthorship network}
+%\end{figure}
+%\end{frame}
+
+
+%
+%%\begin{frame}{Example: Diabetes Data}
+%%\tiny{\lstinputlisting{2.R}}
+%%\end{frame}
+%
+%
+%%\begin{frame}{Example: A Journal to the West}
+%%\tiny{\lstinputlisting{1.R}}
+%%\end{frame}
+%%
+%%\begin{frame}{Example: Regularization Paths}
+%%\begin{figure}[!h]
+%%%\centering
+%%%\includegraphics[width=0.7\textwidth]{figures/cran-libra.pdf}  \\
+%%\includegraphics[width=0.6\textwidth]{figures/xiyouji10_notes.png}  \\
+%%\end{figure}
+%%\end{frame}
+%
+%
+%\begin{frame}{Applications in Biological Networks}
+%Similar ideas can be applied to sequence modeling for biological networks (ongoing studies):  
+%\begin{itemize}
+%\item \textbf{Protein folding}: contact map prediction using sparse inverse covariance matrix or Potts models (\textcolor{blue}{Steve Smale} group in CityUHK)
+%\item \textbf{Virus sequences}: exploring mutation pathways on graphical models, helpful for vaccine design 
+%\subitem HIV (\textcolor{blue}{Arup Chakraborty} group in MIT)
+%\subitem Influenza (\textcolor{blue}{I-Ming Hsing} \& \textcolor{blue}{Xuhui Huang} group in HKUST)
+%\item LB is more scalable than SparseIsing (\textcolor{blue}{Xue-Zou-Cai'12}) and more accurate than Minimum Probability Flow Learning (\textcolor{blue}{Sohl-Dickstein et al. 2011})
+%\end{itemize}
+%\end{frame}
+
+%\subsection{Combinatorial Drug Efficacy Analysis}
+%
+%\begin{frame}{Application: 4 drugs for cancer cell survival and proliferation}
+%\begin{figure}
+%    \centering
+%    \includegraphics[width = 0.5\textwidth]{figures/drug4-pathway.png}
+%    \caption{Vincristine, Daunorubicin, Etoposide and Mitoxantrone act on critical pathways for cell survival and proliferation, provided by Prof. \textcolor{blue}{Xianting Ding}.}
+%\end{figure}
+%\end{frame}
+%
+%\begin{frame}{Combinatorial Drug Efficacy Analysis}
+%\begin{figure}
+%    \centering
+%    \includegraphics[width = 0.4\textwidth]{figures/drug4-ic50.png}
+%    \includegraphics[width = 0.5\textwidth]{figures/drug4-data.png}
+%    \caption{Combinatorial dosage of four drugs (Vincristine, Daunorubicin, Etoposide and Mitoxantrone) and cell viability, provided by Prof. \textcolor{blue}{Xianting Ding}.}
+%\end{figure}
+%\end{frame}
+%
+%\begin{frame}{A Logarithmic Quadratic Polynomial Model}
+%Logarithmic transform:
+%\begin{equation}
+%x_{ij} := \log (1 + \frac{d_{ij}}{c_j})  
+%\end{equation}
+%where $c_j$ is the IC50 concentration of drug $j$.
+%
+%Quadratic drug efficacy model (Prof. \textcolor{blue}{Chih-Ming Ho} et al. 2016, UCLA)
+%\begin{equation}
+%y_i = a + \sum_{j=1}^4 b_{ij} x_{ij} + \sum_{j, k=1}^4 c_{j,k} x_{ij} x_{ik} + \varepsilon_i 
+%\end{equation}
+%\end{frame}
+%
+%\begin{frame}{LBI vs. LASSO paths}
+%\begin{figure}
+%    \centering
+%    \includegraphics[width = 0.5\textwidth]{figures/drug4-lbi.jpg}
+%    \includegraphics[width = 0.5\textwidth]{figures/drug4-lasso.png}
+%    \caption{Left: LBI; Right: LASSO. Both exhibit similar variable selections, while LBI is less biased than LASSO.}
+%\end{figure}
+%\end{frame}
+%
+%\begin{frame}{FDR control via Knockoff method}
+%\begin{figure}
+%    \centering
+%    \includegraphics[width = 0.5\textwidth]{figures/drug4-knockoff.png}
+%    \includegraphics[width = 0.5\textwidth]{figures/drug4-knockoffmodel-prediction.png}
+%    \caption{V, E, VV, EE and DD (maybe VM) are selected with good prediction}
+%\end{figure}    
+%\end{frame}
+%
+%%\begin{frame}{FDR control via Knockoff method}
+%%\begin{figure}
+%%    \centering
+%%    \includegraphics[width = 0.5\textwidth]{figures/drug4-lbi-knockoff.png}
+%%    \includegraphics[width = 0.5\textwidth]{figures/drug4-knockoff.png}
+%%    \caption{VV, EE, DD, and V, E are selected}
+%%\end{figure}
+%%\end{frame}
+%%
+
+%
+%
+%\begin{frame}{ISS and LB Algorithms}
+%\begin{itemize}
+%\item Inverse Scale Space (ISS):
+%$\tt{iss(X, y, intercept = TRUE, normalize = TRUE,}$
+%$ \tt{\ \ \ \ nvar = min(dim(X)))}$
+%\item Linearized Bregman iteration (LB):
+%\subitem $\tt{kappa}$: damping factor
+%\subitem $\tt{alpha}$: step size, satisfying 
+%$\tt{alpha\cdot kappa} \|\Sigma_n \|=c\leq 2$
+%\end{itemize}
+%\begin{figure}[!h]
+%\includegraphics[width=\textwidth]{figures/lb.png}  
+%\end{figure}
+%\end{frame}
+%
+% 
+
+%\begin{frame}{In simulations: ISS/LBI might beat LASSO}
+%$n=200$, $p=100$, $S=\{1,\ldots,30\}$, $x_i \sim N(0,\Sigma_p)$ ($\sigma_{ij}=1/(3p)$ for $i\neq j$ and 1 otherwise)
+%\begin{figure}[!t]
+%        \centering
+%   \includegraphics[width=0.95\textwidth]{./figures/AUC_LB_ISS_LASSO.png}
+%%    \caption{$\sigma=1$. Left: TP/FP of three methods in 100 trials. Right: Estimation Error of three methods. (A little perturbation is added to separate the points.) Black:LASSO, Blue:LASSO+LS, Green:ISS, Grey: LB} \label{fig:prediction1}
+%\end{figure}
+%\end{frame}
+%
+%\begin{frame}{But regularization paths are different}
+%%$n=200$, $p=100$, $S=\{1,\ldots,30\}$, $x_i \sim N(0,\Sigma_p)$ ($\sigma_{ij}=1/(3p)$ for $i\neq j$ and 1 otherwise)
+%\begin{figure}[!t]
+%        \centering
+%    \includegraphics[width=0.82\textwidth]{./figures/path2.png} \\
+%    \includegraphics[width=0.42\textwidth]{./figures/path_LB1.png}
+%    \includegraphics[width=0.4\textwidth]{./figures/path_LB64.png}
+%    \caption{$\sigma=1$. Left: TP/FP of three methods in 100 trials. Right: Estimation Error of three methods. (A little perturbation is added to separate the points.) Black:LASSO, Blue:LASSO+LS, Green:ISS, Grey: LB} \label{fig:prediction1}
+%\end{figure}
+%\end{frame}
+
+%\begin{frame}{Logistic Regression Example: Journey to the West}
+%\tiny{\lstinputlisting{1.R}}
+%\end{frame}
+%
+
+%\begin{frame}{A Regularization Path in Logistic Regression}
+%\begin{figure}[!h]
+%%\centering
+%%\includegraphics[width=0.7\textwidth]{figures/cran-libra.pdf}  \\
+%\includegraphics[width=0.45\textwidth]{figures/xiyouji10_notes.png} 
+%\includegraphics[width=0.45\textwidth]{figures/west10.pdf}  \\
+%\caption{Logistic regression of main characters in Journey to the West: (left) Chinese; (right) English. The four forms a fellowship for the journey to India, bringing the Buddhism classics to China (Tang dynasty).}
+%\end{figure}
+%\end{frame}
+
+%%\subsection{Asynchronization}
+%\begin{frame}{Easy Asynchronized Parallel Implementation}
+%\begin{itemize}
+%\item $y=X \beta^\ast + \epsilon$, $\epsilon \sim \Nm(0,I_n)$ and $\beta^\ast(i)=2$ for $1\leq i \leq 4$, $-2$ for $5\leq i \leq 8$, 0 otherwise.
+%\end{itemize}
+%\begin{figure}[!h]
+%%\centering
+%%\includegraphics[width=0.7\textwidth]{figures/cran-libra.pdf}  \\
+%\includegraphics[width=0.4\textwidth]{figures/fig_asyn_thread2.png} 
+%\includegraphics[width=0.4\textwidth]{figures/fig_asyn_thread5.png}
+%\caption{As {\texttt{\#threads}} grows, fewer iterations are needed (one thread is used for path recorder), by \textcolor{blue}{Anshu Wang} using {\texttt{TMAC}}} 
+%\end{figure}
+%\end{frame}
+
+
+
+%\begin{frame}{While Synchronized parallelization won't save {\texttt{\#iterations}}}
+%\begin{figure}[!h]
+%%\centering
+%%\includegraphics[width=0.7\textwidth]{figures/cran-libra.pdf}  \\
+%\includegraphics[width=0.4\textwidth]{figures/fig_syn_thread1.png} 
+%\includegraphics[width=0.4\textwidth]{figures/fig_syn_thread5.png}
+%\caption{As {\texttt{\#threads}} grows, the same number of iterations are needed to reach the same variable selection} 
+%\end{figure}
+%\end{frame}
+%
+%\begin{frame}{Extension: Multinomial Logistic Regression}
+%Multinomial Logistic Regression:
+%$$P(y=j|X) = \frac{e^{X\beta_j}}{\sum_i e^{X\beta_j}}$$
+%$\beta$ is k-by-p matrix.
+%\begin{itemize}
+%\item "ungrouped": $\sum_{i,j} |\beta_{ij}|$
+%\item "column group": $\sum_{i} \sqrt{\sum_j\beta_{ij}^2}$
+%\item "group": $\sum_{g}\sqrt{\sum_{g_i=g,j}\beta_{ij}^2}$
+%\end{itemize}
+%\end{frame}
+
+%
+%\begin{frame}{Ising Model}
+%$$ P(x) \sim \exp\left(\sum_i \frac{a_{0i}}{2}x_i+ \frac{1}{4} \sum_{i,j}\theta_{ij}x_i x_j\right) $$
+%where 
+%\begin{itemize}
+%\item $\theta_{ij}$ the interaction coefficients
+%\item $a_{0i}$ is the intercept coefficients
+%\item Libra command: 
+%$\tt{ising(X, kappa, alpha, c = 4, tlist, nt = 100, trate = 100,}$
+% $ \tt{\ \ \ \ intercept = TRUE)}$
+%\end{itemize}
+%\end{frame}
+
+%\subsection{Applications}
+
+%\begin{frame}{Application: 4 drugs for cancer cell survival and proliferation}
+%\begin{figure}
+%    \centering
+%    \includegraphics[width = 0.5\textwidth]{figures/drug4-pathway.png}
+%    \caption{Vincristine, Daunorubicin, Etoposide and Mitoxantrone act on critical pathways for cell survival and proliferation, provided by Prof. \textcolor{blue}{Xianting Ding} (SJTU) and Prof. \textcolor{blue}{Chih-Ming Ho} (UCLA)}
+%\end{figure}
+%\end{frame}
+%
+%\begin{frame}{Combinatorial Drug Efficacy Analysis}
+%\begin{figure}
+%    \centering
+%    \includegraphics[width = 0.4\textwidth]{figures/drug4-ic50.png}
+%    \includegraphics[width = 0.5\textwidth]{figures/drug4-data.png}
+%    \caption{Combinatorial dosage of four drugs (Vincristine, Daunorubicin, Etoposide and Mitoxantrone) and cell viability, provided by Prof. \textcolor{blue}{Xianting Ding}.}
+%\end{figure}
+%\end{frame}
+%
+%\begin{frame}{A Logarithmic Quadratic Polynomial Model}
+%%Logarithmic transform:
+%%\begin{equation}
+%%x_{ij} := \log (1 + \frac{d_{ij}}{c_j})  
+%%\end{equation}
+%%where $c_j$ is the IC50 concentration of drug $j$.
+%Quadratic drug efficacy model (Prof. \textcolor{blue}{Chih-Ming Ho} et al. 2016, UCLA)
+%\begin{equation}
+%y_i = a + \sum_{j=1}^4 b_{ij} x_{ij} + \sum_{j, k=1}^4 c_{j,k} x_{ij} x_{ik} + \varepsilon_i 
+%\end{equation}
+%\begin{itemize}
+%\item a \textcolor{red}{full model} with 15 parameters vs. a \textcolor{red}{sparse model} with just a few nonzero parameters? 
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}{LBI vs. LASSO paths}
+%\begin{figure}
+%    \centering
+%    \includegraphics[width = 0.5\textwidth]{figures/drug4-lbi.jpg}
+%    \includegraphics[width = 0.5\textwidth]{figures/drug4-lasso.png}
+%    \caption{Left: LBI; Right: LASSO. Both exhibit similar variable selections, while LBI is less biased than LASSO.}
+%\end{figure}
+%\end{frame}
+%
+%\begin{frame}{Sparse models: FDR control via Knockoff (Barber-Candes'15)}
+%\begin{figure}
+%    \centering
+%    \includegraphics[width = 0.5\textwidth]{figures/drug4-knockoff.png}
+%    \includegraphics[width = 0.5\textwidth]{figures/drug4-knockoffmodel-prediction.png}
+%    \caption{V, E, VV, EE and DD (maybe VM) are selected with as good prediction as the full model}
+%\end{figure}    
+%\end{frame}
+
+%\begin{frame}{FDR control via Knockoff method}
+%\begin{figure}
+%    \centering
+%    \includegraphics[width = 0.5\textwidth]{figures/drug4-lbi-knockoff.png}
+%    \includegraphics[width = 0.5\textwidth]{figures/drug4-knockoff.png}
+%    \caption{VV, EE, DD, and V, E are selected}
+%\end{figure}
+%\end{frame}
+%
+
+%\subsection{Combinatorial Drug Efficacy Analysis}
+
+
+%\begin{frame}{Example: Ising Model of Journey to the West}
+%\tiny{\lstinputlisting{3.R}}
+%\end{frame}
+%
+
+\begin{frame}{Example: Ising Model of Journey to the West}
+\begin{figure}[!h]
+%\centering
+%\includegraphics[width=0.7\textwidth]{figures/cran-libra.pdf}  \\
+\includegraphics[width=0.65\textwidth]{figures/west_ising_s51.pdf}  \\
+\end{figure}
+\end{frame}
+
+\begin{frame}{Example: Dream of the Red Mansion \\(Xueqin Cao vs. E. Gao)}
+\begin{figure}[!h]
+%\centering
+%\includegraphics[width=0.7\textwidth]{figures/cran-libra.pdf}  \\
+\includegraphics[width=0.5\textwidth]{figures/dream18-cao_sp10.pdf} 
+\includegraphics[width=0.5\textwidth]{figures/dream18-gao_sp10.pdf}  
+\caption{Left: main characters net in the first 80 chapters at sparsity 10\%; Right: the remaining 40 chapters.}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{How does it work?}
+A story behind the R-package is in the following:
+\begin{itemize}
+\item The simple iterative algorithm shadows a particular kind of dynamics: \textcolor{red}{differential inclusions}, which are restricted gradient descent flows
+\item Simple discretized algorithm, amenable for parallel implementation
+\item Under nearly the same condition as LASSO, it reaches variable selection consistency
+\item but may incur less bias than LASSO
+\item Equipped with variable splitting, it weakens the conditions of generalized LASSO in variable selection
+\end{itemize}
+\end{frame}
+
+\section[LASSO vs. Differential Inclusions]{From LASSO to Differential Inclusions}
+
+\begin{frame}{Sparse Linear Regression}
+Assume that $\beta^*\in\RR^p$ is sparse and unknown. Consider recovering  $\beta^*$ from $n$ linear measurements
+\[ y = X \beta^* + \epsilon, \ \ \ \ \ y\in \RR^n\]
+where $\epsilon\sim \Nm(0,\sigma^2)$ is \textbf{noise}. 
+\begin{itemize}
+\item \textcolor{blue}{Basic Sparsity}: $S:=\supp(\beta^*)$ ($s=|S|$) and $T$ be its complement.
+% \item $|u_1^*|\geq |u_2^*|\geq \ldots \geq |u_s^*| > 0$ without loss of generality
+\subitem $X_S$ ($X_T$) be the columns of $X$ with indices restricted on $S$ ($T$)
+%\item $\epsilon$ (sub-Gaussian in general)
+\subitem $X$ is $n$-by-$p$, with $\textcolor{red}{p\gg n\geq s}$.
+\item Or \textcolor{blue}{Structural Sparsity}: $\gamma^*=D \beta^*$ is sparse, where $D$ is a linear transform (wavelet, gradient, etc.), $S=\supp(\gamma^*)$
+\item \emph{How to recover $\beta^*$ (or $\gamma^*$) sparsity pattern (\textcolor{red}{sparsistency}) and estimate values with variations (\textcolor{red}{consistency})?} 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Best Possible in Basic Setting: The Oracle Estimator}
+Had God revealed $S$ to us, the \emph{oracle estimator} was the subset least square solution (MLE) with $\tilde{\beta}^*_T=0$ and %\to \Sigma_S$,
+\begin{equation} \label{eq:oracle}
+\tilde{\beta}_S^* = \beta^*_S + \frac{1}{n} \Sigma_n^{-1}  X_S^T \epsilon,\ \  \mbox{ where $\Sigma_n=\frac{1}{n} X_S^T X_S$}%\Sigma_n^{-1}\left( \frac{1}{n} X_S^T y\right) =
+\end{equation}
+``Oracle properties''
+\begin{itemize}
+\item \textbf{Model selection consistency}: $\supp(\tilde{\beta}^*)=S$;
+\item \textbf{Normality}: $\tilde{\beta}^*_S \sim \Nm(\beta^*, \frac{\sigma^2}{n}\Sigma_n^{-1})$.
+\end{itemize}
+So $\tilde{\beta}^*$ is \textcolor{red}{unbiased}, i.e. $\E[\tilde{\beta}^*]=\beta^*$.
+\end{frame}
+
+
+%\begin{frame}{Algorithms and Statistical Consistency}
+%\begin{itemize}
+%\item \textcolor{blue}{Orthogonal Matching Pursuit} (OMP, Mallat-Zhang'93)
+%\subitem noise-free: Tropp'04
+%\subitem noise: Cai-Wang'11
+%\item \textcolor{blue}{LASSO} (Tibshirani'96), \textcolor{blue}{Basis Pursuit DeNoising} (Chen-Donoho-Saunders'96), \textcolor{blue}{Dantzig Selector} (Candes-Tao'07)
+%\subitem sign-consistency: Yuan-Lin'06, Zhao-Yu'06, Zou'07, Wainwright'09
+%\subitem $l_2$-consistency: Bickel-Ritov-Tsybakov'09 (also Dantzig)
+%%\item \textcolor{red}{Anything else do you wanna hear?}
+%%\item Linearized Bregman Iter: Osher-Burger-Goldfarb-Xu-Yin'05
+%%\subitem \textcolor{red}{statistical consistency theory?}
+%\end{itemize}
+%\end{frame}
+
+
+%\begin{frame}{Inverse Scale Space (ISS) Dynamics}
+%\small{
+%\begin{itemize}
+%\item Bregman ISS
+%\begin{align*}
+% \dot \rho(t)&=\frac{1}{n} X^T(y-X \beta(t)),\\
+% \rho(t) &\in \partial\|\beta(t)\|_1.
+%\end{align*}
+%\pause
+%Limit is solution to $\min_\beta \|\beta\|_1,~\st ~X^Ty=X^T X\beta$, possibly overfitted.
+%\pause
+%\item Linearized Bregman ISS
+%\begin{align*}
+% \dot \rho(t) + \frac{1}{\kappa}  \dot \beta(t) &=\frac{1}{n} X^T(y-X \beta(t)),\\
+% \rho(t) &\in \partial\|\beta(t)\|_1.
+%\end{align*}
+%\pause
+%Limit is solution to $\min_\beta \|\beta\|_1+\frac{1}{2\kappa}\|\beta\|_2^2,~ \st ~X^T y = X^T X \beta.$
+%\end{itemize}
+%}
+%\end{frame}
+%
+%\begin{frame}{Algorithmic Early Stopping regularization}
+%We claim that there exists points on their paths $(\beta(t),\rho(t))_{t\ge 0}$, which are
+%\begin{itemize}
+%\item sparse
+%\item sign-consistent (the same sparsity pattern of nonzeros as true signal)
+%\item unbiased (or less bias) than LASSO path
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}{Regularization path}
+%\small{
+%\begin{itemize}
+%\item \textbf{Example:} LASSO regularization path, solution $\{\beta_\lambda\}_{\lambda\ge 0}$ to
+%$$\min_\beta~\lambda\|\beta\|_1+1/(2n)\|X^T\beta-y\|_2^2$$
+%\item \textbf{What is it?} A sequence of the solutions to a certain model corresponding to a varying regularization parameter
+%
+%\item \textbf{Why?} It is computed when the best choice of that parameter is unknown
+%
+%%\item \textcolor{red}{why we have to solve LASSO path to find a optimal $\lambda^*$?}
+%
+%
+%\pause
+%\item \textcolor{red}{Issues:} (i) $\beta_\lambda$ has bias, (ii) slow to compute for many $\beta$
+%
+%\item To avoid bias, one must find the global minimizer to a non-convex penalty (Fan-Li'01)
+%\item Non-convex penalty $\Longrightarrow$ global minimizer is not guaranteed
+%\end{itemize}
+%}
+%\end{frame}
+
+
+%\begin{frame}{Robust Ranking}
+%
+%{\renewcommand\baselinestretch{1}\selectfont
+%\setlength{\belowcaptionskip}{0pt}
+%\tiny{
+%\begin{table}\caption{\label{tablasso} AUC over (SN,OP) for simulated data via LASSO, 20 times repeat.}
+%\scriptsize
+%\centering
+%\begin{tabular}{c||p{0.8cm}p{1.18cm}p{1.18cm}p{1.18cm}p{1.18cm}p{1.18cm}p{1.18cm}p{1.18cm}p{1.2cm}cccccccccc}
+% \hline  \textbf{AUC (sd)}   &\textbf{OP=5\%}  &\textbf{OP=10\%} &\textbf{OP=15\%} &\textbf{OP=20\%} &\textbf{OP=25\%} &\textbf{OP=30\%} &\textbf{OP=35\%} &\textbf{OP=40\%} &\textbf{OP=45\%} &\textbf{OP=50\%}\\
+% \hline
+% \hline  \textbf{SN=1000}   &0.999(0) &0.999(0.001) &0.998(0.001) &0.996(0.003) &0.992(0.005) &0.983(0.010) &0.962(0.016) &0.903(0.038) &0.782(0.050) &\textcolor{red}{0.503(0.065)} \\
+% \hline  \textbf{SN=2000}   &0.999(0) &0.999(0) &0.999(0) &0.998(0.001) &0.997(0.001) &0.992(0.004) &0.986(0.007)  &0.956(0.019) &0.849(0.052) &\textcolor{red}{0.493(0.086)}   \\
+%  \hline  \textbf{SN=3000}  &0.999(0) &0.999(0) &0.999(0) &0.999(0) &0.998(0) &0.996(0.002) &0.990(0.004)  &0.971(0.013) &0.885(0.032) &\textcolor{red}{0.479(0.058)}  \\
+%   \hline  \textbf{SN=4000}   &0.999(0) &0.999(0) &0.999(0) &0.999(0) &0.999(0) &0.997(0.001) &0.994(0.002)  &0.980(0.008) &0.903(0.028) &\textcolor{red}{0.519(0.055)}  \\
+%    \hline  \textbf{SN=5000}   &0.999(0) &0.999(0) &0.999(0) &0.999(0) &0.999(0) &0.998(0.001) &0.994(0.002)  &0.984(0.009) &0.933(0.022) &\textcolor{red}{0.501(0.066)}  \\
+% \hline
+% \end {tabular}
+%\end{table}
+%}
+%\par}
+%{\renewcommand\baselinestretch{1}\selectfont
+%\setlength{\belowcaptionskip}{0pt}
+%\begin{table}\caption{\label{tablb} AUC over (SN,OP) for simulated data via LBI, 20 times repeat.}
+%\scriptsize
+%\centering
+%\begin{tabular}{c||p{1.18cm}p{1.18cm}p{1.18cm}p{1.18cm}p{1.18cm}p{1.18cm}p{1.18cm}p{1.18cm}p{1.2cm}cccccccccc}
+% \hline  \textbf{AUC (sd)}   &\textbf{OP=5\%}  &\textbf{OP=10\%} &\textbf{OP=15\%} &\textbf{OP=20\%} &\textbf{OP=25\%} &\textbf{OP=30\%} &\textbf{OP=35\%} &\textbf{OP=40\%} &\textbf{OP=45\%} &\textbf{OP=50\%}\\
+% \hline
+% \hline  \textbf{SN=1000}   &0.999(0.001) &0.999(0.001) &0.998(0.002) &0.997(0.003) &0.992(0.005) &0.981(0.009) &0.961(0.019) &0.909(0.032) &0.795(0.069) &\textcolor{red}{0.497(0.069)} \\
+% \hline  \textbf{SN=2000}   &1.000(0) &0.999(0) &0.999(0.001) &0.999(0.001) &0.998(0.002) &0.993(0.005) &0.984(0.008)  &0.957(0.017) &0.848(0.039) &\textcolor{red}{0.476(0.087)}   \\
+%  \hline  \textbf{SN=3000}  &1.000(0) &1.000(0) &0.999(0) &0.999(0) &0.999(0.001) &0.996(0.004) &0.990(0.006)  &0.973(0.014) &0.902(0.037) &\textcolor{red}{0.521(0.085)}  \\
+%   \hline  \textbf{SN=4000}   &1.000(0) &1.000(0) &1.000(0) &0.999(0) &0.999(0.001) &0.998(0.002) &0.993(0.004)  &0.976(0.001) &0.919(0.027) &\textcolor{red}{0.487(0.061)}  \\
+%    \hline  \textbf{SN=5000}   &1.000(0) &1.000(0) &1.000(0) &0.999(0) &0.999(0.001) &0.998(0.001) &0.996(0.004)  &0.983(0.007) &0.929(0.029) &\textcolor{red}{0.502(0.064)}  \\
+% \hline
+% \end {tabular}
+%\end{table}
+%\par}
+%\end{frame}
+
+\subsection{LASSO and Bias}
+\begin{frame}{Recall LASSO}
+\textbf{LASSO:}
+$$
+\min_\beta \|\beta\|_1+\frac{t}{2n}\| y - X\beta \|_2^2.
+$$
+optimality condition:
+\begin{subequations}\label{eq:lasso-kkt}
+\begin{align}
+\frac{\rho_t}{t}&=\frac{1}{n} X^T(y-X{\beta}_t),\label{eq:lasso-kkta}\\
+\rho_t &\in \partial\|{\beta}_t\|_1,
+\end{align}
+\end{subequations}
+%$$ \frac{p(t)}{t}=\frac{1}{n}A^T(b-Au(t)),~ p(t) \in \partial\|u(t)\|_1 .$$
+where $\lambda = 1/t$ is often used in literature.
+\begin{itemize}
+\item \textcolor{blue}{Chen-Donoho-Saunders'1996 (BPDN)}
+\item \textcolor{blue}{Tibshirani'1996 (LASSO)}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The Bias of LASSO}
+LASSO is \textcolor{red}{biased}, i.e. $\E(\hat{\beta})\neq \beta^*$
+\begin{itemize}
+\item e.g. $X=Id$, $n=p=1$, LASSO is soft-thresholding
+\begin{equation*}\label{eq:lasso1}
+\hat{\beta}_{\tau}=\left\{
+\begin{array}{lr}
+0,& \mbox{if $\tau<1/\tilde{\beta}^* $}; \\
+\tilde{\beta}^* - \textcolor{red}{\frac{1}{\tau}},& \mbox{otherwise},
+\end{array}
+\right.
+\end{equation*}
+\item e.g. $n=100$, $p=256$, $X_{ij}\sim \Nm(0,1)$, $\epsilon_i\sim \Nm(0,0.1)$
+\begin{center}
+      \begin{minipage}[b]{0.4\textwidth}
+       \centering
+      \includegraphics[width=0.9\textwidth]{figures/bpdn_xbp_49_0}\\
+      \textcolor{red}{True} vs \textcolor{blue}{LASSO} ($t$ hand-tuned)
+     \end{minipage}
+\end{center}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{LASSO Estimator is Biased at Path Consistency}
+Even when the following \textbf{path consistency} (conditions given by \textcolor{blue}{Zhao-Yu'06, Zou'06, Yuan-Lin'07, Wainwright'09}, etc.) is reached at $\tau_n$: 
+$$\exists \tau_n\in (0,\infty) \mbox{   s.t.   } \supp(\hat{\beta}_{\tau_n}) = S,$$
+LASSO estimate is biased away from the oracle estimator 
+\[ (\hat{\beta}_{\tau_n})_S =  \textcolor{blue}{\tilde{\beta}^*_S} - \textcolor{red}{\frac{1}{\tau_n}\Sigma_{n,S}^{-1} \sign(\beta^*_S)}, \ \ \tau_n>0.\]
+
+\emph{How to remove the bias and return the Oracle Estimator?}
+\end{frame}
+
+\begin{frame}{Nonconvex Regularization?}
+\begin{itemize}
+\item To reduce bias, \textbf{non-convex} regularization was proposed (\textcolor{blue}{Fan-Li's SCAD, Zhang's MPLUS, Zou's Adaptive LASSO, $l_q$ ($q<1$)}, etc.) 
+\[ \min_\beta \sum_{i} p(|\beta_i|)+\frac{t}{2n}\| y - X\beta \|_2^2. \]
+\begin{center}
+      \begin{minipage}[b]{0.3\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{figures/penalty.pdf} \\
+%     $l_2$, $l_1$, and SCAD
+     \end{minipage}
+\end{center}
+\item Yet it is generally hard to locate the \textcolor{red}{global optimizer}
+\item \emph{Any other simple scheme?}
+%\subitem \textcolor{red}{dynamics}: every algorithm is dynamics (\textcolor{blue}{Turing}), not necessarily optimizing an objective function
+\end{itemize}
+\end{frame}
+
+%\begin{frame}{H. D. Statistics = ``Optimization + Noise"?}
+%\begin{itemize}
+%\item $\textcolor{red}{p\gg n}$: impossible to be \emph{strongly convex}
+%\[ \min_\beta L(\beta) := \frac{1}{n} \sum_{i=1}^n l(y_i - x_i^T \beta), \ \ \ \mbox{convex $l$ (\textcolor{blue}{Huber'73})}\]
+%\item in presence of \textcolor{red}{noise}, most optimizers in $\arg \min L(\beta)$ are \textcolor{red}{overfitting}
+%\item \textbf{convex} regularization (LASSO/BPDN): avoid overfiting, tractable, good for MSE but lead to \textcolor{red}{bias}
+%\item \textbf{non-convex} regularization reduces bias (\textcolor{blue}{Fan-Li's SCAD, Zhang's MPLUS, Zou's Adaptive LASSO}, etc.), yet hard to find \textcolor{red}{global optimizer}
+%\item \textbf{Any other simple scheme?}
+%\subitem \textcolor{red}{dynamics}: every algorithm is dynamics (\textcolor{blue}{Turing}), not necessarily optimizing an objective function
+%\end{itemize}
+%\end{frame}
+
+
+\subsection{Differential Inclusions}
+
+\begin{frame}{New Idea}
+\begin{itemize}
+\item LASSO: 
+$$
+\min_\beta \|\beta\|_1+\frac{t}{2n}\| y - X\beta \|_2^2.
+$$
+\item \pause KKT optimality condition:
+\[ \Rightarrow {\rho_t}=\frac{1}{n} X^T(y-X{\beta}_t)t \]
+\item \pause Taking derivative (assuming differentiability) w.r.t. $t$
+\[ \Rightarrow \dot \rho_t = \frac{1}{n} X^T ( y - X (\textcolor{blue}{\dot \beta_t t + \beta_t})) , \ \ \rho_t \in \partial \|\beta_t\|_1\]
+\item \pause Assuming sign-consistency in a neighborhood of $\tau_n$, 
+\[ \mbox{for $i\in S$,   } \rho_{\tau_n}(i)=\sign(\beta^*(i))\in \pm 1 \Rightarrow \dot \rho_{\tau_n}(i)=0, \]
+\[ \Rightarrow  \textcolor{blue}{\dot \beta_{\tau_n} \tau_n + \beta_{\tau_n} }= \tilde{\beta}^* \]
+\item \pause Equivalently, the blue part removes bias of LASSO automatically
+$$\beta^{lasso}_{\tau_n} = \tilde{\beta}^\ast -  \textcolor{red}{\frac{1}{\tau_n} \Sigma_n^{-1} \sign(\beta^*) }\Rightarrow \textcolor{blue}{\dot \beta^{lasso}_{\tau_n} \tau_n + \beta^{lasso}_{\tau_n}} = \tilde{\beta}^\ast (oracle)!$$
+% replacing the blue part by $\beta^\prime_t$, then for $\tau$ \\
+%{\centering{$\sign(\beta_\tau) = \sign(\beta^\ast)$) $\Rightarrow$ $\dot\rho_{\tau,S}=0 \Rightarrow$ $\beta^\prime_\tau=\tilde{\beta}^*$} \textcolor{red}{oracle estimator} }%$ ($\beta^\prime_S(\tau)=\tilde{\beta}^*_S$)!
+\end{itemize}
+\end{frame}
+
+%\begin{frame}{Example: LASSO vs. ISS}
+%Apply LASSO and ISS to the same example shown before
+%\begin{center}
+%      \begin{minipage}[b]{0.4\textwidth}
+%       \centering
+%      \includegraphics[width=0.9\textwidth]{figures/bpdn_xbp_49_0}\\
+%      True vs LASSO \\ (Soft-thresholding)\\
+%     \end{minipage}
+%    %\end{center}
+%    %\pause
+%    %\medskip
+%    %\item Recover $u$ by Bregman: set $\bar{\mu}=150$, after 5 iterations
+%    %\begin{center}
+%     \begin{minipage}[b]{0.4\textwidth}
+%      \centering
+%      \includegraphics[width=0.9\textwidth]{figures/bpdn_xbreg_150_itr_5}\\
+%      True vs  ISS \\ (Hard-thresholding)\\~
+%     \end{minipage}
+%\end{center}
+%%Compared to LASSO,
+%%\begin{itemize}
+%%\item ISS does not reduce signal magnitudes
+%%\item ISS has fewer false positives
+%%\item ISS has fewer false negatives. ISS recovers the moderate sized signals.
+%%\end{itemize}
+%\end{frame}
+
+\begin{frame}{Differential Inclusion: Inverse Scaled Spaces (ISS)}
+Differential inclusion replacing $\textcolor{blue}{\dot \beta^{lasso}_{\tau_n} \tau_n + \beta^{lasso}_{\tau_n}}$ by $\beta_t$ 
+\begin{subequations}\label{eq:bregman-iss}
+\begin{align}
+ \dot\rho_t&=\frac{1}{n} X^T(y-X\beta_t),\label{eq:bregman-issa}\\
+ \rho_t &\in \partial\|\beta_t\|_1. \label{eq:bregman-issb}
+\end{align}
+\end{subequations}
+starting at $t=0$ and $\rho(0)=\beta(0)=\vzero$.
+\begin{itemize}
+\item Replace $\rho/t$ in LASSO KKT by $\dd \rho/\dd t$
+\[ \frac{\rho_t}{t}=\frac{1}{n} X^T(y-X{\beta}_t) \]
+\item \textcolor{blue}{Burger-Gilboa-Osher-Xu'06} (in image recovery it recovers the objects in an inverse-scale order as $t$ increases (larger objects appear in $\beta_t$ first))
+\end{itemize}
+%\textbf{LASSO vs ISS}
+%\begin{itemize}
+%\item
+%Solutions $u(t)$ of LASSO can be obtained directly for each $t$, or build up over $t$;
+%\item Solutions $u(t)$ of ISS  must build up over ``time'' $t$; there is no known direct method yet. (This is a computational disadvantage as round-off errors may accumulate and are hard to remove.)
+%\end{itemize}
+\end{frame}
+
+\begin{frame}{Examples}
+\begin{itemize}
+\item e.g. $X=Id$, $n=p=1$, hard-thresholding
+\begin{equation*}
+\beta_\tau=\left\{
+\begin{array}{lr}
+0,& \mbox{if $\tau<1/(\tilde{\beta}^*)$}; \\
+\tilde{\beta}^*,& \mbox{otherwise},
+\end{array}
+\right.
+\end{equation*}
+\item the same example shown before
+\begin{center}
+      \begin{minipage}[b]{0.4\textwidth}
+       \centering
+      \includegraphics[width=0.9\textwidth]{figures/bpdn_xbp_49_0}\\
+      \textcolor{red}{True} vs \textcolor{blue}{LASSO} 
+     \end{minipage}
+    %\end{center}
+    %\pause
+    %\medskip
+    %\item Recover $u$ by Bregman: set $\bar{\mu}=150$, after 5 iterations
+    %\begin{center}
+     \begin{minipage}[b]{0.4\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{figures/bpdn_xbreg_150_itr_5}\\
+      \textcolor{red}{True} vs  \textcolor{blue}{ISS} ~
+     \end{minipage}
+\end{center}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Solution Path: Sequential Restricted Maximum Likelihood Estimate}
+\begin{itemize}
+\item $\rho_t$ is \textcolor{red}{piece-wise linear} in $t$,
+$$ \rho_t = \rho_{t_k}+\frac{t-t_k}{n}X^T(y-X\beta_{t_k}), \ \ \ t\in[t_k,t_{k+1})$$
+where $t_{k+1}=\sup\{t>t_k:\rho_{t_k}+\frac{t-t_k}{n} X^T(y-X\beta_{t_k})\in \partial\|\beta_{t_k}\|_1\}$
+\item $\beta_t$ is \textcolor{red}{piece-wise constant} in $t$: $\beta_t = \beta_{t_k}$ for $t\in [t_k,t_{k+1})$ and $\beta_{t_{k+1}}$ is the \textbf{sequential restricted Maximum Likelihood Estimate} by solving nonnegative least square (\textcolor{blue}{Burger et al.'13; Osher et al.'16})
+\begin{equation}\label{iss-sub}
+\begin{array}{rrl}
+\beta_{t_{k+1}} = \arg\min_\beta &\|y-X\beta\|_2^2&\\
+\mbox{subject to}~&(\rho_{t_{k+1}})_i \beta_i\ge 0&\quad\forall~i\in S_{k+1},\\
+&\beta_j=0&\quad\forall~j\in T_{k+1}.
+\end{array}
+\end{equation}
+\item Note: \textcolor{red}{Sign consistency} $\rho_t=\sign(\beta^*) \Rightarrow \beta_t = \tilde{\beta}^*$ the oracle estimator
+\end{itemize}
+\end{frame}
+%\begin{enumerate}
+%%\item set $k=0$, $t_0=0$, and $\rho_0=\beta_0=0$;
+%\item set $t_{k+1}=\sup\{t>t_k:\rho_{t_k}+\frac{t-t_k}{n} X^T(y-X\beta_{t_k})\in \partial\|\beta_{t_k}\|_1\}$; if $t_{k+1}=\infty$, then exit;
+%\item set $\rho_{t_{k+1}}=\rho_{t_k}+\frac{t_{k+1}-t_k}{n} X^T(y-X\beta_{t_k})$;
+%\item set $S_{k+1}=\{i:|(\rho_{t_{k+1}})_i|= 1\}$ and $T_{k+1}=\{1,\ldots,p\}\setminus S_{k+1}$;
+%\item set $\beta_{t_{k+1}}$ as a solution to
+%\begin{equation}\label{iss-sub}
+%\begin{array}{rrl}
+%\min_\beta &\|y-X\beta\|_2^2&\\
+%\mbox{subject to}~&(\rho_{t_{k+1}})_i \beta_i\ge 0&\quad\forall~i\in S_{k+1},\\
+%&\beta_j=0&\quad\forall~j\in T_{k+1}.
+%\end{array}
+%\end{equation}
+%\item set $k=k+1$ and go back to Step 1.
+%\end{enumerate}
+
+\begin{frame}{Example: Regularization Paths of LASSO vs. ISS}
+\begin{figure}[!h]
+%\centering
+%\includegraphics[width=0.7\textwidth]{figures/cran-libra.pdf}  \\
+\includegraphics[width=0.9\textwidth]{figures/diabetes_path2.png}  \\
+\caption{Diabetes data (\textcolor{blue}{Efron et al.'04}) and regularization paths are different, yet bearing similarities on the order of parameters being nonzero}
+\end{figure}
+\end{frame}
+
+%\begin{frame}{ISS often beats LASSO}
+%Simulation: $n=80$, $p=100$, $S=\{1,\ldots,30\}$, $\beta_j = r_j + \sign(r_j)$ ($r_j\sim \Nm(0,1)$ for $j\in S$), $x_j\sim \Nm(0,\Sigma_p)$ where $\Sigma_p=(\sigma_{ij})$ ($\sigma_{ij} = 1/(3p)$ for $i\neq j$ and 1 otherwise).
+%\begin{table}[!h]
+%%\centering
+%\begin{tabular}{||c||c|c||}
+%\hline\hline
+%$\sigma$ &ISS & LASSO\\
+%\hline
+%$1$ & \textbf{0.9213}(0.0359) & 0.9134(0.0375) \\
+%\hline
+%$2$ & \textbf{0.8967}(0.0421) & 0.8935(0.0438) \\
+%%\hline
+%%$3$  & 0.8521(0.0467) & \textbf{0.8529}(0.0464) \\
+%\hline
+%\end{tabular}
+%\medskip
+%\caption{Mean AUC (standard deviation) at different noise levels ($\sigma$): ISS has a slightly better performance than LASSO in terms of AUC. As noise level $\sigma$ increases, the performance of all the methods drops. }\label{tab:AUC}
+%\end{table}
+%\end{frame}
+
+%\begin{frame}{Convergence theory does not explain}
+%\small{
+%\begin{itemize}
+%\item Bregman ISS
+%\begin{align*}
+% \dot \rho(t)&=\frac{1}{n} X^T(y-X \beta(t)),\\
+% \rho(t) &\in \partial\|\beta(t)\|_1.
+%\end{align*}
+%Limit is solution to $\min_\beta \|\beta\|_1,~\st ~X^Ty=X^T X\beta$, possibly overfitted under noise.
+%%\pause
+%\item Linearized Bregman ISS
+%\begin{align*}
+% \dot \rho(t) + \frac{1}{\kappa}  \dot \beta(t) &=\frac{1}{n} X^T(y-X \beta(t)),\\
+% \rho(t) &\in \partial\|\beta(t)\|_1.
+%\end{align*}
+%Limit is solution to $\min_\beta \|\beta\|_1+\frac{1}{2\kappa}\|\beta\|_2^2,~ \st ~X^T y = X^T X \beta.$
+%\end{itemize}
+%}
+%\end{frame}
+
+\subsection{A Theory of Path Consistency}
+\begin{frame}{How does it work? A Path Consistency Theory}
+Our aim is to show that under nearly the \textcolor{blue}{same} conditions for sign-consistency of LASSO, there exists points on their paths $(\beta(t),\rho(t))_{t\ge 0}$, which are
+\begin{itemize}
+\item \textcolor{red}{sparse}
+\item \textcolor{red}{sign-consistent} (the same sparsity pattern of nonzeros as true signal)
+\item \textcolor{red}{the oracle estimator} which is unbiased, better than the LASSO estimate.
+%\item \textcolor{red}{decidable in a data-dependent way} (adaptive)
+\item \textcolor{red}{Early stopping} regularization is necessary to prevent overfitting noise!
+\end{itemize}
+%Note: $L_2$Boost in machine learning exploits the early stopping regularization (\textcolor{blue}{Buhlman-Yu'02, Y.-Rosasco-Caponnetto'07}), which shadows the following dynamics without sparsity control
+%\[ \dot{\beta_t} = \frac{\kappa}{n} X^T (y - X \beta) \]
+\end{frame}
+
+%\subsection{Understanding the ISS dynamics}
+\begin{frame}{Intuition}
+\begin{figure}[!t]
+\centering
+    \includegraphics[width=0.8\textwidth,height=0.7\textheight]{figures/stopsaddle.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{History: two traditions of regularizations}
+\begin{itemize}
+\item Penalty functions
+\subitem $\ell_2$: Ridge regression/Tikhonov regularization:
+$ \frac{1}{n}\sum_{i=1}^n \ell(y_i, x_i^T \beta) +  \lambda \|\beta\|_2^2 $
+\subitem $\ell_1$ (sparse): Basis Pursuit/LASSO (ISTA):
+$ \frac{1}{n}\sum_{i=1}^n \ell(y_i, x_i^T \beta) +  \lambda \|\beta\|_1^2 $
+\item Early stopping of dynamic regularization paths
+\subitem $\ell_2$-equivalent: Landweber iterations/gradient descent/$\ell_2$-Boost
+\[ \frac{d\beta_t}{dt}  = - \frac{1}{n}\sum_{i=1}^n \nabla_\beta \ell(y_i, x_i^T \beta), \ \ \ \beta_t = \nabla \left\{ \frac{1}{2}  \|\beta_t\|^2\right\} \]
+\subitem $\ell_1$ (sparse)-equiv.: Orthogonal Matching Pursuit, \textcolor{red}{Linearized Bregman Iteration} (sparse Mirror Descent) (not ISTA! -- later) 
+\[ \frac{d\rho_t}{dt}  = - \frac{1}{n}\sum_{i=1}^n \nabla_\beta \ell(y_i, x_i^T \beta), \ \ \ \rho_t \in \partial \|\beta_t\|_1 \ \]
+\end{itemize}
+\end{frame}
+
+
+%\begin{frame}{In applications}
+%Most recently, we found that
+%\begin{itemize}
+%\item ISS regularization path is similar to sign-debiased LASSO (with \textcolor{blue}{Ming Yan, Wotao Yin, and Stan Osher})
+%\item Linearized Bregman Iterations may have a better outlier detection ability than Huber-LASSO (with \textcolor{blue}{Qianqian Xu and Jiechao Xiong})
+%\item More competitive performances in graphical model learning (with \textcolor{blue}{Chendi Huang and Jiechao Xiong} et al.)
+%\end{itemize}
+%\textcolor{red}{But any solid reasons?}
+%\end{frame}
+
+
+%\begin{frame}{Path Consistency Theory}
+%Precisely
+%\begin{itemize}
+%\item Under what conditions one can achieve
+%\subitem \textcolor{red}{sign consistency} (model selection consistency)
+%\subitem \textcolor{red}{$l_2$-consistency} ($\|\beta(t) - \tilde{\beta}^*\|_2\leq O(\sqrt{s\log p/n})$)
+%%against noise (early stopping rule)
+%%\item \textcolor{red}{Mean path} is comparable with LASSO solution, with bias
+%\item When sign-consistency holds, \textcolor{red}{Bregman ISS path} returns the oracle estimator without bias
+%\item \textcolor{red}{Early stopping} regularization against overfitting noise
+%\end{itemize}
+%\end{frame}
+
+\begin{frame}{Assumptions}
+\begin{itemize}
+\item[(A1)] \textbf{Restricted Strongly Convex}: $\exists\gamma\in (0,1]$,
+$$  \frac{1}{n} X^T_S X_S \geq \gamma I  $$
+\item[(A2)] \textbf{Incoherence/Irrepresentable} Condition: $\exists \eta \in (0,1)$,
+\[ \left\|\frac{1}{n} X^T_T X_S^{\dagger} \right \|_\infty = \left\|\frac{1}{n} X^T_T X_S \left ( \frac{1}{n} X^T_S X_S \right )^{-1} \right \|_\infty \leq 1 - \eta \]
+\end{itemize}
+\begin{itemize}
+\item "Irrepresentable" means that one can not represent (regress) column vectors in $X_T$ by covariates in $X_S$.
+\item The incoherence/irrepresentable condition is used independently in \textcolor{blue}{Tropp'04, Yuan-Lin'05, Zhao-Yu'06, and Zou'06, Wainwright'09}, etc.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Understanding the Dynamics}
+ISS as \textcolor{red}{restricted gradient descent}:
+\[ \dot \rho_t = -\grad L(\beta_t)=\frac{1}{n} X^T ( y - X \beta_t) , \ \ \rho_t \in \partial \|\beta_t\|_1\]
+such that
+\begin{itemize}
+\item \textcolor{red}{incoherence} condition and \textcolor{red}{strong signals} ensure it firstly evolves on index set $S$ to reduce the loss
+\item \textcolor{red}{strongly convex} in subspace restricted on index set $S$ $\Rightarrow$ fast decay in loss
+\item \textcolor{red}{early stopping} after all strong signals are detected, before picking up the noise
+\end{itemize}
+\centering
+    \includegraphics[width=0.2\textwidth]{figures/stopsaddle.png}
+\end{frame}
+
+
+%\begin{frame}{Mean Path Lemma}
+%\begin{lemma}[Isomorphism between Mean Path and LASSO Path] Define the mean path of Bregman ISS up to $\tau\geq 0$,
+%\begin{equation} \label{eq:mean}
+%\bar{\beta}(\tau) := \frac{1}{\tau} \int_0^\tau \beta (s) d s
+%\end{equation}
+%\begin{itemize}
+%\item $\beta(t) = \bar{\beta}(t) + t \dot {\bar{\beta}}$
+%\item mean path $\bar{\beta}(1/\lambda)$ is piecewise linear with $\lambda = 1/t$
+%\item  $\beta(t)$ is the piecewise constant intercept of $\bar{\beta}(t)$ at $t=1/\lambda$
+%\item If $\supp(\beta(t))=\supp(\bar{\beta}(t))$, $\bar{\beta}(1/\lambda)$ is the LASSO solution
+%\end{itemize}
+%%\begin{itemize}
+%%\item mean path $\bar{u}(1/\lambda)$ is piecewise linear with $\lambda = 1/t$
+%%\item  $u(t)$ is the piecewise constant intercept of $\bar{u}(t)$ at $t=1/\lambda$
+%%\item If $\supp(u(t))=\supp(\bar{u}(t))$, $\bar{u}(1/\lambda)$ is the LASSO solution
+%%\end{itemize}
+%\end{lemma}
+%%\begin{itemize}
+%%\item Not used in the proof of the theorem above. Included here due to its insightful geometric interpretation.
+%%\end{itemize}
+%\end{frame}
+%
+%\subsection{Path Consistency}
+
+\begin{frame}{Path Consistency}
+\begin{theorem}[\textcolor{blue}{Osher-Ruan-Xiong-Y.-Yin'2016}]
+Assume (A1) and (A2). Define an early stopping time
+$$\overline{\tau} := \frac{\eta} {2 \sigma} \sqrt{\frac{n}{\log p}} \left (\max_{j\in T} \|X_j\|\right )^{-1}, $$
+and the smallest magnitude $\beta^*_{\min}=\min (|\beta^*_i| : i\in S)$. Then
+\begin{itemize}
+%\item \textbf{(No-false-positive)} for all $t\leq \overline{\tau}$, the path has no-false-positive with high probability, $\supp(\beta(t))\subseteq S$;
+\item \textcolor{blue}{No-false-positive}: for all $t\leq \overline{\tau}$, the path has no-false-positive with high probability, $\supp(\beta(t))\subseteq S$;
+\item \textcolor{blue}{Consistency}: moreover if the signal is strong enough such that
+\[\beta^{*}_{min}\geq\left(\frac{4 \sigma}{\gamma^{1/2}} \vee\frac{8\sigma(2+\textcolor{red}{\log{s}})\left (\max_{j\in T} \|X_j\|\right )}{\gamma\eta}\right) \sqrt{\frac{\log{p}}{n}},\]
+there is $\tau\leq \bar{\tau}$ such that solution path \textcolor{red}{$\beta(t))=\tilde{\beta}^*$} for every $t\in[\tau, \overline{\tau}]$.
+\end{itemize}
+\end{theorem}
+Note: equivalent to LASSO with \textcolor{red}{$\lambda^*=1/\bar{\tau}$} (\textcolor{blue}{Wainwright'09}) up to $\log s$.
+\end{frame}
+
+
+%\begin{frame}{Path Consistency}
+%\begin{theorem}[No False Positive] %\textcolor{blue}{Osher-Ruan-Xiong-Y.-Yin}]
+%Assume (A1) and (A2). Define an early stopping time
+%$$\overline{\tau} := \frac{\eta} {2 \sigma} \sqrt{\frac{n}{\log p}} \left (\max_{j\in T} \|X_j\|\right )^{-1}, $$
+%and the smallest magnitude $\beta^*_{\min}=\min (|\beta^*_i| : i\in S)$. Then
+%\begin{itemize}
+%%\item \textbf{(No-false-positive)} for all $t\leq \overline{\tau}$, the path has no-false-positive with high probability, $\supp(\beta(t))\subseteq S$;
+%\item for all $t\leq \overline{\tau}$, the path has no-false-positive with high probability, $\supp(\beta(t)\subseteq S$;
+%\end{itemize}
+%\end{theorem}
+%Note: equivalent to LASSO with \textcolor{red}{$\lambda^*=1/\bar{\tau}$} (\textcolor{blue}{Wainwright'09})
+%\end{frame}
+
+%\begin{frame}{Path Consistency, continued}
+%\begin{theorem}[Sign Consistency] % \textcolor{blue}{Osher-Ruan-Xiong-Y.-Yin}]
+%\begin{itemize}
+%% \item %\textbf{(Sign consistency for path)}
+%\item moreover if the signal is strong enough such that
+%\[\beta^{*}_{min}\geq\left(\frac{4 \sigma}{\gamma^{1/2}} \vee\frac{8\sigma(2+\textcolor{red}{\log{s}})\left (\max_{j\in T} \|X_j\|\right )}{\gamma\eta}\right) \sqrt{\frac{\log{p}}{n}}\]
+%then there is $\tau\leq \bar{\tau}$ such that solution path \textcolor{red}{$\beta(t)=\tilde{\beta}^*$} reaches sign consistency for every $t\in[\tau, \overline{\tau}]$.
+%%, and as the intercept of LASSO solution
+%%\[ \textcolor{red}{u(\tau) = \left.\bar{u}(\lambda) - \lambda \frac{\dd }{\dd \lambda} \bar{u}(\lambda) \right|_{\lambda = 1/\tau} = u^*_S+(A_S^* A_S)^{-1}A_S^* w} \]
+%%which meets the oracle property \textcolor{red}{$u(\tau)\sim\mathcal{N}(u^*_S, \sigma^2 \Phi_S^{-1})$}.
+%\end{itemize}
+%\end{theorem}
+%\textcolor{red}{Open}: can we drop $\log s$ above? Nearly equivalent to LASSO (\textcolor{blue}{Wainwright'09})
+%\end{frame}
+%
+%%\subsection{$l_2$-consistency}
+%\begin{frame}{Path Consistency, continued}
+%\begin{theorem}[$l_2$ Consistency]
+%\begin{itemize}
+%%\item  \textbf{($l_{2}$-consistency)} Under (A1) and (A2), there is an early stopping $\tau_n \in [0,\overline{\tau}]$, such that with high probability $\|\beta(\textcolor{red}{\tau_n})-\beta^{*}\|_{2} \leq C_0 \sqrt{\frac{s\log p}{n}}$, where
+%\item Under (A1) and (A2), there is an early stopping $\tau_n \in [0,\overline{\tau}]$, such that with high probability $\|\beta(\textcolor{red}{\tau_n})-\beta^{*}\|_{2} \leq C_0 \sqrt{\frac{s\log p}{n}}$, where
+%\[ C_0=\frac{2\sigma}{\gamma^{1/2}}+\frac{8\sigma\left (\max_{j\in T} \|X_j\|\right )}{\eta\gamma} \]
+%\end{itemize}
+%\end{theorem}
+%Note: for $\bar{\gamma}I_s \geq \frac{1}{n} X_S^T X_S \geq \underline{\gamma} I_s$, $\textcolor{red}{\tau_n}$ can be chosen as $\textcolor{red}{\bar{\tau}}$ s.t.
+%\[ \|\beta(\textcolor{red}{\bar{\tau}})-\beta^{*}\|_{2} \leq \sqrt{\frac{\bar{\gamma}}{\underline{\gamma}}} \left(C_0+\frac{2\sigma}{\sqrt{\underline{\gamma}}}\right)\sqrt{\frac{s \log p}{n}} \]
+%which meets the minimax optimal convergence rate $O(\sigma \sqrt{s\log p/n})$ (\textcolor{blue}{Wainwright'09, Bickel-Ritov-Tsybakov'09}).
+%\end{frame}
+
+%\begin{frame}{Mean Path}
+%\begin{theorem}[continued]
+%\begin{itemize}
+%\item \textbf{(No-false-negative for Mean Path)} moreover if the signal is strong enough such that
+%\[ \beta^*_{\min} > \frac{c_1}{\overline{\tau}}, \ c_1 = \left(\frac{\eta }{\sqrt{\gamma}\max_{j\in T} \|X_j\|_2}+\| \Sigma_n^{-1}\|_\infty \right), \]
+%then \textcolor{red}{mean path} $\bar{\beta}(\overline{\tau})$ has no-false-negative ($\sign(\bar{\beta}(\tau)) = \sign(\beta^*)$
+%\end{itemize}
+%\end{theorem}
+%Note: LASSO path and mean path $\bar{\beta}(t)$ meet the same conditions.
+%\end{frame}
+
+%\begin{frame}{Remark}
+%\begin{itemize}
+%\item Similar results for LASSO are established in Wainwright'09 with \textcolor{red}{$\lambda^*=1/\bar{\tau}$}, where the lasso path are sign-consistent
+%\item $\beta(\bar{\tau})$ is \emph{unbiased}, while LASSO estimator is \emph{biased}
+%\item The $l_2$-error rate $O(\sigma \sqrt{s \log p/n})$ is of minimax optimal
+%\item Note: the (temporal) mean path
+%\begin{equation} \label{eq:mean}
+%\bar{\beta}(\tau) := \frac{1}{\tau} \int_0^\tau \beta (s) d s
+%\end{equation}
+%is sign-consistent under precisely the same condition as LASSO, though they are different!
+%%\item These conditions are sufficient and necessary for sign-consistency in the sense that once violated, there exists an instance such that the probability of failure will be larger than $1/2$ due to noise.
+%%\item In general, \textbf{partial sign consistency} holds for all $i\in S$ such that $\tau_i <\overline{\tau}$.
+%\end{itemize}
+%\end{frame}
+
+%\begin{frame}{Remark on Optimality}
+%\begin{itemize}
+%\item The theorem leads to an upper bound on mean path $\|\bar{\beta}(\tau) - \beta^*\|_\infty \leq O(1/\tau)$ which implies $l_2$-bound $\|\bar{u}(\tau) - u^*\|_2 \leq O(\sqrt{s}/\tau)=O(\sigma \sqrt{s\textcolor{red}{\log p} /n})$ ($s=|S|$), a \textbf{minimax optimal} rate up to a logarithmic factor $\log p$.
+%\item $\beta(\tau) \sim N(\beta^*, \frac{\sigma^2}{n} \Sigma_n^{-1})$ meets the \textcolor{red}{unbiased oracle estimator}, where LASSO is biased. Its convergence rate $\|\beta(\tau) - \beta^*\| \leq O(\sigma \sqrt{s \textcolor{red}{\log s} /n})$, better than mean path and LASSO.
+%\end{itemize}
+%\end{frame}
+
+\section[Algorithm]{Large Scale Algorithm}
+\subsection{Linearized Bregman Iteration}
+\begin{frame}{Large scale algorithm: Linearized Bregman Iteration}
+\textbf{Damped Dynamics}: \textcolor{red}{continuous} solution path %with elastic net penalty $\|\beta\|_1 + \frac{1}{2\kappa} \|\beta\|_2^2 $
+\begin{equation} \label{eq:lb-iss}
+ \dot\rho_t + \frac{1}{\kappa}  \dot\beta_t =\frac{1}{n} X^T(y-X\beta_t),\quad\rho_t\in \partial\|\beta_t\|_1.
+\end{equation}
+\textbf{Linearized Bregman Iteration} as \textcolor{red}{forward Euler discretization} proposed even earlier than ISS dynamics (\textcolor{blue}{Osher-Burger-Goldfarb-Xu-Yin'05, Yin-Osher-Goldfarb-Darbon'08}): for $\rho_k \in \partial \|\beta_k\|_1$,
+\begin{equation} \label{eq:lbi}
+\textcolor{red}{\rho_{k+1} + \frac{1}{\kappa} \beta_{k+1} =  \rho_{k} + \frac{1}{\kappa} \beta_{k} + \frac{\alpha_k}{n} X^T(y-X\beta_k), }
+\end{equation}
+where
+\begin{itemize}
+\item Damping factor: $\kappa> 0$
+\item Step size: $\alpha_k>0$ s.t. $\alpha_k \kappa \|\Sigma_n\| \leq 2$
+\item Moreau Decomposition: $z_k := \rho_k + \frac{1}{\kappa} \beta_k \Leftrightarrow \beta_k = \kappa \cdot Shrink(z_k,1)$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Easy for Parallel Implementation}
+\begin{figure}[!t]
+%        \centering
+    \includegraphics[width=0.95\textwidth]{./figures/speedup.png}
+    \caption{Linear speed-ups on a 16-core machine with synchronized parallel computation of matrix-vector products.}
+\end{figure}
+
+%\begin{itemize}
+%\item \textbf{ISTA}:
+%\[ z_{t+1} = \textcolor{red}{Shrink}(z_t - \alpha_t X^T(X z_t -y), \lambda) \]
+%\item 
+%\item This is not \textbf{OMP} which only adds in variables.
+%\item This is not Donoho-Maleki-Montanari's \textbf{AMP}
+%\end{itemize}
+\end{frame}
+
+\begin{frame}{Comparison with ISTA}
+\textbf{Linearized Bregman (LB)} iteration:
+\[  z_{t+1} = z_t - \alpha_t X^T ( \kappa X \textcolor{red}{Shrink}(z_t, 1) - y) \]
+which is not \textbf{ISTA}:
+\[ z_{t+1} = \textcolor{red}{Shrink}(z_t - \alpha_t X^T(X z_t -y), \lambda). \]
+Comparison:
+\begin{itemize}
+\item \textbf{ISTA}: 
+\subitem as $t\to\infty$ solves {\bf LASSO}: $\frac{1}{n}\|y-X\beta\|_2^2 + \lambda \|\beta\|_1$
+\subitem \textcolor{red}{parallel run} ISTA with $\{\lambda_k\}$ for LASSO regularization paths
+\item \textbf{LB}: \textcolor{red}{a single run} generates the whole regularization path at same cost of ISTA-LASSO estimator for a fixed regularization
+\end{itemize}
+\end{frame}
+
+\begin{frame}{LB generates regularization paths}
+$n=200$, $p=100$, $S=\{1,\ldots,30\}$, $x_i \sim N(0,\Sigma_p)$ ($\sigma_{ij}=1/(3p)$ for $i\neq j$ and 1 otherwise)
+\begin{figure}[!t]
+%        \centering
+    \includegraphics[width=0.6\textwidth]{./figure/path2.png} \\
+    \includegraphics[width=0.3\textwidth]{./figure/path_LB1.png}
+    \includegraphics[width=0.3\textwidth]{./figure/path_LB64.png}
+   \caption{As $\kappa\to \infty$, LB paths have a limit as piecewise-constant ISS path} \label{fig:lb-paths}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Accuracy: LB may be less biased than LASSO}
+    \begin{figure}
+        \centering
+        \includegraphics[height = 0.3\textheight]{figures/path-true.png}
+        \includegraphics[height = 0.3\textheight]{figures/path-lbi.png}
+        \includegraphics[height = 0.3\textheight]{figures/path-lasso.png}
+        \label{fig:path}
+    \end{figure}
+    \begin{itemize}
+        \item
+            Left shows (the magnitudes of) nonzero entries of $\beta^{\star}$.
+        \item
+            Middle shows the regularization path of LB.
+        \item
+            Right shows the regularization path of LASSO vs. $t=1/\lambda$.
+    \end{itemize}
+\end{frame}
+
+
+%\begin{frame}{Comparison with ISTA}
+%\begin{itemize}
+%\item \textbf{ISTA}:
+%\[ z_{t+1} = \textcolor{red}{Shrink}(z_t - \alpha_t X^T(X z_t -y), \lambda) \]
+%\item ISTA solves {\bf LASSO} for fixed $\lambda$
+%$$
+%\min_\beta \lambda_k \|\beta\|_1+\frac{1}{2n}\| y - X\beta \|_2^2.
+%$$
+%\item 
+%\item This is not \textbf{OMP} which only adds in variables.
+%\item This is not Donoho-Maleki-Montanari's \textbf{AMP}
+%\end{itemize}
+%\end{frame}
+
+
+%\begin{frame}{ISS/LBI often beats LASSO}
+%$n=80$, $p=100$, $S=\{1,\ldots,30\}$, $x_i \sim N(0,\Sigma_p)$ ($\sigma_{ij}=1/(3p)$ for $i\neq j$ and 1 otherwise)
+%\begin{figure}[!t]
+%%        \centering
+%    \includegraphics[width=0.95\textwidth]{./figure/AUC_LB_ISS_LASSO.png}
+%%    \caption{$\sigma=1$. Left: TP/FP of three methods in 100 trials. Right: Estimation Error of three methods. (A little perturbation is added to separate the points.) Black:LASSO, Blue:LASSO+LS, Green:ISS, Grey: LB} \label{fig:prediction1}
+%\end{figure}
+%\end{frame}
+
+\begin{frame}{Path Consistency in Discrete Setting}
+\begin{theorem}[\textcolor{blue}{Osher-Ruan-Xiong-Y.-Yin'2016}] %\textcolor{blue}{Osher-Ruan-Xiong-Y.-Yin}]
+Assume that $\kappa$ is large enough and $\alpha$ is small enough, with $\kappa \alpha \|X^*_S X_S\|<2$,
+$$\overline{\tau} := \frac{(1 - B/\kappa\eta)\eta} {2 \sigma} \sqrt{\frac{n}{\log p}} \left (\max_{j\in T} \|X_j\|\right )^{-1} $$
+$$ \beta^*_{max} + 2 \sigma \sqrt{\frac{\log p}{\gamma n}}  + \frac{\|X\textcolor{green}{\beta^*}\|_2 + 2s\sqrt{\log{n}}}{n\sqrt{\gamma}} \triangleq B \leq \kappa\eta, $$
+then all the results for ISS can be extended to the discrete algorithm.
+\end{theorem}
+Note: it recovers the previous theorem as \textcolor{red}{$\kappa\to \infty$ and $\alpha\to 0$}, so LB can be less biased than LASSO.
+\end{frame}
+
+
+%\begin{frame}{Data-dependent Stopping Rules}
+%\begin{itemize}
+%\item Residue $r(t):=y-X \beta(t)$
+%\item Adaptive early stopping rules (Cai-Wang'11)
+%\subitem $\|r(t)\|_2 \leq  \sigma \sqrt{n+2\sqrt{n\log{n}}} $
+%\subitem $\|X^T r(t)\|_\infty \leq  2\sigma \sqrt{\max_i \|X_i\|\log p} $
+%\item $\sigma$ can be estimated through Huber's concomitant scale estimation
+%\subitem consistency: Sun-Zhang (scaled LASSO) and Belloni-Chernozhukov-Wang (square-root Lasso)
+%\end{itemize}
+%\end{frame}
+
+%\begin{frame}{Idea of Proof: I}
+%\begin{enumerate}
+%\item No-false-positive condition is the same as LASSO
+%\item For $t\leq \bar{\tau}$ consider \emph{Oracle dynamcs}
+%\begin{equation} \label{eq:odyn}
+%\frac{d \rho^\prime_S}{d t} = -\frac{1}{n} X^T_S X_S( \beta^\prime_S - \tilde{\beta}^*_S), \ \ \ \rho^\prime_S(t) \in \partial \|\beta^\prime_S(t)\|_1,
+%\end{equation}
+%where $\frac{1}{n} X^T_S X_S\geq \gamma I_s$.
+%\subitem a differential inequality of fast (exponential) decay $t<\bar{\tau}$:
+%\[ \frac{d}{dt}(D(\tilde{\beta}^*_S,\beta^\prime_S))  \leq -\gamma F^{-1}(D(\tilde{\beta}^*_S,\beta^\prime_S))\]
+%where $F$ is a piecewise polynomial and $D$ is the Bregman distance associated to $\|\cdot\|_1$.
+%\end{enumerate}
+%\end{frame}
+%
+%\begin{frame}{Idea of Proof: II}
+%\begin{enumerate}
+%\item[3] Sign-consistency and $l_2$-consistency are reached by setting these stopping time $\textcolor{red}{\tilde{\tau}_{i}\leq \bar{\tau}}$ before picking up false positives
+%\[\tilde{\tau}_{1}:=\inf\{t>0: \sign(\beta^\prime_S(t))=\sign(\tilde{\beta}_S^*)\} \leq O(\textcolor{red}{\log s/\beta^*_{\min}}) \]
+%\[ \tilde{\tau}_{2}(C):=\inf\left\{t>0: ||\beta_S^\prime(t)-\tilde{\beta}_S^*||_{2} \geq C\sqrt{\frac{s\log{p}}{n}}\right\} \leq  O(\textcolor{red}{\frac{1}{C}\sqrt{\frac{n}{p}}})\]
+%\end{enumerate}
+%\end{frame}
+%
+%\begin{frame}{Generalization To M-Estimators}
+%Nonlinear ODE (differential inclusion)
+%\begin{subequations}\label{eq:bregman-iss}
+%\begin{align}
+% \dot\rho_t&=-\frac{1}{n} \sum_{i=1}^n \nabla_{\theta} L(x_i,\theta_t),\label{eq:bregman-issa}\\
+% \rho_t &\in \partial\|\theta_t\|_1. \label{eq:bregman-issb}
+%\end{align}
+%\end{subequations}
+%starting at $t=0$ and $\rho(0)=\theta(0)=\vzero$.
+%\begin{itemize}
+%\item $L(x_i,\theta)$ is a loss function, e.g. negative log-likelihood
+%\item piecewise-constant $\theta_t$
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}{Generalization To M-Estimators}
+%Damping dynamics
+%\begin{subequations}\label{eq:bregman-iss}
+%\begin{align}
+% \dot\rho_t + \frac{1}{\kappa} \dot \theta_t &=-\frac{1}{n} \sum_{i=1}^n \nabla_{\theta_t} L(x_i,\theta_t),\label{eq:bregman-issa}\\
+% \rho_t &\in \partial\|\theta_t\|_1. \label{eq:bregman-issb}
+%\end{align}
+%\end{subequations}
+%starting at $t=0$ and $\rho(0)=\theta(0)=\vzero$.
+%\begin{itemize}
+%\item Continuous $\theta_t$
+%\item Damping factor $\kappa\to \infty$, exponentially approach to the solution path before
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}{Generalization To M-Estimators}
+%Linearized Bregman Iteration as \emph{forward Euler discretization}
+%\begin{subequations}\label{eq:bregman-iss}
+%\begin{align}
+% \rho_{k+1}  + \frac{1}{\kappa} \theta_{k+1} &=\rho_{k} + \frac{1}{\kappa} \theta_{k} - \frac{ \alpha_k }{n} \sum_{i=1}^n \nabla_{\theta_k} L(x_i,\theta_k),\label{eq:bregman-issa}\\
+% \rho_t &\in \partial\|\theta_k\|_1. \label{eq:bregman-issb}
+%\end{align}
+%or equivalently
+%\[ \textcolor{red}{ z_{k+1} = z_k - \frac{ \alpha_k }{n} \sum_{i=1}^n \nabla_{\theta_k} L(x_i,\theta_k)} \]
+%\end{subequations}
+%\begin{itemize}
+%\item $\alpha_k$ is step-size
+%\item $\alpha_k \kappa \|\nabla^2_\theta \hat{\E} L(x,\theta)\|<2$
+%\item $\rho_0=\theta_0=z_0=\vzero$
+%\end{itemize}
+%\end{frame}
+%
+\subsection{Generalizations}
+\begin{frame}{General Loss and Regularizer}
+\begin{subequations}\label{eq:bregman-iss}
+\begin{align}
+ \dot\eta_t & = -  \frac{\kappa_0}{n} \sum_{i=1}^n \nabla_{\eta} \ell (x_i,\theta_t, \eta_t)  \label{eq:bregman-issc}\\
+ \dot\rho_t + \frac{\dot \theta_t}{\kappa_1} &=-\frac{1}{n} \sum_{i=1}^n \nabla_{\theta} \ell (x_i,\theta_t, \eta_t) \label{eq:bregman-issa}\\
+ \rho_t &\in \partial\|\theta_t\|_* \label{eq:bregman-issb}
+\end{align}
+\end{subequations}
+where
+\begin{itemize}
+\item $\ell(x_i,\theta)$ is a loss function: negative logarithmic likelihood, non-convex loss (neural networks), etc.
+\item $\|\theta_t\|_*$ is the Minkowski-functional (gauge) of dictionary convex hulls: $$ \|\theta\|_* := \inf\{\lambda \geq 0: \theta\in \lambda K\}, \ \ \ \mbox{K is a symmetric convex hull of $\{a_i\}$}$$
+\subitem it can be generalized to non-convex regularizers
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Linearized Bregman Iteration Algorithms}
+Differential inclusion \eqref{eq:bregman-iss} admits the following Euler Forward discretization
+\begin{subequations}
+\begin{align}
+ \eta_{t+1} & = \eta_t -  \frac{\alpha_k \kappa_0}{n} \sum_{i=1}^n \nabla_{\eta} \ell(x_i,\theta_t, \eta_t)  \label{eq:lbic}\\
+ z_{t+1} &= z_t  -\frac{\alpha_k}{n} \sum_{i=1}^n \nabla_{\theta} \ell(x_i,\theta_t, \eta_t) \label{eq:lbia}\\
+ \theta_{t+1} & = \kappa_1 \cdot \textcolor{red}{\prox_{\|\cdot\|_*}}(z_{t+1}) \label{eq:lbib}
+\end{align}
+\end{subequations}
+where \eqref{eq:lbib} is given by Moreau Decomposition with $$\prox_{\|\cdot\|_*}(z_t)=\arg\min_x \frac{1}{2}\|x-z_t\|^2+\|x\|_*,$$
+and
+\begin{itemize}
+\item $\alpha_k>0$ is step-size while $\alpha_k \kappa_i \|\nabla^2_\theta\hat{\E} \ell (x,\theta)\|<2$
+\item as simple as ISTA, easy to parallel implementation
+\end{itemize}
+
+%\begin{itemize}
+%\item it generates a discrete regularization path, easy to parallelize
+%\item traditional statistical criteria, e.g. AIC/BIC etc., can be exploited for early stopping rule
+%\end{itemize}
+\end{frame}
+
+
+\begin{frame}{More reference}
+\begin{itemize}
+\item \textbf{Logistic Regression}: loss -- conditional likelihood, regularizer -- $l_1$ (\textcolor{blue}{Shi-Yin-Osher-Saijda'10},\textcolor{blue}{Huang-Yao'18})
+\item \textbf{Graphical Models} (Gaussian/Ising/Potts Model): loss -- likelihood, composite conditional likelihood, regularizer -- $l_1$ and group $l_1$ (\textcolor{blue}{Huang-Yao'18})
+\item \textbf{Fused LASSO/TV}: split Bregman with composite $l_2$ loss and $l_1$ gauge (\textcolor{blue}{Osher-Burger-Goldfarb-Xu-Yin'06, Burger-Gilboa-Osher-Xu'06, Yin-Osher-Goldfarb-Darbon'08, Huang-Sun-Xiong-Yao'16})
+\item \textbf{Matrix Completion/Regression}: gauge -- the matrix nuclear norm (\textcolor{blue}{Cai-Cand\`es-Shen'10})
+\end{itemize}
+\end{frame}
+
+\section{Variable Splitting}
+\begin{frame}{Split LB vs. Generalized LASSO}
+\textcolor{red}{Structural Sparse} Regression:
+\begin{equation}
+    \label{eq:model}
+    y = X\beta^\star + \epsilon,\ \textcolor{red}{\gamma^\star = D\beta^\star} \ \left( S = \mathrm{supp}\left( \gamma^\star \right),\ s = |S|\ll p \right),
+\end{equation}
+Loss that splits prediction vs. sparsity control
+\begin{equation}
+    \label{eq:l-def}
+    \ell\left( \beta, \gamma \right) := \frac{1}{2n} \left\| y - X \beta \right\|_2^2  + \frac{1}{2\nu} \left\| \gamma - D \beta \right\|_2^2\ \ (\nu > 0).
+\end{equation}
+\textcolor{blue}{Split LBI}:
+\begin{subequations}
+    \label{eq:slbi-show}
+    \begin{align}
+        \label{eq:slbi-show-a}
+        \beta_{k+1} &= \beta_k - \kappa \alpha \nabla_{\beta} \ell(\beta_k,\gamma_k),\\
+        \label{eq:slbi-show-b}
+        z_{k+1} &= z_k - \alpha \nabla_\gamma \ell(\beta_k,\gamma_k),\\
+        \label{eq:slbi-show-c}
+        \gamma_{k+1} &= \kappa \cdot \mathrm{prox}_{\|\cdot\|_1} (z_{k+1}), 
+    \end{align}
+\end{subequations}
+\textcolor{blue}{Generalized LASSO} ({\texttt{genlasso}}):
+\begin{equation}
+    \label{eq:genlasso}
+    \arg\min_{\beta} \left( \frac{1}{2n} \left\| y - X\beta \right\|_2^2 + \lambda \left\| D \beta \right\|_1 \right).
+\end{equation}
+\end{frame}
+
+
+%\begin{frame}{Split LB vs. Generalized LASSO}
+%Structural Sparse Regression:
+%\begin{equation}
+%    \label{eq:model}
+%    y = X\beta^\star + \epsilon,\ \textcolor{red}{\gamma^\star = D\beta^\star} \ \left( S = \mathrm{supp}\left( \gamma^\star \right),\ s = |S|\ll p \right),
+%\end{equation}
+%Loss with a ``prediction-interpretation split":
+%\begin{equation}
+%    \label{eq:l-def}
+%    \ell\left( \beta, \gamma \right) := \underset{\rm{prediction}}{\underbrace{\frac{1}{2n} \left\| y - X \beta \right\|_2^2}}  + \underset{\rm{prediction-sparsity\ tradeoff}}{\underbrace{\frac{1}{2\nu} \left\| \gamma - D \beta \right\|_2^2}}\ \ (\nu > 0).
+%\end{equation}
+%Split LBI:
+%\begin{subequations}
+%    \label{eq:slbi-show}
+%    \begin{align}
+%        \label{eq:slbi-show-a}
+%        \beta_{k+1} &= \beta_k - \kappa \alpha \nabla_{\beta} \ell(\beta_k,\gamma_k),\\
+%        \label{eq:slbi-show-b}
+%        z_{k+1} &= z_k - \alpha \nabla_\gamma \ell(\beta_k,\gamma_k),\\
+%        \label{eq:slbi-show-c}
+%        \gamma_{k+1} &= \kappa \cdot \mathrm{prox}_{\|\cdot\|_1} (z_{k+1}), 
+%    \end{align}
+%\end{subequations}
+%%Generalized LASSO:
+%%\begin{equation}
+%%    \label{eq:genlasso}
+%%    \arg\min_{\beta} \left( \frac{1}{2n} \left\| y - X\beta \right\|_2^2 + \lambda \left\| D \beta \right\|_1 \right).
+%%\end{equation}
+%\end{frame}
+
+\begin{frame}{Split LBI vs. Generalized LASSO paths}
+\begin{figure}
+\centering
+        \includegraphics[width = 0.4\textwidth]{figures/path_genlasso_dbeta.png}
+        \includegraphics[width = 0.4\textwidth]{figures/path_lbi_1_gamma.png} \\
+        \includegraphics[width = 0.4\textwidth]{figures/path_lbi_5_gamma.png}
+        \includegraphics[width = 0.4\textwidth]{figures/path_lbi_10_gamma.png}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Split LB may beat Generalized LASSO in Model Selection}
+    \begin{table}
+        \label{tab:linear-compare-auc}
+        \scriptsize
+        \begin{tabular}{cccc}
+            \toprule
+            \multicolumn{1}{c}{\texttt{genlasso}} & \multicolumn{3}{c}{Split LBI}\\
+            \cmidrule(lr){2-4}
+            & $\nu = 1$ & $\nu = 5$ & $\nu = 10$ \\
+            \cmidrule{2-4}
+            $.9426$ & $.9845$ & $.9969$ & $\mathbf{.9982}$\\
+            $(.0390)$ & $(.0185)$ & $(.0065)$ & $(\mathbf{.0043})$\\
+            \bottomrule 
+        \end{tabular}
+        \begin{tabular}{cccc}
+            \toprule
+            \multicolumn{1}{c}{\texttt{genlasso}} & \multicolumn{3}{c}{Split LBI}\\
+            \cmidrule(lr){2-4}
+            & $\nu = 1$ & $\nu = 5$ & $\nu = 10$ \\
+            \cmidrule{2-4}
+            $.9705$ & $.9955$ &  $.9996$ & $\mathbf{.9998}$\\
+            $(.0212)$ & $(.0056)$ & $(.0014)$ & $(\mathbf{.0009})$\\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    \begin{itemize}
+        \item Example: $n = p = 50$, $X\in \mathbb{R}^{n\times p}$ with $X_j \sim N(0,I_p)$, $\epsilon\sim N(0,I_n)$
+        \item (Left) $D=I$ (LASSO vs. Split LB)
+        \item (Right) 1-D fused (generalized) LASSO vs. \textcolor{blue}{Split LB} (next page). 
+%        by
+        \item In terms of Area Under the ROC Curve (AUC), LB has less false discoveries than \texttt{genlasso} 
+        \item \emph{Why}? Split LB may need \textcolor{red}{weaker} irrepresentable conditions than generalized LASSO...
+%\tiny{
+%\begin{subequations}
+%    \label{eq:slbi-show}
+%    \begin{align}
+%        \label{eq:slbi-show-a}
+%        \beta_{k+1} &= \beta_k - \kappa \alpha \grad_{\beta} \ell(\beta_k,\gamma_k), \\ %\left( X^T \left( X \beta_k - y \right)/n + D^T \left( D \beta_k - \gamma_k \right) / \nu \right),\\
+%        \label{eq:slbi-show-b}
+%        z_{k+1} &= z_k - \alpha \grad_\gamma \ell(\beta_k,\gamma_k), \\ %\left( \gamma_k - D \beta_k \right) / \nu,\\
+%        \label{eq:slbi-show-c}
+%        \gamma_{k+1} &= \kappa \cdot \mathrm{prox}_{\|\cdot\|_1} (z_{k+1}), 
+%    \end{align}
+%\end{subequations}
+%where $
+%                \ell(\beta,\gamma) = \frac{1}{2n} \left\| y - X \beta \right\|_2^2  +\frac{1}{2\nu} \left\| \gamma - D \beta \right\|_2^2, \ \ \ (\nu > 0)
+%            $
+%}
+    \end{itemize}
+\end{frame}
+
+%\begin{frame}{Split LB may beat Generalized LASSO in Model Selection}
+%\begin{table}[h]
+%    \caption{Mean AUC (with standard deviation) comparisons where Split LBI beats Generalized LASSO.}
+%        \begin{tabular}{cccc}
+%            \toprule
+%            \multicolumn{1}{c}{\texttt{genlasso}} & \multicolumn{3}{c}{Split LBI}\\
+%            \cmidrule(lr){2-4}
+%            & $\nu=1$ & $5$ & $10$ \\
+%            \cmidrule{2-4}
+%            $.9705$ & $.9955$ &  $.9996$ & $\mathbf{.9998}$\\
+%            $(.0212)$ & $(.0056)$ & $(.0014)$ & $(\mathbf{.0009})$\\
+%            \bottomrule
+%        \end{tabular}
+%\end{table}
+%\end{frame}
+
+%\begin{frame}{Split LB improves Irrepresentable Condition (Huang-Sun-Xiong-Y.'16)}
+%\begin{figure}[!t]
+%%        \centering
+%\includegraphics[width = 0.7\textwidth]{figures/irr_ic.png}
+%%    \caption{$\sigma=1$. Left: TP/FP of three methods in 100 trials. Right: Estimation Error of three methods. (A little perturbation is added to separate the points.) Black:LASSO, Blue:LASSO+LS, Green:ISS, Grey: LB} \label{fig:prediction1}
+%\end{figure}
+%\end{frame}
+
+\begin{frame}
+    \frametitle{Structural Sparsity Assumptions}
+    \begin{itemize}
+        \item
+            Define $\Sigma(\nu) := (I - D (\nu X^{*} X + D^T D)^{\dag} D^T) / \nu$.
+        \item
+            \textbf{Assumption 1}: Restricted Strong Convexity (RSC).
+            \begin{equation}
+                \label{eq:sc}
+                \Sigma_{S,S}(\nu) \succeq \lambda \cdot I.
+            \end{equation}
+        \item
+            \textbf{Assumption 2}: Irrepresentable Condition (IRR).
+            \begin{equation}
+                \label{eq:ic}
+                \textcolor{blue}{\mathrm{IRR}(\nu)} := \| \Sigma_{S^c, S}(\nu) \cdot \Sigma_{S,S}^{-1}(\nu) \|_{\infty} \le 1 - \eta.
+            \end{equation}
+         \item
+            \textcolor{blue}{$\nu \rightarrow 0$}: RSC and IRR above reduce to the RSC and IRR \textcolor{red}{neccessary and sufficient} for consistency of \texttt{genlasso} (\textcolor{blue}{Vaiter'13,LeeSunTay'13}).
+        \item
+            \textcolor{blue}{$\nu \neq 0$}: by allowing variable splitting in proximity, IRR above can be \textcolor{red}{weaker} than literature, bringing \textcolor{red}{better} variable selection consistency than \texttt{genlasso} (observed before)!
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Identifiable Condition (IC) and Irrepresentable Condition (IRR)}
+    \begin{itemize}
+        \item
+            Let the columns of $W$ form an orthogonal basis of $\ker(D_{S^c})$.
+            \begin{gather}
+                \Omega^S := \left( D_{S^c}^{\dag} \right)^T \left( X^{*} X W \left( W^T X^{*} X W \right)^{\dag} W^T - I \right) D_S^T,\\
+                \textcolor{blue}{\mathrm{IC}_0} := \left\| \Omega^S \right\|_{\infty},\ \textcolor{blue}{\mathrm{IC}_1} := \min_{u\in \ker(D_{S^c})} \left\| \Omega^S \mathrm{sign} \left( D_S \beta^{\star} \right) - u \right\|_{\infty}.
+            \end{gather}
+        \item
+            The sign consistency of \texttt{genlasso} has been proved, under \textcolor{red}{$\mathrm{IC}_1 < 1$} (\textcolor{blue}{Vaiter et al. 2013}).
+        \item
+            We will show the sign consistency of Split LBI, under \textcolor{red}{$\mathrm{IRR}(\nu) < 1$}.
+        \item
+            If \textcolor{blue}{$\mathrm{IRR}(\nu) < \mathrm{IC}_1$}, then our IRR is easier to be met?
+    \end{itemize}
+\end{frame}
+
+\subsection{A Weaker Irrepresentable/Incoherence Condition}
+\begin{frame}
+    \frametitle{Split LB improves Irrepresentable Condition (Huang-Sun-Xiong-Y.'16)}
+    \begin{figure}
+        \centering
+        \includegraphics[width = 0.45\textwidth]{figures/irr_ic.png}
+        \label{fig:irr-ic}
+    \end{figure}
+    \begin{theorem}[\textcolor{blue}{Huang-Sun-Xiong-Y.'2016}]
+        \label{thm:irr-ic}
+        \begin{itemize}
+            \item
+                $\mathrm{IC}_0 \ge \mathrm{IC}_1$.
+            \item
+                $\mathrm{IRR}(\nu) \rightarrow \mathrm{IC}_0\ (\nu \rightarrow 0)$.
+            \item
+                $\mathrm{IRR}(\nu) \rightarrow C\ (\nu \rightarrow \infty)$. $C = 0 \Longleftrightarrow \ker(X) \subseteq \ker(D_S)$.
+        \end{itemize}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Consistency}
+    \begin{theorem}[Huang-Sun-Xiong-Y.'2016]
+        \label{thm:slbi-cstc}
+        Under RSC and IRR, with large $\kappa$ and small $\delta$, there exists $K$ such that with high probability, the following properties hold.
+        \begin{itemize}
+            \item
+                \textcolor{blue}{No-false-positive property}: $\gamma_k\ (k\le K)$ has no false-positive, i.e. $\mathrm{supp}(\gamma_k) \subseteq S = \mathrm{supp}(\gamma^{\star})$.
+            \item
+                \textcolor{blue}{Sign consistency of $\gamma_k$}: If $\gamma_{\min}^{\star} := \min(|\gamma_j^{\star}|:\ j\in S)$ (the minimal signal) is not weak, then $\mathrm{supp}(\gamma_K) = \mathrm{supp}(\gamma^{\star})$.
+            \item
+                \textcolor{blue}{$\ell_2$ consistency of $\gamma_k$}: $\left\| \gamma_K - \gamma^{\star} \right\|_2 \le C_1 \sqrt{s\log m / n}$.
+            \item
+                \textcolor{blue}{$\ell_2$ ``consistency'' of $\beta_k$}: $\left\| \beta_K - \beta^{\star} \right\|_2 \le C_2 \sqrt{s\log m / n} + C_3 \nu$.
+        \end{itemize}
+    \end{theorem}
+    \begin{itemize}
+        \item
+            Issues due to variable splitting (despite benefit on IRR):
+            \begin{itemize}
+                \item
+                    $D \beta_K$ does not follow the sparsity pattern of $\gamma^{\star} = D \beta^{\star}$.
+                \item
+                    $\beta_K$ incurs an additional loss $C_3\nu$ ($\nu \sim \sqrt{s\log m/n}$ minimax optimal).
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Consistency}
+    \begin{theorem}[Huang-Sun-Xiong-Y.'2016]
+        \label{thm:slbi-rev-cstc}
+        Define
+        \begin{equation}
+            \textcolor{blue}{\tilde{\beta}_k} := \mathrm{Proj}_{\ker(D_{S_k^c})} \left( \textcolor{blue}{\beta_k} \right)\ \left( S_k = \mathrm{supp}(\textcolor{blue}{\gamma_k}) \right)
+        \end{equation}
+        Under RSC and IRR, with large $\kappa$ and small $\delta$, there exists $K$ such that with high probability, the following properties hold, if $\gamma_{\min}^{\star}$ is not weak.
+        \begin{itemize}
+            \item
+                \textcolor{blue}{Sign consistency of $D \tilde{\beta}_K$}: $\mathrm{supp}(D \tilde{\beta}_K) = \mathrm{supp}(D \beta^{\star})$.
+            \item
+                \textcolor{blue}{$\ell_2$ consistency of $\tilde{\beta}_K$}: $\left\| \tilde{\beta}_K - \beta^{\star} \right\|_2 \le C_4 \sqrt{s\log m / n}$.
+        \end{itemize}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{Application: Alzheimer's Disease Detection}
+\begin{figure}
+    \centering
+	\includegraphics[width=0.9\textwidth]{figures/precision_positive_features5.png}    
+	\caption{[\textcolor{blue}{Sun-Hu-Y.-Wang'17}] A split of prediction ($\beta$) vs. interpretability ($\tilde{\beta}$): $\tilde{\beta}$ corresponds to the degenerate voxels interpretable for AD, while $\beta$ additionally leverages the procedure bias to improve the prediction}
+    \label{fig:AD}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Application: Partial Order of Basketball Teams}
+\begin{figure}
+    \centering
+    \includegraphics[width = 0.5\textwidth]{figures/basketball_solution_3.png}\\
+    \includegraphics[width = 0.5\textwidth]{figures/fig_ranking_2.png}
+    \caption{Partial order ranking for basketball teams. Top left shows $\{\beta_\lambda\}\ (t = 1/\lambda)$ by \texttt{genlasso} and $\tilde{\beta}_k\ (t = k\alpha)$ by Split LBI. Top right shows the same grouping result just passing $t_5$. Bottom is the FIBA ranking of all teams.}
+    \label{fig:real-basketball-group}
+\end{figure}
+\end{frame}
+
+
+
+
+%\begin{frame}{Application: Partial Order of Basketball Teams}
+%\begin{figure}
+%    \centering
+%    \includegraphics[width = 0.5\textwidth]{figures/basketball_solution_3.png}\\
+%    \includegraphics[width = 0.5\textwidth]{figures/fig_ranking_2.png}
+%    \caption{Partial order ranking for basketball teams. Top left shows $\{\beta_\lambda\}\ (t = 1/\lambda)$ by \texttt{genlasso} and $\tilde{\beta}_k\ (t = k\alpha)$ by Split LBI. Top right shows the same grouping result just passing $t_5$. Bottom is the FIBA ranking of all teams.}
+%    \label{fig:real-basketball-group}
+%\end{figure}
+%\end{frame}
+
+
+
+%\begin{frame}{Example: Matrix Completion}
+%The \textbf{Linearized Bregman Iteration} can be generalized to Matrix completions (\textcolor{blue}{Cai-Candes-Shen'10})
+%\[  z_{t+1} = z_t - \alpha_t X^T \cdot (\kappa  X \cdot \textcolor{red}{Shrink}(z_t, 1) - y) \]
+%where
+%\begin{itemize}
+%\item \textcolor{red}{Shrink} is an Singular Value Shrinkage operator
+%\item $X,y,z$ are matrices with matrix inner products
+%\end{itemize}
+%\end{frame}
+
+%\subsection{Key Lemmas}
+%
+%%\begin{frame}{Bias Removal Lemma}
+%%\begin{lemma}[by Jiechao Xiong'13]
+%%Bregman ISS solution satisfies the following relation with the mean path
+%%\[ u(t) = \left.\bar{u}(\lambda) - \lambda \frac{\dd }{\dd \lambda} \bar{u}(\lambda) \right|_{\lambda = 1/t}.\]
+%%The mean path $\bar{u}(t)=\int_0^t u(\tau)\dd \tau$ is piecewise linear with $\lambda = 1/t$. In particular, when $\textcolor{red}{\supp(u(t))=\supp(\bar{u}(t))}$,
+%%\begin{itemize}
+%%\item mean path $\bar{u}(1/\lambda)$ is the LASSO solution
+%%\item $u(t)$ is the piecewise constant intercept of $\bar{u}(t)$ at $t=1/\lambda$.
+%%\end{itemize}
+%%\end{lemma}
+%%%\begin{itemize}
+%%%\item Not used in the proof of the theorem above. Included here due to its insightful geometric interpretation.
+%%%\end{itemize}
+%%\end{frame}
+%%
+%
+%\begin{frame}{Lemma 1}
+%\begin{lemma}[1]
+%Consider the ISS
+%\[ \dot p = -\frac{1}{n} A^T (A u - b) = - A^\ast A(u - u^*) + A^\ast w\]
+%
+%\begin{itemize}
+%\item for all $t\leq \tau$, $u(t)$ contains no false positive if
+%\[ \|p_T(t)\|_\infty = \| A^\ast_{T} A_S^\dagger  p_S  + t A^\ast_T P_{T} w \|_\infty < 1\]
+%where $P_T = I - A_S^\dagger A_S^\ast$ is the projection operator onto the column space of $A_T$.
+%\item mean path $\bar{u}(\tau)$ is sign-consistent if
+%\[ \sign(\bar{u}_S(\tau) )= \sign (u^*_S - \Phi_S^{-1} A_S^\ast w + \frac{1}{\tau} \Phi_S^{-1} p_S (\tau)) = \sign(x^\ast_S)  \]
+%where $\Phi_S = A^\ast_S A_S = \frac{1}{n}A^T_S A_S$.
+%\end{itemize}
+%\end{lemma}
+%\end{frame}
+%
+%\begin{frame}{Lemma 1 Continued}
+%\begin{lemma}[1, continued]
+%\begin{itemize}
+%\item mean path $\bar{u}(\tau)$ is sign-consistent if
+%\[ \sign(\bar{u}_S(\tau) )= \sign (u^*_S - \Phi_S^{-1} A_S^\ast w + \frac{1}{\tau} \Phi_S^{-1} p_S (\tau)) = \sign(x^\ast_S)  \]
+%where $\Phi_S = A^\ast_S A_S = \frac{1}{n}A^T_S A_S$.
+%\end{itemize}
+%\end{lemma}
+%\end{frame}
+%
+%\begin{frame}{Key Lemma}
+%\begin{lemma}[Key Lemma]
+%Consider the differential equation
+%\[\frac{dp_{s}}{dt}=-A_{s}^{*}A_{s}(u_{s}-\tilde{u}_{s}), \mbox{where $A_{s}^{*}A_{s} \geq \gamma I$}\]
+%Define
+%\[\tilde{t}_{\infty}:=\inf\{t>0: sgn(u_{s}(t))=sgn(\tilde{u}_{s})\}\]
+%\[\tilde{t}_{2}(C):=\inf\{t>0: ||u_{s}(t)-\tilde{u}_{s}||_{2} \leq C\sqrt{\frac{s\log{d}}{n}}\}\]
+%Then
+%\[\tilde{t}_{\infty} \leq \frac{4+2\log{s}}{\gamma\tilde{u}_{min}}, \ \ \tilde{t}_{2}(C) \leq \frac{4}{C\gamma}\sqrt{\frac{n}{\log d}}\]
+%\end{lemma}
+%\end{frame}
+%
+%\begin{frame}{Remark}
+%\begin{itemize}
+%\item $\tilde{t}_{\infty} \leq O(\log s/{\tilde{u}_{\min}})$ says that $u(t)$ will reach sign-consistency after $t\geq O(\log s/{\tilde{u}_{\min}})$
+%\item $\tilde{t}_{2}(C) \leq O(\sqrt{\frac{n}{d}}/C)$ says that $l_2$ consistency can be reached before $\overline{\tau} = O(\sqrt{\frac{n}{d}})$ as long as $C$ is a large enough constant.
+%\end{itemize}
+%\end{frame}
+%
+%%\begin{frame}{Monotone Lemma 2}
+%%\begin{lemma}[2]
+%%For all $t\leq \overline{\tau}$
+%%\[ \frac{\dd}{\dd t} D(u^*,u(t)) \leq - \gamma \|u(t) - u^* \| \left( \|u(t) - u^*\| -  \frac{2\sigma}{\gamma} \sqrt{\frac{s \log s}{n}} \max_{j\in T} \|A_j\|\right) \]
+%%whence $D(u^*,u)$ is \textcolor{red}{monotonically non-increasing} as $\|u(t) - u^*\| \geq  O(\sigma \sqrt{\frac{s \log s}{n}} \max_{j\in T} \|A_j\|)$ and may increase otherwise.
+%%\end{lemma}
+%%Note:
+%%\textcolor{red}{Early stopping time} $\tau^*$ is when $D(u^*,u(t))$ changes the monotone non-increasing behavior.
+%%\end{frame}
+%%
+%
+%
+%\begin{frame}{Sketchy Proof of the Theorem}
+%\tiny{
+%\begin{itemize}
+%\item[(1)] (no-false-positivity for $u(t)$ up to $\tau$) it suffices to have for all $t\leq \tau$,
+%$$1> \|p(t)\|_\infty=  \| A^\ast_{T} A_S^\dagger  p_S  + t A^\ast_T P_{T} w \|_\infty $$
+%The first part $\| A^\ast_{T} A_S^\dagger  p_S\|_\infty \leq 1-\eta$ is ensured by the incoherence condition. To see the second part $t \| A^\ast_T P_T w\|_\infty < \eta$, note that the covariance operator $\frac{1}{n^2} A^T_T P_T w w^T P_T A_T \leq \frac{\sigma^2}{n} (\frac{1}{n} A^T_T A_T) \leq \frac{\sigma^2}{n} \max_{j\in T} \|A_j\|^2$. Concentration inequality ensures that $\|A^\ast_T P_T w\|_\infty \leq 2 \sigma \sqrt{\log d/n} \max_{j\in T} \|A_j\|$, which implies
+%\[ t \leq   \tau := \frac{1}{2} \eta \sigma^{-1} \sqrt{n/\log d} \left (\max_{j\in T} \|A_j\|\right )^{-1} = O(\eta \sigma^{-1} \sqrt{n/\log d}). \]
+%\item[(2)] (no-false-negativity for the \textcolor{red}{mean path}) it suffices to ensure
+%\[ u^*_{\min} > \| \Phi_S^{-1} A_S^\ast w \|_\infty + \| \frac{1}{\tau} \Phi_S^{-1} p_S (\tau) \|_\infty. \]
+%The second part on the right hand side is $\|\frac{1}{\tau} \Phi_S^{-1} p_S (\tau))\|_\infty \leq \frac{1}{\tau}  \| \Phi_S^{-1}\|_\infty$. The first part is bounded by concentration inequality
+%$$ \| \Phi_S^{-1} A_S^\ast w\|_\infty \leq 2 \sigma \sqrt{\log d /n} \gamma^{-1/2}.$$
+%\end{itemize}
+%}
+%\end{frame}
+%
+%\begin{frame}{Continued Proof of the Theorem}
+%\tiny{
+%\begin{itemize}
+%\item Denote
+%\[ \widetilde{u}_{s} = u_{s}^{*}-(A_{s}^{*}A_{s})^{-1}A_{s}^{*}w \]
+%\[ \frac{dp_{s}}{dt}=-A_{s}^{*}A_{s}(u_{s}-\widetilde{u}_{s}) \]
+%\item[(3)]  ($l_{2}$-Consistency) Key Lemma implies if $C=\frac{8\sigma\left (\max_{j\in T} \|A_j\|\right )}{\eta\gamma}$, we have
+%\[\tilde{t}_{2}(C) \leq \frac{4}{C\gamma}\sqrt{\frac{n}{\log d}} \leq \frac{\eta} {2 \sigma} \sqrt{\frac{n}{\log d}} \left (\max_{j\in T} \|A_j\|\right )^{-1} = \overline{\tau}\]
+%Thus $\exists t\in [0,\overline{\tau}]$
+%\[ ||u_{s}(t)-\tilde{u}_{s}||_{2} \leq C\sqrt{s\log(d)/n} \]
+%Note that with high probability
+%\[ ||u^{*}_{s}-\tilde{u}_{s}||_{2} \leq 2\sigma\sqrt{s\log(s)/n}\gamma^{-1/2} \]
+%\end{itemize}
+%}
+%\end{frame}
+%
+%\begin{frame}{Continued Proof of the Theorem}
+%\tiny{
+%\begin{itemize}
+%\item[(4)] (Sign Consistency for $u(t)$) The condition
+%$$u^{*}_{min}\geq \frac{4 \sigma}{\gamma^{1/2}} \sqrt{\frac{\log d}{n}} $$
+%implies that  $\widetilde{u}$ has the same sign as $u^{*}$ as well as $1/2|u^{*}_{i}| \leq |\tilde{u}_{i}| \leq 2|u^{*}_{i}|$ for each component $i$. Thus sign consistency is reached when $\tilde{t}_{\infty} \leq \overline{\tau}$, or
+%\[  \frac{4+2\log{s}}{\gamma\tilde{u}_{min}} \leq \frac{\eta} {2 \sigma} \sqrt{\frac{n}{\log d}} \left (\max_{j\in T} \|A_j\|\right )^{-1}\]
+%which is ensured by
+%\[ u^*_{\min} \geq 2 \tilde{u}_{\min} \geq \left(\frac{4 \sigma}{\gamma^{1/2}} \sqrt{\frac{\log d}{n}} \right)\vee \left(\frac{8\sigma(2+\log{s})\left (\max_{j\in T} \|A_j\|\right )}{\gamma\eta}\sqrt{\frac{\log{d}}{n}}\right)\]
+%\end{itemize}
+%}
+%\end{frame}
+%
+%
+%\begin{frame}{Sketchy Proof of the Key Lemma}
+%\tiny{
+%Denote
+%\[A_{t}=\{i \in S|sgn(u_{i}(t))\neq sgn(\tilde{u}_{i})\} \subset S\]
+%\[f(t)=\left<u_{s}-\tilde{u}_{s},A_{s}^{*}A_{s}(u_{s}-\tilde{u}_{s})\right> \]
+%\[\phi(x)=\min_{A} \sum_{i \in A}|\tilde{u}_{i}|^{2} \quad s.t. \sum_{i \in A}|\tilde{u}_{i}| \geq x\]
+%Since $A_{s}^{*}A_{s} \geq \gamma I$
+%\[ f(t) \geq \gamma|u_{s}(t)-\tilde{u}_{s}|_{2}^{2} \geq \gamma\sum_{i \in A_{t}} \tilde{u}_{i}^{2}\]
+%and
+%\[2\sum_{i \in A_{t}}|\tilde{u}_{i}| \geq |\tilde{u}_{s}|_{1}-\left<\tilde{u}_{s},p\right> = D(\tilde{u}_{s},u_{s}) \]
+%From Bregman ISS
+%\[ \frac{d}{dt}D(\tilde{u}_{s},u_{s}) = \frac{d}{dt}\left<p_{s},-\tilde{u}_{s}\right>=-f(t) \leq -\gamma\sum_{i \in A_{t}} \tilde{u}^{2}_{i} \leq -\gamma\phi\left(\frac{D(\tilde{u}_{s},u_{s})}{2}\right)\]
+%Thus
+%\[ t \leq \int_{0}^{t} \frac{-\frac{d}{dt}D(\tilde{u}_{s},u_{s})}{\gamma\phi\left(\frac{D(\tilde{u}_{s},u_{s})}{2}\right)}dt \leq \frac{2}{\gamma}\int_{\frac{D(\tilde{u}_{s},u_{s}(t))}{2}}^{\frac{|\tilde{u}_{s}|_{1}}{2}}\frac{1}{\phi(x)}dx\]
+%}
+%\end{frame}
+%
+%\begin{frame}{Sketchy Proof of the Key Lemma, continued}
+%\tiny{
+%Note that for all $x>0$
+%\[\phi(x) \geq \tilde{u}^{2}_{min} \]
+%\[\phi(x) \geq \tilde{u}_{min}x \]
+%\[\phi(x) \geq x^{2}/s\]
+%Hence in case of $\tilde{t}_{\infty}$, we have
+%\[ \tilde{t}_{\infty} \leq \frac{2}{\gamma}\left(\int_{0}^{\tilde{u}_{min}} \frac{1}{\tilde{u}^{2}_{min}}dx + \int_{\tilde{u}_{min}}^{s\tilde{u}_{min}}\frac{1}{\tilde{u}_{min}x}dx + \int_{s\tilde{u}_{min}}^{\infty}\frac{s}{x^{2}}dx \right) = \frac{4+2\log{s}}{\gamma\tilde{u}_{min}}\]
+%while in case of $\tilde{t}_{2}(C)$, noticed that
+%\[ \frac{d}{dt}D(\tilde{u}_{s},u_{s}) =-f(t) \leq -\gamma|u_{s}(t)-\tilde{u}_{s}|_{2}^{2} \leq -\frac{\gamma C^{2}s\log{d}}{n} \]
+%Therefore
+%\begin{displaymath}
+%\begin{split}
+%t_{2}(C) &\leq \int_{0}^{t_{2}(C)} \frac{-\frac{d}{dt}D(\tilde{u}_{s},u_{s})}{\max\left\{\frac{\gamma C^{2}s\log{d}}{n},\gamma\phi\left(\frac{D(\tilde{u}_{s},u_{s})}{2}\right)\right\}}dt \\
+%&\leq \frac{2}{\gamma}\int_{0}^{Cs\sqrt{\frac{\log{d}}{n}}}\frac{1}{ C^{2}s\log{d}/n}dx+\int_{Cs\sqrt{\frac{\log{d}}{n}}}^{\infty}\frac{s}{x^2}dx = \frac{4}{C\gamma}\sqrt{\frac{n}{\log d}}
+%\end{split}
+%\end{displaymath}
+%}
+%\end{frame}
+%
+%%\begin{frame}{Continued Proof of the Theorem}
+%%\tiny{
+%%\begin{itemize}
+%%\item For the existence of sign-consistent \textcolor{red}{$u(\tau^*)$}, Lemma 2 tells us the Bregman divergence $D(u^*,u(t))$ is \textbf{monotonically non-increasing} for $t \leq \tau_\epsilon$ where
+%%\[ \tau_\epsilon = \min\left \{t : \|u(t) - u^*\| \leq  \epsilon \sqrt{s} + \frac{2 \sigma}{\gamma} \sqrt{\frac{s \log s}{n}} \max_{j\in T} \|A_j\| \right\}, \epsilon>0.\]
+%%\item[(1)] If $\tau_\epsilon<\overline{\tau}$, then $\|u(\tau) - u^*\|\leq \epsilon \sqrt{s} + c_2 \sqrt{s}/\overline{\tau} < u^*_{\min}$ ($c_2=u^*_{\max}/(\epsilon\gamma)$), which implies $\sign(u(\tau_\epsilon))=\sign(u^*)$ ($\supp(u(\tau_\epsilon))=S$). We are done with $\tau^*=\tau_\epsilon$.
+%%\item[(2)] Otherwise $\tau_\epsilon\geq \overline{\tau}$, Lemma 2 implies
+%%\[ D(u^*, u(\overline{\tau}))- D(u^*,0) \leq - \epsilon \gamma \sqrt{s}  \int_0^{\overline{\tau}} \|u(t) - u^*\|_2 d t \]
+%%\[ \Rightarrow \min_{t\in [0,\overline{\tau}]} \|u(t) - u^*\|_2 \leq \frac{\sqrt{s} u^*_{\max} }{\epsilon\gamma \overline{\tau}} = c_2 \frac{\sqrt{s}  }{\overline{\tau}}< u^*_{\min}\]
+%%which implies that $\sign(u(\tau^*)) = \sign(u^*)$ or $\supp(u(\tau^*))=S$, where $\tau^* \in \arg\min_{t\in [0,\overline{\tau}]} \|u(t) - u^*\|_2$.
+%%\item[(3)] For $\tau \in [\tau^*,\overline{\tau}]$, $D(u^*,u(\tau))=0$, as no true variable is dropped which makes $\dot D(u^*,u(\tau))<0$ immediately to bring it back. In this region, $\bar{u}(\tau)$ is the LASSO solution.
+%%\end{itemize}
+%%}
+%%\end{frame}
+%%
+%
+%%
+%%\begin{frame}{Sketchy Proof of the Lemma 1}
+%%\begin{itemize}
+%%\item For the first part, $u(t)$ has no false positive up to $\tau$, then
+%%\begin{equation} \label{eq:ps}
+%%\dot p_S = - A^\ast_S A_S (u_S- u_S^*) + A_S^\ast w
+%%\end{equation}
+%%and
+%%\begin{equation} \label{eq:pt}
+%%\dot p_T = - A^\ast_T A_S (u_S- u_S^*) + A_T^\ast w
+%%\end{equation}
+%%From (\ref{eq:ps}) one gets $-(u_S - u_S^*) = ( A^*_S A_S)^{-1} \dot p_S - (A^*_S A_S)^{-1} A_S^\ast w$, which leads to by plugging into (\ref{eq:pt})
+%%\[ \dot p_T = A^\ast_T A_S^\dagger \dot p_S + A^\ast_T (I - A_S^\dagger A_S^\ast) w \]
+%%Integration on both sides gives the first condition.
+%%\item The second part is obtained by integration on (\ref{eq:ps})
+%%\[ \bar{u}_S(\tau) = \frac{1}{\tau} \int u_S \dd t = u_S^* - \frac{1}{\tau} \Phi_S^{-1} p_S(\tau)  + \Phi_S^{-1} A_S^\ast w \]
+%%followed by taking $\sign(\bar{u}_S(\tau)) = \sign(u^\ast_S)$
+%%\end{itemize}
+%%\end{frame}
+%%
+%%\begin{frame}{Sketchy Proof of the Lemma 2}
+%%From Bregman ISS
+%%\[ \dot p = -\frac{1}{n} A^T (A u - b) = - A^\ast A(u - u^*) + A^\ast w\]
+%%For $t\leq \overline{\tau}$,
+%%\begin{eqnarray*}
+%%\left< \dot p_S, (u_S - u^*_S) \right> & = &- \left <u_S-u^*_S, A^\ast_S A_S (u_S - u^*_S)\right> + \left < A_S^\ast w, (u_S - u^*_S)\right > \\
+%%& \leq & - \gamma \|u_S-u^*_S\|^2 + \| A_S^\ast w\| \|u_S - u^*_S\| \\
+%%& \leq &  - \gamma \|u_S-u^*_S\|^2 + 2 \sigma \sqrt{\frac{s \log s}{n}} \max_{j\in T} \|A_j\| \|u_S - u^*_S\|
+%%\end{eqnarray*}
+%%The bound then follows from the fact that
+%%\[ \frac{\dd }{\dd t} D(u^*, u) = \frac{\dd}{\dd t} \left< p_S^\ast - p_S(t), u^*_S\right> =  -\left<\dot p_S, u^*_S\right> + \left< \dot p_S, u_S \right> =  \left< \dot p_S, (u_S - u^*_S) \right> \]
+%%where the second last step is due to $\left< \dot p_S, u_S \right> \equiv 0$.
+%%\end{frame}
+%%
+%%\begin{frame}{Proof of the Mean Path Lemma}
+%%\begin{proof}
+%%By the Fundamental Theorem of Calculus,
+%%\begin{eqnarray*}
+%%u(t) & = & \frac{\dd }{\dd t} t \bar{u}(t) = \frac{\dd}{\dd \lambda} \frac{\bar{u} (\lambda)}{\lambda} \cdot \frac{-1}{t^2}= \left(\frac{-\bar{u}(\lambda)}{\lambda^2} +\frac{\dd \bar{u}(\lambda)/\dd \lambda}{\lambda}\right) (-\lambda^2) \\
+%%& = & \left.\bar{u}(\lambda) - \lambda \frac{\dd \bar{u}(\lambda)}{\dd \lambda} \right|_{\lambda = 1/t}
+%%\end{eqnarray*}
+%%Let $S_t = \supp(\bar{u}(t))$. Then $\bar{u}(t)$ is decided by
+%%\begin{eqnarray*}
+%%\bar{u}_{S_t}(t) & = & \frac{1}{t} \int u_{S_t} \dd t = u_{S_t}^* - \frac{1}{t} \Phi_{S_t}^{-1} p_{S_t}(t)  + \Phi_{S_t}^{-1} A_{S_t}^\ast w \\
+%%& = &  u_{S_t}^* - \lambda \Phi_{S_t}^{-1} p_{S_t}(\textcolor{red}{u})  + \Phi_{S_t}^{-1} A_{S_t}^\ast w
+%%\end{eqnarray*}
+%%whose derivative gives
+%%\[ \left.\frac{\dd}{\dd \lambda}\bar{u}_{S_t}(\lambda)  \right|_{\lambda=1/t} = - \Phi_{S_t}^{-1} p_{S_t}(t) + \lambda^{-1} \Phi_{S_t}^{-1} \dot p_{S_t}(t) \]
+%%where $\dot p_{S_t}(t) =0$ iff $\supp(u(t)) = S_t = \supp(\bar{u}(t))$. Note that LASSO solution is
+%%\[ \bar{u}(\lambda) = u_{S_t}^* - \lambda \Phi_{S_t}^{-1} p_{S_t}(\textcolor{red}{\bar{u}})  + \Phi_{S_t}^{-1} A_{S_t}^\ast w\]
+%%\end{proof}
+%%\end{frame}
+%
+%\begin{frame}{Extension of Path Consistency to Linearized Bregman ISS}
+%\textbf{Linearized Bregman:}
+%$$\frac{\dd p}{\dd t} + \frac{1}{\beta} \frac{\dd u}{\dd t} =- A^\ast (A u - b),\quad p\in \partial \|u\|_1.$$
+%
+%\begin{itemize}
+%\item $\beta\to \infty$ gives the Bregman ISS.
+%\item $u(t)$ is continuous, in contrast to piecewise constant paths in Bregman ISS.
+%\item $u(t)$ approaches Bregman ISS path exponentially $O(\exp(-\beta \delta))$.
+%% \textcolor{red}{Sign-consistent $u(\tau)$ needs care as $D(u^*,u)$ itself might not be monotonically non-increasing}.
+%%\item As $u(t)$ is continuous, Mean value theorem implies the \textcolor{red}{existence of a solution} on path $u(\tau^*) = \frac{1}{\tau} \int_0^\tau u(t) \dd t$ which is \textbf{sign-consistent}.
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}{Extension to LB ISS}
+%\begin{itemize}
+%\item Extension of \textbf{mean} path consistency is straightforward, by assuming incoherence
+%\[ \left\|A^\ast_T A_S^{\dagger} \right \|_\infty  \leq 1 - 2\eta \]
+%and
+%\[ \frac{\max_{t\leq \tau} \|u_S(t)\|_\infty }{\beta} \leq \eta. \]
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}{Possible Extension to General Loss}
+%Extension to general loss is hard
+%$$\frac{\dd p}{\dd t}=-\nabla \ell(u),\quad p\in \|u\|_1.$$
+%One ugly approach is
+%\begin{itemize}
+%\item Replace $A^\ast A$ by Hessian $\nabla^2 \ell(\tilde{u})$ where $\tilde{u} = \alpha u(t) + (1-\alpha) u^*$ by Mean-value-theorem.
+%\item Assume some \textcolor{red}{global} incoherence and restricted eigenvalue conditions on $\nabla^2 \ell(\tilde{u})$ for all $u(t)$ ($t\in \tau$).
+%\item Superficially one can establish the same path consistency results as in square loss %, but are the assumptions above reasonable?
+%%\item \textcolor{red}{Open}: one hopes to assume only \textcolor{red}{local} incoherence and restricted eigenvalue conditions based on the Hessian $\nabla^2 \ell(u^*)$, and similar results hold! In LASSO one can do this, e.g. Ravikumar-Wainwright-Lafferty'10.
+%\end{itemize}
+%\end{frame}
+%
+%\section{Applications}
+%
+%\subsection{Robust Ranking}
+%%\frame{
+%%	\frametitle{Crowdsourced ranking}
+%%	\begin{figure}[!t]
+%%	\centering
+%%		\includegraphics[width=0.3\textwidth]{./figures/CrowdRank.pdf}  \ \
+%%	\includegraphics[width=0.6\textwidth]{./figures/allourideas_college1.png}
+%%		\caption{Left: www.\textcolor{red}{crowdrank}.net; Right: www.\textcolor{red}{allourideas}.org/worldcollege (Prof. Matt Salganik at Princeton); }
+%%  \end{figure}
+%%	}
+%
+%
+%%\frame{
+%%	\frametitle{Relative attributes in describing objects}
+%%	\begin{figure}[!t]
+%%	\centering
+%%	\includegraphics[width=0.7\textwidth]{./figures/horse-vs-donkey.png}
+%%	\caption{(Parikh-Grauman'11) Horse vs. Donkey: furry (donkey $>$ horse), long tails (horse $>$ donkey), running faster (horse $>$ donkey), cute(?)}
+%%  \end{figure}
+%%	}
+%
+%\frame{
+%	\frametitle{Age Estimate from Crowdsourced Pairwise Comparisons}
+%	\begin{figure}[!t]
+%	\centering
+%	\includegraphics[width=\textwidth]{./figures/idea_illustration.eps}
+%	\caption{Age: a relative attribute estimated from paired comparisons (\textcolor{blue}{Fu-Hospedales-Xiang-Gong-Y. \emph{ECCV}, 2014})}
+%  \end{figure}
+%	}
+%	
+%\frame{
+%\frametitle{Impossibility to Reach a Consensus without Conflicts}
+%Preference/rank aggregation from pairwise comparisons is a fundamental problem in social choice and Economics theory. But there is a fundamental limitation:
+%\begin{itemize}
+%%\item \textcolor{red}{How to aggregate preferences which faithfully represent individuals?}
+%%\item \textbf{Borda} 1770, B. Count against plurality vote
+%%\item \textbf{Condorcet} 1785, C. Winner who wins all paired elections
+%\item Machine Learning society typically looks for a single global ranking to optimize certain loss $\rightarrow$ \textcolor{red}{misleading}
+%\item \textcolor{red}{Impossibility theorems}: \textbf{Kenneth Arrow} 1963, \textbf{Amartya Sen} 1973
+%\subitem it is impossible to get a universal consensus in global ranking for all voters 
+%\item \emph{How to analyze the conflicts of interests?} \textbf{Kemeny}, \textbf{Saari} ...
+%%\item Internet provides us a plethora of new examples
+%%\subitem Recommendation systems (Amazon, netflix, ...)
+%%\subitem Peer review systems (CiteSeer, Google's pagerank, eBay, ...)
+%%\subitem Crowdsourced ranking ({\tt{allourideas}, \tt{crowdrank}}, ...)
+%%\item In these settings, we study \textcolor{red}{complete ranking orders} from voters.
+%\end{itemize}
+%}
+%
+%\frame{
+%\frametitle{Hodge Decomposition Approach}
+%\begin{theorem}[Jiang-Lim-Y.-Ye'2011]
+%\small
+%Pairwise ranking data admits an orthogonal decomposition
+%%$\hat{y}_{ij}=-\hat{y}_{ji}\in l^2_\omega(E)$ admits an \textcolor{red}{orthogonal} decomposition,
+%% \begin{equation}
+%%\textcolor{red}{\hat{y} = A x + B^T z + w},
+%%\end{equation}
+%%where
+%%\begin{subequations}
+%%\begin{align}
+%%(A x)(i,j) := x_i - x_j, & \ \ \textrm{gradient, as \textcolor{blue}{Borda} profile}, \\
+%%(B \hat{y})(i,j,k):=\hat{y}_{ij} + \hat{y}_{jk} + \hat{y}_{ki}, & \ \ \textrm{trianglar cycle/curl, \textcolor{blue}{Condorcet}}\\
+%%w\in \ker(A^T) \cap \ker(B), & \ \ \textrm{harmonic, \textcolor{blue}{Condorcet}} .
+%%\end{align}
+%%\end{subequations}
+%%In other words
+%%\[ \textcolor{red}{\im(A) \oplus \ker(A A^T+B^T B) \oplus \im(B^T) }\]
+%\begin{figure}[!h]
+%\centering
+%\includegraphics[width=0.4\textwidth]{figures/HodgeRank.png}
+%\end{figure}
+%%which accounts for
+%\begin{itemize}
+%\item gradient flow: global consensus ranking
+%\item curl flow: local conflicts of interests
+%\item harmonic flow: all voting chaos!
+%\end{itemize}
+%\end{theorem}
+%}
+%
+%\frame{
+%\frametitle{Analysis of Cyclic Ranking}
+%Not only looking at global ranking, it is even more important to look at cyclic ranking which will disclose important information. For example, annotator's \textbf{abnormal behavior detection}:
+%\[ \Pi_{cyclic}(data) = \Pi_{cyclic} \gamma + \varepsilon \]
+%where
+%\begin{itemize}
+%\item $\Pi_{cyclic}$ is the projection of paired comparison data onto cyclic rankings
+%\item $\gamma$ is a sparse parameter, which may encodes
+%\subitem \textbf{careless voter}'s position bias, and/or
+%\subitem \textbf{outliers}
+%\item $\varepsilon$ accounts for the random noise
+%\end{itemize}
+%}
+%
+%\frame{
+%\frametitle{Example: ISS paths pick up those abnormal voters}
+%\begin{columns}
+%\begin{column}{0.45\textwidth}
+%\begin{figure}[!h]
+%\centering
+%\includegraphics[width=\textwidth]{figures/age_path.png}
+%\caption{\tiny ISS paths with knockoff filters (\textcolor{blue}{Xu-Xiong-Cao-Y.'16}) at 10\% False Discovery Rate}
+%\end{figure}
+%\end{column}
+%\begin{column}{0.4\textwidth}
+%\tiny{
+%{\renewcommand\baselinestretch{1.3}\selectfont
+%\setlength{\belowcaptionskip}{3pt}
+%\begin{table}\caption{\label{age} \tiny Position biased annotators detected in Human age dataset, together with the click counts of each side (i.e., Left and Right).}
+%\tiny
+%\centering
+%\newsavebox{\tablebox}
+%\begin{lrbox}{\tablebox}
+%\begin{tabular}{||c|c|c||c|c|c||}
+%  \hline  \textbf{ID}   &\textbf{Left}  &\textbf{Right} & \textbf{ID}   &\textbf{Left}  &\textbf{Right} \\
+% \hline
+%\hline   \textcolor{red}{\textbf{40}}	&40	&0 & \textcolor{blue}{43} &79	&1 \\
+%\hline  \textcolor{red}{\textbf{51}}	&63	&0 & \textcolor{blue}{50}	&60	&3 \\
+%\hline   \textcolor{blue}{12}	&90	&270 & \textcolor{blue}{59}	&213	&66 \\
+%\hline   \textcolor{blue}{18}	&74	&25 & \textcolor{blue}{70}	&191	&9 \\
+%\hline   \textcolor{blue}{46}	&40	&10 & \textcolor{blue}{77}	&11	&1 \\
+%\hline   \textcolor{blue}{64}	&5	&14 & \textcolor{blue}{81}	&4	&28 \\
+%\hline   \textcolor{blue}{72}	&5	&24 & \textcolor{blue}{91}	&79	&5 \\
+%\hline  \textcolor{blue}{34}	&32	&48 & \textcolor{red}{94}	&0	&30 \\
+%\hline   \textcolor{blue}{38}	&110 &15 &  \ & \  & \  \\
+%\hline
+%\end{tabular}
+%\medskip
+%\end{lrbox}
+%\scalebox{1.0}{\usebox{\tablebox}}
+%\end{table}
+%\par}
+%}
+%\end{column}
+%\end{columns}
+%}
+%
+
+\section{Summary}
+
+\begin{frame}{Summary}
+We have seen: 
+\begin{itemize}
+\item The limit of Linearized Bregman iterations follows a restricted gradient flow: \textcolor{red}{differential inclusions} dynamics\
+\item It passes the \textcolor{red}{unbiased} \emph{Oracle Estimator} under sign-consistency
+\item Sign consistency under nearly the \textcolor{blue}{same} condition as LASSO
+\subitem Restricted Strongly Convex + Irrepresentable Condition 
+\item \textcolor{red}{Split} extension: sign consistency under a \textcolor{blue}{weaker} condition than generalized LASSO
+\subitem under a provably weaker Irrepresentable Condition
+\item \textcolor{red}{Early stopping} regularization is exploited against overfitting under noise
+\end{itemize}
+\emph{A Renaissance of Boosting as restricted gradient descent ...}
+\end{frame}
+
+
+
+\begin{frame}{Some Reference}
+\begin{itemize}{\tiny
+\item Osher, Ruan, Xiong, Yao, and Yin, ``Sparse Recovery via Differential Equations", \emph{Applied and Computational Harmonic Analysis}, 2016
+\item Xiong, Ruan, and Yao, ``A Tutorial on Libra: R package for Linearized Bregman Algorithms in High Dimensional Statistics", \emph{Handbook of Big Data Analytics}, Eds. by Wolfgang Karl H\"{a}rdle, Henry Horng-Shing Lu, and Xiaotong Shen, Springer, 2017. \url{https://arxiv.org/abs/1604.05910}
+\item Xu, Xiong, Cao, and Yao, ``False Discovery Rate Control and Statistical Quality Assessment of Annotators in Crowdsourced Ranking", \emph{ICML 2016}, arXiv:1604.05910
+\item Huang, Sun, Xiong, and Yao, ``Split LBI: an iterative regularization path with structural sparsity", \emph{NIPS 2016}, \url{https://github.com/yuany-pku/split-lbi}
+%\item Xu, Xiong, Huang, and Yao, ``Robust HodgeRank and Algorithms", preprint
+\item Sun, Hu, Wang, and Yao, ``GSplit LBI: taming the procedure bias in neuroimaging for disease prediction", \emph{MICCAI 2017}
+\item Huang and Yao, ``A Unified Dynamic Approach to Sparse Model Selection", \emph{AISTATS 2018}
+\item Huang, Sun, Xiong, and Yao, ``Boosting with Structural Sparsity: A Differential Inclusion Approach", \emph{Applied and Computational Harmonic Analysis}, 2018, arXiv: 1704.04833
+\item \textcolor{blue}{R} package:
+\subitem \url{http://cran.r-project.org/web/packages/Libra/index.html}}
+\end{itemize}
+\end{frame}
+
+%\begin{frame}{A Renaissance of Boosting?}
+%\begin{itemize}
+%\item Boosting as gradient descent is arguably the \textbf{best off-the-shelf machine learning algorithm} (\textcolor{blue}{Leo Breiman}): \textbf{AdaBoost} (\textcolor{blue}{Freund-Schapire}), \textbf{L2Boost} (\textcolor{blue}{Buhlman-Yu}), \textbf{LogitBoost} (\textcolor{blue}{Friedman})
+%\item The (sparsity) restricted gradient descent dynamics: \textbf{differential inclusions}
+%\subitem meets the oracle estimator without bias, \textbf{better than LASSO}
+%\subitem is widely adapted to \textbf{various sparsity} constraints
+%\subitem has a simple discretized algorithm to follow the regularization path (LBI), amiable for parallel realizations in \textbf{big data analytics} 
+%\item This is a gift of \textcolor{red}{Applied Mathematics} to High Dimensional \textcolor{red}{Statistics}
+%%\item Early stopping regularization maybe better than penalization (e.g. Engl-Hanke-Neubauer'00, Y.-Rosasco-Caponnetto'07)
+%\end{itemize}
+%\centering
+%\includegraphics[width=0.2\textwidth]{figures/gift-box.jpg}
+%\end{frame}
+
+%\begin{frame}{The END}
+%\begin{figure}[!h]
+%\centering
+%\includegraphics[width=0.7\textwidth]{figures/thank-you.jpg}
+%\end{figure}
+%\end{frame}
+\end{document}
+
