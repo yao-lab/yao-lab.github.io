@@ -340,14 +340,20 @@ matrices, ICM2006.</li>
 </tr>
 
 <tr>
-<td>06/10/2017, Fri </td>
-<td>Lecture 13: Manifold Learning I: ISOMAP and LLE <br>
+<td>03/27/2019, Wed </td>
+<td>Lecture 13: Manifold Learning I: ISOMAP and LLE <a href="slides/lecture13_key.pdf">[ slides ]</a> <br>
 <ul>[Reference]:
 <li>  <a href="http://web.mit.edu/cocosci/isomap/isomap.html">[ISOMAP]</a>: Tenenbaum's website on science paper with datasets; 
 </li>
 <li>  <a href="https://www.cs.nyu.edu/~roweis/lle/">[LLE]</a>: Roweis' website on science paper; 
 </li>
-</ul>
+<li><cite>Zhang, Z. &amp; Wang, J. MLLE: Modified Locally Linear
+Embedding Using Multiple Weights. </cite> [<a class="reference external" href="https://papers.nips.cc/paper/3132-mlle-modified-locally-linear-embedding-using-multiple-weights"> NIPS 2016 </a>]</li>
+<li><cite>Zhang, Z. &amp; Zha, H. (2005) Principal manifolds and nonlinear
+dimensionality reduction via tangent space alignment. 
+	SIAM Journal on Scientific Computing. 26 (1): 313?338. </cite> 
+	<a href="https://doi.org/10.1137/S1064827502419154"> doi:10.1137/s1064827502419154</a> </li>
+	</ul>
 <ul>[Python]: 
 <li> <a href="https://nbviewer.jupyter.org/url/github.com/yuany-pku/2017_CSIC5011/blob/master/slides/plot_mani_digits.ipynb"> plot_mani_digits.ipynb </a>: demo of digits in class </li>
 <li> <a href="http://scikit-learn.org/stable/modules/manifold.html#manifold"> scikit-learn manifold module </a> </li>
@@ -359,6 +365,36 @@ matrices, ICM2006.</li>
 </li>
 <li> <a href="https://yao-lab.github.io/data/kcenter.m"> kcenter.m </a>: k-center algorithm to find 'landmarks' in a metric space
 </ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>03/29/2019, Fri </td>
+<td>Lecture 14: Manifold Learning II: Extended LLEs (Chap 5: 3-6) <a href="slides/lecture14_key.pdf">[ slides ]</a><br>
+<ul>[Reference]:
+<li><cite>Mikhail Belkin &amp; Partha Niyogi, Laplacian Eigenmaps and Spectral Techniques for Embedding and Clustering, Advances in Neural Information Processing Systems 14, 2001, p. 586?691, MIT Press</cite>
+<a href="https://papers.nips.cc/paper/1961-laplacian-eigenmaps-and-spectral-techniques-for-embedding-and-clustering"> [nips link] </a> </li>
+<li>  <cite>Donoho, D. &amp; Grimes, C. Hessian eigenmaps: Locally
+linear embedding techniques for high-dimensional data.
+Proc Natl Acad Sci U S A.  100:5591 (2003).</cite> <a href="http://www.pnas.org/content/100/10/5591.full">doi: 10.1073/pnas.1031596100</a> </li>
+<li> R. R. Coifman, S. Lafon, A. B. Lee, M. Maggioni, B. Nadler, F. Warner, and S. W. Zucker. Geometric diffusions as a tool for harmonic analysis and structure definition of data: Diffusion maps. PNAS 102 (21):7426-7431, 2005 <a href="http://www.pnas.org/content/102/21/7426.long"> [doi: 10.1073/pnas.0500334102] </a> </li>
+<li> <cite>Nadler, Boaz; Stéphane Lafon; Ronald R. Coifman; Ioannis G. Kevrekidis (2005). <a href="http://www.wisdom.weizmann.ac.il/~nadler/Publications/dm_nips05.pdf">"Diffusion Maps, Spectral Clustering and Eigenfunctions of Fokker–Planck Operators"</a> <span>(PDF)</span> <i>in Advances in Neural Information Processing Systems (NIPS) 18</i>.</cite></li>
+<li> <cite>Coifman, R.R.; S. Lafon. (2006). "Diffusion maps". <i>Applied and Computational Harmonic Analysis.</i> 21: 5–30. <a href="//doi.org/10.1016%2Fj.acha.2006.04.006">10.1016/j.acha.2006.04.006</a>.</cite></li>
+<li> Stochastic Neighbor Embedding <a href="http://www.cs.toronto.edu/~hinton/absps/sne.pdf"> [ .pdf ] </a></li>
+<li> Visualizing Data using t-SNE <a href="http://www.cs.toronto.edu/~hinton/absps/tsnefinal.pdf"> [ .pdf ] </a></li>
+<li> A paper that relates SNE to Laplacian Eigenmaps <a href="http://www.cs.toronto.edu/~hinton/csc2535/readings/miguel.pdf"> [ .pdf ] </a></li>
+<li> A helpful website: How to use t-SNE effectively? <a href="https://distill.pub/2016/misread-tsne/"> [ link ]</a></li>
+</ul>
+<ul>[Matlab]
+<li> Matlab code to compare manifold learning algorithms <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/mani.m"> [ mani.m ] </a>: PCA, MDS, ISOMAP, LLE, Hessian LLE, LTSA, Laplacian, Diffusion (no SNE!)</li>
+</ul>
+<ul>[Python]: 
+<li> <a href="https://nbviewer.jupyter.org/url/github.com/yuany-pku/2017_CSIC5011/blob/master/slides/plot_compare_methods.ipynb"> plot_compare_methods.ipynb </a>: demo in class </li>
+<li> <a href="https://nbviewer.jupyter.org/url/github.com/yuany-pku/2017_CSIC5011/blob/master/slides/plot_mani_digits.ipynb"> plot_mani_digits.ipynb </a>: demo of digits in class </li>
+<li> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.manifold.locally_linear_embedding.html#sklearn.manifold.locally_linear_embedding"> scikit-learn manifold LLE </a>: PCA/MDS, ISOMAP, LLE/MLLE, Hessian, LTSA, Laplacian (Spectral), t-SNE (no Diffusion)</li>
+<li> <a href="http://lvdmaaten.github.io/tsne/"> Laurens van der Maaten's website for t-SNE codes </a></li>
 </td>
 <td>Y.Y.</td>
 <td></td>
