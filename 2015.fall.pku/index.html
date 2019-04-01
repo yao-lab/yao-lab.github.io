@@ -1,0 +1,469 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <META http-equiv=Content-Type content="text/html; charset=gb2312">
+   <title>2015 Fall: Statistical Learning </title>
+</head>
+<body background="../images/crysback.jpg">
+
+<!-- PAGE HEADER -->
+
+<div class="Section1">
+<table border="0" cellpadding="0" width="100%" style="width: 100%;">
+      <tbody>
+        <tr>
+
+       <td style="padding: 0.75pt;" width="80" align="center">
+
+      <p class="MsoNormal">&nbsp;<img width="64" height="64"
+ id="_x0000_i1025"
+ src="../icon.jpg" alt="PKU">
+          </p>
+       </td>
+       <td style="padding: 0.75pt;">
+      <p>
+<span style="font-size: 18pt;">
+<b><big>Statistical Learning (&#32479;&#35745;&#23398;&#20064;)<br>
+   Fall 2015</big></b>
+<br>
+</p>
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<div class="MsoNormal" align="center" style="text-align: center;">
+<hr size="2" width="100%" align="center">  </div>
+
+<ul type="disc">
+
+</ul>
+
+<!-- COURSE INFORMATION BANNER -->
+
+<table border="0" cellpadding="0" width="100%" bgcolor="#990000"
+ style="background: rgb(153,0,0) none repeat scroll 0% 50%; width: 100%;">
+      <tbody>
+
+        <tr>
+       <td style="padding: 2.25pt;">
+      <p class="MsoNormal"><b><span
+ style="font-size: 13.5pt; color: white;">Course Information</span></b></p>
+       </td>
+      </tr>
+
+  </tbody>
+</table>
+
+<!-- COURSE INFORMATION -->
+
+<p style="margin-left: 0.5in;">
+<img height="200" src="boya_starry.png">
+<img height="200" src="boya_wreck.png">
+<img height="200" src="boya_twilight.png">
+</p>
+
+
+<h3>Synopsis (&#25688;&#35201;)</h3>
+<p style="margin-left: 0.5in;">
+<big> This course is open to graduates and senior undergraduates in applied mathematics, statistics, and engineering who are interested in learning from data.
+It covers hot topics in statistical learning, also known as machine learning, featured with various in-class projects in computer vision, pattern recognition, computational advertisement, bioinformatics, and social networks, etc. An emphasis this year is on deep learning with convolutional neural networks.
+<br>
+Prerequisite: linear algebra, basic probability and multivariate statistics, convex optimization; familiarity with R, Matlab, and/or Python, Torch for deep learning, etc.
+</big>
+</p>
+
+<h3>Reference (&#21442;&#32771;&#25945;&#26448;)</h3>
+<p style="margin-left: 0.5in;">
+<big>
+<em> <a href="http://www-stat.stanford.edu/~tibs/ElemStatLearn/">The Elements of Statistical Learning.</a> 2nd Ed. By Hastie, Tibshirani, and Friedman </em>
+</big>
+</p>
+
+<p style="margin-left: 0.5in;">
+<big>
+<em> <a href="www-bcf.usc.edu/~gareth/ISL/">An Introduction to Statistical Learning, with applications in R.</a> By James, Witten, Hastie, and Tibshirani </em>
+</big>
+</p>
+
+<h3>Instructors: </h3>
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="http://www.math.pku.edu.cn/teachers/yaoy/">Yuan Yao</a>  </em>
+</big>
+</p>
+
+<h3>Time and Place:</h3>
+<p style="margin-left: 0.5in;">
+<big><em>Monday 3:10-6:00pm; </em> <br>
+The second week: <em>&#29702;&#25945; 310 </em> (classroom change!) <br>
+<em>2 hour lectures plus 1 hour discussion</em>
+</big>
+</p>
+
+<h3>Homework and Projects:</h3>
+
+<p style="margin-left: 0.5in;">
+<big><em>Weekly homeworks, monthly mini-projects, and a final major project. No final exam. </em>
+</big></p>
+
+<h3>Teaching Assistant (&#21161;&#25945;):</h3>
+
+<p style="margin-left: 0.5in;">
+<big>SUN, Xinwei; XIONG, Jiechao; YUAN, Huizhuo; WU, Bingzhe. <br>
+Email:<em> statlearning_hw (add "@ 126 DOT com" afterwards) </em>
+</big>
+</p>
+				
+<h3>Schedule (&#26102;&#38388;&#34920;)</h3>
+
+<table border="1" cellspacing="0">
+<tbody>
+
+<tr>
+<td align="left"><strong>Date</strong></td>
+<td align="left"><strong>Topic</strong></td>
+<td align="left"><strong>Instructor</strong></td>
+<td align="left"><strong>Scriber</strong></td>
+</tr>
+
+<tr>
+<td>09/14/2015, Mon </td>
+<td>Lecture 01: Introduction  <br>
+<ul>[Reference]:
+<li> <a href="http://pan.baidu.com/s/1kTw7Ogv"> [ slides in pdf ] </a> </li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+
+<tr>
+<td>09/21/2015, Mon </td>
+<td>Lecture 02: Overview of Unsupervised Learning <br>
+<ul>[Reference]:
+<li> <a href="http://pan.baidu.com/s/1dDqEOiH"> [ slides in pdf ] </a> </li>
+</ul>
+<ul>[Homework 1]:
+<li> <a href="homework01.pdf">Homework 1 [pdf]</a>. Deadline: 09/28/2015, Monday.  Mark on the head of your homework: <I> Name - Student ID</I>. </li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+
+
+<tr>
+<td>09/28/2015, Mon </td>
+<td>Lecture 03: Linear Regression <br>
+<ul>[Reference]:
+<li> <a href="http://pan.baidu.com/s/1mgjF4xi"> [ slides in pdf ] </a> </li>
+</ul>
+<ul>[Homework 2]:
+<li> <a href="homework02.pdf">Homework 2 [pdf]</a>. Deadline: 10/12/2015, Monday.  Mark on the head of your homework: <I> Name - Student ID</I>. </li>
+</ul>
+<ul>[Mini Project 1]:
+<li> <a href="project1.pdf">Project 1 [pdf]</a>. Deadline: 10/12/2015, Monday.  Team work with no more than <I> FIVE (5) </I> collaborators. </li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>10/12/2015, Mon </td>
+<td>Lecture 04: Linear Classification <br>
+<ul>[Discussion Session]:
+<li> Jiechao XIONG, <a href=""> A Dynamic Approach to Variable Selection </a> </li>
+</ul>
+<ul>[Reference]:
+<li> <a href="http://pan.baidu.com/s/1qWvJPX6"> [ slides in pdf ] </a> </li>
+</ul>
+<ul>[Homework 3]:
+<li> <a href="homework03.pdf">Homework 3 [pdf]</a>. Deadline: 10/19/2015, Monday.  Mark on the head of your homework: <I> Name - Student ID</I>. </li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>10/19/2015, Mon </td>
+<td>Lecture 05: Basis Expansion and Regularization <br>
+<ul>[Reference]:
+<li> <a href="http://pan.baidu.com/s/1gdApBcn"> [ slides in pdf ] </a> </li>
+</ul>
+<ul>[Homework 4]:
+<li> <a href="homework04.pdf">Homework 4 [pdf]</a>. Deadline: 10/26/2015, Monday.  Mark on the head of your homework: <I> Name - Student ID</I>. </li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>10/26/2015, Mon </td>
+<td>Lecture 06: Model Assessment and Selection <br>
+<ul>[Reference]:
+<li> <a href="http://pan.baidu.com/s/1qWKhncS"> [ slides in pdf ] </a> </li>
+<li> <a href="http://pan.baidu.com/s/1jHeKrY2"> [ video in mp4 ] </a> </li>
+</ul>
+<ul>[Homework 5]:
+<li> <a href="homework05.pdf">Homework 5 [pdf]</a>. Deadline: 11/02/2015, Monday.  Mark on the head of your homework: <I> Name - Student ID</I>. </li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>11/02/2015, Mon </td>
+<td>Lecture 07: Kernel Smoothing Methods <br>
+<ul>[Discussion Session]:
+<li> Xuening ZHU, <a href=""> Network Vector Regression </a> </li>
+</ul>
+<ul>[Reference]:
+<li> <a href="http://pan.baidu.com/s/1i3CU4hZ"> [ slides in pdf ] </a> </li>
+<li> <a href="http://pan.baidu.com/s/1bnR1xzL"> [ video in mp4 ] </a> </li>
+</ul>
+<ul>[Homework 6]:
+<li> <a href="homework06.pdf">Homework 6 [pdf]</a>. Deadline: 11/09/2015, Monday.  Mark on the head of your homework: <I> Name - Student ID</I>. </li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+
+<tr>
+<td>11/09/2015, Mon </td>
+<td>Lecture 08: Support Vector Machine and Flexible Discriminant Analysis <br>
+<ul>[Discussion Session]:
+<li> Huizhuo YUAN, <a href="http://math.stanford.edu/~yuany/course/2015.fall/SVM_in_R.pdf"> SVM in R </a> </li>
+<li> <a href="http://math.stanford.edu/~yuany/course/2015.fall/svm.R"> R codes for SVM </a> from Chapter 9, An Introduction to Statistical Learning, with applications in R. </li>
+</ul>
+<ul>[Reference]:
+<li> <a href="http://pan.baidu.com/s/1bnr24W3"> [ slides in pdf ] </a> </li>
+</ul>
+<ul>[Homework 7]:
+<li> <a href="homework07.pdf">Homework 7 [pdf]</a>. Deadline: 11/16/2015, Monday.  Mark on the head of your homework: <I> Name - Student ID</I>. </li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>11/16/2015, Mon </td>
+<td>Lecture 09: Undirected Graphical Models <br>
+<ul>[Discussion Session]:
+<li> Xiao Li, Mixed and Missing Data: A Unified Treatment with Latent Graphical Models <a href="http://arxiv.org/abs/1511.04656"> [arxiv:1511.04656] </a></li>
+<li> <a href="https://cran.r-project.org/web/packages/glasso/index.html"> R package: glasso </a> graphical LASSO </li>
+<li> <a href="https://cran.r-project.org/web/packages/huge/index.html"> R package: huge </a>  semiparametric Gaussian graphical models etc.</li>
+<li> <a href="https://cran.r-project.org/web/packages/Libra/index.html"> R package: Libra </a>  linear regression, logistic regression, and Ising model (v1.4+), etc.</li>
+<li> <a href="http://math.stanford.edu/~yuany/course/data"> west.R </a> an R sample code for analyzing Journey to the West using GLASSO, Huge, Ising model (Libra v1.4+), etc.</li>
+<li> <a href="http://math.stanford.edu/~yuany/course/data/dream.RData"> dream.RData </a>: [&#32418;&#27004;&#26790;&#20154;&#29289;&#20107;&#20214;&#30697;&#38453;] with explanation <a href="http://math.stanford.edu/~yuany/course/data/dream.Rd"> dream.Rd </a>
+</li>
+<li> <a href="http://math.stanford.edu/~yuany/course/data/west.RData"> west.RData </a>: [&#35199;&#28216;&#35760;] with explanation <a href="http://math.stanford.edu/~yuany/course/data/west.Rd"> west.Rd </a>
+</li>
+</ul>
+<ul>[Reference]:
+<li> <a href="http://pan.baidu.com/s/1sjGcRUX"> [ slides in pdf ] </a> </li>
+<li> <a href="http://pan.baidu.com/s/1jH3gOL4"> [ video in mp4 ] </a> </li>
+</ul>
+<ul>[Homework 8]:
+<li> <a href="homework08.pdf">Homework 8 [pdf]</a>. Deadline: 11/30/2015, Monday.  Mark on the head of your homework: <I> Name - Student ID</I>. </li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>11/23/2015, Mon </td>
+<td>Lecture 10: Neural Networks <br>
+<ul>[Discussion Session]:
+<li> Bingzhe WU, A Tutorial on CNN with Caffe <a href="http://math.stanford.edu/~yuany/course/2015.fall/CNN.pdf"> [CNN.pdf] </a> <a href="http://math.stanford.edu/~yuany/course/2015.fall/caffe.pdf"> [caffe.pdf] </a> </li>
+<li> <a href="http://caffe.berkeleyvision.org/"> Caffe website by Yangqing Jia </a>
+<li> <a href="http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf"> [AlexNet paper] </a>: ImageNet Classification with Deep Convolutional Neural Networks, Krizhevsky, Sutskever, Hinton, NIPS, 2012 </li>
+<li> <a href="http://arxiv.org/abs/1409.1556v6"> [VGG model paper] </a>: Very Deep Convolutional Networks for Large-Scale Image Recognition, Karen Simonyan and Andrew Zisserman, ICLR 2015,  arXiv:1409.1556v6 </li>
+<li> <a href="http://math.stanford.edu/~yuany/course/2015.fall/lenet_train_test.prototxt"> [ LeNet caffe model file used in class] </a> </li>
+<li> <a href="http://math.stanford.edu/~yuany/course/2015.fall/lenet_solver.prototxt"> [ LeNet training parameter file used in class] </a> </li>
+<li> <a href="http://yann.lecun.com/exdb/mnist/"> [Yann's MNIST database website] </a> </li>
+</ul>
+<ul>[Reference]:
+<li> <a href="http://pan.baidu.com/s/1dDt1zWX"> [ slides in pdf ] </a> </li>
+</ul>
+<ul>[Homework 9]:
+<li> <a href="homework09.pdf">Homework 9 [pdf]</a>. Deadline: 11/28/2015, Monday.  Mark on the head of your homework: <I> Name - Student ID</I>. </li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>11/30/2015, Mon </td>
+<td>Lecture 11: Ensemble of Trees: Boosting, Bagging, and Random Forest <br>
+<ul>[Discussion Session]:
+<li> Wanrong Zhang, Higher Criticism: Clustering by IF-PCA for Sequencing Data <a href="http://math.stanford.edu/~yuany/course/2015.fall/ZhangWR.pdf"> [ZhangWR.pdf] </a>  </li>
+</ul>
+<ul>[Reference]:
+<li> <a href="http://pan.baidu.com/s/1jGJGqua"> [ slides in pdf ] </a> </li>
+<li> <a href="http://pan.baidu.com/s/1bolelnp"> [ video in mp4 ] </a> </li>
+<li> <a href="http://math.stanford.edu/~yuany/course/data/trees.R"> trees.R </a>: Classification and regression tree example </li>
+<li> <a href="http://math.stanford.edu/~yuany/course/data/boost.R"> boost.R </a>:  Boosting, Bagging, and Random Forest example </li>
+</ul>
+<ul>[Homework 10]:
+<li> <a href="homework10.pdf">Homework 10 [pdf]</a>. Deadline: 12/07/2015, Monday.  Mark on the head of your homework: <I> Name - Student ID</I>. </li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>12/07/2015, Mon </td>
+<td>Lecture 12: Applications of Deep Learning with Torch and Final Project <br>
+<ul>[Discussion Session]:
+<li> Jiechao Xiong: <a href="http://nbviewer.ipython.org/url/math.stanford.edu/~yuany/course/reference/Deep%20Learning%20with%20Torch.ipynb"> A Tutorial on deep learning with torch </li>
+</ul>
+<ul>[Reference]:
+<li> <a href="http://math.stanford.edu/~yuany/course/2015.fall/Lecture12.pdf"> [ slides in pdf ] </a> </li>
+<li> <a href="http://code.madbits.com/wiki/doku.php"> Machine Learning with Torch </a> </li>
+<li> <a href="https://github.com/soumith/cvpr2015/blob/master/Deep%20Learning%20with%20Torch.ipynb"> Deep Learning with Torch </a>  </li>
+<li> <a href="https://github.com/jcjohnson/neural-style"> Neural-style </a>: A torch implementation of the paper <a href="http://arxiv.org/abs/1508.06576">A Neural Algorithm of Artistic Style</a> by Leon A. Gatys, Alexander S. Ecker, and Matthias Bethge.  </li>
+</ul>
+<ul>[Final Project]:
+<li> <a href="http://math.stanford.edu/~yuany/course/2015.fall/project_final.pdf">Final Project [pdf]</a>. Deadline: 12/27/2015, Sunday. </li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>12/14/2015, Mon </td>
+<td>Lecture 13: (A) Tutorial on Libra: R package for High Dimensional Statistics (B) Sparse Coding and Dictionary Learning <br>
+<ul>[Discussion Session]:
+<li> Ruohan Zhan: <a href="http://math.stanford.edu/~yuany/course/2015.fall/slides-RuohanZhan.pdf"> Adaptive Tight Frames for X-ray CT Image Restoration via Radon Domain Inpainting </li>
+</ul>
+<ul>[Reference]:
+<li> <a href="http://math.stanford.edu/~yuany/course/2015.fall/Shanghai_151121.pdf"> [ Tutorial slides on Libra ] </a> </li>
+<li> <a href="http://math.stanford.edu/~yuany/course/2015.fall/Lecture13.pdf"> [ Sparse Coding and Dictionary Learning slides ] </a> </li>
+<li> <a href="https://github.com/torch/tutorials/blob/master/3_unsupervised/2_models.lua"> Auto-encoder in Torch </a>: transpose Weight Sharing </li>
+</ul>
+</td>
+<td>Jiechao Xiong <br> Ruohan Zhan</td>
+<td></td>
+</tr>
+
+<tr>
+<td>12/14/2015, Mon </td>
+<td>Lecture 14: (A) Final Project (B) Introduction to Big Data in Baidu and Machine Learning <br>
+<ul>[Reference]:
+<li> <a href="http://math.stanford.edu/~yuany/course/2015.fall/Lecture14.pdf"> [ slides on poster session ] </a> </li>
+</ul>
+</td>
+<td>Tong Zhang <br> Zhiyong Shen</td>
+<td></td>
+</tr>
+
+</tbody>
+</table>
+
+<br>
+
+<h3><a name="data">Datasets (to-be-updated)</a></h3>
+
+<ul>
+<br>
+<li> [Animal Sleep Data] <a href="http://math.stanford.edu/~yuany/course/data/sleep1.csv"> Animal species sleeping hours vs. other features </a>
+</li>
+<br>
+<li> [Anzhen Heart Data] <a href="http://math.stanford.edu/~yuany/course/data/heartData_20140401.xlsx"> Heart Operation Effect Prediction</a>, provided by Dr. Jinwen Wang, Anzhen Hospital
+</li>
+<br>
+<li> [Beer Data] <a href="http://math.stanford.edu/~yuany/course/data/Beers_20140514.xlsx"> 877 beers dataset </a>, provided by Mr. Richard Sun, Shanghai
+</li>
+<br>
+<li> [Crime Data] <a href="http://math.stanford.edu/~yuany/course/data/crime.zip"> Crime rates in 59 US cities during 1970-1992 </a>
+</li>
+<br>
+<li> [Real-Time-Bidding Algorithm Competition Data] <a href="http://contest.ipinyou.com/"> Contest Website </a>
+</li>
+<br>
+<li> <a name="hongloumeng">[&#32418;&#27004;&#26790;&#20154;&#29289;&#20107;&#20214;&#30697;&#38453;]</a> a 376-by-475 matrix (374-by-475 updated by WAN, Mengting) for character-event appearance in A Dream of Red Mansion (Xueqin Cao) <a href="http://math.stanford.edu/~yuany/course/data/dream.RData"> [374 Characters dream.RData (for R load)] </a><a href="http://math.stanford.edu/~yuany/course/data/dream.Rd"> [dream.Rd (for R manual)] </a>  <a href="http://math.stanford.edu/~yuany/course/data/HongLouMeng374.txt"> [HongLouMeng374.txt] </a>  <a href="http://math.stanford.edu/~yuany/course/data/HongLouMeng376.csv"> [HongLouMeng376.csv] </a> <a href="http://math.stanford.edu/~yuany/course/data/hongloumeng376.mat"> [.mat] </a>
+<a href="http://math.stanford.edu/~yuany/course/data/readme.m"> [readme.m] </a>
+</li>
+<br>
+<li> <a name="data_xiyouji">[&#35199;&#28216;&#35760;]</a> characters-scene occurance matrices for 100 chapters <a href="http://math.stanford.edu/~yuany/course/data/west.RData">[data in RData]</a> <a href="http://math.stanford.edu/~yuany/course/data/xiyouji.mat"> [data in matlab (302-by-408 matrix)] </a>
+<br>
+<table border="1" cellspacing="0">
+<tbody>
+<tr>
+<td align="left"><strong><a href="http://math.stanford.edu/~yuany/course/data/xiyouji/chap001-005.xls">chap001-005</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap006-009.xls">chap006-009</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap010-013.xls">chap010-013</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap014-017.xls">chap014-017</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap018-021.xls">chap018-021</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap022-025.xls">chap022-025</a></strong></td>
+</tr>
+<tr>
+<td align="left"><strong><a href="../data/xiyouji/chap026-029.xls">chap026-029</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap030-033.xls">chap030-033</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap034-037.xls">chap034-037</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap038-041.xls">chap038-041</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap042-045.xls">chap042-045</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap046-049.xls">chap046-049</a></strong></td>
+</tr>
+<tr>
+<td align="left"><strong><a href="../data/xiyouji/chap050-053.xls">chap050-053</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap054-057.xls">chap054-057</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap058-061.xls">chap058-061</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap062-065.xls">chap062-065</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap066-069.xls">chap066-069</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap070-073.xls">chap070-073</a></strong></td>
+</tr>
+<tr>
+<td align="left"><strong><a href="../data/xiyouji/chap074-077.xls">chap074-077</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap078-081.xls">chap078-081</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap082-085.xls">chap082-085</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap086-088.xls">chap086-088</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap089-091.xls">chap089-091</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap092-094.xls">chap092-094</a></strong></td>
+</tr>
+<tr>
+<td align="left"><strong><a href="../data/xiyouji/chap095-097.xls">chap095-097</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap098-100.xls">chap098-100</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap001-100_txt.zip">All in TXT</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/readData.m">readData.m</a></strong></td>
+</tr>
+</tbody>
+</table>
+</li>
+<br>
+<li> <a name="keywords">[Keywords Pricing]</a> Keywords and profit index in paid search advertising, by Hansheng Wang (Guanghua, PKU). <a href="http://math.stanford.edu/~yuany/course/2010.spring/Keyword/SE_slice.jpg"> [sample file] </a> <a href="http://math.stanford.edu/~yuany/course/2010.spring/Keyword/readme.txt"> [readme.txt] </a>  <a href="http://math.stanford.edu/~yuany/course/2010.spring/Keyword/SE.csv"> [data in csv] </a>
+</li>
+<br>
+<li> [Radon Data] <a href="http://math.stanford.edu/~yuany/course/data/radon.csv"> Radon measurements of 12,687 houses in US </a>
+</li>
+<br>
+<li> [Wells Data] <a href="http://math.stanford.edu/~yuany/course/data/wells.csv"> Switch unsafe wells for arsenic pollution in Bangladesh </a>
+</li>
+<br>
+<li> to-be-done...
+</li>
+</ul>
+
+<hr>
+
+<address>
+by <a href="http://www.math.pku.edu.cn/teachers/yaoy">YAO, Yuan</a>.
+</address>
+
+</body>
+</html>
