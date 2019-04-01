@@ -1,0 +1,339 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\def\N{{\mathcal N}}
+\def\R{{\mathcal R}}
+\def\E{{\mathbb E}}
+
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0.25 in}
+\setlength{\parskip}{0.1 in}
+
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{page}{1}
+   \setcounter{section}{0}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Statistical Learning \hfill #4} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\Large \hfill #1  \hfill} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\it Instructor: #2\hfill #3} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{#1}{#1}
+   \vspace*{4mm}
+}
+
+
+\begin{document}
+
+\lecture{Final Project}{Yuan Yao}{Due: Sunday December 27, 2015}{}
+
+\section{Requirement}
+
+\begin{enumerate}
+\item Pick up ONE (or more if you like) favorite problem \emph{below} or \emph{from the data in textbook} to attack. If you would like to work on a different problem outside the candidates we proposed, please email course instructors about your proposal. Brave hearts for explorations will be encouraged!
+\item The last few projects continue from the first project. 
+\item Team work: we encourage you to form small team, up to FIVE persons per group, to work on the same problem. Each team just submit ONE \emph{poster} report, with a clear remark on each person's contribution. A sample poster file with PKU logo can be found at \\ 
+\url{http://math.stanford.edu/~yuany/course/reference/poster_v5.pdf} \\
+whose source LATEX codes can be downloaded at \\
+\url{http://math.stanford.edu/~yuany/course/reference/pkuposter.zip} 
+\item In the report, show your results with your analysis of the results. Remember: scientific analysis and reasoning are more important than merely the performance results. Source codes may be submitted through email as a zip file, or as an appendix if it is not large.  
+\item Submit your report by email or in paper version no later than the deadline, to Teaching Assistants (TA) (\href{mailto:statlearning\_hw@126.com}{statlearning\_hw@126.com}). We plan a poster session during 3-6pm on Monday December 28 for peer reviews. 
+\end{enumerate}
+
+\section{Heart PCI Operation Effect Prediction}
+
+The following data, provided by Dr. Jinwen Wang at Anzhen Hospital, 
+
+\url{http://math.stanford.edu/~yuany/course/data/heartData_20140401.xlsx}
+
+\noindent contains 2581 patients with 73 measurements (inputs) as well as a response variable indicating if after the heart operation there is a null-reflux state. This is a classification problem, with a challenge from the large amount of missing values. Sheet 3 and 4 in the file contains some explanation of the data and variables. 
+
+The problems are listed here:
+\begin{enumerate}
+\item The inputs (covariates) are of three kinds, measurements upon check-in, measurements before PCI operation, and measurements in PCI operations. For doctors, it is desired to find a prediction model based on measurements before the operation (including check-in). Sheet 2 in the file contains only such measurements.
+\subitem The following two reports by LV, Yuan and LI, Xiao, respectively, might be interesting to you:
+
+\url{http://math.stanford.edu/~yuany/course/reference/MSThesis.LvYuan.pdf} 
+
+\url{http://arxiv.org/abs/1511.04656} 
+
+\item It is also an interesting problem how to predict the effect based on all measurements, with lots of missing values. Sheet 1 contains the full measurements. There are some good work by previous students, which are listed here for your reference: 
+%\subitem The following two reports by LU, Yu and WANG, Qing, are probably inspiring to you.
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/LuYu_201303_BigHeart.pdf} 
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/WangQing_201303_BigHeart.pdf} 
+
+\subitem The following report by MIAO, Wang and LI, Yanfang, pioneers in missing value treatment. 
+
+\url{http://math.stanford.edu/~yuany/course/reference/MiaoLi2013S_project01.pdf}
+
+\end{enumerate} 
+
+\emph{In the final project, it is desired to take only those measurements upon check-in to predict the probability of non-reflux (non-reflow) after PCI operations. An interpretable model adds a big value! You may compare with your first warm-up project to show your improvements.} 
+
+\section{Identification of Raphael's paintings from the forgeries}
+
+The following data, provided by Prof. Yang WANG from HKUST,
+
+\url{https://drive.google.com/folderview?id=0B-yDtwSjhaSCZ2FqN3AxQ3NJNTA&usp=sharing}
+
+\noindent contains a 28 digital paintings of Raphael or forgeries. Note that there are both jpeg and tiff files, so be careful with the bit depth in digitization. The following file
+
+\url{https://docs.google.com/document/d/1tMaaSIrYwNFZZ2cEJdx1DfFscIfERd5Dp2U7K1ekjTI/edit}
+
+\noindent contains the labels of such paintings, which are 
+\begin{enumerate}
+\item[1] Maybe Raphael - Disputed
+\item[2] Raphael
+\item[3] Raphael
+\item[4] Raphael
+\item[5] Raphael
+\item[6] Raphael
+\item[7] Maybe Raphael - Disputed
+\item[8] Raphael
+\item[9] Raphael
+\item[10] Maybe Raphael - Disputed
+\item[11] Not Raphael
+\item[12] Not Raphael
+\item[13] Not Raphael
+\item[14] Not Raphael
+\item[15] Not Raphael
+\item[16] Not Raphael
+\item[17] Not Raphael
+\item[18] Not Raphael
+\item[19] Not Raphael
+\item[20] My Drawing (Raphael?)
+\item[21] Raphael
+\item[22] Raphael
+\item[23] Maybe Raphael - Disputed
+\item[24] Raphael
+\item[25] Maybe Raphael - Disputed
+\item[26] Maybe Raphael - Disputed
+\item[27] Raphael
+\item[28] Raphael
+\end{enumerate}
+Can you exploit the known Raphael vs. Not Raphael data to predict the identity of those 6 disputed paintings (maybe Raphael)? The following paper by Haixia Liu, Raymond Chan, and me studies Van Gogh's paintings which might be a reference for you:
+
+\url{http://dx.doi.org/10.1016/j.acha.2015.11.005}
+
+\section{Ising Models for Biological Sequences}
+
+The problem is to estimate an Ising model for multiple aligned sequences of proteins in the same family. The data is provided by Dr. John Barton from MIT, in the following zip file,
+
+\url{http://math.stanford.edu/~yuany/course/data/protein2014.zip}
+
+\noindent where you will find 
+\begin{itemize}
+\item pro-binary.dat: A set of 10579 binarized sequences, one sequence per row, taken from the real sequence database
+\item pro-model-binary.dat: A sample of 10000 binary sequences sampled from the model, in the same format as above
+\item pro-couplings.dat: The inferred model parameters
+\end{itemize}
+
+In the third model file, the first N=99 rows of the couplings file are the fields for sites 1 through 99, and the remaining N*(N-1)/2 entries are the couplings between sites, i.e. the entries are
+
+\noindent $h_1$\\
+$h_2$ \\
+$\ldots$\\
+$h_{99}$\\
+$J_{1,2}$\\
+$J_{1,3}$ \\
+$\ldots$ \\
+$J_{1,99}$ \\
+$J_{2,3}$\\
+$\ldots$\\
+$J_{98,99}$
+
+\noindent People use different conventions for the energy function, so just to be clear the convention I am using is that the energy of a configuration $x={x_1,É,x_N}$, $x_i \in \{0,1\}$ is
+
+$E(x) = - \sum_{i=1}^N h_i x_i - \sum_{i=1}^{N-1} \sum_{j=i+1}^N J_{i,j} x_i x_j $,
+
+\noindent and the probability distribution over configurations $x$ is $p(x) = \exp(-E(x))/Z$ with $Z$ the partition (normalization) function.
+
+%\begin{figure}[htbp]
+%\begin{center}
+%\includegraphics[width=0.9\textwidth]{chendi.png}  
+%\caption{True Positive Rates on non-local contact predictions by Directed Information vs. Graphical Lasso on Yes\_Human, courtesy by Chendi Huang, indicating that graphical lasso performs better.}
+%\label{chendi}
+%\end{center}
+%\end{figure}
+
+This project is to learn an Ising model from multiple aligned sequences. This may contains the following 2 challenges
+\begin{enumerate}
+\item Learn an Ising model from simulated data, e.g. the second data file above with model in the third file. You may use 2 ways to evaluate your estimator: 1) the $l_2$ distance between the parameters you learned and the true parameters, or; 2) use your models to generate new sequences and test if the marginal distribution and correlation matrix meets the data.
+\item Learn an Ising model from real data, e.g. the first data file. Only the second method above can be applied to evaluate your estimator in this setting, since you don't know the ground truth parameters.  
+\end{enumerate}
+\noindent You may explore Gaussian (corpula) graphical models for such sequence data.
+
+(Hint) You may consider to try or compare the following algorithms:
+\begin{itemize}
+\item Xue-Zou-Cai's composite penalized conditional likelihood method,
+\subitem \url{http://www.personal.psu.edu/lxx6/softwares/sparseising_1.2.tar.gz}
+\item Minimum Probability Flow (MPF) method at ICML2013, 
+\subitem \url{https://github.com/Sohl-Dickstein/Minimum-Probability-Flow-Learning}. 
+\item Linearized Bregman Algorithms
+\subitem \url{https://cran.r-project.org/web/packages/Libra/index.html}
+\end{itemize}
+Note that the binary coding for Ising model in statistics is often $\{-1,1\}$ rather than $\{0,1\}$. A poster from early classes can be found at
+
+\url{http://math.stanford.edu/~yuany/report/Poster07.Ising_Yichen_Zhang_Jiyi_Liu_Rujing_Zhao.pdf}
+ 
+\section{Co-appearance data in novels: Dream of Red Mansion and Journey to the West}
+
+A 374-by-475 binary matrix of character-event can be found at the course website, in .XLS, .CSV, .RData, and .MAT formats. For example the RData format is found at
+
+\url{http://math.stanford.edu/~yuany/course/data/dream.RData} 
+
+\noindent with a readme file:
+
+\url{http://math.stanford.edu/~yuany/course/data/dream.Rd}
+
+\url{http://math.stanford.edu/~yuany/course/data/readme.m}
+
+Thanks to WAN, Mengting, who helps clean the data and kindly shares her BS thesis for your reference
+ 
+\url{http://math.stanford.edu/~yuany/report/WANMengTing2013_HLM.pdf}
+
+%Among various choices of analysis, with this data matrix $X$, you may form a weighted graph $W=X * X'$, pursue PCA of $X$, and sparse SVD of $X$ etc. As an example, here is a project presentation by LI, Liying which gives an analysis of A Journey to the West (by Chen-En Wu) based on PCA, for the class Mathematical Introduction to Data Science in Fall 2012 where you may find more interesting approaches.
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/LiyingLI_Xiyouji2012_slides.pdf}
+
+Moreover you may find a similar matrix for the Journey to the West (by Chen-En Wu) at:
+
+\url{http://math.stanford.edu/~yuany/course/data/west.RData}
+
+\section{Jiashun Jin's data on Coauthorship and Citation Networks for Statisticians}
+Thanks to Prof. Jiashun Jin at CMU, who provides his collection of citation and coauthor data for statisticians. The zipped data file (14M) can be found at 
+
+\url{http://math.stanford.edu/~yuany/course/data/jiashun/Jiashun.zip}
+
+\noindent with an explanation file
+
+\url{http://math.stanford.edu/~yuany/course/data/jiashun/ReadMe.txt}
+
+You may feel free to explore this data using regression (e.g. logistic regression), discrete graphical models (e.g. Ising, Gaussian corpula graphical models), and/or other methods. 
+
+
+\section{CTR (Click-Through-Rate) Prediction in Bidding Algorithm}
+
+Original competition can be found from iPinYou Global Bidding Algorithm Competition at 
+
+\url{http://contest.ipinyou.com/}
+
+\noindent where the full data (about 40GB) of 3 seasons can be downloadable at Baidu WebDrive 
+
+\url{http://pan.baidu.com/s/1kTkGUQN}
+
+%As part of the data, README file can be read from here:
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/data/README}
+
+For those who need a server, you may connect to the Linux account \url{einstein@162.105.68.237} which is public to the students in this class. Remember to make your own directory before starting creation of your own files. For example
+
+\begin{enumerate}
+\item {\texttt{ssh einstein@162.105.68.237}}
+\item {\texttt{INPUT your password}}
+\item {\texttt{mkdir [your own directory]}}
+\end{enumerate}
+
+More information can be found in class notes at \url{www.ebanshu.com}. If you have worked on this problem before, make a comparative study on how did you improve over previous work. 
+
+
+\section{Keyword Pricing (Regression)}
+
+The following data, collected by Prof. Hansheng Wang in Guanghua Business School at PKU, 
+
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/math2010_spring/Keyword/SE.csv} 
+\url{http://math.stanford.edu/~yuany/course/data/SE.csv}
+
+\noindent contains two columns: the first column is a list of keywords; the second column is the profit value (positive for earning and negative for loss). Figure \ref{fig:keywords} gives some example.
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{keywords.png}  
+\caption{Keywords and profit value}
+\label{fig:keywords}
+\end{center}
+\end{figure}
+
+The purpose is to predict the profit value based on features extracted from the keywords, which might be linguistic, geographic, and any new features in your creation. Since the profit values are of real numbers, this problem is regarded as a regression problem by default. 
+
+%A reference can be found in Mr. Jiaqi Zhu's bachelor thesis work:
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/Thesis_ZHUJiaqi.pdf}
+A sample study can be found at 
+
+\url{http://math.stanford.edu/~yuany/report/Poster06.Keyword.pdf}
+
+\section{Beer Popularity and Rating}
+
+The following data, provided by Mr. Richard (\url{sun.richard@yahoo.com}) from Shanghai,
+
+\url{http://math.stanford.edu/~yuany/course/data/Beers_20140514.xlsx}
+
+\noindent contains 877 brands (rows) of beers in Chinese market, with a few attributes about ingradients, alcoholicity, price (and unit price), reviewers count, mean scores, and as well as sources of reviewers (e.g. amazon, jd, yhd etc.). Two questions are interesting to explore such data
+
+\begin{enumerate}
+\item What factors are highly correlated with the popularity of beers indicated by reviewers count? 
+\item What factors accounts for the mean rating scores? Why are those beers lowly rated? 
+\end{enumerate}
+
+Note that the data does not contain lots of attributes, so think about your goal before you take a try.
+
+\section{Animal Species Sleeping Hours Regression}
+The following dataset contains $n=51$ species with several features including the average sleeping hours per day.
+
+\url{http://math.stanford.edu/~yuany/course/data/sleep1.csv}
+
+Explore \emph{what affects the sleep an animal needs}? A sample R code can be found at
+
+\url{http://math.stanford.edu/~yuany/course/Fall2015/Lecture19.R}
+
+You need to create your own design of analysis.
+
+\section{Crime Rate}
+Explore the following dataset about crime rates in 59 US cities during 1970-1992.
+
+\url{http://math.stanford.edu/~yuany/course/data/crime.zip}
+
+\section{Radon Measurement}
+The following data set contains Radon measurements of 12,687 houses in U.S. 
+
+\url{http://math.stanford.edu/~yuany/course/data/radon.csv}
+
+\section{Switch unsafe wells}
+The following data set contains decision of switching unsafe wells for arsenic pollution in Bangladesh.
+
+\url{http://math.stanford.edu/~yuany/course/data/wells.csv}
+
+%\section{*Neural Network and Deep Learning}
+%
+%The following project on deep learning for reconstructing a 2-D Gaussian Mixture Model, is proposed by Dr. Lei Jia from Baidu and posted on page 25-30 in my lecture slides
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/Spring2014/Lecture13.pdf}
+%
+%\noindent For those who are interested in Restricted Boltzman Machine and MNIST experiments, Hinton's matlab codes are good demonstration
+%
+%\url{http://www.cs.toronto.edu/~hinton/MatlabForSciencePaper.html}
+
+\end{document}
+
+

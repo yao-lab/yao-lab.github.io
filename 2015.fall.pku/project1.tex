@@ -1,0 +1,123 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\def\N{{\mathcal N}}
+\def\R{{\mathcal R}}
+\def\E{{\mathbb E}}
+
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0.25 in}
+\setlength{\parskip}{0.1 in}
+
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{page}{1}
+   \setcounter{section}{0}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Statistical Learning \hfill #4} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\Large \hfill #1  \hfill} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\it Instructor: #2\hfill #3} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{#1}{#1}
+   \vspace*{4mm}
+}
+
+
+\begin{document}
+
+\lecture{Mini-Project 1}{Yuan Yao}{Due: October 12, 2015}{}
+
+\section{Requirement}
+
+\begin{enumerate}
+\item Pick up ONE (or more if you like) favorite problem \emph{below} or \emph{from the datasets in textbook} to attack. If you would like to work on a different problem outside the candidates we proposed, please email course instructors about your proposal. Brave hearts for explorations will be encouraged!
+\item Team work: we encourage you to form small team, up to FIVE persons per group, to work on the same problem. Each team just submit ONE report. For example a \emph{poster} report, with a clear remark on each person's contribution. A sample poster file with PKU logo can be found at \\
+\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/poster_v5.pdf} \\
+whose source LATEX codes can be downloaded at \\
+\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/pkuposter.zip}
+\item In the report, set up your problem to attack and show your results with your analysis. Remember: scientific analysis and reasoning are more important than merely the performance results. Source codes may be submitted through email as a zip file, or as an appendix if it is not large.
+\item Submit your report by email or in paper version no later than the deadline, to Teaching Assistants (TA). %   (\href{mailto:statlearning\_hw@126.com}{statlearning\_hw@126.com}). We plan a poster session on Saturday June 21 (evening) for peer reviews.
+\end{enumerate}
+
+\section{Animal Species Sleeping Hours Regression}
+The following dataset contains $n=51$ species with several features including the average sleeping hours per day.
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/SummerSchool_2010/sleep1.csv}
+
+Explore \emph{what affects the sleep an animal needs}? A sample R code can be found at
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/Spring2015/Lecture19.R}
+
+You need to create your own design of analysis.
+
+\section{Crime Rate}
+Explore the following dataset about crime rates in 59 US cities during 1970-1992.
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/crime.xlsx}
+
+\section{Keyword Pricing (Regression)}
+
+The following data, collected by Prof. Hansheng Wang in Guanghua Business School at PKU,
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/math2010_spring/Keyword/SE.csv}
+
+\noindent contains two columns: the first column is a list of keywords; the second column is the profit value (positive for earning and negative for loss). Figure \ref{fig:keywords} gives some example.
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{keywords.png}
+\caption{Keywords and profit value}
+\label{fig:keywords}
+\end{center}
+\end{figure}
+
+The purpose is to predict the profit value based on features extracted from the keywords, which might be linguistic, geographic, and any new features in your creation. Since the profit values are of real numbers, this problem is regarded as a regression problem by default.
+
+A reference can be found in Mr. Jiaqi Zhu's bachelor thesis work:
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/Thesis_ZHUJiaqi.pdf}
+
+\section{Beer Popularity and Rating}
+
+The following data, provided by Mr. Richard (\url{sun.richard@yahoo.com}) from Shanghai,
+
+\url{http://www.math.pku.edu.cn/teachers/yaoy/data/Beers_20140514.xlsx}
+
+\noindent contains 877 brands (rows) of beers in Chinese market, with a few attributes about ingradients, alcoholicity, price (and unit price), reviewers count, mean scores, and as well as sources of reviewers (e.g. amazon, jd, yhd etc.). Two questions are interesting to explore such data
+
+\begin{enumerate}
+\item What factors are highly correlated with the popularity of beers indicated by reviewers count?
+\item What factors accounts for the mean rating scores? Why are those beers lowly rated?
+\end{enumerate}
+
+Note that the data does not contain lots of attributes, so think about your goal before you take a try.
+
+
+$$ A A^T = A^T A = I $$
+
+$$ AA^T = I \Leftrightarrow \|x\|_2 = \|A^Tx\|_2, \forall x$$
+
+\[ J(A,s) = \|s - A^T x\|_2^2 + \lambda \sqrt{s^2+\epsilon} + \gamma \|A\|_2^2\]
+
+\[ \|A\|_2^2 := trace(A^T A)\]
+\end{document}
+
+
