@@ -1,0 +1,90 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\def\N{{\mathcal N}}
+\def\R{{\mathcal R}}
+\def\E{{\mathbb E}}
+
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0.25 in}
+\setlength{\parskip}{0.1 in}
+
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{page}{1}
+   \setcounter{section}{0}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Statistical Learning \hfill #4} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\Large \hfill #1  \hfill} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\it Instructor: #2\hfill } }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{#1}{#1}
+   \vspace*{4mm}
+}
+
+
+\begin{document}
+
+\lecture{Homework 5. Model Assessment and Selection}{Yuan Yao}{}{Deadline: November 2, 2015}
+
+% The problem below marked by $^*$ is optional with bonus credits.
+
+For the experimental problem, include the source codes (as Appendix) which are runnable under standard settings. On the head of your submitted homework, please mark \emph{NAME - student ID}.
+
+By (ESL), please refer to the Elements of Statistical Learning, Edition II, the 10$^{th}$ print
+
+\url{http://statweb.stanford.edu/~tibs/ElemStatLearn/printings/ESLII_print10.pdf}
+
+\begin{enumerate}
+\item (ESL) Exercise 7.3
+
+\item (ESL) Exercise 7.4
+
+\item (ESL) Exercise 7.5
+
+\item (ESL) Exercise 7.8
+
+\item (ESL) Exercise 7.9 
+
+\item[A] (Crowdsourced voting on Age Identification) It is always hard to tell the age given a face image, while it is relatively easy to identify which one looks older given two faces presented together. The following crowdsourcing task, created at a website made by Tsinghua University, aims to collect pairwise comparison data for age identification.
+\subitem[1.] Go to the following website and create a \emph{worker} account \\
+\url{http://www.chinacrowds.com}
+\subitem[2.] Sign in with your worker account and choose task 370 for age comparisons
+\subitem[3.] Input your voting (preferred at least 50 tasks for each person): 10 tasks per page and remember to submit when you finish a page.
+%
+%\item[*B] Explore the prostate cancer data with the following methods
+%\subitem[1] Least Square method, understand the confidence intervals of parameters
+%\subitem[2] Regularization path of Ridge Regression
+%\subitem[3] Regularization path of LASSO
+\end{enumerate}
+
+\end{document}
+
+
+\item {\em Finite rank perturbations of random symmetric matrices:} Wigner's semi-circle law (proved by Eugene Wigner in 1951) concerns the limiting distribution of the eigenvalues of random symmetric matrices. It states, for example, that the limiting eigenvalue distribution of $n\times n$ symmetric matrices whose entries $w_{ij}$ on and above the diagonal $(i\leq j)$ are i.i.d Gaussians $\mathcal{N}(0,\frac{1}{4n})$ (and the entries below the diagonal are determined by symmetrization, i.e., $w_{ji}=w_{ij}$) is the semi-circle:
+    $$p(t) = \frac{2}{\pi} \sqrt{1-t^2}, \quad -1\leq t \leq 1,$$
+    where the distribution is supported in the interval $[-1,1]$.
+\begin{enumerate}
+\item Confirm Wigner's semi-circle law using MATLAB simulations (take, e.g., $n=400$).
+\item Find the largest eigenvalue of a rank-1 perturbation of a Wigner matrix. That is, find the largest eigenvalue of the matrix $$W + \lambda_0 uu^T,$$ where $W$ is an $n\times n$ random symmetric matrix as above, and $u$ is some deterministic unit-norm vector. Determine the value of $\lambda_0$ for which a phase transition occurs. What is the correlation between the top eigenvector of $W+\lambda_0 uu^T$ and the vector $u$ as a function of $\lambda_0$? Use techniques similar to the ones we used in class for analyzing finite rank perturbations of sample covariance matrices.
+\end{enumerate}
+
+

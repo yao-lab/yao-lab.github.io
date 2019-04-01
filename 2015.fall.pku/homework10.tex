@@ -1,0 +1,134 @@
+\documentclass[11pt,compress,epsfig,color]{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\def\N{{\mathcal N}}
+\def\R{{\mathcal R}}
+\def\E{{\mathbb E}}
+
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0.25 in}
+\setlength{\parskip}{0.1 in}
+
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{page}{1}
+   \setcounter{section}{0}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Statistical Learning \hfill #4} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\Large \hfill #1  \hfill} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\it Instructor: #2\hfill } }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{#1}{#1}
+   \vspace*{4mm}
+}
+
+\usepackage{listings}
+\usepackage[dvipsnames]{xcolor}
+ \definecolor{dkgreen}{rgb}{0,0.6,0}
+ \definecolor{mauve}{rgb}{0.58,0,0.82}
+ \definecolor{lightyellow}{rgb}{1,1,.88}
+\lstset{ %
+  language=R,                     % the language of the code
+  basicstyle=\footnotesize\ttfamily,
+%  basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+%  numbers=left,                   % where to put the line-numbers
+%  numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  stepnumber=1,                   % the step between two line-numbers. If it's 1, each line
+                                  % will be numbered
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{lightyellow},  % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+%  frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+%  title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                  % also try caption instead of title
+%  keywordstyle=\color{blue},      % keyword style
+  commentstyle=\color{dkgreen},   % comment style
+  stringstyle=\color{mauve},      % string literal style
+  escapeinside={\%*}{*)},         % if you want to add a comment within your code
+  morekeywords={*,...}            % if you want to add more keywords to the set
+}
+
+
+
+\begin{document}
+
+\lecture{Homework 10. Tree ensembles: Boosting, Bagging, and Random Forest}{Yuan Yao}{}{Deadline: November 7, 2015}
+
+% The problem below marked by $^*$ is optional with bonus credits.
+
+For the experimental problem, include the source codes (as Appendix) which are runnable under standard settings. On the head of your submitted homework, please mark \emph{NAME - student ID}.
+
+By (ESL), please refer to the Elements of Statistical Learning, Edition II, the 10$^{th}$ print
+
+\url{http://statweb.stanford.edu/~tibs/ElemStatLearn/printings/ESLII_print10.pdf}
+
+By (ISLR), please refer to An Introduction to Statistical Learning, with applications in R,
+
+\url{http://www-bcf.usc.edu/~gareth/ISL/}
+
+\begin{enumerate}
+\item Draw an example (of your own invention) of a partition of two-dimensional feature space that could result from recursive binary splitting. Your example should contain at least six regions ($R_1,R_2,\ldots,R_6,\ldots$). Draw a decision tree corresponding to such a partition. Be sure to label corresponding regions and splitting points. 
+
+\item (ESL) Exercise 9.5
+
+\item (ISLR) Explore the {\tt{Carseats}} dataset ({\tt{library("ISLR")}}) using classification tree, as Section 8.3.1 in ISLR shown in the following R commands.
+\lstinputlisting{trees.R} 
+
+\item (ISLR) Fit the real variable {\tt{Sales}} in {\tt{Carseats}} dataset without converting it to a binary one, using regression tree.
+
+\item Explore the {\tt{Carseats}} dataset with Random Forest ({\tt{library("randomForest")}}), Bagging, and Boosting ({\tt{library("gbm")}}). Compare your results with above.
+
+%\item[A*] (Bonus: you don't need to work on this problem, but bonus scores will be given if you tried.) Explore MNIST dataset using Caffe.
+
+%\item[B*] (Bonus: you don't need to work on this problem, but bonus scores will be given if you tried.) (ESL) Exercise 17.9
+
+
+%\item[A*] (Crowdsourced voting on Age Identification) It is always hard to tell the age given a face image, while it is relatively easy to identify which one looks older given two faces presented together. The following crowdsourcing task, created at a website made by Tsinghua University, aims to collect pairwise comparison data for age identification. If you have not done this, please try --
+%\subitem[1.] Go to the following website and create a \emph{worker} account \\
+%\url{http://www.chinacrowds.com}
+%\subitem[2.] Sign in with your worker account and choose task 370 for age comparisons
+%\subitem[3.] Input your voting (preferred at least 50 tasks for each person): 10 tasks per page and remember to submit when you finish a page.
+%
+%\item[*B] Explore the prostate cancer data with the following methods
+%\subitem[1] Least Square method, understand the confidence intervals of parameters
+%\subitem[2] Regularization path of Ridge Regression
+%\subitem[3] Regularization path of LASSO
+\end{enumerate}
+
+\end{document}
+
+
+\item {\em Finite rank perturbations of random symmetric matrices:} Wigner's semi-circle law (proved by Eugene Wigner in 1951) concerns the limiting distribution of the eigenvalues of random symmetric matrices. It states, for example, that the limiting eigenvalue distribution of $n\times n$ symmetric matrices whose entries $w_{ij}$ on and above the diagonal $(i\leq j)$ are i.i.d Gaussians $\mathcal{N}(0,\frac{1}{4n})$ (and the entries below the diagonal are determined by symmetrization, i.e., $w_{ji}=w_{ij}$) is the semi-circle:
+    $$p(t) = \frac{2}{\pi} \sqrt{1-t^2}, \quad -1\leq t \leq 1,$$
+    where the distribution is supported in the interval $[-1,1]$.
+\begin{enumerate}
+\item Confirm Wigner's semi-circle law using MATLAB simulations (take, e.g., $n=400$).
+\item Find the largest eigenvalue of a rank-1 perturbation of a Wigner matrix. That is, find the largest eigenvalue of the matrix $$W + \lambda_0 uu^T,$$ where $W$ is an $n\times n$ random symmetric matrix as above, and $u$ is some deterministic unit-norm vector. Determine the value of $\lambda_0$ for which a phase transition occurs. What is the correlation between the top eigenvector of $W+\lambda_0 uu^T$ and the vector $u$ as a function of $\lambda_0$? Use techniques similar to the ones we used in class for analyzing finite rank perturbations of sample covariance matrices.
+\end{enumerate}
+
+
