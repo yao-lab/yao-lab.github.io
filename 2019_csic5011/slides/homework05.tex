@@ -1,0 +1,137 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\def\N{{\mathbb N}}
+\def\NN{{\mathcal N}}
+\def\R{{\mathbb R}}
+\def\E{{\mathbb E}}
+\def\rank{{\mathrm{rank}}}
+\def\tr{{\mathrm{trace}}}
+\def\P{{\mathrm{Prob}}}
+\def\sign{{\mathrm{sign}}}
+\def\diag{{\mathrm{diag}}}
+
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0.25 in}
+\setlength{\parskip}{0.1 in}
+
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{page}{1}
+   \setcounter{section}{0}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf A Mathematical Introduction to Data Science \hfill #4} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\Large \hfill #1  \hfill} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\it Instructor: #2\hfill #3} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{#1}{#1}
+   \vspace*{4mm}
+}
+
+
+\begin{document}
+
+\lecture{Homework 4. ISOMAP \& LLE}{Yuan Yao}{Due: Tuesday October 28, 2014}{October 21, 2014}
+
+The problem below marked by $^*$ is optional with bonus credits. % For the experimental problem, include the source codes which are runnable under standard settings. 
+
+\begin{enumerate}
+
+\item {\em Order the faces:} The following dataset contains 33 faces of the same person ($Y\in \R^{112\times 92\times33}$) in different angles,
+
+\url{https://yao-lab.github.io/data/face.mat}
+
+You may create a data matrix $X\in \R^{n\times p}$ where $n=33,p=112\times92=10304$ (e.g. {\texttt{X=reshape(Y,[10304,33])';}} in matlab).
+
+\begin{enumerate}
+\item Explore the MDS-embedding of the 33 faces on top two eigenvectors: order the faces according to the top 1st eigenvector and visualize your results with figures. 
+\item Explore the ISOMAP-embedding of the 33 faces on the $k=5$ nearest neighbor graph and compare it against the MDS results. Note: you may try Tenenbaum's Matlab code \\
+{\url{https://yao-lab.github.io/data/isomapII.m}}
+\item Explore the LLE-embedding of the 33 faces on the $k=5$ nearest neighbor graph and compare it against ISOMAP. Note: you may try the following Matlab code \\
+{\url{https://yao-lab.github.io/data/lle.m}}
+\end{enumerate}
+
+\item {\em Nystr\"{o}m method:} In class, we have shown that every manifold learning algorithm can be regarded as Kernel PCA on graphs: (1) given $N$ data points, define a neighborhood graph with $N$ nodes for data points; (2) construct a positive semidefinite kernel $K$; (3) pursue spectral decomposition of $K$ to find the embedding (using top or bottom eigenvectors). However, this approach might suffer from the expensive computational cost in spectral decomposition of $K$ if $N$ is large and $K$ is non-sparse, e.g. ISOMAP and MDS. 
+
+To overcome this hurdle, Nystr\"{o}m method leads us to a scalable approach to compute eigenvectors of low rank matrices.  
+Suppose that an $N$-by-$N$ positive semidefinite matrix $K\succeq 0$ admits the following block partition
+\begin{equation}
+K = \left[
+\begin{array}{cc}
+A & B \\
+B^T & C
+\end{array}
+\right].
+\end{equation}
+where $A$ is an $n$-by-$n$ block. Assume that $A$ has the spectral decomposition $A=U \Lambda U^T$, $\Lambda=\diag(\lambda_i)$ ($\lambda_1\geq \lambda_2 \geq \ldots \lambda_k > \lambda_{k+1}=\ldots=0$) and $U=[u_1,\ldots,u_n]$ satisfies $U^TU=I$. 
+\begin{enumerate}
+\item Assume that $K=X X^T$ for some $X=[X_1; X_2] \in \R^{N\times k}$ with the block $X_1\in \R^{n\times k}$. Show that $X_1$ and $X_2$ can be decided by:
+\begin{equation}\label{eq:x1}
+ X_1 = U_k \Lambda_k^{1/2}, 
+\end{equation}
+\begin{equation} \label{eq:x2}
+X_2 = B^T U_k \Lambda_k^{-1/2}, 
+\end{equation}
+%\[ X_1 X_1^T = A \Rightarrow X_1 = U_k \Lambda_k^{1/2}, \]
+%\[ X_1 X_2^T = B \Rightarrow X_2 = B^T U_k \Lambda_k^{-1/2}. \]  
+where $U_k=[u_1, \ldots, u_k]$ consists of those $k$ columns of $U$ corresponding to top $k$ eigenvalues $\lambda_i$ ($i=1,\ldots,k$).  
+\item Show that for general $K\succeq 0$, one can construct an approximation from \eqref{eq:x1} and \eqref{eq:x2}, 
+\begin{equation}
+\hat{K} = \left[
+\begin{array}{cc}
+A & B \\
+B^T & \hat{C} 
+\end{array}
+\right].
+\end{equation}
+where $A=X_1 X_1^T$, $B= X_1 X_2^T$, and $\hat{C}=X_2 X_2^T =   B^T A^\dagger B$, $A^\dagger$ denoting the Moore-Penrose (pseudo-) inverse of $A$. Therefore $\|\hat{K}-K\|_F =\|C- B^T A^\dagger B\|_F$. Here the matrix $C-B^T A^\dagger B=:K/A$ is called the (generalized) \emph{Schur Complement} of $A$ in $K$.
+\item Explore Nystr\"{o}m method on the Swiss-Roll dataset (\url{http://yao-lab.github.io/data/swiss_roll_data.mat} contains 3D-data X; \url{http://yao-lab.github.io/data/swissroll.m} is the matlab code) with ISOMAP. To construct the block $A$, you may choose either of the following: 
+\subitem $n$ random data points; 
+\subitem *$n$ landmarks as minimax $k$-centers (\url{https://yao-lab.github.io/data/kcenter.m}); \\
+Some references can be found at: 
+\subitem[dVT04] Vin de Silva and J. B. Tenenbaum, ``Sparse multidimensional scaling using landmark points", 2004, downloadable at \url{http://pages.pomona.edu/~vds04747/public/papers/landmarks.pdf};  
+\subitem[P05] John C. Platt, ``FastMap, MetricMap, and Landmark MDS are all Nystr\"{o}m Algorithms", 2005, downloadable at \url{http://research.microsoft.com/en-us/um/people/jplatt/nystrom2.pdf}. 
+\item *Assume that $A$ is invertible, show that  
+\[ \det(K) = \det(A)\cdot \det(K/A), \]
+\item *Assume that $A$ is invertible, show that 
+\[ \rank(K)=\rank(A)+\rank(K/A). \]
+\item *Can you extend the identities in (c) and (d) to the case of noninvertible $A$? A good reference can be found at, 
+\subitem[Q81] Diane V. Quellette, ``Schur Complements and Statistics", Linear Algebra and Its Applications, 36:187-295, 1981. \url{http://www.sciencedirect.com/science/article/pii/0024379581902329}
+\end{enumerate}
+
+
+%\item {\em James Stein Estimator for $p=1$:} 
+%
+%From Theorem 3.1 in the lecture notes, we know that MLE $\hat{\mu} = Y$ is admissible when $p=1 \text{ or } 2$. However if we use SURE to calculate the risk of James Stein Estimator,
+%\[
+%	R(\hat{\mu}^{\text{JS}},\mu) = \E U(Y) 
+%	= p - \E_\mu \frac{(p-2)^2}{\lVert Y \rVert^2}
+%	< p = R(\hat{\mu}^{\text{MLE}},\mu)
+%\]
+%it seems that for $p=1$ James Stein Estimator should still has lower risk than MLE for any $\mu$.
+% Explain what violates the above calculation for $p=1$.
+%
+
+\end{enumerate}
+
+\end{document}
+
+
