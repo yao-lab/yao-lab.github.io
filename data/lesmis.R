@@ -1,0 +1,8 @@
+names<-c("Myriel","Napoleon","MlleBaptistine","MmeMagloire","CountessDeLo","Geborand","Champtercier","Cravatte","Count","OldMan","Labarre","Valjean","Marguerite","MmeDeR","Isabeau","Gervais","Tholomyes","Listolier","Fameuil","Blacheville","Favourite","Dahlia","Zephine","Fantine","MmeThenardier","Thenardier","Cosette","Javert","Fauchelevent","Bamatabois","Perpetue","Simplice","Scaufflaire","Woman1","Judge","Champmathieu","Brevet","Chenildieu","Cochepaille","Pontmercy","Boulatruelle","Eponine","Anzelma","Woman2","MotherInnocent","Gribier","Jondrette","MmeBurgon","Gavroche","Gillenormand","Magnon","MlleGillenormand","MmePontmercy","MlleVaubois","LtGillenormand","Marius","BaronessT","Mabeuf","Enjolras","Combeferre","Prouvaire","Feuilly","Courfeyrac","Bahorel","Bossuet","Joly","Grantaire","MotherPlutarch","Gueulemer","Babet","Claquesous","Montparnasse","Toussaint","Child1","Child2","Brujon","MmeHucheloup")
+
+lesmis<-read.table("lesmis.txt")
+
+attributes(lesmis)$names<-names
+attributes(lesmis)$row.names<-names
+
+save(lesmis,"lesmis.RData")
