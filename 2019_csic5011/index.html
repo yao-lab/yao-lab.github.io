@@ -711,8 +711,18 @@ Chan JM, Carlsson G, Rabadan R.
 
 <tr>
 <td>05/08/2019, Wed </td>
-<td>Lecture 22: Deep Generative Models: Progressive Training of Generative Adversarial Networks <br>
+<td>Seminar: Learning Deep Generative Models via Variational Gradient Flow and Its Applications <br>
 </td>
+	<ul><li>[ Invited Speaker ]: Prof. Can Yang, Department of Mathematics, The Hong Kong University of Science and Technology
+		</li>
+		<li> [ Abstract ]:
+			Learning the generative model, i.e., the underlying data generating distribution, based on large amounts of data is one of the fundamental tasks in machine learning and statistics. Recent progresses in deep generative models have provided novel techniques for unsupervised and semi-supervised learning, with broad application varying from image synthesis, semantic image editing, image-to-image translation to low-level image processing. However, statistical understanding of deep generative models is still lacking, e.g., why the logD trick works well in training generative adversarial networks (GAN). 
+
+In this talk, we introduce a general framework, variational gradient flow (VGrow), to learn a deep generative model to sample from the target distribution via combing the strengths of variational gradient flow on probability space, particle optimization and deep neural network. The proposed framework is applied to minimize the f-divergence between the evolving distribution and the target distribution. We prove that the particles driven by VGrow are guaranteed to converge to the target distribution asymptotically. Connections of our proposed VGrow method with other popular methods, such as VAE, GAN and flow-based methods, have been established in this framework, gaining new insights of deep generative learning. We also evaluated several commonly used f-divergences, including Kullback-Leibler, Jensen-Shannon, Jeffrey divergences as well as our newly discovered “logD” divergence which serves as the objective function of the logD-trick GAN. 
+
+Besides the above theoretical understanding, we emphasize the practical issues in training GAN. Through a systematic design of the generator and the discriminator, much of the efforts on parameter tuning can be avoided. Using a pre-defined network structure rather than case-by-case parameter tuning, VGrow can generate high-fidelity images in a stable and efficient manner. Its results on those benchmark data sets (e.g., CIFAR10, CelebA) show Its competitive performance with state-of-the-art GANs. We have also applied VGrow to the portrait data from The Wikipedia Art Project, generating realistic portraits without extra editing. This is a joint work with Yuan Gao, Yuling Jiao, Yao Wang, Gefei Wang, Yang Wang and Shunkang Zhang.
+		</li>
+	</ul>
 <td>Can Yang<br> </td>
 <td></td>
 </tr>
