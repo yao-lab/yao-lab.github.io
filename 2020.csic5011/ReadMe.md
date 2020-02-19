@@ -1,8 +1,8 @@
 # CSIC5011: Topological and Geometric Data Reduction and Visualization
-## Spring 2019, HKUST
+## Spring 2020, HKUST
 
-https://yao-lab.github.io/2019_csic5011/
+https://yao-lab.github.io/2020.csic5011/
 
 and a previous website:
 
-https://yuany-pku.github.io/2017_csic5011/
+https://yuany-pku.github.io/2019_csic5011/
