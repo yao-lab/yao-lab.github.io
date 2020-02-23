@@ -65,7 +65,7 @@ and perform PCA experiments with Matlab or other languages (e.g. ipynb) you are 
 \item Compute top $k$ SVD of $\tilde{X} = U S_k V^T$; 
 \item Plot eigenvalue curve, i.e. $i$ vs. $\lambda_i (\hat{\Sigma}_n)/tr(\hat{\Sigma}_n)$ ($i=1,\ldots,k$), with top-$k$ eigenvalue $\lambda_i$ for sample covariance matrix $\hat{\Sigma}_n=\frac{1}{n}\tilde{X}*\tilde{X}^T$, which gives you explained variation of data by principal components;
 \item Use {\texttt{imshow}} to visualize the mean and top-$k$ principle components as \emph{left} singular vectors $U=[u_1,\ldots,u_k]$; 
-\item For $k=1$, sort the image data $(x_i)$ ($i=1,\ldots,n$) according to the top \emph{right} singular vectors, $v_1$, in an ascending order; 
+\item For $k=1$, order the images $(x_i)$ ($i=1,\ldots,n$) according to the top first \emph{right} singular vector, $v_1$, in an ascending order of $v_1(i)$; 
 \item For $k=2$, scatter plot $(v_1,v_2)$ and select a grid on such a plane to show those images on the grid (e.g. Figure 14.23 in book [ESL]: Elements of Statistical Learning).   
 \item[(h)*] You may try the parallel analysis with permutation test to see how many significant principle components you will obtain. 
 \end{enumerate}
