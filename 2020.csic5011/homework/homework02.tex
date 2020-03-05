@@ -146,7 +146,7 @@ The problem below marked by $^*$ is optional with bonus credits. For the experim
 \item {\em Exploring S$\&$P500 Stock Prices:} Take the Standard \& Poor's 500 data: \\
 %\url{http://math.stanford.edu/~yuany/course/data/snp452-data.mat},\\
 \url{https://github.com/yao-lab/yao-lab.github.io/blob/master/data/snp452-data.mat} \\ 
-which contains the data matrix $X\in \R^{n\times p}$ of $n=1258$ consecutive observation days and $p=452$ daily closing stock prices, and the cell variable ``${\rm stock}$" collects the names, codes, and the affiliated industrial sectors of the 452 stocks. Use Matlab, Python, or R for the following exploration. 
+which contains the data matrix $X\in \R^{p\times n}$ of $n=1258$ consecutive observation days and $p=452$ daily closing stock prices, and the cell variable ``${\rm stock}$" collects the names, codes, and the affiliated industrial sectors of the 452 stocks. Use Matlab, Python, or R for the following exploration. 
 \begin{enumerate}
 \item Take the logarithmic prices $Y=\log X$; 
 \item For each observation time $t\in \{1,\ldots,1257\}$, calculate logarithmic price jumps
