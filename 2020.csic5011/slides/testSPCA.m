@@ -11,7 +11,7 @@ if exist('cvx_setup.m','le'),
 end
 
 % Small lambda will give dense PCA.
-lambda = 0.5;
+lambda = 5;
 k = 10;
 
 cvx_begin
