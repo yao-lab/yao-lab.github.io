@@ -1,0 +1,1633 @@
+\documentclass[10pt,mathserif]{beamer}
+
+\usepackage{graphicx,amsmath,amssymb,amsthm,amsfonts,amsbsy,tikz,psfrag}
+\usepackage{mathtools} % for \DeclarePairedDelimiter below
+\usepackage{tabto}  % for \NumTabs{3} and \tab commands
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{epigraph}
+\usepackage{minted}
+%\usepackage{algorithm}
+%\usepackage[boxed,ruled,lined,linesnumbered]{algorithm2e}
+
+\usepackage[numbers, square]{natbib}
+%\usepackage{hyperref}
+%\usepackage[    bookmarksnumbered=true,
+%			bookmarksopen=true,
+%			colorlinks=true,
+%			citecolor=red,
+%			linkcolor=blue,
+%			anchorcolor=red,
+%			urlcolor=blue]{hyperref}
+
+
+\input defs.tex
+
+
+\graphicspath{{figures/}{../book.datasci/figures/}{../mySlides/figures/}}
+
+%% formatting
+
+\mode<presentation>
+{
+\usetheme{default}
+}
+\setbeamertemplate{navigation symbols}{}
+\usecolortheme[rgb={0.13,0.28,0.59}]{structure}
+\setbeamertemplate{itemize subitem}{--}
+\setbeamertemplate{frametitle} {
+	\begin{center}
+	  {\large\bf \insertframetitle}
+	\end{center}
+}
+
+\newcommand\footlineon{
+  \setbeamertemplate{footline} {
+    \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,leftskip=.8cm,rightskip=.6cm]{structure}
+      \footnotesize \insertsection
+      \hfill
+      {\insertframenumber}
+    \end{beamercolorbox}
+    \vskip 0.45cm
+  }
+}
+\footlineon
+
+\AtBeginSection[] 
+{ 
+	\begin{frame}<beamer> 
+		\frametitle{Outline} 
+		\tableofcontents[currentsection,currentsubsection] 
+	\end{frame} 
+} 
+
+%% begin presentation
+
+\title{\large \bfseries Lecture 5. SDP Relaxations: Robust PCA, Sparse PCA and \\ Graph Realization as MDS with Uncertainty}
+
+\author{Yuan Yao\\[3ex]
+Hong Kong University of Science and Technology}
+
+\date{\today}
+
+\begin{document}
+
+\frame{
+\thispagestyle{empty}
+\titlepage
+}
+
+
+%\begin{frame}
+%\begin{minted}
+%{c} int main() {
+%    printf("hello, world");
+%return 0;
+%}
+%\end{minted}
+%\end{frame}
+
+\section{Recall: PCA as a Matrix Decomposition}
+
+\begin{frame}
+\frametitle{PCA}
+\begin{itemize}\itemsep=12pt
+\item Let $X\in \R^{p \times n}$ be a data matrix. Classical PCA looks for a matrix decomposition
+\[ X = L + E \]
+where 
+\begin{itemize}
+\itemsep=12pt
+\vspace*{0.5em}
+\item $L$ is of low-rank (\eg at most rank $k$), 
+\vspace*{0.5em}
+\item error matrix $E$ has a small Frobenius norm, which is usually the case for Gaussian noise
+\end{itemize}  
+
+%\vspace*{0.5em}
+%\item \textcolor{red}{What about statistical view when $x_i = \mu + \varepsilon_i$?} 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{PCA}
+\begin{itemize}\itemsep=12pt
+
+\vspace*{0.5em}
+\item Classical PCA solves 
+\begin{eqnarray}
+& \min & \| X - L \| \\
+& \mbox{subject to} & \rank(L) \leq k \nonumber
+\end{eqnarray}
+where the norm here is any unitary invariant matrix norms, \emph{e.g.} 
+\begin{itemize}
+\vspace*{0.5em}
+\item Schatten's $p$-norm $\|M\|_p = (\sum_i \sigma_i(M)^p)^{1/p}$ ($p\geq 1$) when $M$ admits the Singular Value Decomposition (SVD) $M=U S V^T$ with $S=\diag(\sigma_1,\ldots, \sigma_k,\dots)$ ($p=2$ is the Frobenius norm, $p=1$ is the nuclear norm, and $p=\infty$ gives the spectral norm). 
+\vspace*{0.5em}
+\item SVD provides a solution with $L=\sum_{i\leq k} \sigma_i u_i v_i^T$ where $X=\sum_i \sigma_i u_i v_i^T$ ($\sigma_1\geq \sigma_2 \geq \ldots$). 
+%\item \textcolor{red}{What about statistical view when $x_i = \mu + \varepsilon_i$?} 
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{PCA is sensitive to outliers}
+\begin{itemize}\itemsep=12pt
+\vspace*{0.5em}
+\item However, if some outliers exists, \ie~there are a small amount of sample points which are largely deviated from the main population of samples, the classical PCA is well-known very sensitive to such outliers.  
+
+%\vspace*{0.5em}
+%\item \textcolor{red}{What about statistical view when $x_i = \mu + \varepsilon_i$?} 
+\end{itemize}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.5\textwidth]{pca_outlier.png}  
+\caption{Classical PCA is sensitive to outliers}\label{fig:pca-outlier}
+\end{figure} 
+
+\end{frame}
+
+\section{Robust PCA}
+
+\begin{frame}
+\frametitle{Robust PCA}
+    
+\begin{itemize}\itemsep=12pt
+\item To address this issue, Robust PCA looks for the following decomposition instead 
+\[ X = L + S \]
+where 
+\begin{itemize}\itemsep=12pt
+\item $L$ is a low rank matrix;
+%\vspace*{0.5em}
+\item $S$ is a sparse matrix. 
+\end{itemize}
+
+\vspace*{0.5em}
+%\item \textcolor{red}{How to solve it?}
+
+\end{itemize}
+\end{frame}
+
+
+
+%\begin{itemize}\itemsep=12pt
+%\item Courseweb
+%\vspace*{0.5em}
+%\begin{itemize}
+%\item \url{https://yao-lab.github.io/2020.csic5011/}
+%\end{itemize}
+%\item Zoom webinar link: 
+%
+%\begin{itemize}
+%\item \url{https://hkust.zoom.com.cn/j/237158553}
+%\end{itemize}
+%
+%\vspace*{0.5em}
+%\item Occasionally invited speakers from academia or industry will present
+%\vspace*{0.5em}
+%\item Projects based evaluation, no final exam!
+%\item Week 1: 
+%\vspace*{0.5em}
+%\begin{itemize}
+%\item Jan 30: Introduction 
+%\item Feb 1:  seminar by Ruohan ZHAN (Stanford University) with title "Safety masked reinforcement learning"
+%\end{itemize}
+%\item Week 2: spring festival break (Feb 8 will be rescheduled to later)
+%\vspace*{0.5em}
+%\item Week 3: 
+%\vspace*{0.5em}
+%\begin{itemize}
+%\item Feb 13: PCA
+%\item Feb 15: MDS
+%\end{itemize}
+
+
+
+
+
+\begin{frame}
+\frametitle{Example: rank-1 spike model}
+
+\begin{examp}[Spike model]
+\begin{itemize}\itemsep=12pt
+
+\item In the spike signal model, 
+$$ X=\alpha u + \sigma_\epsilon \epsilon,\qquad \mbox{$\alpha \sim \NN(0,\sigma_u^2)$ and $\epsilon \sim \NN(0,I_p)$.} $$
+\begin{itemize}
+\vspace*{0.5em}
+\item  $X$ is thus subject to the following normal distribution $\NN(0, \Sigma)$ where 
+$$\Sigma=\sigma_u^2 u u^2 + \sigma_\epsilon^2 I.$$
+%\vspace*{0.5em}
+\item  So $\Sigma=L+S$ has such a rank-sparsity structure with 
+$$L=\sigma_u^2 u u^T, \qquad S=\sigma_\epsilon^2 I. $$ 
+%\vspace*{0.5em}
+%\item 
+\end{itemize}
+\end{itemize}
+
+\end{examp}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Example: Surveillance video}
+
+\begin{examp}[Surveillance Video Decomposition]
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.5\textwidth]{surveil_video3.png}  
+\caption{Surveillance video as a rank-sparse model: Left = low-rank (middle) + sparse (right) }\label{fig:surveilliance-video}
+\end{figure}
+
+%\begin{itemize}\itemsep=12pt
+%
+%\item Figure \ref{fig:surveilliance-video} gives an example of low rank vs. sparse decomposition in surveilliance video.  part. 
+%
+%\begin{itemize}
+%\vspace*{0.5em}
+%\item On the left, surveilliance video of a movie theatre records a great amount of images with the same background
+%and the various walking customers. If we vectorize these images (each image as a vector) to form a matrix, the background image leads to a rank-1 part.
+%\vspace*{0.5em}
+%\item On the right, the occasional walking customers contribute to the sparse part.  
+%%\vspace*{0.5em}
+%%\item 
+%\end{itemize}
+%\end{itemize}
+
+\end{examp}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Example: Gaussian Graphical Model} 
+\begin{examp}[Gaussian Graphical Model]
+Let $X=[X_1,\ldots,X_p]^T \sim \mathcal{N}(0,\Sigma)$ be multivariate Gaussian random variables. 
+
+\begin{itemize}\itemsep=12pt
+\item The following characterization holds 
+\[ \mbox{$X_i$ and $X_j$ are conditionally independent given other variables}  \] 
+\[ \Leftrightarrow (\Sigma^{-1})_{ij} = 0 \]
+We denote it by $X_i \perp X_j | X_{-i,-j}$. 
+\vspace*{0.5em}
+\item Let $G=(V,E)$ be a undirected graph where $V$ represent $p$ random variables and 
+$$(i,j)\in E \Leftrightarrow x_i \perp x_j | x_k (k\not \in \{i,j\}). $$ 
+$G$ is called a (Gaussian) graphical model of $X$.
+\end{itemize}
+%Divide the random variables into observed and hidden (a few) variables $X=(X_o,X_h)^T$ (in semi-supervised learning, unlabeled and labeled, respectively) and 
+%\[ 
+%\Sigma = \left [
+%\begin{array}{cc}
+%\Sigma_{oo} & \Sigma_{oh} \\
+%\Sigma_{ho} & \Sigma_{hh} 
+%\end{array}
+%\right ] \quad
+%\mbox{ and } \quad
+%Q=\Sigma^{-1} = \left [
+%\begin{array}{cc}
+%Q_{oo} & Q_{oh} \\
+%Q_{ho} & Q_{hh} 
+%\end{array}
+%\right ] 
+%\]
+%The following Schur Complement equation holds for covariance matrix of observed variables
+%\[ \Sigma_{oo}^{-1} = Q_{oo} + Q_{oh} Q_{hh}^{-1} Q_{ho}. \]
+%Note that 
+%\begin{itemize}
+%\item Observable variables are often conditional independent given hidden variables, so $Q_{oo}$ is expected to be \emph{sparse};
+%\item Hidden variables are of small number, so $Q_{oh} Q_{hh}^{-1} Q_{ho}$ is of \emph{low-rank}. 
+%\end{itemize}
+% In semi-supervised learning, the labeled points are of small number, and the unlabeled points should be as much conditional independent as possible to each other given labeled points. This implies that the labels should be placed on those most ``influential'' points.  
+\end{examp}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Example: Gaussian Graphical Model (continued)} 
+\begin{itemize}\itemsep=12pt
+\item Divide the random variables into observed and hidden (a few) variables $X=(X_o,X_h)^T$ (in semi-supervised learning, labeled vs. unlabeled, respectively) and 
+\[ 
+\Sigma = \left [
+\begin{array}{cc}
+\Sigma_{oo} & \Sigma_{oh} \\
+\Sigma_{ho} & \Sigma_{hh} 
+\end{array}
+\right ] \quad
+\mbox{ and } \quad
+Q=\Sigma^{-1} = \left [
+\begin{array}{cc}
+Q_{oo} & Q_{oh} \\
+Q_{ho} & Q_{hh} 
+\end{array}
+\right ] 
+\]
+%\vspace*{0.5em}
+\item The following Schur Complement equation holds for covariance matrix of observed variables
+\[ \Sigma_{oo}^{-1} = Q_{oo} + Q_{oh} Q_{hh}^{-1} Q_{ho}. \]
+Note that 
+\begin{itemize}
+\item Observable variables are often conditional independent given hidden variables, so $Q_{oo}$ is expected to be \emph{sparse};
+\vspace*{0.5em}
+\item Hidden variables are of small number, so $Q_{oh} Q_{hh}^{-1} Q_{ho}$ is of \emph{low-rank}. 
+\end{itemize}
+%\item In semi-supervised learning, the labeled points are of small number, and the unlabeled points should be as much conditional independent as possible to each other given labeled points. This implies that the labels should be placed on those most ``influential'' points.  
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Example: Gaussian Graphical Model (continued)} 
+\begin{itemize}\itemsep=12pt
+\item In semi-supervised learning, $X_o$ is labeled data and $X_h$ is unlabeled. The labeled points are of small number, and the unlabeled points should be as much conditionally independent as possible to each other given labeled points. This implies that the labels should be placed on those most ``influential'' points.  
+%\vspace*{0.5em}
+%\item The following Schur Complement equation holds for covariance matrix of observed variables
+%\[ \Sigma_{oo}^{-1} = Q_{oo} + Q_{oh} Q_{hh}^{-1} Q_{ho}. \]
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Robust PCA}
+
+\begin{itemize}\itemsep=12pt
+\item In Robust PCA, the purpose is to solve 
+\begin{eqnarray}
+& \min & \| X - L \|_0 \\
+& s.t. & \rank(L) \leq k \nonumber
+\end{eqnarray}
+where $\|A\|_0 = \#\{ A_{ij} \neq 0 \}$. 
+\vspace*{0.5em}
+\item However both the objective function and the constraint are non-convex, whence it is NP-hard to solve in general. 
+
+\vspace*{0.5em}
+\item In practice, one often uses alternative optimization.
+
+\vspace*{0.5em}
+\item Here we introduce convex relaxation.
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Convex Relaxation}
+\begin{itemize}\itemsep=12pt
+
+\item The simplest convex relaxations:
+\begin{equation} 
+\| S \|_0 := \#\{ S_{ij} \neq 0\} \Rightarrow \|S\|_1 
+\end{equation}
+\begin{equation}
+ \rank(L) := \#\{ \sigma_i(L)\neq 0\} \Rightarrow \| L\|_\ast=\sum_i \sigma_i (L), 
+\end{equation}
+where $\| L\|_\ast$ is called the \emph{nuclear norm} of $L$, which has a semi-definite representation
+\begin{eqnarray*}
+\|L\|_\ast =& \min & \frac{1}{2} (\tr(W_1)+\tr(W_2)) \\
+& s.t. & \displaystyle \left[ \begin{array}{cc} 
+W_1 & L \\
+L^T & W_2 
+\end{array}
+\right] \succeq 0.
+\end{eqnarray*}%\vspace*{0.5em}
+%\item 
+%\vspace*{0.5em}
+%\item 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Robust PCA via SDP}
+\begin{itemize}\itemsep=12pt
+
+\item The relaxed Robust PCA problem can be solved by the following Semi-Definite Programming (SDP). 
+\begin{eqnarray} \label{eq:RPCA_SDP}
+& \min & \frac{1}{2} (\tr(W_1)+\tr(W_2)) + \lambda \|S\|_1 \\
+& s.t. & L_{ij} +S_{ij} = X_{ij}, \quad (i,j)\in E  \nonumber \\
+& & \displaystyle \left[ \begin{array}{cc} 
+W_1 & L \\
+L^T & W_2 
+\end{array}
+\right] \succeq 0 \nonumber
+\end{eqnarray}
+%\item 
+%
+%\vspace*{0.5em}
+%\item 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Matlab codes}
+\begin{itemize}\itemsep=12pt
+
+\item The Matlab codes (\url{testRPCA.m}) realized the SDP algorithm above by CVX (\url{http://cvxr.com/cvx}). 
+
+%\noindent{\input{../book.datasci/testRPCA.tex}}
+
+
+\vspace*{0.5em}
+\item Typically CVX only solves SDP problem of small sizes (say matrices of size less than $100$). Specific matlab tools have been developed to solve large scale RPCA, which can be found at \url{http://perception.csl.uiuc.edu/matrix-rank/home.html}.
+
+\vspace*{0.5em}
+\item Stephen Boyd's website contains ADMM algorithm compared with CVX:
+\url{http://web.stanford.edu/~boyd/papers/prox_algs/matrix_decomp.html}
+
+
+%\vspace*{0.5em}
+%\item 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{ADMM}
+\begin{itemize}\itemsep=12pt
+
+\item For SDP problem 
+
+\begin{eqnarray} \label{eq:RPCA_SDP}
+& \min &\|E\|_F^2 + \gamma_2 \|S\|_1 + \gamma_3 \|L\|_\ast \\
+& s.t. & L +S + E = A, \quad  \nonumber 
+\end{eqnarray}
+
+%\vspace*{0.5em}
+\item Augmented Lagrangian:
+\begin{eqnarray}
+& & {\mathcal L}(E,L,S;B) \nonumber  \\
+& = &  \|E\|_F^2 + \gamma_2 \|S\|_1 + \gamma_3 \|L\|_\ast + \ldots \nonumber \\
+& & \qquad + \langle B, A - L - S - E\rangle +  \frac{\rho}{2} \| A - L -  S - E\|_F^2 
+\end{eqnarray} 
+
+%\vspace*{0.5em}
+\item ADMM in Stephen Boyd's version:
+\url{http://web.stanford.edu/~boyd/papers/prox_algs/matrix_decomp.html}
+
+%\vspace*{0.5em}
+%\item 
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{ADMM}
+\begin{itemize}\itemsep=12pt
+
+\item initialization: $\lambda= 1, \lambda=1/\rho$, $X_1^0=X_2^0=X_3^0=B^0=0^{m\times n}$
+
+\vspace*{0.5em}
+\item do iterations:
+\begin{subequations}
+    \label{eq:admm}
+    \begin{align}
+        \label{eq:admm-show-a}
+        B^{k+1} &= B^k + \frac{1}{3} (X_1^k + X_2^k + X_3^k - A) ,\\
+        \label{eq:admm-show-b}
+        X_1^{k+1} &=\frac{1}{1+\lambda}(X_1^k - B^k) ,\\
+        \label{eq:admm-show-c}
+        X_2^{k+1} &= \prox_{\|x\|_1}(X_2^k - B^k, \lambda \gamma_2), \\ 
+        X_3^{k+1} &= \prox_{\|M\|_\ast}(X_3^k - B^k, \lambda \gamma_3),       
+    \end{align}
+\end{subequations}
+where $\prox_{h}(z,c) = \min_x \frac{1}{2} \|x-z\|_F^2 + c h(x)$.  
+\vspace*{0.5em}
+\item return $E=X_1^k$, $S=X_2^k$, $L=X_3^k$. 
+
+
+%\vspace*{0.5em}
+%\item 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Question}
+
+\huge\centering{\textcolor{red}{How does SDP work?}}
+%\begin{itemize}\itemsep=12pt
+%
+%\item How do the Random Projections work?
+%\vspace*{0.5em}
+%\item 
+%
+%
+%%
+%%\vspace*{0.5em}
+%%\item 
+%\end{itemize}
+\end{frame}
+
+
+
+
+
+\section{Exact Recovery Theories for RPCA}
+
+\begin{frame}
+\frametitle{Exact Recovery Theory}
+\begin{itemize}\itemsep=12pt
+
+\item A fundamental question about Robust PCA is: given $X=L_0+S_0$ with low-rank $L$ and sparse $S$, under what conditions that one can recover $X$ by solving
+SDP in (\ref{eq:RPCA_SDP})? 
+\vspace*{0.5em}
+%\item It is necessary to assume that  
+%\begin{itemize}
+%\item the low-rank matrix $L_0$ can not be sparse;
+%\vspace*{0.5em}
+%\item the sparse matrix $S_0$ can not be of low-rank.
+%\end{itemize}
+%A beautiful solution is given by the following work of Johnson and Lindenstrauss which shows that by random projections in high probability one can use a low dimensional representation $k=O(\epsilon^2/2-\epsilon^3/3)^{-1}\log n)$ with $\epsilon$-distortion of pairwise distances.
+%\vspace*{0.5em}
+%\item 
+\end{itemize}
+\end{frame}
+
+\subsection{Deterministic Exact Recovery: Identifiability}
+\begin{frame}
+\frametitle{Exact Recovery Theory}
+\begin{itemize}\itemsep=12pt
+\item It is necessary to assume that  
+\begin{itemize}
+\item the low-rank matrix $L_0$ can not be sparse;
+\vspace*{0.5em}
+\item the sparse matrix $S_0$ can not be of low-rank.
+\end{itemize}
+ \vspace*{0.5em} 
+%\item Such an assumption can be characterized using the following algebraic language. Define 
+%\[ T(L_0) = \{ U A^T + B V^T: \forall A, B\in \R^{n \times p}, L_0= U S V^T\}  \]
+%which is the tangent space at $L_0$ varying in the same column and row spaces of $L_0$, and
+%\[ \Omega(S_0) = \{ S: \supp(S)\subseteq \supp(S_0)\}, \]
+%which is the tangent space at $S_0$ varying within the same support of $S_0$. The assumptions above are equivalent to say that tangent spaces $T(L_0)$ and $\Omega(S_0)$ are transversal with only intersection at 0,
+%\[ \mbox{Transversality:\ \ \ } T(L_0) \bigcap \Omega(S_0) = \{ 0\}. \]
+%
+
+%A beautiful solution is given by the following work of Johnson and Lindenstrauss which shows that by random projections in high probability one can use a low dimensional representation $k=O(\epsilon^2/2-\epsilon^3/3)^{-1}\log n)$ with $\epsilon$-distortion of pairwise distances.
+%\vspace*{0.5em}
+%\item 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Exact Recovery Theory}
+\begin{itemize}\itemsep=12pt
+%\item It is necessary to assume that  
+%\begin{itemize}
+%\item the low-rank matrix $L_0$ can not be sparse;
+%\vspace*{0.5em}
+%\item the sparse matrix $S_0$ can not be of low-rank.
+%\end{itemize}
+% \vspace*{0.5em} 
+\item Such an assumption can be characterized using the following algebraic language. Define 
+\[ T(L_0) = \{ U A^T + B V^T: \forall A, B\in \R^{n \times p}, L_0= U S V^T\}  \]
+which is the tangent space at $L_0$ varying in the same column and row spaces of $L_0$, and
+\[ \Omega(S_0) = \{ S: \supp(S)\subseteq \supp(S_0)\}, \]
+which is the tangent space at $S_0$ varying within the same support of $S_0$. The assumptions above are equivalent to say that tangent spaces $T(L_0)$ and $\Omega(S_0)$ are transversal with only intersection at 0,
+\[ \mbox{Transversality:\ \ \ } T(L_0) \bigcap \Omega(S_0) = \{ 0\}. \]
+
+
+%A beautiful solution is given by the following work of Johnson and Lindenstrauss which shows that by random projections in high probability one can use a low dimensional representation $k=O(\epsilon^2/2-\epsilon^3/3)^{-1}\log n)$ with $\epsilon$-distortion of pairwise distances.
+%\vspace*{0.5em}
+%\item 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Exact Recovery Theory}
+\begin{itemize}\itemsep=12pt
+%\item It is necessary to assume that  
+%\begin{itemize}
+%\item the low-rank matrix $L_0$ can not be sparse;
+%\vspace*{0.5em}
+%\item the sparse matrix $S_0$ can not be of low-rank.
+%\end{itemize}
+% \vspace*{0.5em} 
+\item The following two incoherence constants measure the ``diffusive behaviours" of sparse (low-rank) matrices onto low-rank (sparse) opponents. 
+\[ \mu(S_0) = \max_{S\in \Omega(S_0), \|S\|_\infty\leq 1} \|S\|_2 \]
+\[ \xi(L_0) = \max_{L\in T(L_0), \|L\|_2 \leq 1} \|L\|_\infty  \]
+
+
+\vspace*{0.5em}
+%\item Venkat et al. (2011) showed the following uncertainty principle, for any matrix $M$, $\mu(M)\cdot \xi(M)\geq 1$. Therefore a sufficient condition holds, 
+% \[ \mu(S_0)\cdot \xi(L_0)<1 \Rightarrow T(L_0) \bigcap \Omega(S_0) = \{ 0\}.\]
+%Moreover, the following deterministic recovery conditions is shown for SDP
+% \[ \mu(S_0)\cdot \xi(L_0)<1/6 \Rightarrow \mbox{SDP recovers $L_0$ and $S_0$}.\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Exact Recovery Theory}
+\begin{itemize}\itemsep=12pt
+%\item It is necessary to assume that  
+%\begin{itemize}
+%\item the low-rank matrix $L_0$ can not be sparse;
+%\vspace*{0.5em}
+%\item the sparse matrix $S_0$ can not be of low-rank.
+%\end{itemize}
+% \vspace*{0.5em} 
+%\item The following two incoherence constants measure the ``diffusive behaviours" of sparse (low-rank) matrices onto low-rank (sparse) opponents. 
+%\[ \mu(S_0) = \max_{S\in \Omega(S_0), \|S\|_\infty\leq 1} \|S\|_2 \]
+%\[ \xi(L_0) = \max_{L\in T(L_0), \|L\|_2 \leq 1} \|L\|_\infty  \]
+
+
+\vspace*{0.5em}
+\item V. Chandrasekaran, S. Sanghavi, P.A. Parrilo, and A. Willsky (2011) showed the following uncertainty principle, for any matrix $M$, $\mu(M)\cdot \xi(M)\geq 1$. Therefore a sufficient condition holds, 
+ \[ \mu(S_0)\cdot \xi(L_0)<1 \Rightarrow T(L_0) \bigcap \Omega(S_0) = \{ 0\}.\]
+Moreover, the following deterministic recovery conditions is shown for SDP
+ \[ \mu(S_0)\cdot \xi(L_0)<1/6 \Rightarrow \mbox{SDP recovers $L_0$ and $S_0$}.\]
+\end{itemize}
+\end{frame}
+
+
+\subsection{Probabilistic Exact Recovery} 
+
+\begin{frame}
+\frametitle{Incoherence Condition}
+
+\begin{itemize}\itemsep=12pt
+\item Probabilistic recovery conditions are given by Candes and Recht (2009). Assume that $L_0\in \R^{n\times n} = U \Sigma V^T$ and $r = \rank(L_0)$. 
+
+{\bf{Incoherence condition}} (Candes-Recht (2009)): there exists a $\mu \geq 1$ such that for all $e_i =(0,\ldots,0,1,0,\ldots,0)^T$,
+\[ \| U^T e_i \|^2 \leq \frac{\mu r}{n}, \ \ \ \|V^T e_i \|^2 \leq \frac{\mu r}{n} , \]
+and 
+\[ |U V^T |_{ij}^2 \leq \frac{\mu r}{n^2}. \]
+%\vspace*{0.5em}
+\item These conditions, roughly speaking, ensure that the singular vectors are not sparse, i.e. well-spread over all coordinates and won't concentrate on some coordinates. 
+
+\begin{itemize}
+\vspace*{0.5em}
+\item The incoherence 
+condition holds if $|U_{ij}|^2 \vee |V_{ij}|^2 \leq \mu /n$. In fact, if $U$ represent random projections to $r$-dimensional subspaces with $r\geq \log n$, we have $\max_i\|U^T e_i \|^2 \asymp r/n$. 
+%The result has a widespread application in mathematics and computer science. The main application of Johnson-Lindenstrauss Lemma in data science is dimension reduction via random projections.  %Two postgraduates in computer science, 
+\vspace*{0.5em}
+\item To meet the second condition, we simply assume that the sparsity pattern of $S_0$ is uniformly random. 
+\end{itemize}
+
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Probabilistic Recovery Theorem}
+
+\begin{thm}[Candes-Recht (2009)]
+Assume the following holds,
+\begin{enumerate}
+\item $L_0$ is $n$-by-$n$ with $\rank (L_0) \leq \rho_r n \mu^{-1} (\log n)^{-2}$,
+\item  $S_0$ is uniformly sparse of cardinality $m\leq \rho_s n^2$. 
+\end{enumerate}
+Then with probability $1-O(n^{-10})$, (\ref{eq:RPCA_SDP}) with $\lambda=1/\sqrt{n}$ is exact, \emph{i.e.} its solution $\hat{L}=L_0$ and $\hat{S}=S_0$.
+\end{thm}  
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Remark}
+
+\begin{itemize}\itemsep=12pt
+\item Note that if $L_0$ is a rectangular matrix of $n_1\times n_2$, the same holds with $\lambda=1/\sqrt{(\max{n_1,n_2})}$. 
+\vspace*{0.5em}
+\item The result can be generalized to $1-O(n^{-\beta})$ for $\beta>0$. 
+\vspace*{0.5em}
+\item Extensions and improvements of these results to incomplete measurements can be found in (Candes-Tao (2010); Gross (2011)), which solves the following SDP problem. 
+\begin{eqnarray} \label{eq:rpca_incomp}
+& \min & \|L\|_\ast + \lambda \|S\|_1 \\
+& s.t. & L_{ij} +S_{ij} =X_{ij}, \ \ (i,j)\in \Omega_{obs}. \nonumber
+\end{eqnarray}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Probabilistic Recovery with Missing Values}
+
+\begin{thm} 
+Assume the following holds,
+\begin{enumerate}
+\item $L_0$ is $n$-by-$n$ with $\rank (L_0) \leq \rho_r n \mu^{-1} (\log n)^{-2}$,
+\item $\Omega_{obs}$ is a uniform random set of size $m=0.1n^2$, 
+\item each observed entry is corrupted with probability $\tau\leq \tau_s$. 
+\end{enumerate}
+Then with probability $1-O(n^{-10})$, (\ref{eq:RPCA_SDP}) with $\lambda=1/\sqrt{0.1 n}$ is exact, \emph{i.e.} its solution $\hat{L}=L_0$.
+The same conclusion holds for rectangular matrices with $\lambda = 1/\sqrt{\max dim}$. 
+All these results hold irrespective to the magnitudes of $L_0$ and $S_0$. 
+\end{thm}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Matrix Completion}
+
+\begin{itemize}\itemsep=12pt
+
+\item When there are no sparse perturbation in optimization problem (\ref{eq:rpca_incomp}), the problem becomes the classical Matrix Completion
+problem with uniformly random sampling:
+\begin{eqnarray} \label{eq:mc}
+& \min & \|L\|_\ast \\
+& s.t. & L_{ij} = L_{ij}^0, \ \ (i,j)\in \Omega_{obs}. \nonumber
+\end{eqnarray}
+
+%\vspace*{0.5em}
+\item Assumed the same condition as before, Candes and Tao (2010) gives the following result: solution to SDP (\ref{eq:mc}) is exact with probability at least $1 - n^{-10}$ 
+if $m\geq \mu n r \log^a n$ where $a\leq 6$, which can be improved by Gross (2011) to be near-optimal
+\[ m \geq \mu n r \log^2 n.\]
+
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Phase Transitions or Random Matrix Completion}
+
+%\begin{figure}[!ht]
+%\centering
+%\includegraphics[width=0.5\textwidth]{./figures/phase-rpca.png}  
+%\caption{Phase Transitions in Probability of Successful Recovery}\label{fig:phase-rpca}
+%\end{figure}
+%
+\begin{itemize}\itemsep=12pt
+
+\item Take $L_0=U V^T$ as a product of $n\times r$ i.i.d. ${\mathcal{N}}(0,1)$ random matrices. There is a phase transitionsof successful recovery probability over 
+sparsity ratio $\rho_s = m/n^2$ and low rank ratio $r/n$. 
+
+
+%\vspace*{0.5em}
+%\item White color indicates the probability equals to 1 and black color corresponds to the probability being 0. A sharp phase transition curve
+%can be seen in the pictures. (a) and (b) respectively use random signs and coherent signs in sparse perturbation, where (c) is purely matrix completion with no perturbation. Increasing successful recovery
+%can be seen from (a) to (c). 
+
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Phase Transitions of Random Matrix Completion}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.5\textwidth]{./figures/phase-rpca.png}  
+\caption{Phase Transitions in Probability of Successful Recovery}\label{fig:phase-rpca}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Phase Transitions}
+
+%\begin{figure}[!ht]
+%\centering
+%\includegraphics[width=0.5\textwidth]{./figures/phase-rpca.png}  
+%\caption{Phase Transitions in Probability of Successful Recovery}\label{fig:phase-rpca}
+%\end{figure}
+%
+\begin{itemize}\itemsep=12pt
+
+%\item Take $L_0=U V^T$ as a product of $n\times r$ i.i.d. ${\mathcal{N}}(0,1)$ random matrices. There is a phase transitionsof successful recovery probability over 
+%sparsity ratio $\rho_s = m/n^2$ and low rank ratio $r/n$. 
+%
+
+\vspace*{0.5em}
+\item White color indicates the probability equals to 1 and black color corresponds to the probability being 0. A sharp phase transition curve
+can be seen in the pictures. (a) and (b) respectively use random signs and coherent signs in sparse perturbation, where (c) is purely matrix completion with no perturbation. Increasing successful recovery
+can be seen from (a) to (c). 
+
+\end{itemize}
+\end{frame}
+
+
+\section{Sparse PCA}
+
+\begin{frame}
+\frametitle{Sparse PCA}
+
+\begin{itemize}\itemsep=12pt
+
+\item Recall that classical PCA is to solve
+\begin{eqnarray*}
+& \max & x^T \Sigma x\\
+ & s.t. & \|x\|_2 = 1 
+\end{eqnarray*}
+which gives the maximal variation direction of covariance matrix $\Sigma$. 
+
+%\[
+%\begin{split}
+%R.H.S. =&\Pi_{i=1}^k\Expect \exp(t(\beta\mu-1)x_i^2)\Pi_{i=k+1}^p\Expect \exp(t \beta\mu x_i^2)\\
+%=&(\Expect \exp(t(\beta\mu-1)x^2))^k(\Expect \exp(t\beta\mu x^2))^{p-k}\\
+%=&(1-2t(\beta\mu-1))^{-k/2}(1-2t\beta\mu)^{-(p-k)/2}
+%\end{split}
+%\]
+%We use the fact that if $X \sim N(0,1)$,then $\displaystyle \Expect[e^{sX^2}]=\frac{1}{\sqrt{(1-2s)}}$, for $-\infty < s < 1/2$.
+\item What if only a few coordinates in $x$ are nonzeros in PCA? For example, in human genomics, only a few genes influence a certain disease. 
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{A Convex Relaxation of PCA by SDP}
+
+\begin{itemize}
+\item Note that $x^T \Sigma x = \tr (\Sigma (x x^T))$. Classical PCA can thus be relaxed as follows after dropping the rank-1 constraint,
+\begin{eqnarray*}
+& \max & \tr (\Sigma X)\\
+ & s.t. & \tr(X) = 1 \\
+ & & X \succeq 0
+\end{eqnarray*}
+The optimal solution gives a rank-1 $X$ along the first principal component. 
+\vspace*{0.5em}
+\item A recursive application of the algorithm may lead to top $k$ principal components. That is, one first to find a rank-1 approximation of $\Sigma$ and extract it from $\Sigma_0=\Sigma$ to get $\Sigma_1 = \Sigma- X$, then pursue the rank-1 approximation of $\Sigma_1$, and so on. 
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Sparse PCA}
+
+\begin{itemize}\itemsep=12pt
+
+\item Now we are looking for sparse principal components, i.e. $\#\{X_{ij} \neq 0\}$ are small. Using $1$-norm convex relaxation, we have the following SDP formulation by dÕAspremont, El Ghaoui, Jordan, Lanckriet (2007) for Sparse PCA
+\begin{eqnarray*}
+& \max & \tr (\Sigma X) - \lambda \|X\|_1 \\
+ & s.t. & \tr (X) = 1 \\
+ & & X \succeq 0
+\end{eqnarray*}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Matlab Codes for Sparse PCA}
+
+\begin{itemize}\itemsep=12pt
+
+\item The Matlab codes (\url{testSPCA.tex}) realized the SDP algorithm above by CVX (\url{http://cvxr.com/cvx}). 
+
+%\noindent{\input{testSPCA.tex}}
+
+\item Python package \url{scikit-learn} includes: \url{http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.SparsePCA.html}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Other Approaches to Sparse PCA}
+
+\begin{itemize}\itemsep=12pt
+
+\item There are many other algorithms for sparse PCA, e.g. regression with LASSO (Hui Zou; Trevor Hastie; Robert Tibshirani (2006)), alternative nonconvex optimization etc.
+
+%\noindent{\input{testSPCA.tex}}
+
+\item A recent survey: Hui Zou; Lingzhou Xue (2018). "A Selective Overview of Sparse Principal Component Analysis". Proceedings of the IEEE. 106 (8): 1311Ð1320. 
+
+\end{itemize}
+\end{frame}
+
+
+\section {Introduction of SDP with a Comparison to LP}
+
+\begin{frame}
+\frametitle{Linear Programming: Primal Problem}
+
+\begin{itemize}\itemsep=12pt
+
+\item LP (Linear Programming): for $x \in \mathbb{R}^n$ and $c\in \mathbb{R}^n$, 
+\begin{eqnarray}
+&\min & \quad c^Tx \\
+& s.t. & Ax=b \nonumber \\
+& & x \geq 0 \nonumber
+\end{eqnarray}
+This is the primal linear programming problem. 
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Linear Programming: Primal Problem}
+
+\begin{itemize}\itemsep=12pt
+
+\item SDP (Semi-definite Programming): for $X,C \in \R^{n \times n}$
+\begin{eqnarray}
+&\min & C\bullet X=\sum_{i,j}c_{ij}X_{ij}\\
+& s.t. & A_i \bullet X=b_i, \ \ \textrm{for } i=1,\cdots ,m  \nonumber \\
+& & X \succeq 0 \nonumber 
+\end{eqnarray}
+
+\item In SDP, nonnegative variables $x$ is replaced by positive semi-definite matrices $X$. 
+\item In SDP, the inner product between vectors $c^Tx$ in LP will change to Hadamard inner product (denoted by $\bullet$) between matrices. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{From Primal to Dual}
+\begin{itemize}\itemsep=12pt
+\vspace*{0.5em}
+\item Linear programming has a dual problem via the Lagrangian. 
+\vspace*{0.5em}
+\item The Lagrangian of the primal problem is
+$$\max_{\mu\geq 0 ,y} \min_x L_{x; y,\mu}=c^Tx+y^T(b-Ax)-\mu ^Tx$$
+which implies that
+$$\frac{\partial L}{\partial x} = c-A^Ty-\mu=0$$
+$$\Longleftrightarrow c-A^Ty=\mu \geq 0$$
+$$\Longrightarrow \max_{\mu\geq 0,y} L=  \max_{\mu\geq 0,y} y^Tb$$
+which leads to the following dual problem. 
+
+%\begin{itemize} 
+%\vspace*{0.5em}
+%\item 
+%\vspace*{0.5em}
+%\item 
+%\vspace*{0.5em}
+%\item 
+%\end{itemize}
+%\vspace*{0.5em}
+%\item Therefore, regularization lies in the core of high dimensional statistics against the noise
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Linear Programming: Dual Problem}
+\begin{itemize}\itemsep=12pt
+\vspace*{0.5em}
+\item LD (Dual Linear Programming):  
+\begin{eqnarray}
+&\max & b^Ty \\
+& s.t. &  \mu = c-A^Ty \geq 0  \nonumber 
+\end{eqnarray}
+
+
+%\begin{itemize} 
+%\vspace*{0.5em}
+%\item 
+%\vspace*{0.5em}
+%\item 
+%\vspace*{0.5em}
+%\item 
+%\end{itemize}
+%\vspace*{0.5em}
+%\item Therefore, regularization lies in the core of high dimensional statistics against the noise
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Semi-Definite Programming: Dual Problem}
+\begin{itemize}\itemsep=12pt
+\vspace*{0.5em}
+\item SDD (Dual Semi-definite Programming):
+\begin{eqnarray}
+& \max & \quad b^Ty \\
+& s.t. & S=C-\sum_{i=1}^m A_i y_i\succeq 0 =:C-\langle A, y\rangle\nonumber 
+\end{eqnarray}
+where
+\begin{displaymath}
+A= \left[
+\begin{array}{l}
+A_1\\ \vdots \\ A_m
+\end{array} \right]
+\quad \mbox{and} \quad
+y= \left[
+\begin{array}{l}
+y_1\\ \vdots \\ y_m\end{array} \right]
+\end{displaymath}
+
+%\begin{itemize} 
+%\vspace*{0.5em}
+%\item 
+%\vspace*{0.5em}
+%\item 
+%\vspace*{0.5em}
+%\item 
+%\end{itemize}
+%\vspace*{0.5em}
+%\item Therefore, regularization lies in the core of high dimensional statistics against the noise
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Weak Duality}
+\begin{itemize}\itemsep=12pt
+\vspace*{0.5em}
+\item Define the feasible set of primal and dual problems are $\mathbb{F}_p=\{X \succeq 0;A_i\bullet X=b_i\}$ and $\mathbb{F}_d=\{(y,S): S=C-\sum_i y_iA_i\succeq 0\}$, respectively.
+%\vspace*{0.5em}
+%\item 
+%\begin{itemize} 
+%\vspace*{0.5em}
+%\item 
+%\vspace*{0.5em}
+%\item 
+%\vspace*{0.5em}
+%\item 
+%\end{itemize}
+%\vspace*{0.5em}
+%\item Therefore, regularization lies in the core of high dimensional statistics against the noise
+\end{itemize}
+\begin{thm}[Weak Duality of SDP]
+If $\mathbb{F}_p \neq \emptyset , \mathbb{F}_d\neq \emptyset $, then 
+$$C\bullet X \geq b^Ty,$$ 
+for $\forall X\in \mathbb{F}_p$ and $\forall (y,S) \in \mathbb{F}_d$.
+\end{thm}
+\begin{itemize}
+\item The week duality says that the primal value is always an upper bound of dual value. The gap, $\gamma=C\bullet X - b^Ty>0$, is called the duality gap. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Strong Duality}
+\begin{thm}[Strong Duality SDP]
+Assume the following hold,
+\begin{enumerate}
+\item $\mathbb{F}_p \neq \emptyset , \mathbb{F}_d\neq \emptyset$; 
+\item At least one feasible set has an interior. 
+\end{enumerate}
+Then $X^*$ is optimal iff
+\begin{enumerate}
+\item $X^* \in \mathbb{F}_p$
+\item $\exists (y^*,S^*) \in \mathbb{F}_d$ 
+\end{enumerate}
+s.t. $C\bullet X^*=b^T y^*$ or $X^* S^*=0$ (note: in matrix product)
+\end{thm}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Remark}
+\begin{itemize}\itemsep=12pt
+\vspace*{0.5em}
+\item The strong duality says that the existence of an interior point ensures the vanishing duality gap between primal value and dual value, as well as the complementary conditions hold. In this case, to check the optimality of a primal variable, it suffices to find a dual variable which meets the complementary condition with the primal. This is often called the \emph{witness} method. 
+\vspace*{0.5em}
+\item The existence of an interior solution implies the complementary condition of optimal solutions. Under the complementary condition, we have
+\[ \rank (X^*) + \rank (S^*) \leq n \]
+for every optimal primal $X^*$ and dual $S^*$. 
+%\begin{itemize} 
+%\vspace*{0.5em}
+%\item 
+%\vspace*{0.5em}
+%\item 
+%\vspace*{0.5em}
+%\item 
+%\end{itemize}
+%\vspace*{0.5em}
+%\item Therefore, regularization lies in the core of high dimensional statistics against the noise
+\end{itemize}
+\end{frame}
+
+\section{Graph Realization: MDS with Uncertainty} 
+
+\begin{frame}
+\frametitle{Recall: MDS}
+\begin{itemize}\itemsep=12pt
+\vspace*{0.5em}
+\item Recall that in classical MDS, given all pairwise distances $d_{ij}=\|x_i-x_j\|^2$ among a set of points $x_i \in \R^p$ ( $i=1,2,\cdots,n$) whose coordinates are unknown, 
+our purpose is to find $y_i \in \R^k (k\leq p)$ such that
+
+\begin{equation}
+\min  \sum_{i,j=1}^n \left(\|y_i-y_j\|^2 - d_{ij}\right)^2.
+\end{equation}
+
+%\begin{itemize} 
+%\vspace*{0.5em}
+%\item 
+%\vspace*{0.5em}
+%\item 
+%\vspace*{0.5em}
+%\item 
+%\end{itemize}
+%\vspace*{0.5em}
+%\item Therefore, regularization lies in the core of high dimensional statistics against the noise
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{MDS with Incomplete and Uncertain Information}
+\begin{itemize}\itemsep=12pt
+\vspace*{0.5em}
+\item What about the following scenarios?
+\begin{itemize} 
+\vspace*{0.5em}
+\item Noisy perturbations: $d_{ij}\rightarrow \widetilde{d_{ij}}=d_{ij}+ \epsilon_{ij}$
+\vspace*{0.5em}
+\item Incomplete measurments: only partial pairwise distance measurements are available on an edge set of graph, \emph{i.e.} $ G=(V,E)$ and $ d_{ij}$ is given when $(i,j) \in E $ (\emph{e.g.} $x_i$ and $x_j$ in a neighborhood).
+\vspace*{0.5em}
+\item Anchors: sometimes we may fixed the locations of some points called \emph{anchors}, \emph{e.g.} in sensor network localization (SNL) problem. 
+\end{itemize}
+\vspace*{0.5em}
+\item In other words, we are looking for MDS on graphs with partial and noisy information, often called {\textbf{Graph Realization}}. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Semi-Definite Relaxation of MDS}
+\begin{lem}
+The quadratic constraint 
+ $$ \|y_i - y_j \|^2 = d_{ij}^2, \quad (i,j) \in E $$
+has a semi-definite relaxation:
+\begin{displaymath}
+ \left\{ \begin{array}{l}
+Z_{1:k,1:k}=I\\
+(0;e_i-e_j)(0;e_i-e_j)^T \bullet Z = d_{ij}^2, \quad (i,j) \in E\\
+Z=
+\left[ \begin{array}{cc}
+I_k & Y\\
+Y^T & X
+\end{array} \right] \succeq 0.
+\end{array} \right.
+\end{displaymath}
+where $\bullet$ denotes the Hadamard inner product, \emph{i.e.} $A\bullet B := \sum_{i,j=1}^n A_{ij}B_{ij}$.
+\end{lem}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Proof of Lemma}
+\begin{itemize}\itemsep=12pt
+\vspace*{0.5em}
+\item Denote $Y=[y_1,\cdots ,y_n]^{k \times n}$ where $y_i \in \mathbb{R}^k$, and
+$$e_i=(0,0,\cdots ,1,0,\cdots ,0) \in \mathbb{R}^n.$$
+\vspace*{0.5em}
+\item Then we have
+$$\|y_i-y_j\|^2=(y_i-y_j)^T(y_i-y_j)=(e_i-e_j)^TY^TY(e_i-e_j)$$
+Set $X=Y^TY$, which is symmetric and positive semi-definite. Then
+$$\|Y_i-Y_j\|^2=(e_i-e_j)(e_i-e_j)^T \bullet X.$$ 
+So
+$$\|Y_i-Y_j\|^2=d_{ij}^2 \Leftrightarrow (e_i-e_j)(e_i-e_j)^T \bullet X=d_{ij}^2$$
+which is linear with respect to $X$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Proof of Lemma (continued)}
+\begin{itemize}\itemsep=12pt
+\vspace*{0.5em}
+\item Now we relax the constrain $X=Y^TY$ to 
+$$X \succeq Y^TY \Longleftrightarrow X-Y^TY\succeq 0.$$
+Through Schur Complement Lemma we know
+\begin{displaymath}
+X-Y^TY\succeq 0 \Longleftrightarrow
+\left[ \begin{array}{cc}
+I & Y\\
+Y^T & X
+\end{array} \right]
+\succeq 0
+\end{displaymath}
+
+\vspace*{0.5em}
+\item We may define a new variable
+\begin{displaymath}
+Z \in S^{k+n}, Z=
+\left[ \begin{array}{cc}
+I_k & Y\\
+Y^T & X
+\end{array} \right]
+\end{displaymath}
+which gives the result. $\hfill\qed$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{SD Relaxations of MDS}
+\begin{itemize}\itemsep=12pt
+\vspace*{0.5em}
+\item Given anchors $a_k$ ($k=1,\ldots,s$) with known coordinates, find $x_i$ such that 
+\begin{itemize}
+\item $\|x_i-x_j\|^2=d_{ij}^2 $ where $(i,j) \in E_x$ and $x_i$ are unknown locations 
+\item $\|a_k-x_j\|^2=\widehat{d_{kj}}^2$ where $ (k,j) \in E_a$ and $a_k$ are known locations
+\end{itemize}
+
+\vspace*{0.5em}
+\item We can exploit the following SD relaxation: 
+\begin{itemize}
+\item $(0; e_i-e_j)(0;e_i-e_j)^T \bullet Z = d_{ij}$ for $(i,j) \in E_x$,
+\item $(a_i; e_j)(a_i;e_j)^T \bullet Z = \widehat{d_{ij}}$ for $(i,j)\in E_a$,
+\end{itemize}
+both of which are linear with respect to $Z$.
+\vspace*{0.5em}
+\item The constraints with equalities of $d_{ij}^2$ can be replaced by inequalities such as $\leq d_{ij}^2 (1+ \epsilon)$ (or $\geq d_{ij}^2(1-\epsilon)$). This is a system of linear matrix inequalities with positive semidefinite variable $Z$. 
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Dual Problem}
+\begin{itemize}\itemsep=12pt
+\vspace*{0.5em}
+\item The SDD associated with the primal problem above is 
+\begin{equation}
+\min \quad I \bullet V+\sum_{i,j \in E_x}w_{ij} d_{ij}+\sum_{i,j \in E_a}\widehat{w}_{ij}\widehat{d_{ij}}
+\end{equation}
+s.t. \begin{displaymath}
+S =
+\left( \begin{array}{cc}
+V & 0\\
+0 & 0
+\end{array} \right)
++ \sum_{i,j \in E_x}w_{ij}A_{ij}+\sum_{i,j \in E_a}\widehat{w}_{ij}\widehat{A_{ij}}\succeq 0
+\end{displaymath}
+where $$A_{ij}=(0; e_i-e_j)(0; e_i-e_j)^T$$
+$$\widehat{A_{ij}}=(a_i; e_j)(a_i; e_j)^T.$$
+
+%\vspace*{0.5em}
+%\item The variables $w_{ij}$ is the stress matrix on edge between unknown points $i$ and $j$ and $\widehat{w}_{ij}$ is the stress matrix on edge between anchor $i$ and unknown point $j$. 
+%
+%\vspace*{0.5em}
+%\item The dual is always feasible, as $V=0$, $y_{ij}=0$ for all $(i,j)\in E_x$ and $w_{ij}=0$ for all $(i,j)\in E_a$ is a feasible solution. 
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Remark on Dual Problem}
+\begin{itemize}\itemsep=12pt
+\vspace*{0.5em}
+\item The variables $w_{ij}$ is the stress matrix on edge between unknown points $i$ and $j$ and $\widehat{w}_{ij}$ is the stress matrix on edge between anchor $i$ and unknown point $j$. 
+
+\vspace*{0.5em}
+\item The dual is always feasible, as $V=0$, $y_{ij}=0$ for all $(i,j)\in E_x$ and $w_{ij}=0$ for all $(i,j)\in E_a$ is a feasible solution. 
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Example: Protein 3D Structure Reconstruction}
+\begin{itemize}\itemsep=12pt
+\vspace*{0.5em}
+\item Here we show an example of using SDP to find 3-D coordinates of a protein molecule based on noisy pairwise distances for atoms in $\epsilon$-neighbors. We use matlab package SNLSDP by Kim-Chuan Toh, Pratik Biswas, and Yinyu Ye, downladable at \url{http://www.math.nus.edu.sg/~mattohkc/SNLSDP.html}.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.4\textwidth]{pymol_1GM2.png}  
+\includegraphics[width=0.4\textwidth]{proteinSNL.eps} \\
+(a) \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \  \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \  (b) 
+%\caption{(a) 3D Protein structure of PDB-1GM2, edges are chemical bonds between atoms. (b) Recovery of 3D coordinates from SNLSDP with $5\AA$-neighbor graph and multiplicative noise at $0.1$ level. Red point: estimated position of unknown atom. Green circle: actual position of unknown atom. Blue line: deviation from estimation to the actual position.}\label{fig:snl}
+\end{figure}
+
+\vspace*{0.5em}
+\item Matlab: \url{testSNL.m}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Question}
+\begin{itemize}\itemsep=12pt
+\vspace*{0.5em}
+\item A crucial theoretical question is to ask, when $X=Y^T Y$ holds such that SDP embedding $Y$ gives the same answer as the classical MDS?
+%\vspace*{0.5em}
+%\item The dual is always feasible, as $V=0$, $y_{ij}=0$ for all $(i,j)\in E_x$ and $w_{ij}=0$ for all $(i,j)\in E_a$ is a feasible solution. 
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Question}
+\begin{itemize}\itemsep=12pt
+\vspace*{0.5em}
+\item Such SDP has the following rank properties:
+\begin{enumerate}
+\item[A.] maximal rank solutions $X^*$ or $S^*$ exist;
+\item[B.] minimal rank solutions $X^*$ or $S^*$ exist;
+\item[C.] if complementary condition $X^* S^*=0$ holds, then $\rank(X^*)+\rank(S^*) \leq n$ with equality holds iff strictly complementary condition holds,
+whence $\rank(S^*)\geq n-k \Rightarrow \rank(X^*) \leq k$.
+\end{enumerate}
+%\vspace*{0.5em}
+%\item The dual is always feasible, as $V=0$, $y_{ij}=0$ for all $(i,j)\in E_x$ and $w_{ij}=0$ for all $(i,j)\in E_a$ is a feasible solution. 
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Question}
+\begin{itemize}\itemsep=12pt
+\vspace*{0.5em}
+\item Strong duality of SDP tells us that an interior point feasible solution in primal or dual problem will ensure the complementary condition and the zero duality gap. Now we assume that $d_{ij}=\|x_i - x_j\|$ precisely for
+some unknown $x_i\in \R^k$. Then the primal problem is feasible with $Z= (I_d; Y)^T (I_d; Y)$. Therefore the complementary condition holds and the duality gap is zero. In this case, assume that $Z^*$ is a primal feasible solution of SDP embedding and $S^*$ is an optimal dual solution,
+then 
+\begin{enumerate}
+\item $\rank(Z^*) + \rank (S^*) \leq k+n$ and $\rank(Z^*)\geq k$, whence $\rank(S^*)\leq n$;  
+\item  $\rank(Z^*)=k \Longleftrightarrow X=Y^TY $. 
+\end{enumerate}
+
+\vspace*{0.5em}
+\item It follows that if an optimal dual $S^*$ has rank $n$, then every primal solution $Z^*$ has rank $k$, which ensures $X=Y^T Y$. 
+Therefore it suffices to find a maximal rank dual solution $S^*$ whose rank is $n$. 
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Universal Rigidity}
+\begin{defn}[Universal Rigidity (UR) or Unique Localization (UL)]
+$\exists !y_i \in \mathbb{R}^k \hookrightarrow \mathbb{R}^l$ where $l \geq k$
+s.t. $d_{ij}^2=\|y_i-y_j\|^2 ,\widehat{d_{ij}}^2=\|a_k-y_j\|^2 $.
+\end{defn}
+
+\begin{itemize}
+\item It simply says that there is no nontrivial extension of $y_i\in \R^k$ in $\mathbb{R}^l$ satisfying $d_{ij}^2=\|y_i-y_j\|^2$ and $\widehat{d_{ij}}^2=\|(a_k;0)-y_j\|^2 $. 
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Graph Realization with Universal Rigidity}
+\begin{itemize}\itemsep=12pt
+\vspace*{0.5em}
+\item[(A)] (Schoenberg 1938) $G$ is complete $\Longrightarrow$ UR
+
+\vspace*{0.5em}
+\item [(B)] (So-Ye 2007) $G$ is incomplete: UR $\Longleftrightarrow$ SDP has maximal rank solution $\rank(Z^*)=k$. 
+
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Graph Realization Theorem}
+\begin{thm}[So-Ye (2007)] The following statements are equivalent.
+\begin{enumerate}
+\item The graph is universally rigid or has a unique localization in $\R^k$.
+\item The max-rank feasible solution of the SDP relaxation has rank $k$;
+\item The solution matrix has $X=Y^T Y$ or $\tr(X-Y^T Y)=0$. 
+\end{enumerate}
+Moreover, the localization of a UR instance can be computed
+approximately in a time polynomial in $n$, $k$, and the accuracy
+$\log(1/\epsilon)$.
+\end{thm}
+
+%\begin{itemize}\itemsep=12pt
+%\vspace*{0.5em}
+%\item[(A)] (Schoenberg 1938) $G$ is complete $\Longrightarrow$ UR
+%
+%\vspace*{0.5em}
+%\item [(B)] (So-Ye 2007) $G$ is incomplete: UR $\Longleftrightarrow$ SDP has maximal rank solution $\rank(Z^*)=k$. 
+%
+%\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Noisy Graph Realization}
+
+\begin{itemize}\itemsep=12pt
+\vspace*{0.5em}
+\item In practice, we often meet problems with noisy measurements $\alpha d_{ij}^2 \geq \tilde{d}_{ij}^2 \leq \beta d_{ij}^2$.  
+
+
+
+\vspace*{0.5em}
+\item If we relax the constraint $\|y_i - y_j\|^2=d_{ij}^2$ or equivalently $A_i \bullet X = b_i$ to inequalities, we can achieve \textbf{arbitrarily small rank} solution. 
+
+\vspace*{0.5em}
+\item To see this, assume that for $i=1,\ldots,m$, we replace
+$$A_i X=b_i \quad \mapsto\quad \alpha b_i \leq A_iX \leq \beta b_i, $$
+where $\beta \geq 1 > \alpha >0$. 
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Noisy Graph Realization Theorem}
+\begin{thm}[So, Ye, and Zhang (2008)] For every 
+$d \geq 1$, there is a SDP solution $\widehat{X} \succeq 0 $ with rank $\rank(\widehat{X}) \leq d$, if the following holds,
+\begin{displaymath} 
+\beta = \left\{ \begin{array}{ll}
+\displaystyle 1+\frac{18\ln2m}{d} & 1 \leq d \leq 18\ln2m\\
+\displaystyle 1+\frac{\sqrt{18\ln2m}}{d} & d \geq 18\ln2m
+\end{array} \right.
+\end{displaymath}
+\begin{displaymath}
+\alpha = \left\{ \begin{array}{ll}
+\displaystyle \frac{1}{e(2m)^{2/d}} & 1 \leq d \leq 4\ln2m
+\\ \displaystyle \max \left\{ \frac{1}{e(2m)^{2/d}}, 1-\sqrt{\frac{4\ln2m}{d}} \right\} & d \geq 4\ln 2m
+\end{array} \right.
+\end{displaymath} 
+\end{thm}
+
+%\begin{itemize}\itemsep=12pt
+%\vspace*{0.5em}
+%\item[(A)] (Schoenberg 1938) $G$ is complete $\Longrightarrow$ UR
+%
+%\vspace*{0.5em}
+%\item [(B)] (So-Ye 2007) $G$ is incomplete: UR $\Longleftrightarrow$ SDP has maximal rank solution $\rank(Z^*)=k$. 
+%
+%\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Remark}
+
+\begin{itemize}\itemsep=12pt
+\vspace*{0.5em}
+\item Note that $\alpha$, $\beta$ are independent to $n$.   
+
+\vspace*{0.5em}
+\item Arbitrary dimension $d\geq 1$ embedding is achievable as long as distortion levels $\beta$ and $\alpha$ are properly chosen. 
+
+%\vspace*{0.5em}
+%\item 
+\end{itemize}
+
+\end{frame}
+
+
+
+
+
+\begin{frame}
+\frametitle{Summary}
+\begin{itemize} 
+\vspace*{0.5em}
+\item We have introduced semi-definite programming (relaxations) to the following problems 
+\begin{itemize}\itemsep=12pt
+\vspace*{0.5em}
+\item Robust PCA
+\vspace*{0.5em}
+\item Sparse PCA
+\vspace*{0.5em}
+\item Graph Realization as MDS with Uncertainy
+\end{itemize}
+\vspace*{0.5em}
+\item Many spectral methods allow SDP relaxations with powerful theoretical guarantees. 
+%\vspace*{0.5em}
+%\item Therefore, regularization lies in the core of high dimensional statistics against the noise
+\end{itemize}
+\end{frame}
+
+
+%\begin{frame}
+%\frametitle{Pictures with tikz}
+%\begin{center}
+%\begin{tikzpicture}
+%	[scale=1.5,dot/.style={circle,draw=black!100,fill=black!100,thick,inner sep=0pt,minimum size=2pt}]
+%    \node[dot] at (-1,0) (n1) {};
+%    \node[dot] at (0,1)  (n2) {};
+%    \node[dot] at (1,0)  (n3) {};
+%    \node[dot] at (0,-1) (n4) {};
+%    \draw[gray] (-1.5,0) -- (1.5,0);
+%    \draw[gray] (0,-1.5) -- (0,1.5);
+%    \draw[black,thick] (n1) -- (n2) -- (n3) -- (n4) -- (n1) -- cycle;
+%    \draw[orange,thick] (-1,0.5) -- (0,1) -- (1,1.5);
+%\end{tikzpicture}
+%\qquad
+%\begin{tikzpicture}
+%	[scale=1.5,dot/.style={circle,draw=black!100,fill=black!100,thick,inner sep=0pt,minimum size=2pt}]
+%    \draw[gray] (-1.5,0) -- (1.5,0);
+%    \draw[gray] (0,-1.5) -- (0,1.5);
+%    \draw[black,thick] (-1,1) -- (0,0) -- (1,1);
+%\end{tikzpicture}
+%\end{center}
+%\end{frame}
+%
+%\begin{frame}
+%\frametitle{Pictures with tikz}
+%\begin{itemize}\itemsep=12pt
+%	\item convex envelope of (nonconvex) $f$ is the largest convex underestimator $g$
+%    \item \ie, the best convex lower bound to a function
+%        \vspace*{1em}
+%\begin{center}
+%\begin{tikzpicture}
+%    \draw[gray] (-1.5,0) -- (1.5,0);
+%    \draw[gray] (0,-0.5) -- (0,1.5);
+%    \draw[black,thick] (-1,1) -- (0,0) -- (0.5,0.5) -- (1,-0.25) -- (2,1);
+%    \draw[black,dashed] (0,0) -- (1,-0.25);
+%\end{tikzpicture}
+%\end{center}
+%    \item \textbf{example}: $\ell_1$ is the envelope of $\card$ (on unit $\ell_\infty$ ball)
+%    \item \textbf{example}: $\|\cdot\|_*$ is the envelope of $\rank$ (on unit spectral norm ball)
+%    \item various characterizations: \eg, $f^{**}$ or convex hull of epigraph
+%\end{itemize}
+%\end{frame}
+
+
+%\begin{frame}
+%\frametitle{Group lasso \\[-0.3em] 
+%{\footnotesize \textmd{(\eg, Yuan \& Lin; Meier, van de Geer, B\"uhlmann; Jacob, Obozinski, Vert)}}}
+%\begin{itemize}\itemsep=12pt
+%\item problem:
+%\[
+%\begin{array}{ll}
+%\mbox{minimize} & f(x) + \lambda \sum_{i=1}^N \|x_i\|_2
+%\end{array}
+%\]
+%\ie, like lasso, but require groups of variables to be zero or not
+%\item also called $\ell_{1,2}$ mixed norm regularization
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}{Structured group lasso \\[-0.3em] 
+%{\footnotesize \textmd{(Jacob, Obozinski, Vert; Bach et al.; Zhao, Rocha, Yu; \dots)}}}
+%\begin{itemize}\itemsep=12pt
+%\item problem:
+%\[
+%\begin{array}{ll}
+%\mbox{minimize} & f(x) + \sum_{i=1}^N \lambda_i \|x_{g_i}\|_2
+%\end{array}
+%\]
+%where $g_i \subseteq [n]$ and $\mathcal G = \{g_1, \dots, g_N\}$
+%\item like group lasso, but the groups can overlap arbitrarily
+%\item particular choices of groups can impose `structured' sparsity
+%\item \eg, topic models, selecting interaction terms for (graphical) models,
+%    tree structure of gene networks, fMRI data
+%\item generalizes to the \textbf{composite absolute penalties family}:
+%\[
+%r(x) = \|(\|x_{g_1}\|_{p_1}, \dots, \|x_{g_N}\|_{p_N})\|_{p_0}
+%\]
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}{Structured group lasso \\[-0.3em] 
+%{\footnotesize \textmd{(Jacob, Obozinski, Vert; Bach et al.; Zhao, Rocha, Yu; \dots)}}}
+%\textbf{hierarchical selection}:
+%\begin{center}
+%\begin{tikzpicture}
+%[dot/.style={rectangle,draw=black,fill=white,inner sep=5pt,minimum size=5pt}]
+%\node[dot,draw=orange,thick] at (0,5) (n1) {1};
+%\node[dot] at (-1,4) (n2) {2};
+%\node[dot,draw=orange,thick] at (1,4) (n3) {3};
+%\node[dot] at (-1,3) (n4) {4};
+%\node[dot,draw=orange,thick] at (0.5,3) (n5) {5};
+%\node[dot] at (1.5,3) (n6) {6};
+%\draw[->] (n1) -- (n2);
+%\draw[->] (n1) -- (n3);
+%\draw[->] (n2) -- (n4);
+%\draw[->] (n3) -- (n5);
+%\draw[->] (n3) -- (n6);
+%\end{tikzpicture}
+%\end{center}
+%\begin{itemize}\itemsep=8pt
+%    \item $\mathcal G = \{ \{4\}, \textcolor{orange}{\{5\}}, \{6\}, \{2,4\}, 
+%        \textcolor{orange}{\{3,5,6\}}, \textcolor{orange}{\{1,2,3,4,5,6\} \}}$
+%\item nonzero variables form a rooted and connected subtree
+%    \begin{itemize}
+%        \item if node is selected, so are its ancestors
+%        \item if node is not selected, neither are its descendants
+%    \end{itemize}
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}[fragile]{Sample ADMM implementation: lasso}
+%\begin{verbatim}
+%prox_f = @(v,rho) (rho/(1 + rho))*(v - b) + b;
+%prox_g = @(v,rho) (max(0, v - 1/rho) - max(0, -v - 1/rho));
+%
+%AA = A*A';
+%L  = chol(eye(m) + AA);
+%
+%for iter = 1:MAX_ITER
+%    xx = prox_g(xz - xt, rho);
+%    yx = prox_f(yz - yt, rho);
+%
+%    yz = L \ (L' \ (A*(xx + xt) + AA*(yx + yt)));
+%    xz = xx + xt + A'*(yx + yt - yz);
+%  
+%    xt = xt + xx - xz;
+%    yt = yt + yx - yz;
+%end
+%\end{verbatim}
+%\end{frame}
+%
+%\begin{frame}{Figure}
+%\begin{center}
+%\psfrag{k}[t][b]{$k$}
+%\psfrag{fbest - fmin}[b][t]{$f_\mathrm{best}^{(k)} - f^\star$}
+%\psfrag{noise-free realize}{noise-free case}
+%\psfrag{realize1}{realization 1}
+%\psfrag{realize2}{realization 2}
+%\includegraphics[height=0.8\textheight]{figures/pwl_error_fbest_realize.eps}
+%\end{center}
+%\end{frame}
+%
+%\begin{frame}{Algorithm}
+%    if $L$ is not known (usually the case), can use the following line search:
+%    \noindent\rule[-5pt]{\textwidth}{0.4pt}
+%    {\footnotesize
+%    \begin{tabbing}
+%        {\bf given} $x^k$, $\lambda^{k-1}$, and parameter $\beta \in (0,1)$. \\*[\smallskipamount]
+%        Let $\lambda := \lambda^{k-1}$. \\*[\smallskipamount]
+%        {\bf repeat} \\
+%        \qquad \= 1.\ Let $z := \prox_{\lambda g}(x^{k} - \lambda \nabla f(x^{k}))$. \\
+%        \> 2.\ {\bf break if} $f(z) \leq \hat{f}_{\lambda}(z, x^{k})$. \\
+%        \> 3.\ Update $\lambda := \beta \lambda$. \\*[\smallskipamount]
+%        {\bf return} $\lambda^{k} := \lambda$, $x^{k+1}:=z$.
+%    \end{tabbing}}
+%    \noindent\rule[10pt]{\textwidth}{0.4pt}
+%
+%    typical value of $\beta$ is $1/2$, and 
+%    \[
+%    \hat{f}_\lambda(x,y) = f(y) + \nabla f(y)^T (x - y) + 
+%    (1/2\lambda)\|x - y\|_2^2
+%    \]
+%\end{frame}
+
+
+
+\end{document}
