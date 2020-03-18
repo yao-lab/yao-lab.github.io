@@ -455,7 +455,7 @@ L^T & W_2
 \begin{eqnarray}
 & & {\mathcal L}(E,L,S;B) \nonumber  \\
 & = &  \|E\|_F^2 + \gamma_2 \|S\|_1 + \gamma_3 \|L\|_\ast + \ldots \nonumber \\
-& & \qquad + \langle B, A - L - S - E\rangle +  \frac{\rho}{2} \| A - L -  S - E\|_F^2 
+& & \qquad + \langle B,  L + S + E - A\rangle +  \frac{\rho}{2} \| A - L -  S - E\|_F^2 
 \end{eqnarray} 
 
 %\vspace*{0.5em}
@@ -476,7 +476,7 @@ L^T & W_2
 \item initialization: $\lambda= 1, \lambda=1/\rho$, $X_1^0=X_2^0=X_3^0=B^0=0^{m\times n}$
 
 \vspace*{0.5em}
-\item do iterations:
+\item for $k=0,1,2,\ldots$
 \begin{subequations}
     \label{eq:admm}
     \begin{align}
@@ -1306,7 +1306,7 @@ whence $\rank(S^*)\geq n-k \Rightarrow \rank(X^*) \leq k$.
 \begin{itemize}\itemsep=12pt
 \vspace*{0.5em}
 \item Strong duality of SDP tells us that an interior point feasible solution in primal or dual problem will ensure the complementary condition and the zero duality gap. Now we assume that $d_{ij}=\|x_i - x_j\|$ precisely for
-some unknown $x_i\in \R^k$. Then the primal problem is feasible with $Z= (I_d; Y)^T (I_d; Y)$. Therefore the complementary condition holds and the duality gap is zero. In this case, assume that $Z^*$ is a primal feasible solution of SDP embedding and $S^*$ is an optimal dual solution,
+some unknown $x_i\in \R^k$. Then the primal problem is feasible with $Z= (I_k; Y)^T (I_k; Y)$. Therefore the complementary condition holds and the duality gap is zero. In this case, assume that $Z^*$ is a primal feasible solution of SDP embedding and $S^*$ is an optimal dual solution,
 then 
 \begin{enumerate}
 \item $\rank(Z^*) + \rank (S^*) \leq k+n$ and $\rank(Z^*)\geq k$, whence $\rank(S^*)\leq n$;  
