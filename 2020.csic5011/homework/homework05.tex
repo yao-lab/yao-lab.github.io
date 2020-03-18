@@ -93,8 +93,7 @@ L^T & W_2
 where you can use the matlab implementation in lecture notes as a reference;
 \item Choose different parameters $p\in [0,1]$ to explore the probability of successful recover;
 \item Increase $r$ to explore the probability of successful recover;
-\item $^\star$ Increase $m$ and $n$ to values beyond $50$ will make CVX difficult to solve. In this case, use the Augmented Lagrange Multiplier method, e.g. in E. J. Candes, X. Li, Y. Ma, and J. Wright (2009) "Robust Principal Component Analysis?". Journal of ACM, 58(1), 1-37 (
-\url{http://www.math.pku.edu.cn/teachers/yaoy/Fall2011/rpca.pdf}). Make a code yourself (just a few lines of Matlab or R) and test it for $m=n=1000$. A convergence criterion often used can be $\|M-\hat{L} - \hat{S} \|_F / \|M\|_F \leq \epsilon$ ($\epsilon=10^{-6}$ for example).  
+\item $^\star$ Increase $m$ and $n$ to values beyond $50$ will make CVX difficult to solve. In this case, use the Augmented Lagrange Multiplier method, e.g. in E. J. Candes, X. Li, Y. Ma, and J. Wright (2009) "Robust Principal Component Analysis?". Journal of ACM, 58(1), 1-37. Make a code yourself (just a few lines of Matlab or Python) and test it for $m=n=1000$. A convergence criterion often used can be $\|M-\hat{L} - \hat{S} \|_F / \|M\|_F \leq \epsilon$ ($\epsilon=10^{-6}$ for example).  
 \end{enumerate}
 
 
@@ -121,8 +120,8 @@ Choose $\lambda =0$ and other positive numbers to compare your results with norm
 \item Remove the first sparse PCA from $\Sigma$ and compute the second sparse PCA with the same code;
 \item Again compute the 3rd and the 4th sparse PCA of $\Sigma$ and compare them against the normal PCAs.  
 \item $^\star$ Construct an example with $200$ observed variables which is hard to deal with by CVX. 
-In this case, use the Augmented Lagrange Multiplier method by Allen Yang et al. (UC Berkeley) whose Matlab codes can be found at 
-\url{http://www.eecs.berkeley.edu/~yang/software/SPCA/SPCA_ALM.zip}. 
+In this case, try the Augmented Lagrange Multiplier method by Allen Yang et al. (UC Berkeley) whose Matlab codes can be found at 
+\url{http://www.eecs.berkeley.edu/~yang/software/SPCA/SPCA_ALM.zip}, or Python \url{scikit-learn} Sparse PCA package. 
 \end{enumerate}
 
 \item{\em Protein Folding:} Consider the 3D structure reconstruction based on incomplete MDS with uncertainty. Data file: 
