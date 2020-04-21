@@ -1,0 +1,28 @@
+-Summary
+
+The poster uses PCA to visualize the machine learning classification results of breast cancer. The poster also compare the results of directly using machine learning on the data and the results of using machine learning after dimension reduction on the data. It is found that their results are similar.
+
+-Strength
+
+The poster is clear. And the data set is clearly described.
+
+-Weakness
+
+Maybe the author can use more dimensional reduction methods and compare their results.
+
+-Writing
+
+4. The structure is good. And the poster is easy to read. It would be even better if the accurate numerical results can be shown in a table.
+
+-Technical Quality
+
+3. The result is clear. But maybe the author can explore on more dimension reduction methods as well as more machine learning methods.
+
+-Overall rating
+
+4
+
+-Confidence
+
+2
+

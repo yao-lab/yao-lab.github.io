@@ -1,0 +1,30 @@
+-Summary
+
+This report uses various of method to do dimension reduction on financial data. And then, this paper performs classification on the dimensional deducted data. It shows that the data of stocks in the same type group are actually following similar pattern, and can be classified clearly.
+
+-Strength
+
+This report is very detailed written, with dozens of methods and careful comparison. 
+
+-Weakness
+
+The author can talk more about why would some methods could perform well. 
+
+-Writing
+
+5. The report is clear and detailed. The author also did careful analysis to the experiments.
+
+-Technical Quality
+
+4. The claims are well supported by the experiments. It would be even better if the author can explain why some methods could perform better and whether the methods are always better.
+
+-Overall rating
+
+5
+
+-Confidence
+
+2
+
+
+

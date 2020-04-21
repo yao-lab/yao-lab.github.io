@@ -1,0 +1,30 @@
+-Summary
+
+This report studied the change of topics in NIPS. They uses linear dimensional reduction to visualize and simplify the clustering analysis. They also construct the papers graph and uses manifold learning methods to see whether there are any special patterns.
+
+-Strength
+
+They did a lot of experiments, with clear descriptions and some analysis of the results.
+
+-Weakness
+
+It seems that the experiments do not meet their goals perfectly. The results seems to reflect the change of authors in NIPS during years, instead of change of topics.
+
+-Writing
+
+4. The report is written clearly. The experiments are given with descriptions and examples. It would be even better if they can be more detailed.
+
+-Technical Quality
+
+3. It seems that the relationship of their goal and their experiments are not stated clearly, although there is some analysis on the result.
+
+-Overall rating
+
+4
+
+-Confidence
+
+2
+
+
+

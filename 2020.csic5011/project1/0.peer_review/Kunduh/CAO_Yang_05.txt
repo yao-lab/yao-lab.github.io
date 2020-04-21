@@ -1,0 +1,28 @@
+-Summary
+
+This poster performs PCA to do dimension reduction on MNIST data. Then they conduct FNN to do classification. They expect to save computational time on FNN by dimension reduction and achieve better results.
+
+-Strength
+
+The experiments and their methods are clearly stated. 
+
+-Weakness
+
+They could explain more on why the prediction performance of dimensional-reduced data could even beat the original data. They can also try more methods.
+
+-Writing
+
+4. The structure is clear. But maybe more figures can be shown in the poster, such as the visualization of the dataset and so on.
+
+-Technical Quality
+
+4. The technical structure is good. But maybe they can explore more methods, and make comparison.
+
+-Overall rating
+
+4
+
+-Confidence
+
+4
+

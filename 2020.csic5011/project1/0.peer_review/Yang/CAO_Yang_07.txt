@@ -1,0 +1,29 @@
+-Summary
+
+This poster uses several dimension reduction methods on SNPs data to try to separate people by their different original regions. They also studied which part of SNPs data would be important for distinguish people from different original regions.
+
+-Strength
+
+There are many features in the poster, with descriptions besides them. This would make the claim clear. They also have a case study to illustrate their idea better.
+
+-Weakness
+
+The features and descriptions is a little bit messy. They can be organized more clearly.
+
+-Writing
+
+4. The structure is clear, but the figures and subtitles are a little bit messy.
+
+-Technical Quality
+
+5. The experiment result is sound. And the analysis of the experiment is clear. They even provided a biological explanation to their result.
+
+-Overall rating
+
+5
+
+-Confidence
+
+2
+
+

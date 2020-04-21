@@ -1,0 +1,30 @@
+-Summary
+
+This poster uses PCA and RPCA to validate the correlations of stock prices in different sectors.
+
+-Strength
+
+The method used is explained with detail.
+
+-Weakness
+
+The analysis is not that accurate. It is hard to only look at the figures to see which graph presents a better classification. Maybe they can do more clustering analysis to the figures to support their claim.
+
+-Writing
+
+4. The poster is clearly written. But maybe the technical detailed explanation takes too much space that the discussion and analysis are not that detailed.
+
+-Technical Quality
+
+3. The writing of method is clear, but the comparison of different methods should not be depend only on the figures.
+
+-Overall rating
+
+4.
+
+-Confidence
+
+2.
+
+
+
