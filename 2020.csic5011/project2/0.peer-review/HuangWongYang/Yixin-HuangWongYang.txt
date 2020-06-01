@@ -1,0 +1,8 @@
+Summary: It compared the tissue detection from tumors by PCA and DCGAN. 
+Strength: Medical image data has been through very considerate preprocessing and training process.
+Weakness: Powerpoint version poster is not easy to zoom in. 
+Evaluation on quality of writing (1-5): 4
+Evaluation on presentation (1-5): 5
+Evaluation on creativity (1-5): 5
+Confidence on your assessment (1-3): 3
+

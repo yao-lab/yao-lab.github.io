@@ -1,0 +1,18 @@
+The authors presented a report on Order the Faces by Manifold Learning.
+
+Evaluation on quality of writing: 5
+-----------------------------------
+
+The report is very rich with many comparisons among different methods such as ISOMAP, LLE, TSNE, and LSTA.
+
+Evaluation on presentation: 3
+-----------------------------
+
+The presentation is very clean, fluent, and persuasive. But the audio quality sometimes is not good,
+which makes it difficult to understand it sometimes.
+
+Evaluation on creativity: 5
+---------------------------
+
+Confidence on your assessment: 3
+--------------------------------

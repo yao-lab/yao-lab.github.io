@@ -1,0 +1,6 @@
+Project chenZH
+Summary: The project explores how to order the face by manifold learning Strength: It provides details about modeling and sufficient experiments. Weakness: The presentation can be enhanced.
+Evaluation on quality of writing (1-5): 5
+Evaluation on presentation (1-5): 4
+Evaluation on creativity (1-5): 4
+Confidence on your assessment (1-3): 4

@@ -1,0 +1,9 @@
+Project ChenWu
+Summary: It introduced 6 Transition Paths of Karate Club Network and different clustering experiments by code. 
+Strength: It gave very clear coding logic and fruitful results.
+Weakness: It only gave the code without report.
+Evaluation on quality of writing (1-5): 3
+Evaluation on presentation (1-5): 4
+Evaluation on creativity (1-5): 4
+Confidence on your assessment (1-3): 3
+

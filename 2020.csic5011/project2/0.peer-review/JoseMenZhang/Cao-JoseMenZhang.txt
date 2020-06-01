@@ -1,0 +1,30 @@
+-Summary
+
+This poster uses GAN on the financial data to see whether the generated data of financial data is similar to the real data.
+
+-Strength
+
+The technical details are clearly stated.
+
+-Weakness
+
+It lacks some analysis of how exactly the results could influence financial study.
+
+-Writing
+
+4. The report is overall clear, but the technical details may take too much space that there are not enough room for analysis.
+
+-Technical Quality
+
+3. The results is clearly stated with images, but how would this contribute to the study of financial markets is not mentioned clearly enough.
+
+-Overall rating
+
+4
+
+-Confidence
+
+2
+
+
+

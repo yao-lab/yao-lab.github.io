@@ -1,0 +1,30 @@
+-Summary
+
+This project conduct clustering in Karate Club Network using spectral clustering. They also perform transition path analysis.
+
+-Strength
+
+This report is written with many technical details, which makes this work convincing.
+
+-Weakness
+
+This report does not state the problem clear enough to read. Also, it lacks some analysis on the results.
+
+-Writing
+
+3. The report is hard to read due to the lack of introductions and explanatory sentences.
+
+-Technical Quality
+
+5. The technical details are sound, with explicit derivation.
+
+-Overall rating
+
+4
+
+-Confidence
+
+2
+
+
+

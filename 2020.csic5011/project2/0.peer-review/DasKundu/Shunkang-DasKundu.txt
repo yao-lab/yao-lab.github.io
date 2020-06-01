@@ -1,0 +1,8 @@
+Project DasKunDu
+Summary: It utilized and compared different classification algorithms in the crack segmentation.
+Strength: It clearly introduced the experiment process with enough rationales and convincing results.
+Weakness: I think this work is a little bit less creative. Actually, in this work, they only compare different exits work without any further exploration.
+Evaluation on quality of writing (1-5): 4
+Evaluation on presentation (1-5): 5
+Evaluation on creativity (1-5): 3
+Confidence on your assessment (1-3): 3

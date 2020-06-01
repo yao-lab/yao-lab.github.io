@@ -1,0 +1,30 @@
+-Summary
+
+This report conduct classification on the surface cracks. They first uses various methods to reduce the dimension of the image data. And then uses several methods to do classification on the low dimensional data.
+
+-Strength
+
+They tried a lot of methods, with clear introduction of the methods and represent the results clearly.
+
+-Weakness
+
+Some paragraphs may be too long that it would be hard to get to the points.
+
+-Writing
+
+4. The report is written clearly. The experiments are given with detailed results. But please do not write several ideas in the same paragraph or the paragraph would be too long and hard to read.
+
+-Technical Quality
+
+5. The report introduces different methods clearly, and interpret the result with figures and tables well.
+
+-Overall rating
+
+5
+
+-Confidence
+
+2
+
+
+

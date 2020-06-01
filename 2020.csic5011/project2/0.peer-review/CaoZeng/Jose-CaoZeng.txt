@@ -1,0 +1,21 @@
+The authors presented a report a robust mean and covariance estimation using GANs.
+
+
+Evaluation on quality of writing: 4
+-----------------------------------
+
+The report is definitely clearly written and concise. The ideas are developed in
+clean and organized way.
+
+Evaluation on presentation: 4
+-----------------------------
+
+The presentation is very clean, fluent, and persuasive.
+
+Evaluation on creativity: 4
+---------------------------
+
+The idea of using JS-GAN and TV-GAN to estimate robust mean and covariance matrix is very interesting.
+
+Confidence on your assessment: 3
+--------------------------------

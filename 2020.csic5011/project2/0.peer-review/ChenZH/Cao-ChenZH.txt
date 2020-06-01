@@ -1,0 +1,30 @@
+-Summary
+
+This report tried to order face images of the same person from left face direction to the right face direction. It used various manifold learning methods and compared their performances.
+
+-Strength
+
+This report contains many experiments with introduction to different methods. The conclusion is sound and clear.
+
+-Weakness
+
+Maybe this report can discuss why would the result be like this.
+
+-Writing
+
+5. This report is written clearly with a lot of graphs to illustrate the ideas.
+
+-Technical Quality
+
+5. This report introduce the methods clearly, and draw conclusion with sound graphs and tables.
+
+-Overall rating
+
+5.
+
+-Confidence
+
+2
+
+
+

@@ -1,0 +1,22 @@
+The authors presented a report on Segmenting Cracks Using Classification Algorithms on the Low Dimensional
+Embedding of Crack Data
+
+Evaluation on quality of writing: 4
+-----------------------------------
+
+The report is definitely clearly written and concise. The ideas are developed in
+clean and follow a smooth flow.
+
+Evaluation on presentation: 4
+-----------------------------
+
+The presentation is very clean, fluent, and persuasive.
+
+Evaluation on creativity: 4
+---------------------------
+
+Confidence on your assessment: 1
+--------------------------------
+
+Even though I read their report thoroughly, I have no previous background on Crack data, therefore,
+I am afraid I am not confident enough about my review.

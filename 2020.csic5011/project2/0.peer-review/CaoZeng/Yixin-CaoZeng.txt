@@ -1,0 +1,9 @@
+Project CaoZeng
+Summary: It clearly introduced GAN, f-GAN and its theoretical framework. It also explained clearly about its experiment process and results. 
+Strength: It has very clear writing logic.
+Weakness: It did not explain what are TV-GAN and JS GAN.
+Evaluation on quality of writing (1-5): 4
+Evaluation on presentation (1-5): 5
+Evaluation on creativity (1-5): 4
+Confidence on your assessment (1-3): 3
+

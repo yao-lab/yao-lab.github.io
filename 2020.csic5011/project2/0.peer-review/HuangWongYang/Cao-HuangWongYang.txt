@@ -1,0 +1,30 @@
+-Summary
+
+This poster studies the tumor image data. They conduct classification on the images to distinguish the categories of the tissue. They also test the classifier with generated images from GAN, and dimension reduced images from PCA.
+
+-Strength
+
+The result is sound and clear, with images to illustrate their idea.
+
+-Weakness
+
+More data-reconstruction methods as well as classification methods can be tried in the report.
+
+-Writing
+
+5. The report is written clearly. The images can illustrate the problem as well as the result well.
+
+-Technical Quality
+
+4. Maybe they should not stop after they find PCA may lose some key information. Here I think that the performance on the PCA reconstructed image is considerably bad compared with the original result. Maybe they can try other methods to reconstruct the image while preserving the information.
+
+-Overall rating
+
+4
+
+-Confidence
+
+2
+
+
+
