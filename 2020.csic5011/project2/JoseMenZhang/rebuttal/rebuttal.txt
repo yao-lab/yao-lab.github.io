@@ -1,0 +1,11 @@
+The topic “mean and covariance estimation” points to distribution learning in our case by utilising GAN. The generator learns the distribution of real data and keep updating by the evaluation of discriminator. The meaning of outlier detection is to get rid of accidental element that trigger the sudden changes of stock performance, after that we can have a big picture of the long run. As a brand new algorithm, GAN is performing unexpectedly well by learning and clustering data, which is also applied to time-series data set, such as S&P 500 close prices. Even though following certain trend, financial data are fluctuating and always mixed with noises, it’s very useful and meaningful to detect the main distribution of the dataset. Our video gives more explanations: https://www.youtube.com/watch?v=AwKo-cTHXXM&t=538s
+
+Dear CZH: thanks for your kind comments. While we agree that we did not explore outlier detection in the financial market data, we showed a very thorough analysis using synthetic data.
+Dear Cao: thanks for your kind comments. While we agree we have not explored the in depth the implications of GANs on financial data, we think that our analysis using synthetic data was very complete.
+Dear Hanli: thanks for you kind comments. The practical application on outlier detection was discussed using synthetic data.
+Dear Kundu and Das: thanks for your kind comments, we have corrected our poster according to your suggestions.
+Dear Kyle: thanks for your kind comments, please see the first paragraph in this document.
+Dear Wu: thank you for your kind comments.
+Dear Yingxi: thank you for your kind comments.
+Dear Zeng: thank you for your kind comments. Please see the first paragraph in this document.
+
