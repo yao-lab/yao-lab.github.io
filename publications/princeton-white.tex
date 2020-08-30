@@ -1,0 +1,550 @@
+\documentclass[pdf,slideColor,colorBG]{prosper}
+
+\hypersetup{pdfpagemode=FullScreen}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+%\usepackage{amsart}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+
+%\usepackage{theorem}
+\usepackage{chicagoc}
+%\include{mynote}
+
+\newenvironment{mthm}[1][Main Theorem]{\medskip \noindent {\bf #1.}
+\begin{em}}{\end{em}\medskip}
+
+\theoremstyle{theorem}
+\newtheorem*{mainthm}{Main Theorem}
+\newtheorem*{thma}{Theorem A}
+\newtheorem*{thmb}{Theorem B}
+\newtheorem*{thmc}{Theorem C}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{conj}{Conjecture}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{lema}{Lemma A}
+\newtheorem{lemb}{Lemma B}
+\newtheorem{thmaa}{Theorem A}
+\newtheorem{thmbb}{Theorem B}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{cora}[thmaa]{Corollary A}
+\newtheorem{corb}[thmbb]{Corollary B}
+
+\theoremstyle{definition}
+\newtheorem*{defn}{Definition}
+\newtheorem*{defa}{Definition A}
+\newtheorem{exmp}{Example}[section]
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+%\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+\newcommand{\DS}{\displaystyle}
+
+\def\Q{{\mathbb Q}}        % rationals
+\def\Z{{\mathbb Z}}        % integers
+\def\R{{\mathbb R}}        % reals
+\def\Rn{{\R^{n}}}          % product of n copies of reals
+\def\<{{\langle}}
+\def\>{{\rangle}}
+\def\P{{\mathbb P}}        % probability
+\def\E{{\mathbb E}}        % expectation
+\def\1{{\mathbf 1}}        % indicator
+\def\var{{\mathop{\mathbf Var}}}    % variance
+
+\def\L{{\mathscr L}}
+\def\L2{{\mathscr L}^2_{\rho_X}}
+\def\A{\hat{A}}
+\def\b{\hat{b}}
+\def\w{\hat{w}}
+\def\M{M_\rho}
+
+\def\C{{\mathscr C}}
+\def\H{{\mathscr H}}
+\def\K{{\mathscr K}}
+\def\I{{\mathscr I}}
+\def\PPi{{\hat{\Pi}}}
+\def\S{{\mathscr S}}
+\def\T{{\mathscr T}}
+\def\X{{\mathcal X}}
+\def\Y{{\mathcal Y}}
+\def\Err{{\mathcal E}}
+\def\N{{\mathbb N}}
+\def\x{{\mathbf x}}
+\def\y{{\mathbf y}}
+\def\z{{\mathbf z}}
+\def\Prob{{\bf Prob}}
+\def\Proj{{\rm Proj}}
+\def\grad{{\rm grad}}
+\def\ess{{\rm ess}}
+\def\supp{{\rm supp}}
+\def\sign{{\rm sign}}
+\def\span{{\rm span}}
+\def\O{{\mathscr O}}
+\def\amax{{\overline{\alpha}}}
+\def\amin{{\underline{\alpha}} }
+\def\i{{\bf i}}
+\def\j{{\bf j}}
+\def\t{t_0}
+
+\def\al{{\alpha}}
+\def\be{{\beta}}
+\def\la{{\lambda}}
+\def\De{{\Delta}}
+\def\de{{\delta}}
+\def\ka{{\kappa}}
+\def\g{{\gamma}}
+\def\ga{{\gamma}}
+\def\ze{\zeta}
+
+\def\lf{\lfloor}
+\def\rf{\rfloor}
+\def\lc{\lceil}
+\def\rc{\rceil}
+
+\def\st{\star}
+
+\newcommand{\Es}{\mathbb{E}}
+
+
+\newcommand{\Fre}{Fr\'echet \;}
+\newcommand{\Ga}{G\^ateaux \;}
+
+\title{Gradient Descent Method in Learning}
+\subtitle{online vs. batch\footnote{Some joint work with Andrea Caponnetto, Lorenzo Rosasco, Steve Smale, Pierre Tarr\`es, with help from
+Yiming Ying and D.-X. Zhou, etc.}}
+\author{Yuan Yao}
+%\email{yao@math.berkeley.edu}
+\institution{Department of Mathematics, \\ University of California, Berkeley}
+
+
+\begin{document}
+\maketitle
+
+%\overlays{7}{%
+\begin{slide}{Outline of the talk}
+\begin{itemize}
+    \item Batch vs Online learning
+    \item Gradient Descent Method in both settings
+    \item How to do regularizations
+    \item Lower and Upper Bounds
+    \item Exponential Rates for Plug-in Classifiers
+    \item ``Random Connections'' with Random Projections
+    \item Future Directions
+\end{itemize}
+
+\end{slide}
+%}
+
+%
+\begin{slide}{Batch vs. Online}
+Given a sequence of examples $(z_i)_{i\in \N}\in (\X\times \Y)^\infty$
+
+\begin{itemize}
+    \item Batch Learning: truncation set $\z_T=(z_i)_{i=1}^T$, find a mapping
+\[ \z_T \mapsto f_{\z_T} \]
+
+    \item Online Learning: a Markov Decision Process
+\[ f_{t+1} = T_t(f_{t},z_{t+1}) \]
+where $f_t$ only depends on $z_1,\ldots,z_t$.
+
+\end{itemize}
+\end{slide}
+
+
+%
+\begin{slide}{Why Online?}
+\begin{itemize}
+    \item Low computational cost:
+        \subitem online needs $\geq O(t)$ steps
+        \subitem batch typically needs $\geq O(T^3)$ (inverting a matrix)
+    \item Fast convergence: order optimality
+    \item Temporal dependence of samples:
+        \subitem {\it Markov Chain sampling}: large-scale networks
+        \subitem {\it Mixing processes}: exponential-mixing and polynomial-mixing
+        \subitem {\it Games}: competitive (non-statistical) analysis
+\end{itemize}
+\end{slide}
+
+%
+%\overlays{2}{%
+\begin{slide}{Where we start: Penalizations}
+
+\[ \min_{f\in \H} \frac{1}{T} \sum_{i=1}^T V(y_i,f(x_i)) + \lambda \|f\|_\H^2 \]
+
+where we choose the loss $V(y,f(x))$:
+\begin{itemize}
+        \item $L_2$ loss: for order optimality analysis
+        \item $L_1$ loss (soft margin): for sparsity, e.g. Basis Pursuit and SVM regression
+\end{itemize}
+
+\medskip
+%\fromSlide{2}{and $\H=\H_K$ a reproducing kernel Hilbert space (RKHS).}
+and $\H=\H_K$ a reproducing kernel Hilbert space (RKHS).
+\end{slide}
+%}
+
+%
+%\overlays{3}{
+\begin{slide}{Why RKHS}
+
+\begin{itemize}
+        \item $\H_K$ can be dense in continuous function space $\C(X)$
+        \item the gradient takes a simple form in $\H_K$:
+        $$\grad_f V = V'_f(y,f(x)) K_x $$
+        \item super-fast convergence rate for plug-in classifiers...
+\end{itemize}
+\end{slide}
+%}
+
+%
+\begin{slide}{Exponential Rates in Classifications}
+Assume that
+\begin{itemize}
+        \item The regression function $f_\rho \in \H_K$
+        \item $f_\rho$ has margin $\gamma>0$:
+        $$ \Prob\{x\in X: |f_\rho(x)|\leq \gamma\}=0 $$
+\end{itemize}
+Then there is a $f_t:(z_i)_1^t \to \H_K$, s.t.
+\[ \E R(f_t) - R(f_\rho) \leq O(\exp ( - c \gamma t^{1/4})) \]
+where $R(f)$ is the misclassification error of the \emph{plug-in classifier} $\sign(f)$.
+\end{slide}
+
+%
+\begin{slide}{What is RKHS}
+\begin{itemize}
+    \item $K:\X\times\X\to \R$ is a \emph{Mercer} kernel, i.e. a \emph{continuous}, symmetric and positive definite function
+    \item $\H_K=\overline{\span\{K_x:x\in \X\}}$ where the closure is w.r.t. the inner product $\<K_x,K_{x'}\>_K = K(x,x')$
+    \item \emph{Reproducing} property: $f(x)=\<f,K_x\>_K$
+    \item $\H_K$ is a subspace (closed iff finite dimension) in $\L2\cap \C(\X)$
+\end{itemize}
+\end{slide}
+
+
+%
+\begin{slide}{Gradient Descent Algorithms}
+For $L_2$ loss and $\H=\H_K$,
+\begin{itemize}
+\item Batch ($L_2$Boost):
+\[ \hat{f}_{t+1} = \hat{f}_t - \eta_t \left[ \frac{1}{T}\sum_{i=1}^T (\hat{f}_t(x_i)- y_i) K_{x_i}  + \lambda_T \hat{f}_t \right] \]
+
+\item Online:
+\[ f_{t+1} = f_t - \eta_t [(f_t(x_{t+1})-y_{t+1})K_{x_{t+1}} + \lambda_t f_t ] \]
+
+\end{itemize}
+\end{slide}
+
+%
+%\overlays{2}{
+\begin{slide}{Our Theoretical Goal}
+Convergence of $(\hat{f}_t)\in \H_K$ and $(f_t)\in \H_K$ to the regression function
+\[ f_\rho (x) := \E[y|x] \in \L2 \]
+and its rates when $f_\rho$ takes some sparse form.
+
+\medskip
+
+But, $\L2$ is too large a space to search, so we need \emph{regularizations}.
+
+\end{slide}
+%}
+
+%
+\begin{slide}{Regularization}
+
+Two parameters: $\la_t$ (or $\la_T$) and $\eta_t$:
+\begin{itemize}
+\item $\la_T=0$ and $\eta_t=c$: Landwebter iterations/$L_2$Boost
+\item $\la_T=0$ and $\eta_t\downarrow 0$: Yao et al. (2005)
+\item $\la_t=\la>0$ and $\eta_t \downarrow 0$: $f_t\to f_\la \neq f_\rho$, Smale and Yao (2005) etc.
+\item $\la_t\downarrow 0$ and $\eta_t\downarrow 0$: $f_t\to f_\rho$, Yao and Tarr\`es (2005)
+\item $\la_t=0$ and $\eta_t\downarrow 0$: $f_t \to f_\rho$, Ying et al. (2006)
+\end{itemize}
+
+\end{slide}
+
+\begin{slide}{Sparsity of Regression Function}
+We are going to assume that the regression function is sparse/smooth w.r.t. the following \emph{basis}
+\begin{itemize}
+    \item roughly speaking, kernel principle components,
+    \item or more precisely, the eigenfunctions of the \emph{covariance operator} of $\rho_\X$ on $\H_K$.
+\end{itemize}
+\end{slide}
+%
+%\overlays{3}{
+\begin{slide}{Covariance operator}
+\begin{itemize}
+    \item Define an integral operator
+\[
+\begin{array}{rcl}
+L_K : \L2 & \to & \H_K \\
+       f & \mapsto & \int_X f(x') K(x',\cdot) d \rho_X
+\end{array}
+\]
+    \item The \emph{covariance operator}, is the restriction $L_K|_{\H_K}:\H_K\to \H_K$, i.e. $\E_x[ \<\ ,K_x\>K_x]$
+
+    \item $L_K:\L2\to \L2$ compact $\Rightarrow$ orthonormal eigen-system $(\la_i,\phi_i)_{i\in \N}$, $\phi_i \in \L2\cap\H_K$ bi-orthogonal and
+\[ \sum \la_i \leq \sup_{x\in \X} K(x,x) =: \kappa <\infty \]
+\end{itemize}
+\end{slide}
+%}
+
+%
+%\overlays{2}{
+\begin{slide}{Sparsity Assumption}
+Assume that
+\[ f_\rho = L_K^r g, \ \ \ \ g\in \L2, r>0 \]
+i.e. $f_\rho$ has at least \emph{power-law decay} coordinates w.r.t. the basis of eigenfunctions of $L_K:\L2\to \L2$:
+\[ f_\rho = \sum_i \la_i^r g_i \phi_i,  \ \ \ \sum \la_i <\infty, \sum g_i^2 <\infty\]
+
+\medskip
+Note: if $K$ is a stochastic density kernel, $L_K^r$ is used to construct diffusion wavelets
+by Coifman et al.
+\end{slide}
+%}
+
+\begin{slide}{Lower Rates in Learning}
+Let $\P(b,r)$ ($b>1$ and $r\in (1/2,1]$) be the set of probability measure $\rho$ on $\X\times \Y$,
+such that:
+\begin{itemize}
+    \item the eigenvalues $\la_i$, arranged in a nonincreasing order, decay at $O(i^{-b})$
+    \item $f_\rho = L_K^{r} g$ for some $g \in \L2$
+    \item almost surely $|y|\leq \M$
+\end{itemize}
+\end{slide}
+
+%
+%\overlays{3}{
+\begin{slide}{Minimax Lower Rates}
+[Caponnetto-DeVito'05] The minimax lower rate:
+\[
+\begin{array}{rl}
+& \liminf_{t\to \infty} \inf_{\z_t \mapsto f_t } \sup_{\rho\in \P(b,r)} \\
+& \Prob \left\{\z_t \in \Z^t: \frac{\|f_t - f_\rho\|_2}{t^{-\frac{rb}{2rb+1}}} >C \right\} = 1
+\end{array}
+\]
+where the $\inf$ is taken over all algorithms mapping $(z_i)_1^t\mapsto f_t$.
+
+\medskip
+
+\begin{itemize}
+    \item The $\rho$ in $\sup_{\rho\in \P(b,r)}$ depends on sample size $t$!
+    \item Suitable for online learning, instead of batch learning.
+\end{itemize}
+\end{slide}
+%}
+
+%
+%\overlays{2}{
+\begin{slide}{Individual Lower Rates}
+[Caponnetto-DeVito'05] The individual lower rate: for each $B>b$,
+\[\inf_{((z_i)_1^t\mapsto f_t)_{t\in \N}} \sup_{\rho \in \P(b,r)} \limsup_{t\to \infty} \frac{\|f_t- f_\rho\|_2}{t^{-\frac{rB}{2rB+1}}} > 0. \]
+
+\medskip
+
+Note: taking $b=1$ and $B=1$, it suggests \emph{eigenvalue independent} minimax and individual lower rates:
+$$t^{-\frac{r}{2r+1}} $$
+\end{slide}
+%}
+
+%
+\begin{slide}{Upper Bounds for Batch Learning}
+Theorem (Yao-Rosasco-Caponnetto'05). Assume that $f_\rho = L_K^r g$ ($r>0$). There exist $\la_T$, $\eta_t$ and an early stopping rule $t^\ast:\N\to \N$,
+such that
+
+\begin{itemize}
+    \item if $r>0$, $\DS \|\hat{f}_{t^\ast(T)} - f_\rho \|_2 \leq O( T^{-\frac{r}{2r+2}}) $
+    \item if $r>1/2$, $\DS \|\hat{f}_{t^\ast(T)} - f_\rho \|_K \leq O( T^{-\frac{r-1/2}{2r+2}})$
+\end{itemize}
+In fact, one may choose $\la_T=0$, $\eta_t = \frac{1}{\ka^2(t+1)^\theta}$ and $t^\ast(T)=\lceil T^{-\frac{1}{(2r+2)(1-\theta)}} \rceil$.
+\end{slide}
+
+%
+\begin{slide}{Improvements}
+[Bauer-Pereverzev-Rosasco'06] For $\theta=0$ and $r>1/2$,
+$$\DS \|\hat{f}_{t^\ast(T)} - f_\rho \|_2 \leq O( T^{-\frac{r}{2r+1}})$$
+which meets the lower rates.
+\end{slide}
+
+%
+%\overlays{2}{
+\begin{slide}{Upper Bounds for Online Learning}
+Theorem (Tarr\`es-Yao'06). Assume that $f_\rho = L_K^r g$ ($r>0$). There exist $\la_t$ and $\eta_t$ such that
+
+\begin{itemize}
+    \item if $r>0$, $\DS \|f_t - f_\rho \|_2 \leq O( t^{-\max\{\frac{r}{2r+1},1/3\}}) $
+    \item if $r>1/2$, $\DS \|f_t - f_\rho \|_K \leq O( t^{-\max\{\frac{r-1/2}{2r+1},1/4\}})$
+\end{itemize}
+In fact, $\la_t \sim O(t^{-1/(2r+1)})$ and $\eta_t \sim O(t^{-2r/(2r+1)})$.
+
+\medskip
+
+\emph{Note}: the upper rates \emph{saturate} when $r\geq 1$ and $r\geq 3/2$!
+\end{slide}
+%}
+
+%
+%\overlays{2}{
+\begin{slide}{Breaking Saturation}
+It is expected that with $\la_t=0$ and suitable choices $\eta_t\to 0$ and $\sum_t \eta_t =\infty$, one has
+\[ \|f_t - f_\rho \|_2 \leq O(t^{-\frac{r}{2r+1}}) \]
+for \emph{all $r>0$}.
+
+\medskip
+
+\emph{A Positive Answer}: Ying et al. (2006) give results suggesting its truth.
+\end{slide}
+%}
+
+%
+\begin{slide}{Plug-in Classifiers: Exponential Rates}
+Taking $r=1/2$ or equivalently assuming that $f_\rho\in \H_K$, combining a recent result by Audibert \& Tsybakov'05,
+\[ \E R(f) - R(f_\rho) \leq \rho_X(x: |f(x) - f_\rho(x)|\geq \gamma) \]
+we obtain that for online learning
+\[\E R(f_t)-R(f_\rho) \leq O(\exp(-c \gamma t^{1/4})) \]
+where $f_\rho$ has margin $\gamma$. Similar holds for batch learning.
+\end{slide}
+
+%
+%\overlays{4}{
+\begin{slide}{Random Projection Perspective}
+Given $\x_T\in \X^T$, define a sampling operator on $\H_K$
+\[
+\begin{array}{rcl}
+S_{\x_T} : \H_K & \to & l_2(\x_T) \\
+f & \mapsto & (f(x_i))_1^T = (\<f,K_{x_i}\>_K)_1^T
+\end{array}
+\]
+\begin{itemize}
+    \item $S_{\x_T} f$ takes $T$ random measurements/projections of $f$.
+    \item Adjoint operator $S_{\x_T}^\ast \y = \frac{1}{T}\sum_{i=1}^T y_i K_{x_i}$.
+    \item $S_{\x_T} S_{\x_T}^\ast$ is the Gram matrix $(K(x_i,x_j))^{T\times T}$.
+\end{itemize}
+\end{slide}
+%}
+
+%
+%\overlays{2}{
+\begin{slide}{Compressed Sensing}
+\begin{itemize}
+\item $f$ is sparse w.r.t. certain basis/frames (unknown)
+\item $S_{\x_T}$ takes some random measurements of $f$ such that the Uniform Uncertainty Principle holds, or
+equivalently, for small enough $T_0$ and all $T\leq T_0$, $S_{\x_T} S^\ast_{\x_T}$ has a \emph{uniform lower bound} (depending on the sparsity of $f$)
+on the smallest eigenvalue.
+\end{itemize}
+\medskip
+
+However in Learning, since
+\[ \E[S^\ast_{\x_T} S_{\x_T}] = L_K|_{\H_K} \]
+where $L_K$ is a compact operator with eigenvalues convergent to $0$, NO lower bound!
+\end{slide}
+%}
+
+%
+%\overlays{2}{
+\begin{slide}{Learning vs. Compressed Sensing}
+To control the \emph{condition number} (or smallest eigenvalue) of the Gram matrix $S_{\x_T}S_{\x_T}^\ast$:
+
+\begin{itemize}
+    \item Learning uses \emph{regularization}
+    \item Scott \& Nowak'05 uses Vapnik's \emph{structural risk minimization}
+    \item Donoho, Cand\`es \& Tao, use \emph{Random Matrix Theory}
+\end{itemize}
+
+\medskip
+
+%\fromSlide{2}{
+Moreover, there is another kind of ``condition number'' in machine learning: \\
+\begin{center}
+\emph{margin}
+\end{center}
+%}
+\end{slide}
+%}
+
+%
+%\overlays{2}{
+\begin{slide}{Margin (normalized)}
+Definitions.
+\begin{itemize}
+    \item $f\in \H_K$ has \emph{margin} $\ga>0$, if
+\[ \rho_X \{x\in X: |f(x)|\geq \ga \|f\|\|K_x\| \} = 1 \]
+    \item $f\in \H_K$ has \emph{margin} $\ga>0$ with error $\epsilon\in [0,1]$, if
+\[ \rho_X \{x\in X: |f(x)|\geq \ga \|f\|\|K_x\| \} \geq 1-\epsilon \]
+\end{itemize}
+
+\end{slide}
+%}
+
+%
+%\overlays{2}{
+\begin{slide}{Margin and Random Projections}
+[Balcan-Blum-Vempala'05] If $f\in \H_K$ has margin $\ga$, then with i.i.d. examples of number
+\[ t \geq  \frac{8}{\epsilon} \max\left \{ \frac{1}{\ga^2}, \ln \frac{1}{\delta} \right \} \]
+there is a $f_t$ such that with confidence $1-\delta$, $f_t$ has margin $\ga/2$ with
+error $\epsilon$.
+
+\medskip
+
+\begin{itemize}
+    \item In fact, $f_t$ can be realized by the Orthogonal Projections on to
+    $\span \{K_i:1\leq i \leq t\}$.
+\end{itemize}
+\end{slide}
+%}
+
+%
+\begin{slide}{Future Directions}
+
+\begin{itemize}
+    \item Step-Size Adaptation
+        \subitem Cross-Validation
+        \subitem Averaging process acceleration
+        \subitem Stochastic Meta-Descent (SMD)
+    \item Dependent Sampling
+        \subitem Markov Chain sampling
+        \subitem Mixing process
+    \item Various aspects of Random Projections
+\end{itemize}
+
+\end{slide}
+
+
+\end{document}
+
+\begin{slide}
+\begin{itemize}
+\end{itemize}
+
+\end{slide}
+
+
+\begin{slide}
+
+\end{slide}
+
+\overlays{5}{%
+\begin{slide}{Outline of the talk}
+
+\begin{itemstep}
+    \item Introduction
+    \item Statement of the main theorem
+    \item Technical lemmata
+    \item Proof of the main theorem
+    \item Conclusions
+\end{itemstep}
+
+\end{slide}
+}

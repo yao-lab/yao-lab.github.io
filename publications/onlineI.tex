@@ -1,0 +1,1327 @@
+\documentclass[twoside]{amsart}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+
+\theoremstyle{theorem}
+\newtheorem*{mainthm}{Main Theorem}
+\newtheorem*{thma}{Theorem A}
+\newtheorem*{thmb}{Theorem B}
+\newtheorem*{thmb1}{Theorem B'}
+\newtheorem*{thmc}{Theorem C}
+\newtheorem*{lem*}{Lemma}
+\newtheorem*{pf}{Proof}
+
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{conj}{Conjecture}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{lema}{Lemma A}
+\newtheorem{lemb}{Lemma B}
+\newtheorem{thmaa}{Theorem A}
+\newtheorem{thmbb}{Theorem B}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{cora}[thmaa]{Corollary A}
+\newtheorem{corb}[thmbb]{Corollary B}
+
+\theoremstyle{definition}
+\newtheorem*{defn}{Definition}
+\newtheorem*{defa}{Definition A}
+\newtheorem{exmp}{Example}[section]
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{note}{Note}
+\newtheorem*{exer}{Exercise}
+
+\def\L{{\mathscr L}}
+\def\A{{\mathscr A}}
+\def\C{{\mathscr C}}
+\def\H{{\mathscr H}}
+\def\K{{\mathscr K}}
+\def\I{{\mathscr I}}
+\def\S{{\mathscr S}}
+\def\T{{\mathscr T}}
+\def\Err{{\mathscr E}}
+\def\N{{\mathbb N}}
+\def\z{{\mathbf z}}
+\def\Prob{{\bf Prob}}
+\def\Proj{{\rm Proj}}
+\def\grad{{\rm grad}}
+\def\ess{{\rm ess}}
+\def\supp{{\rm supp}}
+\def\span{{\rm span}}
+\def\O{{\mathscr O}}
+\def\amax{{\mu_{\max}}}
+\def\amin{{\mu_{\min}} }
+
+\newcommand{\DS}{\displaystyle}
+
+\def\Q{{\mathbb Q}}        % rationals
+\def\Z{{\mathbb Z}}        % integers
+\def\R{{\mathbb R}}        % reals
+\def\Rn{{\R^{n}}}          % product of n copies of reals
+
+\def\P{{\mathbb P}}        % probability
+\def\E{{\mathbb E}}        % expectation
+\def\1{{\mathbf 1}}        % indicator
+\def\var{{\mathop{\mathbf Var}}}    % variance
+
+\def\L{{\mathscr L}}     % L, as in L^2
+
+\def\<{{\langle}}
+\def\>{{\rangle}}
+
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+%\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+\begin{document}
+
+\title{Online Learning Algorithms}
+\thanks{The authors were supported by NSF grant 0325113.}
+
+\author{Steve Smale}
+\address{Steve Smale, Toyota Technological Institute at Chicago, 1427 East 60th Street, Chicago, IL
+60637.}
+\email{smale@math.berkeley.edu}
+
+\author{Yuan Yao}
+\address{Yuan Yao, Department of Mathematics, University of California at Berkeley, Berkeley, CA 94720.}
+\curraddr{Toyota Technological Institute at Chicago, 1427 East 60th Street, Chicago, IL
+60637.}
+\email{yao@math.berkeley.edu}
+
+\date{Submitted to \emph{Foundations of Computational Mathematics} on October 25, 2004. Revised on May 1, 2005.}
+
+\keywords{Online Learning, Stochastic Approximation, Regularization, Reproducing Kernel Hilbert Spaces}
+
+\subjclass[2000]{62L20, 68Q32, 68T05}
+
+\maketitle
+
+\begin{abstract}
+In this paper, we study an online learning algorithm in Reproducing Kernel Hilbert Spaces (RKHS) and general Hilbert spaces.
+We present a general form of the stochastic gradient method to minimize a quadratic potential function by an
+independent identically distributed (i.i.d.) sample sequence, and show a probabilistic upper bound for its convergence.
+\end{abstract}
+
+\bigskip
+
+%\setcounter{section}{-1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Consider learning from examples $(x_t, y_t)\in X\times \R$ ($t\in \N$), drawn at random
+from a probability measure $\rho$ on
+$X\times \R$. For $\lambda>0$, one wants to approximate the function $f^\ast_\lambda$ minimizing over $f\in \H$ the
+quadratic functional
+\[ \int_{X\times Y} (f(x)-y)^2 d \rho + \lambda \| f \|^2_\H, \]
+where $\H$ is some Hilbert space. In this paper a scheme for doing
+this is given by using one example at a time $t$ to update to
+$f_{t}$ the current hypothesis $f_{t-1}$ which depends only on the
+previous examples. The scheme chosen here is based on the
+stochastic approximation of the gradient of the quadratic
+functional of $f$ displayed above, and takes an especially simple
+form in the setting of a ``Reproducing Kernel Hilbert Space''.
+Such a stochastic approximation procedure was firstly proposed by
+Robbins and Monro \cite{RobMon51}, and as well Kiefer and Wolfowitz
+\cite{KieWol52}. Its convergence and asymptotic rates have
+been widely studied (e.g. see \cite{RobSie71}, \cite{Duflo97},
+\cite{Benaim99}, \cite{Gyofi80}, \cite{Tadic04}, or
+\cite{GyoKohKrzWal02} and reference therein). For more background
+on stochastic algorithms see for example \cite{BerTsi96},
+\cite{Duflo96}, \cite{KusYin03}. The main goal in our development
+of the algorithm is to give error estimates which characterize in
+probability the distance of our updated hypothesis to
+$f^\ast_\lambda$ (and eventually the ``regression function'' of
+$\rho$). By choosing a quadratic functional to optimize one is
+able to give a deeper understanding of this \emph{online learning}
+phenomenon.
+
+In contrast, in the more common setting for Learning Theory the
+learner is presented with the whole set of examples in one batch.
+One may call this type of work as \emph{batch learning}.
+
+The organization of this paper is as follows. Section 2 presents
+an online learning algorithm in Reproducing Kernel Hilbert Spaces
+(RKHS) and states Theorem A for a probabilistic upper bound on
+initial error and sample error. Section 3 presents a general form
+of the stochastic gradient method in Hilbert spaces and Theorem B,
+together with a derivation of Theorem A from Theorem B. Section 4
+gives the proof of Theorem B and the various bounds appearing in
+Section 3. Section 5 compares our results with the case of ``batch
+learning''. Section 6 discusses the Adaline or Widrow-Hoff algorithm and related
+works. Appendix A collects some estimates used
+throughout the paper, Appendix B presents a generalized Bennett's
+inequality for independent sums in Hilbert spaces.
+
+The authors would like to acknowledge Peter Bartlett and Pierre Tarr\`es for their suggestions on stepsize rate; Yifeng Yu and
+Krishnaswami Alladi for their helpful discussions on proving the Main Analytic Estimate (Lemma A.1) and Lemma A.2; Iosif Pinelis and
+Yiming Ying for their pointing out the Lemma B.1 and helpful comments. We thank the reviewers for many suggestions.
+We also thank Ding-Xuan Zhou, David McAllester, Adam Kalai, Gang Liang, Leon Bottou
+and especially, Tommy Poggio, for many helpful discussions.
+
+\subsection{Notation}
+Let $X$ be a closed subset of $\R^n$, $Y=\R$ and $Z=X\times Y$.
+Let $\rho$ be a probability measure on $Z$, $\rho_{X}$ be the induced marginal probability measure on $X$,
+and $\rho_{Y|x}$ be the conditional probability measure on $Y$ with respect to $x\in
+X$. Define $f_\rho:X\to Y$ by
+\[ f_\rho (x) = \int_Y y d \rho_{Y|x}, \]
+the \emph{regression function of $\rho$}. In other words, for each
+$x\in X$, $f_\rho(x)$ is the average of $y$ with respect to
+$\rho_{Y|x}$. Let $\L^2_{\rho_X}(X)$ be the Hilbert space of
+square integrable functions with respect to $\rho_X$, and denoted
+by $\L^2_\rho(X)$ for simplicity. In the sequel $\|\ \|_\rho$
+denotes the norm in $\L^2_\rho(X)$ and $\|\ \|_\infty$ denotes the
+supreme norm with respect to $\rho_X$ (\emph{i.e.}
+$\|f\|_\infty=\ess\sup_{\rho_X} |f(x)|$). We assume that
+$\|f_\rho\|_\infty <\infty$ and $f_\rho \in \L^2_{\rho}(X)$. Finally we
+use such a convention on the summation and product sign: as
+the index $m>n$, let $\sum_{i=m}^n x_i =0$ and $\prod_{i=m}^n x_i=1$, for any summand $x_i$.
+
+\section{An Online Learning Algorithm in RKHS}
+
+Let $K:X\times X\to \R$ be a \emph{Mercer kernel}, i.e. a
+continuous symmetric real function which is \emph{positive
+semi-definite} in the sense that $\sum_{i,j=1}^l c_i c_j K(x_i,
+x_j)\geq 0$ for any $l\in \N$ and any choice of $x_i\in X$ and
+$c_i \in \R$ ($i=1,\ldots,l$). Note $K(x,x)\geq 0$ for all $x$. In
+the following $\|\cdot \|$ and $\<,\>$ denote the Euclidean norm
+and the Euclidean inner product in $\R^n$ respectively.We give two
+typical examples of Mercer kernels. The first is the Gaussian
+kernel $K:\R^n\times \R^n\to \R$ defined by $K(x,x^\prime)=
+\exp(-\|x-x^\prime\|^2/c^2)$ ($c>0$). The second is the linear
+kernel $K:\R^n\times \R^n\to \R$ defined by
+$K(x,x^\prime)=\<x,x^\prime\>+1$. The restriction of these
+functions on $X\times X$ will induce the corresponding kernels on
+subsets of $\R^n$.
+
+Let $\H_K$ be the Reproducing Kernel Hilbert Space (RKHS)
+associated with a Mercer kernel $K$. Recall the definition as
+follows. Consider the vector space $V_K$ generated by $\{K_t:t\in
+X\}$, i.e. all the finite linear combinations of $K_t$, where for
+each $t\in X$, the function $K_t:X\to \R$ is defined by
+$K_t(x)=K(x,t)$. An inner product $\<\ ,\ \>_K$ on this vector
+space can be defined as the unique linear extension of
+$\<K_x,K_{x'}\>_K:=K(x,x')$ and its induced norm\footnote{Note
+that the zero set $V_0=\{f\in V_K: \|f\|_K=0\}=\{0\}$, whence
+$\|\cdot\|_K$ is in fact a norm. To see this, by the reproducing
+property and Cauchy-Schwartz inequality,
+$$ \|f\|_K=0\Rightarrow |f(t)|=|\<f,K_t\>_K| \leq \|f\|_K \|K_t\| =0, \ \forall t\in X\Rightarrow f= 0, $$
+which implies $V_0=\{0\}$. } is $\|f\|_K = \sqrt{\<f,f\>_K}$ for
+each $f\in V_K$. Let $\H_K$ be the completion of this inner
+product space $V_K/V_0$. It follows that for any $f\in \H_K$,
+$f(x)=\<f,K_x\>_K$ ($x\in X$). This is often called as the
+\emph{reproducing property} in literature. Define a linear map
+$L_K:\L^2_\rho(X)\to \H_K$ by $L_K(f)(x)= \int_X K(x,t) f(t) d
+\rho_X$. The operator $L_K + \lambda I:\H_K \to \H_K$ is an
+isomorphism if $\lambda>0$ (endomorphism if $\lambda\geq 0$),
+where $L_K:\H_K \to \H_K$ is the restriction of $L_K:\L^2_\rho(X)
+\to \H_K$.
+
+\bigskip
+
+Given a sequence of examples $z_t=(x_t,y_t)\in X\times Y$ ($t\in \N$), our online learning algorithm in RKHS is
+\begin{equation}\label{eq:rkhs}
+f_{t+1} = f_t - \gamma_t(( f_t(x_t)-y_t) K_{x_t} +\lambda f_t ), \ \ \ \ \ \mbox{for some $f_1 \in \H_K$, e.g. $f_1=0$},
+\end{equation}
+where
+\begin{enumerate}
+\item for each $t\in \N$, $(x_t,y_t)$ is drawn identically and independently according to $\rho$,
+\item the regularization parameter $\lambda\geq 0$,
+\item the step size $\gamma_t>0$.
+\end{enumerate}
+
+Note that for each $f$, the map $X\times Y\to \R$ given by
+$(x,y)\mapsto f(x)-y$ is a real valued random variable and
+$K_x:X\to \H_K$ is a $\H_K$-valued random variable. Thus $f_{t+1}$
+is a random variable with values in $\H_K$ depending on
+$(z_i)_{i=1}^t$. Moreover we see that $f_{t+1}\in
+\span\{f_1,K_{x_i}:1\leq i\leq t\}$, a finite dimensional subspace
+of $\H_K$. The derivation of (\ref{eq:rkhs}) is given in the next
+section from a stochastic gradient algorithm in general Hilbert
+spaces.
+
+\bigskip
+
+In the sequel we assume that
+\begin{equation} \label{eq:ck}
+C_K:=\sup_{x\in X} \sqrt{K(x,x)} < \infty.
+\end{equation}
+For example, the following typical kernels have $C_K=1$.
+
+\begin{enumerate}
+\item Gaussian kernel: $K:\R^n\times \R^n \to \R$ such that $K(x,x')=e^{-\|x-x'\|^2/c^2}$.
+\item Homogeneous polynomial kernel: $K:R^n \times R^n \to \R$ such that $K(x,x')=\<x,x'\>^d$. By the scaling property, we can restrict $K$ to
+the sphere $S^{n-1}\times S^{n-1}$.
+\item Translation invariant kernels: any $K:X\times X \to \R$ such that $K(x,x')=K(x-x')$ and $K(0)=1$.
+\end{enumerate}
+
+\bigskip
+
+In the sequel, we decompose $\|f_t - f_\rho \|_\rho$ into several
+parts and give upper bounds for each of them.
+Before that, we
+introduce several important quantities.
+
+First consider the minimization of the regularized least square
+problem in $\H_K$,
+\[ \min_{f\in \H_K} \int_Z (f(x)-y)^2 d \rho + \lambda \|f\|^2_K,  \ \ \ \ \ \lambda>0, \]
+The existence and uniqueness of a minimizer is guaranteed by
+(Proposition 7 in Chapter III, by Cucker and Smale
+\cite{CucSma02}) which exhibits it as
+\begin{equation}
+f^\ast_\lambda = (L_K + \lambda I )^{-1} L_K f_\rho,
+\end{equation}
+where $f_\rho\in \L^2_\rho(X)$ is the regression function.
+In fact, $f^\ast_\lambda$ defined in this way is also the equilibrium of the averaged
+update equation of (\ref{eq:rkhs})
+\begin{equation} \label{eq:avgrkhs}
+\E [f_{t+1}] = \E[f_t] - \gamma_t(\E[( f_t(x_t)-y_t) K_{x_t}+\lambda f_t ]),
+\end{equation}
+In other words, $f^\ast_\lambda$ satisfies
+\begin{equation} \label{eq:rkhs-equilibrium}
+\E[( f^\ast_\lambda(x)-y) K_{x}+ \lambda f^\ast_\lambda]=0.
+\end{equation}
+To see this, it is enough to notice that by $L_K(f)(x)=\int_X K(x,t)f(t)d \rho_X$, we have
+\[ L_K(f^\ast_\lambda)=\E_x[f^\ast_\lambda(x)K_x], \]
+and
+\[ L_K(f_\rho)=\E_x [[\E_{y|x}y] K_x], \]
+whence the equation (\ref{eq:rkhs-equilibrium}) turns out to be $
+L_K(f^\ast_\lambda) + \lambda f^\ast_\lambda = L_K( f_\rho)$,
+which leads to the definition of $f^\ast_\lambda$ in (3).
+
+Notice that the map $(x,y)\mapsto (f^\ast_\lambda(x)-y)K_x + \lambda f^\ast_\lambda$ is a $\H_K$-valued
+random variable, with zero mean. Thus the following variance
+\begin{equation} \label{eq:var}
+\sigma^2=\E_z [ \|( f^\ast_\lambda(x)-y) K_{x} +\lambda f^\ast_\lambda\|_K^2 ],
+\end{equation}
+characterizes the fluctuation about the equilibrium caused by the
+random sample $z=(x,y)$. If $\sigma^2=0$, we have the
+deterministic gradient method (see Section 2). If $M_\rho>0$ is a
+constant such that $\supp (\rho) \subseteq X\times
+[-M_\rho,M_\rho]$, then Proposition \ref{prop:mnbounds} in the
+next section implies
+\[ \sigma^2 \leq \left(\frac{2C_K M_\rho (\lambda+C^2_K)}{\lambda} \right)^2. \]
+
+
+The main purpose in this paper is to obtain a probabilistic upper bound for
+\[ \| f_t - f_\rho \|_{\rho}. \]
+By the triangle inequality we may write
+\begin{equation} \label{eq:total}
+\| f_t - f_\rho \|_{\rho} \leq  \| f_t - f^\ast_\lambda \|_{\rho} + \| f^\ast_\lambda - f_\rho \|_{\rho}.
+\end{equation}
+The second part of the right hand side in (\ref{eq:total}),
+$\|f^\ast_\lambda- f_\rho\|_{\rho}$, is called as the
+\emph{approximation error}. An upper bound for the approximation error will be given in the
+end of this section. In the following we will give a probabilistic
+upper bound on $\|f_t - f^\ast_\lambda\|_K$, whence via $\|f_t - f^\ast_\lambda\|_\rho \leq C_K \|f_t - f^\ast_\lambda\|_K$ we obtain
+an upper bound on the sample error. Before the statement of the theorem, we define
+\begin{equation}
+\alpha=\frac{\lambda}{\lambda+C^2_K},
+\end{equation}
+whose meaning as the inverse condition number, will be discussed
+in the next section.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%                       %
+%     Theorem A         %
+%                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{thma}\label{thm:rkhs} Let $\DS \gamma_t = \frac{1}{(\lambda+C_K^2)t^\theta}$ ($t\in \N$) for some $\theta \in (1/2,1)$.
+Then for each $t\in \N$, we may write
+\begin{equation} \label{eq:intsam}
+\|f_t - f^\ast_\lambda\|_K \leq \Err_{init}(t) + \Err_{samp}(t),
+\end{equation}
+where
+\[ \Err_{init}(t) \leq e^{\frac{\alpha}{1-\theta}(1-t^{1-\theta})} \|f_1 - f^\ast_\lambda\|_K; \]
+and with probability at least $1-\delta$ ($\delta \in (0,1)$) in the space $Z^{t-1}$,
+\[ \Err_{samp}^2(t)\leq \frac{C_\theta \sigma^2 }{\delta(\lambda+C^2_K)^2}
+ \left(\frac{1}{\alpha} \right)^{\frac{\theta}{1-\theta}}
+\left(\frac{1}{t}\right)^{\theta}. \]
+Here $\sigma^2$ is the variance in (\ref{eq:var}) and the positive constant $C_\theta$ satisfies
+\[ C_\theta = 8 + \frac{2}{2\theta-1} \left(\frac{\theta}{e(2-2^\theta)}
+\right)^{\frac{\theta}{1-\theta}}  . \]
+\end{thma}
+
+The proof will be deferred to later sections.
+
+\begin{rem}
+\label{rem:comparison}
+Assume $\lambda\leq 1$ and consider the upper bound $\sigma^2 \leq \left(\frac{2C_K M_\rho (\lambda+C^2_K)}{\lambda} \right)^2$.
+Then the following
+holds with probability at least $1-\delta$ ($\delta\in (0,1)$),
+\begin{equation} \label{eq:comparison}
+\|f_t - f^\ast_\lambda\|_K \leq e^{C_1 \lambda (1-t^{1-\theta})} \|f_1 - f^\ast_\lambda\|_K
++ \frac{C_2}{\sqrt{\delta} } \left(\frac{1}{\lambda} \right)^{\frac{2-\theta}{2(1-\theta)}}
+\left(\frac{1}{t}\right)^{\frac{\theta}{2}},
+\end{equation}
+where
+\[ C_1=\frac{1}{(1-\theta)(1+C^2_K)}\ \ \ \mbox{and} \ \ \ C_2 = 2 C_K M_\rho \sqrt{C_\theta} \left( 1+C^2_K \right)^{\frac{\theta}{2(1-\theta)}}. \]
+\end{rem}
+
+\begin{rem}
+\label{rem:total} In the decomposition (\ref{eq:intsam}) in
+Theorem A, $\Err_{init}(t)$ has a deterministic bound and
+characterizes the accumulated effect from the initial choice,
+which is called as the \emph{initial error}. $\Err_{samp}(t)$
+depends on the random sample and thus has a probabilistic bound,
+which is called as the \emph{sample error}. We can also give upper
+bounds on the \emph{approximation error},
+$\|f^\ast_\lambda-f_\rho\|_\rho$.
+
+The approximation error can be bounded if we put some regularity
+assumptions on the regression function $f_\rho$. For example, the
+following result appears in (Theorem 4, by Smale and Zhou
+\cite{SmaZho-ShannonII}).
+
+\begin{thm}
+1) Suppose $L^{-r}_K f_\rho \in L^2_\rho (X)$ for some $r\in (0,1]$. Then
+\[ \|f^\ast_\lambda-f_\rho \|_\rho \leq \lambda^{r} \| L^{-r}_K f_\rho \|_\rho. \]
+2) Suppose $L^{-r}_K f_\rho \in L^2_\rho(X)$ for some $r\in (1/2,1]$.
+\[ \|f^\ast_\lambda-f_\rho \|_K \leq \lambda^{r-\frac{1}{2}} \| L^{-r}_K f_\rho \|_\rho. \]
+\end{thm}
+Notice that since $L^{-1/2}_K$ is an isomorphism, $\H_K\to
+L^2_\rho(X)$, the second condition implies $f_\rho \in \H_K$.
+\end{rem}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{A Stochastic Gradient Algorithm in Hilbert Spaces}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this section, we extend the setting in the first section to general Hilbert spaces.
+Let $W$ be a Hilbert space with inner product $\<\ ,\ \>$. Consider the quadratic potential map $V: W\to \R$
+given by
+\begin{equation}
+V(w) = \frac{1}{2} \langle A w, w \rangle + \<B,w\> + C
+\end{equation}
+where $A:W\to W$ is a positive definite bounded linear operator whose inverse is bounded, i.e. $\|A^{-1}\|<\infty$,
+$B\in W$ and $C\in \R$. Then the gradient $\grad V: W\to W$ is given by
+\[ \grad V(w)= Aw+B.  \]
+$V$ has a unique minimal point $w^\ast\in W$ such that $\grad V(w^\ast)=Aw^\ast+B=0$, i.e.
+\[ w^\ast = -A^{-1} B. \]
+Our concern is to find an approximation of this point, when $A$, $B$ and $C$ are random variables
+on a space $Z$. We give a sample complexity
+analysis (i.e. the sample size sufficient to achieve an approximate minimizer with high probability)
+of the so-called \emph{stochastic gradient method} given by the update formula
+\begin{equation} \label{eq:stocgrad}
+w_{t+1}= w_t - \gamma_t \grad V(w_t), \ \ \ \ \ \mbox{for $t=1,2,3,\ldots$}
+\end{equation}
+with $\gamma_t$ a positive step size. For each example $z$, the stochastic gradient of
+$V_z$, $\grad V_z:W\to W$ is given by the affine map $\grad V_z(w) = A(z)
+w + B(z)$, with $A(z), B(z)$ denoting the values of random
+variables $A,B$ at $z\in Z$. Our analysis will benefit from this
+affine structure and independent sampling. Thus (\ref{eq:stocgrad}) becomes:
+
+\vspace{1pc}
+
+For $t=1,2,3,\dots$, let $z_{t}$ be a sample sequence and define an update by
+\begin{equation}\label{eq:wt}
+w_{t+1} = w_t - \gamma_t (A_t w_t + B_t), \ \ \ \ \ \mbox{for some $w_1\in W$}
+\end{equation}
+where \\
+1) $z_{t}\in Z$ ($t\in \N$) are drawn independently and identically according to $\rho$; \\
+2) the step size $\gamma_t>0$; \\
+3) the map $A: Z\to SL(W)$ is a random variable depending on $z$ with values in $SL(W)$, the vector space of symmetric bounded linear operators on $W$, and $B:Z\to W$ is a $W$-valued random variable
+depending on $z$. For each $t\in \N$, let $A_t=A(z_t)$ and $B_t=B(z_t)$. \\
+
+\medskip
+
+From the stochastic gradient method in equation (\ref{eq:stocgrad}), we derive the equation (\ref{eq:rkhs}) for our online
+algorithm in Reproducing Kernel Hilbert Spaces. Consider the Hilbert space $W=\H_K$. For fixed $z=(x,y)\in Z$, take the
+following quadratic potential map
+$V:\H_K\to \R$ defined by
+\[ V_z(f) = \frac{1}{2}\left\{ (f(x)-y)^2 + \lambda \|f\|^2_K \right\}. \]
+Recall that the gradient of $V_z$ is a map $\grad V_z:\H_K\to \H_K$ such that for all $g\in \H_K$,
+\[ \< \grad V_z(f), g\>_K = D V_z(f)(g) \]
+where the Fr\`{e}chet derivative at $f$, $D V_z(f):\H_K\to \R$ is the linear functional such that for $g\in \H_K$,
+\[ \lim_{\|g\|\to 0} \frac{|V_z(f + g) - V_z(f) - D V_z(f) (g)|}{\|g\|} = 0. \]
+Hence
+\[ D V_z(f) (g) = (f(x)-y) g(x)  + \lambda \< f , g\>_K = \<(f(x) - y) K_x + \lambda f , g\>_K, \]
+where the last step is due to the reproducing property $g(x)=\<g, K_x\>_K$. This gives the following proposition.
+
+\begin{prop}
+$\DS \grad V_z(f) = (f(x) - y) K_x + \lambda f$.
+\end{prop}
+
+Taking $f=f_t$ and $(x,y)=(x_t,y_t)$, by $f_{t+1}=f_t - \gamma_t \grad V_{z_t}(f_t)$, we have
+\[ f_{t+1} = f_t - \gamma_t ((f_t(x_t)-y_t) K_{x_t} + \lambda f_t ),  \]
+which establishes the equation (\ref{eq:rkhs}).
+
+\medskip
+
+In the sequel we assume that
+
+\noindent {\bf Finiteness Condition.}\\
+\noindent 1) For almost all $z\in Z$, $\amin I\leq  A(z) \leq \amax I$ ($0< \amin\leq \amax < \infty$); \\
+2) $\|B(z)\|\leq \beta<\infty$ for almost all $z\in Z$.
+
+Consider the following averaging of the equation (\ref{eq:wt}) by taking the expectation over the truncated history $(z_i)_{i=1}^{t}$,
+\begin{equation} \label{eq:average}
+\E_{z_1,\ldots,z_{t}}[w_{t+1}] = \E_{z_1,\ldots,z_{t-1}}[w_t] - \gamma_t ( \E_{z_t}[A_t] w_t + \E_{z_t}[B_t])
+\end{equation}
+where $w_t$ depends on the truncated sample up to time $t-1$, $(z_i)_{i=1}^{t-1}$. Then the equilibrium for this averaged equation (\ref{eq:average})
+will satisfy
+\begin{equation} \label{eq:wstar}
+\E_{z_t} [A_t] w_t + \E_{z_t}[B_t] = 0 \Leftrightarrow w_t=-\E_{z_t}[A_t]^{-1} \E_{z_t}[B_t],
+\end{equation}
+This motivates the following definitions.
+
+
+\begin{defa} 1) The equilibrium $w^\ast= -\hat{A}^{-1} \hat{B}$ where $\hat{A}= \E_z[A(z)]$ and $\hat{B}=\E_z[B(z)]$. \\
+2) The inverse condition number for the family $\{A(z):z\in Z\}$, $\alpha=\amin/\amax\in (0, 1]$.
+\end{defa}
+
+For each $w\in W$, the stochastic gradient at $w$ as a map $\grad V_z(w): Z\to W$ such that $z\mapsto A(z)w+B(z)$, is a
+$W$-valued random variable depending on $z$.
+In particular, $\grad V_z(w^\ast)$ has zero mean, with variance defined by
+$$\sigma^2 = \E[\|\grad V_z(w^\ast)\|^2]= \E_z [\| A_z w^\ast + B_z \|^2],$$
+which reflects the fluctuations of $\grad V_z(w^\ast)$ caused by
+the randomness of sample $z$. Observe that when $\sigma^2=0$, we
+have the following deterministic gradient algorithm to minimize
+$V$,
+\[w_{t+1}= w_t - \gamma_t \grad V(w_t) \]
+where $\grad V(w)= \hat{A}w+\hat{B}$.
+
+Now we are ready to state the general version of the main theorem for Hilbert spaces. Here we consider
+the product probability measure on $Z^{t-1}$, which makes sense since $z_i$ ($1\leq i \leq t-1$) are i.i.d. random variables. As in
+the first
+section, we will decompose
+and give a deterministic bound on $\Err_{init}$ and a probabilistic bound on $\Err_{samp}$, respectively.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%           %
+%     Theorem B     %
+%           %
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{thmb}\label{thm:markov} Assume (\ref{eq:wt}) and the finiteness condition. Let $\gamma_t=1/\amax t^\theta$ ($t\in \N$)
+for some $\theta\in(1/2,1)$. Then for each $t\in \N$, we have
+\begin{equation}
+\|w_t - w^\ast\| \leq \Err_{init}(t) + \Err_{samp}(t)
+\end{equation}
+where
+\[ \Err_{init}(t)\leq e^{\frac{\alpha}{1-\theta}(1-t^{1-\theta})} \|w_1-w^\ast\|,\]
+and with probability at least $1-\delta$ ($\delta\in (0,1)$)
+\[ \Err_{samp}^2(t) \leq \frac{\sigma^2}{\amax^2 \delta} \psi_\theta(t,\alpha). \]
+Here
+\[ \psi_\theta(t,\alpha) = \sum_{k=1}^{t-1} \frac{1}{k^{2\theta}} \prod_{i=k+1}^{t-1} \left(1-\frac{\alpha}{i^\theta}\right)^2 .
+\]
+\end{thmb}
+
+\begin{rem}
+As in the first section, $\Err_{init}(t)$ has a deterministic upper bound and characterizes the accumulated effect from the initial choice, which is called
+as the \emph{initial error}, $\Err_{samp}(t)$ depends on the random sample and thus has a probabilistic bound, which is called as the \emph{sample error}.
+\end{rem}
+
+\begin{rem}
+In summary, $w_t$ in equation (\ref{eq:wt}) satisfies that for arbitrary integer $t\in \N$, the following holds with probability at least $1-\delta$ in the
+space of all samples of length $t-1$, i.e. $Z^{t-1}$.
+\begin{eqnarray*}
+\|w_t-w^\ast\| & \leq &
+e^{\frac{\alpha}{1-\theta}(1-t^{1-\theta})} \|w_1-w^\ast\| + \frac{\sqrt{\sigma^2}}{\amax \sqrt{\delta}} \psi^{1/2}_\theta(t,\alpha).
+\end{eqnarray*}
+When $\sigma^2=0$, we have the following convergence rate for the deterministic gradient algorithm
+\[ \|w_t - w^\ast \| \leq e^{\frac{\alpha}{1-\theta}(1-t^{1-\theta})} \|w_1-w^\ast\|, \]
+which is faster than any polynomial rate.
+\end{rem}
+
+\begin{prop} \label{prop:mnbounds} Let $\alpha\in(0,1]$ and $\theta\in (1/2,1)$. The following upper bounds hold for all $t\in \N$. \\
+(1) $\DS \sigma^2 \leq (2\beta /\alpha)^2$; \\
+(2) $\DS \psi_\theta(t,\alpha) \leq  C_\theta \left(\frac{1}{\alpha} \right)^{\frac{\theta}{1-\theta}}
+\left(\frac{1}{t}\right)^{\theta}$, where
+\[ C_\theta = 8 + \frac{2}{2\theta-1} \left(\frac{\theta}{e(2-2^\theta)}
+\right)^{\frac{\theta}{1-\theta}}  . \]
+\end{prop}
+
+\begin{rem}
+In the setting of equation (\ref{eq:rkhs}) in reproducing kernel Hilbert space, we have
+\[ \beta = C_K M_\rho \ \ \ \ \ \mbox{and} \ \ \ \ \ \alpha=\frac{\lambda}{\lambda+C^2_K}, \]
+whence
+\[ \sigma^2 \leq \left(\frac{2C_K M_\rho(\lambda+C^2_K )}{\lambda}\right)^2.\]
+\end{rem}
+
+\begin{rem} Choose the initialization $w_1=0$ for simplicity.
+Notice that $\|w^\ast\|=\|\hat{A}^{-1}\hat{B}\|\leq \beta /\amin$. Then we have the following bound with probability at least $1-\delta$,
+\[ \|w_t - w^\ast \| \leq \frac{\beta}{\amin}\left(\frac{1}{t}\right)^{\frac{\theta}{2}} \left(
+t^{\theta/2} e^{\frac{\alpha}{1-\theta}(1-t^{1-\theta})}  +
+2\sqrt{\frac{C_\theta}{\delta}}\right). \]
+\end{rem}
+
+\begin{rem} \label{rem:Hilbert-theta1}
+Consider the case that $\theta=1$ and $\alpha\in (0,1/2)$. Then by Lemma \ref{lem:yyf}-3, we obtain that
+\[ \Err_{init}(t) \leq t^{-\alpha} \|w_1 - w^\ast\| \]
+and
+\[ \Err_{samp}(t) \leq \frac{\sqrt{\sigma^2}}{\amax \sqrt{\delta}} \psi^{1/2}_1(t,\alpha) \leq
+\frac{4\beta}{\amin\sqrt{\delta(1-2\alpha)}}t^{-\alpha} . \]
+Choosing $w_1=0$ and using $\|w^\ast\|\leq \beta/\amin$, we obtain that
+\[ \|w_t - w^\ast \| \leq \frac{\beta}{\amin} \left( \frac{1}{t} \right)^{\alpha}
+\left(1+\frac{4}{\sqrt{\delta(1-2\alpha)}}\right). \]
+\end{rem}
+
+The proof of Theorem B and Proposition \ref{prop:mnbounds} will be given in Section \ref{sec:pfs}.
+Here is the proof of Theorem A from Theorem B.
+
+\begin{proof}[Proof of Theorem A] In this case $W=\H_K$. Before applying Theorem B,
+we need to rewrite the equation (\ref{eq:rkhs}) by the
+notations used in Theorem B.
+
+For any $f\in \H_K$, let the evaluation functional at $x\in X$ be $E_x:\H_K\to \R$ such that $E_x(f)=f(x)$ ($\forall x\in X$).
+Denote by $E^\ast_x:\R\to \H_K$ the
+adjoint operator of $E_x$ such that $\<E_x(f),y\>_{\R} = \<f,E^\ast_x(y)\>_K$ ($y\in \R$).
+From this definition, we see that $E^\ast_x(y)=y K_x$.
+
+Define the linear operator $A_x: \H_K\to \H_K$ by $A_x=E^\ast_x E_x + \lambda I$, i.e. $A_x(f)=f(x)K_x + \lambda f$, whence $A_x$ is a random variable
+depending on $x$. Taking the expectation of $A_x$, we have $\hat{A}=\E_x[A_x]=L_K + \lambda I$.
+
+Moreover, define $B_z= E^\ast_x(-y)= - y K_x \in \H_K$, which is a random variable
+depending on $z=(x,y)$. Notice that the expectation of $B_z$, $\hat{B}=\E_z[B_z]=\E_x [ \E_y[-y]K_x] = -L_K f_\rho$.
+For simplicity below we denote $A_t=A_{x_t}$ and $B_t=B_{z_t}$.
+
+With these notations, the equation (\ref{eq:rkhs}) can be rewritten as
+\[ f_{t+1}=f_t - \gamma_t ( A_t f_t + B_t). \]
+Clearly $f^\ast_\lambda=(L_K+\lambda I)^{-1} L_K f_\rho$ satisfies $0 = \E_z[A(z) f^\ast_\lambda + B(z)] =\hat{A} f^\ast_\lambda +\hat{B}$.
+Thus $f^\ast_\lambda$ is the equilibrium of the averaged equation (\ref{eq:avgrkhs}).
+
+Notice that the positive operator $L_K$ satisfies $\|L_K\|=\sup_{x\in X} K(x,x)=C_K^2$.
+Therefore $\amax= \lambda + C_K^2$, $\amin=\lambda$, and $\beta= C_K M_{\rho}$.
+
+Finally by identifying $w_t=f_t$ and $w^\ast=f^\ast_\lambda$, the upper bound on the initial error $\Err_{init}(t)$ follows from Theorem B
+and the upper bound on the sample error $\Err_{samp}(t)$ follows from Theorem B and Proposition \ref{prop:mnbounds}-2.
+\end{proof}
+
+\begin{rem} \label{rem:RKHS-theta1}
+If $\theta=1$ and $\lambda<C^2_K$ (whence $\alpha\in (0,1/2)$), by Remark \ref{rem:Hilbert-theta1}, we have
+\[ \|f_t - f^\ast_\lambda \|_K \leq  \left( \frac{1}{t} \right)^{\alpha}
+\left(\|f^\ast_\lambda\|_K + \frac{\sqrt{\sigma^2}}{\sqrt{\delta}(\lambda+C^2_K)} \psi^{1/2}_1(t,\alpha)\right). \]
+By Lemma \ref{lem:yyf}-3, we have an upper bound for $\psi_1(t,\alpha)$,
+\[ \psi_1(t,\alpha) \leq  \frac{4}{1-2\alpha} t^{-2\alpha}. \]
+With this upper bound and $\sigma^2 \leq (2 \beta/\alpha)^2 = 4 C_K^2 M_\rho^2 (\lambda+ C^2_K)^2/\lambda^2$, we obtain that
+\[ \|f_t - f^\ast_\lambda \|_K \leq \left( \frac{1}{t} \right)^{\alpha}
+\left(\|f^\ast_\lambda \|_K+ \frac{4C_K M_\rho }{\lambda\sqrt{\delta(1-2\alpha)}}\right), \]
+which holds with probability at least $1-\delta$.
+Notice that this upper bound has a polynomial decay $O(t^{-\alpha})$.
+\end{rem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Proof of Theorem B} \label{sec:pfs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this section we shall use $\E_{z}[\cdot]$ to denote the expectation with respect to $z$. When the underlying random variable
+in expectation is clear from the context, we will simply write $\E[\cdot]$.
+
+Define the remainder vector at time $t$, $r_t = w_t - w^\ast$, which is a
+random variable depending on $(z_i)_{i=1}^{t-1}\in Z^{t-1}$ when $t\geq 2$.
+The following lemma gives a formula to compute $r_{t+1}$.
+
+\begin{lem}\label{lem:rt}
+\[ r_{t+1} = \prod_{i=1}^t (I-\gamma_i A_i) r_1 - \sum_{k=1}^{t}\gamma_k  \left(\prod_{i=k+1}^t (I-\gamma_i A_i) \right)(A_k w^\ast + B_k). \]
+\end{lem}
+\begin{proof} Since $w_{t+1}=w_t + \gamma_t (A_t w_t + B_t)$, then
+\begin{eqnarray*}
+r_{t+1} & = & w_{t+1}- w^\ast \\
+& = & w_t - \gamma_t (A_t w_t + B_t) - (I-\gamma_t A_t) w^\ast - \gamma_t A_t w^\ast \\
+& = & (I-\gamma_t A_t) r_t - \gamma_t (A_t w^\ast + B_t).
+\end{eqnarray*}
+The result then follows from induction on $t\in \N$.
+\end{proof}
+
+For simplicity we introduce the following notations, a symmetric linear operator $X_{k+1}^t: W\to W$ which
+depends on $z_{k+1},\ldots,z_t$,
+\[ X_{k+1}^t (z_{k+1},\ldots,z_t) = \prod_{i=k+1}^t (I-\gamma_i A_i), \ \ \ \ \ \ \mbox{($X_{k+1}^t=I$ if $k\geq t$)},  \]
+and a vector $Y_k\in W$ which depends on $z_k$ only,
+\[ Y_k(z_k) = A_k w^\ast + B_k. \]
+Clearly $\E[Y_k]=0$ and $\E[\|Y_k\|^2]=\sigma^2$ for every $1\leq k\leq t$.
+With this notation Lemma \ref{lem:rt} can be written as
+\begin{equation} \label{eq:easy-rt}
+r_{t+1}=X_1^t r_1 - \sum_{k=1}^{t} \gamma_k X_{k+1}^t Y_k,
+\end{equation}
+where the first term $X_1^t r_1$ reflects the accumulated error caused by the initial choice;
+the second term $\sum_{k=1}^{t-1}\gamma_k X_{k+1}^tY_k$ is of zero mean and reflects the fluctuation
+caused by the random sample. Based on this observation we define the \emph{initial error}
+\begin{equation} \label{eq:init}
+ \Err_{init}(t+1) = \| X_1^t r_1 \|
+\end{equation}
+and the \emph{sample error}
+\begin{equation} \label{eq:samp}
+\Err_{samp}(t+1) = \left\| \sum_{k=1}^{t} \gamma_k X_{k+1}^t Y_k \right\|.
+\end{equation}
+
+The main concern in this section is to obtain upper bounds on the initial error and the sample error. The following estimates are crucial in
+the proofs of Theorem B and Proposition \ref{prop:mnbounds}.
+
+\begin{prop} \label{prop:main} Let $\gamma_t = 1/\amax t^\theta$ for some $\theta\in(1/2,1]$.
+For all $\alpha=\amin/\amax \in(0,1]$, the following holds.
+
+\noindent (1) Let $\alpha'=\alpha/(1-\theta)$. Then
+\[ \|X_1^t r_1 \| \leq
+\left\{
+\begin{array}{ll}
+\DS e^{\alpha'(1-(t+1)^{1-\theta})} \| r_1 \|, & \theta\in(1/2,1); \\
+\DS (t+1)^{-\alpha} \|r_1\|, & \theta=1.
+\end{array}
+\right.
+\]
+\noindent (2) $\|Y_k \| \leq 2\beta/\alpha$;
+
+\noindent (3) $\DS \E\left[\left\|\sum_{k=1}^{t}\gamma_k X_{k+1}^tY_k\right\|^2\right] \leq
+\frac{\sigma^2}{\amax^2} \psi_\theta(t+1,\alpha). $
+\end{prop}
+
+From this proposition and the following Markov's inequality, we give the proof of Theorem B.
+
+\begin{lem} {\bf (Markov's Inequality)} Let $X$ be a nonnegative random variable.
+Then for any real number $\epsilon>0$, we have
+\[ \Prob\{ X\geq \epsilon \} \leq \frac{\E[X]}{\epsilon}. \]
+\end{lem}
+
+\begin{proof}[Proof of Theorem B]
+By (\ref{eq:init}) and the estimation (1) in Proposition \ref{prop:main} where $\theta\in(1/2,1)$, we have
+\[ \Err_{init}(t) \leq e^{\frac{\alpha}{1-\theta}(1- t^{1-\theta})} \| w_1 - w^\ast \|. \]
+By (\ref{eq:samp}) and the estimation (3) in Proposition \ref{prop:main} and Markov's inequality with $X=\Err_{samp}^2(t)$, we obtain for $t\geq 2$,
+\[ \Prob \{ \Err_{samp}^2(t) \leq \epsilon^2 \} \leq \frac{\sigma^2}{\epsilon^2\amax^2}\psi_\theta(t,\alpha). \]
+Setting the right hand side to be $\delta\in (0,1)$, we get the probabilistic upper bound on the \emph{sample error}. It remains to check that when
+$t=1$, $\Err_{init}(t)=\|w_1 - w^\ast\|$ and $\Err_{samp}(t)=0$, whence the bound still holds.
+\end{proof}
+
+Next we give the proof of Proposition \ref{prop:main}.
+
+\begin{proof}[Proof of Proposition \ref{prop:main}]
+
+
+(1) By $\amin I\leq A \leq \amax I$ and $\gamma_t=1/\amax t^\theta$ ($\theta\in (1/2,1]$), then
+\begin{equation}\label{eq:Xk}
+ \|X_{k+1}^t r_1\| \leq \prod_{i=k+1}^t \| I - \gamma_i A_i \| \|r_1\| \leq \prod_{i=k+1}^t \left( 1 - \frac{\alpha}{i^\theta} \right)\|r_1\|, \ \ \ \ \ \alpha=\amin/\amax;
+\end{equation}
+Setting $k=0$ and by (1) in Lemma \ref{lem:yyf}, we obtain the result.
+
+(2) Note that $\DS \|w^\ast\|\leq \beta/\amin$. Thus we have
+$$\|Y_k\|=\|A_k w^\ast + B_k\| \leq \|A_k\|\|w^\ast\|+\|B_k\| \leq \amax \beta/\amin + \beta= \beta(\alpha^{-1} +1)\leq 2\beta/\alpha,$$
+since $\alpha\in(0,1]$. This gives part 2.
+
+(3) Note that
+\begin{eqnarray*}
+\E [\|\sum_{k=1}^{t} \gamma_k X_{k+1}^tY_k \|^2] & = & \E\< \sum_{k=1}^{t} \gamma_k X_{k+1}^t Y_k, \sum_{k=1}^{t} \gamma_k X_{k+1}^t Y_k \>,  \\
+& = &  \sum_{k, l =1}^{t} \gamma_k \gamma_l \E \< X_{k+1}^tY_k, X_{l+1}^tY_l \>, \\
+\end{eqnarray*}
+where if $k\neq l$, say $k<l$,
+\begin{eqnarray*}
+\gamma_k \gamma_l \E_{z_k,\ldots,z_{t}} \< X_{k+1}^tY_k , X_{l+1}^t Y_l \> = \gamma_k \gamma_l
+\E_{z_{k+1},\ldots,z_{t}}[\E_{z_k|z_{k+1},\ldots,z_t} [Y_k]^T X_{k+1}^t  X_{l+1}^tY_l] = 0,
+\end{eqnarray*}
+by $\E[Y_k]=0$. Thus we have
+\begin{eqnarray*}
+\sum_{k, l =1}^{t} \gamma_k \gamma_l \E \< X_{k+1}^tY_k, X_{l+1}^tY_l \> & = & \sum_{k=1}^{t} \gamma_k^2 \E \< X_{k+1}^tY_k, X_{k+1}^tY_k \>  \leq
+\sum_{k=1}^{t} \gamma_k^2 \E[\|X_{k+1}^t\|^2  \|Y_k \|^2] \\
+& \leq & \frac{\sigma^2}{\amax^2} \psi_\theta(t+1,\alpha),
+\end{eqnarray*}
+where the last inequality is due to $\E\|Y_k\|^2=\sigma^2$ for all
+$k$ and
+$$\DS \sum_{k=1}^t \gamma_k^2 \|X_{k+1}^t\|^2 \leq  \sum_{k=1}^t \frac{1}{\amax^2
+k^{2\theta}}\prod_{i=k+1}^t \left( 1 - \frac{\alpha}{i^\theta}
+\right)^2 = \frac{1}{\amax^2} \psi_\theta(t+1,\alpha). $$
+\end{proof}
+
+Finally we derive the upper bounds for $\sigma^2$ and $\psi(t,\alpha)$ as in Proposition \ref{prop:mnbounds}.
+
+\begin{proof}[Proof of Proposition \ref{prop:mnbounds}]
+The first upper bound follows from the estimation (2) in Proposition \ref{prop:main},
+\[ \sigma^2 \leq (\| Y_k \| )^2 \leq \left(\frac{2\beta}{\alpha}\right)^2 \]
+for all $1\leq k \leq t$.
+
+For $t\geq 2$, the second upper bound is an immediate result from Lemma \ref{lem:main}; for $t=1$, note that $\psi_\theta(t,\alpha)=0$ whence
+the upper bound still holds.
+\end{proof}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Comparison with ``Batch Learning'' Results}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The name, ``batch learning'' is coined for the purpose of
+emphasizing the case when the sample of size $t\in \N$ is exposed
+to the learner in one batch, instead of one-by-one as in ``online
+learning'' in this paper. In the context of RKHS, given a sample
+$\z=\{z_i:i=1,\ldots,t\}$, ``batch learning'' means solving the
+\emph{regularized least square} problem (\cite{EvgPonPog99},
+\cite{CucSma02})
+\[ f_{\lambda,\z} = \arg\min_{f\in \H_K} \frac{1}{t}\sum_{i=1}^t (f(x_i)-y_i)^2 + \lambda \< f, f \>_K, \ \ \ \ \ \lambda>0. \]
+The existence and uniqueness of $f_{\lambda,\z}$ given as in (Section 6, \cite{CucSma02}) says
+\[ f_{\lambda,\z}(x)= \sum_{i=1}^t a_i K(x,x_i) \]
+where $a=(a_1,\ldots,a_t)$ is the unique solution of the well-posed linear system in $\R^t$
+\[ (\lambda t I + K_\z) a = y, \]
+with $t\times t$ identity matrix $I$, $t\times t$ matrix $K_\z$ whose $(i,j)$ entry is $K(x_i,x_j)$ and $ y=(y_1,\ldots,y_t)\in \R^t$.
+
+A probabilistic upper bound for
+$\|f_{\lambda,\z}-f^\ast_\lambda\|_\rho$ is given by
+Cucker and Smale \cite{CucSma02b}, and this has been substantially improved by
+De Vito, Caponnetto and Rosasco \cite{DevCapRos04}, using also some ideas from Bousquet and Elisseeff \cite{BouEli02}.
+Moreover, error bounds expressed in a different form were given by
+Zhang \cite{Zhang03}. A recent result, shown in Smale and Zhou \cite{SmaZho-ShannonII}, is:
+
+\begin{thm}
+\[ \| f_{\lambda,\z} - f^\ast_\lambda \|_K \leq \frac{C_{\rho,K}}{\sqrt{\delta}} \left(\frac{1}{\lambda\sqrt{t}} \right), \]
+where $C_{\rho,K}=C^2_K \sqrt{\sigma^2_\rho} + 3 C^2_K \|f_\rho\|_\rho$ and
+\[ \sigma_\rho^2 = \int_{X\times Y} (y- f_\rho(x))^2 d \rho. \]
+\end{thm}
+
+\begin{rem}
+Notice that if $\lambda\leq 1$ without loss of generality, the equation (\ref{eq:comparison}) in Remark \ref{rem:comparison} shows
+the following convergence rate
+\[ \|f_t - f^\ast_\lambda\|_K \leq O\left( \left(\frac{1}{\lambda} \right)^{\frac{2-\theta}{2(1-\theta)}}
+\left(\frac{1}{t}\right)^{\frac{\theta}{2}} \right), \]
+where $\theta\in (1/2,1)$. Since the function $\DS \tau(\theta)=\frac{2-\theta}{2(1-\theta)}=\frac{1}{2(1-\theta)}+\frac{1}{2}$, is
+an increasing function of $\theta$, then $\DS \tau(\theta) \in (3/4,\infty)$ as $\theta \in (1/2,1)$.
+For small $\lambda$, when $\theta$ is close to $1/2$, the upper bound is close to $O(\lambda^{-3/4} t^{-1/4})$ which is tighter in
+$\lambda$ but looser in $t$ in comparison with the theorem above; on the other hand, when $\theta$
+increases, the upper bound becomes tighter in $t$ but much looser in $\lambda$.
+\end{rem}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Adaline}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{exmp}[Adaline or Widrow-Hoff Algorithm] The Adaline or Widrow-Hoff algorithm (p. 23, \cite{CriSha00})
+is a special case of the online learning algorithm (\ref{eq:rkhs}) where the step size $\gamma_t$ is a constant $\eta$, the regularization parameter
+$\lambda=0$, and the reproducing kernel is the linear kernel such that $K(x,x^\prime)= \< x, x^\prime\> + 1$ for $x,x^\prime\in X=\R^n$.
+To see that, define two kernels by $K_0(x,x')=\<x,x'\>$ and $K_1(x,x')=1$. Then $\H_{K}=\H_{K_0}\oplus \H_{K_1}$. Notice
+that $\H_{K_0}\backsimeq \R^n$ and $\H_{K_1}\backsimeq \R$, whence $\H_K \backsimeq \R^{n+1}$. In fact, for $w\in \R^n$ and $b\in \R$,
+a function in $\H_K$ can be written as $f(x)=\sum_{i=1}^n w^i x^i + b $ for $x\in X$. By the use of the Euclidean inner product in $\R^{n+1}$, we
+can write $f(x)=\<(w,b),(x,1)\>$. Therefore the Adaline
+update formula
+\[ (w_{t+1}, b_{t+1}) = (w_t, b_t) + \eta ( \< w, x_t \> + b - y_t ) (x_t,1), \ \ \ \ \ t\in \N, \]
+can be written as the following formula, by taking the Euclidean inner product of both sides with the vector $(x,1)\in \R^{n+1}$,
+\[ f_{t+1} = f_t + \eta (f_t(x_t) - y_t) K_{x_t}. \]
+This is equivalent to set $\gamma_t=\eta$ and $\lambda=0$ in the online learning algorithm (\ref{eq:rkhs}).
+\end{exmp}
+
+The case for fixed step size and zero regularization parameter is
+not included in Theorem A or B. In the case of non-stochastic
+samples, Cesa-Bianchi et al. \cite{CesLonWar96} have some worst case analysis on the upper bounds for the following quantity,
+\[ \sum_{t=1}^T (\<w_t,x_t\>-y_t)^2 - \min_{\|w\|\leq W} \sum_{t=1}^T (\<w,x_t\>-y_t)^2. \]
+Adam Kalai has shown us how one might convert these results of Cesa-Bianchi et al. to a form comparable to
+Theorem A. Beyond the square loss function above, some related works include \cite{KivSmoWil04} which presents a general gradient descent method in RKHS for
+bounded differentiable functions, and \cite{Zinkevich03} which studies the gradient method with arbitrary differentiable convex loss functions.
+These works suggest different schemes on choosing the step size parameter and how these choices might affect the convergence rate under various conditions.
+
+\vspace{2pc}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Appendix A: Some Estimates}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\thesection}{A}
+\setcounter{equation}{0}
+\setcounter{thm}{0}
+\renewcommand{\thethm}{A.\arabic{thm}}
+\renewcommand{\theequation}{A-\arabic{equation}}
+
+The following Lemma gives an upper bound for
+\[ \psi_\theta(t,\alpha) = \sum_{k=1}^{t-1} \frac{1}{k^{2\theta}} \prod_{i=k+1}^{t-1} \left(1-\frac{\alpha}{i^{\theta}}\right)^2. \]
+
+\begin{lem}[Main Analytic Estimate] \label{lem:main}
+Let $\alpha\in (0,1]$ and $\theta\in (1/2,1)$. Then for $t\in \N$,
+\begin{eqnarray*}
+\psi_\theta(t+1,\alpha) & \leq &
+C_\theta \left(\frac{1}{\alpha} \right)^{\frac{\theta}{1-\theta}} \left(\frac{1}{t+1}\right)^{\theta},
+\end{eqnarray*}
+where
+\[ C_\theta = 8+\frac{2}{2\theta-1} \left(\frac{\theta}{e(2-2^\theta)}
+\right)^{\frac{\theta}{1-\theta}}
+ . \]
+\end{lem}
+
+\begin{proof}
+The following fact will be used repeatedly in this section,
+\begin{equation}\label{eq:logubd}
+\ln (1+x) \leq x, \ \ \ \ \mbox{for all $x>-1$}.
+\end{equation}
+Thus we have
+\begin{eqnarray*}
+\sum_{i=k+1}^t \ln \left( 1-\frac{\alpha}{i^\theta} \right)^2 & \leq &
+-2\alpha \sum_{i=k+1}^t \frac{1}{i^\theta} \leq -2\alpha \int_{k+1}^{t+1} \frac{1}{x^\theta} d x,
+\end{eqnarray*}
+which equals
+\[ \frac{2\alpha}{1-\theta} \left((k+1)^{1-\theta}-(t+1)^{1-\theta} \right) \]
+if $\theta\in (1/2,1)$.
+
+From this estimate it follows,
+\[ \psi_\theta(t+1,\alpha) \leq e^{-2\alpha'(t+1)^{1-\theta}} \sum_{k=1}^{t} \frac{1}{k^{2\theta}}
+e^{2\alpha'(k+1)^{1-\theta}} = S_1 + S_2 \]
+where $\DS \alpha'=\frac{\alpha}{1-\theta}$ and
+\[ S_1 = e^{-2\alpha'(t+1)^{1-\theta}} \sum_{k=1}^{\lfloor\frac{t-1}{2}\rfloor} \frac{1}{k^{2\theta}} e^{2\alpha'(k+1)^{1-\theta}},\]
+\[ S_2 = e^{-2\alpha'(t+1)^{1-\theta}} \sum_{k=\lfloor\frac{t+1}{2}\rfloor}^{t} \frac{1}{k^{2\theta}} e^{2\alpha'(k+1)^{1-\theta}},\]
+where $\lfloor x \rfloor$ denotes the largest integer no bigger than $x$.
+
+Next we give upper bounds on $S_1$ and $S_2$. First,
+\begin{eqnarray*}
+S_1 & \leq & e^{-2 \alpha' (1-2^{\theta-1}) (t+1)^{1-\theta}} \sum_{k=1}^{\lfloor\frac{t-1}{2}\rfloor} \frac{1}{k^{2\theta}}
+\leq e^{-2 \alpha' (1-2^{\theta-1}) (t+1)^{1-\theta}} \int_{1/2}^{t/2} \frac{1}{x^{2\theta}} d x \\
+& = &  e^{-2 \alpha' (1-2^{\theta-1}) (t+1)^{1-\theta} }\frac{1}{1-2\theta} \left(\left(\frac{t}{2}\right)^{1-2\theta}- \left(\frac{1}{2}\right)^{1-2\theta}\right)
+\leq  \frac{2}{2 \theta-1} e^{-2 \alpha' (1-2^{\theta-1}) (t+1)^{1-\theta}}
+\end{eqnarray*}
+as $\theta\in (1/2,1)$. To give a polynomial upper bound for $\exp\{-2 \alpha' (1-2^{\theta-1}) (t+1)^{1-\theta}\}$, we use
+the fact that for
+any $c>0$, $a>0$, and $x\in (0,\infty)$,
+\[ e^{-cx} \leq \left(\frac{a}{ec}\right)^a x^{-a}. \]
+To see this, it is enough to observe that the function $f(x)=x^a / e^{cx}$ is maximized at $x=a/c$.
+Let $a=(1/\theta-1)^{-1}$, $c= 2 \alpha' (1-2^{\theta-1}) $, and $x=(t+1)^{1-\theta}=(t+1)^{\theta(1/\theta-1)}$,
+then,
+\[ e^{-2 \alpha' (1-2^{\theta-1}) (t+1)^{1-\theta}} \leq \left(\frac{\theta}{e\alpha(2-2^\theta)}
+\right)^{\frac{\theta}{1-\theta}} (t+1)^{-\theta},
+\]
+Thus for $\theta\in (1/2,1)$, $\alpha\in (0,1)$ and $t\in \N$,
+\[ S_1 \leq \frac{2}{2\theta-1} \left(\frac{\theta}{e\alpha(2-2^\theta)}
+\right)^{\frac{\theta}{1-\theta}} (t+1)^{-\theta}.\]
+
+Second,
+notice that $\DS \frac{1}{\lfloor (t+1)/2 \rfloor} \leq \frac{2}{t} \leq \frac{4}{t+1}$ (for $t\in \N$),
+then let $\DS p(t)=\frac{e^{2\alpha'(t+1)^{1-\theta}}}{t^\theta}$ and we have
+\begin{eqnarray*}
+S_2 & \leq & e^{-2 \alpha' (t+1)^{1-\theta}} \frac{4^\theta}{(t+1)^\theta}\left( p(t)+\sum_{k=\lfloor\frac{t+1}{2}\rfloor}^{t-1}
+\frac{1}{k^{\theta}} e^{2\alpha'(k+1)^{1-\theta}} \right) \\
+& \leq & 2^{2\theta} e^{-2 \alpha' (t+1)^{1-\theta}} (t+1)^{-\theta}\left( p(t)+\int_{t/2-1}^{t} \frac{1}{x^{\theta}} e^{2\alpha'(x+1)^{1-\theta}} d x\right),
+\ \ \ \ \mbox{for $t\geq 4$}, \\
+\end{eqnarray*}
+where
+\begin{eqnarray*}
+\int_{t/2-1}^{t} \frac{1}{x^{\theta}} e^{2\alpha'(x+1)^{1-\theta}} d x & \leq &  \int_{t/2-1}^{t} \frac{2^\theta}{(x+1)^{\theta}}
+e^{2\alpha'(x+1)^{1-\theta}} d x , \ \ \ \mbox{by $\DS \frac{1}{x}\leq \frac{2}{x+1}$ for $t\geq 4$} \\
+& = & \frac{2^\theta}{1-\theta} \int_{(t/2)^{1-\theta}}^{(t+1)^{1-\theta}} e^{2\alpha'y} d y , \ \ \ \ \ \ \mbox{by $\DS y=(x+1)^{1-\theta}$} \\
+& = & \frac{2^{\theta-1}}{\alpha'(1-\theta)} e^{2\alpha'(t+1)^{1-\theta}} \left(1- e^{2\alpha'((t/2)^{1-\theta}-(t+1)^{1-\theta})} \right) \leq
+\frac{1}{\alpha} e^{2\alpha'(t+1)^{1-\theta}},
+\end{eqnarray*}
+whence
+\begin{eqnarray*}
+S_2 & \leq & 2^{2\theta}(t+1)^{-\theta} \left( t^{-\theta} + \frac{1}{\alpha} \right) \leq \frac{8}{\alpha} (t+1)^{-\theta}, \ \ \ \ \mbox{for $t\geq 4$}.
+\end{eqnarray*}
+It is easy to check $\DS \psi(t+1,\alpha)\leq 2 \leq \frac{8}{\alpha} (t+1)^{-\theta}$ for $1\leq t \leq 3$.
+
+Therefore for $t\in \N$,
+\begin{eqnarray*}
+\psi_\theta(t+1,\alpha) & \leq & S_1 + S_2 \leq
+\left(\frac{2}{2\theta-1} \left(\frac{\theta}{e\alpha(2-2^\theta)}
+\right)^{\frac{\theta}{1-\theta}} +
+\frac{8}{\alpha} \right) (t+1)^{-\theta} \\
+& = & \left(\frac{2}{2\theta-1} \left(\frac{\theta}{e(2-2^\theta)}
+\right)^{\frac{\theta}{1-\theta}} +
+8\alpha^{\frac{2\theta-1}{1-\theta}} \right) \left( \frac{1}{\alpha}\right)^{\frac{\theta}{1-\theta}}(t+1)^{-\theta} \\
+& \leq & \left(\frac{2}{2\theta-1} \left(\frac{\theta}{e(2-2^\theta)}
+\right)^{\frac{\theta}{1-\theta}} +
+8 \right) \left( \frac{1}{\alpha}\right)^{\frac{\theta}{1-\theta}}(t+1)^{-\theta},
+\end{eqnarray*}
+
+\noindent where the last step is due to $\alpha^{\frac{2\theta-1}{1-\theta}}<1$ as $\alpha\in (0,1)$.
+\end{proof}
+
+The following lemma is also useful in the various upper bound estimations in Proposition \ref{prop:main}.
+
+\begin{lem}\label{lem:yyf}
+(1) For $\alpha\in (0,1]$ and $\theta\in [0,1]$,
+\[ \prod_{i=k+1}^t \left(1-\frac{\alpha}{i^\theta}\right) \leq
+\left\{
+\begin{array}{ll}
+\DS \exp \left(\frac{2\alpha}{1-\theta} \left((k+1)^{1-\theta}-(t+1)^{1-\theta} \right)\right), & \theta\in [0,1) \\
+\DS \left(\frac{k+1}{t+1}\right)^{\alpha}, & \theta = 1
+\end{array}
+\right.
+\]
+
+%noindent (2) For $\alpha\in (0,1]$ and $\theta\in [0,1]$,
+%\[ \frac{1}{k^\theta}\prod_{i=k+1}^t \left(1-\frac{\alpha}{i^\theta}\right) \leq
+%\left\{
+%\begin{array}{ll}
+%\DS \frac{1}{k^\theta}\exp \left(\frac{2\alpha}{1-\theta} \left((k+1)^{1-\theta}-(t+1)^{1-\theta} \right)\right), & \theta\in [0,1) \\
+%\DS \frac{2}{(t+1)^\alpha}, & \theta = 1
+%\end{array}
+%\right.
+%\]
+
+\noindent (2) For $\alpha\in (0,1]$ and $\theta\in [0,1]$,
+\[ \sum_{k=1}^{t} \frac{1}{k^\theta} \prod_{i=k+1}^t \left(1-\frac{\alpha}{i^\theta}\right) \leq \frac{3}{\alpha}; \]
+
+\noindent (3)
+If $\theta=1$ and for $\alpha\in (0,1]$,
+\begin{eqnarray*}
+\psi_1(t+1,\alpha) & = & \sum_{k=1}^{t} \frac{1}{k^{2}} \prod_{i=k+1}^t \left(1-\frac{\alpha}{i}\right)^2 \\
+& \leq
+&
+\left\{
+\begin{array}{ll}
+\DS \frac{4}{1-2\alpha}(t+1)^{-2\alpha}, & \alpha\in(0,1/2); \\
+\DS 4 (t+1)^{-1}\ln(t+1), &\alpha=1/2; \\
+\DS \frac{6}{2\alpha-1} (t+1)^{-1}, & \alpha\in(1/2,1); \\
+\DS 6 (t+1)^{-1}, & \alpha=1.
+
+\end{array}
+\right.
+\end{eqnarray*}
+\end{lem}
+
+
+\begin{proof}
+
+(1) By the inequality (\ref{eq:logubd}), we have for $\theta \in [0,1]$,
+\[ \ln \left(1 - \frac{\alpha}{i^\theta}\right) \leq \frac{-\alpha}{i^\theta}. \]
+Thus
+\begin{equation} \label{ineq:yyf1}
+\sum_{i=k+1}^t \ln \left( 1-\frac{\alpha}{i^\theta} \right) \leq  -\alpha \sum_{i=k+1}^t \frac{1}{i^\theta}
+ \leq  -\alpha \int_{k+1}^{t+1} \frac{1}{x^\theta} d x
+\end{equation}
+which equals
+\[\frac{\alpha}{1-\theta} \left((k+1)^{1-\theta}-(t+1)^{1-\theta} \right), \]
+if $\theta\in [0,1)$, and
+
+\[ \ln \left(\frac{k+1}{t+1}\right)^\alpha, \]
+if $\theta=1$. Taking the exponential gives the inequality.
+
+(2) If $\theta\in [0,1)$, from (1) we have
+\[ \frac{1}{k^\theta}\prod_{i=k+1}^t \left(1-\frac{\alpha}{i^\theta}\right) \leq e^{-\frac{2\alpha}{1-\theta}(t+1)^{1-\theta}}
+\frac{1}{k^\theta}e^{\frac{2\alpha}{1-\theta} (k+1)^{1-\theta}}, \]
+whence
+\begin{eqnarray*}
+\sum_{k=1}^{t} \frac{1}{k^\theta}\prod_{i=k+1}^t \left(1-\frac{\alpha}{i^\theta}\right) & \leq & e^{-\frac{2\alpha}{1-\theta}(t+1)^{1-\theta}}
+\left( \sum_{k=1}^{t-1} \frac{1}{k^\theta}e^{\frac{2\alpha}{1-\theta} (k+1)^{1-\theta}} + \frac{1}{t^\theta} e^{\frac{2\alpha}{1-\theta} (t+1)^{1-\theta}} \right)
+\end{eqnarray*}
+where
+\begin{eqnarray*}
+\sum_{k=1}^{t-1} \frac{1}{k^\theta}e^{\frac{2\alpha}{1-\theta} (k+1)^{1-\theta}} & \leq & 2^\theta \sum_{k=1}^{t-1}
+\left(\frac{1}{k+1}\right)^\theta e^{\frac{2\alpha}{1-\theta} (k+1)^{1-\theta}} \\
+& \leq & 2 \int_2^{t+1}  e^{\frac{2\alpha}{1-\theta} x^{1-\theta}} x^{-\theta} d x \leq
+\frac{1}{\alpha} e^{\frac{2\alpha}{1-\theta}(t+1)^{1-\theta}}.
+\end{eqnarray*}
+Therefore
+\[ e^{-\frac{2\alpha}{1-\theta}(t+1)^{1-\theta}} \left( \sum_{k=1}^{t-1} \frac{1}{k^\theta}e^{\frac{2\alpha}{1-\theta} (k+1)^{1-\theta}} +
+\frac{1}{t^\theta} e^{\frac{2\alpha}{1-\theta} (t+1)^{1-\theta}} \right) \leq \frac{1}{\alpha} + t^{-\theta} < \frac{3}{\alpha}. \]
+
+If $\theta=1$, from the inequality (\ref{ineq:yyf1}),
+\begin{eqnarray*}
+\sum_{k=1}^{t-1} \frac{1}{k} \prod_{i=k+1}^t \left( 1 - \frac{\alpha}{i}
+\right) & \leq & \sum_{k=1}^{t-1} \frac{1}{k}\left(\frac{k+1}{t+1}\right)^\alpha
+\leq \frac{2}{t^\alpha} \sum_{k=1}^{t-1} \frac{(k+1)^\alpha}{k+1}  = \frac{2}{t^\alpha} \sum_{k=1}^{t-1} (k+1)^{\alpha-1}  \\
+& \leq  & \frac{2}{t^\alpha} \int_1^{t} x^{\alpha-1} d x,
+\end{eqnarray*}
+where if $\alpha=1$,
+\[ \frac{2}{t^\alpha} \int_1^{t} x^{\alpha-1} d x = 2; \]
+and if $0<\alpha<1$,
+\[ \frac{2}{t^\alpha} \int_1^{t} x^{\alpha-1} d x = \frac{2}{\alpha}\left(\frac{t^\alpha-1}{t^\alpha}\right) \leq \frac{2}{\alpha}.\]
+Therefore
+\[\sum_{k=1}^{t} \frac{1}{k} \prod_{i=k+1}^t \left( 1 - \frac{\alpha}{i}\right)\leq t^{-\theta} + \frac{2}{\alpha} \leq \frac{3}{\alpha}, \]
+which completes the proof of part 2.
+
+(3) If $\theta=1$,
+using the inequality (\ref{eq:logubd}), we have
+\[ \sum_{i=k+1}^t \ln \left( 1-\frac{\alpha}{i} \right)^2 \leq -2\alpha \sum_{i=k+1}^t \frac{1}{i}
+\leq -2\alpha \int_{k+1}^{t+1} \frac{1}{x} d x =  \ln \left(\frac{k+1}{t+1}\right)^{2\alpha}. \]
+Thus
+\begin{eqnarray*}
+\psi_1(t+1,\alpha) & \leq & t^{-2} + \sum_{k=1}^{t-1}
+\frac{1}{k^2}\left(\frac{k+1}{t+1}\right)^{2\alpha}
+\leq \frac{4}{(t+1)^2}+ \frac{2^{2\alpha}}{(t+1)^{2\alpha}} \sum_{k=1}^{t-1} k^{2\alpha-2} \\
+& \leq & \frac{4}{(t+1)^2} + \frac{2^{2\alpha}}{(t+1)^{2\alpha}} \int_{1/2}^{t-1/2} x^{2\alpha-2} d x,
+\end{eqnarray*}
+where if $\alpha\in(0,1/2)$,
+\[
+r.h.s.  =
+\frac{4}{(t+1)^2}+\frac{2^{2\alpha}}{1-2\alpha}(t+1)^{-2\alpha} \left( 2^{1-2\alpha} - (t-1/2)^{2\alpha-1} \right)
+\leq \left(2+\frac{2}{1-2\alpha}\right) (t+1)^{-2\alpha}\leq \frac{4}{1-2\alpha} (t+1)^{-2\alpha};
+\]
+if $\alpha=1/2$,
+\[
+r.h.s.
+= \frac{4}{(t+1)^2}+\frac{2}{t+1} (\ln(t-1/2)-\ln 1/2)
+ \leq \left(\frac{2}{t+1}+\ln2\right)\frac{2}{t+1} \ln(t+1)\leq \frac{4}{t+1}\ln(t+1);
+\]
+if $\alpha\in(1/2,1)$,
+\[
+r.h.s. =  \frac{4}{(t+1)^2}+\frac{2^{2\alpha}}{2\alpha-1}(t+1)^{-2\alpha} \left( (t-1/2)^{2\alpha-1} - (1/2)^{2\alpha-1}\right)
+\leq \left(\frac{4}{t+1}+\frac{4}{2\alpha-1}\right) (t+1)^{-1} \leq \frac{6}{2\alpha-1}(t+1)^{-1};
+\]
+and if $\alpha=1$,
+\[
+r.h.s. = \frac{4}{(t+1)^2}+ \frac{4}{(t+1)^2} (t-1) \leq 6 (t+1)^{-1}.
+\]
+This finishes the proof of the fourth part.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Appendix B: Generalized Bennett's Inequality}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\thesection}{B}
+\setcounter{equation}{0}
+\setcounter{thm}{0}
+\renewcommand{\thethm}{B.\arabic{thm}}
+\renewcommand{\theequation}{B-\arabic{equation}}
+
+
+In the direction of proving an exponential version of the main theorems with $1/\delta$ replaced by $\log 1/\delta$, it has seemed useful
+for us to consider Bennett's inequality for random variables in a Hilbert space. In the mean time, such a theorem was found useful in other
+work to appear. Thus we include Appendix B.
+
+The following theorem might be considered as a generalization of
+Bennett's inequality for independent sums in Hilbert spaces, whose
+counterpart in real random variables is given in (Theorem 3,
+Smale and Zhou \cite{SmaZho-ShannonII}).
+\begin{thm}[Generalized Bennett] \label{thm:GBennett}
+Let $\H$ be a Hilbert space, $\xi_i\in \H$ ($i=1,\ldots,n$) be independent random variables and $T_i: \H\to \H$ be deterministic linear operators. Define
+$\tau_i = \| T_i \|$ and $\tau_\infty=\sup_i \tau_i$. Suppose that for all $i$ almost surely $\|\xi_i\|\leq M<\infty$.
+Define $\sigma_i^2=\E\|\xi_i\|^2$ and $\sigma^2_\tau=\sum_{i=1}^n \tau_i \sigma^2_i$. Then
+\[ \P \left\{ \left\|\sum_{i=1}^n T_i (\xi_i-\E \xi_i) \right\| \geq \epsilon \right\} \leq
+2 \exp \left\{-\frac{\sigma^2_\tau}{\tau_\infty M^2} g\left(\frac{M\epsilon}{\sigma^2_\tau}\right)\right\} \]
+where $\DS g(t)=(1+t)\log(1+t)-t$ for all $t\geq 0$. Considering that $\DS g(t)\geq \frac{t}{2}\log(1+t)$, then
+\[ \P \left\{ \left\|\sum_{i=1}^n T_i (\xi_i-\E \xi_i) \right\| \geq \epsilon \right\} \leq
+2 \exp \left\{-\frac{\epsilon}{2\tau_\infty M} \log\left(1+\frac{M\epsilon}{\sigma^2_\tau}\right)\right\} \]
+\end{thm}
+
+The proof needs the following lemma due to I.F. Pinelis and A.I. Sakhanenko \cite{PinSak85}. Its current
+form is taken from Theorem 3.3.4(a) in Yurinsky \cite{Yurinsky95}.
+\begin{lem}[Pinelis and Sakhanenko, 1985]
+Let $\xi_i\in \H$ ($i=1,\ldots,n$) be a sequence of independent
+random variables with values in a Hilbert space $\H$ and
+$\E[\xi_i]=0$. Then for any $t>0$,
+\[ \E \left[\cosh\left(t \|\sum_{i=1}^n \xi_i \| \right) \right] \leq \prod_{j=1}^n \E \left( e^{t \|\xi_j\|} - t \|\xi_j\| \right). \]
+\end{lem}
+
+\begin{proof}[Proof of Theorem \ref{thm:GBennett}.] Without loss of generality we assume $\E[\xi_i]=0$. For arbitrary $s>0$, by Markov's inequality,
+\begin{eqnarray*}
+\P \left\{ \|\sum_{i=1}^n T_i \xi_i \| \geq \epsilon \right\} & =  &\P \left\{ \exp\left(s \|\sum_{i=1}^n T_i \xi_i \|\right) \geq e^{s\epsilon} \right\} \\
+& \leq & e^{-s \epsilon} \E \exp\left(s \|\sum_{i=1}^n T_i \xi_i \|\right) \\
+& \leq & 2 e^{-s \epsilon} \E \cosh \left(s \|\sum_{i=1}^n T_i \xi_i \|\right)
+\end{eqnarray*}
+where the last inequality is due to $e^x \leq e^x + e^{-x}=2\cosh(x)$. Then by Lemma B.1,
+\[ \P \left\{ \|\sum_{i=1}^n T_i \xi_i \| \geq \epsilon \right\} \leq 2 e^{-s \epsilon} \prod_{j=1}^n \E \left( e^{s \|T_j \xi_j\|} - s \|T_j \xi_j\| \right).\]
+Denote
+\[ I = 2 e^{-s \epsilon} \prod_{j=1}^n \E \left( e^{s \|T_j \xi_j\|} - s \|T_j \xi_j\| \right). \]
+For each $1\leq j\leq n$, considering $\E\|\xi_j\|^2 = \sigma_j^2$ and $\|\xi_j\|\leq M$ almost surely,
+\begin{eqnarray*}
+\E \left( e^{s \|T_j \xi_j\|} - s \|T_j \xi_j\| \right) & = & 1 + \sum_{k=2}^n \frac{s^k \E \|T_j \xi_j\|^k}{k\!} \\
+& \leq & 1 + \sum_{k=2}^n \frac{s^k \tau_\infty^{k-1} M^{k-2}}{k\!} \tau_j \sigma^2_j \\
+& \leq & \exp\left(\sum_{k=2}^n \frac{s^k \tau_\infty^{k-1} M^{k-2}}{k\!} \tau_j \sigma^2_j\right) \\
+& = & \exp\left( \frac{e^{s\tau_\infty M}-1-s\tau_\infty M}{\tau_\infty M^2} \tau_j \sigma^2_j \right)
+\end{eqnarray*}
+where the second last inequality is due to $1 + x \leq e^x$ for all $x$. Therefore
+\[ I \leq \exp\left\{-s \epsilon +  \frac{e^{s\tau_\infty M}-1-s\tau_\infty M}{\tau_\infty M^2} \sum_{j=1}^n \tau_j \sigma^2_j \right\}, \]
+where the right hand side is minimized at
+\[ s_0 = \frac{1}{\tau_\infty M} \log \left( 1 + \frac{M\epsilon}{\sum_{j=1}^n \tau_j \sigma^2_j } \right) .\]
+Notice that $\sigma^2_\tau =\sum_{j=1}^n \tau_j \sigma^2_j$, then with this choice we arrive at
+\[ I \leq \exp \left\{ -\frac{\sigma^2_\tau}{\tau_\infty M^2} g\left(\frac{M\epsilon}{\sigma^2_\tau} \right)\right\}, \]
+where the function $g(t)=(1+t)\log(1+t)-t$ for all $t\geq 0$. This is the first inequality.
+
+Moreover, we can check the lower bound of $g$,
+\[ g(t) \geq \frac{t}{2} \log(1+t), \]
+which leads to the second inequality.
+\end{proof}
+
+
+By taking $\DS T_i=\frac{1}{n} I$, the following corollary gives a
+form of Bennett's inequality for random variables in Hilbert
+spaces.
+\begin{cor}[Bennett]
+Let $\H$ be a Hilbert space and $\xi_i\in \H$ ($i=1,\ldots,n$) be independent random variables such that $\|\xi_i\|\leq M$ and
+$\E\|\xi_i\|^2 \leq \sigma^2$ for all $i$.
+Then
+\[ \P \left\{ \left\|\frac{1}{n}\sum_{i=1}^n [\xi_i-\E \xi_i] \right\| \geq \epsilon \right\} \leq
+2 \exp \left\{- \frac{n\sigma^2}{M^2} g \left(\frac{M\epsilon}{\sigma^2}\right)\right\}. \]
+\end{cor}
+Noticing that $\DS g(t)\geq \frac{t^2}{2(1+t/3)}$, the corollary leads to the following Bernstein's inequality for independent sums in
+Hilbert spaces.
+\begin{cor}[Bernstein]
+Let $\H$ be a Hilbert space and $\xi_i\in \H$ ($i=1,\ldots,n$) be independent random variables such that $\|\xi_i\|\leq M$ and
+$\E\|\xi_i\|^2 \leq \sigma^2$ for all $i$.
+Then
+\[ \P \left\{ \left\|\frac{1}{n}\sum_{i=1}^n [\xi_i-\E \xi_i] \right\| \geq \epsilon \right\} \leq
+2 \exp \left\{- \frac{n\epsilon^2}{2(\sigma^2+M\epsilon/3)} \right\}. \]
+\end{cor}
+Yurinsky \cite{Yurinsky95} also gives Bernstein's inequalities for independent
+sums in Hilbert spaces and Banach spaces. The
+following result is a varied form of Theorem 3.3.4(b) in
+\cite{Yurinsky95}. Note that it is weaker than the form above in that the constant $1/3$ changes to
+$1$.
+
+\begin{thm}
+Let $\xi_i$ be independent random variables with values in a
+Hilbert space $\H$. Suppose that for all $i$ almost surely
+$\|\xi_i\|\leq M<\infty$ and $\E\|\xi_i\|^2\leq \sigma^2 <\infty$.
+Then for $n\geq 0$
+\[ \P \left\{ \left\|\frac{1}{n}\sum_{i=1}^n (\xi_i-\E[\xi_i]) \right\| \geq \epsilon \right\}
+\leq 2 \exp \left\{- \frac{n\epsilon^2}{2(\sigma^2+ M\epsilon)}
+\right\}.\]
+\end{thm}
+
+
+\bibliographystyle{plain}
+%\bibliography{yao}
+
+\begin{thebibliography}{10}
+
+\bibitem{Benaim99}
+M.~Bena\"{\i}m.
+\newblock Dynamics of stochastic approximations.
+\newblock In {\em Le Seminaire de Probabilites, Lectures Notes in Mathematics,
+  Vol 1709}, pages 1--68. Springer-Verlag, 1999.
+
+\bibitem{BerTsi96}
+D.~P. Bertsekas and J.~N. Tsitsiklis.
+\newblock {\em Neuro-Dynamic Programming}.
+\newblock Athena Scientific, Belmont, Massachusetts, 1996.
+
+\bibitem{BouEli02}
+O.~Bousquet and A.~Elisseeff.
+\newblock Stability and generalization.
+\newblock {\em Journal of Machine Learning Research}, (2):499--526, 2002.
+
+\bibitem{CesLonWar96}
+N.~Cesa-Bianchi, P.~M. Long, and M.~K. Warmuth.
+\newblock Worst-case quadratic loss bounds for prediction using linear
+  functions and gradient descent.
+\newblock {\em IEEE Transactions on Neural Networks}, 7(3):604--619, 1996.
+
+\bibitem{CriSha00}
+N.~Cristianini and J.~Shawe-Taylor.
+\newblock {\em An Introduction to Support Vector Machines and Other
+  Kernel-based Learning Methods}.
+\newblock Cambridge Unversity Press, 2000.
+
+\bibitem{CucSma02b}
+F.~Cucker and S.~Smale.
+\newblock Best choices for regularization parameters in learning theory.
+\newblock {\em Foundations Comput. Math.}, 2(4):413--428, 2002.
+
+\bibitem{CucSma02}
+F.~Cucker and S.~Smale.
+\newblock On the mathematical foundations of learning.
+\newblock {\em Bull. of the Amer. Math. Soc.}, 29(1):1--49, 2002.
+
+\bibitem{DevCapRos04}
+E.~De~Vito, A.~Caponnetto, and L.~Rosasco.
+\newblock Model selection for regularized least-squares algorithm in learning
+  theory.
+\newblock {\em Foundations of Computational Mathematics}, 2004.
+\newblock preprint.
+
+\bibitem{Duflo97}
+M.~Duflo.
+\newblock Cibles atteignables avec une probabilit\'{e} positive d'apr\'{e}s m.
+  benaim.
+\newblock {\em Unpublished manuscript}, 1997.
+
+\bibitem{Duflo96}
+Marie Duflo.
+\newblock {\em Algorithmes Stochastiques}.
+\newblock Springer-Verlag, Berlin, Heidelberg, 1996.
+
+\bibitem{EvgPonPog99}
+T.~Evgeniou, M.~Pontil, and T.~Poggio.
+\newblock Regularization networks and support vector machines.
+\newblock {\em Advances of Computational Mathematics}, 13(1):1--50, 1999.
+
+\bibitem{Gyofi80}
+L.~Gy\"{o}rfi.
+\newblock Stochastic approximation from ergodic sample for linear regression.
+\newblock {\em Z. Wahrscheinlichkeitstheorie und verwandte Gebiete}, 54:47--55,
+  1980.
+
+\bibitem{GyoKohKrzWal02}
+L\'{a}szl\'{o} Gy\"{o}rfi, Michael Kohler, Adam Krzy\.{z}ak, and Harro Walk.
+\newblock {\em A Distribution-Free Theory of Nonparametric Regression}.
+\newblock Springer-Verlag, New York, 2002.
+
+\bibitem{KieWol52}
+J.~Kiefer and J.~Wolfowitz.
+\newblock Stochastic estimation of the maximum of a regression function.
+\newblock {\em The Annals of Mathematical Statistics}, 23:462--466, 1952.
+
+\bibitem{KivSmoWil04}
+J.~Kivinen, A.~J. Smola, and R.~C. Williamson.
+\newblock Online learning with kernels.
+\newblock {\em IEEE Transactions on Signal Processing}, 52(8):2165--2176, 2004.
+
+\bibitem{KusYin03}
+H.~J. Kushner and G.~G. Yin.
+\newblock {\em Stochastic Approximations and Recursive Algorithms and
+  Applications}.
+\newblock Springer-Verlag, Berlin, Heidelberg, 2003.
+
+\bibitem{PinSak85}
+I.F. Pinelis and A.I. Sakhanenko.
+\newblock Remarks on inequalities for probabilities of large deviations.
+\newblock {\em Theory of Probability and Applications}, 30(1):143--148, 1985.
+
+\bibitem{RobMon51}
+H.~Robbins and S.~Monro.
+\newblock A stochastic approximation method.
+\newblock {\em The Annals of Mathematical Statistics}, 22(3):400--407, 1951.
+
+\bibitem{RobSie71}
+H.~Robbins and D.~Siegmund.
+\newblock A convergence theorem for nonnegative almost supermartingales and
+  some applications.
+\newblock In J.~S. Rustagi, editor, {\em Optimizing Methods in Statistics},
+  pages 233--257. Academic Press, New York, 1971.
+
+\bibitem{SmaZho-ShannonII}
+S.~Smale and D.-X. Zhou.
+\newblock Shannon sampling ii. connections to learning theory.
+\newblock {\em submitted to Appl. Comput. Harmonic Anal.}, 2005.
+
+\bibitem{Tadic04}
+V.~B. Tadic.
+\newblock On the almost sure rate of convergence of linear stochastic
+  approximation algorithms.
+\newblock {\em IEEE Transactions on Information Theory}, 50:401--409, 2004.
+
+\bibitem{Yurinsky95}
+Y~Yurinsky.
+\newblock {\em Sums and Gaussian Vectors}.
+\newblock Springer-Verlag, Berlin, Heidelberg, 1995.
+\newblock Lecture Notes in Mathematics, v. 1617.
+
+\bibitem{Zhang03}
+T.~Zhang.
+\newblock Leave-one-out bounds for kernel methods.
+\newblock {\em Neural Computation}, 15:1397--1437, 2003.
+
+\bibitem{Zinkevich03}
+M.~Zinkevich.
+\newblock Online convex programming and generalized infinitesimal gradient
+  ascent.
+\newblock Technical report, CMU-CS-03-110, School of Computer Science, Carnegie
+  Mellon University, 2003.
+
+\end{thebibliography}
+
+\end{document}

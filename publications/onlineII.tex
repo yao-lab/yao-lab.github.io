@@ -1,0 +1,1605 @@
+\documentclass[twoside,11pt]{amsart}
+\usepackage{amsmath}
+%\usepackage{amsart}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+
+%\usepackage{theorem}
+\usepackage{chicagoc}
+%\include{mynote}
+
+\newenvironment{mthm}[1][Main Theorem]{\medskip \noindent {\bf #1.}
+\begin{em}}{\end{em}\medskip}
+
+\theoremstyle{theorem}
+\newtheorem*{mainthm}{Main Theorem}
+\newtheorem*{thma}{Theorem A}
+\newtheorem*{thmb}{Theorem B}
+\newtheorem*{thmc}{Theorem C}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{conj}{Conjecture}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{lema}{Lemma A}
+\newtheorem{lemb}{Lemma B}
+\newtheorem{thmaa}{Theorem A}
+\newtheorem{thmbb}{Theorem B}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{cora}[thmaa]{Corollary A}
+\newtheorem{corb}[thmbb]{Corollary B}
+
+\theoremstyle{definition}
+\newtheorem*{defn}{Definition}
+\newtheorem*{defa}{Definition A}
+\newtheorem{exmp}{Example}[section]
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{note}{Note}
+\newtheorem*{exer}{Exercise}
+
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+%\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+\newcommand{\DS}{\displaystyle}
+
+\def\Q{{\mathbb Q}}        % rationals
+\def\Z{{\mathbb Z}}        % integers
+\def\R{{\mathbb R}}        % reals
+\def\Rn{{\R^{n}}}          % product of n copies of reals
+\def\<{{\langle}}
+\def\>{{\rangle}}
+\def\P{{\mathbb P}}        % probability
+\def\E{{\mathbb E}}        % expectation
+\def\1{{\mathbf 1}}        % indicator
+\def\var{{\mathop{\mathbf Var}}}    % variance
+
+\def\L{{\mathscr L}}
+\def\L2{{\mathscr L}^2_{\rho_\X}}
+\def\A{\hat{A}}
+\def\b{\hat{b}}
+\def\w{\hat{w}}
+\def\M{M_\rho}
+
+\def\C{{\mathscr C}}
+\def\H{{\mathscr H}}
+\def\W{{\mathscr W}}
+\def\P{{\mathscr P}}
+\def\X{{\mathscr X}}
+\def\Y{{\mathscr Y}}
+\def\Z{{\mathscr Z}}
+\def\F{{\mathcal F}}
+\def\f{f^\prime}
+\def\PPi{{\hat{\Pi}}}
+\def\T{{\mathscr T}}
+\def\Err{{\mathscr E}}
+\def\N{{\mathbb N}}
+\def\z{{\mathbf z}}
+\def\Prob{{\bf Prob}}
+\def\Proj{{\rm Proj}}
+\def\grad{{\rm grad}}
+\def\ess{{\rm ess}}
+\def\supp{{\rm supp}}
+\def\span{{\rm span}}
+\def\O{{\mathscr O}}
+\def\amax{{\overline{\alpha}}}
+\def\amin{{\underline{\alpha}} }
+\def\i{{\bf i}}
+\def\j{{\bf j}}
+\def\t{t_0}
+
+\def\al{\alpha}
+\def\be{\beta}
+\def\la{\lambda}
+\def\De{\Delta}
+\def\de{\delta}
+\def\ka{\kappa}
+\def\ga{\gamma}
+\def\ze{\zeta}
+\def\eps{\epsilon}
+
+\def\lf{\lfloor}
+\def\rf{\rfloor}
+\def\lc{\lceil}
+\def\rc{\rceil}
+
+\def\st{\star}
+
+\newcommand{\Es}{\mathbb{E}}
+
+\begin{document}
+
+\title{Online Learning as Stochastic Approximations of Regularization Paths}
+\thanks{This work was supported by NSF grant 0325113.}
+
+\author{Pierre Tarr\`es}
+\address{Pierre Tarr\`es, Mathematical Institute, University of Oxford, 24-29 St Giles', Oxford OX1 3LB,  U.K.}
+\email{tarres@maths.ox.ac.uk}
+
+\author{Yuan Yao}
+\address{Yuan Yao, Department of Mathematics, University of California at Berkeley, Berkeley, CA 94720.}
+\curraddr{Toyota Technological Institute at Chicago, 1427 East
+60th Street, Chicago, IL 60637.}
+\email{yao@math.berkeley.edu}
+
+\keywords{Online Learning, Stochastic Approximations, Regularization Path, Reproducing Kernel Hilbert Space}
+
+\date{November 12, 2005.}
+
+\subjclass[2000]{62L20, 68Q32, 68T05}
+
+\maketitle
+
+\begin{abstract}
+In this paper, we study an online learning algorithm as stochastic approximations of a regularization path convergent to the regression function. 
+Some probabilistic upper bounds are given for the convergence rates of the algorithm, under certain regularity assumption on the regression function. 
+In the case of a strong convergence (convergence in reproducing kernel Hilbert spaces), 
+the convergence rate obtained is the same as the best known rate in batch learning; and in the case of a weak convergence (convergence in mean square distance),
+the convergence rate is optimal in the sense that it reaches the minimax and individual lower rate. 
+\end{abstract}
+
+\bigskip
+
+%\tableofcontents
+
+%\setcounter{section}{-1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Consider the following problem of learning from examples: given a sequence of random examples 
+$(z_t=(x_t,y_t))_{t\in \N}$ drawn from a probability measure $\rho$ on $\X\times \Y$, one wants to approximate
+the \emph{regression function}, $f_\rho(x):=\int_\Y y d \rho_{\Y|x}$, \emph{i.e.} the conditional expectation of $y$ given $x$. 
+In an optimization view, $f_\rho$ minimizes the following quadratic functional 
+\begin{equation}  \label{eq:ls}
+\Err(f) = \int_{\X\times \Y} (f(x) - y)^2 d \rho.
+\end{equation}
+However, minimizing (\ref{eq:ls}) without constraints may put $f_\rho$ in a too large space to search. So one typically turns to 
+some regularization methods to solve (\ref{eq:ls}). In this paper, we focus on the following regularized least square problem
+\begin{equation}  \label{eq:reg}
+f_\la = \arg \min_{f\in \H} \Err(f) + \la \|f\|_\H^2, 
+\end{equation}
+where $\H$ is some Hilbert space and $\la>0$ is the regularization parameter. This scheme is well-known as ridge regression in statistics
+and is also called Tikhonov regularization in inverse problems \cite{EngHanNeu00}. One may choose a suitable $\H$, such that when $\la \to 0$, $f_\la \to f_\rho$. 
+The map $f_\la: \R_+ \to \H$ defined by $\la\mapsto f_\la$, characterizes a function path in $\H$, which may start from some $f_{\la_0}$ and 
+go toward $f_\rho$ as $\la\to 0$. Therefore it is called here a \emph{regularization path} of $f_\rho$ in $\H$. 
+
+Our purpose is to seek a sequence of functions $(f_t)_{t\in\N}\in \H$ with certain dependence on the examples up to time $t$, 
+and a sequence of regularization parameters $(\la_t)$ tending to $0$, such that $f_t$ follows $f_{\la_t}$ closely and converges to $f_\rho$. 
+It is crucial to restrict the permissible form of the dependence of $f_t$ on historical examples. For example, $f_t$ may depend explicitly on 
+all the available examples at time $t$, $(z_i)_{i=1}^t$, which is often called as \emph{batch learning}. In this setting existing results
+[e.g. \citeNP{CucSma02}; \citeNP{SmaZho-ShannonIII}] already give such a sequence $f_t$, which is the minimizer of an empirical counterpart of (\ref{eq:reg})
+by replacing the integral with a sum over the sample set at time $t$. 
+
+
+In this paper, our departure from those batch learning results lies on the following recursive structure imposed on $(f_t)$: for each $t$, 
+$f_t$ depends on the example $z_t$ and $f_{t-1}$ which only depends on previous examples $z_1,\ldots, z_{t-1}$, i.e. $f_t=T_t(f_{t-1},z_t)$ 
+for some map $T_t:\H\times \X \to \H$. Such a sequence $(f_t)$ is called an \emph{online learning} sequence, as a constrast to the \emph{batch learning}. 
+In particular, in online learning, the sample size $t$ is changing over time, thus one can not choose a fixed regularization parameter based on 
+\emph{a priori} knowledge on a fixed sample size as in batch learning. This feature forces online learning to track the entire regularization path, which increases the technical 
+difficulty in the treatment of online learning vs. batch learning. We note that recent works on support vector machines \cite{HasRosTibZhu04} enables one to construct 
+batch learning algorithms to follow the entire regularization path with the same amount of computational cost as a single fixed regularization.
+
+An attractive feature of this online learning scheme, lies in that its computational complexity to follow the entire regularization path
+may be as small as linear $O(t)$ (the algorithm in this paper, however, requires $O(t^2)$ in the worst case). 
+In a contrast, the batch learning scheme typically involves inverting a matrix, which is $O(t^3)$. 
+
+The construction of such an online learning sequence $(f_t)$, as we shall see soon, is a stochastic approximation of the gradient descent method to 
+solve (\ref{eq:reg}), for each fixed $\la_t$. In this way, our algorithms can be regarded as stochastic approximations of the regularization path $f_\la$.
+For fixed regularization parameters, $\la_t = \la$, this kind of online learning algorithms in a similar setting has been studied in 
+\cite{SmaYao05}, with improved upper bounds in \cite{Yao05}. References [\citeNP{Duflo96}; \citeNP{KusYin03}] provide more background on 
+stochastic approximations.  
+
+As in previous results, in this paper we choose $\H$ a reproducing kernel Hilbert spaces (RKHS), $\H_K$. RKHS enables us to develop results in a 
+coordinate-free way, where the gradiend descent method takes an especially simple form [e.g. \citeNP{KivSmoWil04}]. 
+Moreover, RKHS provides an unified framework to include several important settings, e.g. 
+(1) generalized smooth spline functions in Sobelev spaces \cite{Wahba90}, (2) real analytic functions with bounded bandwidth \cite{Daubechies92} 
+and their generalizations \cite{SmaZho-ShannonI}, (3) an unified framework for stochastic processes [\citeNP{Loeve48}; \citeNP{Parzen61}]. 
+By choosing suitable kernels, $\H_K$ can be used to approximate any functions in $\L2$, the square integrable functions with respect to 
+the marginal probability measure $\rho_\X$. For a wider background on RKHS, see for example \cite{BerTho04}. 
+
+In this paper, we present some probabilistic upper bounds for the convergence of $(f_t)_{t\in \N}$ to $f_\rho$, in $\H_K$ or $\L2$, 
+under the assumption of $f_\rho\in \H_K$ with additional regularity. The convergence rate in $\H_K$ is shown the same as the best known rate 
+in batch learning \cite{SmaZho-ShannonIII}; and the convergence rate in $\L2$, is optimal in the sense that it reaches the minimax and individual 
+lower rate.
+
+Our treatment starts from more general Hilbert spaces, with stochastic approximations of the solutions for a sequence of linear operator equations, which
+gives the main results in this paper when specialized to the setting in $\H_K$. Two structural decomposition theorems, namely the \emph{reversed martingale 
+decomposition} and \emph{the martingale decomposition}, play an important role in the proof of the main results, where the former is suitable for the 
+strong convergence in $\H_K$ and the latter, by exploiting the spectral decomposition, is suitable for the weak convergence in $\L2$. A crucial estimate 
+is about the drift along the regularization path, $\|f_{\la_t}-f_{\la_{t-1}}\|$, 
+which has the same order as the approximation error $\|f_{\la_t}- f_\rho\|$. This key observation leads to the same
+rates for online learning as in batch learning. 
+
+The organization of this paper is as follows. Section \ref{sec:main} collects the main results in this paper. Section \ref{sec:general} studies
+stochastic approximations of regularization paths for linear operator equations in general Hilbert spaces, where two crucial structural decompositions
+are presented. Section \ref{sec:drifts} collects some estimates on the drifts along the regularization path, 
+$\|f_{\la} - f_{\mu}\|$ ($\la,\mu>0$), which is the basis for later developments.
+Section \ref{sec:hk} studies the upper bounds for convergence in $\H_K$ and
+Section \ref{sec:l2} studies the upper bounds for convergence in $\L2$. Appendix A derives
+a probabilistic inequality from the Pinelis-Bernstein inequality, which is used to derive the probabilistic upper bounds in this paper. 
+Appendix B collects some basic estimates. Appendix C gives some estimates on the gap between the online learning sequence and the regularization path.
+Appendix D gives the proof of Theorem \ref{thm:convergence}.  
+
+\section{Main Results} \label{sec:main}
+
+\subsection{Notations and Assumptions} 
+Let $\X\subseteq \R^n$ be closed, $\Y=\R$ and $\Z=\X\times \Y$. 
+Let $\rho$ be a probability measure on $\Z$, $\rho_{\X}$ be the induced marginal probability measure on $\X$,
+and $\rho_{\Y|x}$ be the conditional probability measure on $\Y$ with respect to $x\in
+X$. Define $f_\rho:\X\to \Y$ by $f_\rho (x) = \int_\Y y d \rho_{\Y|x}$, 
+the \emph{regression function of $\rho$}. In the sequel, we denote by $\E[\ ]$ the expectation. 
+
+Let $\L2$ be the Hilbert space of
+square integrable functions with respect to $\rho_\X$. In the sequel $\|\ \|_\rho$
+denotes the norm in $\L2$.
+
+Let $K:\X\times \X\to \R$ be a \emph{Mercer kernel}, i.e. a
+continuous symmetric real function which is \emph{positive
+semi-definite} in the sense that $\sum_{i,j=1}^m c_i c_j K(x_i,
+x_j)\geq 0$ for any $m\in \N$ and any choice of $x_i\in X$ and
+$c_i \in \R$ ($i=1,\ldots,m$). A Mercer kernel $K$ induces
+a function $K_x : \X\to \R$ ($x\in \X$) defined by $ K_x(x^\prime) = K(x,x^\prime)$. 
+Let $\H_K$ be the \emph{reproducing kernel Hilbert space} (RKHS)
+associated with a Mercer kernel $K$, i.e. the completion of the $\span\{K_x: x\in \X\}$
+with respect to the following inner product: the unique linear extension of the
+bilinear form $\<K_x, K_{x^\prime}\>_K = K(x,x^\prime)$ ($x,x^\prime \in \X$). The norm
+of $\H_K$ is denoted by $\|\ \|_K$. The most important property of RKHS is the \emph{reproducing property}:
+for all $f\in \H_K$ and $x\in X$, $f(x)=\<f,K_x\>_K$. 
+
+Throughout this paper, assume that
+
+\noindent {\bf Finiteness Condition.} 
+\noindent (A) There exists a constant $\ka\geq 0$ such taht
+\begin{equation*} 
+\kappa:=\sup_{x\in \X} \sqrt{K(x,x)} < \infty.
+\end{equation*}
+\noindent (B) There exists a constant $\M \geq 0$ such that
+\[ \supp(\rho)\subseteq \X\times [-\M, \M]. \]
+
+Define a linear map
+$L_K:\L2\to \H_K$ by $L_K(f)(x)= \int_X K(x,t) f(t) d
+\rho_X$. Together with the inclusion $J:\H_K \to \L2$, $J\circ L_K:\L2 \to \L2$
+is a compact operator on $\L2$ [e.g. \citeNP{CarDevToi05} or \citeNP{HalSun78}]. The operator $L_K|_{\H_K} + \lambda I:\H_K \to \H_K$ is invertible if $\lambda>0$,
+where $L_K|_{\H_K}:\H_K \to \H_K$ is the restriction of $L_K:\L2
+\to \H_K$. All the three operators, by abusing the notation, are all denoted by $L_K$ in the sequel. 
+It can be shown [e.g. \citeNP{CucSma02}] that for any $\la\in \R_+$,
+\begin{equation} 
+f_{\la} = (L_K + \la I)^{-1} L_K f_\rho \in \H_K. 
+\end{equation}
+Next we define the operator $L_K^r$, which will be used to represent the regularity of $f_\rho$
+in this paper. The compactness of $L_K:\L2\to \L2$ implies the existence of an orthonormal eigensystem $(\mu_\al,\phi_\al)_{\al\in \N}$ of $L_K$, whence
+we define $L_K^r:\L2\to\L2$ by
+\begin{equation} \label{eq:LKr}
+\begin{array}{rcl}
+L_K^r: & \L2 & \to \L2 \\ 
+& \DS \sum_{\al} a_\al \phi_\al & \DS \mapsto \sum_\al a_\al \mu_\al^r \phi_\al 
+\end{array}
+\end{equation}
+Note that $L_K^{1/2}:\L2\to \H_K$ is an isometrical isomorphism between the quotient space $\L2/\ker(L_K)$ and $\H_K$. For simplicity in this paper
+we assume that $\ker(L_K)=\{0\}$.
+Finally we define an operator $L_K^x:\H_K \to \H_K$ by $L_K^x(f) = \<f,K_x\>_K K_x=f(x)K_x$, whose expectation with $\rho_X$ is $\E[L_K^x]=L_K$. 
+
+\subsection{Stochastic Gradient Algorithms}
+
+Recall that in the introduction, a sequence $(f_t)_{t\in \N}$ is called an \emph{online learning sequence}, if for
+each $t$, $f_t = T_t ( f_{t-1}, z_t)$, where $(z_t)$ is a sequence of random examples and the map $T_t: \H_K \times \Z  \to \H_K$ depends on $t$. 
+
+Define an online learning sequence $(f_t)_{t\in\N}$ as follows,
+\begin{equation}\label{eq:ft}
+f_t = f_{t-1} - \gamma_t [(f_{t-1}(x_t)-y_t)K_{x_t} +\lambda_t f_{t-1}], \ \ \ \ \ \mbox{for some $f_0\in \H_K$, e.g. $f_0=0$}
+\end{equation}
+where \\
+(A) for each $t$, $(x_t,y_t)$ is independent and identically distributed (i.i.d.) according to $\rho$; \\
+(B) the step size $\gamma_t>0$; \\
+(C) the regularization parameter $\lambda_t>0$. 
+
+\begin{rem}
+The computational cost of this algorithm typically is $O(t^2)$. As each step $t$, the main computational cost is due to the evaluation $f_{t-1}(x_t)$ which
+needs to access all $K_{x_i}$ ($1\leq i\leq t$) in $O(t)$ steps. Thus the total cost is of $O(t^2)$ at time $t$. In the cases that one can store and access
+the values $f_t(x)$ for all $x$, e.g. on a grid of $\X$, the computational cost is only linear $O(t)$ at the requirement of large memory and fast memory 
+access.
+\end{rem}
+
+By reproducing property, we can see that the gradient map of 
+$$V_z(f)= \frac{1}{2}[(f(x)-y)^2 + \la \|f\|_K^2], \ \ \ \ z=(x,y)\in \Z$$
+is given by $\grad V_z(f)=(f(x)-y)K_{x} +\lambda f$ \cite{SmaYao05}, as a random variable depending on $z$. 
+Since the expectation $\E[V_z(f)]=2(\Err(f)+\la\|f\|_K^2)$, algorithm (\ref{eq:ft}) can thus be regarded as 
+stochastic approximations of gradient descent method to solve (\ref{eq:reg}), for each $\la=\la_t$. 
+
+\subsection{Main Theorems}
+
+In the sequel we consider the approximation of $f_\rho \in \H_K$ by online learning sequence $(f_t)$. 
+The following theorems are the main results of this paper. 
+Theorem A gives a sufficient condition that $(f_t)$ follows the regularization path $f_\la$. 
+Theorem B and C provides probabilistic upper bounds for the convergence rate of $f_t\to f_\rho$ in $\H_K$ and $\L2$, respectively. 
+
+\medskip
+
+First we need a definition for that $(f_t)$ follows the regularization path $f_\la$.
+\begin{defn}
+An online learning sequence $(f_t)$ is said to \emph{follow the regularization path} $f_\la:\R_+\to \H_K$, if there exists a sequence $(\la_t)\downarrow 0$, such that
+$$\lim_{t\to \infty} \E \|f_t - f_{\la_t} \|_K = 0.$$ 
+\end{defn}
+
+The following theorem gives some sufficient conditions for $(f_t)$ following the regularization path. 
+
+\begin{thma} [Path Following Condition]
+The online learning sequence $(f_t)$ defined by equation (\ref{eq:ft}) follows the regularization path $f_\la$, 
+if the following conditions are satisfied:
+
+\noindent (A) $\DS \sum_{t\to \infty} \gamma_t \la_t = \infty$.
+
+\noindent (B) $\DS \lim_{t\to \infty} \frac{\gamma_t}{\la_t} =0$,
+
+\noindent (C) $\DS \lim_{t\to \infty} \frac{\|f_{\la_t} - f_{\la_{t-1}}\|_K}{\la_t \gamma_t } =0$,
+\end{thma}
+
+This theorem will be proved in Section \ref{sec:general}, following from Theorem \ref{thm:convergence} in the setting of general Hilbert spaces.  
+
+\begin{rem}
+Although $\la_t \to 0$, condition (A) puts a restriction that $\ga_t\la_t$ can not drop too fast, in fact this is necessary to ``forget'' the error 
+caused by the initial guess $f_0$. Condition (B) says that the step size $\ga_t \to 0$, and it has to drop faster than the regularization parameter $\la_t$. 
+Such a condition is to attenuate the random fluctuation caused by sampling. 
+Condition (C) implies that the drifts of the regularization path $(f_{\la_t})$ converges to zero, at a speed faster than $\ga_t \la_t$. This condition
+says that in the long run, the drifts along the regularization path should be slow enough for the algorithm to follow the path. 
+\end{rem}
+
+The next two theorems present some probabilistic upper bounds which characterize the convergence rates in $\H_K$ and $\L2$, under certain regularity assumptions
+on the regression function $f_\rho$. Below by $L_K^{-r} f_\rho \in \L2$ ($r>0$), we mean that $f_\rho$ lies in the image of the mapping $L_K^r:\L2\to \L2$. 
+Due to the isometry $L_K^{1/2}:\L2 \to \H_K$, for $r\geq 1/2$ this implies $f_\rho \in \H_K$, with additional regularity if $r>1/2$. Using the spectral decomposition of $L_K$,
+$L_K^{r}$ can be regarded as a low-pass filter as given in (\ref{eq:LKr}), whence
+\[ L_K^{-r} f_\rho \in \L2 \Leftrightarrow f_\rho=\sum_{\al} a_\al \mu_\al^r \phi_\al,\ \ \  \mbox{for some $\sum_\al a_\al^2 <\infty$}.\]
+
+
+\begin{thmb} [Convergence Rates in $\H_K$] 
+Assume that $L_K^{-r} f_\rho\in \L2$ for some $r\in (1/2,3/2]$. Let $\DS \t= (\ka+1)^{(2r+1)/r} \max(1,\log \frac{2}{\delta})^{(2r+1)/2r}$ 
+for some $\delta\in (0,1)$.
+Then there is a choice of $(\ga_t)$ and $(\la_t)$ such that with probability at least $1-\delta$, 
+the following holds for all $t\in \N$, 
+\[ \|f_t - f_\rho \|_K \leq \frac{C_1}{t} + ( C_2 \log^{1/2}\frac{2}{\delta} + C_3 \| L^{-r}_K f_\rho \|_\rho ) 
+\left(\frac{1}{t}\right)^{\frac{2r-1}{4r+2}}, \]
+where 
+\[ C_1= 2\t^{\frac{4r+3}{4r+2}} M_\rho, \ \ \ C_2 = 11 (\kappa+1) M_\rho, \ \ \  C_3 = \frac{20r-2}{(2r-1)(2r+3)}. \]
+One such choice is $\ga_t = (t+\t)^{-2r/(2r+1)}$ and $\la_t = (t+\t)^{-1/(2r+1)}$.
+\end{thmb}
+
+Its proof is given in Section \ref{sec:hk}. 
+
+\begin{rem}
+The asymptotic rate $O(t^{-(2r-1)/(4r+2)})$ is the same as the batch learning algorithms [Theorem 2, in \citeNP{SmaZho-ShannonIII}]. 
+\end{rem}
+
+\begin{rem}
+Note that the upper bound consists of three parts. 
+The first term at a rate $O(t^{-1})$, captures the influence of the initial choice $f_0=0$, which is much faster than the remaining terms.
+The second term at a rate $O(t^{-(2r-1)/(4r+2)})$, reflects the error caused by random fluctuations by the i.i.d. sampling. 
+The third term at a rate $O( \| L^{-r}_K f_\rho \|_\rho t^{-(2r-1)/(4r+2)})$, collects contributions from both drifts along the 
+regularization path $f_{\la_t}-f_{\la_{t-1}}$ and the approximation error $f_{\la_t}-f_\rho$, since they share the same rate upto different constants. 
+\end{rem}
+
+
+\begin{thmc}[Convergence Rates in $\L2$]
+Assume that $L_K^{-r} f_\rho\in \L2$ for some $r\in [1/2,1]$. Let $\DS \t=(\kappa^2+1)^{(2r+1)/r}$.
+Then there is a choice of $(\ga_t)$ and $(\la_t)$ such that with probability at least $1-\delta$ ($\delta\in (0,1)$), 
+the following holds for all $t\in \N$, 
+\[ \|f_t - f_\rho \|_\rho \leq D_1 t^{-1} + (D_2 \sqrt{\frac{1}{\delta}} + D_3 \| L^{-r}_K f_\rho\|_\rho 
++D_4 \sqrt{\frac{1}{\delta}} \| L^{-r}_K f_\rho\|_\rho) t^{-r/(2r+1)}, \]
+where 
+\[ D_1 = 2(\t+1) M_\rho, \ \ \  D_2 = \sqrt{6} \ka \M (\sqrt{3}  + \ka \sqrt{4\ka^2+1} ),\ \ \  D_3=\frac{5r+1}{r(r+1)}, \ \ \ D_4=2\sqrt{2}\ka. \]
+One such choice is $\ga_t = (t+\t)^{-2r/(2r+1)}$ and $\la_t = (t+\t)^{-1/(2r+1)}$.
+\end{thmc}
+
+Its proof will be given in Section \ref{sec:l2}.
+
+\begin{rem}
+A special case is $r=1/2$, which is equivalent to say $f_\rho \in \H_K$. In this case $\ga_t = \la_t = (t+\t)^{-1/2}$, whence it
+does not satisfy the Path Following Condition (B) in Theorem A. But Theorem C suggests a weaker notion that $f_t$ follows the regularization path,
+\emph{i.e.} $\lim_{t\to \infty} \E[\|f_t - f_{\la_t}\|_\rho] = 0$, which in fact converges at a rate of $O(t^{-1/4})$ uniformly for all $f_\rho \in \H_K$. 
+\end{rem}
+
+\begin{rem}
+It is still open whether the upper bound above can be improved by replacing $1/\delta$ with $\log 1/\delta$. One way to achieve this is to prove
+that $\|f_t\|_\rho \leq O(1/\sqrt{\la_t})$, which is open yet. For details, see more discussions in Remark \ref{rem:open}, 
+on the problem of using Bernstein's type inequality here.
+\end{rem}
+
+Note that for any $f\in \L2$, the generalization error $\Err(f) - \Err(f_\rho)=\|f - f_\rho \|_\rho^2$ [e.g. see \citeNP{CucSma02}], 
+which is often used to evaluate the performance of learning algorithms in literature. We have the following corollary of Theorem C.
+
+\begin{cor} \label{cor:C}
+Under the same condition of Theorem C, there holds with probability at least $1-\delta$ ($\delta\in (0,1)$), for all $t\in \N$, 
+\[ \Err(f_t) - \Err(f_\rho) \leq 2D_1 t^{-2} + 2(D_2 \sqrt{\frac{1}{\delta}} + D_3 \| L^{-r}_K f_\rho\|_\rho++D_4 \sqrt{\frac{1}{\delta}} \| L^{-r}_K f_\rho\|_\rho)^2 t^{-2r/(2r+1)}, \]
+where $D_1,\ldots,D_4$ are the same constants in Theorem C. 
+\end{cor}
+
+\begin{rem}
+For $r\in (1/2,1]$, the asymptotic rate $O(t^{-2r/(2r+1)})$ has been shown to be optimal in the sense that it reaches the minimax and individual 
+lower rate [\citeNP{CapDeV05}]. To be precise, let $\P(b,r)$ ($b>1$ and $r\in (1/2,1]$) 
+be the set of probability measure $\rho$ on $\X\times \Y$, such that: (A) almost surely $|y|\leq \M$;
+(B) $L_K^{-r} f_\rho \in \L2$; (C) the eigenvalues $(\mu_n)_{n\in\N}$ of $L_K:\L2\to\L2$, arranged in a nonincreasing order, are subject to the decay $\mu_n= O(n^{-b})$.
+Then the following minimax lower rate was given as Theorem 2 in \cite{CapDeV05}, 
+\[ \liminf_{t\to \infty} \inf_{(z_i)_1^t \mapsto f_t } \sup_{\rho\in \P(b,r)} \Prob \left\{(z_i)_1^t \in \Z^t: \Err(f_t) - \Err(f_\rho) > 
+C t^{-\frac{2rb}{2rb+1}} \right\} = 1 \]
+for some constant $C>0$ independent on $t$, where the infimum in the middle is taken over all algorithms as a map 
+$\Z^t \ni(z_i)_1^t \mapsto f_t\in \H_K$. Moreover, for every $B>b$, the following individual lower rate was given as Theorem 3 in \cite{CapDeV05},
+\[\inf_{((z_i)_1^t\mapsto f_t)_{t\in \N}} \sup_{\rho \in \P(b,r)} \limsup_{t\to \infty} \frac{\E [\Err(f_t)] - \Err(f_\rho)}{t^{-\frac{2rB}{2rB+1}}} > 0, \]
+where the infimum is taken over arbitrary sequences of functions $f_t:\Z^t\to \H_K$. Note that in both lower rates the permissible $f_t$ 
+is beyond online learning sequences. In the minimax lower rate, the probability measure may change
+for each fixed $t$; while in the individual lower rate, the probability measure is fixed for all large enough $t$, which is more suitable to 
+the nature of learning. For more background on these lower rates, see for example \cite{GKKW02} and references therein. 
+
+Now we compare these lower rates to our upper bound. 
+Since $L_K:\L2\to\L2$ is a trace-class operator, its eigenvalues are summable. Therefore by taking $b=B=1$, one may obtain an 
+eigenvalue-independent lower rate $O(t^{-2r/(2r+1)})$ for all possible $L_K$. In this way, the upper bound in Corollary \ref{cor:C} reaches
+both the minimax and the individual lower rates. 
+\end{rem}
+
+
+\section{Sequential Stochastic Approximations in Hilbert Spaces} \label{sec:general}
+
+In this section, we consider a more general setting: stochastic approximations of solutions for a sequence of linear operator equations 
+in general Hilbert spaces. The sequence of linear operator equations are constructed in a spirit of regularization. 
+A theorem for the convergence is given, which leads to Theorem A when specialized to the setting in this paper.
+
+Let $\W$ be a Hilbert space and $\A:\W\to \W$ be a positive operator and $\b\in \W$. Consider the following linear equation
+\begin{equation} \label{eq:hatlin}
+\A w = \b.
+\end{equation}
+where $\A$ has an \emph{unbounded} inverse. As in the standard setting of Robbins-Monro procedure \cite{RobMon51}, 
+we assume that $\A$ and $\b$ are the expectations of some random operators and vectors, respectively.
+However due to the unboundedness of $\A^{-1}$, the complexity analysis fails for the standard algorithm \cite{SmaYao05} . 
+
+To solve this ill-posed problem with unbounded $\A^{-1}$, one may construct a sequence $\A_t\to \A$ and $\b_t\to \b$, 
+where each $\A_t$ has bounded inverse. 
+Then one has a sequence $\w_t=\A_t^{-1} \b_t$ converging to the solution of (\ref{eq:hatlin}) and $\w_t$ is continuous with respect
+to $\A_t$ and $\b_t$. Such a sequence $(\w_t)$, will be called a \emph{regularization path} of the solution of equation (\ref{eq:hatlin}). 
+
+It remains to approximate $(\w_t)$, since $\A_t$ and $\b_t$ are the means with respect to some unknown probability measure, as $\A$ and $\b$. 
+Here we define a sequence of stochastic approximations
+\[ w_{t}= w_{t-1} - \gamma_{t} ( A_t w_{t-1} - b_t ), \]
+where $A_t=A_t(z_t)$ and $b_t=b_t(z_t)$ are random variables depending on the sample $z_t$, such that $\E[A_t(z_t)]=\A_t$ and $\E[b_t(z_t)]=\b_t$. 
+
+In this section our purpose is to study the evolutions of $(w_t)$ and $(\w_t)$, and give conditions of their gap converging to zero.
+
+First of all we summarize the assumptions taken in this section. 
+
+\noindent {\bf Generalized Finiteness Condition.} For each $t\in \N$, almost surely there holds \\
+\noindent (A) $\A$ is invertible with \emph{unbounded} inverse; \\
+\noindent (B) $A_t$, $\A_t$ and $\A$ have operator norms bounded by $\amax\in(0,\infty)$; \\
+\noindent (C) $\A_t$ is invertible with \emph{bounded} inverse $\|\A^{-1}_t\|\leq 1/\amin_t$, with $\amin_t \to 0$; \\
+(D) $b_t$ and $\b_t$ have norms bounded by $\beta\in(0,\infty)$;
+
+
+\subsection{Two Structural Decomposition Theorems}
+
+In this subsection we presents two structural decompositions of the \emph{remainder}, 
+\begin{equation}
+r_t:=w_t - \w_t. 
+\end{equation}
+Both ways decomposes $r_t$ into three parts: 
+one depending on $r_0$; one depending on the following defined \emph{drifts} along the regularization path $(\w_t)$,
+\begin{equation}
+\Delta_j:=\w_t - \w_{t-1};
+\end{equation}
+and one random variable of zero mean, either as a reversed martingale or
+as a martingale. Both decompositions are found useful, where the reversed martingale decomposition is enough to study the convergence in $\H_K$ 
+and the martingale decomposition is crucial to obtain sharp convergence rates in $\L2$.
+
+\begin{thm}[Reversed Martingale Decomposition] \label{thm:rmart} Define a random operator on $\W$,
+\begin{equation*} \Pi_j^t(z_j,\ldots,z_t)=
+\left\{
+\begin{array}{lr}
+\DS \prod_{i=j}^t \left( I - \gamma_i A_{i} \right), & j\leq t; \\
+I, & j>t.
+\end{array}
+\right.
+\end{equation*}
+Then for all $t\in \N$ and $t>t_0$,
+\begin{equation}  \label{eq:rmart}
+r_{t} = \Pi_{t_0+1}^t r_{t_0} - \sum_{j=t_0+1}^t \gamma_j \Pi_{j+1}^t (A_j \w_j - b_j) - \sum_{j=t_0+1}^t \Pi_{j}^t \Delta_j
+\end{equation}
+\end{thm}
+
+\begin{rem}
+Note that $\Pi_{j+1}^t$ is a random operator depending on $z_{j+1},\ldots z_t$, and $A_j \w_j - b_j$ is a zero mean random variable depending on $z_j$.
+By independence of $(z_t)_{t\in \N}$, the conditional expectation $\E[\gamma_j \Pi_{j+1}^t (A_j \w_j - b_j)|z_{j+1},\ldots,z_{t}]=0$, whence 
+for each $t$, $\ga_j \Pi_{j+1}^t(A_j\w_j - b_j)$ is a \emph{reversed martingale difference sequence} whose sum is a \emph{reversed martingale sequence} with zero mean. 
+For more background on reversed martingale, see for example \cite{Neveu75}. This decomposition will be used to derive Theorem A and Theorem B. 
+\end{rem}
+
+\begin{proof}[Proof of Theorem \ref{thm:rmart}] By definition,
+\begin{eqnarray*}
+r_{t} & = & w_{t}-\w_{t} \\
+& = & w_{t-1} - \gamma_t (A_t w_{t-1} - b_t) - \w_{t} \\
+& = & (I - \gamma_t A_t)(w_{t-1} - \w_{t-1}) - \gamma_t (A_t \w_t -b_t) - (I-\gamma_t A_t) (\w_t-\w_{t-1})
+\end{eqnarray*}
+which gives
+\begin{equation}
+ r_{t} = (I-\gamma_t A_t) r_{t-1} - \gamma_t (A_t \w_t - b_t) - (I-\gamma_t A_t)\Delta_t .
+\end{equation}
+The result then follows from induction on $t\in \N$. 
+\end{proof}
+
+\begin{thm}[Martingale Decomposition] \label{thm:mart} Let $\chi_t=(\A_t - A_t) w_{t-1} +(b_t - \b_t)$, and
+\begin{equation*} 
+\PPi_j^t=
+\left\{
+\begin{array}{lr}
+\DS \prod_{i=j}^t \left( I - \gamma_i  \A_i  \right), & j\leq t; \\
+I, & j>t.
+\end{array}
+\right.
+\end{equation*}
+Then for all $t\in \N$ and $t>t_0$,
+\begin{equation} \label{eq:mart}
+r_{t} = \PPi_{\t+1}^t r_0 + \sum_{j=\t+1}^t \gamma_j \PPi_{j+1}^t \chi_j - \sum_{j=\t+1}^t \PPi_{j}^t \Delta_j 
+\end{equation}
+\end{thm}
+
+\begin{rem}
+This decomposition was proposed in \cite{Yao05}. 
+Note that in this decomposition only the second term is random. The operator $\PPi_{j+1}^t$ is deterministic and $\chi_j$
+is a zero mean random variable depending on $z_1,\ldots, z_j$. Therefore the conditional expectation
+$\E[\gamma_j \PPi_{j+1}^t \chi_j|z_1,\ldots,z_{j-1}]=0 $, whence for each $t$, $\gamma_j \PPi_{j+1}^t \chi_j$ is a 
+\emph{martingale difference sequence} for all $t\in \N$, whose sum is a \emph{martingale sequence} of zero mean. 
+Note that this martingale property holds even for dependent sampling $z_t(z_1,\ldots,z_{t-1})$. 
+\end{rem}
+
+\begin{rem}
+An importance feature of this decomposition used in this paper, lies in that the operator $\PPi_j^t$ is deterministic and when taking $\A_i = L_K+\la_i$, it
+has a spectral decomposition by the eigenfunctions of $L_K:\L2\to \L2$. This feature plays a key role in the proof of Theorem C. 
+But a disadvantage is that the term $\chi_t$ depends on $w_{t-1}$, which increases the difficulty to bound $\chi_t$. 
+In fact, the open problem how to improve Theorem C by replacing $1/\delta$ to $\log1/\delta$, depends on how to get a tighter
+bound on $\|\chi_t\|$, see Remark \ref{rem:open} for details. 
+\end{rem}
+
+\begin{proof}[Proof of Theorem \ref{thm:mart}] By definition,
+\begin{eqnarray*}
+r_{t} & = & w_{t}-\w_{t} \\
+& = & w_{t-1} - \gamma_t (A_t w_{t-1} - b_t) - \w_{t} \\
+& = & (I - \gamma_t \A_t)(w_{t-1} - \w_{t-1}) + \gamma_t [(\A_t-A_t) w_{t-1} + (b_t - \A_t \w_t  )] - (I-\gamma_t \A_t) [\w_t - \w_{t-1}].
+\end{eqnarray*}
+Using $\A_t \w_t = \b_t$ for all $t\in \N$, we obtain
+\begin{equation}
+r_{t} = (I-\gamma_t \A_t) r_{t-1} + \gamma_t [(\A_t - A_t) w_{t-1} +(b_t - \b_t)] - (I-\gamma_t \A_t) (\w_{t}-\w_{t-1}). 
+\end{equation}
+The result then follows from induction on $t\in \N$. 
+\end{proof}
+
+\subsection{Convergence of Remainder and The Proof of Theorem A}
+
+Here we give an application of the reversed martingale decomposition, Theorem \ref{thm:rmart}, to derive Theorem A. A general theorem is first
+given to study $\E \|r_t\|\to 0$, which leads to Theorem A when specialized to $r_t = f_t - f_{\la_t}$. 
+
+\begin{thm}\label{thm:convergence}
+Suppose that the variance $\E \|A_t \w_t - b_t \|^2$ is uniformly bounded for all $t\in \N$.
+Then
+\[ \E \|r_t \| \to 0, \]
+if the following conditions hold: 
+
+\noindent (A) $\DS \sum_{t} \gamma_t \amin_t = \infty$.
+
+\noindent (B) $\DS \lim_{t\to \infty} \frac{\gamma_t}{\amin_t} =0$,
+
+\noindent (C) $\DS \lim_{t\to \infty} \frac{\|\Delta_t\|}{\amin_t \gamma_t } =0$, 
+
+\end{thm}
+
+Its proof was included in Appendix D. Equipped with Theorem \ref{thm:convergence}, we are in a position to prove Theorem A. 
+
+\begin{proof}[Proof of Theorem A]
+Let $\W=\H_K$ and $w_t=f_t$. Define $A_t = L_t + \lambda_t I$ ($L_t:=L_K^{x_t}=\<\ ,K_{x_t}\>_K K_{x_t}$), $\A_t = L_K + \lambda_t I$, $b_t = y_t K_{x_t} $, and $\b_t =L_K f_\rho$. 
+Therefore $\amin_t = \la_t$ and $\w_t = f_{\la_t}$. With these replacement, it suffices to check the uniform boundedness of 
+$$\E \|A_t \w_t - b_t \|^2=\E\|(f_{\la_t}(x_t) - y_t)K_{x_t} + \la_t f_{\la_t}\|_K^2. $$
+But this can be seen by Lemma \ref{lem:xi}(B) which gives $\E\|(f_{\la_t}(x_t) - y_t)K_{x_t} + \la_t f_{\la_t}\|_K^2\leq 10\ka^2 \M^2$. 
+Theorem A then follows from Theorem \ref{thm:convergence}.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Estimates for The Drifts} \label{sec:drifts}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this section, we provide some estimates on the drift $\|f_\la - f_\mu\|$ ($\la,\mu>0$), in $\H_K$-norm or $\L2$-norm.
+When specialized to $\mu=0$, these estimates give the approximation errors $\|f_\la-f_\rho\|$. 
+Note that we extend the range of $r$ to $(0,\infty)$ (or $(1/2,\infty)$), from $(0,1]$ (or $(1/2,1]$), 
+usually considered in literature [e.g. see \citeNP{SmaZho-ShannonIII}]. Such an extension was firstly pointed to us by H.Q. Minh. 
+Note that for large enough $r$ ($r>1$ in $\L2$ norm or $r>3/2$ in $\H_K$ norm), the rates in the upper bounds can not be improved. 
+This phenomenon is related to the \emph{saturation} problem of regularizations \cite{EngHanNeu00}. 
+
+\begin{thm} \label{thm:pie1} Let $\lambda>\mu\geq 0$. If $\mu=0$ we define $f_\mu=f_\rho$. Assume that $L_K^{-r}f_\rho\in \L2$ for
+some $r>0$. 
+
+(A) If $r\in (0,1]$, then
+\[ \|f_\lambda-f_\mu\|_\rho \leq  |\lambda^r - \mu^r| \frac{\|L_K^{-r} f_\rho\|_\rho}{r}; \]
+
+(B) If $r\geq 1$, then for any $1\leq s \leq r$, 
+\[ \|f_\lambda-f_\mu\|_\rho \leq  \kappa^{2(s-1)} |\lambda - \mu| \|L_K^{-s} f_\rho\|_\rho; \]
+
+(C) If $r\geq 1/2$, then
+\[ \|f_\lambda - f_\mu \|_K \leq \frac{|\la - \mu|}{\la} \|f_\rho\|_K; \]
+
+(D) If $r\in (1/2,3/2]$, then 
+\[ \|f_\lambda-f_\mu\|_K \leq  |\lambda^{r-1/2} - \mu^{r-1/2}| \frac{\|L_K^{-r} f_\rho\|_\rho}{r-\frac{1}{2}}; \]
+
+(E) If $r\geq 3/2$, then for any $3/2\leq s \leq r$,
+\[ \|f_\lambda-f_\mu\|_K \leq  \kappa^{2(s-3/2)} |\lambda - \mu| \|L_K^{-s} f_\rho\|_\rho. \]
+\end{thm}
+
+\begin{rem}
+From (A) and (B) (or (D) and (E)) we can see that $\|f_\la - f_\mu\|_\rho\leq O(|\la^{\min(r,1)}-\mu^{\min(r,1)}|)$ 
+(or $\|f_\la - f_\mu\|_K\leq O(|\la^{\min(r-1/2,1)}-\mu^{\min(r-1/2,1)}|)$). In this way the upper bounds `saturate' in the rates
+when $f_\rho$ has large enough regularity indexed by $r>1$ (or $r>3/2$). 
+\end{rem}
+
+\begin{proof}
+Assume that $\lambda\geq \mu$ for simplicity. By definition,
+$$(L_K+\la I)f_\la=L_Kf_\rho,~(L_K+\mu I)f_\mu=L_K f_\rho,$$
+which yields
+\begin{equation} \label{eq:pierre}
+f_\la-f_\mu=(\mu-\lambda)(L_K+\la I)^{-1}(L_K+\mu I)^{-1}L_Kf_\rho.
+\end{equation}
+
+(A) If $r\in (0,1]$,
+\begin{eqnarray*}
+\|f_{\lambda}- f_{\mu}\|_\rho & \leq & |\mu-\lambda|\|(L_K+\la I)^{-1} f_\rho \|_\rho \leq  |\mu-\lambda|\|(L_K+\la I)^{-1} L_K^r \| \|L_K^{-r}f_\rho \|_\rho  \\
+& \leq & |\mu-\lambda|\|(L_K+\la I)^{r-1} \| \|L_K^{-r}f_\rho \|_\rho  = \Lambda(\mu) |\mu^r - \lambda^r|  \|J\| \|L_K^{-r} f_\rho\|_\rho
+\end{eqnarray*}
+where
+\[ \Lambda(\mu)=\frac{1-\frac{\mu}{\lambda}}{1-\left(\frac{\mu}{\lambda}\right)^r}, \ \ \ \ \ \mbox{and}\ \ \ \  J= \lambda^{r-1} (L_K+\lambda I)^{r-1}. \]
+Now $\|J\|\leq 1$ and 
+\[ \Lambda(\mu) \leq \frac{1}{r}, \]
+where we use, for $u:=1-\mu/\la$, that
+$u\leq(1-(1-u)^r)/r$, since $u\mapsto(1-(1-u)^r)/r$
+(defined on $(-\infty,1]$) is convex and remains above the tangent
+line at $0$. In particular, $\Lambda(0)=1$. This completes the proof of (A).
+
+(B) For any $s\leq r$, $L_K^{-r}f_\rho\in \L2$ implies $L_K^{-s}f_\rho \in \L2$. If $s\geq 1$, by equation (\ref{eq:pierre}),
+\begin{eqnarray*}
+\|f_{\lambda}- f_{\mu}\|_\rho & \leq & |\mu-\lambda|\|(L_K+\la I)^{-1} f_\rho \|_\rho \leq  |\mu-\lambda|\|(L_K+\la I)^{-1} L_K^s \| \|L_K^{-s}f_\rho \|_\rho  \\
+& \leq & |\mu-\lambda|\|L_K^{s-1} \| \|L_K^{-s}f_\rho \|_\rho  \leq \kappa^{2(s-1)} |\mu-\lambda| \|L_K^{-s}f_\rho \|_\rho 
+\end{eqnarray*}
+
+(C) In particular if $r\geq 1/2$, this implies $f_\rho \in \H_K$, whence by (\ref{eq:pierre})
+\[ \|f_\la-f_\mu\|_K\leq |\mu-\lambda|\|(L_K+\la I)^{-1}\| \|(L_K+\mu I)^{-1}L_K\| \|f_\rho\|_K \leq \frac{|\mu-\lambda|}{\la}\|f_\rho\|_K. \]
+
+(D) If $r\in (1/2,3/2]$, then similar to (A), 
+\begin{eqnarray*}
+\|f_\lambda- f_\mu\|_K = \|L^{-1/2}_K (f^\ast_{\lambda}- f^\ast_{\mu})\|_\rho & \leq &
+\Lambda(\mu) |\mu^{r-1/2} - \lambda^{r-1/2}|
+\|J\| \|L_K^{-r} f_\rho\|_\rho
+\end{eqnarray*}
+where
+\[ \Lambda(\mu)=\frac{1-\frac{\mu}{\la}}{1-\left(\frac{\mu}{\la}\right)^{r-1/2}}, \ \ \ \ \ \mbox{and}\ \ \ \ \ \ J= \la^{3/2-r} (L_K + \la I )^{r-3/2}. \]
+We complete the proof by replacing $r$ with $r-1/2$ in (A).
+
+(E) It follows from (B) by replacing $s$ with $s-1/2$. 
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Upper Bounds for Convergence in $\H_K$} \label{sec:hk}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this section we are going to give a probabilistic upper bound for
+\[ \|f_t - f_\rho \|_K \]
+as a proof for Theorem B. Throughout this section, we assume 
+that $L_K^{-r} f_\rho\in \L2$ for some $r\in (1/2,3/2]$, which implies $f_\rho \in \H_K$ with additional regularity. 
+
+The idea in the proof starts from the triangle inequality 
+\[\|f_t - f_\rho\|_K\leq \|f_t - f_{\la_t}\|_K+\|f_{\la_t} - f_\rho\|_K. \] 
+The first term can be further decomposed into the reversed martingale decomposition as Theorem \ref{thm:rmart}, which can be rewritten as
+\begin{equation}  \label{eq:rmart1}
+ r_t = \Pi_{1}^t r_0 - \sum_{j=1}^t \gamma_j \Pi_{j+1}^t (A_j \w_j - b_j) - \sum_{j=1}^t \Pi_{j}^t \Delta_j
+\end{equation}
+where $r_t = f_{t} - f_{\la_t}$, $A_t=L_t + \la_t I$ ($L_t:=L_K^{x_t}=\<\ ,K_{x_t}\>_K K_{x_t}$), $b_t = y_t K_{x_t}$, $\w_t = f_{\la_t}$, $\Delta_t = f_{\la_t} - f_{\la_{t-1}}$, and 
+\begin{equation*} \Pi_j^t(x_j,\ldots,x_t)=
+\left\{
+\begin{array}{lr}
+\DS \prod_{i=j}^t \left( I - \gamma_i (L_i + \la_i I) \right), & j\leq t; \\
+I, & j>t,
+\end{array}
+\right.
+\end{equation*}
+with the choice that 
+\[ \gamma_t = \frac{1}{(t+\t)^{\theta}}, \ \ \ \ \ \lambda_t = \frac{1}{(t+\t)^{1-\theta}}, \ \ \mbox{for some $\theta\in[0,1]$} \]
+
+For convenience, we make the following definitions.
+
+{\bf [Definitions of Errors]}
+
+\noindent (A) \emph{Initial Error}: $\Err_{init}(t)=\|\Pi_1^t r_0\|$, which reflects the propagation error by the initial choice $f_0$; \\
+\noindent (B) \emph{Sample Error}: $\Err_{samp}(t)=\|\sum_{j=1}^t \gamma_j \Pi_{j+1}^t (A_j \w_j - b_j)\|$, where $\xi_j =\gamma_j \Pi_{j+1}^t (A_j \w_j - b_j)$ 
+is a reversed martingale difference sequence, reflecting the random fluctuation caused by sampling; \\
+\noindent (C) \emph{Drift Error}: $\Err_{drift}(t)= \|\sum_{j=1}^t \Pi_{j}^t \Delta_j\|$, which measures the error caused by drifts from 
+$f_{\la_{t-1}}$ to $f_{\la_t}$ along the regularization path; \\
+\noindent (D) \emph{Approximation Error}: $\Err_{approx}(t)=\|f_{\la_t} - f_\rho\|_K$, which measures the distance between the regression function and
+the regularization path at time $t$.
+
+In this way we may bound
+\[ \|f_t - f_\rho\|_K \leq \Err_{init}(t) + \Err_{samp}(t) + \Err_{drift}(t) + \Err_{approx}(t). \]
+In the remaining of this section, we are going to provide upper bounds for each of the four errors, which, roughly speaking, are
+\begin{eqnarray*} 
+\Err_{approx}(t)  & \leq & O( t^{-(r-1/2)(1-\theta)} ) \\
+ \Err_{drift}(t) & \leq & O( t^{-(r-1/2)(1-\theta)}) \\
+ \Err_{init}(t) & \leq & O( t^{-1})  \\
+ \Err_{samp}(t) & \leq & O( t^{\frac{1}{2} - \theta} )
+\end{eqnarray*}
+
+It is not surprising that the approximation error and drift error have the same rate, as both of them come from
+the estimates on drifts in Theorem \ref{thm:pie1}. Theorem B then follows from these bounds by setting $\theta=2r/(2r+1)$.
+
+
+\subsection{Approximation Error}
+
+The approximation error is derived from Theorem \ref{thm:pie1}(D) by setting $\la=\la_t$ and $\mu=0$. 
+\begin{thm}[Approximation Error] \label{err:approx} For $r\in (1/2,3/2]$,
+\[ \|f_{\la_t} - f_\rho \|_K \leq C_1 (t+\t)^{-(r-1/2)(1-\theta)}, \]
+where $C_1=(r-1/2)^{-1}\| L^{-r}_K f_\rho \|_\rho$.
+\end{thm}
+
+
+\subsection{Drift Error}
+
+\begin{thm}[Drift Error] \label{err:drift} Assume that $a=1$ and $\t^\theta \geq \kappa^2+1$.
+\[ \Err_{drift}(t)\leq C_2 (t+\t)^{-(r-1/2)(1-\theta)} \]
+where $\DS C_2=\frac{4(1-\theta)}{1-(r-1/2)(1-\theta)}\|L_K^{-r} f_\rho\|_\rho$.
+\end{thm}
+
+\begin{proof} By Theorem \ref{thm:pie1}(D), it follows that
+\[ \|\Delta_t\| = \|f_{\lambda_t}-f_{\lambda_{t-1}}\|_K \leq 4(1-\theta) (t+\t)^{-(r-1/2)(1-\theta)-1} \|L_K^{-r} f_\rho\|_\rho, \]
+where we use
+\begin{eqnarray}
+|\lambda_{t}^{r-1/2} - \lambda_{t-1}^{r-1/2} | & = & | (t+\t)^{-(r-1/2)(1-\theta)} - (t+\t-1)^{-(r-1/2)(1-\theta)}| \nonumber \\
+& \leq & (r-1/2)(1-\theta) (t+\t-1)^{-(r-1/2)(1-\theta)-1} \nonumber \\
+& \leq & 4 (r-1/2)(1-\theta) (t+\t)^{-(r-1/2)(1-\theta)-1}, \ \ \ \mbox{$\DS \frac{a+1}{b+1}\geq \frac{a}{b}$ if $b>a>0$}, \label{eq:meanvaluethm}
+\end{eqnarray}
+where the second last step is due to the Mean Value Theorem with $h(x)=x^{-r(1-\theta)}$ and $h^\prime(x) = -r(1-\theta) x^{-r(1-\theta)-1}$, such that
+\[ |h(t+\t)-h(t+\t-1)|=|h^\prime(\eta)|\leq |h^\prime(t+\t-1)|, \ \ \ \ \ \mbox{for some $\eta\in(t+\t-1,t+\t)$}. \]
+By Lemma \ref{lem:onebnd}(B),
+\[ \|\Pi_{j}^t\|\leq \frac{j+\t}{t+\t+1}, \]
+whence
+\begin{eqnarray*}
+\Err_{drift}(t) &=& \| \sum_{j=1}^t \Pi_j^t \Delta_j\|_K \leq \frac{4(1-\theta)\|L_K^{-r} f_\rho\|_\rho}{t+\t+1}\sum_{j=1}^t 
+(j+\t)^{-(r-1/2)(1-\theta)} \\
+&\leq & \frac{4(1-\theta)\|L_K^{-r} f_\rho\|_\rho}{1-(r-1/2)(1-\theta)} (t+\t)^{-(r-1/2)(1-\theta)}
+\end{eqnarray*}
+since
+\begin{eqnarray*}
+\sum_{j=1}^t (j+\t)^{-(r-1/2)(1-\theta)} & \leq &   \int_0^t (x+\t)^{-(r-1/2)(1-\theta)} dx \leq \frac{(t+\t)^{1-(r-1/2)(1-\theta)}}{1-(r-1/2)(1-\theta)} 
+\end{eqnarray*}
+\end{proof}
+
+ 
+\subsection{Initial Error}
+\begin{thm}[Initial Error] \label{err:init} Let $\t\geq (\ka^2+1)^{1/\theta}$. Then for all $t\in \N$,
+\[ \Err_{init}(t) \leq C_3 (t+\t)^{-1}, \]
+where $C_3 = (\t+1)\|r_0\|$.
+\end{thm}
+
+\begin{proof}
+By Lemma \ref{lem:onebnd}(B) with $j=1$,
+\[ \|\Pi_1^t \| \leq \frac{\t+1}{t+\t+1} \leq \frac{\t+1}{t+\t}. \]
+This gives $\Err_{init}(t) \leq (\t+1)\|r_0\| (t+\t)^{-1}$. 
+\end{proof}
+
+\subsection{Sample Error}
+
+\begin{thm} [Sample Error] \label{err:samp}
+Let $a=1$, $\t^\theta=(\kappa+1)^2\max(1,\log \frac{2}{\delta})$ and $\gamma_0 = \t^{-\theta}$. The following holds with probability
+at least $1-\delta$ ($\delta\in (0,1)$) in the space $Z^t$,
+\[ \Err_{samp} \leq C_4(t+\t)^{1/2-\theta}  \]
+where $C_4=11 (\kappa+1) M_\rho \log^{1/2}\frac{2}{\delta}$.
+\end{thm}
+
+Before the formal presentation of the proof, we need some auxilary estimates.
+
+\begin{lem} \label{lem:xi} Let $A_t \w_t - b_t=(f_{\lambda_t}(x_t) - y_t) K_{x_t} + \lambda_t f_{\lambda_t}$.
+
+(A) $\|A_t \w_t - b_t\|_K\leq (\ka +1)^2 M_\rho/\sqrt{\lambda_t}$;
+
+(B) $\E[\|A_t \w_t - b_t\|_K^2] \leq 10 \kappa^2 M_\rho^2$.
+\end{lem}
+
+\begin{proof}
+Recall that
+\[ A_t \w_t - b_t=(f_{\lambda_t}(x_t) - y_t) K_{x_t} + \lambda_t f_{\lambda_t}. \]
+Then
+
+(A) Using $\|f_\lambda\|_K \leq M_\rho/\sqrt{\lambda}$ in Lemma \ref{lem:fla}(A), 
+\[ \|A_t \w_t - b_t\| \leq \|f_{\lambda_t}(x_t) K_{x_t}\|_K + |y_t| \| K_{x_t}\|_K + \lambda_t \|f_{\la_t}\|_K \leq M_\rho \kappa^2 /\sqrt{\lambda_t} + M_\rho \kappa + M_\rho \sqrt{\lambda_t} \]
+since $\|f_{\lambda_t}(x_t) K_{x_t}\|_K = |\<f_{\lambda_t}, K_{x_t}\>|\| K_{x_t}\|_K  \leq \|f_{\lambda_t}\|_K \|K_{x_t}\|_K^2 
+\leq M_\rho \kappa^2 /\sqrt{\lambda_t}$.
+It remains to see
+\begin{eqnarray*}
+M_\rho \kappa^2 /\sqrt{\lambda_t} + M_\rho \kappa + M_\rho \sqrt{\lambda_t} & \leq & (\kappa^2+\ka +1) M_\rho/\sqrt{\lambda_t} \leq (\ka +1)^2 M_\rho/\sqrt{\lambda_t}
+\end{eqnarray*}
+
+(B) Using $\lambda_t f_{\la} = L_K f_\rho - L_K f_{\la}$ we obtain
+\[ (f_{\lambda_t}(x_t) - y_t) K_{x_t} + \lambda_t f_{\la_t} = (L_t - L_K)f_{\la_t} +L_K f_\rho- y_t K_{x_t}.   \]
+\begin{eqnarray*}
+\E[\|A_t \w_t - b_t\|^2] & = &\E \|(L_t - L_K)f_{\la_t} +L_K f_\rho- y_t K_{x_t}\|_K^2 \\
+& \leq & 2\E[\|(L_t - L_K)f_{\la_t}\|_K^2 + \|L_K f_\rho- y_t K_{x_t}\|_K^2] \\
+& \leq & 2\E[\|L_t f_{\la_t}\|_K^2 +  \|y_t K_{x_t}\|_K^2] \leq 2 \kappa^2 (\|f_{\la_t}\|_\rho^2 + M^2_\rho) = 10 \kappa^2 M^2_\rho 
+\end{eqnarray*}
+since $\E[L_t] = L_K$, $\E[y_t K_{x_t}] = L_K f_\rho$ and $\|f_\la\|_\rho \leq 2 \M$ by Lemma \ref{lem:fla}(B). 
+\end{proof}
+
+Now we are ready to give the proof of the sample error bounds, Theorem \ref{err:samp}. 
+
+\begin{proof}[Proof of Theorem \ref{err:samp}] Denote $X_j=\gamma_j \Pi_{j+1}^t ( A_j \w_j - b_j)=\gamma_j \Pi_{j+1}^t\xi_j$, which is a reversed martingale difference sequence.
+It suffices to prove that
+\begin{equation}\label{eq:xjbd}
+\|X_j\|\leq 2 \ga_t \la_t^{-1/2}(\kappa+1)^2 M_\rho 
+\end{equation}
+\begin{equation}\label{eq:xjvar}
+\E\|X_j\|^2 \leq 40\ga_t^2 \kappa^2 M_\rho^2
+\end{equation}
+Then by Proposition \ref{prop:bernstein}, a varied form of Pinelis-Bernstein inequality,
+\begin{eqnarray*}
+\Err_{samp}(t) & = & \|\sum_{j=1}^t X_j\|  \leq 2 \ga_t \la_t^{-1/2} (\kappa+1)^2 M_\rho \log \frac{2}{\delta} + \sqrt{80t \ga_t^2 \kappa^2 M_\rho^2 \log \frac{2}{\delta}} \\
+& = & 2(\kappa+1) M_\rho (t+\t)^{1/2-\theta} \log^{1/2} \frac{2}{\delta} \left( (t+\t)^{-\theta/2} (\ka+1) \log^{1/2} \frac{2}{\delta} + \frac{\sqrt{20}\ka }{\kappa+1} \right) 
+\end{eqnarray*}
+where $\sqrt{20}\ka /(\kappa+1)\leq 2\sqrt{5}$ and $(t+\t)^{-\theta/2} (\ka+1) \log^{1/2} 2/\delta\leq 1$ for $\t^\theta \geq (\ka+1)^2 \log 2/\delta$, whence
+\begin{eqnarray*}
+r.h.s. & \leq & (2+4\sqrt{5}) (\kappa+1) M_\rho (t+\t)^{1/2-\theta} \log^{1/2} \frac{2}{\delta}.
+\end{eqnarray*}
+Note that $2+4\sqrt{5} \leq 2 + \sqrt{81}= 11$, which gives the result.
+
+To see (\ref{eq:xjbd}) and (\ref{eq:xjvar}), note that for $\t^\theta\geq (\ka+1)^2  \geq \kappa^2+1$, 
+$\|\Pi_j^t\| \leq \prod_{i=j}^t ( 1- \ga_i \la_i)$, whence
+\begin{eqnarray*} 
+\|\gamma_j \Pi_{j+1}^t\| & \leq & \frac{1}{\la_j} \ga_j \la_j \prod_{i=j+1}^t ( 1- \ga_i \la_i)  = \frac{1}{\la_j} \left[ \frac{1}{j+\t} \prod_{i=j+1}^t (1 - \frac{1}{i+\t})\right] , \ \ \ \ga_t \la_t = \frac{1}{t+\t} \nonumber \\
+& \leq & \frac{1}{\la_j} \left[ \frac{1}{j+\t} \cdot  \frac{j+\t+1}{t+\t+1}\right], \ \ \ \ \ \mbox{by Lemma \ref{lem:pibnd}} \nonumber \\
+& \leq & \frac{2}{\la_j (t+\t+1)}, \ \ \ \ \ \ \ \ \ \ \ \  \ \ \mbox{$\DS \frac{a+1}{b+1}\geq \frac{a}{b}$ for $b\geq a >0$}. \label{eq:samp1}
+\end{eqnarray*}
+Then it follows from Lemma \ref{lem:xi},
+\[
+\|X_j\|  \leq \|\ga_j \Pi_{j+1}^t\| \|\xi_j\| \leq \frac{2(\kappa+1)^2 M_\rho}{\la_j^{3/2} (t+\t+1)} \leq  
+\frac{2(\kappa+1)^2 M_\rho}{\la_t^{3/2} (t+\t)} = \frac{2 \ga_t(\kappa+1)^2 M_\rho}{\sqrt{\la_t}}
+\]
+and
+\begin{eqnarray*}
+\E\|X_j\|^2 & \leq &  \frac{4}{\la_j^2 (t+\t+1)^2} \E\|\xi_j\|_K^2 \leq  \frac{40 \kappa^2 M_\rho^2}{\la_j^2 (t+\t+1)^2}   \leq \frac{40\kappa^2 M_\rho^2}{\la_t^2(t+\t)^2} 
+= 40\ga_t^2 \kappa^2 M_\rho^2,
+\end{eqnarray*}
+as desired. 
+\end{proof}
+
+
+
+\subsection{Total Error and Proof of Theorem B}
+
+Finally we derive Theorem B by combining the four error bounds obtained above.
+
+\begin{proof}[Proof of Theorem B] By
+\[ \|f_t - f_\rho\|_K \leq \Err_{approx}(t) + \Err_{drift}(t)+ \Err_{init}(t)+\Err_{samp}(t) \]
+with Theorem \ref{err:approx}, \ref{err:drift}, \ref{err:init}, and \ref{err:samp}, we obtain
+\[ \|f_t - f_\rho\|_K \leq (C_1 +C_2)(t+\t)^{-(r-1/2)(1-\theta)}+ C_3 (t+\t)^{-1} + C_4 (t+\t)^{1/2-\theta}. \]
+Setting $\theta = 2r/(2r+1)$, we obtain 
+\begin{equation} \label{eq:hk}
+\|f_t - f_\rho \|_K \leq  (C_1+C_2 + C_4) t^{-(2r-1)/(4r+2)}+  C_3 t^{-1}. 
+\end{equation}
+
+Finally,
+\[ C_1 + C_2 =  \left(\frac{2}{2r-1}+\frac{8}{2r+3}  \right)\| L^{-r}_K f_\rho \|_\rho=\frac{20r-2}{(2r-1)(2r+3)}\| L^{-r}_K f_\rho \|_\rho. \]
+By Lemma \ref{lem:xi}(A) with $f_0=0$
+\[ \|r_0\|=\|f_{\la_0}\|\leq \frac{M_\rho}{\sqrt{\la_0}} = \t^{\frac{1}{4r+2}} M_\rho \]
+whence $C_3 = (\t+1)\|f_{\la_0}\|\leq 2\t^{\frac{4r+3}{4r+2}} M_\rho$. We end the proof by plugging these constants into (\ref{eq:hk}). 
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Upper Bounds for Convergence in $\L2$} \label{sec:l2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this section we are going to give a probabilistic upper bound for
+\[ \|f_t - f_\rho \|_\rho \]
+as a proof for Theorem C. Throughout this section, we assume 
+that $L_K^{-r} f_\rho\in \L2$ for some $r\in [1/2,3/2]$, implying $f_\rho \in \H_K$ with additional regularity. Note that the case $r=1/2$ is not included
+in the study of convergence rates for $\|f_t - f_\rho \|_K$. 
+
+Similar to Section \ref{sec:hk}, the idea in the proof starts from the triangle inequality 
+\[\|f_t - f_\rho\|_\rho \leq \|f_t - f_{\la_t}\|_\rho+\|f_{\la_t} - f_\rho\|_\rho. \] 
+But for the first term, instead of using the reversed martingale decomposition, here we need the martingale decomposition in Theorem \ref{thm:mart}, 
+which can be rewritten as
+\[ r_{t} = \PPi_1^t r_0 + \sum_{j=1}^t \gamma_j \PPi_{j+1}^t \chi_j - \sum_{j=1}^t \PPi_{j}^t \Delta_j \]
+where $\chi_t=( L_K-L_t ) f_{t-1} +( y_t K_{x_t}-L_K f_\rho )$ ($L_t:=L_K^{x_t}=\<\ ,K_{x_t}\>_K K_{x_t}$), $\Delta_t = f_{\la_t} - f_{\la_{t-1}}$, and
+\begin{equation} 
+\PPi_j^t=
+\left\{
+\begin{array}{lr}
+\DS \prod_{i=j}^t \left( I - \gamma_i  (L_K + \la_i I)  \right), & j\leq t; \\
+I, & j>t.
+\end{array}
+\right.
+\end{equation}
+with the choice that
+\[ \gamma_t = \frac{1}{(t+\t)^{\theta}}, \ \ \ \ \ \lambda_t = \frac{1}{(t+\t)^{1-\theta}} .\]
+The reason of using such a decomposition, is that due to the isometry $L_K^{1/2}:\L2 \to \H_K$ such that $\|r_t\|_\rho=\|L_K^{1/2} r_t \|_K$, 
+one can benefit from the spectral decomposition of $L_K^{1/2}\PPi_j^t$ to get a tighter estimate. However such a nice feature is lost in the reversed 
+martingale decomposition in that $L_K^{1/2} \Pi_j^t$ does not have an obvious spectral decomposition. On the other hand, due to $\chi_t$ depends on 
+$f_{t-1}$, which increases the difficulty to estimate $\|\chi_t\|_\rho$. For this reason, we can not directly apply Pinelis-Bernstein's inequality to improve 
+Theorem C by replacing $1/\delta$ with $\log 1/\delta$. 
+
+As in Section \ref{sec:hk}, we make the following definitions for convenience.
+
+{\bf [Definitions of Errors]}
+
+\noindent (A) \emph{Initial Error}: $\Err_{init}(t)=\|\PPi_1^t r_0\|_\rho $, which reflects the propagation error by the initial choice $f_0$; \\
+\noindent (B) \emph{Sample Error}: $\Err_{samp}(t)=\|\sum_{j=1}^t \gamma_j \PPi_{j+1}^t \chi_j \|_\rho $, where $\chi_j$ 
+is a martingale difference sequence, reflecting the random fluctuation caused by sampling; \\
+\noindent (C) \emph{Drift Error}: $\Err_{drift}(t)= \|\sum_{j=1}^t \PPi_{j}^t \Delta_j\|_\rho $, which measures the error caused by drifts from 
+$f_{\la_{j-1}}$ to $f_{\la_j}$ along the regularization path; \\
+\noindent (D) \emph{Approximation Error}: $\Err_{approx}(t)=\|f_{\la_t} - f_\rho\|_\rho$, which measures the distance between the regression function and
+the regularization path at time $t$.
+
+In this way we may bound
+\[ \|f_t - f_\rho\|_\rho \leq \Err_{init}(t) + \Err_{samp}(t) + \Err_{drift}(t) + \Err_{approx}(t). \]
+In the remaining of this section, we are going to provide upper bounds for each of the four errors, which, roughly speaking, are
+\begin{eqnarray*} 
+\Err_{approx}(t)  & \leq & O( t^{-r(1-\theta)} ) \\
+ \Err_{drift}(t) & \leq & O( t^{-r(1-\theta)}) \\
+ \Err_{init}(t) & \leq & O( t^{-1})  \\
+ \Err_{samp}(t) & \leq & O( t^{-\theta/2} )
+\end{eqnarray*}
+
+Theorem C then follows from these bounds by setting $\theta=2r/(2r+1)$.
+
+\subsection{Approximation Error}
+
+\begin{thm}[Approximation Error]\label{err1:approx} For $r\in (0,1]$,
+\[ \Err_{approx}(t)\leq C_5 (t+\t)^{-r(1-\theta)}, \]
+where $C_5=r^{-1}\| L^{-r}_K f_\rho \|_\rho$.
+\end{thm}
+\begin{proof}
+It follows from Theorem \ref{thm:pie1}(A) with $\la=\la_t$ and $\mu=0$. 
+\end{proof}
+
+\subsection{Drift Error}
+
+\begin{thm}[Drift Error]\label{err1:drift} Assume $\t^\theta \geq \kappa^2+1$. For $r\in (0,1]$ and $L_K^{-r}f_\rho \in \L2$, 
+\[ \Err_{drift}(t)\leq C_6 (t+\t)^{-r(1-\theta)} \]
+where $\DS C_6=\frac{4(1-\theta)}{1-r(1-\theta)}\|L_K^{-r} f_\rho\|_\rho$.
+\end{thm}
+
+\begin{proof} By Theorem \ref{thm:pie1}(A), it follows that
+\[ \|\Delta_t\| = \|f_{\lambda_t}-f_{\lambda_{t-1}}\|_\rho \leq 4(1-\theta) (t+\t)^{-r(1-\theta)-1} \|L_K^{-r} f_\rho\|_\rho, \]
+use inequality (\ref{eq:meanvaluethm}) by replacing $r-1/2$ with $r$.
+By Lemma \ref{lem:pibnd},
+\[ \|\Pi_{j}^t\|\leq \frac{j+\t}{t+\t+1}, \]
+whence
+\begin{eqnarray*}
+\Err_{drift}(t) &=& \| \sum_{j=1}^t \Pi_j^t \Delta_j\|_K \leq \frac{4(1-\theta)\|L_K^{-r} f_\rho\|_\rho }{t+\t+1}\sum_{j=1}^t 
+ (j+\t)^{-r(1-\theta)}\\
+ & \leq & \frac{4(1-\theta)\|L_K^{-r} f_\rho\|_\rho }{1-r(1-\theta)}  (t+\t)^{-r(1-\theta)}
+\end{eqnarray*}
+since
+\[ \sum_{j=1}^t 
+ (j+\t)^{-r(1-\theta)} \leq   \int_0^t (x+\t)^{-r(1-\theta)} dx \leq
+\frac{1}{1-r(1-\theta)} (t+\t)^{1-r(1-\theta)} 
+\]
+\end{proof}
+
+\subsection{Initial Error}
+
+\begin{thm}[Initial Error]\label{err1:init} Let $a=1$ and $\t\geq (\ka^2+1)^{1/\theta}$. Then for all $t\in \N$,
+\[ \Err_{init}(t) \leq C_7 (t+\t)^{-1}, \]
+where $C_7 = 2\M (\t+1)$.
+\end{thm}
+\begin{proof}
+Similar to Theorem \ref{err:init}, by Lemma \ref{lem:onebnd}(D) with $j=1$ we obtain 
+\[ \|\PPi_1^t\| \leq \frac{\t+1}{t+\t}, \]
+which gives
+\[ \Err_{init}(t) \leq (\t+1)\|r_0\| (t+\t)^{-1}. \]
+For $f_0=0$, using Lemma \ref{lem:fla}(B), $\|r_0 \|_\rho = \|f_{\la_0}\|_\rho \leq 2 \M$. 
+\end{proof}
+
+
+\subsection{Sample Error}
+
+\begin{thm}[Sample Error]\label{err1:samp} Assume that $L_K^{-r} f_\rho\in \L2$ for some $r\in [1/2,1]$ and $\t^\theta \geq \ka^2 +1$.
+Then with probability at least $1-\delta$ ($\delta\in (0,1)$), there holds for all $t\in \N$,
+\[ \Err_{samp}(t)\leq  C_8 t^{-\theta/2} \]
+where 
+\[ C_8=\sqrt{\frac{2}{\delta}} \ka (3 \M + 2\|L_K^{-r} f_\rho \|_\rho + \sqrt{3 (4\ka^2+1)} \ka \M ) \]
+\end{thm}
+
+Before presenting the formal proof, we need an auxillary estimate.
+
+\begin{lem} \label{lem:chivar} Assume that $L_K^{-r} f_\rho\in \L2$ for some $r\in [1/2,1]$ and $\t^\theta \geq \ka^2 +1$. Then for all $t\in \N$, there holds 
+\[ \E \|\chi_t\|_K^2 \leq C_{9} . \]
+where
+\[ C_{9} = 2\ka^2 (9 \M^2 + 4\|L_K^{-r} f_\rho \|_\rho^2 + 3 (4\ka^2+1) \ka^2 \M^2 ) \]
+\end{lem}
+
+\begin{proof} By definition 
+\[ \chi_t = (\A_t - A_t)w_{t-1} + b_t - \b_t = (L_K - L_t)f_{t-1} + y_t K_{x_t} - L_K f_\rho \]
+where $L_t := \<\ , K_{x_t}\>K_{x_t} $. Then
+\[ \E\|\chi_t\|_K^2 \leq 2 \E\|(L_K - L_t)f_{t-1} \|_K^2  +2 \E \|y_t K_{x_t} - L_K f_\rho \|_K^2 \leq 2 \E\| L_t f_{t-1}\|_K^2  +2 \E \|y_t K_{x_t} \|_K^2 \]
+using for $\E[X]=\mu$, $\E\<X-\mu,X -\mu\> = \E\|X\|^2 - \|\mu\|^2 \leq \E\|X\|^2$, with the replacement that $X=L_t$ and $\mu=L_K$, or that 
+$X=y_t K_{x_t}$ and $\mu=L_K f_\rho$, respectively. 
+
+Note that the second term $\E\|y_t K_{x_t}\|_K^2 \leq \ka^2 \M^2$. It remains to bound the first term,
+$$\E\| L_t f_{t-1}\|_K^2 = \E \|f_{t-1}(x_t) K_{x_t}\|_K^2 \leq \ka^2 \E \|f_{t-1}\|_\rho^2 \leq 
+2 \ka^2 (\E \|f_{t-1} - f_{\la_{t-1}}\|_\rho^2 + \|f_{\la_{t-1}}\|_\rho^2), $$ 
+where using Lemma \ref{lem:fla}, $\|f_{\la}\|_\rho \leq 2 \M$, and Corollary \ref{cor:rvarbnd} for the bound on $\E\|f_{t-1}-f_{\la_{t-1}}\|_\rho^2$, 
+\[ r.h.s. \leq 2 \ka^2(8 \M^2 + 4\|L_K^{-r} f_\rho \|_\rho^2 + 3 (4\ka^2+1) \ka^2 \M^2 ) . \]
+Putting two terms together gives the result.
+\end{proof}
+
+Now we are ready to prove the bound for the sample error. 
+
+\begin{proof}[Proof of Theorem \ref{err1:samp}] Denote $X_j = \gamma_j \PPi_{j+1}^t \chi_j$, which is a martingale difference sequence. 
+It suffices to show
+\begin{equation} \label{eq:xjrhovar}
+\E[ \|\sum_{j=1}^t X_j\|_\rho^2] \leq C_{9} (t+\t)^{-\theta}. 
+\end{equation}
+Then it follows from the Markov inequality 
+\[ \Prob \left\{(z_i)_1^t\in \Z^t: \|\sum_{j=1}^t X_j\|_\rho\geq \eps \right\}\leq \frac{\E[ \|\sum_{j=1}^t X_j\|_\rho^2]}{\eps^2} \leq 
+\frac{C_{9}}{\eps^2 }t^{-\theta}. \] 
+Setting the right hand side to be $\delta$, and noticing that
+$$\sqrt{\frac{C_{9}}{\delta}}= \sqrt{\frac{2}{\delta}} \ka  (9 \M^2 + 4\|L_K^{-r} f_\rho \|_\rho^2 + 3 (4\ka^2+1) \ka^2 \M^2 )^{1/2} \leq  
+\sqrt{\frac{2}{\delta}} \ka (3 \M + 2\|L_K^{-r} f_\rho \|_\rho + \sqrt{3 (4\ka^2+1)} \ka \M )$$
+using $(a^2+b^2+c^2)^{1/2} \leq a + b + c$ for $a,b,c>0$, we obtain the result. 
+
+It remains to prove (\ref{eq:xjrhovar}). By isometry $L_K^{1/2}:\L2\to \H_K$, 
+\begin{eqnarray*} 
+\E[ \|\sum_{j=1}^t X_j\|_\rho^2 ]& = & \E \| L_K^{1/2} \sum_{j=1}^t X_j\|_K^2  = 
+\sum_{j=1}^t \gamma_j^2 \E \| L_K^{1/2}  \PPi_{j+1}^t \chi_j\|_K^2 \\
+& \leq & \sum_{j=1}^t \gamma_j^2 \| \PPi_{j+1}^t L_K \PPi_{j+1}^t\|\cdot \E\| \chi_j\|_K^2 
+\end{eqnarray*}
+Using Lemma \ref{lem:chivar}, we have $\E\|\chi_j\|_K^2 \leq  C_{9}$. 
+To estimate $\sum_{j=1}^t \gamma_j^2 \| \PPi_{j+1}^t L_K \PPi_{j+1}^t\|$, we use the spectral decomposition of $L_K:\L2\to \L2$. 
+Let $(\mu_\al, \phi_\al)_{\al\in \N}$ be an orthonormal eigen-system of $L_K$, by Mercer's Theorem. For simplicity, denote $a_i = \ga_i \la_i + \ga_i \mu_\al$, then
+\begin{eqnarray*}
+&& \sum_{j=1}^t \gamma_j^2 \| \PPi_{j+1}^t L_K \PPi_{j+1}^t\| \leq \sup_{\mu_\al} \sum_{j=1}^t \ga_j^2 \mu_\al \prod_{i=j+1}^t (1-a_i)^2 \\
+& = & \sup_{\mu_\al} \sum_{j=1}^t \left [\ga_j  \prod_{i=j+1}^t (1-a_i) \right]  \cdot \left[\ga_j \mu_\al \prod_{i=j+1}^t (1-a_i)\right] \\
+& \leq & \sup_{\mu_\al} \left\{\left [ \sup_{j}\ga_j  \prod_{i=j+1}^t (1-a_i) \right] \cdot
+\left[ \sum_{j=1}^t \ga_j \mu_\al \prod_{i=j+1}^t (1-a_i)\right] \right\}
+\end{eqnarray*}
+where for large enough $\t$, 
+\begin{equation}  \label{eq:sup}
+\sup_j \ga_j  \prod_{i=j+1}^t (1-a_i)\leq  \sup_j \ga_j  \prod_{i=j+1}^t (1- \ga_i \la_i) \leq \sup_j \frac{1}{(j+\t)^\theta}\cdot \frac{j+\t}{t+\t+1} 
+\leq (t+\t)^{-\theta},
+\end{equation}
+and 
+\[ \sum_{j=1}^t \ga_j \mu_\al \prod_{i=j+1}^t (1-a_i) \leq  \sum_{j=1}^t (1 - (1-\ga_j \mu_\al))\prod_{i=j+1}^t (1-\ga_i \mu_\al ) =
+1 - \prod_{i=1}^t(1-\ga_i \mu_\al ) \leq 1,\]
+which gives (\ref{eq:xjrhovar}).
+\end{proof}
+
+\begin{rem} \label{rem:open}
+It is still an open problem, if we can improve this bound to replace $1/\de$ with $\log 1/\de$, 
+by using the Pinelis-Bernstein inequality for the martingale difference sequence. 
+The difficulty seems that, the Pinelis-Bernstein inequality needs a uniform bound on $\|\gamma_j \PPi_{j+1}^t \chi_j\|_\rho$,
+which so far is only $O(t^{-(1-2\theta)})$, by Lemma \ref{lem:ftk} such that $\|\chi_t\|_K \leq O(\|f_{t-1}\|_K) \leq O(1/\la_t)$ 
+and $\|\ga_j L_K^{1/2} \PPi_{j+1}^t\|\leq O(t^{-\theta})$ as in the proof above. 
+Then using the Pinelis-Bernstein inequality in Proposition \ref{prop:bernstein}, we have
+\[ \Err_{samp}(t) \leq O(t^{-(1-2\theta)}) + O(t^{-\theta/2}), \]
+where the first term has a decreasing rate slower than $O(t^{-\theta/2})$ when $\theta=2r/(2r+1)$ for $r\in [1/2,1]$. 
+The successful application of Pinelis-Bernstein, may rely on an improved estimate $\|f_t\|_\rho \leq O(1/\sqrt{\la_t})$, 
+which is still open at this moment.  
+\end{rem}
+
+\subsection{Total Error and the Proof of Theorem C}
+
+
+Choosing $\theta\in [0,1]$ properly, we obtain the Theorem C. 
+
+\begin{proof}[Proof of Theorem C] By triangle inequality,
+\[ \|f_t - f_\rho \|_\rho \leq \Err_{approx}(t) + \Err_{drift}(t) + \Err_{init}(t) + \Err_{samp}(t)  \]
+Combining Theorem \ref{err1:approx}, \ref{err1:drift}, \ref{err1:init}, and \ref{err1:samp}, and setting $\theta = 2r/(2r+1)$, we obtain
+\[ \|f_t - f_\rho\|_\rho \leq (C_5 + C_6 +C_8) (t+\t)^{-r/(2r+1)} + C_7 (t+\t)^{-1} \]
+where
+\[ C_5+ C_6 = \left(\frac{1}{r} + \frac{4}{r+1}\right)\|L_K^{-r} f_\rho\|_\rho = \frac{5r+1}{r(r+1)}\|L_K^{-r} f_\rho\|_\rho \]
+whence 
+\begin{eqnarray*} 
+C_5+C_6+C_8 & = & \sqrt{\frac{6}{\delta}} \ka \M (\sqrt{3}  + \ka \sqrt{4\ka^2+1} )+ \left(2\sqrt{2}\ka\sqrt{\frac{1}{\delta}}+\frac{5r+1}{r(r+1)}\right)\|L_K^{-r} f_\rho \|_\rho,
+\end{eqnarray*}
+which ends the proof.
+\end{proof}
+
+
+\section*{Appendix A: A Probabilistic Inequality}
+\renewcommand{\thesection}{A}
+\setcounter{equation}{0} \setcounter{thm}{0}
+\renewcommand{\thethm}{A.\arabic{thm}}
+\renewcommand{\theequation}{A-\arabic{equation}}
+
+The following result is quoted from [Theorem 3.4 in \citeNP{Pinelis94}].
+
+\begin{lem}[Pinelis-Bennett]
+Let $\xi_i$ be a martingale difference sequence in a Hilbert space. Suppose that almost surely $\|\xi_i\|\leq M$ and $\E \|\xi_i\|^2 \leq \sigma^2$.
+Then
+\[ \Prob \left\{ \left\|\sum_{i=1}^t \xi_i \right\| \geq \epsilon \right\} \leq
+2 \exp \left\{-\frac{\sigma^2}{M^2} g \left(\frac{M\epsilon}{\sigma^2} \right) \right\}, \]
+where $g(x) = (1+x)\log(1+x)-x$ for $x>0$.
+\end{lem}
+
+Taking $g(x)\geq \frac{x^2}{2(1+x/3)}$ and replacing $\epsilon$ by $t\epsilon$, gives the following generalized Bernstein's inequality.
+
+\begin{cor}[Pinelis-Bernstein]
+Let $\xi_i$ be a martingale difference sequence in a Hilbert space. Suppose that almost surely $\|\xi_i\|\leq M$ and $\E \|\xi_i\|^2 \leq \sigma^2$.
+Then
+\begin{equation} \label{eq:bernstein}
+\Prob \left\{ \left\|\frac{1}{t}\sum_{i=1}^t \xi_i \right\| \geq \epsilon \right\} \leq
+2 \exp \left\{-\frac{t\epsilon^2}{2(\sigma^2+M\epsilon/3)} \right\}.
+\end{equation}
+\end{cor}
+
+The following result will be used as a basic probabilistic inequality to derive various bounds. 
+
+\begin{prop} \label{prop:bernstein}
+Let $\xi_i$ be a martingale difference sequence in a Hilbert space. Suppose that almost surely $\|\xi_i\|\leq M$ and $\E \|\xi_i\|^2 \leq \sigma^2$.
+Then the following holds with probability at least $1-\delta$ ($\delta\in (0,1)$),
+\[ \left\|\sum_{i=1}^t \xi_i \right\| \leq M \log\frac{2}{\delta} + \sqrt{2t\sigma^2 \log\frac{2}{\delta}}.   \]
+\end{prop}
+
+\begin{proof}
+Taking the right hand side of (\ref{eq:bernstein}) to be $\delta$, then we arrive at the following quadratic equation for $\epsilon$,
+\[ \epsilon^2 - \frac{2 M }{3t}\epsilon \log\frac{2}{\delta} - \frac{2 \sigma^2}{t} \log\frac{2}{\delta} = 0. \]
+Note that $\epsilon>0$, then
+\begin{eqnarray*}
+\epsilon & = & \frac{1}{2} \left\{ \frac{2M}{3t}   \log\frac{2}{\delta} + \sqrt{\frac{4M^2}{9t^2}   \log^2\frac{2}{\delta} + \frac{8 \sigma^2}{t} \log\frac{2}{\delta}} \right\} \\
+& = & \frac{M}{3t}   \log\frac{2}{\delta} + \sqrt{\left(\frac{M}{3 t}\right)^2   \log^2\frac{2}{\delta} + \frac{2 \sigma^2}{t} \log\frac{2}{\delta}} \\
+& \leq & \frac{2M}{3 t}   \log\frac{2}{\delta}+ \sqrt{ \frac{2 \sigma^2}{t} \log\frac{2}{\delta}},
+\end{eqnarray*}
+where the second last step is due to $\sqrt{a^2 + b^2}\leq a + b$ ($a,b>0$) with 
+$$a= \frac{M}{3 t}\log\frac{2}{\delta},\ \ \ \mbox{and} \ \ \  b=\sqrt{\frac{2\sigma^2}{t} \log\frac{2}{\delta}}. $$
+This gives
+\[ \left\|\frac{1}{t}\sum_{i=1}^t \xi_i \right\| \leq \frac{2M}{3t}\log\frac{2}{\delta} + \sqrt{\frac{2\sigma^2}{t} \log\frac{2}{\delta}}.   \]
+Multiplying both sides by $t$ and relaxing $2M/3$ by $M$, we obtain the result.  
+\end{proof}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Appendix B: Basic Estimates}
+\renewcommand{\thesection}{B}
+\setcounter{equation}{0} \setcounter{thm}{0}
+\renewcommand{\thethm}{B.\arabic{thm}}
+\renewcommand{\theequation}{B-\arabic{equation}}
+
+
+\begin{lem} \label{lem:pibnd} For all $\t>0$ and $a>0$,
+\[ \prod_{i=j}^t \left(1 - \frac{a}{i+\t} \right) \leq \left(\frac{j+\t}{t+\t+1} \right)^a \]
+\end{lem}
+
+\begin{proof}
+\begin{eqnarray*}
+\prod_{i=j}^t \left(1 - \frac{a}{i+\t} \right)  & \leq & \exp\{ - a \sum_{i=j}^t (i+\t)^{-1} \} \\
+& \leq & \exp\{-a\int_{j+\t}^{t+\t+1} x^{-1} d x\} \\
+& = & \exp \left\{\ln\left(\frac{j+\t}{t+\t+1} \right)^a
+\right\} =\left(\frac{j+\t}{t+\t+1} \right)^a
+\end{eqnarray*}
+\end{proof}
+
+\begin{lem} \label{lem:onebnd} If $\t^\theta \geq \kappa^2+1$, then the following holds for all $t\in \N$,
+
+(A) $\DS \|I - \gamma_t A_t \|\leq 1 - \frac{1}{t+\t}$;
+
+(B) $\DS \|\Pi_j^t\| \leq \frac{j+\t}{t+\t+1} $;
+
+(C) $\DS \|I - \gamma_t \A_t \|\leq 1 - \frac{1}{t+\t}$;
+
+(D) $\DS \|\PPi_j^t\| \leq \frac{j+\t}{t+\t+1} $.
+\end{lem}
+
+\begin{proof}
+(A) First we show that $\gamma_t (\kappa^2 + \lambda_t)< 1$. In fact, for $t\in \N$,
+$$ \gamma_t \lambda_t + \gamma_t \kappa^2 = \frac{1 }{t+\t}+\frac{\kappa^2}{(t+\t)^{\theta}} 
+\leq  \frac{1+\kappa^2}{\t^\theta} \leq 1. $$
+Therefore
+\[ \| I - \ga_t A_t \|= \| I - \ga_t L_t - \ga_t \la_t \| \leq 1-\ga_t \la_t = 1 - \frac{1}{t+\t} , \]
+since $\|L_t\|\leq \ka^2$. 
+
+(B) To show this, 
+\[  \|\Pi_j^t\| = \| \prod_{i=j}^t (I-\ga_i A_i) \| \leq \prod_{i=j}^t (1-\ga_i \la_i) = \prod_{i=j}^t (1 - \frac{1}{i+\t})\leq \frac{j+\t}{t+\t+1} \]
+where the last step is due to Lemma \ref{lem:pibnd}. 
+
+(C) and (D) are similar to (A) and (B), respectively.
+\end{proof}
+
+
+\begin{lem} \label{lem:fla}For any $\lambda>0$,
+
+(A) $\|f_\lambda\|_K \leq M_\rho/\sqrt{\lambda}$;
+
+(B) $\|f_\lambda\|_\rho \leq 2M_\rho$.
+\end{lem}
+
+\begin{proof}
+(A) Note that
+\[ f_\lambda = \arg \min_{f\in \H_K} \|f - f_\rho\|_\rho^2 + \lambda \|f\|^2_K. \]
+Taking $f=0$, we have
+\begin{equation} \label{eq:varbnd1}
+\|f_\lambda - f_\rho\|_\rho^2 + \lambda \|f_\lambda\|^2_K \leq \|f_\rho\|_\rho^2 \leq M_\rho^2,
+\end{equation}
+which leads to the result.
+
+(B) From equation (\ref{eq:varbnd1}), we obtain $\|f_\lambda - f_\rho\|_\rho \leq M_\rho$. The result then follows from
+\begin{eqnarray*}
+\|f_\lambda\|_\rho & \leq & \| f_\lambda - f_\rho \|_\rho + \|f_\rho \|_\rho \leq 2M_\rho.
+\end{eqnarray*}
+\end{proof}
+
+\begin{lem} \label{lem:ftk} If $f_0=0$, then for all $t\in \N$, 
+\[ \|f_t\|_K \leq \frac{\ka \M}{\la_t} \]
+\end{lem}
+
+\begin{proof}
+Since
+\[ f_t = f_{t-1} - \ga_t ((f_{t-1}(x_t)-y_t)K_{x_t} + \la_t f_{t-1})=(1 -\ga_t \la_t - \ga_t L_K^{x_t}) f_{t-1} + \ga_t y_t K_{x_t} \]
+then for $\t \geq [(1+\ka^2)]^{(2r+1)/2r}$, $\ga_t \ka^2 + \ga_t \la_t \leq 1$, whence
+\[ \|f_t \|_K \leq \|1 -\ga_t \la_t - \ga_t L_K^{x_t}\| \|f_{t-1}\|_K + \ga_t \|y_t K_{x_t}\|_K \leq (1-\ga_t \la_t) \|f_{t-1}\|_K + \ga_t \ka \M. \]
+By induction on $t$, we have
+\[ \|f_t \|_K \leq \prod_{i=1}^t (1-\ga_i \la_i) \|f_0\|_K + \ka \M \sum_{j=1}^t \ga_j \prod_{i=j+1}^t (1 - \ga_i \la_i). \]
+
+The first term is $0$ since $f_0=0$. In the second term
+\[\sum_{j=1}^t \ga_j \prod_{i=j+1}^t (1 - \ga_i \la_i ) = \max_{1\leq j\leq t}(\frac{1}{\la_j}) \sum_{j=1}^t \ga_j\la_j  \prod_{i=j+1}^t (1 - \ga_i \la_i )\leq \frac{1}{\la_t} \]
+since
+$$\sum_{j=1}^t \ga_j\la_j  \prod_{i=j+1}^t (1 - \ga_i \la_i ) = 1 - \prod_{i=1}^t (1 - \ga_i \la_i ). $$
+This gives the bound. 
+\end{proof}
+
+
+\section*{Appendix C: Estimates for the Path Gap} 
+\renewcommand{\thesection}{C}
+\setcounter{equation}{0} \setcounter{thm}{0}
+\renewcommand{\thethm}{C.\arabic{thm}}
+\renewcommand{\theequation}{C-\arabic{equation}}
+
+In this section we derive some direct estimates for the remainder variance $\E \|f_t - f_{\la_t}\|^2$, in $\H_K$ norm or $\L2$ norm. The result
+in Lemma \ref{lem:expan} will be used to derive a constant upper bound for $\E \|f_t - f_{\la_t}\|_\rho^2$ when $L_K^{-r} f_\rho\in \L2$ with $r\in [1/2,1]$,
+i.e. Corollary \ref{cor:rvarbnd}. Another application of Lemma \ref{lem:expan}, which is not pursued in this paper, is that it can be used to derive Theorem A directly. 
+
+
+\begin{lem} \label{lem:pie2}
+Let $f\in \H_K$, and $\ga,\la\in \R_+$. For all $z=(x,y)\in X\times \R$, let
+\[ f^z:= f - \ga ((f(x)-y)K_x + \la f) = f - \ga ((L_K^x+\la f) - g^z), \ \ \ \mbox{where $g^z:=y K_x$}. \]
+Then
+\[ \E\|f^z-f_\lambda\|_\st^2 \leq (1 - \ga \la )^2 \|f-f_\la\|_\st^2  - 2 \ga (1 - \ga \la - 2\ga \ka^2) \|L_K^{1/2}(f-f_\la)\|_\st^2 + \ga^2 C_\star . \]
+where $\st$ stands for either $\rho$ or $K$, and 
+\[C_\st = \left\{\begin{array}{rl}
+15 \ka^2 \M^2, & \st = K \\
+3 (4\ka^2+1) \ka^2 \M^2 , & \st=\rho
+\end{array}
+\right.
+\]
+\end{lem}
+
+\begin{proof}
+Using the expression $\la f_\la = L_K f_\rho - L_K f_\la$ from $(L_K + \la I ) f_\la = L_K f_\rho$, 
+\begin{eqnarray*}
+f^z-f_\la & = & f - f_\la -\ga ((L_K^x + \la) f - g^z) \\
+& = & [ I - \ga (L_K + \la I) ](f-f_\la) + \ga(L_K +\la I) (f - f_\la) - \ga ((L_K^x + \la) f - g^z) \\
+& = & [ I - \ga (L_K + \la I) ](f-f_\la) + \ga(L_K -L_K^x) f  - \ga (L_K f_\rho - g^z)
+\end{eqnarray*}
+
+Therefore
+\begin{equation}  \label{eq:pierre1}
+\E\|f^z - f_\la\|_\st^2 = \|[ I - \ga (L_K + \la I) ](f-f_\la)\|_\st^2 + \ga^2 \zeta(f) 
+\end{equation}
+where
+\[ \zeta(f):= \E[\|(L_K-L_K^x)f - (L_K f_\rho - g^z)\|_\st^2] \]
+since
+\[ \E[(L_K-L_K^x)f - (L_K f_\rho - g^z)]=0. \]
+
+Let us now study the two terms in equation (\ref{eq:pierre1}). First,
+\begin{eqnarray*}
+& & \|[ I - \ga (L_K + \la I) ](f-f_\la)\|_\st^2  \\
+& & = (1-\ga \la)^2 \|f-f_\la\|_\st^2 -2 \ga (1-\ga\la) \<L_K (f-f_\la),f-f_\la\>_\st + \ga^2 \|L_K (f-f_\la)\|_\st^2 \\
+& & \leq   (1-\ga \la)^2 \|f-f_\la\|_\st^2 - 2 \ga (1-\ga\la) \|L_K^{1/2} (f-f_\la)\|_\st^2 + \ga^2 \ka^2 \|L_K^{1/2} ( f-f_\la)\|_\st^2 
+\end{eqnarray*} 
+
+It remains to estimate $\ze(f)$:
+\begin{eqnarray*}
+\ze(f) & =  & \E [ \|(L_K-L_K^x)(f -f_\la)+ (L_K - L_K^x)f_\la+ (L_K f_\rho - g^z)\|_\st^2 ] \\
+& \leq & 3 \E[\|(L_K-L_K^x)(f -f_\la)\|_\st^2+ \|(L_K - L_K^x)f_\la\|_\st^2+ \|(L_K f_\rho - g^z)\|_\st^2] \\
+& \leq & 3 \E [\|L_K^x(f-f_\la)\|_\st^2 + \|L_K^x f_\la \|_\st^2 + \|g^z\|_\st^2 ] \\
+& \leq & 3 \kappa^2 [\|L_K^{1/2}(f-f_\la)\|_\st^2 + \|L_K^{1/2} f_\la \|_\st^2 + \M^2]  
+\end{eqnarray*}
+where if $\st=K$, 
+\[ r.h.s. = 3 \kappa^2 [\|L_K^{1/2}(f-f_\la)\|_K^2 + \|L_K^{1/2} f_\la \|_K^2 + \M^2] \leq 3 \kappa^2 \|f-f_\la\|_\rho^2  + 15 \ka^2 \M^2 \]
+using $\|L_K^{1/2} f_\la\|_K = \|f_\la\|_\rho\leq 2 \M$, and if $\st=\rho$,
+\[ r.h.s. = 3 \kappa^2 [\|L_K^{1/2}(f-f_\la)\|_\rho^2 + \|L_K^{1/2} f_\la \|_\rho^2 + \M^2] \leq 3 \kappa^2 \|L_K^{1/2}(f-f_\la)\|_\rho^2  + 3 (4\ka^2+1) \ka^2 \M^2 \]
+using $\|L_K^{1/2} f_\la\|_\rho = \ka \|f_\la\|_\rho\leq 2 \ka \M$. Combining the two estimates gives the result. 
+\end{proof}
+
+\begin{lem} \label{lem:expan}
+Let 
+\begin{equation} \pi_k^t=
+\left\{
+\begin{array}{lr}
+\DS \prod_{i=k}^t \left( 1 - \gamma_i \la_i\right), & k\leq t; \\
+I, & k>t.
+\end{array}
+\right.
+\end{equation}
+
+If for all $t\in \N$, $\ga_t (\la_t + 2 \ka^2) \leq 1$, then
+\[ \E \|f_t - f_{\la_t}\|_\st^2 \leq \pi_1^t \|f_0 - f_{\la_0}\|_\st^2 + 
+\sum_{k=1}^t \pi_{k+1}^t \frac{\|f_{\la_k}-f_{\la_{k-1}}\|_\st^2}{\ga_k\la_k} + C_\st \sum_{k=1}^t \ga_k^2\pi_{k+1}^t.\]
+where $\st$ stands for either $\rho$ or $K$, and 
+\[C_\st = \left\{\begin{array}{rl}
+15  \ka^2 \M^2, & \st = K \\
+3 (4\ka^2+1) \ka^2 \M^2 , & \st=\rho
+\end{array}
+\right.
+\]
+\end{lem}
+
+\begin{proof}
+Using Lemma \ref{lem:pie2}, for $\ga_t (\la_t + 2 \ka^2) \leq 1$,
+\[ \E \|f_t - f_{\la_t}\|_\st^2 \leq  (1 - \ga_t \la_t )^2 \|f_{t-1}-f_{\la_{t}}\|_\st^2  + C_\st.\]
+Note that 
+\begin{eqnarray*} 
+\|f_{t-1}-f_{\la_{t}}\|_\st & \leq & \|f_{t-1}-f_{\la_{t-1}}\|_\st + \|f_{\la_t} - f_{\la_{t-1}}\|_\st \\
+& = &  \|f_{t-1}-f_{\la_{t-1}}\|_\st + \delta_t, \ \ \ \ \ \mbox{define $\DS \delta_t:=\|f_{\la_t} - f_{\la_{t-1}}\|_\st$} \\
+& \leq &  \|f_{t-1}-f_{\la_{t-1}}\|_\st^2 ( 1 + \ga_t \la_t) + \delta_t^2 (1+ 1/(\ga_t\la_t))
+\end{eqnarray*}
+using that, for all $a,b,c\in \R_+$,
+\[ (a+b)^2 \leq a^2(1+c)+b^2(1+1/c) \]
+with $x:=\|f_{t-1}-f_{\la_{t-1}}\|_\st$, $a:=\delta_t$ and $b:=\ga_t\la_t$. 
+
+This gives the iteration formula,
+\[ \E \|f_t - f_{\la_t}\|_\st^2 \leq  (1 - \ga_t \la_t ) \|f_{t-1}-f_{\la_{t-1}}\|_\st^2 + (1-\ga_t \la_t)\frac{\delta_t^2}{\ga_t\la_t}+  \ga_t^2 C_\st,\]
+which, by induction, leads to 
+\[ \E \|f_t - f_{\la_t}\|_\st^2 \leq \pi_1^t \|f_0 - f_{\la_0}\|_\st^2 + \sum_{k=1}^t \pi_{k+1}^t \frac{\delta_k^2}{\ga_k\la_k} + 
+C_\st \sum_{k=1}^t \ga_k^2\pi_{k+1}^t\]
+which ends the proof.
+\end{proof}
+
+
+
+\begin{cor} \label{cor:rvarbnd}
+Assume that $L_K^{-r}f_\rho \in \L2$ with $r\in [1/2,1]$ and $\t^\theta\geq \ka^2 +1$. Then 
+\[ \E \|f_t - f_{\la_t}\|_\rho^2 \leq 4 \M^2 + 4\|L_K^{-r} f_\rho \|_\rho^2 + 3 (4\ka^2+1) \ka^2 \M^2 \]
+\end{cor}
+
+\begin{proof} For $\t^\theta\geq \ka^2 +1$, we have $\ga_t \ka^2 + \ga_t\la_t \leq 1$, whence by Lemma \ref{lem:expan} with $f_0=0$, 
+\begin{equation} 
+\E \|f_t - f_{\la_t}\|_\rho^2 \leq \pi_1^t \|f_{\la_0}\|_\rho^2 + \sum_{j=1}^t \ga_j \la_j \pi_{j+1}^t 
+\frac{\|f_{\la_j}-f_{\la_{j-1}}\|_\rho^2}{\ga_j\la_j} +  C_\rho \sum_{j=1}^t \frac{\ga_j}{\la_j} \ga_j \la_j \pi_{j+1}^t
+\end{equation}
+
+The first term is not larger than $2\M$, using $\pi_1^t \leq 1$ and $\|f_{\la}\|_\rho \leq 2 \M$ in Lemma \ref{lem:fla}(B). 
+
+Now consider the second term. By Theorem \ref{thm:pie1}(A) with $r\in [1/2,1]$,  
+\[ \|f_{\la_t} - f_{\la_{t-1}} \|_\rho \leq |\la_{t} - \la_{t-1}| \frac{\|L_K^{-r} f_\rho \|_\rho}{r} \leq 4(1-\theta)(t+\t)^{-r(1-\theta)-1} \|L_K^{-r} f_\rho \|_\rho 
+\]
+where we use 
+\begin{eqnarray*}
+|\lambda_{t}^{r} - \lambda_{t-1}^{r} | & = & | (t+\t)^{-r(1-\theta)} - (t+\t-1)^{-r(1-\theta)}| \\
+& \leq & r(1-\theta) (t+\t-1)^{-r(1-\theta)-1} \leq 4r(1-\theta) (t+\t)^{-r(1-\theta)-1},
+\end{eqnarray*}
+since $(a+1)/(b+1)\geq a/b$ for $b>a>0$ and $r(1-\theta)+1\leq 2$. This gives for all $t\in \N$, $\t\geq 1$ and $\theta\in [1/2,1]$, 
+\[ \frac{\|f_{\la_t} - f_{\la_{t-1}}\|_\rho^2}{\ga_t \la_t} \leq 16(1-\theta)^2 \|L_K^{-r} f_\rho \|_\rho^2 (t+t_0)^{-2r(1-\theta)-1} \leq 
+4\|L_K^{-r} f_\rho \|_\rho^2 \]
+Using the telescope sum
+\begin{equation} \label{eq:tel}
+\sum_{j=1}^t \ga_j \la_j \pi_{j+1}^t = 1 - \pi_1^t \leq 1, 
+\end{equation}
+we have a bound for the second term
+\[ \sum_{j=1}^t \ga_j \la_j \pi_{j+1}^t \frac{\|f_{\la_j}-f_{\la_{j-1}}\|_\rho^2}{\ga_j\la_j} \leq 4\|L_K^{-r} f_\rho \|_\rho^2 \]
+
+It remains to bound the third term. Note that for $\theta\in [1/2,1]$,
+$$ \frac{\ga_t}{\la_t} = (t+t_0)^{-(2\theta-1)} \leq 1. $$ 
+Together with the telescope sum (\ref{eq:tel}), the third term is not larger than $C_\rho$. This completes the proof.
+\end{proof}
+
+
+\section*{Appendix D: Proof of Theorem \ref{thm:convergence}} 
+\renewcommand{\thesection}{D}
+\setcounter{equation}{0} \setcounter{thm}{0}
+\renewcommand{\thethm}{D.\arabic{thm}}
+\renewcommand{\theequation}{D-\arabic{equation}}
+
+\begin{proof}[Proof of Theorem \ref{thm:convergence}]
+For convenience suppose that 
+\begin{equation} \label{eq:finitevar}
+\E \|(A_j \w_j - b_j)\|^2\leq C<\infty. 
+\end{equation}
+By Generalized Finiteness Condition (C) $\amin_t\to 0$ and condition (B) above $\ga_t/\amin_t\to 0$, we have $\ga_t\to 0$. 
+Thus for a sufficiently large $\t$, we have for all $t> \t$, $\ga_t\amax + \ga_t \amin_t\leq 1$ and thus
+\begin{equation} \label{eq:product}
+\|\Pi_j^t\| \leq \prod_{i=j}^t (1 - a_i), \ \ \ \ \ \mbox{where $a_i:=\ga_i \amin_i$ and $t\geq j > \t$}. 
+\end{equation}
+Note that by condition (A), $\sum_i a_i = \sum_i \ga_i \amin_i =\infty$. 
+
+The first term in (\ref{eq:rmart}) converges, by $\sum_i a_i=\infty$ and thus
+\[ \|\Pi_{t_0+1}^t r_{t_0} \|\leq \prod_{i=t_0+1}^t (1 - a_i) \|r_{t_0}\|\leq e^{-\sum_{i=t_0+1}^t a_i}\| r_{t_0}\| \to 0. \]
+
+Now consider the second term in (\ref{eq:rmart}). By independence of $(z_t)$, 
+\[ 
+\E \left\| \sum_{j=t_0+1}^t \gamma_j \Pi_{j+1}^t (A_j \w_j - b_j) \right \|^2 = \sum_{j=t_0+1}^t \ga_j^2 \E\|\Pi_{j+1}^t (A_j \w_j - b_j)\|^2 \leq 
+C \sum_{j=t_0+1}^t \ga_j^2 \prod_{i=j+1}^t (1 - a_i)^2=:I.
+\]
+using (\ref{eq:finitevar}) and (\ref{eq:product}). 
+$I$ can be further split into two parts: for each $\eps>0$, choose a large enough $J_1\in \N$ 
+such that for all $j\geq J_1$, $\ga_j/\amin_j \leq \sqrt{\epsilon/2C}$ (by condition (B) $\ga_j/\amin_j \to 0$), whence
+\[ I \leq C \sum_{j=t_0+1}^{J_1} \ga_j^2 \prod_{i=j+1}^t(1 - a_i)^2 + 
+\frac{\epsilon}{2} \sum_{j=J_1+1}^t a_j^2 \prod_{i=j+1}^t(1 - a_i)^2 =: I_1+I_2.\]
+Clearly $I_2 \leq \epsilon/2$, by using telescope sum
+\begin{equation} \label{eq:telescope}
+ \sum_{j=J}^t a_j \prod_{i=j+1}^t(1 - a_i)
+=\sum_{j=J}^t [1-(1-a_j)]\prod_{i=j+1}^t(1 - a_i)= 1 - \prod_{i=t_0+1}^t(1-a_i) \leq 1.
+\end{equation}
+Also $\DS I_1\leq \epsilon/2$, since there is a large enough $T_2\in \N$ such that for all $t\geq T_2$, 
+$\DS \sum_{i=J_1}^t a_i \geq \frac{1}{2} \log \frac{2 C J_1}{\epsilon\amax^2}$
+(as condition (A) $\sum_i a_i =\infty$). 
+Therefore $I\leq \eps$ which shows the convergence of the second term.  
+ 
+
+As to the third term in (\ref{eq:rmart}), denoting $\de_t = \|\De_t\|$, by (\ref{eq:product}) we obtain
+\[\left \| \sum_{j=t_0+1}^t \Pi_{j}^t \Delta_j \right \| \leq  \sum_{j=t_0+1}^t \de_j  \prod_{i=j+1}^t (1 - a_i). \]
+By condition (C) $\de_t/a_t \to 0$, using a similar splitting treatment in the second term, we can obtain the convergence of the third
+term.
+\end{proof}
+
+\bibliographystyle{chicagoc}
+%\bibliography{yao}
+
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Berlinet and Thomas-Agnan}{Berlinet and
+  Thomas-Agnan}{2004}]{BerTho04}
+{\sc Berlinet, A.} and {\sc C.~Thomas-Agnan} (2004).
+\newblock {\em Reproducing Kernel Hilbert Spaces in Probability and
+  Statistics}.
+\newblock Kluwer Academic Publishers.
+
+\bibitem[\protect\citeauthoryear{Caponnetto and De{~V}ito}{Caponnetto and
+  De{~V}ito}{2005}]{CapDeV05}
+{\sc Caponnetto, A.} and {\sc E.~De{~V}ito} (2005).
+\newblock Optimal rates for regularized least squares algorithm.
+\newblock {\em preprint\/}.
+
+\bibitem[\protect\citeauthoryear{Carmeli, DeVito, and Toigo}{Carmeli
+  et~al.}{2005}]{CarDevToi05}
+{\sc Carmeli, C.}, {\sc E.~DeVito}, and {\sc A.~Toigo} (2005).
+\newblock Reproducing kernel hilbert spaces and mercer theorem.
+\newblock {\em preprint\/}.
+
+\bibitem[\protect\citeauthoryear{Cucker and Smale}{Cucker and
+  Smale}{2002}]{CucSma02}
+{\sc Cucker, F.} and {\sc S.~Smale} (2002).
+\newblock On the mathematical foundations of learning.
+\newblock {\em Bull. of the Amer. Math. Soc.\/}~{\em 29\/}(1), 1--49.
+
+\bibitem[\protect\citeauthoryear{Daubechies}{Daubechies}{1992}]{Daubechies92}
+{\sc Daubechies, I.} (1992).
+\newblock {\em Ten Lectures on Wavelets}.
+\newblock Philadelphia, PA: Society for Industrial and Applied Mathematics
+  (SIAM).
+
+\bibitem[\protect\citeauthoryear{Duflo}{Duflo}{1996}]{Duflo96}
+{\sc Duflo, M.} (1996).
+\newblock {\em Algorithmes Stochastiques}.
+\newblock Berlin, Heidelberg: Springer-Verlag.
+
+\bibitem[\protect\citeauthoryear{Engl, Hanke, and Neubauer}{Engl
+  et~al.}{2000}]{EngHanNeu00}
+{\sc Engl, H.~W.}, {\sc M.~Hanke}, and {\sc A.~Neubauer} (2000).
+\newblock {\em Regularization of Inverse Problems}.
+\newblock Kluwer Academic Publishers.
+
+\bibitem[\protect\citeauthoryear{Gy\"{o}rfi, Kohler, Krzy\.{z}ak, and
+  Walk}{Gy\"{o}rfi et~al.}{2002}]{GKKW02}
+{\sc Gy\"{o}rfi, L.}, {\sc M.~Kohler}, {\sc A.~Krzy\.{z}ak}, and {\sc H.~Walk}
+  (2002).
+\newblock {\em A Distribution-Free Theory of Nonparametric Regression}.
+\newblock Springer-Verlag, New York.
+
+\bibitem[\protect\citeauthoryear{Halmos and Sunder}{Halmos and
+  Sunder}{1978}]{HalSun78}
+{\sc Halmos, R.~P.} and {\sc V.~S. Sunder} (1978).
+\newblock {\em Bounded Integral Operators in $L^2$ Spaces}.
+\newblock Vol. 96 of Ergebnisse der Mathematik und ihrer Grenzgebiete (Results
+  in Mathematics and Related Areas). Berlin: Springer-Verlag.
+
+\bibitem[\protect\citeauthoryear{Hastie, Rosset, Tibshirani, and Zhu}{Hastie
+  et~al.}{2004}]{HasRosTibZhu04}
+{\sc Hastie, T.}, {\sc S.~Rosset}, {\sc R.~Tibshirani}, and {\sc J.~Zhu}
+  (2004).
+\newblock The entire regularization path for the support vector machine.
+\newblock {\em Journal of Machine Learning Research\/}~{\em 5}, 1391--1415.
+
+\bibitem[\protect\citeauthoryear{Kivinen, Smola, and Williamson}{Kivinen
+  et~al.}{2004}]{KivSmoWil04}
+{\sc Kivinen, J.}, {\sc A.~J. Smola}, and {\sc R.~C. Williamson} (2004).
+\newblock Online learning with kernels.
+\newblock {\em IEEE Transactions on Signal Processing\/}~{\em 52\/}(8),
+  2165--2176.
+
+\bibitem[\protect\citeauthoryear{Kushner and Yin}{Kushner and
+  Yin}{2003}]{KusYin03}
+{\sc Kushner, H.~J.} and {\sc G.~G. Yin} (2003).
+\newblock {\em Stochastic Approximations and Recursive Algorithms and
+  Applications}.
+\newblock Berlin, Heidelberg: Springer-Verlag.
+
+\bibitem[\protect\citeauthoryear{Lo\'{e}ve}{Lo\'{e}ve}{1948}]{Loeve48}
+{\sc Lo\'{e}ve, M.} (1948).
+\newblock Fonctions al\`{e}atoires du second ordre.
+\newblock In P.~L\`{e}vy (Ed.), {\em Processus Stochastiques et Mouvement
+  Brownien}, Paris. Gauthier-Villars.
+
+\bibitem[\protect\citeauthoryear{Neveu}{Neveu}{1975}]{Neveu75}
+{\sc Neveu, J.} (1975).
+\newblock {\em Discrete-Parameter Martingales}.
+\newblock North-Holland Publishing Company.
+
+\bibitem[\protect\citeauthoryear{Parzen}{Parzen}{1961}]{Parzen61}
+{\sc Parzen, E.} (1961).
+\newblock An approach to time series analysis.
+\newblock {\em The Annals of Mathematical Statistics\/}~{\em 32\/}(4),
+  951--989.
+
+\bibitem[\protect\citeauthoryear{Pinelis}{Pinelis}{1994}]{Pinelis94}
+{\sc Pinelis, I.} (1994).
+\newblock Optimum bounds for the distributions of martingales in banach spaces.
+\newblock {\em The Annals of Probability\/}~{\em 22\/}(4), 1679--1706.
+
+\bibitem[\protect\citeauthoryear{Robbins and Monro}{Robbins and
+  Monro}{1951}]{RobMon51}
+{\sc Robbins, H.} and {\sc S.~Monro} (1951).
+\newblock A stochastic approximation method.
+\newblock {\em The Annals of Mathematical Statistics\/}~{\em 22\/}(3),
+  400--407.
+
+\bibitem[\protect\citeauthoryear{Smale and Yao}{Smale and Yao}{2005}]{SmaYao05}
+{\sc Smale, S.} and {\sc Y.~Yao} (2005).
+\newblock Online learning algorithms.
+\newblock {\em Foundation of Computational Mathematics\/}.
+\newblock preprint.
+
+\bibitem[\protect\citeauthoryear{Smale and Zhou}{Smale and
+  Zhou}{2004}]{SmaZho-ShannonI}
+{\sc Smale, S.} and {\sc D.-X. Zhou} (2004).
+\newblock Shannon sampling and function reconstruction from point values.
+\newblock {\em Bull. of the Amer. Math. Soc.\/}~{\em 41\/}(3), 279--305.
+
+\bibitem[\protect\citeauthoryear{Smale and Zhou}{Smale and
+  Zhou}{2005}]{SmaZho-ShannonIII}
+{\sc Smale, S.} and {\sc D.-X. Zhou} (2005).
+\newblock Learning theory estimates via integral operators and their
+  approximations.
+\newblock {\em preprint\/}.
+
+\bibitem[\protect\citeauthoryear{Wahba}{Wahba}{1990}]{Wahba90}
+{\sc Wahba, G.} (1990).
+\newblock {\em Spline Models for Observational Data}.
+\newblock SIAM.
+\newblock CBMS-NSF Regional Conference Series in Applied Mathematics, 59.
+
+\bibitem[\protect\citeauthoryear{Yao}{Yao}{2005}]{Yao05}
+{\sc Yao, Y.} (2005).
+\newblock On complexity issue of online learning algorithms.
+\newblock {\em IEEE Transactions on Information Theory\/}.
+\newblock submitted.
+
+\end{thebibliography}
+
+\end{document}
