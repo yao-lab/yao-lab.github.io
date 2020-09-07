@@ -1,1 +1,3 @@
-# Capstone Project on Data Science
+# Capstone Project for Data Science
+
+## Yuan Yao
