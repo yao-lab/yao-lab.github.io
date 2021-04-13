@@ -10,17 +10,17 @@ function [results, Z, t_Z] = filter(X, D, y, nu_s, option)
 % option: options for creating the Knockoff statistics
 % % option.eta : the choice of eta for creating the knockoff copy
 % % option.q: the desired FDR control bound
-% % option.method: "knockoff" or "knockoff+"
+% % option.method: 'knockoff' or 'knockoff+'
 % % option.stage0: choose the method to conduct split knockoff
-% %     "fixed": fixed intercept assignment for PATH ORDER method
+% %     'fixed': fixed intercept assignment for PATH ORDER method
 % %         option.beta : the choice of fixed beta for step 0: 
-% %             "mle": maximum likelihood estimator; 
-% %             "ridge": ridge regression choice beta with lambda = 1/nu
-% %             "cv_split": cross validation choice of split LASSO over nu and lambda
-% %             "cv_ridge": cross validation choice of ridge regression over lambda
-% %     "path": take the regularization path of split LASSO as the intercept
+% %             'mle': maximum likelihood estimator; 
+% %             'ridge': ridge regression choice beta with lambda = 1/nu
+% %             'cv_split': cross validation choice of split LASSO over nu and lambda
+% %             'cv_ridge': cross validation choice of ridge regression over lambda
+% %     'path': take the regularization path of split LASSO as the intercept
 % %             assignment for PATH ORDER method
-% %     "magnitude": using MAGNITUDE method
+% %     'magnitude': using MAGNITUDE method
 % % option.lambda_s: the choice of lambda for path
 % % option.normalize: whether to normalize the data
 
@@ -33,8 +33,8 @@ function [results, Z, t_Z] = filter(X, D, y, nu_s, option)
 % cell w.r.t. nu.
 
 if option.normalize == true
-    X = normalize(X);
-    y = normalize(y);
+    X = split_knockoffs.private.normc(X); % normalize(X)
+    y = split_knockoffs.private.normc(y); % normalize(y)
 end
 
 
@@ -51,23 +51,23 @@ stage0 = option.stage0;
 
 n_nu = length(nu_s);
 
-if stage0 == "fixed" && option.beta ~= "ridge"
+if isequal(option.stage0, 'fixed') && ~isequal(option.beta, 'ridge')
     option.beta_choice = split_knockoffs.statistics.pathorder.fixed_beta(X, y, D, option);
 end
 
 for i = 1: n_nu
     nu = nu_s(i);
     switch stage0
-        case "fixed"
-            if option.beta == "ridge"
+        case 'fixed'
+            if isequal(option.beta, 'ridge')
                 option.beta_choice = (X' * X / n  + 1 / nu * D' * D)^-1 * X' * y / n;
             end
             [W, Z{i}, t_Z{i}] = split_knockoffs.statistics.pathorder.W_fixed(X, D, y, nu, option);
-        case "path"
+        case 'path'
             [W, Z{i}, t_Z{i}] = split_knockoffs.statistics.pathorder.W_path(X, D, y, nu, option);
-        case "magnitude"
+        case 'magnitude'
             [W, Z{i}, t_Z{i}] = split_knockoffs.statistics.magnitude.W_mag(X, D, y, nu, option);
-        case "joint"
+        case 'joint'
             [W, Z{i}, t_Z{i}] = split_knockoffs.statistics.pathorder.W_path_joint(X, D, y, nu, option);
     end
     results{i} = knockoffs.select(W, q, method);
