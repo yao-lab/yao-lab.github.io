@@ -8,8 +8,8 @@ data2 = 30;
 
 option.q = 0.2;
 option.eta = 0.1;
-option.method = "knockoff";
-option.stage0 = "path";
+option.method = 'knockoff';
+option.stage0 = 'path';
 option.normalize = true;
 option.lambda_s = 10.^[0: -0.01: -6];
 
@@ -18,7 +18,7 @@ num_nu = length(nu_s);
 result_edge = cell(num_nu, 1);
 
 root = pwd;
-base_root = erase(pwd, "\AD_experiments");
+base_root = erase(pwd, '\AD_experiments');
 addpath(base_root);
 addpath(sprintf('%s/data/AALfeat', root));
 %% Response Variable Y
@@ -40,7 +40,8 @@ y2 = [y_AD;y_MCI;y_NC];
 y = [y1; y2];
 index = find( y < 0);
 y(index) = []; % rule out samples with invalid scores
-y = normalize(y);
+%y = normalize(y);
+y = split_knockoffs.private.normc(y);
 
 
 %% Covariates X
