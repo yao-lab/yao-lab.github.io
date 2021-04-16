@@ -249,3 +249,75 @@ Overall Rating:
 Confidence:
 3
 
+
+
+
+
+
+
+
+Zp Wu:
+
+• Summary of the report
+The authors performed hierarchical clustering and various data dimension reduction methods in information mining of human SNPs dataset. They find both hierarchical clustering and data dimension reduction methods can distinguish the different regions well. Additionally, PCA and MDS showed more precise relationship among all individuals than other methods.
+
+•	Describe the strengths of the report
+The authors use different data reduction and classification methods, compare the model performance and analyze the reasons.
+
+•	Describe the weaknesses of the report
+The authors claims that “the PCA plots is highly consistent with the geographic structure of our planet. Assuming human initially originated from Africa, we can clearly find the human migration trace from Africa to Middle East and then other continents on the PCA plot.”
+Actually I am not sure why this conclusion holds. We do can find that people from 7 different regions can be classified well after PCA. But the migration trace is not that obvious. Such trend do not exist in other plot like t-SNE.
+
+•	Evaluation on Clarity and quality of writing: 4
+•	 Evaluation on Technical Quality: 3
+•	Overall rating: 4
+• Confidence on your assessment: 3
+
+
+
+
+
+
+Ng Yui Hong:
+
+Summary:	Hierarchical clustering and data reduction of SNP
+Strength:	Good relationship explanation in PCA. Good visualizing the data reduction by plot. Fascinating to make use of hierarchical clustering.
+Weakness:	Maybe do some classification task to test how well the feature reduction is.
+Clarity of Quality of Writing:		3
+Technical Quality:			2
+Overall Rating:			2
+Confidence:				2
+
+
+
+
+
+
+
+
+Dubey:
+
+Summary: 
+The project presents analysis of SNP data (from human genome data). The aim is to analyze the data in an unsupervised manner where certain clusters and information about human migration from one continent to other can be extracted out. The presented results are impressive, and It is clearly shown that even a simple dimensionality reduction tool such as PCA can preserve the clusters and more importantly shows the direction of migration. The PCA results are compared with other methods such as t-SNE, MDS, UMAP. Both PCA and MDS preserves the direction of migration and clearly shows the clusters. Overall, project is extremely interesting and emphasis how dimensionality reduction tools can help to simplify extremely large datasets while still preserving the information. 
+
+Describe the strengths of the report: 
+The results are extremely interesting, specifically the PCA result not only shows the clusters but also the direction of migration. The poster is well designed and well written. The results shown are also clear and concise. 
+
+Describe the weaknesses of the report:  
+It can be better to provide more information on the comparative performance between various presented dimensionality methods. Also, interpretation of results obtained from t-SNE can be further analysed to provide insights which simpler linear approaches such as PCA cannot give. It would be interesting to explore scope of using more advance tools such as Robust PCA and Sparse PCA. For example, Sparse PCA might provide higher resolution clustering than PCA. The disadvantages of PCA (or other dimensionality reduction tools) should be investigated, for example, analyse the extent of loss of information (scree plot of eigenvalues/variance explained) due to reducing such large feature space to just 2D basis space. 
+
+Evaluation on Clarity and quality of writing (1-5): 
+My evaluation on Clarity and quality of writing: 4/5. 
+Poster is well written. However, given the extremely interesting data and insights, it can be more appropriate to write a report which can elaborate more intuition about migration of human population and other interesting patterns. 
+
+Evaluation on Technical Quality (1-5): 
+ My evaluation on Technical Quality: 5/5. 
+The results are technically sound. More references could be cited for providing more literature to the reader. More information about the data can be provided. The disadvantages of PCA (or other dimensionality reduction tools) should be investigated, for example, extent of loss of information due to reducing such large feature space to just 2D basis space. Most importantly, in my opinion, since this topic is so interesting and involves such large dimensional data, it deserves a report where authors can describe the data, results and insights in more details. 
+
+Overall rating: 
+5/5 (My vote as the best-report) 
+
+Confidence on your assessment (1-3):
+3- I have carefully read the paper and checked the results
+
+

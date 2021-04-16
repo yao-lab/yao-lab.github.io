@@ -29,3 +29,23 @@ Chiyu Ma:
 •	Confidence on your assessment: 3 
 
 
+
+
+
+
+
+
+Zp Wu:
+
+• Summary of the report
+The authors performed statistical methods including PCA and MDS method with the tool of R studio to analysis the correlation between events and characters in the Journey to the West. Theyfind that the novel is developed on different small stories of the whole narration, and in each single story, different new characters have been generated. 
+
+•	Describe the strengths of the report
+I really enjoy this report. Their format and the content are great. They propose a interesting problem and study it carefully.
+•	Describe the weaknesses of the report
+  Maybe some of the introduction to the PCA and MDS can be reduced.
+•	Evaluation on Clarity and quality of writing: 5
+•	 Evaluation on Technical Quality: 4
+•	Overall rating: 5
+• Confidence on your assessment: 3
+

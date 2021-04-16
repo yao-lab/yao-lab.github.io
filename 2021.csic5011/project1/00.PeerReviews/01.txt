@@ -285,3 +285,17 @@ o	Are relevant papers cited, discussed, and compared to the presented work? 2, n
 • Confidence on your assessment (1-3) 3
 (3- I have carefully read the paper and checked the results, 2- I just browse the paper without checking the details, 1- My assessment can be wrong) 
 
+
+
+
+Ng Yui Hong:
+
+Summary:Perform various manifold learning/data reduction techniques on document level and word level after LDA.
+Strength: Best visualization among all groups. Clear patterns and insights can be shown. Great idea to use topic modelling 
+Weakness:	maybe some data analysis on author instead of text.
+Clarity of Quality of Writing:	3
+Technical Quality:		3
+Overall Rating:		3
+Confidence:			2
+
+

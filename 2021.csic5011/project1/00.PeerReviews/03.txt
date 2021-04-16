@@ -80,3 +80,84 @@ Evaluation on Clarity: 5
 Evaluation on Technical Quality:4
 Overall rating:4.5
 Confidence on your assessment: 2 
+
+
+
+
+
+
+
+
+Zp Wu:
+
+• Summary of the report
+The authors applied the PCA to two different datasets to Animal sleeping and Heart disease datasets, They find the number of principal components required to explain most variability in the datasets.
+•	Describe the strengths of the report
+ Beyond PCA, they also use Horn Parallel method to their data.
+•	Describe the weaknesses of the report
+  Maybe they add more analysis to the component they find.  Just focus on one dataset should be enough.
+• Evaluation on Clarity and quality of writing: 3
+• Evaluation on Technical Quality: 3
+• Overall rating: 3
+• Confidence on your assessment: 4
+
+
+
+Ng Yui Hong:
+
+Summary: Perform PCA on animal sleeping data and heart attack data. Analyze the principal components by employing variance and how it  representation of variable of interest
+Strength: Good visualization through correlation and polar plot which gives a more complete view of data and principal components. Employ different techniques like horn’s parallel analysis.
+Weakness: can discuss more about how conventional PCA perform compared to fancier PCA like robust PCA.
+Clarity of Quality of Writing:	3
+Technical Quality:		3
+Overall Rating: 		3
+Confidence: 			2
+
+
+
+
+
+
+JHA:
+
+Summary: The animal sleeping and heart disease dataset is analysed using PCA followed by analysis of variance. The authors also conduct Hornﾕs parallel analysis to show the correct amount of variance to be  
+
+Strength: Detailed analysis of different tools under PCA was done.  
+
+Weakness: Some explanation about the dataset should be added for first case and some figures are redundant. Also other methods of dimensionality reduction could be useful to find relevant features. 
+
+Clarity and Quality: 4 
+
+Technical quality: 3 
+
+Overall Rating: 3 
+
+Confidence: 3 
+
+
+
+
+
+
+
+
+Samruddhi：
+
+Summary of the report: The authors have performed Principle Component Analysis on two datasets: The animal sleeping dataset and the heart disease dataset. They have analysed the variance explained by different principle components for these two datasets and also analysed what factor of each of the features is present in the first principle component.
+Describe the strengths of the report: 
+1.	Theory related to Principle Component Analysis is well explained. 
+2.	The authors have used different kinds of plots to visualize the amount of variance captured by different principle components. 
+3.	Effects of different features on the significant principle components are explained. 
+4.	Horn’s parallel analysis is used to justify the retention of a subset of principle components.
+Describe the weaknesses of the report: 
+1.	While the analysis performed is itself comprehensive, the authors could explain the correlations between different features before performing PCA using a scatterplot matrix and then justify the weights of these features in the dominant principle components. 
+2.	The scree plot and the polar plot are both used to show the variance captured by different principle components, which seems redundant since we can achieve the same interpretation with any one of them.
+3.	For the first dataset, different features in the dataset could have been explained like the authors have done for the second dataset.
+Evaluation on Clarity and quality of writing (1-5): 4
+The report is well written and sufficient references are included. Sufficient theory related to Principle Component Analysis is also mentioned. 
+As mentioned above, the polar plots seem redundant if we have the scree plots for principle components. If the polar plots help interpret the results better, the authors can mention that in the text.
+Evaluation on Technical Quality (1-5): 4
+The experimental results given by the authors are aligned with expectation set in the introduction. Principle components are chosen not arbitrarily but by using Horn’s parallel analysis. There are sufficient visualizations used to justify this choice as well. The authors could have interpreted the results better and accessed the pros and cons of their approach.
+Overall rating: 3
+Confidence on your assessment (1-3): 3
+

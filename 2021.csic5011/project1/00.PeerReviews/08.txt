@@ -351,3 +351,18 @@ Evaluation on clarity and quality of writing: 4.5
 Evaluation on Technical Quality: 5
 Overall rating: 4.5
 Confidence: 3
+
+
+
+
+
+
+Ng Yui Hong:
+
+Summary:PCA, MDS, t-sne on SNP dataset. Perform classification based on feature reduction of previous methods.
+Strength:	A standard, typical handling of data by directly applying classification and data reduction algorithms.
+Weakness:	Maybe some discussion on why MDS performs worse than the two other data reduction methods. Analyze the classification with more evaluation methods like recall.
+Clarity of Quality of Writing:	3
+Technical Quality 		2	
+Overall Rating 		2
+Confidence: 			2

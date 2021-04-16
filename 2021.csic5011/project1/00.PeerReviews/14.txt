@@ -153,3 +153,55 @@ Evaluation on Clarity: 5
 Evaluation on Technical Quality:5
 Overall rating:5
 Confidence on your assessment: 2
+
+
+
+
+
+
+
+Dubey:
+
+Summary: 
+The poster explains two variant algorithms to solve Robust PCA including AccAltProj and DECOLOR which are more immune to outliers compared to traditional PCA. The formulations and references are clearly provided. The comparative study is provided using video foreground/background subtraction and image recovery applications. It is shown that DECOLOR formulation provides much more robust results. Overall poster is well designed and well written. 
+
+Describe the strengths of the report: 
+The formulations provided for both algorithms are very clear. The introduction and references are perfectly written to provide sufficient background about the work. The video as well as image example used for demonstrating the performance are clear and provide good comparison.
+
+Describe the weaknesses of the report:  
+Explanation about the results is missing. For sake of understanding, traditional PCA results can also be provided. The insights about why DECOLOR performs better is not given. Only mathematical formulation is given. Most important aspect of the project should be to provide some intuition because two selected methods are better or worse than each other. 
+
+Evaluation on Clarity and quality of writing (1-5): 
+My evaluation on Clarity and quality of writing: 5/5. 
+Poster is well written and well designed. 
+
+Evaluation on Technical Quality (1-5): 
+ My evaluation on Technical Quality: 4/5. 
+The results are technically sound. Most important aspect of the project should be to provide some intuition why two selected methods are better or worse than each other. This should be added. 
+
+Overall rating: 
+4/5 (A good report) 
+
+Confidence on your assessment (1-3):
+3- I have carefully read the paper and checked the results
+
+
+
+
+
+
+JHA:
+
+Summary: Poster presentation, showing RPCA and DECOLOR on video surveillance data. Used AccAltProj for fast optimisation. 
+
+Strength: Used additional DECOLOR algorithm for missing data pixels. The poster and the problem formulation are well organised and explained. 
+
+Weakness: Some features could be better explained with a report instead of poster presentation  
+
+Clarity and Quality: 4 
+
+Technical quality:4 
+
+Overall Rating: 4 
+
+Confidence:  2 

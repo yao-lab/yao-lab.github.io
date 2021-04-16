@@ -202,3 +202,41 @@ Technique is straightforward applied on all data, which lacked further considera
 (5- My vote as the best-report. 4- A good report. 3- An average one. 2- below average. 1- a poorly written one). 
 • Confidence on your assessment (1-3) 3
 (3- I have carefully read the paper and checked the results, 2- I just browse the paper without checking the details, 1- My assessment can be wrong) 
+
+
+
+
+
+
+
+Ng Yui Hong:
+
+Summary: An data reduction on US crime data by PCA, SPCA, MDA, LLE, ISOMAP. Reduce the variable dimension from 13 to 2.
+Strength:	Not much work done. Just visualize the data reduction plot.
+Weakness:	Maybe do some classification task to test how well the feature reduction is.
+Clarity of Quality of Writing:		3
+Technical Quality:			2
+Overall Rating:			2
+Confidence:				2
+
+
+
+
+
+Samruddhi：
+
+Summary of the report: The authors have performed dimensionality reduction on US Crime dataset and explained the variance explained by each of the features.
+Describe the strengths of the report:
+1.	Visualization used to show correlation between different principle components.
+2.	The methodology used to generate results for the report is mentioned clearly.
+3.	The data and the pre-processing steps are clearly outlined.
+4.	Figures are explained elaborately.
+Describe the weaknesses of the report:
+1.	Authors state in the conclusion that the top two eigenvalues were selected. They could provide justification for this choice with the help of a scree plot which shows variance explained by different eigenvalues.
+2.	They also claim that the crime rate is affected by all factors. This could also be justified using a correlation matrix that analyses the effect of different features on the crime rate or by viewing the coefficient values in the significant eigenvectors obtained.
+Evaluation on Clarity and quality of writing (1-5): 5
+The report is well written, steps involved in getting to the results are clearly mentioned and figures are elaborately explained.
+Evaluation on Technical Quality (1-5): 3
+The authors have provided visualizations that show the relations between principle components. They have also concluded that they will select the top two eigenvalues. However, this conclusion is not backed by sound analysis. The authors could use the scree plot to better justify this conclusion. Also, the authors mention in the introduction that the objective of the project is to observe discrepancies in different parameters in contributing to crime number, but no discrepancies are analysed in the report.
+Overall rating: 3
+Confidence on your assessment (1-3): 3

@@ -241,3 +241,44 @@ Overall Rating:
 Confidence:
 3
 
+
+
+
+
+JHA:
+
+Summary: The authors use word embeddings of the papers and use top-k classification metric to evaluate SVM and NN based implementation to classify the authors. 
+
+Strength: Interesting problem statement 
+
+Weakness: The dataset seems small with respect to the dimensionality of the problem. No comparison or explanation provided about the performance of the different approaches. 
+
+Clarity and Quality: 4 
+
+Technical quality:3 
+
+Overall Rating: 3 
+
+Confidence:  1
+
+
+
+
+
+
+Samruddhi：
+
+Summary of the report: Authors use the NIPS papers dataset to identify authors for a paper using word / phrase embeddings. The task is solved as a multilabel prediction problem. Results are obtained for two types of embeddings and three types of classification techniques.
+Describe the strengths of the report: 
+1.	With the help of experimental results, it is concluded that for this particular task of author identification, phrase embedding is better suited as compared to word embedding.
+2.	Different embedding and classification techniques are compared for the task of author identification and the combination that gives the most superior results is pointed out.
+Describe the weaknesses of the report:
+1.	Since the techniques used to obtained word and phrase embeddings are relatively new and hence not well known, the authors could cite the articles related to that in the report.
+2.	The authors could also give justification supporting their choice of different embeddings techniques and classification methods.
+3.	The second figure in the report is not labelled, so it is difficult to understand what the clustered formed represent. 
+Evaluation on Clarity and quality of writing (1-5): 3
+The report is clearly written, and the goals and expectations are clearly set as well. The authors could name the second figure to improve understanding and add a “Conclusion” section that is independent from the “Results and Visualization” section to give concluding remarks.
+Evaluation on Technical Quality (1-5): 4
+Different techniques are considered for both the embedding generation and classification tasks for the author identification problem. The authors could give reasons as to why the techniques that perform better are superior to other techniques for this problem. 
+Overall rating: 4
+Confidence on your assessment (1-3) 3

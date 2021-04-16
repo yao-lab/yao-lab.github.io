@@ -35,3 +35,31 @@ Overall Rating:
 3
 Confidence:
 3
+
+
+
+
+Dubey:
+
+Summary: 
+The report presents application of PCA on portfolio analysis. The interesting insight is provided about how on accounting the traded volume of stock can affect the selection of portfolio. The comparison between portfolios is provided in terms of sharpe ratio. The comparison is provided between three types of proposed assets. The eigenvectors of the daily return-stocks matrix give orthogonal portfolios, i.e. the portfolios based on these eigenvectors will give uncorrelated returns. The eigenvector corresponding to largest eigenvalue is shown to capture maximum variance of the market movement. 
+
+Describe the strengths of the report: 
+The report talks about various ways of designing the portfolio and presented good visualization of how various eigenvectors of the data matrix when considered as portfolio vectors can explain the variability in the market movement. Overall, the report presents interesting application of PCA in designing the portfolio for investment. 
+
+Describe the weaknesses of the report:  
+When analysing a stock return data, it is important to discuss two types of investors, 1) risk averse who wants average return but low risk, 2) wants high returns at high risk. For example, investing on the largest eigenvector (corresponding to largest eigenvalue) means you are investing in the market index and if market goes up, most of the stocks will go up and give very high return. On the other hand, investing in the smallest eigenvector can give low return but large diversification, hence minimizing the risk.  Overall, these things should be discussed and analysed in more details in the report. Furthermore, the eigenvalues of stock market data are highly noisy due to smaller datasets. This is among biggest hurdle in the portfolio design, and this has not been discussed in methodology or in future work discussion. 
+
+Evaluation on Clarity and quality of writing (1-5): 
+My evaluation on Clarity and quality of writing: 3/5. 
+The diagrams can be clearer with bigger legends and axis labels. The conclusion is not detailed.
+
+Evaluation on Technical Quality (1-5): 
+ My evaluation on Technical Quality: 3/5. 
+The details are provided in the previous section about the strength and weakness of the project. 
+
+Overall rating: 3/5
+3/5  
+
+Confidence on your assessment (1-3):
+3- I have carefully read the paper and checked the results

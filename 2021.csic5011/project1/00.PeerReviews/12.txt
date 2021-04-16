@@ -165,3 +165,25 @@ Overall Rating:
 3
 Confidence:
 3
+
+
+
+
+
+
+
+
+Zp Wu:
+
+• Summary of the report
+The authors performed PCA to the SNP dataset. He also try rearrange the feature value and compare the PCA result with the origin one. He find that PCA is a tool that assumes no data distribution assumption, but SNPs datasets may be too skewed for PCA analysis in some cases. 
+•	Describe the strengths of the report
+ The author propose a very interesting prospective of PCA. He also try to analysis the data and support his finding.
+
+•	Describe the weaknesses of the report
+ First, the format of this report is a little messy. Second, I am not sure about the conclusion. Because after rearrange the features, the PCA result is essentially the same. It just rotates the figure.(like change y->x).  
+
+•	Evaluation on Clarity and quality of writing: 3
+•	 Evaluation on Technical Quality: 3
+•	Overall rating: 3
+• Confidence on your assessment: 3

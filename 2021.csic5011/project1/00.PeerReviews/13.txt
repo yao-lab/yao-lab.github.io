@@ -163,3 +163,99 @@ Overall rating: 4
 Confidence: 3
 
 
+
+
+
+
+
+
+Zp Wu:
+
+• Summary of the report
+The authors performed PCA, and manifold learning method to reduce the dimension of MNIST dataset . 
+In addition, he compared performance of different classification method for the reduced data. PCA + SVM
+achieve the best performance in this dataset.
+•	Describe the strengths of the report
+ The authors do a quite thorough analysis. The finding is useful.
+•	Describe the weaknesses of the report
+ The picture in the poster is a little messy. There are so many data with so many labels on it.
+
+•	Evaluation on Clarity and quality of writing: 3
+•	 Evaluation on Technical Quality: 3
+•	Overall rating: 3
+• Confidence on your assessment: 3
+
+
+
+
+
+
+
+Dubey:
+
+Summary: 
+The poster presents analysis of well-known MNIST dataset using various dimensionality reduction techniques. The lower dimensional data achieved from these techniques is then used to perform image classification and corresponding classification accuracies are reported. The visualization of data in th reduced dimension is also provided. Also, the performance of different classification methods combined with various dimensionality reduction techniques is also proved and it is concluded that PCA+SVM performs best (and MLLE+kNN performs best in manifold learning methods). Overall, the poster is well designed and well written. 
+
+Describe the strengths of the report: 
+The visualization is interesting and effect of combining different classification methods with different dimensionality reduction tools is the most interesting part of the project. The conclusion is well written, concisely summarizing the performance comparison between various methods. 
+
+Describe the weaknesses of the report:  
+The explanations and insight on why various combination of dimensionality reduction + classification methods performs better or worse than each other is not enough. This is the most important aspect of the proposed project and should be investigated in more detail. Other advance PCA variants like robust PCA and Sparse PCA should be investigated.  
+
+Evaluation on Clarity and quality of writing (1-5): 
+My evaluation on Clarity and quality of writing: 4/5. 
+Poster is well written and well designed. The design of section 3.2 can be better in terms of table placement and size, and text wrapping. 
+
+Evaluation on Technical Quality (1-5): 
+ My evaluation on Technical Quality: 4/5. 
+The results are technically sound. More references could be cited for providing more literature to the reader. The authors should investigate the disadvantages of PCA (or other dimensionality reduction tools), for example, extent of loss of information due to reducing such large feature space to just 2D basis space. 
+
+Overall rating: 
+4/5 (A good report) 
+
+Confidence on your assessment (1-3):
+3- I have carefully read the paper and checked the results
+
+
+
+
+
+
+
+JHA:
+
+Summary: MNIST dataset is used for dimensionality reduction followed by classification using different techniques. 
+
+Strength: Well written and thorough. The effect of different reduction methods and its effects is compared. 
+
+Weakness: Some images are not self-explanatory 
+
+Clarity and Quality: 4 
+
+Technical quality:4 
+
+Overall Rating: 4 
+
+Confidence:  3 
+
+
+
+
+Samruddhi：
+
+13. MNIST Handwritten Digit Data Visualization
+Summary of the report: The authors perform dimensionality reduction on MNIST dataset for handwritten digits and perform classification on the dimension reduced dataset. They analyse the dataset with reduced dimension obtained by using different techniques and analyse the effect these techniques have on classification accuracy for the dataset.
+Describe the strengths of the report:
+1.	The authors set clear goals in the introduction and addressed all of them in the conclusion.
+2.	Visualizations for different dimensionality reduction techniques are provided which show the effect these techniques have on data.
+3.	The authors have also analysed the effect of different dimensionality reduction techniques on classification accuracy of the MNIST dataset. These results are displayed compactly as a table which makes them very easy to evaluate.
+4.	Valid conclusions are drawn using experiments.
+Describe the weaknesses of the report:
+1.	There is no title or no legends on the plot in section 3.2.
+2.	The authors conclude based on experiments that PCA + SVM achieve the best averaging performance while modified LLE achieves the best classification accuracy. The authors could try to explain or reason about why these techniques outperform other techniques. 
+Evaluation on Clarity and quality of writing (1-5): 4
+Most of the content that could be expected is mentioned in the poster. Visualizations are clear and helpful in drawing conclusions. However, the figure in section 3.2 is not labelled.
+Evaluation on Technical Quality (1-5): 4
+The poster is well written, and authors have addressed the questions they set out to answer at the beginning of the poster. To make this better, the authors can interpret the results obtained using different methods and give justification as to why the methods that perform the best are superior to others.
+Overall rating: 4
+Confidence on your assessment (1-3): 3

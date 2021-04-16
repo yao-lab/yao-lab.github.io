@@ -52,3 +52,47 @@ Chiyu Ma:
 •	Overall rating: 5
 •	Confidence on your assessment: 2
 
+
+
+
+JHA：
+
+Summary: Animal Sleeping data set was used with multiple dimensionality reduction methods (PCA, RPCA, LLE, TSNE) were implemented by the authors. 
+
+Strength: Quite through and detailed analysis of results. The figures are relevant and cover the subject well. 
+
+Weakness: Some comparisons between the different methods could be added 
+
+Clarity and Quality: 5 
+
+Technical quality: 4 
+
+Overall Rating: 4 
+
+Confidence:  3 
+
+
+
+
+
+Samruddhi：
+
+Summary of the report: The authors have performed dimensionality reduction on Mammal dataset using PCA, LLE, Modified LLE, MDS, T-SNE and other approaches. An analysis is done about the factors that influence mammals’ sleeping time and life span. 
+Describe the strengths of the report:
+1.	Expectations and goals of the project are made clear.
+2.	Dataset is explained well.
+3.	A section about the methods and libraries used is also added. The authors have also provided justification about why using Sparse PCA does not make sense for the dataset they are considering.
+4.	The analysis of different factors on sleep hours and life span is quite comprehensive and effort has been made to interpret the results.
+5.	Visualizations are used to show the effects of different dimensionality reduction techniques on the considered dataset.
+Describe the weaknesses of the report:
+1.	In figures 3 and 4, the labels for the axes are very small and cannot be seen.
+2.	Authors could add short descriptions to the different dimensionality reduction techniques they have used for the sake of thoroughness and mention their advantages and drawbacks in different scenarios.
+3.	The visualizations are useful in understanding the effect of different features on the sleeping time and life span. However, adding some data in table format would make the report more readable.
+4.	Authors could give references to the different dimensionality reduction techniques they have used in the project.
+Evaluation on Clarity and quality of writing (1-5):  4
+The report is well written, the dataset and experimental tools are clearly mentioned, and valid conclusions are drawn based on results obtained.
+As mentioned above, the authors could cite the dimensionality reduction techniques they have used in the project and add short descriptions about them.
+Evaluation on Technical Quality (1-5): 4
+The results are technically sound and valid conclusions are drawn from the experiments performed.
+Overall rating: 4
+Confidence on your assessment (1-3): 3

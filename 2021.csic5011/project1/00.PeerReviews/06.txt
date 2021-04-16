@@ -168,3 +168,34 @@ Evaluation on Technical Quality: 4
 Overall rating: 4
 Confidence: 3
 
+
+
+
+
+
+
+
+Dubey:
+
+Summary: 
+The poster presents three algorithms to solve Robust PCA problem for video surveillance application. The three algorithms are compared in terms of their computational efficiency and performance in removing the background in the video frames. The results are provided to show the performance and speed of convergence of these algorithms. It is claimed that AccAltProj is the fastest while maintaining the convergence speed over long term. ADMM is shown to be fast however, for some reason, it is shown to be diverging over long time. 
+
+Describe the strengths of the report: 
+The report talks about the algorithms for solving RPCA which is important as for large dimensional computer vision application, traditional methods for implementing dimensionality reduction can be useless. The authors have compared both performance in terms of removing the background as well as the convergence speed of algorithm. The conclusion is well written giving clear information about which algorithm is more apt for the video application. Sufficient references are provided. 
+
+Describe the weaknesses of the report:  
+In the results shown for ADMM for 10th and 500th frame, it is seen that ADMM performs good in 500th frame while in 10th frame it is giving very poor results. This should be carefully investigated. Apart from the convergence issue over long term, ADMM should give acceptable results. Some theoretical justification should be provided why AccAltProj is outperforming all other methods (this is explained to some extent in section 3 by the author, however, why ADMM cannot achieve good results should be explained). Explanation of the results should be added to the section 4.
+
+Evaluation on Clarity and quality of writing (1-5): 
+My evaluation on Clarity and quality of writing: 3/5. 
+Poster provides good visualization of the results in section 4 and 5. I feel that there should be less text in the poster and more illustrations. 
+
+Evaluation on Technical Quality (1-5): 
+ My evaluation on Technical Quality: 4/5. 
+The results are technically sound. Most important aspect of the project should be to provide some intuition AccAltProj outperforms all other methods and why ADMM diverges in long term should also be explained. 
+
+Overall rating: 
+4/5 (A good report) 
+
+Confidence on your assessment (1-3):
+3- I have carefully read the paper and checked the results
