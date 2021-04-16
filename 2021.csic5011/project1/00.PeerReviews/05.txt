@@ -1,0 +1,37 @@
+Chiyu Ma:
+
+•	Summary: 
+ 	Given daily stock returns, a portfolio could be constructed by PCA. The portfolio is due to the principal component. The result has better Sharpe ratio.
+•	Strengths and weaknesses:
+ 	It visualizes the result clearly. The result is impressive. Actually, parse PCA and robust PCA could be applied in the future. Comparison with other method could make it better.
+•	Evaluation on Clarity and quality of writing: 2
+ 	Author's information should be provided. An extra symbol appears in section 2.2.
+•	Evaluation on Technical Quality: 3 
+ 	It's a clear result.
+•	Overall rating: 3
+•	Confidence on your assessment: 2
+
+
+
+
+
+
+
+5.
+ADELEKE Maradesa & OGEDENGBE Ikeoluwa:
+
+Comments:
+• The study objective was not properly tied to PCA in the abstract
+• No background/introduction was provided
+• Figures were cited before they were actually shown
+• Tables were labelled below instead of above
+• Poor organization, unclear conclusion
+• No citation/reference provided
+Evaluation on Clarity:
+3
+Evaluation on Technicality:
+3
+Overall Rating:
+3
+Confidence:
+3

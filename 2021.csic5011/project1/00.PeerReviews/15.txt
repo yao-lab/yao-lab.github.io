@@ -1,0 +1,251 @@
+Fan Xian:
+
+• Summary of the report
+The authors first use hierarchical clustering to illustrate that SNP dataset contains noise. And then use PCA and other methods like MDS, NMF, t-SNE etc for dimension reduction of the SNP data and make comparison of the result.
+• Describe the strengths of the report
+The results are convincing especially the author gives clear geographic structure illustration corresponding to the PCA result. And the plots are clear and well structured.
+• Describe the weaknesses of the report
+The effect of dimension reduction are decided just by vision and the report lack the analysis of random projection.
+• Evaluation on Clarity and quality of writing: 4
+Nice figures and good use of example.
+• Evaluation on Technical Quality: 3.5
+The experiment and result are convincing. But still lack more experiment for further analysis.
+• Overall rating: 4
+• Confidence on your assessment: 3
+
+
+Sarah Chow:
+
+Summary of the report
+The report performed dimensionality reduction methods to compare their performance into removing redundant information for evolution analysis. Hierarchical clustering is first utilized to distinguish individuals that from different regions, then, PCA is utilized to reproduce the trace of the migration during evolution. Other methods such as MDS, NMF, t-SNE and UMAP are compared. It is found that PCA and MDS are more precises regarding on showing the relationship among all individuals.
+
+Describe the strengths of the report
+The aims of the report are clear. The report contains a sufficient number of sections to address the objectives. The descriptions to the results are comprehensive. The project incentive is clear, and the aims have been reached
+
+Describe the weaknesses of the report
+The comparisons and the evaluation of different methods could have been explained more detailly. The discussion part is a bit short.
+
+Evaluation on the clarity and quality of writing: 4
+The delivery of the report is good, clear graphical illustration. 
+
+Evaluation on technical quality: 4
+The technicality of the report is adequate, but it would be better to have some explanation for hierarchical clustering method.
+
+
+Overall rating: 4
+
+Confidence on your assessment: 3
+
+
+
+Bingxin Huang:
+
+• Summary of the report
+The author perform dimension reduction and visualize the hand written digit data distribution on principle component. He also classify and predict the hand-written digits using dimensionality reduction.
+• Describe the strengths of the report
+The author provides the clear visualization of the hand-written digit datasets using different methods, like PCA, ISOMAP, LLE, LSTA, t-SNE and diffusion map. 
+• Describe the weaknesses of the report
+No
+• Evaluation on Clarity and quality of writing: 4
+Clear writing and well organized.
+• Evaluation on Technical Quality: 3
+• Overall rating: 4
+• Confidence on your assessment: 3
+
+
+
+
+
+
+Jiamin Wu:
+
+Summary of the report.
+In the poster, RPCA is introduced clearly and two different approaches AccAltProj based on RPCA and DECOLOR are used to deal the matrix decomposition problem. After comparing the result of foreground/background detection for the video surveillance data for a shopping mall, they get the result that DEXOLOR is better.
+Describe the strengths of the report. 
+1.	Compare 2 different methods for RPAC matrix decomposing.
+Describe the weaknesses of the report.
+1.	There is too much introduction and model description in the poster, but the analyses are not enough.
+Evaluation on Clarity and quality of writing (1-5): 4
+The report clearly written with figures and well designed. I don’t find any problems with style, grammar, formatting, references, etc. But more analysis or discussion is preferred for me. One thing may be improved in the poster is to put the result of DECOLOR and AccAltProj together so that we can see the difference clearly.
+Evaluation on Technical Quality (1-5): 3
+The results technically sound with obvious flaws in the reasoning. Claims well-supported by theoretical analysis or experimental results. The experiments well thought out and convincing. It is easy for other researchers to replicate these results from the notebook. The evaluation appropriate. But the authors don’t assess the strengths and weaknesses of their approaches. The fact they mention in the conclusion part that DECOLOR is better is not so convincing. The difference of the result may occur because of the different parameter selection, such as rank number. The running time is also important for the comparison. Relevant papers cited, discussed, and compared to the presented work.
+Overall rating: 3 
+An average one.
+Confidence on your assessment (1-3): 2
+I just browse the paper without checking the details.
+
+
+
+
+
+
+
+Sum Wing Hei:
+
+Summary:
+It uses hierarchical clustering to cluster the SNPs data into different groups. Then, they use PCA approach to reduce the noise and data dimension of their data set. The results show there is a human migration trace in the evolution.
+Strengths:
+The aims and theory are clear. The PCA and MDS results also show a clear pattern which support their theory.
+Weaknesses:
+It assumes human originally originated from Africa and migrated to America, but it does not provide the relevant history that fits its theory.
+Clarity and quality of writing:
+5, I think they provides a good PCA figure for their result. The explanation of some key words is also clear.
+Technical Quality:
+4, it will be better to also include some historical data that proofs their findings, which can enhance their results.
+Overall rating:
+4
+Confidence on my assessment:
+2
+
+
+
+
+
+
+
+
+Mengyue Zha:
+
+Summary:
+This project did hierarchical clustering of SNPs dataset without dimensional reduction, PCA of human genetic variance produced the migration trace during evolution and made comparison among different dimensional reduction approaches. Both hierarchical clustering and data dimension reduction methods can distinguish the different regions well. However, PCA and MDS showed more precise relationships among all individuals than other methods, and provided a reasonable inference of human migration trace during evolution.  
+
+Strengths: This report has a very detailed description on the methods. The visualization backs up the conclusions raised by the authors. The poster arrangement is good. 
+Weaknesses: I expect at least a random projection could be found. Besides there is no concrete reasoning behind the third part: Comparison among different dimensional reduction approaches.
+
+Evaluation on Clarity and quality of writing (1-5):
+Is the report clearly written?  4
+Is there a good use of examples and figures? 4
+Is it well organized? 3
+Are there problems with style and grammar? 4
+Are there issues with typos, formatting, references, etc.? 4
+
+All assessment with confidence 2
+
+Evaluation on Technical Quality (1-5): 
+Are the results technically sound? 3
+Are there obvious flaws in the reasoning? 3
+Are claims well-supported by theoretical analysis or experimental results? 4
+Are the experiments well thought out and convincing? 4
+Will it be possible for other researchers to replicate these results? 4
+Is the evaluation appropriate? 4
+Did the authors clearly assess both the strengths and weaknesses of their approach? 3
+Are relevant papers cited, discussed, and compared to the presented work? 4
+
+All assessment with confidence 2
+
+Overall Rating: 3
+Confidence: 2
+
+
+
+
+
+Chiyu Ma:
+
+•	Summary: 
+ 	This report applies different dimension reduction techniques, like hierarchical clustering, PCA, MDS, ect., to SNP data, which reveals the human migration history. Among them, traditional methods like hierarchical clustering, PCA and MDS is more efficient.
+•	Strengths and weaknesses:
+ 	It visualize and explain the result clearly. The methods they adopted are various. Explanation on other methods could be more detailed.
+•	Evaluation on Clarity and quality of writing: 4
+ 	As a poster, the introduction part could be simplified.
+•	Evaluation on Technical Quality: 4
+•	Overall rating: 4
+•	Confidence on your assessment: 2
+
+
+
+
+
+Kot Chun Kit:
+
+Summary of the report:
+The group examined the SNP data through hierarchical clustering and data dimension reduction methods including MDS, PCA, NMF, t-SNE, and UMAP. From the report, all demonstrated methods were mostly capable of distinguishing different regions clearly.
+The strength of the report:
+1)	Performed multiple data dimension reduction methods
+2)	Detail and clear analysis on the demonstrated result
+The weakness of the report:
+1)	The demonstrated graphic results by data dimension reduction methods is a bit small to see
+2)	It will be better if there is a methodology section introducing the applied method
+Evaluation on Clarity and quality of writing: 4
+The writing is well-organize and can help reader easier to understand the content
+Evaluation on Technical Quality: 4
+As mentioned in the strength, this group provided a great and detailed analysis of the obtained result.
+Overall rating: 4
+Confidence: 3
+
+
+
+
+
+
+Ip Ho Pan:
+
+Summary
+The project applied PCA, MDS, NMF, t-SNE and Hierarchical Clustering for evolutional analysis on SNPs dataset. The PCA and MDS performed the best and showed precise relationship and a reasonable inference of human migration trace. 
+Strengths
+It has been clearly shown in the data visualization using PCA the history of human migration intuitively. The logic is clear in general.
+Weaknesses
+No
+Evaluation on clarity and quality of writing: 5
+Evaluation on Technical Quality: 4.5
+Overall rating: 4.5
+Confidence: 3
+
+
+
+
+Yingshu Chen:
+
+• Summary of the report.
+Authors discover human migration trace from SNPs data reduction. Among hierarchical clustering and data dimension reduction approaches, PCA and MDS have potential to help explore human migration trajectory.
+• Describe the strengths of the report. 
+It is a meaningful and interesting topic that from SNP data to explore some special story behind human-beings.
+• Describe the weaknesses of the report. 
+Introduction can be better elaborated.
+• Evaluation on Clarity and quality of writing (1-5): 5
+o	Is the report clearly written? 4
+o	Is there a good use of examples and figures? 4
+o	Is it well organized?  5
+o	Are there problems with style and grammar? 5
+o	Are there issues with typos, formatting, references, etc.? 5
+o	Please make suggestions to improve the clarity of the paper, and provide details of typos. 
+	The logic in Introduction Section can be improved. Please use more transition or linking words.
+	Figure in Result 1 lacks annotations, I couldn’t read this figure comprehensively.
+• Evaluation on Technical Quality (1-5): 4
+o	Are the results technically sound?  5
+o	Are there obvious flaws in the reasoning? 4
+o	Are claims well-supported by theoretical analysis or experimental results? 5
+o	Are the experiments well thought out and convincing? 4
+o	Will it be possible for other researchers to replicate these results? 4, not provide data directly
+o	Is the evaluation appropriate? 3, no applicable
+o	Did the authors clearly assess both the strengths and weaknesses of their approach? 4
+o	Are relevant papers cited, discussed, and compared to the presented work? 4
+
+Comments: It is a good insight to explore human migration history. But I think from the results you can discover more insights related to distance among different regions.
+	
+• Overall rating: 4
+(5- My vote as the best-report. 4- A good report. 3- An average one. 2- below average. 1- a poorly written one). 
+• Confidence on your assessment (1-3) 3
+(3- I have carefully read the paper and checked the results, 2- I just browse the paper without checking the details, 1- My assessment can be wrong) 
+
+
+
+
+
+
+
+ADELEKE Maradesa & OGEDENGBE Ikeoluwa:
+
+Comments:
+• Report is clear and concise
+• Interesting deduction from the analysis
+• No abstract was provided
+Evaluation on Clarity:
+4
+Evaluation on Technicality:
+4
+Overall Rating:
+4
+Confidence:
+3
+

@@ -1,0 +1,165 @@
+Fan Xian:
+
+• Summary of the report
+The author performs different methods of dimension reduction like PCA, ISOMAP, LLE, Modified LLE, t-SNE on MNIST and gives clear visualization on the result. And author uses SVM+PCA and KNN with different reduced feature in classification to help illustrate the effect of dimension reduction.
+• Describe the strengths of the report
+The author give clear visualization of different methods and find the best dimension of embedding via PCA on classification. 
+• Describe the weaknesses of the report
+The author may choose more complicated models like Convolution neural network and Resnet to further test the effect of dimension on classification and compare with different reduction methods.
+• Evaluation on Clarity and quality of writing: 4.5
+Nice result and clear organization.
+• Evaluation on Technical Quality: 4
+The author gives well comparison on both visualization and classification effect. Author also explore the relationship between dimension reduction with accuracy.
+• Overall rating: 4.5
+• Confidence on your assessment: 3
+
+
+Sarah Chow:
+Summary of the report
+The report implemented dimensionality reduction on the MNIST data and predict the hand-written numerical digits, using the methods of ISOMAP, LLD, Modified LLE, and t-SNE. Also, the estimation on the classification accuracy for different methods are presented. It is concluded that the combination of PCA + SVM achieved the best performance among all combinations.
+
+Describe the strengths of the report
+The presentation of every methods is very clear, and the aim and the logic flow of the project is easy to follow. The conclusion provides an insightful point of view and addresses the premise effectively. 
+
+Describe the weaknesses of the report
+/
+
+Evaluation on the clarity and quality of writing: 4
+Font type is not consistent, the font type for bullet points is different. Section 2 is missing, it goes from section1 (introduction and dataset) straight to section 3 (visualization), but those are just formatting preferences. 
+
+Evaluation on technical quality: 5
+It would be better to have explanation on why is SVM not suitable with classification. Perhaps the ratios for training and testing data could be mentioned.
+
+Overall rating: 4
+
+Confidence on your assessment: 3
+
+
+
+
+
+
+Fang Yu:
+
+- Summary of the work:
+
+They conducted dimension reduction on the MNIST dataset, and used the reducted embeddings to perform classification. They found that PCA+SVM can achieve the best performance.
+
+- Strengths:
+
+Task is clear. Apply downstream tasks after PCA. Important details are all included.
+
+- Weakness:
+
+None. (Maybe more simple classifiers can be added, like MLP and LR.)
+
+- Evaluation on Clarity and quality of writing
+ 
+5
+
+- Evaluation on Technical Quality (1-5)
+
+5
+
+- Overall Rating
+
+5
+
+- Confidence
+
+3
+
+
+
+
+
+
+Zhiyuan Yu:
+
+Summary
+This project first compares different embedding methods for MINIST dataset and
+then tests the performance between different embeddings and classifiers on digits
+classification task.
+Pros and Cons
+The project has done lots of work on visualization which gives readers a very straight
+understanding about different embedding methods. The author also draws a
+thoroughly table to compare the performance of classifiers. The poster is well done,
+but it might be better if pictures and tables could be bigger.
+Clarity and quality of writing: 4. Pictures are a bit of small.
+Technical quality: 5.
+Overall rating: 5.
+Confidence: 3.
+
+
+
+Hanze Dong:
+
+Summary: This work performs dimension reduction and visualizes the data distribution on
+MNIST dataset.
+Strengths: Both visualization and illustration on classification task are very informative.
+Weaknesses: It seems 224x224 for MNIST is not meaningful. More discussion on different
+algorithms might be necessary.
+Clarity: 5
+Technical Quality: 4
+Overall rating: 4
+Confidence: 3
+
+
+
+
+
+Chutian Huang:
+
+Summary:
+This project used the SNPs dataset. The author performed PCA to this dataset and tried to look at whether changing the “skewness” of the data, which means changing the label in this report, could bring better performance.
+
+Strengths: The report has a detailed description of dataset, and the visualization is generally clear.
+Weaknesses: I don’t quite understand how changing the label of “AA, AC, CC” from “0,1,2” to “1,2,3” could change the PCA performance in a significant way. In the visualization pictures 3.2, 4.3, 4.6, there are no legends for which color represents which region. What’s more, there should be 7 regions, but I can only see 6 colors (red, green, yellow, bright green, orange and blue) instead of 7. I cannot open the website of the second reference. And since all of the report talks about “skewed data affects PCA” and I don’t quite understand the reasoning in this report, I tried to look the reference but there was none about it. 
+
+Evaluation on Clarity and quality of writing (1-5):
+Is the report clearly written?  3
+Is there a good use of examples and figures? 4
+Is it well organized? 5
+Are there problems with style and grammar? 4
+Are there issues with typos, formatting, references, etc.? 3
+
+All assessment with confidence 3
+
+Evaluation on Technical Quality (1-5): 
+Are the results technically sound? 3
+Are there obvious flaws in the reasoning? 2
+Are claims well-supported by theoretical analysis or experimental results? 4
+Are the experiments well thought out and convincing? 4
+Will it be possible for other researchers to replicate these results? 4
+Is the evaluation appropriate? 3
+Did the authors clearly assess both the strengths and weaknesses of their approach? 2
+Are relevant papers cited, discussed, and compared to the presented work? 2
+
+All assessment with confidence 2
+
+Overall Rating: 3
+Confidence: 2
+
+
+
+
+
+
+
+Kot Chun Kit:
+
+Summary of the report:
+The author visualized the distribution of the MNIST dataset by the performed multiple data dimension reduction methods. Then, apart from performing PCA with SVM, the author also classifies the data by the combination of each performed data dimension reduction method with KNN.
+The strength of the report:
+1)	The report is full of useful content.
+2)	The graphic results are clear, and the author labeled each kind of digit on the graph along with their distribution.
+The weakness of the report:
+1)	The classification result can show the average of each methods’ performance directly.
+Evaluation on Clarity and quality of writing: 4
+The writing is clear and there is a good use of examples and figures.
+Evaluation on Technical Quality: 4
+The experiments are well thought out. Most claims are well-supported by experimental results.
+Overall rating: 4
+Confidence: 3
+
+

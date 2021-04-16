@@ -1,0 +1,12 @@
+Chiyu Ma:
+
+•	Summary: 
+ 	Solving a regularized inverse problem, different tuning parameters lead to different solutions. The authors came up with a (s)PCA based unsupervised approach to construct the solution. The data matrix of PCA consists of solutions corresponding with different regularized parameters.
+•	Strengths and weaknesses:
+ 	Background of the inverse problem is significant. The comparison with old method is clear. It would be better if the numerical experiments were better. For example, l1 regularizer and TV regularizer are both accessible by some solvers or packages. Comparison between \tilde{x} with some x*(\lambdai) can also perfect this report. Plus, it seems that \tilde{x} has no parameter \lambda corresponding to it, thus constructing a new solution might be better than tuning regularization parameter.
+•	Evaluation on Clarity and quality of writing: 4
+ 	The interpretation of MAP could be more clear. Without MAP, the regularizer could also be explained as something like sparsity. And whether the conclusion is about solution or parameter is also a question that can be discussed.
+•	Evaluation on Technical Quality: 4
+ 	The numerical results show this very well.
+•	Overall rating: 4
+•	Confidence on your assessment: 3

@@ -1,0 +1,82 @@
+Zongchao Mo:
+
+1. Summary of the report.
+This research investigated the sleeping hour of some selected animal species and
+carry out rigorous explorative analysis by using principal component analysis. Also,
+this research investigated the number of principal components that explain larger
+variability within the dataset and determine the contribution of each variables to
+the principal component.
+2. Describe the strengths of the report.
+This research applied dimension reduction and showed further discussion for the
+results properly.
+3. Describe the weaknesses of the report.
+The figure legend is not presented for most of the figures although thorough
+description has been made for each figure. The meaning of each tag in the figure
+should be clearly presented. Moreover, the tag within some plot are heavily
+overlapped.
+4. Evaluation on Clarity and quality of writing (1-5)
+Point 4. The report is clearly written and well organized in structure. The reference
+is properly cited. No obvious grammar error could be found. If possible, please add
+detail figure legend for each figure.
+5. Evaluation on Technical Quality (1-5)
+Point 5. The results are technically sound. Claims are well-supported by theoretical
+analysis or experimental results. Researchers could replicate these results by
+following the description.
+6. Overall rating: (5- My vote as the best-report. 4- A good report. 3- An average one.
+2- below average. 1- a poorly written one).
+Rating: 4
+7. Confidence on your assessment (1-3) (3- I have carefully read the paper and
+checked the results, 2- I just browse the paper without checking the details, 1- My
+assessment can be wrong)
+Confidence: 2
+
+
+
+
+
+
+
+Yuqia Wu:
+
+Summary of the project:
+The exhibition format of this project is a report. In the project, the authors used
+PCA(principal component analysis) to analyse two data set, Animal sleeping and Heart
+disease, to determine the number of principal components required to explain most information
+of the original data.
+Strengths and Weaknesses:
+The authors introduce PCA and how to find principal components and how to calculate
+variance of each principal components. They find a good topic: the relationship
+between variables and principal component and how many principal components are
+needed. However, I do not really understand what Figure 4, Figure 5 and Figure 8 are
+trying to express. Maybe the authors can give more details or comments about them.
+Also, I think the methods applied to two dataset are similar, maybe one is enough. Finally,
+the report only give the conclusion based on numerical experience but no other
+detailed explanation. I am interested how to determine how many principal components
+required without any experience result. In other words, given a data matrix, is there any
+other way to predict the required principal components in advance?
+Evaluation on Clarity and quality of writing: 3
+I think the organization of report is not so good. Firstly, the author does not use a format
+of a technical report and the report is a little long. The layout of text and graphics is
+not good. Also, The author failed to give a detailed explanation to some figures shown
+in the report.
+Evaluation on Technical Quality: 2
+The technique used in the report are reasonable. And I think the evaluation is appropriate.
+But I think the method used is repeated. I think it is appropriate to use two
+methods on one data set, but it is redundant to use one method in two dataset.
+Overall Rate: 2
+Confidence on your assessment: 2
+
+
+
+
+
+
+Jiayi Li:
+
+Making use of PCA to reduce uncorrelated features when make regression model to analyze animal sleeping data.
+Strength: The analysis is well organized and clearly illustrated.
+Weakness: Could try more methods of data reduction.
+Evaluation on Clarity: 5
+Evaluation on Technical Quality:4
+Overall rating:4.5
+Confidence on your assessment: 2 

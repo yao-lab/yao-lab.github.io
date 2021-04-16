@@ -1,0 +1,287 @@
+Fan Xian:
+
+• Summary of the report.
+The authors first used LDA to extract some topics from NIPS paper datasets and then performed different dimensional reduction methods to visualize the results.
+
+• Describe the strengths of the report. 
+The authors clearly described their goals and the methods they chose, and analyzed their results well.
+
+• Describe the weaknesses of the report.
+The matrices paper_matrix and topics_matrix should be described in more detail. 
+
+• Evaluation on Clarity and quality of writing (1-5): 4
+In the report, for ‘… because more paper the conference accepts, more topics it will have.’ in section 2.2, ‘paper’ should be corrected to ‘papers’.
+In the poster, the first sentence is partly covered in section 7, and the figure ‘t-SNE for topics_matrix’ is also partly covered.
+The order of sections in the poster is different from that in the report. The later seems to be the better one.
+
+• Evaluation on Technical Quality (1-5): 4.5
+
+• Overall rating: 5
+
+• Confidence on your assessment (1-3) : 2.5
+
+
+
+Donghao Li:
+
+Summary of the report. 
+This project use Latent Dirichlet Allocation and dimensional reduction algorithms to do visualisation and topic mining.
+ 
+Describe the strengths of the report. The poster looks fancy and the code in GitHub is organised well.
+ 
+Describe the weaknesses of the report. Analysis is somewhat weak. For visualisation, only figures are given. In depth visualisation analysis is prefered.
+ 
+Evaluation on Clarity and quality of writing (1-5): 4
+Evaluation on Technical Quality (1-5): 4
+Overall rating: 4- A good report. 
+Confidence on your assessment (1-3) 3 I have carefully read the paper and checked the results
+
+
+
+Jiabao Li:
+
+Summary:
+This project discussion on the 5 hottest topics of the NIPS paper from 1987-2015 and compared the reduction methods to validate the topics. The 5 topics are found by LDA and visualized by the LDA and manifold learning methods such as LLE, LTSA. From the visualized results, the 5 topics are in various subsets and show differences among 5 topic group. The trend of the topics also shows the patterns for each topic and can further help the related researchers to determine the topics. 
+
+Strengths:
+The visualization of the data reduction is pretty excellent. Furthermore, the word cloud and the trend curve explain the patterns found in data reduction. The overall color in the poster is pretty cool.
+
+Weaknesses:
+There are some wrong format in the poster. For example, ‘given by LDA …’ (in No.7 part) and the figures of the data reduction don’t have the chart names unlike other figures in the poster.
+
+Evaluation on Clarity and quality of writing:
+The report is clearly written and the figures are clearly used as well as organized. The writing style is extremely excellent. However, it will be better if all the figures could be explained or compared instead of laying without explanations. To show the main figures can also be a good solution. There is also one formatting issue, in which the ‘given by LDA …’ in No.7 part should be compete. The topic order number starting from 1 instead of 0 will also help the readers to comprehensive more on this project.
+Grade:4
+
+Evaluation on Technical Quality:
+For this project, the LDA and manifold learning methods are applied. The visualization of the figures and the reports are very excellent. The results show the validated conclusions on the topics of NIPS paper. Interestingly, the word cloud and the trend curve of topics and words can also retrieve the 5 topics. The strengths and weaknesses of the approaches should be mentioned as well as the relevant researches with the same observation.
+Grade:5
+
+Overall rating:4.5
+Confidence:3
+
+
+
+
+Fang yu:
+
+- Summary of the work:
+
+They conducted topic trend analysis and topic embedding visualization. They used LDA to find topics first, and then used t-SNE to visualize the results. Then several data reduction methods are used to get lower dimensional distribution. 
+
+- Strengths:
+
+1. The idea of the paper is clear. 
+2. Comprehensive analysis and comparison of different dimension reduction methods.
+
+- Weakness:
+
+1. In the trend analysis, the y-axis should be normalized by the total number of paper that year to reduce the effects of total number of paper published. 
+
+- Evaluation on Clarity and quality of writing
+
+3
+
+It's generally well organized. But, there are many obvious typos, like, in the 1st line of the abstract, analyses -> analysis (While in the last line in the abstract, you used "analysis".) And, 1st line of section 2.1, totally -> in total. Publishing year -> publishing years or the publish year.
+
+- Evaluation on Technical Quality (1-5)
+
+5
+
+- Overall Rating
+
+4.
+
+The works are solid and evaluations are comprehensive, while the writing can be improved.
+
+- Confidence
+
+3
+
+
+
+
+
+Zhiyuan Yu:
+
+Summary
+This project first uses LDA to find topics for each NIPS paper and then applies several
+data reduction methods to visualize the result.
+Pros and Cons
+The project raises a very nice problem. The authors also have done a lot of work in
+visualization which depicts their result clearly and comprehensively. Although the
+project has done a prefect job, it might be better to compare LDA with recent deep
+learning based language models.
+Clarity and quality of writing: 4. The poster is too colorful. Using a high contrast but
+simple color scheme might be a better choice.
+Technical quality: 5.
+Overall rating: 5.
+Confidence: 3.
+
+
+
+
+
+Xiaowen Fu:
+
+Summary: The report explores the categories of topics in NIPS, the trend of the number of appearances over time, and visualization of the results. 
+After basic data preprocessing and description, it conducts Latent Dirichlet Allocation (LDA) to find 6 topics which appear most from 1987 to 
+2016. Then, the report shows the trend of appearances of the 6 top topics. Besides, the report uses algorithms, including PCA, MDS, LLE, LTSAM, 
+Hessian LLE, Modified LLE, Isomap, and Spectral Embedding to visualize the results with regards to paper topics and words according to the 
+categories of the selected 6 hot topics. In the last, the report uses t-SNE to demonstrates the validity of their results and analysis.
+
+Strengths: Clear and reasonable research topics; good use of algorithms to solve corresponding problems; various attempts with different 
+algorithms; results consistent with basic analysis; concise and rigorous writing.
+
+Weaknesses：Lack of straightforward presentation of data in files such as ‘paper_topics’ and ‘top_topics’ instead of just word description; 
+lack of mathematical statement of algorithms.
+
+Evaluation on Clarity and Quality of Writing: 5
+
+Evaluation on Technical Quality: 5
+
+Overall Rating: 2
+
+Confidence on my Assessment: 3
+
+
+
+
+
+Jiayi Li:
+
+Conducted analysis on topics in NIPS papers, try to find out the category and trend of the paper topics.
+Strength: Applied multiple methods of data reduction.
+Weakness: Conclusion could be explained in more details.
+Evaluation on Clarity: 5
+Evaluation on Technical Quality:5
+Overall rating:5
+Confidence on your assessment: 2 
+
+
+
+
+
+Jiamin Wu:
+
+Summary of the report.
+The report of group 1 shows the trend of topics changes in NIPS from 1987 to 2015 by choosing 6 topics by LDA. The methods tired for high dimensional matrix deduction are LLE, LTSA, HLLE, MLLE, Isomap, LE, PCA and MDS. They briefly introduce the methods with clear visualization. The main purpose for dimension deduction is to easily visualize the results.
+Describe the strengths of the report. 
+1.	Uses the ‘worldcloud’ package showing the most frequently appeared words intuitively.
+2.	Compares different methods for matrix dimension deduction.
+3.	The figures are beautiful.
+Describe the weaknesses of the report.
+1.	The results are beautiful, but the analyses are not enough.
+2.	Visualization is not the only purpose to change the dimension of matrix.
+Evaluation on Clarity and quality of writing (1-5): 4
+The report clearly written with figures and well designed. I don’t find any problems with style, grammar, formatting, references, etc. in the report. But more analysis or discussion is preferred for me. The poster is beautiful but there is a typo of format: section 7, the first line disappears.
+Evaluation on Technical Quality (1-5): 4
+The results technically sound with obvious flaws in the reasoning. Claims well-supported by theoretical analysis or experimental results. The experiments well thought out and convincing. It is easy for other researchers to replicate these results from the notebook. The evaluation appropriate. But the authors don’t assess the strengths and weaknesses of their approaches. Relevant papers cited, discussed, and compared to the presented work.
+Overall rating: 5 
+My vote as the best-report. 
+Confidence on your assessment (1-3): 3
+I have carefully read the paper and checked the results.
+
+
+
+
+
+
+Sum Wing Hei:
+
+Summary:
+It explores 5 popular topics of NIPS literatures between 1987 to 2015. It uses manifold, PCA, and MDS approach to visualize the topic extraction. It gets a good result in extracting the hottest paper topics.
+Strengths:
+It can clearly extract the 5 topics from the paper and visualize the result of paper topic groups.
+Weaknesses:
+It can explain more on the topic trend in the part of conclusion since it seems the changes are large.
+Clarity and quality of writing:
+5, I think they have provided enough and clear figures to illustrate their results.
+Technical Quality:
+4, I think they have shown both the paper topic and word topic results and explained the result in paper topic had a clear pattern, but the word result did not in their conclusion. Maybe they can try to evaluate and compare other relevant paper with their work.
+Overall rating:
+4
+Confidence on my assessment:
+2
+
+
+
+
+
+Xueyang Quan:
+
+(a)	Summary:
+This project contains three parts. First of all, it gives an analysis of collected words picked up from NIPS among 1987 and 2015. Authors use Latent Dirichlet Allocation to extract 5 most popular topics from NIPS successfully, for example, Computer Vision, Matrix Computation, etc. 
+Secondly, they apply t-distributed stochastic neighbor embedding to visualize the above 5 topics, also, they analyze the trend of papers in NIPS. 
+Finally, they try many data reduction methods (like Locally Linear Embedding, Hessian LLE, Isometric Mapping, Principal Component Analysis, Multidimensional Scaling) to reduce the dimension of the original data.
+
+(b)	Strength: 
+Authors are good at using tables, graphs, and plots to help explain their ideas. The visualization results on NIPS are great. Authors briefly introduce and compare different data reduction methods, and they put the results together, it’s very straightforward to see the difference of distinct methods.
+
+(c)	Weakness: 
+This paper is logically clear, and it might be better if the dataset can contain the NIPS papers of recent years so that the trend analysis will be more meaningful.
+
+(d)	Evaluation on Clarity and quality of writing: 5
+
+(e)	Evaluation on Technical Quality: 4.5
+
+(f)	Overall rating: 4.5
+
+(g)	Confidence on your assessment: 1
+
+
+
+Ip Ho Pan:
+
+Summary
+The project employed LLE, LTSA, MLLE, Isomap, Spectral Embedding, PCA, MDS on NIPS dataset. They successfully generate five topics from these texts, such as deep learning, matrix computation, reinforcement learning, statistics. The performance of PCA, MDS, Isomap is better than LLE family manifold methods.
+Strengths
+The logic of this poster is clear and the visualization is very effective. Both report and poster are provided. The theme and background are consistent.
+Weaknesses
+No
+Evaluation on clarity and quality of writing: 5
+Evaluation on Technical Quality: 5
+Overall rating: 5
+Confidence: 3
+
+
+
+
+Yingshu Chen:
+
+• Summary of the report.
+From NIPS papers dataset from 1987 to 2015, the report discovers 5 top topics form words by Latent Dirichlet Allocation(LDA) and visualizes it by t-SNE which shows coherent classification. Several data reduction approaches including LLE, LTSA, Hessain LLE, MLLE, ISOMAP, Spectral Embedding, PCA, MDS are applied to words and documents for further analysis.
+• Describe the strengths of the report. 
+Data reduction methods are used to validate the 5 hottest topics found by LDA. 
+It is interesting to explore topics from NIPS data and analyze the trend.
+Writing is logical and well organized.
+• Describe the weaknesses of the report. 
+The investigation using data reduction methods of the top topic in NIPS did not go deep enough. Authors only considered all-year data, but did not have periodical analysis. A trend of a topic should align with times of technology and requirement (e.g.Fig.3), but there is not further validation or investigation using data reduction.
+• Evaluation on Clarity and quality of writing (1-5): 4
+o	Is the report clearly written? 4
+o	Is there a good use of examples and figures? 5
+o	Is it well organized?  4
+o	Are there problems with style and grammar? 4, Fig.4 is unnecessary; poster Sec 7 format error 
+o	Are there issues with typos, formatting, references, etc.? 5
+o	Please make suggestions to improve the clarity of the paper, and provide details of typos. 
+	Typo: Sec.1 1987-2016, should be 2015
+	Typo: Sec 2.1 “worldcould”, should be “wordcloud”
+	Fig.4 can be shown within  Fig.5 and Fig.6
+	Poster Sec 7, lack Point 1.
+	Suggestion: explore different time slots (according to Fig.3) of data using data reduction, and thus verify hot topics in that periods.
+
+• Evaluation on Technical Quality (1-5): 4
+o	Are the results technically sound?  5
+o	Are there obvious flaws in the reasoning? 4
+o	Are claims well-supported by theoretical analysis or experimental results? 4
+o	Are the experiments well thought out and convincing? 3, simple experiments but convincing.
+o	Will it be possible for other researchers to replicate these results? 5
+o	Is the evaluation appropriate? 4
+o	Did the authors clearly assess both the strengths and weaknesses of their approach? 3, no such assess, but acceptable.
+o	Are relevant papers cited, discussed, and compared to the presented work? 2, no other relevant papers cited.
+
+• Overall rating: 4 
+(5- My vote as the best-report. 4- A good report. 3- An average one. 2- below average. 1- a poorly written one). 
+• Confidence on your assessment (1-3) 3
+(3- I have carefully read the paper and checked the results, 2- I just browse the paper without checking the details, 1- My assessment can be wrong) 
+

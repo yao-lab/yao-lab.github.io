@@ -1,0 +1,219 @@
+Bingxin Huang:
+
+• Summary of the report
+The authors use non-Metric MDS to visualize the affinity among the key characters in Dream of the Red Chamber. Sparse PCA is used to analyse the main roles of the two parts in the book and show the difference between the two parts.
+• Describe the strengths of the report
+The author provides the clear visualization of the main characters and interesting relations, using clear diagrams and tables. 
+• Describe the weaknesses of the report
+The authors can use other data reduction methods.
+• Evaluation on Clarity and quality of writing: 4
+Clear writing and well organized.
+• Evaluation on Technical Quality: 3
+The content is simple as mentioned in the weakness part.
+• Overall rating: 4
+• Confidence on your assessment: 3
+
+
+
+
+
+Zongchao Mo:
+
+1. Summary of the report.
+By using the character-event data, this research analyzed the relation of characters
+by dimension reduction and study the novel plots by sparse principal component
+analysis. The affinity among key characters is well demonstrated by non-metric
+MDS. This research also well illustrated the main characters and plots of the novel
+in according to the novel.
+2. Describe the strengths of the report.
+Many details about the background are addressed. And the principle of technical
+detail is also well illustrated. Incorporating the dataset with the novel, this research
+gives a whole landscape between the character and plot.
+3. Describe the weaknesses of the report.
+The data visualization is not well performed. Some table would be more informatic
+if they are visualized.
+4. Evaluation on Clarity and quality of writing (1-5)
+Point 4. The report is clearly written and well organized in structure. The layout of
+figure and table is not well done. The reference is properly cited. No obvious
+grammar error could be found.
+5. Evaluation on Technical Quality (1-5)
+Point 5. The results are technically sound. Claims are well-supported by theoretical
+analysis or experimental results. Researchers could replicate these results by
+following the description.
+6. Overall rating: (5- My vote as the best-report. 4- A good report. 3- An average one.
+2- below average. 1- a poorly written one).
+Rating: 4
+7. Confidence on your assessment (1-3) (3- I have carefully read the paper and
+checked the results, 2- I just browse the paper without checking the details, 1- My
+assessment can be wrong)
+Confidence: 3
+
+
+
+
+Xiaowen Fu:
+
+Summary: The report conducts non-metric MDS to determine the relationship of characters and then uses Sparse PCA to evaluate the correlation
+between characters and events with character-event data.
+
+Strengths: Clear and meaningful research topics; good applications with algorithms to solve corresponding problems (for example, the report
+uses Sparse PCA due to the sparsity of character-event matrix instead of standard PCA); clear and precise algorithm presentation; concise and 
+rigorous writing.
+
+Weaknesses: Lack of reasonable result analysis in the perspective of the novel.
+
+Evaluation on Clarity and Quality of Writing: 4
+
+Evaluation on Technical Quality: 4
+
+Overall Rating: 4
+ 
+Confidence on my Assessment: 2
+
+
+
+
+
+
+Jiayi Li:
+
+Conducted analysis of relationship of characters by data reduction. Applying the method of PCA and MDS.
+Strength: The graphs are very well made and helped to better illustrate.
+Weakness: Could be explained in more details related to the novel’s narration.
+Evaluation on Clarity: 5
+Evaluation on Technical Quality:5
+Overall rating:5
+Confidence on your assessment: 2 
+
+
+
+
+
+Xueyang Quan:
+
+(a)	Summary:
+This report analyzes the correlation between events and characters in the classical novel Journey to the West. Authors use data reduction methods, Principal Component Analysis, and Multidimensional Scaling, to realize text analysis. Throughout the whole report, the authors firstly briefly describe what the dataset looks like, then they introduce the basic algorithms PCA and MDS, respectively. 
+After that, the authors compare the results of applying these two methods to Journey to the West with Dream of Red Chamber, both PCA and MDS can lead to the same conclusion that the network of characters in Journey to the West is looser than that of in Dream of Red Chamber.
+
+(b)	Strength: 
+Authors choose tables, graphs, or igraph of community networks to help explain the results, which seems to be visually great! Readers can clearly grasp the key features of the results and follow the conclusions that authors draw.
+
+(c)	Weakness:
+The idea of this paper is clear, but I think it might be better if the authors can give a final conclusion at the end of this paper rather than give it in the abstract.
+
+(d)	Evaluation on Clarity and quality of writing: 5
+
+(e)	Evaluation on Technical Quality: 4.5
+
+(f)	Overall rating: 4.5
+
+(g)	Confidence on your assessment: 1
+
+
+
+
+
+
+
+Xueyang Quan:
+
+(a)	Summary:
+This report analyzes the relationship among characters in one of the four classical novels in China, Dream of the Red Chamber. The character-event data is known (the whole dataset is divided into two sub-datasets), so authors make use of some dimensionality reduction methods, like MDS and sparse PCA, to visualize the character relation. 
+Most of the time, the pair distances between data are unknown, one cannot apply metric MDS, so, authors firstly set up a dissimilarity matrix, and then they propose non-metric MDS to visualize the key characters’ relation.
+Moreover, authors apply sparse PCA to character-event data to study the correlation between characters and events.
+
+(b)	Strength:
+Authors make good use of tables and plots to illustrate the relations between characters and events. And they also give some justifications on some relations which are easy to be ignored when reading this novel.
+
+(c)	Weakness:
+This report is great overall, but it might be better if applying different dimensionality reduction methods to the dataset, and check if they can attain the same conclusion or result.
+
+(d)	Evaluation on Clarity and quality of writing: 4.5
+
+(e)	Evaluation on Technical Quality: 4.5
+
+(f)	Overall rating: 4.5
+
+(g)	Confidence on your assessment: 1
+
+
+
+
+Kot Chun Kit:
+
+Summary of the report:
+The authors perform visualization of the affinity among the key characters in Dream of the Red Chamber by non-Metric MDS while applying Sparse PCA to analyze and show the difference between two parts of the book.
+The strength of the report:
+1)	The group provides detail implement of their experiment.
+2)	Great analyze on the obtained results.
+The weakness of the report:
+1)	It is recommended to apply more data reduction methods.
+
+Evaluation on Clarity and quality of writing:4
+The writing is well organized while performing good use of examples and figures.
+ Evaluation on Technical Quality: 4
+Claims are well-supported with experimental results and implementation is explained well with theoretical analysis. However, it would be better if more data reduction methods are applied
+Overall rating: 4
+Confidence: 3
+
+
+
+
+
+
+
+Yingshu Chen:
+
+• Summary of the report.
+The report explores the character relations in the novel Dream of the Red Chamber using dimension reduction approaches (non-metric MDS and sparse PCA).
+• Describe the strengths of the report. 
+It is interesting to analyze character relation in Dream of the Red Chamber using dimension reduction methods.
+There is clear initial data processing and checking.
+Writing is clear and easy to understand.
+Analysis of results is clear, reasonable and convincing.
+• Describe the weaknesses of the report. 
+Writing can be more robust with summary. 
+• Evaluation on Clarity and quality of writing (1-5): 5
+o	Is the report clearly written? 5
+o	Is there a good use of examples and figures? 5
+o	Is it well organized?  4
+o	Are there problems with style and grammar? 5
+o	Are there issues with typos, formatting, references, etc.? 5
+o	Please make suggestions to improve the clarity of the paper, and provide details of typos. 4
+	It would be better to provide some literature have similar conclusion about the discovered character relation, or contrast discovery about character relation for comparison.
+	Add a general discussion and conclusion.
+• Evaluation on Technical Quality (1-5): 4
+o	Are the results technically sound? 5  
+o	Are there obvious flaws in the reasoning? 5
+o	Are claims well-supported by theoretical analysis or experimental results? 5
+o	Are the experiments well thought out and convincing?  5
+o	Will it be possible for other researchers to replicate these results? 5 
+o	Is the evaluation appropriate? 3
+o	Did the authors clearly assess both the strengths and weaknesses of their approach? 3
+o	Are relevant papers cited, discussed, and compared to the presented work? 5
+
+• Overall rating: 5
+(5- My vote as the best-report. 4- A good report. 3- An average one. 2- below average. 1- a poorly written one). 
+• Confidence on your assessment (1-3): 3
+(3- I have carefully read the paper and checked the results, 2- I just browse the paper without checking the details, 1- My assessment can be wrong) 
+
+
+
+
+
+ADELEKE Maradesa & OGEDENGBE Ikeoluwa:
+
+Comments:
+• Research objective(s) not quantified; (hence) concluding statement comes across as arbitrary.
+• The number of principal components were not clearly defined, and the ones that showed the highest variance were not distinctly shown.
+• Figures not cited/explained in the discussion
+• Table names written below instead of above the tables
+• Inadequate organization/segmentation of the report
+Evaluation on Clarity:
+3
+Evaluation on Technicality:
+4
+Overall Rating:
+3.5
+Confidence:
+3

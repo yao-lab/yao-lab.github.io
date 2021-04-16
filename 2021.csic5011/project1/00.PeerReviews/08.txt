@@ -1,0 +1,353 @@
+Sarah Chow:
+
+Summary of the report
+The report visualizes the Single-nucleotide polymorphisms (SNPs) data using 3 different dimensionality reduction methods, including PCA, MDS, and t-SNE. After showing the results, it is concluded that PCA has the best performance among them. Also, the prediction accuracy for geographical distribution of different people using 5-fold cross-validation are presented.
+
+Describe the strengths of the report
+This report descripted the dimensionality reduction methods clearly and contained detail and holistic comparison the prediction accuracy for different combination of the methods.
+
+Describe the weaknesses of the report
+The application and the goal for data visualization and classification were not specified. (why is it important to classify people with different geographical variation)
+
+Evaluation on the clarity and quality of writing: 4
+The writing is cohesive and lucid. While the structure of the poster could have been more aligned, like in part 4, the text are in different regions.
+
+Evaluation on technical quality: 4
+Adequate details of the explanation to the methods, results and conclusion.
+
+Overall rating: 4
+
+Confidence on your assessment: 3
+
+
+
+Donghao Li:
+
+Summary of the report. 
+They first applied dimensionality reduction algoithms on the SNPs data to do to visualisation. Then compare the weather dimension reduction affect the classification accuracy.
+ 
+Describe the strengths of the report. The poster looks good and visualisation figure is clear.
+ 
+Describe the weaknesses of the report. The further analysis is somewhat weak. For classification, only give analysis to PCA.
+ 
+Evaluation on Clarity and quality of writing (1-5): 5
+Evaluation on Technical Quality (1-5): 4
+Overall rating: 4- A good report. 
+Confidence on your assessment (1-3) 3 I have carefully read the paper and checked the results
+
+
+
+
+Bingxin Huang:
+
+• Summary of the report
+The authors use statistical methods (PCA and MDS) with the tool of R studio to analyse the correlation between events and characters in Journey to the West.
+• Describe the strengths of the report
+The author provides the clear analysis of the results using different types of figures and tables. 
+• Describe the weaknesses of the report
+No
+• Evaluation on Clarity and quality of writing: 4
+Clear writing and well organized.
+• Evaluation on Technical Quality: 3
+• Overall rating: 4
+• Confidence on your assessment: 3
+
+
+
+
+
+Jiabao Li:
+
+Summary:
+This project applies different methods to explore the SNP data. In the exploration, the PCA, MDS and t-SNE methods are applied to reduce the dimension of the SNPs. The reduction results show that the data points are laid in ‘V’ shaped in PCA, which may imply the order of the regions for SNPs. The dimension reduction results also show that the native Americans might migrate from Northeast Asia. 
+
+Strengths:
+This project compares with 3 different methods and the number of selected rows in PCA. The validation by Random Forest shows that the prediction model with PCA can predict the geographical information well with the accuracy of 98.4%.
+
+Weaknesses:
+The SNPs data is limited in reflecting the geographical information and only a very small part can decipher the region information for the samples. The future work should be related to the selection of the SNPs and the region information which is mapped to the SNPs.
+
+Evaluation on Clarity and quality of writing:
+The poster is pretty clean and clear for readers. The writing and the data visualization is in high quality. I love the color selection in this poster very much, neither to dark nor to light.
+The examples, charts and figures are well organized and clearly explained. The references is also remarkable for the detailed format.
+Grade:4
+
+Evaluation on Technical Quality:
+The technical methods in this project are well described. The logic in this project is quite clear and reasonable. The PCA, MDS and t-SNE are well performed and visualized. The code is attached for others to replicate the results. The future work mentions the strengths and weaknesses of the methods. The relative work can be discussed or compared in future.
+Grade:4
+
+Overall rating:4
+Confidence:3
+
+
+
+
+Zhiyuan Yu:
+
+Summary
+The project uses PCA, MDS and t-SNE to reduce the dimension of SNPs data and
+explore the relationship between geographical information and SNPs data.
+Pros and Cons
+Besides exploring the regional information, the author further investigates the
+region prediction accuracy under different SNPs data size, which shows small part of
+SNPs is sufficient to give accurate prediction. The idea of this project is very
+interesting but it would be better if author can explain why MDS result differs a lot in
+full data size and small data size.
+Clarity and quality of writing: 5.
+Technical quality: 5.
+Overall rating: 5.
+Confidence: 2.
+
+
+
+
+
+Hanze Dong:
+
+Summary: This project applied some dimensionality reduction methods on the SNPs data to
+explore the relationship between the genetic variation of peoples and their geographical
+variation; used random forest to predict the regions where people come from based on SNPs
+and compared the accuracy of predictions with or without dimensionality reduction.
+Strengths: The result is quite clear and easy to understand. It compares reduction method
+thoroughly.
+Weaknesses: The novelty might be improved. Data dependent consideration might help to
+improve the completeness.
+Clarity: 5
+Technical Quality: 4
+Overall rating: 4
+Confidence: 3
+
+
+
+
+
+Zongchao Mo:
+
+1. Summary of the report.
+The poster showed different ways in SNP dataset dimension reduction. And by
+applying random sampling, this research found that even a small number of SNP
+could represent the whole landscape of population genetic difference. The author
+also use random forest method to do the prediction.
+2. Describe the strengths of the report.
+The whole poster is coherent and consistent. All of the results could replicated the
+results and gain similar result of the original study.
+3. Describe the weaknesses of the report.
+The underlying meaning of the results of different dimension reduction method is
+not well illustrated. For example, when deciding to choose one method, which is
+the best?
+4. Evaluation on Clarity and quality of writing (1-5): Is the report clearly written? Is
+there a good use of examples and figures? Is it well organized? Are there problems
+with style and grammar? Are there issues with typos, formatting, references, etc.?
+Please make suggestions to improve the clarity of the paper, and provide details of
+typos.
+Point 4. The poster is clearly written and well organized in structure. The reference
+is properly cited. No obvious grammar error could be found. Also, the layout and
+visualization is well done.
+5. Evaluation on Technical Quality (1-5):
+Point 5. The results are technically sound. Claims are well-supported by theoretical
+analysis or experimental results. Researchers could replicate these results by
+following the description.
+6. Overall rating: (5- My vote as the best-report. 4- A good report. 3- An average one.
+2- below average. 1- a poorly written one).
+Rating: 4
+7. Confidence on your assessment (1-3) (3- I have carefully read the paper and
+checked the results, 2- I just browse the paper without checking the details, 1- My
+assessment can be wrong)
+Confidence: 3
+
+
+
+
+
+
+
+Yuqia Wu:
+
+Summary of the project:
+The exhibition format of this project is a poster. In the project, the authors used
+PCA(principal component analysis), MDS(Multidimensional Scaling), t-SNE(t-Distributed
+Stochastic Neighbor Embedding) to make dimensionality reduction on a data set named
+SNPs, a type of genetic variation and predict the regions where people comes from. The
+results show that all these three methods can well make a classification, but PCA performs
+best. And then they apply random forest to prediction. The numerical experiences
+indicate that random forest + PCA achieve highest accuracy.
+Strengths and Weaknesses:
+In my opinion, this poster can clearly show the comparison of several dimensional reduction
+methods. The design of the experimental method is good. It well controls the
+variables to show various influencing factors. But I think the project also need to show
+the numerical result for q < 1000. In my opinion, the lower bound mentioned in Sec.7 of
+poster may be influenced by the number of samples. When the truncated data matrix is
+nearly of full-rank(row), I think the accuracy rate of prediction will not be so low. I am
+interested in how the prediction performs when q  1043.
+Evaluation on Clarity and quality of writing: 5
+The comments can help readers understand the figures and tables. Although the poster
+is short, the content is well-organized and really complete.
+Evaluation on Technical Quality: 4
+I think this poster lack some in-depth discussion of theory.
+Overall Rate: 4
+Confidence on your assessment: 3
+
+
+
+
+
+
+
+
+Xiaowen Fu:
+
+Summary: The report first conducts dimension reduction on SNPs data with different methods to explore the relationship between genetic
+variation of peoples and their geographical variation. Then the report applies random forest to predict the regions where people come from
+and then explores the influence of dimension reduction on prediction accuracy.
+
+Strengths: Clear and meaningful research topics; good explanation of dataset; clear results and sufficient comparison among algorithms; 
+sufficient analysis about the result; description of future work; concise and rigorous writing style.
+
+Weaknesses: lack of mathematical statement of algorithms.
+
+Evaluation on Clarity and Quality of Writing: 5
+
+Evaluation on Technical Quality: 5
+
+Overall Rating: 1
+
+Confidence on my Assessment: 3
+
+
+
+
+
+
+Jiayi Li:
+
+Applied data reduction on the SNPs data and than using random forest to make prediction based on dimension reduced data and original data to test whether the data reduction can enhance the accuracy.
+Strength: The analysis compared whether the accuracy will be enhanced be data reduction.
+Weakness: maybe explained more on Random forest?
+Evaluation on Clarity: 5
+Evaluation on Technical Quality:5
+Overall rating:5
+Confidence on your assessment: 3
+
+
+
+
+
+
+
+
+
+Sum Wing Hei:
+
+Summary:
+It uses PCA, MDS, and t-SNE approaches reduce the dimensionality in the SNPs data set. Then, it compares the accuracy in the prediction of Random Forest with and without the reduction approach.
+Strengths:
+It shows a clear result in the data reduction approaches with the figures. The comparison of prediction accuracy also illustrates the strengths of PCA, MDS, and t-SNE approaches
+Weaknesses:
+The accuracy decreases a lot after it reduces the number of SNPs. It can also compare the accuracy in which we do not use PCA and only use Random Forest to predict 1000 randomly selected SNPs.
+Clarity and quality of writing:
+5, I think the content is abundant and the result with figures are strong to support its hypothesis.
+Technical Quality:
+5, it has a good comparison result on the prediction accuracy with data reduction. It also has some reference paper to stand with its hypothesis.
+Overall rating:
+5
+Confidence on my assessment:
+2
+
+
+
+
+
+Chutian Huang:
+
+Summary: 
+In their project, they used the SNPs data and applied some dimensionality reduction methods, then they used random forest to predict the regions where people come from based on SNPs and compared the accuracy of predictions with or without dimensionality reduction. 
+
+Strengths: Their poster is very clear. They used various methods for dimension reduction and prediction. In the end, they made a detailed analysis and drew a convincing conclusion.
+Weaknesses: Could analysis more about why PCA has the best performance and t-SNE has the worst.
+
+Evaluation on Clarity and quality of writing (1-5):
+Is the report clearly written?  5
+Is there a good use of examples and figures? 5
+Is it well organized? 5
+Are there problems with style and grammar? 5
+Are there issues with typos, formatting, references, etc.? 5
+
+All assessment with confidence 3
+
+Evaluation on Technical Quality (1-5): 
+Are the results technically sound? 5
+Are there obvious flaws in the reasoning? 4
+Are claims well-supported by theoretical analysis or experimental results? 5
+Are the experiments well thought out and convincing? 5
+Will it be possible for other researchers to replicate these results? 5
+Is the evaluation appropriate? 5
+Did the authors clearly assess both the strengths and weaknesses of their approach? 4
+Are relevant papers cited, discussed, and compared to the presented work? 5
+
+All assessment with confidence 2
+
+Overall Rating: 4.5
+Confidence: 2.5
+
+
+
+
+
+Xueyang Quan:
+
+(a)	Summary:
+In this poster, the authors analyze the SNPs data by applying two data reduction methods Principal Component Analysis and Multidimensional Scaling. They firstly introduce the dataset of SNPs, then utilize PCA, MDS, t-SNE to reduce the dimension of the original SNPs data. Based on the above results, the authors perform an analysis on the relationship between genetic information of people and their corresponding geographical information.
+Besides, based on SNPs, authors also give the prediction on which regions people may come from. Different combinations of random forest, PCA, MDS, t-SNE methods lead to various methods that can help with prediction. 
+
+(b)	Strength:
+I think it’s great that authors not only give conclusions in this poster, they also present future work. It gives readers guidance on some further knowledge. Also, there are several good plots for readers to understand the differences among distinct methods.
+
+(c)	Weakness:
+It might be better to point out why to choose these three out of plenty of data reduction methods, perhaps, they may give some explanations, like, PCA and MDS are linear dimensionality reduction techniques, meanwhile, t-SNE is a non-linear technique?
+
+(d)	Evaluation on Clarity and quality of writing:4.5
+
+(e)	Evaluation on Technical Quality:4.5
+
+(f)	Overall rating:4.5
+
+(g)	Confidence on your assessment:1
+
+
+
+
+
+
+
+Kot Chun Kit:
+
+Summary of the report:
+The group investigates the relationship between the genetic and geographical variation of people by applying multiple dimension reduction methods on the SNPs data. They also measure and compare accuracy on prediction methods that are combined with different amounts of data and data reduction methods.
+The strength of the report:
+1)	The poster is well organized and clear.
+2)	The group provides great analyze on the result.
+The weakness of the report:
+1)	The label in the graphic result can enlarge a bit.
+Evaluation on Clarity and quality of writing: 4
+A typo is found in the introduction where ‘peoples’ should be ‘people’.
+Evaluation on Technical Quality: 5
+The group provides great technical analysis while performing multiple data reduction methods while combining them with random forest to do prediction.
+Overall rating: 5
+Confidence:  3
+
+
+
+
+
+Ip Ho Pan:
+
+Summary
+The project applied PCA, MDS, t-SNE to explore the relationship between genetic variation and geographical variation of people. Then they compared the performance of random forest for prediction with or without dimensionality reduction. They found that a small part SNPs could inform the geographical information.
+Strengths
+The logic flow is clear. Methods are clearly explained. Interesting data visualization. Be able to combine with machine learning methods (random forests) to perfume analysis.
+Weaknesses
+No
+Evaluation on clarity and quality of writing: 4.5
+Evaluation on Technical Quality: 5
+Overall rating: 4.5
+Confidence: 3

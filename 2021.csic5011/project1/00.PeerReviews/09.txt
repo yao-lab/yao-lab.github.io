@@ -1,0 +1,243 @@
+Fan Xian:
+
+• Summary of the report.
+The authors of the poster did a task of identifying the authors of the articles on the NIPS paper dataset.
+
+• Describe the strengths of the report.
+The authors described their goals and some methods they chose clearly, and analyzed the classification results well.
+
+• Describe the weaknesses of the report.
+The description of the methods ‘Word embedding’ and ‘Phase embedding’ seems to be not enough. The visualization results seems to be lack of some analysis.
+
+• Evaluation on Clarity and quality of writing (1-5): 3
+The table between section 3 and section 4 is lack of annotations and a caption. It may be better to put it in the block section 4. The figures before section 7 is also lack of captions and legends. It seems that it is better to put the Figure 1 in/after section 3.
+There is a problem with serial numbers of sections. (section 5,6 ?)
+
+• Evaluation on Technical Quality (1-5): 3.5
+
+• Overall rating: 3
+
+• Confidence on your assessment (1-3): 2
+
+
+
+
+
+Zhiyuan Yu:
+
+Summary
+The project proposes a very interesting task predicting authors from NIPS papers.
+The authors consider this task as a multilabel classification problem. To solve this
+problem, the authors uses word embedding and phrase embedding with different
+classifiers. Then they compare the performance between different methods.
+Pros and Cons
+The problem raised in this project is very novel. The authors uses tables and figures
+to demonstrate their idea clearly and thoroughly. The poster is well presented overall
+but it might be better if the authors can explain more about the visualization figures.
+Clarity and quality of writing: 5.
+Technical quality: 5.
+Overall rating: 5.
+Confidence: 2.
+
+
+
+
+
+
+Zongchao Mo:
+
+1. Summary of the report.
+By inputting the raw text of the paper, this research tried to identify the authors
+using multi-class classification model. And finally found that phrase embeddings
+works better than word embeddings for the HITS@k. Also, further visualization is
+also performed.
+2. Describe the strengths of the report.
+This report tried different classification method using optimized parameters to
+realize the greatest performance.
+3. Describe the weaknesses of the report.
+There is no independent validation dataset to test the robustness of the model. And,
+there should be more illustration in the PCA visualization, or at least, figure legend
+should be provided for reading. The tags in the figure is heavily overlapped.
+4. Evaluation on Clarity and quality of writing (1-5): Is the report clearly written? Is
+there a good use of examples and figures? Is it well organized? Are there problems
+with style and grammar? Are there issues with typos, formatting, references, etc.?
+Please make suggestions to improve the clarity of the paper, and provide details of
+typos.
+The report is clearly written and well organized in structure. But the reference is
+not properly cited in format. I cannot find where was the reference cited across the
+whole report. No obvious grammar error could be found.
+5. Evaluation on Technical Quality (1-5): Are the results technically sound? Are there
+obvious flaws in the reasoning? Are claims well-supported by theoretical analysis
+or experimental results? Are the experiments well thought out and convincing? Will
+it be possible for other researchers to replicate these results? Is the evaluation
+appropriate? Did the authors clearly assess both the strengths and weaknesses of
+their approach? Are relevant papers cited, discussed, and compared to the presented
+work?
+The results are technically sound. Claims are well-supported by theoretical analysis
+or experimental results. Researchers could replicate these results by following the
+description. There is no too much evaluation regarding the weakness.
+6. Overall rating
+Rating: 4
+7. Confidence on your assessment (1-3)
+Confidence: 2
+
+
+
+
+
+Jiamin Wu:
+
+Summary of the report.
+The poster of group 9 works on a multi-label prediction problem that identifying authors using word/phrase embedding of NIPS paper dataset. The methods used including LR, MLP and SVM. As the task is multi-label, they train 9784 single-class classification models separately and visualize them by PCA.
+Describe the strengths of the report. 
+1.	There is a clear task definition so that reader can know the aim of the project clearly.
+Describe the weaknesses of the report.
+1.	There is seldom analysis.
+Evaluation on Clarity and quality of writing (1-5): 4
+The poster clearly written with figures and well designed. I don’t find any problems with style, grammar, formatting, references, etc. in the poster. But more analysis or discussion is preferred for me. 
+Evaluation on Technical Quality (1-5): 4
+The results technically sound with obvious flaws in the reasoning. Claims well-supported by theoretical analysis or experimental results. The experiments well thought out and convincing. It is easy for other researchers to replicate these results from the notebook. The evaluation appropriate. But the authors don’t assess the strengths and weaknesses of their approaches. Relevant papers cited, discussed, and compared to the presented work. One problem is that they define the project as a prediction task, but it seems like a classification problem?
+Overall rating: 4 
+A good report. 
+Confidence on your assessment (1-3): 2
+I just browse the paper without checking the details.
+
+
+
+
+
+
+
+Sum Wing Hei:
+
+Summary:
+It tries to use word/phrase embedding of the NIPs paper to identify the authors in the data set. It uses LR/SVM and MLP as the classification methods and PCA to reduce the dimension of the data.
+Strengths:
+It clearly indicates the paper phase vectors and the result of PCA with figures.
+Weaknesses:
+There are less dimension reduction approaches used in the evaluation.
+Clarity and quality of writing:
+4, the content and description are clear. The visualization of PCA is also good to understand but it can have more figures to illustrate the result with more other methods.
+Technical Quality:
+4, it can include more other data reduction approaches, like the Manifold method, to see if it can improve the result.
+Overall rating:
+4
+Confidence on my assessment:
+2
+
+
+
+
+
+Mengyue Zha:
+
+Summary:
+Authors in the computer science area may have different patterns of word or phrase choices due to subarea or specific research problems when writing academic papers. We introduce the task of identifying authors given an academic article from the NIPS paper dataset. Technical terms have different meanings that are not easily inferred literally and we represent the paper text from the phrase granularity.  
+
+Strengths: Very Good Methodologies, Visualizations and reasoning. 
+Weaknesses: No obvious weakness
+
+Evaluation on Clarity and quality of writing (1-5):
+Is the report clearly written?  5
+Is there a good use of examples and figures? 5
+Is it well organized? 5
+Are there problems with style and grammar? 4
+Are there issues with typos, formatting, references, etc.? 4
+
+All assessment with confidence 2
+
+Evaluation on Technical Quality (1-5): 
+Are the results technically sound? 5
+Are there obvious flaws in the reasoning? 2
+Are claims well-supported by theoretical analysis or experimental results? 5
+Are the experiments well thought out and convincing? 4
+Will it be possible for other researchers to replicate these results? 4
+Is the evaluation appropriate? 4
+Did the authors clearly assess both the strengths and weaknesses of their approach? 4
+Are relevant papers cited, discussed, and compared to the presented work? 4
+
+All assessment with confidence 2
+
+Overall Rating: 4
+Confidence: 3
+
+
+
+
+
+Kot Chun Kit:
+
+Summary of the report:
+The group performs word and phrase embedding to classify and identify authors with the NIPS paper dataset. Results indicate that phrase embedding is superior to word embedding in the given task.
+The strength of the report:
+1)	The group introduced their applied method clearly.
+The weakness of the report:
+1)	The content on analyzing the obtained result can be explained a bit more.
+Evaluation on Clarity and quality of writing: 3
+The formatting of the poster can be more organized.
+Evaluation on Technical Quality: 3
+The group can try and compare more classification methods. 
+Overall rating: 3
+Confidence: 3
+
+
+
+
+Yingshu Chen:
+
+• Summary of the report.
+Authors introduce a task of identifying authors given a NIPS paper in the NIPS dataset. And the task is solved as a multi-label classification problem.
+• Describe the strengths of the report. 
+The problem setting is sort of smart to make it a multi-label classification task.
+• Describe the weaknesses of the report. 
+The topic is not much related to dimension reduction, the only PCA result lack further analysis.
+There is a gap or disconnection between the classification task and visualization results.
+Lack of conclusion and discussion, objective is ambiguous.
+• Evaluation on Clarity and quality of writing (1-5): 3
+o	Is the report clearly written? 3
+o	Is there a good use of examples and figures? 3
+o	Is it well organized?  3
+o	Are there problems with style and grammar? 5
+o	Are there issues with typos, formatting, references, etc.? 5
+o	Please make suggestions to improve the clarity of the paper, and provide details of typos. 
+	Why not try multi-label classification approach, there should be some existing algorithm? It would be better to do comparison with your One vs Rest strategy and validate yours is better.
+	The proposed task seems meaningless.
+	The visualization and clustering seem to be meaningless, which lacks detailed description. This part can be further explored or just removed.
+• Evaluation on Technical Quality (1-5): 4
+o	Are the results technically sound?  5
+o	Are there obvious flaws in the reasoning? 3
+o	Are claims well-supported by theoretical analysis or experimental results? 4
+o	Are the experiments well thought out and convincing? 4
+o	Will it be possible for other researchers to replicate these results? 5
+o	Is the evaluation appropriate? 4
+o	Did the authors clearly assess both the strengths and weaknesses of their approach? 4
+o	Are relevant papers cited, discussed, and compared to the presented work? 4
+
+• Overall rating:  2
+(5- My vote as the best-report. 4- A good report. 3- An average one. 2- below average. 1- a poorly written one). 
+• Confidence on your assessment (1-3) 3
+(3- I have carefully read the paper and checked the results, 2- I just browse the paper without checking the details, 1- My assessment can be wrong) 
+
+
+
+
+
+
+
+
+
+
+ADELEKE Maradesa & OGEDENGBE Ikeoluwa:
+
+Comments:
+• No abstract was provided
+• The method of analysis adopted is beyond the scope of this course (CSIC 5011). However, PCA was used in one case to visualize phrase embeddings.
+Evaluation on Clarity:
+4
+Evaluation on Technicality:
+4
+Overall Rating:
+4
+Confidence:
+3
+

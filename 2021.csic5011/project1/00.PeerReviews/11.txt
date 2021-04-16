@@ -1,0 +1,31 @@
+Bingxin Huang:
+
+• Summary of the report
+The authors explore the relationship between the genetic variation of peoples and their geographical variation by applying some dimensionality reduction methods on the SNPs data and predict the regions where people come from through random forest method.
+• Describe the strengths of the report
+The authors provide the clear visualization of the high dimensional SNPs data using different methods, like PCA, MDS and t-SNE, and also compared the accuracy of predictions with or without dimensionality reduction.
+• Describe the weaknesses of the report
+No
+• Evaluation on Clarity and quality of writing: 4
+Clear writing and well organized.
+• Evaluation on Technical Quality: 3
+• Overall rating: 4
+• Confidence on your assessment: 3
+
+
+
+
+
+Chiyu Ma:
+
+•	Summary: 
+ 	This report analyzes the character relationship in Journey to the West by PCA and MDS. Given the character-event matrix, PCA reveals the key characters by principal components. And by MDA, the relationship among characters is visualized.
+•	Strengths and weaknesses:
+ 	It applied statistical techniques in Journey to the West successfully. In PCA, master Tripitake (’ 唐僧’) and his three apprentices Monkey King (’ 孙悟空’), Pigsy(’ 猪八戒’) and Sandy (’ 沙僧’) don't appear in the top two principal component, which is an interesting phenomenon. Maybe this phenomenon could be explained if there are more preprocessing. When dealing with MDS, this report seems applied the metric MDS, according to the section 5.1. However, the matrix constructed in section 5.2 is like the dissimilarity rather than the distance, which might be improved. Plus, Figure 3 and 5 could be more obvious. Actually, i'm really curious why 孙悟空 is far from 猪八戒 but closed to 狮驼岭老妖. 
+•	Evaluation on Clarity and quality of writing: 2
+ 	The abstract could be an independent part rather than the first section. Table 3's title should be the second principal component. Figure 5 seems not a community network.
+•	Evaluation on Technical Quality: 3
+•	Overall rating: 3
+•	Confidence on your assessment: 3 
+
+

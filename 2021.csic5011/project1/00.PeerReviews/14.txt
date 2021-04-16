@@ -1,0 +1,155 @@
+Donghao Li:
+
+Summary of the report. 
+They utilized AccAltProj and DECOLOR on a video dataset. They compare the image recovery and foreground/background separation tasks. They found that DECOLOR is better and there are some limitation of AccAltProj.
+ 
+Describe the strengths of the report. The authors explore a SOTA algorithm called DECOLOR which is not introduced in our class. 
+ 
+Describe the weaknesses of the report. The experiment setting is not introduced. For image recovery experiment, it is not clear how to use the DECOLOR algorithm. Also, there is no comparison in this task.
+ 
+Evaluation on Clarity and quality of writing (1-5): 4
+Evaluation on Technical Quality (1-5): 3
+Overall rating: 4- A good report. 
+Confidence on your assessment (1-3) 2- I just browse the paper without checking the details
+
+
+
+
+Jiabao Li:
+
+Summary:
+This project aims to compare with the image recovery performance of AccAltProj and DECOLOR methods. The dimension reduction results show that DECOLOR performs better than AccAltProj method to extract the entire image background from the videos. Additionally, the AccAltProj method seems not to be able to separate the background or foreground thoroughly and will leave some components. The methods and the comparison among the 2 methods are described detailly as well.
+
+Strengths:
+The report is clear and the formula is quite clear to show the difference of the methods. The report is well organized and the conclusion is very interesting based on the question asked in this project.
+
+Weaknesses:
+There are some grammar issues such as ‘which lefts’, ‘background image(s)’. The formula are not always labelled in the poster, some with the formula number, some without the formula number.
+
+Evaluation on Clarity and quality of writing:
+The writing is pretty clear. The formula is extremely clear written to show the approaches. The examples and figures are well organized. The format of the references and citation is quite good. The font size can be in the same scale or be not too different in the future.
+Grade:4
+
+Evaluation on Technical Quality:
+The results are well visualized and the conclusions are reasonable. The methods and the formula shows the evident difference or characteristics of the approaches. It will be better if the authors can discuss more on the strengths or the weaknesses of the approaches. 
+Grade:4
+
+Overall rating:4
+Confidence:3
+
+
+
+
+
+Fang Yu:
+
+- Summary of the work:
+
+The authors applied two Robust PAC algorithms to conduct video processing tasks, i.e., seperation between foregroud and backgroud. And they found DECOLOR performed better than AccAltProj and had some discussions about their potentials.
+
+- Strengths:
+
+Clear explanation of two new algorithms as well as mathematical formulation. 
+
+- Weakness:
+
+1. Lack of important empirical details (dataset size, evaluation metrics, results)
+2. The introduction part is too long however the task definitions should be introduced here.
+3. The code is not released. 
+
+- Evaluation on Clarity and quality of writing
+
+4
+
+- Evaluation on Technical Quality (1-5)
+
+5
+
+- Overall Rating
+
+3
+
+More experimental results should be included and the code should be attached for reproducing the results. 
+
+- Confidence
+
+3
+
+
+
+
+
+Hanze Dong:
+
+Summary: This work utilized Accelerated Alternating Projections PCA (AccAltProj) algorithm &
+DECOLOR algorithm to automatically analyze one given video, compared the results of these
+two methods, and shows the great Image recovery performance of RPCA algorithm.
+Strengths: It provides two algorithms with very clear illustrations pictures.
+Weaknesses: It might be better to provide more discussion about the results.
+Clarity: 4
+Technical Quality: 5
+Overall rating: 4
+Confidence: 3
+
+
+
+
+
+
+
+Yuqia Wu:
+
+Summary of the project:
+The exhibition format of this project is a poster. In this project, the authors used
+two algorithms AccAltProj(Accelerated Alternating Projections PCA) and DECOLOR
+algorithm on Robust PCA and compared the performance of these two algorithms.
+Strengths and Weaknesses:
+The authors give the details of two algorithms and I think it is good. The report can
+clearly show the comparison of two algorithm and the comment of the performance
+of algorithm is appropriate. But I think if the author compare the speed of the two
+algorithms, it will be better.
+Evaluation on Clarity and quality of writing: 5
+I think the organization of poster is good. The report can well express the content of the
+project and the figures is used appropriately. Although the report is short, the author
+also display the details of the algorithms and the part of numerical results does not take
+up a lot of space, so there is room for some discussion.
+Evaluation on Technical Quality: 5
+The authors use two different optimization algorithms to solve a model and make a
+comparison in terms of performance. The claim is well-supported by experimental results.
+Overall Rate: 5
+Confidence on your assessment: 3
+
+
+
+
+Xiaowen Fu:
+
+Summary: The report uses two RPCA algorithms, DECOLOR and AccAltProj, to analyze a video and then compares the recovery performance of 
+the algorithms.
+
+Strengths: sufficient background introduction and a mathematical statement about RPCA; clear results and comparison; description of the future 
+work.
+
+Weaknesses: Lack of introduction of the dataset; lack of analysis about the results and comparison.
+
+Evaluation on Clarity and Quality of Writing: 4
+
+Evaluation on Technical Quality: 4
+
+Overall Rating: 5
+
+Confidence on my Assessment: 2
+
+
+
+
+
+Jiayi Li:
+
+Utilized AccAltProj algorithm and DECOLOR algorithm to analyze videos and compared the accuracy.
+Strength:Very high technical quality
+Weakness: more data explaining maybe and less introduction maybe?
+Evaluation on Clarity: 5
+Evaluation on Technical Quality:5
+Overall rating:5
+Confidence on your assessment: 2

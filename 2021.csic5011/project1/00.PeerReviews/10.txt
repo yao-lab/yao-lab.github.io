@@ -1,0 +1,204 @@
+Donghao Li:
+
+Summary of the report. 
+They use different dimension reduction methods on US crime dataset. Then they compare all the methods and give a visualization.
+ 
+Describe the strengths of the report. The authors explore many algorithms and the idea is easy to follow.
+ 
+Describe the weaknesses of the report. Some of the visualization seems not very successful(MDS ISOMAP LLE).  The authors should give some explanations. Also, it seems there are some outliers in the data (class 5). Will it be better if we just remove them? 
+ 
+Evaluation on Clarity and quality of writing (1-5): 4 typo:figure b sparePCA -> sparsePCA
+Evaluation on Technical Quality (1-5): 4
+Overall rating: 4- A good report. 
+Confidence on your assessment (1-3) 3 I have carefully read the paper and checked the results
+
+
+
+
+
+
+
+
+
+
+Ip Ho Pan:
+
+Summary
+The project compared performances of PCA, Sparse PCA, MDS, Isomap, LLE on the crime rate dataset. They successfully reduced the number of dimension from 13 to 2. And found that PCA has a good performance and the crime number is affect by number of sworn police offices, number of civilian police employees by city and so on.
+Strengths
+The logic is clear. The visualization is clearly shown. The design of the poster is reader friendly. 
+Weaknesses
+No
+Evaluation on clarity and quality of writing: 5
+Evaluation on Technical Quality: 4
+Overall rating: 4.5
+Confidence: 3
+
+
+
+
+Hanze Dong:
+
+Summary: This work visualizes and observes the discrepancies in different parameters in
+contributing to the total number crime number.
+Strengths: This work provides detailed steps to illustrate the data and results of dimensionality
+reduction, which is very intuitive and clear.
+Weaknesses: The novelty is limited
+Clarity: 5
+Technical Quality: 4
+Overall rating: 4
+Confidence: 3
+
+
+Fang Yu:
+
+- Summary of the work:
+
+This project compared several dimensionality reduction methods for the U.S. crime data to identify critical factors that contributed to the crime tendency.
+
+- Strengths:
+
+1. The problem definition and data processing are clearly stated.
+2. The visulization figures are informative and verify the assumption.
+3. The analysis are comprehensive and good.
+
+- Weakness:
+
+1. may consider to give some statistics of the dataset for example one table.
+
+- Evaluation on Clarity and quality of writing
+
+5
+
+- Evaluation on Technical Quality (1-5)
+
+4
+
+- Overall Rating
+
+5
+
+- Confidence
+
+3
+
+
+
+
+Jiabao Li:
+
+Summary: 
+This project discusses the factors that influence the crime in US. By visualizing the dimension reduction results of the US crime data, the main factors are found to determine the crime rate. By comparing with the methods of PCA, SPCA, MDS, ISOMAP and LLE, the dimension reduction using PCA has the best performance, resulting in 2 main factors which are selected to influence the crime. This research can be used to evaluate the crime rate in a specific region, especially useful for the police or crime officers.
+
+Strengths:
+The question in this report is clearly described. The visualization of the dimension reduction is particularly beautiful. The methods as well as the data pre-processing step are well described and demonstrated. The interpretation for the results are pretty clear and detailed. The conclusions are reasonable due to the dimension reduction of the crime data. 
+
+Weaknesses:
+The figures can be clearer and the label can be better described in this report. The report also needs to compare with different relative research to demonstrate the evident proofs of the factors selected to interpret the crime.
+
+Evaluation on Clarity and quality of writing:
+The report is clearly written and the examples and figures are well included. The sections of the poster are well organized. The citation format can be improved in the future. The visualization of the dimension reduction is pretty clear and colourful. The color is clear to see the difference among various labels. 
+Grade:4
+
+Evaluation on Technical Quality:
+The approaches used in the report is clearly demonstrated as well as the analysis of the dimension reduction results. The conclusions made by the results of dimension reduction are reasonable for the crime factors such as number of sworn police officers employed by city, number of civilian police employees by city. The strengths of the approaches can be mentioned in future as well as the result validation. It will also be a good idea if this project can discuss the relative works to validate the results.
+Grade:4
+
+Overall rating:4
+Confidence:3
+
+
+
+
+
+
+Sum Wing Hei:
+
+Summary:
+It uses PCA, MDS, and other approaches to choose the top 2-3 important factors in the crime data set. 
+Strengths:
+It has used a lot of different approaches to illustrate which factors are the most important. Plenty of figures are also provided.
+Weaknesses:
+The result seems that it does not divide the groups obviously. Some colour dots are mixed with other kinds of colour dots in the figure, which may not give a strong result.
+Clarity and quality of writing:
+5, I think the content is well-organized and the explanation on each part is also clear.
+Technical Quality:
+4, the target and the methodology are both clear. But the result may not be convincing as the figures does not show a clear pattern in (c)(d)(e)(f). 
+Overall rating:
+4
+Confidence on my assessment:
+2
+
+
+
+
+
+
+
+
+Xueyang Quan:
+
+(a)	Summary:
+In this poster, the authors analyze the SNPs data by applying two data reduction methods Principal Component Analysis and Multidimensional Scaling. They firstly introduce the dataset of SNPs, then utilize PCA, MDS, t-SNE to reduce the dimension of the original SNPs data. Based on the above results, the authors perform an analysis on the relationship between genetic information of people and their corresponding geographical information.
+Besides, based on SNPs, authors also give the prediction on which regions people may come from. Different combinations of random forest, PCA, MDS, t-SNE methods lead to various methods that can help with prediction. 
+
+(b)	Strength:
+I think it’s great that authors not only give conclusions in this poster, they also present future work. It gives readers guidance on some further knowledge. Also, there are several good plots for readers to understand the differences among distinct methods.
+
+(c)	Weakness:
+It might be better to point out why to choose these three out of plenty of data reduction methods, perhaps, they may give some explanations, like, PCA and MDS are linear dimensionality reduction techniques, meanwhile, t-SNE is a non-linear technique?
+
+(d)	Evaluation on Clarity and quality of writing:4.5
+
+(e)	Evaluation on Technical Quality:4.5
+
+(f)	Overall rating:4.5
+
+(g)	Confidence on your assessment:1
+
+
+
+
+
+
+
+Yingshu Chen:
+
+• Summary of the report.
+The report show visualization of US crime data by classical dimensionality reduction approaches, including PCA, SparsePCA, MDS, ISOMAP, LLE.
+• Describe the strengths of the report. 
+The objective to reveal the factors affecting the total number of crimes is positively meaningful.
+• Describe the weaknesses of the report. 
+The final results are not ideal or not well analyzed, and thus the authors couldn’t well complete their objective of this report.
+From experiments I cannot get same conclusion that ALL factors affect the crime number.
+• Evaluation on Clarity and quality of writing (1-5): 3
+o	Is the report clearly written? 4
+o	Is there a good use of examples and figures? 2
+o	Is it well organized?  3
+o	Are there problems with style and grammar? 2, sentence sometimes is hard to understand. 
+o	Are there issues with typos, formatting, references, etc.? 4
+o	Please make suggestions to improve the clarity of the paper, and provide details of typos. 
+	In Section Data Preprocessing, “… the types of crimes would be lumped into the total number of crimes since we assume that the parameters have the commensurate loading contributing to all types of crimes…. also discarded some parameters that are conceivably not pertinent to crime-committing, such as mayor election and different terms of the year, and also the parameters that are closely related to each other, such as cities and states.”, better provide evidence or citation related to this assumption, or validate these factors are outliers in the data, otherwise they should be taken in to account or explored separately.
+	In all results, there are always 1 or 2 purple outlier dots, but no analysis for them.
+
+• Evaluation on Technical Quality (1-5): 3
+o	Are the results technically sound?  3
+o	Are there obvious flaws in the reasoning? 3
+o	Are claims well-supported by theoretical analysis or experimental results? 4
+o	Are the experiments well thought out and convincing? 3
+o	Will it be possible for other researchers to replicate these results? 5
+o	Is the evaluation appropriate? 3
+o	Did the authors clearly assess both the strengths and weaknesses of their approach? 3
+o	Are relevant papers cited, discussed, and compared to the presented work? 2
+
+Comments: 
+In Methodology Section, did not explain why only show top-2 or top-3 principal components in PCA results. It would be better display explained ratio.
+
+It is not reasonable enough to explore all variations (though picked 13 here) together to discovery the correlation between all factors and the total number of crimes. Some factors may not relate much to number of crimes, what if other factors count much and the low-dimension results still look acceptable.
+
+Technique is straightforward applied on all data, which lacked further consideration, e.g., which factors may weigh more on crime number.
+
+• Overall rating: 2
+(5- My vote as the best-report. 4- A good report. 3- An average one. 2- below average. 1- a poorly written one). 
+• Confidence on your assessment (1-3) 3
+(3- I have carefully read the paper and checked the results, 2- I just browse the paper without checking the details, 1- My assessment can be wrong) 

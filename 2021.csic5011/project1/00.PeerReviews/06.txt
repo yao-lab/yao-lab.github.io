@@ -1,0 +1,170 @@
+Sarah Chow:
+
+Summary of the report
+The report presented 3 different algorithms to solve principal component decomposition, they are ADMM, SPCP-max-QN and AccAltProj. The decomposition returns a sum of ta low rank matrix and a sparse matrix for latter robust principal component analysis (RPCA). The report compares the result of the 3 algorithms presented on its speed and performance. 
+
+Describe the strengths of the report
+The data visualization methods were descripted clearly and there are detailed introductions to each algorithm.
+
+Describe the weaknesses of the report
+There are some technical problems to be addressed.
+
+Evaluation on the clarity and quality of writing: 3
+Some punctuations and connectives are not very accurate. Sentence a little choppy. 
+
+Evaluation on technical quality: 4
+The conclusion could have explained a little clearer. It would be better to compare the methods more extensively.
+
+Overall rating: 4
+
+Confidence on your assessment: 3
+
+
+
+
+Jiabao Li:
+
+Summary:
+This project is based on the video surveillance. Stable principal component pursuit is a common optimization problem and the optimization algorithms are compared in this project. The AccAltProj algorithm is much faster than the ADMM and SPCP-max-QN in the aspect of the objective performance.
+
+Strengths:
+This project fulfills the 3 different projection methods to solve the stable principle component pursuit problem. The 3 approaches are well compared by the objective projection. The visualization of the video frames shows the original data, the low rank matrix, the sparse matrix and the results of three methods, which are clearly visualized and explained the differences.
+
+Weaknesses:
+It will be better if there are some formula which explains the ADMM, SPCP-mac-QN and AccAltProj methods. 
+
+
+Evaluation on Clarity and quality of writing:
+The report is clearly written and the examples as well as figures are well used. The sections of the poster are well organized and logical. The references can be improved with the reference symbol in the cited parts.
+Grade:4
+
+Evaluation on Technical Quality:
+The results in this project are reasonable and well explained. By comparing 3 different methods, the speed of the algorithm are evaluated in terms of the objective performance. The visualization of the results is particularly vivid and evident. The strengths and weaknesses of the approaches are discussed in the poster. The relative works can be mentioned and discussed in this work to improve further. 
+Grade:4
+
+Overall rating:4
+Confidence:3
+
+
+
+
+
+
+
+Fang Yu:
+
+- Summary of the work:
+
+They conducted Robust PCA analysis on video surveillance dataset. They test the performance (efficiency) of different optimizers, i.e., ADMM, SPCP-max-QN, and AccAltProj. 
+
+- Strengths:
+
+A novel and suitable method, Robust PCA, is selected for large-scale video dataset.
+
+- Weakness:
+
+1. The task is not clearly defined. From Section 5 we can know that you are checking how fast an optimization algorithm can reach a certain convergence. While in the introduction, it's unclear what you are trying to present in this poster. In addition, the title is misleading.
+2. The experiments are weak. Too many introduction to the 3 methods. 
+
+- Evaluation on Clarity and quality of writing
+
+4
+
+Experiments are unclear.
+
+- Evaluation on Technical Quality (1-5)
+
+5
+
+- Overall Rating
+
+3.
+
+First, the task is simple. Next, the problem is not well defined both in the title and the introduction, and the experiments lacks detailed analysis. 
+
+- Confidence
+
+3
+
+
+
+
+Zhiyuan Yu:
+
+Summary
+This project applies three different RPCA methods to segment people from
+surveillance video and compare the performance between methods.
+Pros and Cons
+The project uses lots of figures to demonstrate their result clearly. It would be better
+if they can introduce methods with some equations.
+Clarity and quality of writing: 4. The pictures do not align to the text.
+Technical quality: 4.
+Overall rating: 4.
+Confidence: 2.
+
+
+
+
+
+Yuqia Wu:
+
+Summary of the project:
+The exhibition format of this project is a poster. In this project, the authors use three algorithms,
+ADMM, SPCP-max-QN(a type of quasi-Newton method) and AccAltProj(an
+accelerated algorithm for RPCA), to solve Robust-PCA. And the authors display the
+visualization of the solutions of the model and compare the performance of three algorithms.
+Strengths and Weaknesses:
+I think the topic is good. Although the report is short, it can show the necessary contents
+like the performance and comparison of the algorithms. The disadvantage is that the
+poster cannot show more details of these algorithms.
+Evaluation on Clarity and quality of writing: 4
+I think the organization of poster is appropriate and the report can clear express the
+content of project. But I think maybe report is more suitable for this project because
+the workload of this project is a little large. More details of the algorithms can be
+displayed in the form of a report.
+Evaluation on Technical Quality: 4
+Technically, the experience can well support the claim of robust PCA. The authors use
+three different optimization algorithms to solve a model and make a comparison in terms
+of performance and speed. The claim is well-supported by experimental results and I
+think the content is complete.
+Overall Rate: 4
+Confidence on your assessment: 3
+
+
+
+
+
+Xiaowen Fu:
+
+Summary: The report conducts three optimization algorithms, including ADMM, SPCP-max-QN, and AccAltProj to solve the problem of 
+decomposing frames into the low-rank background and sparse background with surveillance video clip "shopping mall".
+
+Strengths: Good applications with advanced algorithms; clear results and sufficient comparison among algorithms; concise and rigorous writing.
+
+Weaknesses: Lack of detailed explanation of the goal of applying algorithms; lack of mathematical statement of algorithms.
+
+Evaluation on Clarity and Quality of Writing: 4
+
+Evaluation on Technical Quality: 5
+
+Overall Rating: 3
+
+Confidence on my Assessment: 2
+
+
+
+
+
+Ip Ho Pan:
+
+Summary
+The project made use of Robust PCA and some optimization algorithms such as ADMM, SPCP-max-QN, and AccAltProj to decompose the frame of surveillance into lower rank representations. They found that AccAltProj is faster compared with other algorithms.
+Strengths
+Methods used in the project are clearly described and explained. Logic is clear.
+Weaknesses
+No
+Evaluation on clarity and quality of writing: 4
+Evaluation on Technical Quality: 4
+Overall rating: 4
+Confidence: 3
+

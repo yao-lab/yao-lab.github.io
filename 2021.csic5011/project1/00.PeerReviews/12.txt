@@ -1,0 +1,167 @@
+Fan Xian:
+
+• Summary of the report
+The author preforms data processing on the SNPs data finding that SNPs data is highly skewed. Then author uses PCA for data reduction. By changing the original SNP values and comparing the percentage of variance explained by principal components, the author finds that the PCA cannot well keep information for the highly skewed data.
+• Describe the strengths of the report
+The author uses SNPs data as a special highly skewed data to show that PCA can’t well represent such kind of data, which is surprising.
+• Describe the weaknesses of the report
+The author may give more theoretical analysis or more experiments to illustrate why the decrease of percentage of variance explained will reduce.
+• Evaluation on Clarity and quality of writing: 2.5
+The report contains too many codes and will negatively affect the reading experience.
+• Evaluation on Technical Quality: 3.5
+The author analyses the effect of PCA on SNPs data from different angles. And the result is surprising especially if we just see the excellent vision effect on the PCA.
+• Overall rating: 3
+• Confidence on your assessment: 2
+
+
+
+
+
+
+Chutian Huang:
+
+Summary:
+This project used the MNIST dataset. The author separated the training set and test set, performed dimensionality reduction methods and compared the accuracy of predictions with dimension-reduced test set using various methods. 
+
+Strengths: Clear visualization, good structure, sound reasoning.
+Weaknesses: In the visualization part, it’s redundant to draw results of both train and test sets for every method on the poster since they are the same. The format and grammar could be improved.
+
+Evaluation on Clarity and quality of writing (1-5):
+Is the report clearly written?  4
+Is there a good use of examples and figures? 5
+Is it well organized? 5
+Are there problems with style and grammar? 4
+Are there issues with typos, formatting, references, etc.? 3
+
+All assessment with confidence 3
+
+Evaluation on Technical Quality (1-5): 
+Are the results technically sound? 4
+Are there obvious flaws in the reasoning? 3
+Are claims well-supported by theoretical analysis or experimental results? 4
+Are the experiments well thought out and convincing? 4
+Will it be possible for other researchers to replicate these results? 5
+Is the evaluation appropriate? 4
+Did the authors clearly assess both the strengths and weaknesses of their approach? 4
+Are relevant papers cited, discussed, and compared to the presented work? 3
+
+All assessment with confidence 2
+
+Overall Rating: 4
+Confidence: 2
+
+
+
+
+Yuqua Wu:
+
+Summary of the project:
+The exhibition format of this project is a report. In the project, the author used
+PCA(principal component analysis) to analyse single nucleotide polymorphism (SNP).
+By several experience result, the author draw a conclusion that a highly skewed datasets
+such as SNPs can obtain different PCA results.
+Strengths and Weaknesses:
+I think this topic of the report is interesting and the author give us a clear answer based
+on numerical experience. It provides an idea for improving the performance of PCA on
+some data sets. The comment near the figures can well help me understand. However, I
+think the format of this report is a little chaotic.
+Evaluation on Clarity and quality of writing: 3
+The figures in report are well explained and the comments are appropriate. But I think
+the organization of report is not so good. The code displayed in the report is redundant.
+(Maybe because I am not a R user.) I guess that poster is more suitable for this topic.
+Evaluation on Technical Quality: 4
+Although the technique used in this report is only PCA, but I think the topic is interesting.
+I think the author can try to give some guesses or analysis on this phenomenon.
+Overall Rate: 3
+Confidence on your assessment: 2
+
+
+
+Zongchao Mo:
+
+1. Summary of the report.
+This research identify that the representation of SNP genotype could affect the PCA
+performance of the SNP dataset.
+2. Describe the strengths of the report.
+Unlike the common way of representing SNP as 0,1,2, this report showed a
+different perspective in representing the SNP genotype and compare the PCA
+performance in explaining the variance. More importantly, this report is completed
+by just one person, good job.
+3. Describe the weaknesses of the report.
+Further comparison among different kind of SNP representation scenarios could be
+applied to learn more about the difference.
+4. Evaluation on Clarity and quality of writing (1-5): Is the report clearly written? Is
+there a good use of examples and figures? Is it well organized? Are there problems
+with style and grammar? Are there issues with typos, formatting, references, etc.?
+Please make suggestions to improve the clarity of the paper, and provide details of
+typos.
+Point 4. The report is clearly written. The reference is properly cited. No obvious
+grammar error could be found. But, the layout and visualization is could be better.
+5. Evaluation on Technical Quality (1-5):
+Point 5. The results are technically sound. Claims are well-supported by theoretical
+analysis or experimental results. Researchers could replicate these results by
+following the description.
+6. Overall rating: (5- My vote as the best-report. 4- A good report. 3- An average one.
+2- below average. 1- a poorly written one).
+Rating: 4
+7. Confidence on your assessment (1-3) (3- I have carefully read the paper and
+checked the results, 2- I just browse the paper without checking the details, 1- My
+assessment can be wrong)
+Confidence: 3
+
+Bingxin Huang:
+
+• Summary of the report
+The author uses PCA to reduce dimensionality of SNPs datasets and conclude that PCA does not require Gaussian distribution of the datasets, but highly skewed datasets such as SNPs can reduce the performance of PCA.
+• Describe the strengths of the report
+The author provides the clear method and plots.
+• Describe the weaknesses of the report
+The authors should give more analysis of the results.
+• Evaluation on Clarity and quality of writing: 3
+• Evaluation on Technical Quality: 3
+• Overall rating: 3
+• Confidence on your assessment: 3
+
+
+
+
+
+Jiamin Wu:
+
+Summary of the report.
+The report of group 12 plays the dimensionality deduction method PCA on the SNPs dataset, which is a highly skewed dataset to interpret it. The student first analyses the raw dataset and then plays basic PCA analysis on it. Further PCA analysis for different skewed datasets shows that PCA can not handle high skewed data.
+Describe the strengths of the report. 
+1.	Before play PCA on the dataset, data observation and analysis help to understand the dataset more.
+2.	Tests PCA for different skewness datasets.
+Describe the weaknesses of the report.
+1.	It seems that the report is R-markdown while the requirement is either a NIPS paper format report or a poster.
+Evaluation on Clarity and quality of writing (1-5): 3
+The report clearly written with figures and well designed. I don’t find any problems with grammar, references, etc. in the report. But more analysis or discussion is preferred for me. The format and style are different from the requirement.
+Evaluation on Technical Quality (1-5): 4
+The results technically sound with obvious flaws in the reasoning. Claims well-supported by theoretical analysis or experimental results. The experiments well thought out and convincing. It is easy for other researchers to replicate these results from the notebook. The evaluation appropriate. Relevant papers cited, discussed, and compared to the presented work. The authors assess the strengths and weaknesses of their approaches.
+Overall rating: 3 
+An average one.
+Confidence on your assessment (1-3): 3
+I have carefully read the paper and checked the results.
+
+
+
+
+
+ADELEKE Maradesa & OGEDENGBE Ikeoluwa:
+
+Comments:
+• The abstract did not provide a proper background and does not reflect the scope of the work
+• The research objective(s) was not clearly defined
+• PCA theory was not robustly presented
+• The code snippets should be moved to the appendix
+• Figure 3.2 was neither explained nor discussed
+• The use of PCA in exploring the dataset was not clearly discussed.
+Evaluation on Clarity:
+3
+Evaluation on Technicality:
+3
+Overall Rating:
+3
+Confidence:
+3

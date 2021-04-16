@@ -1,0 +1,54 @@
+Hanze Dong:
+
+Summary: This project considers to conduct experiments on a small mammal dataset using
+typical dimensionality reduction approaches such as PCA, LLE, Modified LLE, MDS, t-SNE, etc. to
+get low dimensional data visualization. Reduced dimensional data visualization provides
+researchers with an intuitive way to display interrelation among high-dimensional features.
+Some implicit elements that may affect mammals’ sleeping hours and life span are revealed.
+Strengths: This work gives a more detailed analysis and clear images to clarify the role of
+dimensionality reduction
+Weaknesses: It would be better if you can add more theoretical explanations to compare
+different algorithms
+Clarity: 5
+Technical Quality: 4
+Overall rating: 4
+Confidence: 3
+
+
+
+
+Jiamin Wu:
+
+Summary of the report.
+The report of group 4 uses different dimensionality reduction methods including PCA, LLE, MLLE, MDS, t-SNE, etc. to reduce dimensionality on the ‘Sleep in Mammals’ dataset and visualize them. After visualization, they analysis the result for elements that affect mammals’ sleeping hours and life span. After proper dimension deduction, the accuracy may not change that much.
+Describe the strengths of the report. 
+1.	There is a clear problem define part.
+2.	Before experiments, they clean the data first.
+3.	Different dimensionality reduction methods are compared.
+Describe the weaknesses of the report.
+1.	There are some grammar issues.
+Evaluation on Clarity and quality of writing (1-5): 4
+The report clearly written with figures and well designed. I don’t find any problems with style, formatting, references, etc. in the report. There are some grammar issues that for session 3.1.3: ‘The reasons … are because…’ will be better to change to ‘The reasons … are that…’ and ‘does not exist’ instead of ‘does not exists’.
+Evaluation on Technical Quality (1-5): 5
+The results technically sound with obvious flaws in the reasoning. Claims well-supported by theoretical analysis or experimental results. The experiments well thought out and convincing. It is easy for other researchers to replicate these results from the notebook. The evaluation appropriate. Relevant papers cited, discussed, and compared to the presented work.
+Overall rating: 4 
+A good report. 
+Confidence on your assessment (1-3): 3
+I have carefully read the paper and checked the results.
+
+
+
+
+
+
+Chiyu Ma:
+
+•	Summary: 
+ 	This report applies PCA and many manifold learning algorithms to mammal dataset. Many visualized results are given and relation among different statistics are revealed.
+•	Strengths and weaknesses:
+ 	This report applies many different techniques, which make the result substantial. And explanation of numerical results is also clear. It could be better to give some more biological conclusion. 
+•	Evaluation on Clarity and quality of writing: 4
+•	Evaluation on Technical Quality: 5
+•	Overall rating: 5
+•	Confidence on your assessment: 2
+
