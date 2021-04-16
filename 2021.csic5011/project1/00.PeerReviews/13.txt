@@ -108,43 +108,6 @@ Confidence: 3
 
 
 
-Chutian Huang:
-
-Summary:
-This project used the SNPs dataset. The author performed PCA to this dataset and tried to look at whether changing the “skewness” of the data, which means changing the label in this report, could bring better performance.
-
-Strengths: The report has a detailed description of dataset, and the visualization is generally clear.
-Weaknesses: I don’t quite understand how changing the label of “AA, AC, CC” from “0,1,2” to “1,2,3” could change the PCA performance in a significant way. In the visualization pictures 3.2, 4.3, 4.6, there are no legends for which color represents which region. What’s more, there should be 7 regions, but I can only see 6 colors (red, green, yellow, bright green, orange and blue) instead of 7. I cannot open the website of the second reference. And since all of the report talks about “skewed data affects PCA” and I don’t quite understand the reasoning in this report, I tried to look the reference but there was none about it. 
-
-Evaluation on Clarity and quality of writing (1-5):
-Is the report clearly written?  3
-Is there a good use of examples and figures? 4
-Is it well organized? 5
-Are there problems with style and grammar? 4
-Are there issues with typos, formatting, references, etc.? 3
-
-All assessment with confidence 3
-
-Evaluation on Technical Quality (1-5): 
-Are the results technically sound? 3
-Are there obvious flaws in the reasoning? 2
-Are claims well-supported by theoretical analysis or experimental results? 4
-Are the experiments well thought out and convincing? 4
-Will it be possible for other researchers to replicate these results? 4
-Is the evaluation appropriate? 3
-Did the authors clearly assess both the strengths and weaknesses of their approach? 2
-Are relevant papers cited, discussed, and compared to the presented work? 2
-
-All assessment with confidence 2
-
-Overall Rating: 3
-Confidence: 2
-
-
-
-
-
-
 
 Kot Chun Kit:
 
@@ -259,3 +222,40 @@ Evaluation on Technical Quality (1-5): 4
 The poster is well written, and authors have addressed the questions they set out to answer at the beginning of the poster. To make this better, the authors can interpret the results obtained using different methods and give justification as to why the methods that perform the best are superior to others.
 Overall rating: 4
 Confidence on your assessment (1-3): 3
+
+
+
+
+
+
+Chutian Huang:
+
+Summary:
+This project used the MNIST dataset. The author separated the training set and test set, performed dimensionality reduction methods and compared the accuracy of predictions with dimension-reduced test set using various methods. 
+
+Strengths: Clear visualization, good structure, sound reasoning.
+Weaknesses: In the visualization part, it’s redundant to draw results of both train and test sets for every method on the poster since they are the same. The format and grammar could be improved.
+
+Evaluation on Clarity and quality of writing (1-5):
+Is the report clearly written?  4
+Is there a good use of examples and figures? 5
+Is it well organized? 5
+Are there problems with style and grammar? 4
+Are there issues with typos, formatting, references, etc.? 3
+
+All assessment with confidence 3
+
+Evaluation on Technical Quality (1-5): 
+Are the results technically sound? 4
+Are there obvious flaws in the reasoning? 3
+Are claims well-supported by theoretical analysis or experimental results? 4
+Are the experiments well thought out and convincing? 4
+Will it be possible for other researchers to replicate these results? 5
+Is the evaluation appropriate? 4
+Did the authors clearly assess both the strengths and weaknesses of their approach? 4
+Are relevant papers cited, discussed, and compared to the presented work? 3
+
+All assessment with confidence 2
+
+Overall Rating: 4
+Confidence: 2

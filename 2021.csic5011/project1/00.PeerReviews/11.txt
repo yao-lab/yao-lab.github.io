@@ -49,3 +49,24 @@ I really enjoy this report. Their format and the content are great. They propose
 •	Overall rating: 5
 • Confidence on your assessment: 3
 
+
+
+
+
+
+
+
+
+Cheng Haoyi:
+
+(a) Summary:
+This report analyzes the relationship between events and characters in the famous novel Journey to the West. They use data reduction algorithms, like Principal Component Analysis (PCA), and Multi-Dimensional Scaling (MDS), to achieve the text analysis. Throughout the whole project report, they briefly describe the dataset structures, then they introduce the classical PCA and MDS, respectively.
+Then, they compare the results of applying these two methods to Journey to the West with Dream of Red Chamber, both classical PCA and MDS can lead to the same conclusion that the network of characters in Journey to the West is looser than that in Dream of Red Chamber.
+(b) Strength:
+They choose tables, graphs, or graph of community networks to help explain the results, which seems to be visually great! Readers can clearly grasp the key features and follow the conclusions that authors make in paper.
+(c) Weakness:
+The idea of this report is so clear, but I think it can be better if the report can give a final conclusion at the end rather than only show it in the abstract.
+(d) Evaluation on Clarity and quality of writing: 4.5
+(e) Evaluation on Technical Quality: 4
+(f) Overall rating: 4.25
+(g) Confidence on your assessment: 2

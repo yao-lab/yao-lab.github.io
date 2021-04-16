@@ -217,3 +217,25 @@ Overall Rating:
 3.5
 Confidence:
 3
+
+
+
+
+
+
+
+
+Cheng Haoyi:
+
+(a) Summary:
+This project analyzes the relationship among the person characters in one Chinese famous novel -- Dream of the Red Chamber. The character-event data is known, so authors make use of some dimensional reduction algorithms, like MDS and Sparse PCA, to visualize the character relationship.
+Under most conditions, the pair distances between data are unknown which cannot apply metric MDS, thus, they set up a dissimilarity matrix, and then propose non-metric MDS to visualize the key characters’ relationship.
+At last, they utilize Sparse-PCA to character-event data to study the correlation between person characters and relative events.
+(b) Strength:
+They use many methods, like tables and plots, to illustrate the relationship between characters and events. And they also give some justifications on some potential relationship that are easy to be ignored when reading this book.
+(c) Weakness:
+It could be even better if utilizing various dimensional reduction algorithms to dataset, and check if they can obtain the same conclusions or results as before.
+(d) Evaluation on Clarity and quality of writing: 5
+(e) Evaluation on Technical Quality: 4.5
+(f) Overall rating: 4.75
+(g) Confidence on your assessment: 2

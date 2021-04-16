@@ -209,7 +209,7 @@ Evaluation on Clarity and Quality of Writing: 5
 
 Evaluation on Technical Quality: 5
 
-Overall Rating: 1
+Overall Rating: 5
 
 Confidence on my Assessment: 3
 
@@ -366,3 +366,23 @@ Clarity of Quality of Writing:	3
 Technical Quality 		2	
 Overall Rating 		2
 Confidence: 			2
+
+
+
+
+
+
+
+Cheng Haoyi:
+
+(a) Summary:
+In this poster, the authors analyze the SNPs data by applying two data reduction algorithms: Principal Component Analysis & Multi-Dimensional Scaling. First of all, they introduce the dataset of SNPs, then utilize PCA, MDS, t-SNE to reduce the dimension of the original SNPs data. Then, they perform an analysis about the possible relationship between people’s genetic information and their geographical information.
+Furthermore, based on SNPs, authors also give the prediction on which regions people may come from. Different combinations of Random Forest, PCA, MDS, t-SNE algorithms help various methods prediction.
+(b) Strength:
+They not only make the conclusions in this poster, but also give some ideas about the future work. It provides some further relative knowledge. And, there are several good plots guiding readers to understand the differences among distinct methods.
+(c) Weakness:
+It might be better to point out why to choose these three algorithms out of many data reduction methods. The PCA and MDS are linear dimensionality reduction techniques, but t-SNE is a non-linear technique?
+(d) Evaluation on Clarity and quality of writing: 5
+(e) Evaluation on Technical Quality: 4
+(f) Overall rating: 4.5
+(g) Confidence on your assessment: 2

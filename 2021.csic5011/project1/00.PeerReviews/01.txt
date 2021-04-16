@@ -140,7 +140,7 @@ Evaluation on Clarity and Quality of Writing: 5
 
 Evaluation on Technical Quality: 5
 
-Overall Rating: 2
+Overall Rating: 5
 
 Confidence on my Assessment: 3
 
@@ -299,3 +299,20 @@ Overall Rating:		3
 Confidence:			2
 
 
+
+
+
+Cheng Haoyi:
+
+(a) Summary:
+This project totally contains three components. At first, it gives an analysis of collected words from NIPS among 1987 & 2015. They use Latent Dirichlet Allocation to extract top5 most popular topics from NIPS successfully, such as, Computer Vision, Matrix Computation and so on.
+Then, they apply t-distributed stochastic neighbor embedding to visualize the above 5 topics. Moreover, analyze the trend of papers of NIPS.
+In last component, they try other five data reduction algorithms (Locally Linear Embedding, Hessian LLE, Isometric Mapping, Principal Component Analysis, Multi-Dimensional Scaling) to reduce the dimensionality of the original data.
+(b) Strength:
+It uses tables, graphs, and plots to help explain their ideas. The visualization results on NIPS are excellent. And then introduce and compare different data reduction algorithms, and they get the results together, it’s really straightforward to see the obvious difference of distinct algorithms.
+(c) Weakness:
+This paper is overall great, and it might be even better if the dataset can contain the NIPS papers of recent years so that the tendency analysis will be more meaningful and accurate.
+(d) Evaluation on Clarity and quality of writing: 5
+(e) Evaluation on Technical Quality: 4.5
+(f) Overall rating: 4.5
+(g) Confidence on your assessment: 2
