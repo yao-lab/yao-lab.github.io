@@ -1,0 +1,31 @@
+Rebuttal for YU-FANG‘s Project 1. 
+
+Project Title: Identifying authors using word/phrase embedding of NIPS paper dataset. 
+
+Thanks for all the detailed and constructive peer reviews and we answer some of common questions below. 
+
+Q1. More analysis of the visualization results and figures. 
+
+A1: Thanks for the question and concern raised by many reviewers. Due to the space limitation, we present more detailed analysis as follows:
+
+1). We firstly visualized the phrase vector distributions using PAC dimension deduction technique and ideally the similar phrases would be closer to each other. From the first figure, the word2vec algorithms successfully trained the phrase embeddings and we could see that the vectors of "parameter tuning", "metric learning" and "policy optimization" are nearly clustered. 
+
+Different from vanilla word vectors, phrase vectors would have more strong compositionality to better represent the paper context. For example, the meaning of "support vector machine" cannot be easily inferred from its constitutes but training as a whole would exactly present complete semantics, which is in line with the motivation and the results of our projects. Using phrase embeddings would do better than word embeddings in scientific document classification.  
+
+2). Regarding the final prediction tasks, we are interested in whether learned phrase embeddings would help distinguish the authors well. Hence we use the average phrase embeddings of frequently-used phrases in all papers of one particular author as the author vector. K-means clustering is used to cluster similar authors based on their author vectors and from the second figure, we could observe that the authors who have similar research interests or co-authored with each other are placed near. Another observation is that the author vectors can be distinguished clearly, which again indicates the good quality of phrase embeddings. 
+
+In summary, the above visualization analysis are well motivated and complement our task. Also our project used word2vec, an important dimension deduction technique in NLP, and further goes beyond the course content. 
+
+Q2: Validation set. 
+
+A2: We split 10% of all dataset as the validation set to select the parameters and run the models for several times then the averaged results are reported.  
+
+
+Q3: The dataset seems small with respect to the dimensionality of the problem.
+
+A3: As discussed in the Q1, we visualized the phrase embeddings trained by word2vec algorithms, which compress the original one-hot word vectors (the dimension is the large size of vocabulary - over 100K) into dense low-dimensional word vectors (50-300 dimensions). Here word2vec is already a well-studied technique for dimension deduction and we further use PCA to visualize in the two-dimensional figures.  
+
+
+Q4. References and citation. 
+
+A4: Thanks for pointing out. We have listed relevant papers about word2vec algorithms in the reference box and would cite them explicitly in the revision.
