@@ -1,0 +1,25 @@
+To Yuqia Wu:
+
+Thank you for your advice. Although poster does not provide all information of the work, we do think that intuitive and illustrative expression in the form of posterior is suitable for any work. We will try to make it more concentrate and clear for readers.
+
+
+To Xiaowen Fu: 
+Thank you for your attention. In our poster, we have already demonstrate the goals and methods in our introduction, and methods part include more details. Due to the limit of page and difference of our baselines, the main we only introduce the algorithms in methods part. 
+
+To Ip Ho Pan’s review: 
+Thank you for your advice.
+
+To Dubey’s review:
+The difference between the 10th frame and the 500th frame is that there is a person standing as the background at the 10th frame but leaving at the 500th frame. The person does not change his position but not  entirely stationary, which may influence the result.
+
+To Fang Yu's review:
+The title may be changed to: Comparison of Robust PCA methods on background-foreground decomposition on video surveillance
+
+To Sarah Chow：
+Thanks for your opinion.  Because of the space limitations of  the poster, I ignore some details. We will improve our poster by introducing more technical details as mentioned by different reviewers.
+
+To Jiabao Li:
+Thanks for your opinion. I think your suggestion of introducing more equations is good, however, our poster focusing on comparing different methods for practice. So, we would like to leave more space for experiments.
+
+To Zhiyuan Yu:
+Thanks for your time. Please refer rebuttal to Jiabao Li.
