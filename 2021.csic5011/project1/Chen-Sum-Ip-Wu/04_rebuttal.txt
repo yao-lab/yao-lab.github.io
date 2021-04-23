@@ -1,0 +1,35 @@
+04. CHEN Yingshu, Wing Hei SUM, Ho Pan IP and Zipeng WU.
+Rebuttal for Story Exploration of Mammal Data
+
+
+Thank all reviewers for the detailed and considerate feedbacks for our project.
+Here we list two main points we will refine in our revised version.
+
+1. Grammar and figure refinement (R2 Jiamin Wu, R5 Samruddhi):
+
+- grammar issue:
+
+  R2(Jiamin Wu) mentioned some grammar issues in Sec.3.1.3 which we will correct, and we will have a double check the grammar for the whole report again.
+ 
+- figure and data display:
+
+  R5(Samruddhi) gave some tips for better figures and data display in the report.
+  For too small axis labels in figures 3, 4, 8, we will resize the font size in those figures in the revised report. 
+  For better and detailed observations of figures, it is recommended to check out our source code and results in our Github.
+
+  We will also supplement some tabular results when analyzing particular cases to make the report more readable.
+
+
+2. Writing suggestions (R1 Hanze Dong, R3 Chiyu Ma, R4 JHA, R5 Samruddhi):
+
+- method descriptions and comparisons:
+
+  Thank Reviewer Samruddhi for suggesting adding brief descriptions and reference of used methods for soundness of the methodology. We will add method descriptions and related citations in the revised manuscript.
+
+  We will also compare results from theoretically technical aspects (visualizations, running time, etc.) and investigate the advantages and drawbacks of various dimensionality reduction techniques in different scenarios (R1 Hanze Dong, R4 JHA, R5 Samruddhi). For example, in the report we already showed visualized results of different methods with running time for comparison, we can further analyze the technical reason of the different performance of visualization and which method would be recommended more for particular scenarios in terms of performance and running time.
+
+- biological conclusion (R3 Chiyu Ma):
+
+  In Sec.3.2 and Sec.5, we draw a basic conclusion about the relationship among different ecological and constitutional features (i.e., sleep hours, weights, gestation time, danger levels, etc.), and sleeping hours and lifespan, which is consistent with some analysis from Allison T. et al. 1976 (though we did not explicitly mention it in the report).
+
+  In our report, we aim at validating the possibility of speed preliminary analysis from dimensionality reduction approaches from experiments on a small set of high-dimension mammal data. Our simple, preliminary biological conclusions might not be exactly correct from solely dimension reduction results, but provide a quick explorable direction for researchers for further investigation. That is why we did not include detailed biological conclusions or refer to more citations related to these conclusions in the report.
