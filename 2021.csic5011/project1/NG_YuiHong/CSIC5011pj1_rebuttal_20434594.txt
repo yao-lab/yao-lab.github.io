@@ -1,0 +1,23 @@
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Response to Reviews given by Chiyu Ma:
+
+Thanks for your encouraging comments and good reviews. Here are our responses to specific suggestions and comments made by the reviewer:
+
+Q1: It would be better if the numerical experiments were better. For example, l1 regularizer and TV regularizer are both accessible by some solvers or packages.
+
+Reply: We agree that other regularization can be used along with Ridge regression. We analyze our technique for various other regularization methods in our future work. For now we used Ridge because it has an analytical solution that simplified our computational needs for the mini-project. Furthermore, Ridge gives poor reconstructions and hence improvement achieved by PCA is more evident.
+
+Q2: Plus, it seems that \tilde{x} has no parameter \lambda corresponding to it, thus constructing a new solution might be better than tuning the regularization parameter.
+
+Reply:  Thanks for reading the report very carefully. It is true that our proposed \tilde{x} actually extract our best features out of multiple solutions (x*(\lambdai)) and hence it does not necessarily correspond to any one particular parameter \lambda. We have mentioned this in our report in Section 2, last paragraph (see point 6 in the enumerate item list).
+
+Q3: The interpretation of MAP could be more clear. Without MAP, the regularizer could also be explained as something like sparsity.
+
+Reply: Thank you for your comment. We can improve the explanation in future work. For the mini-project, we do not explain in too much detail because we MAP approach is well known and hence we instead cited the relevant literature. However, we will improve this explanation so that it becomes more intelligible to readers. 
+
+Q4: whether the conclusion is about solution or parameter is also a question that can be discussed
+
+Reply: Thank you for this suggestion. We will include this in our future work. 
+
+-------------------------------------------------------------------------------------------------------------x----------------------------------------------------------
