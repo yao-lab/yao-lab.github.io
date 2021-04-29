@@ -1,0 +1,171 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{tikz}	% for drawing stuff
+\usepackage{xcolor}    % for \textcolor{}
+\usepackage{readarray} % for \getargsC{}
+
+\def\N{{\mathbb N}}
+\def\NN{{\mathcal N}}
+\def\R{{\mathbb R}}
+\def\E{{\mathbb E}}
+\def\rank{{\mathrm{rank}}}
+\def\tr{{\mathrm{trace}}}
+\def\P{{\mathrm{Prob}}}
+\def\sign{{\mathrm{sign}}}
+\def\diag{{\mathrm{diag}}}
+\def\im{{\mathrm{image}}}
+\def\ker{{\mathrm{ker}}}
+
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0.25 in}
+\setlength{\parskip}{0.1 in}
+
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{page}{1}
+   \setcounter{section}{0}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf A Mathematical Introduction to Data Science \hfill #4} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\Large \hfill #1  \hfill} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\it Instructor: #2\hfill #3} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{#1}{#1}
+   \vspace*{4mm}
+}
+
+\definecolor{darkred}{rgb}{0.64,0,0}
+\definecolor{darkcyan}{rgb}{0,0.55,0.55}
+\newcommand{\rowcolor}[1]{\textcolor{darkred}{#1}}
+\newcommand{\columncolor}[1]{\textcolor{darkcyan}{#1}}
+
+% Normal-form game
+% \nfgame{T B L R RTL RTR RBL RBR CTL CTR CBL CBR}
+\newcommand{\nfgame}[1]{%
+\getargsC{#1}
+\begin{tikzpicture}[scale=0.65]
+
+\node (RT) at (-2,1) [label=left:\rowcolor{\argi}] {};
+\node (RB) at (-2,-1) [label=left:\rowcolor{\argii}] {};
+\node (CL) at (-1,2) [label=above:\columncolor{\argiii}] {};
+\node (CR) at (1,2) [label=above:\columncolor{\argiv}] {};
+
+\node (RTL) at (-1.4,0.6) {\rowcolor{\argv}}; % top/left row player payoff etc.
+\node (RTR) at (0.6,0.6) {\rowcolor{\argvi}};
+\node (RBL) at (-1.4,-1.4) {\rowcolor{\argvii}};
+\node (RBR) at (0.6,-1.4) {\rowcolor{\argviii}};
+
+\node (CTL) at (-0.6,1.4) {\columncolor{\argix}};
+\node (CTR) at (1.4,1.4) {\columncolor{\argx}};
+\node (CBL) at (-0.6,-0.6) {\columncolor{\argxi}};
+\node (CBR) at (1.4,-0.6) {\columncolor{\argxii}};
+
+\draw[-,very thick] (-2,-2) to (2,-2);
+\draw[-,very thick] (-2,0) to (2,0);
+\draw[-,very thick] (-2,2) to (2,2);
+\draw[-,very thick] (-2,-2) to (-2,2);
+\draw[-,very thick] (0,-2) to (0,2);
+\draw[-,very thick] (2,-2) to (2,2);
+\draw[-,very thin] (-2,2) to (0,0);
+\draw[-,very thin] (0,0) to (2,-2);
+\draw[-,very thin] (-2,0) to (0,-2);
+\draw[-,very thin] (0,2) to (2,0);
+\end{tikzpicture}}
+
+\begin{document}
+
+\lecture{Homework 9. Combinatorial Hodge Theory}{Yuan Yao}{Due: 1 weeks later}{Apr. 30, 2021}
+
+The problem below marked by $^*$ is optional with bonus credits. % For the experimental problem, include the source codes which are runnable under standard settings. 
+
+\begin{enumerate}
+\item {\em HodgeRank:} Download the HodgeRank matlab codes and unzip: 
+
+\url{https://yao-lab.github.io/publications/BatchHodge.zip}
+
+which contains two subfolders. 
+\begin{itemize}
+\item \url{./data/}: file \texttt{incomp.mat} contains a 1668-by-2 matrix, collecting 1668 pairwise comparisons among 16 video items, with the first column index preferred to the second ones;
+\item \url{./code/}: file \texttt{Hodgerank.m} is the Hodge decomposition of such pairwise comparison data. 
+\end{itemize}
+
+Run the following command
+\begin{quote} \begin{verbatim} 
+>> load data/incomp.mat
+>> cd code
+>> [score,totalIncon,harmIncon] = Hodgerank(incomp)
+\end{verbatim} \end{quote}
+
+You will return with global ranking scores (generalized Borda count) in \texttt{score}, a 16-by-4 matrix as scores of 16 videos in 4 models:  
+\begin{quote} \begin{verbatim} 
+	model1: Uniform noise model, Y_hat(i,j) = 2 pij -1
+	model2: Bradley-Terry, Y_hat(i,j) = log(abs(pij+eps))-log(abs(1-pij-eps))
+	model3: Thurstone-Mosteller, Y_hat(i,j) ~ norminv(abs(1-pij-eps));
+        model4: Arcsin, Y_hat4(i,j) = asin(2*pij-1)
+\end{verbatim} \end{quote}
+and two inconsistency measurements (total inconsistency \texttt{totalIncon} = harmonic inconsistency \texttt{harmIncon} + triangular inconsistency). The following ratio: 
+\begin{quote} \begin{verbatim}
+>> harmIncon/totalIncon
+\end{verbatim} \end{quote}
+measures the percentage of harmonic inconsistency in the total inconsistency (residue).
+
+Moreover, \emph{can you compute the HodgeRank for the weblink data?} For example, the following dataset contains Chinese (mainland) University Weblink during 12/2001-1/2002,
+
+\url{https://github.com/yao-lab/yao-lab.github.io/blob/master/data/univ_cn.mat}
+
+\emph{compute the HodgeRank scores and compare them against PageRank and HITs etc.}
+
+\paragraph{Reference:}
+\begin{itemize}
+\item Xiaoye Jiang, Lek-Heng Lim, Yuan Yao and Yinyu Ye. \emph{Statistical Ranking and Combinatorial Hodge Theory}.
+Mathematical Programming, Volume 127, Number 1, Pages 203-244, 2011.
+\item Qianqian Xu, Qingming Huang, Tingting Jiang, Bowei Yan, Weisi Lin and Yuan Yao, \emph{HodgeRank on Random Graphs for Subjective Video Quality  
+Assessment}, IEEE Transaction on Multimedia, vol. 14, no. 3, pp. 844-857, 2012.
+\end{itemize}
+
+
+\item {\em Hodge Decomposition in Linear Algebra.} For inner product spaces $X$, $Y$, and $Z$, consider	
+	\[
+	X \xrightarrow{A} Y \xrightarrow{B} Z.
+	\]
+	and $\Delta =A A^T + B^T B: Y\to Y$ where $A^T$ ($B^T$) is the adjoint of $A$ ($B$) such that $\langle Ax,y\rangle=\langle x, A^T y\rangle$ ($\langle y,B^Tz\rangle=\langle By, z\rangle$), respectively.
+	Show that if the following composition vanishes,
+	\[ B \circ A = 0,\]
+	then $\ker(\Delta) = \ker(A^T) \cap \ker(B)$ and the following \emph{orthogonal} decomposition holds
+	\[ Y = \im (A) + \ker(\Delta) + \im (B^T). \]
+	
+	%Note: $\textcolor{blue}{\ker(B)/\im(A)}\simeq \ker(\Delta)$ is the (real) (co)-homology group ($\R\to$ rings; vector spaces$\rightarrow$module).
+
+\item {\em *Hodge Decomposition of the Prisoner's Dilemma Game}: Consider the normal form game of the Prisoner's Dilemma, whose row and column players can play $C$ (cooperate) or $D$ (defect) and receive the payoffs, respectively (as in the table). Show that \emph{the Hodge Decomposition of its game flow is a potential game}.   
+
+\begin{center}
+\nfgame{C D C D $3$ $0$ $5$ $1$ $3$ $5$ $0$ $1$} 
+%\qquad
+%\nfgame{T B L R $1$ $2$ $3$ $4$ $5$ $6$ $7$ $8$} \\[10pt]
+\end{center}
+
+\paragraph{Reference:} Ozan Candogan, Ishai Menache, Asuman Ozdaglar, and Pablo A. Parrilo. \emph{Flows and Decompositions of Games: Harmonic and Potential Games}.
+Mathematics of Operations Research, 36(3): 474 - 503, 2011.
+
+\end{enumerate}
+
+\end{document}
+
+
