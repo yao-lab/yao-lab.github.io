@@ -1,0 +1,786 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <META http-equiv=Content-Type content="text/html; charset=gb2312">
+   <title>MAFS6010U: AI in Finance </title>
+</head>
+<body background="../../images/crysback.jpg">
+
+<!-- PAGE HEADER -->
+
+<div class="Section1">
+<table border="0" cellpadding="0" width="100%" style="width: 100%;">
+      <tbody>
+        <tr>
+
+       <td style="padding: 0.75pt;" width="80" align="center">
+
+      <p class="MsoNormal">&nbsp;<img width="64" height="64"
+ id="_x0000_i1025"
+ src="../../images/hkust0_starry.jpg" alt="PKU">
+          </p>
+       </td>
+       <td style="padding: 0.75pt;">
+      <p>
+<span style="font-size: 18pt;">
+<b><big>MAFS6010U. Artificial Intelligence in Finance <br>
+   Spring 2020</big></b>
+<br>
+</p>
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<div class="MsoNormal" align="center" style="text-align: center;">
+<hr size="2" width="100%" align="center">  </div>
+
+<ul type="disc">
+
+</ul>
+
+<!-- COURSE INFORMATION BANNER -->
+
+<table border="0" cellpadding="0" width="100%" bgcolor="#990000"
+ style="background: rgb(153,0,0) none repeat scroll 0% 50%; width: 100%;">
+      <tbody>
+
+        <tr>
+       <td style="padding: 2.25pt;">
+      <p class="MsoNormal"><b><span
+ style="font-size: 13.5pt; color: white;">Course Information</span></b></p>
+       </td>
+      </tr>
+
+  </tbody>
+</table>
+
+<!-- COURSE INFORMATION -->
+
+<h3>Synopsis</h3>
+<p style="margin-left: 0.5in;">
+<big> This course explores the basic concepts and underlying principles of artificial intelligence (AI), delving into the fundamentals of machine learning with insights from case studies of relevant technologies. 
+	Allowing for the experimentation of applications of machine learning, this course is designed to encourage students to devise creative ways to put readily-available AI technologies to use to tackle problems 
+	in real life. With a focus on the conceptual understanding of the fundamentals of AI, the purpose of this course is two-fold:
+	<br>
+	<ul>
+	<li> 1. To educate the next generation of innovators of the digital economy, especially in the financial sector;
+	</li>
+	<li> 2. To equip FinTech leaders with the conceptual frameworks and analytical tools for the development and deployment of AI-enabled applications and technologies.
+	</li>
+	</ul>
+	</big>
+<br>
+	<big>
+		<b>Prerequisite</b>: Some preliminary course on (statistical) machine learning, applied statistics, and deep learning will be helpful.
+	</big>
+</p>
+
+
+<h3>Instructors: </h3>
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="https://www.linkedin.com/in/anthonywoo">Anthony Woo</a> [<a href="https://www.dropbox.com/s/mv761isufswff0m/Resume%20-%20Anthony%20Woo.pdf?dl=0"> Resume </a>] </em>
+</big>
+		
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="http://yao-lab.github.io/">Yuan Yao</a>  </em>
+</big>
+</p>
+
+<h3>Time and Place:</h3>
+<p style="margin-left: 0.5in;">
+<big><em>Wednesday 15:00-17:50, Zoom online, HKUST</em> <br>
+</big>
+<!---
+<big><em>This term we will be using Piazza for class discussion. The system is highly catered to getting you help fast and efficiently from classmates and myself. 
+	Rather than emailing questions to the teaching staff, I encourage you to post your questions on Piazza. If you have any problems or feedback for the developers, email team@piazza.com. <br>
+Find our class page at: <a href="https://piazza.com/ust.hk/spring2020/mafs6010u/home">https://piazza.com/ust.hk/spring2020/mafs6010u/home</a></em></big> 
+--->
+<br>
+</p>
+	
+<h3>Reference (&#21442;&#32771;&#25945;&#26448;)</h3>
+
+	
+
+	<p style="margin-left: 0.5in;">
+
+	<big>
+
+		<em> <a href="http://www-bcf.usc.edu/~gareth/ISL/">An Introduction to Statistical Learning, with applications in R (ISLR).</a> By James, Witten, Hastie, and Tibshirani </em>
+
+	</big>
+
+	</p>
+
+	
+
+	<p style="margin-left: 0.5in;">
+
+	<big>
+
+		<em> <a href="https://github.com/JWarmenhoven/ISLR-python/">ISLR-python, By Jordi Warmenhoven</a>. </em>
+
+	</big>
+
+	</p>
+
+	
+
+	<p style="margin-left: 0.5in;">
+
+	<big>
+
+		<em> <a href="https://github.com/mscaudill/IntroStatLearn">ISLR-Python: Labs and Applied, by Matt Caudill</a>. </em>
+
+	</big>
+
+	</p>
+
+	<p style="margin-left: 0.5in;">
+<big>
+<em><a href="https://www.manning.com/books/deep-learning-with-python?a_aid=keras&a_bid=76564dff">Manning: Deep Learning with Python</a>, by Francois Chollet</em> [<a href="https://github.com/fchollet/deep-learning-with-python-notebooks">GitHub source in Python 3.6 and Keras 2.0.8</a>]
+</big>
+</p>
+
+	<p style="margin-left: 0.5in;">
+<big>
+<em><a href="http://www.deeplearningbook.org/">MIT: Deep Learning</a>, by Ian Goodfellow, Yoshua Bengio, and Aaron Courville
+</em>
+</big>
+</p>
+
+	
+
+<h3>Tutorials: preparation for beginners</h3>
+<p style="margin-left: 0.5in;">
+<big>
+	<em><a href="http://cs231n.github.io/python-numpy-tutorial/">Python-Numpy Tutorials</a> by Justin Johnson </em>
+</big>
+</p>
+
+<p style="margin-left: 0.5in;">
+<big>
+	<em><a href="http://scikit-learn.org/stable/tutorial/">scikit-learn Tutorials</a>: An Introduction of Machine Learning in Python</em>
+</big>
+</p>	
+
+<p style="margin-left: 0.5in;">
+<big>
+	<em><a href="http://cs231n.github.io/ipython-tutorial/">Jupyter Notebook Tutorials</a> </em>
+</big>
+</p>
+	
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="http://pytorch.org/tutorials/">PyTorch Tutorials</a> </em>
+</big>
+</p>
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="http://www.di.ens.fr/~lelarge/dldiy/">Deep Learning: Do-it-yourself with PyTorch</a>, </em> A course at ENS
+</big>
+</p>
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="https://www.tensorflow.org/tutorials/">Tensorflow Tutorials</a></em>
+</big>
+</p>
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="https://mxnet.incubator.apache.org/tutorials/index.html">MXNet Tutorials</a></em>
+</big>
+</p>
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="http://deeplearning.net/software/theano/tutorial/">Theano Tutorials</a></em>
+</big>
+</p>	
+
+
+<p style="margin-left: 0.5in;">
+
+<big>
+
+<em> <a href="http://www-stat.stanford.edu/~hastie/ElemStatLearn/">The Elements of Statistical Learning (ESL).</a> 2nd Ed. By Hastie, Tibshirani, and Friedman </em>
+
+</big>
+
+</p>
+
+	
+
+	<p style="margin-left: 0.5in;">
+
+	<big>
+
+	<em> <a href="https://github.com/sujitpal/statlearning-notebooks">statlearning-notebooks</a>, by Sujit Pal, Python implementations of the R labs for the <a href="https://lagunita.stanford.edu/courses/HumanitiesScience/StatLearning/Winter2014/about">StatLearning: Statistical Learning</a> online course from Stanford taught by Profs Trevor Hastie and Rob Tibshirani.</em>
+
+	</big>
+
+	</p>
+
+
+<h3>Homework and Projects:</h3>
+
+<p style="margin-left: 0.5in;">
+<big><em> TBA (To Be Announced) </em>
+</big></p>
+
+<h3>Teaching Assistant:</h3>
+
+<p style="margin-left: 0.5in;">
+<big> <br>
+Email: Mr. Weizhi ZHU <em> aifin.hkust (add "AT gmail DOT com" afterwards) </em>
+<!--	<br>
+	<em> <a href=" https://www.linkedin.com/in/katrinafong/">Ms. Katrina Fong</a> </em>
+-->
+</big>
+</p>
+	
+				
+<h3>Schedule</h3>
+
+<table border="1" cellspacing="0">
+<tbody>
+
+<tr>
+<td align="left"><strong>Date</strong></td>
+<td align="left"><strong>Topic</strong></td>
+<td align="left"><strong>Instructor</strong></td>
+<td align="left"><strong>Scriber</strong></td>
+</tr>
+
+<tr>
+<td>25/02/2020, Tue</td>
+<td>Lecture 01: History and Overview of Artificial Intelligence. [<a href="slides/HKUST%20-%20AI%20in%20Finance%20-%202020.02.25.pdf"> slides </a>]
+</td>
+<td>A.W. and Y.Y.</td>
+<td></td>
+</tr>
+		
+<tr>
+<td>03/03/2020, Tue </td>
+<td>Lecture 02: Supervised Learning: Linear Regression and Classification <a href="slides/Lecture02_linear.pdf">[ YY's slides ]</a>
+	<ul>[ Topic ]
+		<li>Google Experiments: Vision Sensing and Case study: HireVue (Video Analytics for Recruitment)[<a href="slides/HKUST%20-%20AI%20in%20Finance%20-%202019.03.03.pdf"> AW's slides </a>]</li>
+	</ul>
+	<ul>[ Reference ]
+		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+		<li> Linear Regression Python Notebook <a href="notebook/MAFS6010u_Regression.ipynb"> [ MAFS6010u_Regression.ipynb ] </a> </li> 
+		<li> Linear Classification Python Notebook <a href="notebook/MAFS6010u_Classification.ipynb"> [ MAFS6010u_Classification.ipynb ] </a> </li> 
+ 	</ul>
+</td>
+<td>A.W. <br> Y.Y.</td>
+<td></td>
+</tr>		
+
+<tr>
+<td>10/03/2020, Tue </td>
+<td>Lecture 03: Model Assessment and Selection: Subset, Ridge, Lasso, and PCR <a href="slides/Lecture03_regularization.pdf">[ YY's slides ]</a> 
+	<br>
+	<ul>[Reference]:
+		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+		<li> Python Notebook for Model Selection (Subset, Ridge, Lasso, and Principal Component Regression) 
+			<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/notebook/MAFS6010u_Selection.ipynb"> [ MAFS6010u_Selection.ipynb ] </a> </li> 
+	</li>
+	</ul>
+	<ul>[ Topic ]: [<a href="slides/HKUST%20-%20AI%20in%20Finance%20-%202019.03.10.pdf"> AW's slides </a>]
+		<li> Poll results on "Beyond the Classroom" </li>
+		<li> Symbolic vs. Connectionist AI </li>
+		<li> Group formation and logistics</li>
+		<li> Case study: WorkFusion </li>
+		<li> Best practices of CV writing and interview preparation </li>
+	</ul>
+</td>
+<td>Y.Y.<br> A.W. </td>
+<td></td>
+</tr>
+
+<tr>
+<td>17/03/2020, Tue </td>
+<td>Lecture 04: Decision Tree, Bagging, Random Forests and Boosting <a href="slides/Lecture04_tree.pdf">[ YY's slides ]</a> 
+	<br>
+	<ul>[Reference]:
+		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+		<li> Python Notebook for Decision Trees, Bagging, Random Forests and Boosting 
+			<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/notebook/MAFS6010u_tree.ipynb"> [ MAFS6010u_tree.ipynb ] </a> </li> 
+	</li>
+	</ul>
+	<ul>[ Topic ]: Some Kaggle Challenges for Project Option [<a href="slides/TeamAssignmentOption.pdf"> Weizhi ZHU's slides </a>]
+	</ul>
+
+	<ul>[ Topic ]: [<a href="slides/HKUST%20-%20AI%20in%20Finance%20-%202019.03.17.pdf"> AW's slides </a>]
+		<li> Group project Q&A </li>
+		<li> Monthly Article Template: First batch due on March 31 </li>
+		<li> Banking and Markets </li>
+		<li> Case Study: QxBranch (Quantum Computing) </li>
+		<li> Case Study: Prowler (General AI) </li>
+		<li> Interview Preparation: Investment Banking Essentials </li>
+	</ul>
+
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>24/03/2020, Tue</td>
+<td>Lecture 05: Support Vector Machines <a href="slides/Lecture05_svm.pdf">[ YY's slides ]</a> 
+	<br>
+	<ul>[Reference]:
+		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+		<li> Python Notebook for Support Vector Machines 
+			<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/notebook/MAFS6010u_svm.ipynb"> [ MAFS6010u_svm.ipynb ] </a> </li> 
+	</li>
+	</ul>
+	<ul>[ Topic ]: Assignment II and Impacts on Global Markets etc. [<a href="slides/HKUST%20-%20AI%20in%20Finance%20-%202019.03.24.pdf"> AW's slides </a>]
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>03/31/2020, Tue</td>
+<td>Lecture 06: A Tutorial on Applications of Machine Learning: Pair Trading. 
+	<br>
+	<ul>[Reference]:
+		<li> Weizhi ZHU: 
+			[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/notebook/PairTrading%20-%201.ipynb"> PairTrading-1.ipynb </a>] 
+			[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/notebook/PairTrading%20-%202.ipynb"> PairTrading-2.ipynb </a>]
+				</li>
+	</ul>
+	<ul>[ Topic ]: Anthony Woo's talk  [<a href="slides/HKUST%20-%20AI%20in%20Finance%20-%202019.03.31.pdf"> AW's slides </a>]
+		<li> Global Markets Overview (Cont'd) </li>
+		<li> Case Study on Prowler (Cont'd) </li>
+		<li> Case Study on QxBranch & Rigetti </li>
+		<li> Best Practices of CV Writing </li>
+	</ul>
+</td>
+<td>Weizhi ZHU; <br> Anthony Woo</td>
+<td></td>
+</tr>
+
+<td>04/07/2019, Tue</td>
+<td>Lecture 07: An Introduction to Convolutional Neural Networks [<a href="slides/Lecture06_CNN.pdf"> YY's slides </a>] </a>  
+	<br>
+	<ul>[Reference]:
+		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+		<li> LeNet5 for MNIST dataset in Pytorch Notebook 
+			[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/notebook/LeNet5_mnist.ipynb"> LeNet5_mnist.ipynb </a>] </li>
+		<li> LeNet5 for Cifar10 dataset in Pytorch Notebook 
+			[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/notebook/LeNet5_cifar10.ipynb"> LeNet5_cifar10.ipynb </a>] </li>
+		<li> AlexNet for Cifar10 dataset in Pytorch Notebook 
+			[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/notebook/AlexNet_cifar10.ipynb"> AlexNet_cifar10.ipynb </a>] </li>
+		<li> ResNet for Cifar10 dataset in Pytorch Notebook 
+			[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/notebook/ResNet_cifar10.ipynb"> ResNet_cifar10.ipynb </a>] </li>
+
+	</ul>
+	<ul>[ Invited Talk ] 
+	<li> Speaker: FONG Katrina, Fintech Recruitment [<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/slides/HKUST%20-%20AI%20in%20Finance%20-%202020.04.07%20(Katrina).pdf"> slides </a>] </li>
+	</ul>	
+</td>
+<td>A.W. <br>Y.Y.</td>
+<td></td>
+</tr>
+
+<td>04/14/2019, Tue</td>
+<td>Lecture 08: Topics in CNN: Visualization, Transfer Learning, Neural Style, and Adversarial Examples [<a href="slides/Lecture07_CNN+.pdf"> YY's slides </a>] </a>  
+	<br>
+	<ul>[Reference]:
+		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+		<li> Visualization of VGG16 in Pytorch Notebook 
+			[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/notebook/vgg16-visualization.ipynb"> vgg16-visualization.ipynb </a>] </li>
+		<li> Class activation heatmap of VGG16 in Pytorch Notebook 
+			[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/notebook/vgg16-heatmap.ipynb"> vgg16-heatmap.ipynb </a>] </li>
+		<li> Fine-tuning (transfer learning) of ResNet in Pytorch Notebook 
+			[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/notebook/finetuning_resnet.ipynb"> finetuning_resnet.ipynb </a>] </li>
+		<li> Neural Style of HKUST at Starry Night in Pytorch Notebook 
+			[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/notebook/neural_style_starry-hkust.ipynb"> neural_style_starry-hkust.ipynb </a>] </li>
+		<li> Adversarial examples of LeNet5 with MNIST 
+		[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/notebook/LeNet5_mnist_fgsm.ipynb"> LeNet5_mnist_fgsm.ipynb </a>] </li>
+	</ul>
+	<ul>[ Topic ]: 
+		<li> Speaker: Anthony Woo [<a href="slides/HKUST%20-%20AI%20in%20Finance%20-%202019.04.14.pdf"> slides </a>]
+	</ul>			
+</td>
+<td>A.W. <br>Y.Y.</td>
+<td></td>
+</tr>
+
+<td>04/21/2019, Tue</td>
+<td>Lecture 09: An Introduction to Unsupervised Learning: PCA, AutoEncoder, VAE, and GANs [<a href="slides/Lecture08_GAN.pdf"> YY's slides </a>] </a>  
+	<br>
+	<ul>[Reference]:
+		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+		<li> DCGAN for MNIST Tutorial in Pytorch Notebook 
+			[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/notebook/dcgan_mnist_tutorial.ipynb"> dcgan_mnist_tutorial.ipynb </a>] </li>
+	</ul>
+</td>
+<td>A.W. <br> Y.Y.</td>
+<td></td>
+</tr>
+
+<td>04/28/2020, Tue</td>
+<td>Lecture 10: An Introduction to Recurrent Neural Networks (RNN) and Long Short Term Memory (LSTM) [<a href="slides/Lecture09_RNN-LSTM.pdf"> YY's slides </a>] </a>  
+	<br>
+	<ul>[Reference]:
+		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+		<li> Character-level RNN, LSTM and GRU for Name Classification 
+		[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/notebook/char_rnn_classification_tutorial.ipynb"> char_rnn_classification_tutorial.ipynb </a>] 
+		</li> 
+		<li> RNN for generating Shakespeare's Poems 
+		[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/notebook/rnn.ipynb"> rnn.ipynb </a>] 
+		</li> 
+		<li> LSTM for generating Shakespeare's Poems 
+		[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/notebook/lstm.ipynb"> lstm.ipynb </a>] 
+		</li> 
+	</ul>
+	<ul>[ Topic ]
+		<li>  [<a href="slides/HKUST%20-%20AI%20in%20Finance%20-%202019.04.28.pdf"> AW's slides </a>]
+                <li>  [<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/slides/%5BDeep%20Instinct%5D%20Reinventing%20Cybersecurity%20Prevention%20with%20Deep%20Learning.pdf"> 
+		Deep Instinct: Reinventing Cybersecurity Prevention with Deep Learning </a>]
+	</ul>
+</td>
+<td>A.W. <br> Y.Y.</td>
+<td></td>
+</tr>
+
+<td>05/05/2020, Tue</td>
+<td>Lecture 11: Attention, Transformer and BERT [<a href="slides/Lecture10_transformer.pdf"> YY's slides </a>]  </a>  
+	<br>
+	<ul>[Reference]:
+		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+		<li> Illustrated Transformer by Jay Alammar: [<a href="https://jalammar.github.io/illustrated-transformer/"> link </a>] </li>
+		<li> The Annotated Transformer Tutorial by Sasha Rush: [<a href="http://nlp.seas.harvard.edu/2018/04/03/attention.html"> link </a>]
+		</li>
+		<li> BERT generation of Shakespeare's sonnet: [<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/data/BERT_shakespeare_gen.ipynb"> BERT_shakespeare_gen.ipynb </a>]
+		</li>
+		<li> BERT next sentence generation of Shakespeare's sonnet and Chinese poems: 
+			[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/data/BERT_shakespeare_nextsen.ipynb"> BERT_shakespeare_nextsen.ipynb </a>]
+		</li>
+	</ul>
+	<ul>[ Topic ]
+		<li>  [<a href="slides/HKUST%20-%20AI%20in%20Finance%20-%202020.05.05.pdf"> AW's slides </a>]
+		</li>
+		<li>  [<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/slides/%5BBCG%5D%20Rise%20of%20AI%20Post-COVID.pdf"> The Rise of AI-Powered Company in the Postcrisis World </a>]</li>
+	</ul>
+</td>
+<td>A.W. <br> Y.Y.</td>
+<td></td>
+</tr>
+
+<td>05/12/2020, Tue</td>
+<td>Lecture 12: An Introduction to Reinforcement Learning [<a href="slides/Lecture11_Reinforcement.pdf"> YY's slides </a>]  
+	<br>
+	<ul>[ Reference ]:
+		<li> Prof. Michael Kearns, University of Pennsyvania, Algorithmic Trading and Machine Learning, 
+			Simons Institute at Berkeley [<a href="https://simons.berkeley.edu/talks/michael-kearns-2015-11-19"> link </a> ]
+		</li>
+		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+		<li> Deep Q-Learning Pytorch Tutorial: [<a href="https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html"> link </a> ]
+		</li>
+		<li> Reinforcement Learning and Supervised Learning for Quantitative Finance: [<a href="https://github.com/Ceruleanacg/Personae/blob/master/README.md"> link </a>]
+		</li>
+		<li> Quantum Computing at IBM: [<a href="https://quantum-computing.ibm.com/jupyter"> link </a>] </li>
+	</ul>
+	<ul>[ Topic ]
+		<li>  Speaker: <a href=" https://www.linkedin.com/in/mstchen/">Dr. Michael Chen</a>, Former Executive Director at Harvard Center Shanghai.
+		</li>
+	</ul>
+
+	</ul>
+</td>
+<td>A.W. <br> Y.Y.</td>
+<td></td>
+</tr>
+
+<td>05/19/2020, Tue</td>
+<td>Lecture 13: Tutorial on Reinforcement Learning in Quantitative Trading [<a href="slides/Lecture12_tutorial_RLQT.pdf"> Weizhi's slides </a>]  
+	<br>
+	<ul>[ Reference ]:
+		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+		<li> Python Notebook on Deep Q-Learning in Trading: [<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/notebook/Tutorial_DQN_in_Trading.ipynb"> link </a> ]
+		</li>
+		<li> Kaggle: M5 Forecasting - Accuracy, Estimate the unit sales of Walmart retail goods. [<a href="https://www.kaggle.com/c/m5-forecasting-accuracy"> link </a>]
+		</li>
+		<li> Kaggle: M5 Forecasting - Uncertainty, Estimate the uncertainty distribution of Walmart unit sales. [<a href="https://www.kaggle.com/c/m5-forecasting-uncertainty"> link </a>]
+		</li>
+		<li> Kaggle: Home Credit Default Risk [<a href="https://www.kaggle.com/c/home-credit-default-risk"> link </a>]
+		</li>
+		<li> Kaggle: COVID-19 Open Research Dataset Challenge (CORD-19) [<a href="https://www.kaggle.com/allen-institute-for-ai/CORD-19-research-challenge"> link </a>]
+		</li>
+		<li> Quantapian: free education, data, and tools so anyone can pursue quantitative finance. [<a href="https://www.quantopian.com/"> link </a>]
+		</li>
+	</ul>
+	<ul>[ Topic ]
+		<li>  Speakers: <a href="https://www.linkedin.com/in/brzheng">Brian Zheng</a> and Anthony Woo
+		</li>
+		<li>  [<a href="slides/HKUST%20-%20AI%20in%20Finance%20-%202020.05.19.pdf"> slides </a>]
+		</li>
+	</ul>
+
+<ul> [ Final Reports ]
+	<li> GitHub Repository for reports of Final Project
+		<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/project/"> [ GitHub ] </a>
+	<p>
+	</li>
+</ul>
+<ul> [ Chatbot ]
+	<li> 1. <B> LI Jiaqi, LIN Tuoyu, LIU Genghuadong, ZHANG Zehao, and ZHOU Quan.</B>
+		<br> NLP Chatbot for CogX Website.
+	 	<br> 
+		[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/project/Chatbot/Team%201/_5BOutliers_5D_6010U_Report.pdf"> report </a>]
+		[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/project/Chatbot/Team%201/_5BOutliers_5D_6010u_Presentation.pdf"> slides </a>]
+		[<a href="https://github.com/GenghuadongLIU/HKUST-MAFS-6010U-Project/"> source (github) </a>] 
+		[<a href="https://www.youtube.com/watch?v=9vyOJiV6BsM"> presentation (youtube) </a>]
+	<p>
+	</li>
+	<li> 2. <B> LI, Liangde, Yaxin Zhang, Linfeng Zhu, Yuqiao Xie, and Qi Liu.</B>
+		<br> Financial Chatbot Based on LSTM.
+	 	<br> 
+		[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/project/Chatbot/Team%202/Doraemon-Report.pdf"> report </a>]
+		[<a href="https://github.com/zlf-zju-hkust/chatbot1"> source (github) </a>]
+		[<a href="https://youtu.be/eeCuLXH9_HI"> presentation (youtube) </a>] 
+	<p>
+	</li>
+	<li> 3. <B> XU Wenhao, LI Yihang, ZHANG Yanran, and LAI Kunyao.</B>
+		<br> Chatbot Based on Prepared Answer Set.
+	 	<br> 
+		[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/project/Chatbot/Team%203/J.A.R.V.I.S.-chatbot.pdf"> report </a>]
+		[<a href="https://pan.baidu.com/s/1nVk3CDF49BhB5Ic9h574ag"> source, presentation (baidu:5311) </a>] 
+	<p>
+	</li>
+	<li> 4. <B> CHEN Xiaoyu, SUN Lei, XU Yuqing, YIN Li, and ZHU Hanfeng.</B>
+		<br> NLP Chatbot.
+	 	<br> 
+		[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/project/Chatbot/Team%204/6010U-Final.pdf"> report </a>]
+		[<a href="https://github.com/SimonsChu/6010U_Chatbot"> source (github) </a>] 
+		[<a href="https://www.youtube.com/watch?v=Syhz17WZ9_w"> presentation (youtube) </a>] 
+	<p>
+	</li>
+</ul>
+
+<ul> [ Kaggle ]
+	<li> 1. <B> ZHANG Zhiyi, HU Zhenzhuo, and WU Siliang.</B>
+		<br> M5 Forecasting with LightGBM.
+	 	<br> 
+		[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/project/Kaggle/Team%201/1._Report.pdf"> report </a>]
+		[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/project/Kaggle/Team%201/2._Slides.pdf"> slides </a>]
+		[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/project/Kaggle/Team%201/"> source (github) </a>] 
+		[<a href="https://www.bilibili.com/video/bv1ka4y1e7Ev"> presentation (bilibili) </a>]
+	<p>
+	</li>
+	<li> 2. <B> ZHU, Changjun.</B>
+		<br> Kaggle - M5 Forecasting - Accuracy.
+	 	<br> 
+		[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/project/Kaggle/Team%202/ZZL_project.pdf"> report </a>]
+		[<a href="https://github.com/Goonmdt/kaggle_M5"> source (github) </a>]
+		[<a href="https://space.bilibili.com/204278913/video"> presentation (bilibili) </a>] 
+	<p>
+	</li>
+	<li> 3. <B> Yinuo Wang, Tingting Jiang, Wenjun Li, Haolan Fan, Fangrui Zhang, Yijia Song, and Shihao Yang.</B>
+		<br> M5 Forecasting Competition Report.
+	 	<br> 
+		[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/project/Kaggle/Team%203/6010UFinal.pdf"> report </a>]
+		[<a href="https://www.dropbox.com/sh/1xjxj5izzkftc8z/AACLN2QGkdl8spZnDb−i0OUa?dl=0"> source (dropbox) </a>]
+		[<a href="https://drive.google.com/file/d/1aIBpNUghY6UIKbm37PetnOPYlwwU9p8/view?usp=sharing"> presentation (google) </a>] 
+	<p>
+	</li>
+	<li> 4. <B> CAI Zhuoheng, HAN Yan, LI Lingpan, and LI Yiling.</B>
+		<br> Wal-Mart Sales Prediction using XGBoost Algorithm.
+	 	<br> 
+		[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/project/Kaggle/Team%204/Cai_Han_Li_Li_Report.pdf"> report </a>]
+		[<a href="https://github.com/charlesczh/6010U-final"> source (github) </a>]
+		[<a href="https://www.bilibili.com/video/BV1Tk4y1r774"> presentation (bilibili) </a>] 
+	<p>
+	</li>
+	<li> 5. <B> DO, Van Thuat.</B>
+		<br> Home Credit Default Risk.
+	 	<br> 
+		[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/project/Kaggle/Team%205/Thuat_DO_final_report_6010U.pdf"> report </a>]
+		[<a href="https://github.com/thuat86/6010U-final-project"> source (github) </a>]
+		[<a href="https://drive.google.com/drive/folders/1PpZmvK8uwzncJnjq35T_DGY-MBS_FUbQ?usp=sharing"> presentation (google) </a>] 
+	<p>
+	</li>
+	<li> 6. <B> LAO Shengbo, SHI Kai, TANG Haokai, and ZHOU Zhixuan.</B>
+		<br> Estimate the Unit Sales of Walmart Retail Goods in the USA.
+	 	<br> 
+		[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/project/Kaggle/Team%206/6010U_Final_Report.pdf"> report </a>]
+		[<a href="https://drive.google.com/drive/folders/1NDX32jE505XAQbX8EhaAhZYQnnfnQtk9"> source (github) </a>]
+		[<a href="https://drive.google.com/drive/folders/1UbL7TvoBMBqvwdX7U4dUdClvI0euz6p9"> presentation (google) </a>] 
+	<p>
+	</li>
+	<li> 7. <B> ZHONG, Jing and LIU, Ruiyan and LI, Han and LI, Yijin and ZHANG, Xuanyu and ZHANG, Tianyu.</B>
+		<br> TIME SERIES PREDICTION ON SALES OF WALMART.
+	 	<br> 
+		[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/project/Kaggle/Team%207/"> report </a>]
+		[<a href="https://github.com/Ryann729/MAFS-6010U/tree/master/code_ppt"> source (github) </a>]
+		[<a href="https://youtu.be/Y9a8yLi39w4"> presentation (youtube) </a>] 
+	<p>
+	</li>
+	<li> 8. <B> WANG Su, WANG Boyu, ZHAO Yinuo, GAO Yuxin, and LI Qian.</B>
+		<br> Estimate the unit sales of Walmart retail goods.
+	 	<br> 
+		[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/project/Kaggle/Team%208/AI_project_WeArealLsMART.pdf"> report </a>]
+		[<a href=" https://drive.google.com/drive/folders/1h1x8mOA_5FlZlDzvzcytH8ZUAHHeGub9?usp=sharing"> source (dropbox) </a>]
+		[<a href="https://www.bilibili.com/video/BV1ie411W7J3"> presentation (bilibili) </a>] 
+	<p>
+	</li>
+
+</ul>
+
+<ul> [ Quantopian ]
+	<li> 1. <B> LI, Fanyi, DU Yushu, HUANG Jian, TONG Jiaqu, and YU Rong.</B>
+		<br> Project of Artificial Intelligence in Finance.
+	 	<br> 
+		[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/project/Quantopian/Team%201/Project_of_Artificial_Intelligence_in_Finance_Final_V-2.pdf"> report </a>]
+		[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/project/Quantopian/Team%201/AI_trading_strategy_v4.pdf"> slides </a>]
+		[<a href="https://github.com/king-yellow/MAFS6010U_Quantopian_trading_strategy"> source (github) </a>] 
+		[<a href="https://www.youtube.com/watch?v=yIyOzdBfYQ0"> presentation (youtube) </a>]
+	<p>
+	</li>
+	<li> 2. <B> Nan Xi; Zhao Yanan; Shi Xinrun; Ji chunhua.</B>
+		<br> Smart Beta Trading Strategy Based on Fundamental Factors.
+	 	<br> 
+		[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/project/Quantopian/Team%202/MAFS6010U_Final_Project_Report.pdf"> report </a>]
+		[<a href="https://github.com/ynnnnnnn/MAFS6010U-final-project.git"> source (github) </a>]
+		[<a href="https://youtu.be/VHFIbZrHVno"> presentation (youtube) </a>] 
+	<p>
+	</li>
+</ul>
+
+</td>
+<td>Weizhi ZHU<br> A.W.<br> Y.Y.</td>
+<td></td>
+</tr>
+
+	<!---
+
+<tr>
+<td>03/8/2019, Fri</td>
+<td>Lecture 05: Tutorials 
+	<br>
+	<ul>[Reference]:
+		<li> Yifei HUANG: <a href="slides/Tutorial1MAFS6010U.ipynb"> Tutorial on Machine Learning by Python </a> </li>
+		<li> Yifei HUANG: <a href="slides/Tutorial_for_Server.pdf"> Tutorial on GPU server </a> </li>
+		<li> A dataset used in python tutorial: <a href="okex_future_BTC_USD_this_week_1H.csv"> okex_future_BTC_USD_this_week_1H.csv </a> </li>
+		<li> <a href="https://piazza.com/ust.hk/spring2019/mafs6010u/resources">File links in Piazza >> </a></li>
+	</ul>
+</td>
+<td>Yifei Huang; <br> Katrina Fong;<br> Anthony Woo</td>
+<td></td>
+</tr>
+	
+<tr>
+<td>03/15/2019, Fri</td>
+<td>Lecture 06. Topics in Blockchains
+	<br>
+	<ul>[ Invited Talk ]: <B> Fintech and Blockchain </B>
+		<li> <B>Speaker</B>: <a href="slides/Alex_YANG.pdf">Dr. Alex YANG</a>, CEO, VEE Technology LLC and Dr. Chen NING.
+	</li>
+		<li> <B>Abstract</B>: This is a brief introduction of Blockchain consensus and its current application in Finance, <a href="https://v.systems">V.Systems</a>’ 
+			vision and outlook of Blockchain in Fintech.</li>
+		<li> <B>Bio</B>: Dr Alex Yang is a FinTech entrepreneur/investor with over 14 years of experience in banking and finance. VEE Technology is led by Sunny King, a blockchain legendary developer and creator of Proof-of-Stake consensus. As CEO of VEE Tech, Alex is driving the project to solve the core scalability and stability problems in the development of the blockchain industry. His deep experience of the industry has been gained through his investing activity where he has sponsored many world-leading blockchain foundations.
+<br>
+Prior to his role at VEE, Alex was the founder and CEO of Fund V, one of the first token funds to focus on blockchain companies and related investment opportunities. He was also the founding partner of Beam VC and CyberCarrier Capital which together have successfully invested in over 30 startups in the TMT sector.  Alex is a founding partner of Protoss Global Opportunity Fund, a fixed income hedge fund based in Hong Kong.  
+<br>
+Prior to moving into venture capital investing, Alex was based in Hong Kong as head of APAC structured rates trading at Nomura International, and VP of exotic derivatives trading at UBS.  He started his career as a quantitative developer at Jump Trading in Chicago.
+<br>
+Alex has a PhD from Northwestern University and a BA in Mathematics from Peking University. 
+		</li>
+	</ul>
+	<ul><B> An Introduction to Blockchains</B>: [ <a href="slides/HKUST%20-%20AI%20in%20Finance%20-%202019.03.15.pdf"> AW's slides </a>]
+	</ul>
+</td>
+<td>A.W. <br> Y.Y.</td>
+<td></td>
+</tr>
+
+
+
+
+
+<td>05/03/2019, Fri</td>
+<td>Seminar: Investment Trends and FinTech Outlook  </a>  
+	<br>
+	<ul>[ Invited Talk ]:
+		<li> <B> Focus </B>: Sales and Trading Business in Global Investment Banks – Ripe for Disruption by AI?
+		<li> <B> Speaker: </B> Mr. Christopher Lee </li>
+		<li> <B> Biography: </B> 
+			Mr. Chris Lee is a partner at FAA Investments and a board director with expertise in financial markets, risk management, governance and leadership development. Currently, he serves as an Independent Board Member with Matthews Asia Funds (AUM: US$30.2 billion), the largest US investment company with a focus on Asia Pacific markets and Asian Masters Fund, an investment company listed in Australia.
+
+Previously, Chris was an investment banker for 18 years, acting as Managing Director and divisional and regional heads at Deutsche Bank AG, UBS Investment Bank and Bank of America Merrill Lynch. He worked in global capital markets, managed derivative products, and provided equity sales and trading functions to institutional investors.
+
+Academically, Chris is an associate professor of science practice at HKUST and teaches financial mathematics and risk management courses. He completed the AMP at Harvard University and holds a BS in Mechanical Engineering and an MBA from U.C. Berkeley.
+
+<br> Bloomberg Profile: [<a href="https://www.bloomberg.com/research/stocks/private/person.asp?personId=282763969&privcapId=43605455"> link </a>]</li>
+	</ul>
+</td>
+<td>Chris Lee <br> A.W.</td>
+<td></td>
+</tr>
+
+<td>05/10/2019, Fri</td>
+<td>Lecture 12: Tutorial on deep learning in Python </a>  
+	<br>
+	<ul>[Reference]:
+		<li> [<a href="slides/Tutorial2-MAFS6010U.ipynb"> Python Notebook </a>] </li>
+	</ul>
+</td>
+<td>Yifei Huang</td>
+<td></td>
+</tr>
+
+
+<td>05/17/2019, Fri</td>
+<td>Lecture 13: Final </a>  
+	<br>
+	<ul>[Reference]:
+		<li> [<a href="slides/HKUST%20-%20AI%20in%20Finance%20-%202019.05.17.pdf"> slides </a>] </li>
+		<li> [<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/project/%5BFinalAssignment%5D.pdf"> Final Assignment </a>] </li>
+	</ul>
+<ul> [ Final Reports ]:
+	<li> Ruiting CHEN, Di CHENG, Yang XUE, Yifan YE, Mengkai ZHANG (Group Hawk). AI in Finance Final Report. [<a href="project/Hawk_report.pdf"> Report </a>][<a href="project/Hawk_slides.pptx"> Slides (pptx) </a>][<a href="https://youtu.be/dnuZeVYy988"> Presentation </a>][<a href="https://github.com/gigondor/HKUST-MAFS-6010U-HAWK"> GitHub </a>]</li>
+	<li> Paul M.Y. FUNG, Alex C.Y. Leung, Alan W.M. Ng, Billy C.H. Wan, Ivan T.H. Yim (Group Hongkies). Bitcoin Trading Strategies Using News and Tweets with Sentiment Analysis (Option A). [<a href="project/Hongkies_report.pdf"> Report </a>][<a href="project/Hongkies_slides.pptx"> Slides (pptx) </a>][<a href="project/Hongkies_source.rar"> Source (.rar) </a>][<a href="https://www.youtube.com/watch?v=UW6U1Rh5pLo"> Presentation </a>]</li>
+	<li> HOU Jie, QIAN Jing, YANG Yu, KE Chenji, SONG Chu. Final Report For MAFS 6010U From Project Sweetie. [<a href="project/Hou-Qian-Song-Ke-Yang_report.pdf"> Report </a>][<a href="project/Hou-Qian-Yang-Ke-Song_slides.pdf"> Slides </a>][<a href="https://youtu.be/hIQGZgPIPT0"> Presentation (youtube) </a>]</li>
+	<li> HU Xinlin, YU Lifang, Xinyu Wang, Ziwei Yuan, Haohua Chen (Group Skyfall). Data Analysis in SenseTime. [<a href="project/Skyfall_report.pdf"> Report </a>][<a href="project/Skyfall_slides.ppt"> Slides (ppt) </a>][<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/tree/master/project/Skyfall_source/"> Source </a>][<a href="https://www.youtube.com/watch?v=MVDya0hnUic"> Presentation (youtube) </a>]</li>
+	<li> HUA Neng, CHENG Yu, WANG Xuan, BI Huarui, WANG Sunan (Group Forget101). [<a href="project/Forget101_report.pdf"> Report </a>][<a href="project/Forget101_slides.pptx"> Slides (pptx) </a>][<a href="https://drive.google.com/file/d/1s9iaS3WI3gqdsGDMg4-gcuxOtWgKjmC2/view?usp=sharing"> Source (Google drive) </a>][<a href="https://youtu.be/TVssGC-RrK0"> Presentation (youtube) </a>]</li>
+	<li> KU, Taekyun. [<a href="project/KU_Taekyun_report.docx"> Report (docx) </a>][<a href="project/KU_Taekyun_slides.pptx"> Slides (pptx) </a>][<a href="https://youtu.be/XaFlGkJE9Xo"> Presentation (youtube) </a>]</li>
+	<li> LAM, Hui Fung; SHEN, Kairan; WANG, Chenghui; WU, Shukun; XIAO, Yuxiang (Group HappyAImen). [<a href="project/HappyAImen_report.pdf"> Report </a>][<a href="project/HappyAImen_slides.ppt"> Slides (ppt) </a>][<a href="project/HappyAImen_Video&Code.docx"> Source (.docx) </a>][<a href="https://youtu.be/jCfjw5mM7Go"> Presentation (youtube) </a>]</li>
+	<li> LI Huiwen, FENG Yuan, ZHOU Yunzhi, ZHAO Jingru, LEI Qiuyue. A Study of Company -- Sense Time. [<a href="project/Li-Feng-Zhou-Zhao-Lei_report.pdf"> Report </a>][<a href="project/Li-Feng-Zhou-Zhao-Lei_slides.pptx"> Slides (pptx) </a>][<a href="https://www.youtube.com/watch?v=Kx5SCISWnys&feature=youtu.be"> Presentation (youtube) </a>]</li> 
+	<li> LI Xianda; WU Jiaquan; YAN Ke; YU Yipeng; ZHAO Siheng. Employees’ Education Information Scraping and Analysis Based on AI. [<a href="project/Li-Wu-Yan-Yu-Zhao_report.pdf"> Report </a>][<a href="project/Li-Wu-Yan-Yu-Zhao_source/"> source </a>][<a href="https://youtu.be/tcdKPgRoMcU"> Presentation (youtube) </a>]</li>
+	<li> LI Ye, GAO Jianyu, TIAN Lei, CHEN Shuying, XU Liyuan (Team Orange). [<a href="project/Orange_report.pdf"> Report </a>][<a href="project/Orange_slides.pptx"> Slides (pptx) </a>][<a href="project/Orange_source/"> source </a>][<a href="https://youtu.be/YX6w84rOWXk"> Presentation (youtube) </a>]</li> 
+	<li> LI, Zhuxuan and HE, Yuhang. Analysis on Codecademy -- A company focusing on providing online AI related education (Option A). [<a href="project/LI_Zhuxuan-HE_Yuhang-Report.pdf"> Report </a>][<a href="project/LI_Zhuxuan-HE_Yuhang_slides.pptx"> Slides (pptx) </a>][<a href="https://youtu.be/rum4qau7jW8"> Presentation (youtube) </a>]</li>
+	<li> LIU Yifei, JIANG Zhining, WAN Jing, ZHANG Lingxi, ZHANG Yuxin. AI Learning Report. [<a href="project/EZ_report.pdf"> Report </a>][<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/tree/master/project/EZ_source/"> Source </a>][<a href="https://youtu.be/OjumRLnY-_M"> Presentation (youtube) </a>] </li>
+	<li> LIU Yuchen, MA Huanyu, SUN Zhuo, ZHENG Hanshen. Artificial Intelligence in Financial Service Industry. [<a href="project/Liu-Ma-Sun-Zheng_report.pdf"> report </a>][<a href="https://youtu.be/oLHO7rQMSTw"> Presentation (youtube) </a>] </li>
+	<li> SHEN, Lue. Building Chinese Chat Bot with Controlled Sentence Function (Option A). [<a href="project/SHEN_Lue_report.pdf"> Report </a>] [<a href="project/SHEN_Lue_slides.pdf"> Slides </a>][<a href="https://github.com/aifin-hkust/SentenceFunction"> Github Source </a>][<a href="https://drive.google.com/file/d/1LrszFVHk9XxY_u2xnA0hSLmQz1DacL41/view?usp=sharing"> Presentation (Google Drive) </a>][<a href="https://youtu.be/OL8BFajM2K4"> Presentation (youtube) </a>] </li>
+	<li> PAN, Jiayi. Trading cryptocurrencies with LSTM and refection on the LSTM journal (Option A). [<a href="project/PAN_Jiayi_report.pdf"> Report </a>][<a href="https://hkustconnect-my.sharepoint.com/:u:/g/personal/jpanak_connect_ust_hk/EZJurUYLdBFDi8f1OkoBojUBpP9FChhzdE9MG3CiaUTSpw?e=6pZ90x"> One Drive Link: Submission_LSTM_PJY.zip </a>][<a href="https://youtu.be/ufY7f8fc5hU"> Presentation (youtube) </a>]</li>
+	<li> ZHANG Banruo, QIU Chuchu, LI Lu, TANG Mandi, ZHOU Yawen (Group Gesha). [<a href="project/Gesha_report.pdf"> Report </a>][<a href="project/Gesha_slides.pptx"> Slides (pptx) </a>][<a href="https://youtu.be/9HJrNCCTprw"> Presentation (youtube) </a>]</li>
+	<li> ZHANG Jian, Jianmei WU, Baohui HUANG, Qianying ZHANG, Yangshanhui YUE (Project Pharaoh). AI Private Equity Investment: Entrepreneurship Profession Assessment Research. [<a href="project/Pharaoh_report.pdf"> Report </a>][<a href="project/Pharaoh_slides.pptx"> Slides (pptx) </a>][<a href="https://youtu.be/PonFqin7U3k"> Presentation (youtube) </a>]</li>
+</ul>
+</td>
+<td>A.W.</td>
+<td></td>
+</tr>
+
+	
+	--->
+	
+</tbody>
+</table>
+
+
+
+<hr>
+
+<address>
+by <a href="http://yao-lab.github.io/">YAO, Yuan</a>.
+</address>
+
+</body>
+</html>
