@@ -1,0 +1,39 @@
+
+function [success] = problem1d(p,r)
+    R = randn(20,20);
+    [U,S,V] = svds(R,10);
+    
+    A = U(:,1:r)*V(:,1:r)';
+
+    E0 = rand(20);
+    E = 1*abs(E0>(1-p));
+    X = A + E;
+
+    lambda = 0.25;
+    
+    S=0;
+    Y=0;
+    mu=1;
+    
+    
+    
+    for i=1:100
+        L=M-S-1/mu*Y;
+        L_u,L_s,L_v = svds(L);
+        L_s=wthresh(M-L+1/mu*Y,'s',lambda*mu);
+        L=D();
+        S=wthresh(M-L+1/mu*Y,'s',lambda*mu); 
+        Y=Y+mu*(M-L-S);
+    end
+    
+    
+    
+    % The difference between sparse solution S and E
+    disp('$\—S-E\— \infty$:') ;
+    norm(S-E,'inf');
+    % The difference between the low rank solution L and A
+    disp('\—A-L\—') ;
+    norm(A-L);
+    success=norm(S-E,'inf')<1e-4;
+end
+

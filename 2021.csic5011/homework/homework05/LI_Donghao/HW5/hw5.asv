@@ -1,0 +1,7 @@
+
+repeat=10;
+problem1
+for r = 1:10:
+for i = 1:repeat
+    problem1()
+end
