@@ -107,28 +107,32 @@ with source codes such as Python (Jupyter) Notebooks with a detailed documentati
 \section{Paper replication: \emph{(Re-)Imag(in)ing Price Trends}}
 
 \subsection{Background}
-We are targeting to replicate the following paper: \\
+We are targeting to replicate the following paper by Jingwen Jiang, Bryan Kelly and Dacheng Xiu: \\
 \url{https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3756587}.
 
-This paper consider using methods that flexibly learn price patterns that are most predictive of future returns to forecast future returns. The raw predictor data are images -- stock-level price charts, from which authors model the predictive association between images and future returns using a convolutional neural network (CNN). They claims by using CNN they can automatically identify context-independent predictive patterns which can gave more accurate return predictions, translate into more profitable investment strategies and are robust to variations. 
+This paper explores convolutional neural networks that flexibly learn price patterns as images that are most predictive of future returns. The raw predictor data are images -- stock-level price charts, from which authors model the predictive association between images and future returns using a convolutional neural network (CNN). They claims that by using CNN they can automatically identify context-independent predictive patterns which can gave more accurate return predictions, translate into more profitable investment strategies and are robust to variations. 
 
 In the empirical designs, they first embeds 1D time series data in a higher dimensional space, representing it as a 2D image depicting price and volumes. Then they feed each training sample into CNN to estimate the probability of a positive subsequent return over short (5-day), medium (20-day) and long (60-day) horizons. Afterwards, they use CNN-based out-of-sample predictions as signals in a number of asset pricing analyses. Finally, they attempt to interpret the predictive patterns identified by the CNN.
 
 \subsection{Replication studies}
-In this reproduction process, we mainly focus on understanding the data preparation (how to transfer 1D time series data to 2D images representing historical market data), model design (CNN architecture design and mechanism behind it), workflow design (from train to model tuning and finally to prediction), performance evaluation and finally the interpretation part.
+In this reproduction process, we mainly focus on understanding the data preparation (how to transfer 1D time series data to 2D images representing historical market data), model design (CNN architecture design and mechanism behind it), workflow design (from training to model tuning and finally to prediction), performance evaluation and finally the interpretation part.
 
 \begin{enumerate}
     \item \textbf{Data}
     
-    The sample runs from 1993-2019 based on the fact that daily opening, high, low prices. In the original paper, authors construct datasets consisting three scale of horizons(5-day, 20-day, 60-day), Here we just collect the 20-day version. The total size of data is 8.6G. The download link of data is: 
+    The sample runs from 1993-2019 based on the fact that daily opening, high, low prices. In the original paper, authors construct datasets consisting three scale of horizons (5-day, 20-day, 60-day), Here we just collect the 20-day version. The total size of data is 8.6G in a zipped file (802.9MB). The download link of data is: 
     
     \url{https://dachxiu.chicagobooth.edu/download/img_data.zip}
+    
+    or a fast access 
+    
+    \url{https://www.dropbox.com/s/njehqednn8mycze/img_data.zip?dl=0}
     
     with iPython image processing demo in 
     
     \url{https://dachxiu.chicagobooth.edu/download/img_demo.html}. 
 
-    We already transferred the OHLC charts into images following the same procedures introduced in the chapter2. Current images have the same resolution (64 * 60) and added with moving average lines(MA) and volume bars(VB). Some example figures is shown in Figure \ref{20-day image}.
+    We already transformed the OHLC charts into images following the same procedures introduced in the paper (Section 2). Current images have the same resolution (64 * 60) and added with moving average lines(MA) and volume bars(VB). Some example figures is shown in Figure \ref{20-day image}.
     
     \begin{figure}
         \centering
@@ -144,7 +148,7 @@ In this reproduction process, we mainly focus on understanding the data preparat
     
     \item \textbf{Architecture Design}
     
-    Why use CNN? Since CNN impose cross-parameter restrictions that dramatically reduce parameterization and embed a number of tools that make the model resilient to deformation and re-positioning of important objects in the image. A core building block consists of three operations: convolution, activation and pooling. In the paper, for 20-day image, they build a baseline CNN architectures with 3 conv blocks and connected with a fully connected layer as a classifier head. You should refer to the design of the conv block in the original paper (including the selection of the size of the convolution kernel, the selection of the convolution method, the design of the pooling layer and the selection of the activation function, etc) Figure \ref{cnn model} shows diagrams of 20-day CNN model proposed in the paper.
+    Why use CNN? Since CNN impose cross-parameter restrictions that dramatically reduce parameterization and embed a number of tools that make the model resilient to deformation and re-positioning of important objects in the image. A core building block consists of three operations: convolution, activation and pooling. In the paper, for 20-day image, they build a baseline CNN architectures with 3 conv blocks and connected with a fully connected layer as a classifier head. You should refer to the design of the conv block in the original paper (including the selection of the size of the convolution kernel, the selection of the convolution method, the design of the pooling layer and the selection of the activation function, etc) Figure \ref{cnn model} shows a diagram of 20-day CNN model proposed in the paper, just for your reference.
     
     \begin{figure}
         \centering
@@ -160,9 +164,9 @@ In this reproduction process, we mainly focus on understanding the data preparat
     
     \item[Loss and evaluation] You can simply treat the prediction analysis as a classification problem. In particular, the label for an image is defined as y = 1 if the subsequent return is positive and y = 0 otherwise. The training step minimizes the cross-entropy loss, which is the standard objective function for classification problem, which define as:$$L_{CE}(y,\hat{y}) = -y\log(\hat{y}) - (1-y)log(1-\hat{y})$$ where $\hat{y}$ is the prediction and $y$ is the ground truth. 
     
-    To measure the classification accuracy, a true positive (TP) or true negative (TN) occurs when a predicted “up” probability of greater than 50\% coincides with a positive realized return and a probability less than 50\% coincides with a negative return. False positives and negatives (FP and FN) are the complementary outcomes. We calculate classification accuracy as:$$Accuracy = (TP + TN)/(TP + TN + FP + FN)$$ For more evaluation metrics or methods, like Sharpe Ratio, please refer to the original paper.
+    To measure the classification accuracy, a true positive (TP) (true negative (TN)) occurs when a predicted probability of greater than 50\% coincides with a positive realized return (a probability less than 50\% coincides with a negative return, respectively). False positives and negatives (FP and FN) are the complementary outcomes. We calculate classification accuracy as:$$Accuracy = (TP + TN)/(TP + TN + FP + FN)$$ For more evaluation metrics or methods, like Sharpe Ratio, please refer to the original paper.
     
-    \item[Training process] The author adopt several ways to combat over-fitting issue and aid efficient computation. For example, they applied the Xavier initialization for weights in each layer, which guarantees faster convergence by scale the initial weights. Other techniques like apply dropout, using batch normalization and early stopping also assists better performance. We recommend to refer to the training details mentioned in the paper 3.3 when training the baseline model.
+    \item[Training process] The author adopt several ways to combat over-fitting issue and aid efficient computation. For example, they applied the Xavier initialization for weights in each layer, which guarantees faster convergence by scale the initial weights. Other techniques like dropout, batch normalization and early stopping may also improve performance. We recommend to refer to the training details mentioned in the paper 3.3 when training the baseline model.
 
     \end{description}
     
@@ -171,9 +175,9 @@ In this reproduction process, we mainly focus on understanding the data preparat
     \begin{itemize}
         \item For ablation studies and testing robustness, we suggest you follow what original paper mentioned in Appendix B. For example, you can perform the same sensitivity analysis of the CNN prediction model to alternate choices in model architecture (e.g. varying the number of filters in each layer or varying the number of layers, like the paper shows in Table 18) 
         
-        \item Another direction that can be used as an extension is exploring of the interpretability of the CNN model in Chapter 6 of the original paper. Though interpreting a CNN model is quite difficult due to its stacks of non-linear structures, you can imitate what the author did in Part 6.3, using a visualization method (Grad-CAM) to understand how different image examples activate the regions of the CNN to trigger 'up' or 'down' return predictions.
+        \item Another direction that can be used as an extension is exploring of the interpretability of the CNN model in Chapter 6 of the original paper. Though interpreting a CNN model is quite difficult due to its stacks of non-linear structures, you can imitate what the author did in Part 6.3, using a visualization method (Grad-CAM) to understand how different image examples activate the regions of the CNN to trigger `up' or `down' return predictions.
         
-        \item What's more, we encourage you not limited to simple binary classification task, since the label files we provided consist more meaningful attributes, containing both categorical and numerical values. For example, you can use the same 20-day horizon images to train your model to predict the return trend of different subsequent \textbf{y}-days even the detailed return values. (\textbf{y} can be 5, 20 even larger). In this way, you can prove more firmly that using CNN can automatically identity robust and transferable predictive features.
+        \item What's more, we encourage you not being limited to simple binary classification task, since the label files we provided consist more meaningful attributes, containing both categorical and numerical values. For example, you can use the same 20-day horizon images to train your model to predict the return trend of different subsequent \textbf{y}-days even the detailed return values. (\textbf{y} can be 5, 20 even larger). In this way, you can prove more firmly that using CNN can automatically identity robust and transferable predictive features.
     \end{itemize}
 
    
@@ -186,7 +190,7 @@ The fundamental goal of asset pricing is to understand the behavior of risk prem
 
 The requirements of this paper replication project are as follow:
 \begin{itemize}
-\item The machine learning methods used in this paper include linear regression (OLS, elastic net), dimension reduction (PLS, PCR), generalized linear model, tree (boosted trees, random forest) and neural network. Please try to replicate \textbf{at least 6 methods} of them (e.g., OLS, elastic net, PLS, PCR, random forest, neural network. Please note that if you choose OLS, OLS-3 should also be included; and if you choose neural network, NN1 to NN5 are included. Besides, robust loss function should also be considered. See details in the paper), and analyze your results specifically. Hints of parameter chosen are presented in the paper.
+\item The machine learning methods used in this paper include linear regression (OLS, elastic net), dimension reduction (PLS, PCR), generalized linear models, trees (gradient boosting trees, random forest) and neural networks. Please try to replicate \textbf{at least 6 methods} of them (e.g., OLS, elastic net, PLS, PCR, random forest, neural networks, etc. Please note that if you choose OLS, OLS-3 should also be included; and if you choose neural network, NN1 to NN5 are included. Besides, robust loss function should also be considered. See details in the paper), and analyze your results specifically. Hints on parameter choice are presented in the paper.
 \item Include the variable importance (section 2.3 of the paper) in your analysis. You do not need to replicate all the figures in section 2.3, but you are encouraged to investigate it carefully.
 \item Note that this paper uses a `recursive performance evaluation scheme'. You are also required to evaluate your result by this method. For more details of this method, please refer to the paper and its supplementary material. The PPT presented in class about this project may also be helpful to you.
 \item As you can know from the paper, the 8 macroeconomic predictors are constructed following Welch and Goyal (2008), and it is not directly included in the dataset. You should construct them by yourself.
