@@ -172,6 +172,28 @@ Visit the following website to join the competition.
 
 \url{https://yao-lab.github.io/capstone/2021.fall/project1/Project_proposal_final_TrungKien.pdf}
 
+\subsection{Limitations of Translation: How much translation affect the analysis of Chinese text in different models? (Natural language processing with Chinese character)}
+
+
+\subsubsection{The dataset description} 
+The dataset we will be using would be one of the dataset from “weibo\_senti\_100k”,
+\url{https://github.com/SophonPlus/ChineseNlpCorpus/blob/master/datasets/weibo\_senti\_100k/intro.ipynb}. 
+
+It is a dataset containing 100k reviews in Chinese 50k positive and 50k negative, which all of them comes from Sina Weibo, and contains either positive or negative review (also known as label). From the dataset, the label would be treated as response variable, and the review would be used as predictor variable. 
+
+\subsubsection{Measure of accuracy} 
+We would first separate the dataset into 2 parts, with 20\% of the data being the testing set and 80\% of the data being the training set. Moreover, as the dataset has equal amount of positive and negative review, the amount of positive and negative review in both testing and training set would be equal. During the training phase, only the data in training set would be used. The scoring would depend on the testing set. 
+As the response is balanced, the formula for scoring would be the accuracy of the result. 
+
+\subsubsection{Method}
+We would be using multiple method in this project.
+First, there are some pre-existed models in the following public Github: 
+\url{https://github.com/ymcui/Chinese-BERT-wwm}. 
+
+We would be using some of the pre-trained models as a way of fine-tuning. Moreover, we would also be using some other method to train and test the model. Some potential method includes CNN, RNN, Bayes Techniques.
+Moreover, we would be analyzing how much better it is if the text is analyzed directly in Chinese when compare to text is analyzed after it is translated to English. We would be using the same method as above, but before feeding the data to the model, we would translate the data into English first. The scoring will also be using the method stated in measure of accuracy. We hypothesize that there exist some performance lost on analysis if the text is translated.
+
+
 %Below are two candidate datasets. Challenge marked by * above is only optional. 
 %
 %\subsection{MNIST dataset -- a Warmup}
