@@ -183,7 +183,7 @@ It is a dataset containing 100k reviews in Chinese 50k positive and 50k negative
 
 \subsubsection{Measure of accuracy} 
 We would first separate the dataset into 2 parts, with 20\% of the data being the testing set and 80\% of the data being the training set. Moreover, as the dataset has equal amount of positive and negative review, the amount of positive and negative review in both testing and training set would be equal. During the training phase, only the data in training set would be used. The scoring would depend on the testing set. 
-As the response is balanced, the formula for scoring would be the accuracy of the result. 
+As the response is balanced, the formula for scoring would be the accuracy of the result, i.e. $(\#TP+\#TN)/\#Samples$. 
 
 \subsubsection{Method}
 We would be using multiple method in this project.
