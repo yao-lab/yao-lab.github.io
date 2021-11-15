@@ -193,6 +193,27 @@ First, there are some pre-existed models in the following public Github:
 We would be using some of the pre-trained models as a way of fine-tuning. Moreover, we would also be using some other method to train and test the model. Some potential method includes CNN, RNN, Bayes Techniques.
 Moreover, we would be analyzing how much better it is if the text is analyzed directly in Chinese when compare to text is analyzed after it is translated to English. We would be using the same method as above, but before feeding the data to the model, we would translate the data into English first. The scoring will also be using the method stated in measure of accuracy. We hypothesize that there exist some performance lost on analysis if the text is translated.
 
+\subsection{G-Research Crypto Forecasting}
+
+\subsubsection{Project Overview}
+\url{https://www.kaggle.com/c/g-research-crypto-forecasting/overview}
+
+
+\subsubsection{Problem Identification}
+The cryptocurrency market has been skyrocketing recently, and it is estimated that over USD40 billion worth of cryptocurrencies are traded every single day. Cryptocurrencies have become one of the most popular and trending assets for speculation and investment, however, it has been proven to be wildly volatile, where a person can make a fortune and become a millionaire in one day, and lose all his assets the day after. While a few people have made a great fortune through the fast-fluctuating prices, others have been experiencing losses. Hence, we would like to try whether we can predict some of these price movements in advance and forecast short term returns in 14 popular cryptocurrencies through machine learning techniques.
+
+\subsubsection{Background Knowledge}
+The simultaneous activity of thousands of traders ensures that most signals will be transitory, persistent alpha will be exceptionally difficult to find, and the danger of overfitting will be considerable. In addition, since 2018, interest in the cryptomarket has exploded, so the volatility and correlation structure in our data are likely to be highly non-stationary. The successful contestant will pay careful attention to these considerations, and in the process gain valuable insight into the art and science of financial forecasting.
+
+\subsubsection{Model and Methods}
+Given a time-series based dataset of cryptocurrency prices, we can use the hierarchical time series model, which is to train a model for all time, models per weekday, model per day, etc. and ensemble them together. Multiple popular models will also be applied and we are going to conduct research about the effectiveness of these models. For example, LSTM is popular among quantitative finance fields, as it can capture the relationship between previous cryptocurrency prices. Since cryptocurrency price is a time-dependent variable, multiple time-series prediction models may also be adopted, like ARIMA, GARCH, and Dynamic linear model. We aim to create innovative methods, bringing more insights to the quantitative finance field.  
+ 
+\subsubsection{Data Source}
+Kaggle: 
+
+\url{https://www.kaggle.com/c/g-research-crypto-forecasting/data}
+
+They have amassed a dataset of millions of rows of high-frequency market data dating back to 2018 which we can use to build our model. Once the submission deadline has passed, our final score will be calculated over the following 3 months using live crypto data as it is collected.
 
 %Below are two candidate datasets. Challenge marked by * above is only optional. 
 %
@@ -616,7 +637,7 @@ Moreover, we would be analyzing how much better it is if the text is analyzed di
 
 In this exercise of open peer review, please write down your comments of the \emph{reports rather than of your own team} in the following format. Be considerate and careful with a precise description, avoiding offensive language. 
 
-{\bf Deadline is \emph{11:59pm Nov. 28, 2021}}. Submit all your reviews in a single zip file using \textbf{canvas}. % or to the email address  (\href{datascience.hw@gmail.com}{datascience.hw@gmail.com}) with a title ``\underline{MATH4995: Project 1 Review}". 
+{\bf Deadline is \emph{11:59pm Nov. 30, 2021}}. Submit all your reviews in a single zip file using \textbf{canvas}. % or to the email address  (\href{datascience.hw@gmail.com}{datascience.hw@gmail.com}) with a title ``\underline{MATH4995: Project 1 Review}". 
 Rebuttal is open afterwards.
 
 %Your review assignment can be found at
@@ -657,7 +678,7 @@ Rebuttal is open afterwards.
 \newpage
 
 \section*{Rebuttal}
-The rebuttal period starts from now, till \emph{11:59pm Nov. 30, 2021}. Restrict the number of characters of your rebuttal within {\bf{5,000}}. Submit your rebuttal in PLAIN TEXT or PDF format to \textbf{canvas} with filename comprising the corresponding group number: e.g. \underline{rebuttal1\_group02.pdf}. %(\href{mailto:datascience.hw@gmail.com}{datascience.hw@gmail.com}) with Title: \underline{CSIC 5011: Project 1 Rebuttal}.
+The rebuttal period starts from now, till \emph{11:59pm Dec. 3, 2021}. Restrict the number of characters of your rebuttal within {\bf{5,000}}. Submit your rebuttal in PLAIN TEXT or PDF format to \textbf{canvas} with filename comprising the corresponding group number: e.g. \underline{rebuttal1\_group02.pdf}. %(\href{mailto:datascience.hw@gmail.com}{datascience.hw@gmail.com}) with Title: \underline{CSIC 5011: Project 1 Rebuttal}.
 
 The following tips of rebuttal might be helpful for you to follow:
 
