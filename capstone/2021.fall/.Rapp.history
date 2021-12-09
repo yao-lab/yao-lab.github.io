@@ -1,0 +1,192 @@
+library(MASS)#
+library(tensor)#
+ar1_cor <- function(n, rho) {#
+exponent <- abs(matrix(1:n - 1, nrow = n, ncol = n, byrow = TRUE) - #
+    (1:n - 1))#
+rho^exponent#
+}#
+ar_exp <- function(n, rho, p = 10, maxiter = 30, alpha = 3){#
+	mu <- rep(0, p)#
+	Sigma <- ar1_cor(p, rho)#
+	Sigma[1, 2] <- Sigma[2, 1] <- 0#
+	x <- mvrnorm(n, mu, Sigma)#
+	y <- sign(x[, 1] * x[, 2])#
+	G <- array(0, dim = c(n, n, p))#
+#
+	for(i in 1:n){#
+		for(j in 1:n){#
+			G[i, j,] = abs(x[i,]-x[j,])#
+		}#
+	}#
+	g <- rep(0, p)#
+	beta <- rep(2/p, p)#
+	beta_all <- matrix(0, maxiter, p)#
+	for(j in 1:maxiter){#
+		Kbeta <- exp(-tensor(G, beta, 3, 1))#
+		for(i in 1:p){#
+			g[i] <- -t(y) %*% ((Kbeta * G[,,i]) %*% y)/(n^2)#
+		}#
+		beta <- pmax(beta + alpha * g, 0)#
+		beta_all[j, ] <- beta#
+	}#
+	return(beta_all[maxiter, ])#
+}#
+ar_exp2 <- function(n, rho, p = 10, maxiter = 30, alpha = 3){#
+	mu <- rep(0, p)#
+	Sigma <- ar1_cor(p, rho)#
+	Sigma[1, 2] <- Sigma[2, 1] <- 0#
+	x <- mvrnorm(n, mu, Sigma)#
+	y <- sign(x[, 1] * x[, 2])#
+	G <- array(0, dim = c(n, n, p))#
+#
+	for(i in 1:n){#
+		for(j in 1:n){#
+			G[i, j,] = (x[i,]-x[j,]) * (x[i,]-x[j,])#
+		}#
+	}#
+	g <- rep(0, p)#
+	beta <- rep(2/p, p)#
+	beta_all <- matrix(0, maxiter, p)#
+	for(j in 1:maxiter){#
+		Kbeta <- exp(-tensor(G, beta, 3, 1))#
+		for(i in 1:p){#
+			g[i] <- -t(y) %*% ((Kbeta * G[,,i]) %*% y)/(n^2)#
+		}#
+		beta <- pmax(beta + alpha * g, 0)#
+		beta_all[j, ] <- beta#
+	}#
+	return(beta_all[maxiter, ])#
+}#
+ar_exp_M <- function(M, n, rho, p = 2, maxiter = 30, alpha = 3){#
+	beta_all <- matrix(0, nrow = M, ncol = p)#
+	for(j in 1:M){#
+		beta_all[j, ] <- ar_exp(n, rho, p, maxiter, alpha)#
+	}#
+	return(beta_all)#
+}#
+#
+# ar_exp_M(2, 100, 0.8, alpha = .1, maxiter =300)#
+#
+n = 200#
+p = 40#
+rho = 0#
+maxiter = 600#
+alpha = 1#
+ar_exp(n, rho, p, 100, alpha)#
+ar_exp2(n, rho, p, 100, alpha)#
+rho_len <- 15#
+rho_path <- seq(-0.7, 0.7, length.out = 15)#
+M = 100#
+n = 200#
+p = 10#
+maxiter = 300#
+alpha = .5#
+#
+result_all_p_10 <- array(0, dim = c(M, p, rho_len))#
+#
+for(i in 1:rho_len){#
+	print(i)#
+	result_all_p_10[,,i] <- ar_exp_M(M, n, rho_path[i], p, maxiter, alpha)#
+}#
+#
+supp_all_p_10 <- array(0, dim = c(1, p, rho_len))#
+for(i in 1:rho_len){#
+	supp_all_p_10[,,i] <- colMeans(result_all_p_10[,,i]!=0)#
+}
+install.packages('tensor')
+library('tensor')
+library(MASS)#
+library(tensor)#
+ar1_cor <- function(n, rho) {#
+exponent <- abs(matrix(1:n - 1, nrow = n, ncol = n, byrow = TRUE) - #
+    (1:n - 1))#
+rho^exponent#
+}#
+ar_exp <- function(n, rho, p = 10, maxiter = 30, alpha = 3){#
+	mu <- rep(0, p)#
+	Sigma <- ar1_cor(p, rho)#
+	Sigma[1, 2] <- Sigma[2, 1] <- 0#
+	x <- mvrnorm(n, mu, Sigma)#
+	y <- sign(x[, 1] * x[, 2])#
+	G <- array(0, dim = c(n, n, p))#
+#
+	for(i in 1:n){#
+		for(j in 1:n){#
+			G[i, j,] = abs(x[i,]-x[j,])#
+		}#
+	}#
+	g <- rep(0, p)#
+	beta <- rep(2/p, p)#
+	beta_all <- matrix(0, maxiter, p)#
+	for(j in 1:maxiter){#
+		Kbeta <- exp(-tensor(G, beta, 3, 1))#
+		for(i in 1:p){#
+			g[i] <- -t(y) %*% ((Kbeta * G[,,i]) %*% y)/(n^2)#
+		}#
+		beta <- pmax(beta + alpha * g, 0)#
+		beta_all[j, ] <- beta#
+	}#
+	return(beta_all[maxiter, ])#
+}
+ar_exp2 <- function(n, rho, p = 10, maxiter = 30, alpha = 3){#
+	mu <- rep(0, p)#
+	Sigma <- ar1_cor(p, rho)#
+	Sigma[1, 2] <- Sigma[2, 1] <- 0#
+	x <- mvrnorm(n, mu, Sigma)#
+	y <- sign(x[, 1] * x[, 2])#
+	G <- array(0, dim = c(n, n, p))#
+#
+	for(i in 1:n){#
+		for(j in 1:n){#
+			G[i, j,] = (x[i,]-x[j,]) * (x[i,]-x[j,])#
+		}#
+	}#
+	g <- rep(0, p)#
+	beta <- rep(2/p, p)#
+	beta_all <- matrix(0, maxiter, p)#
+	for(j in 1:maxiter){#
+		Kbeta <- exp(-tensor(G, beta, 3, 1))#
+		for(i in 1:p){#
+			g[i] <- -t(y) %*% ((Kbeta * G[,,i]) %*% y)/(n^2)#
+		}#
+		beta <- pmax(beta + alpha * g, 0)#
+		beta_all[j, ] <- beta#
+	}#
+	return(beta_all[maxiter, ])#
+}#
+ar_exp_M <- function(M, n, rho, p = 2, maxiter = 30, alpha = 3){#
+	beta_all <- matrix(0, nrow = M, ncol = p)#
+	for(j in 1:M){#
+		beta_all[j, ] <- ar_exp(n, rho, p, maxiter, alpha)#
+	}#
+	return(beta_all)#
+}#
+#
+# ar_exp_M(2, 100, 0.8, alpha = .1, maxiter =300)#
+#
+n = 200#
+p = 40#
+rho = 0#
+maxiter = 600#
+alpha = 1#
+ar_exp(n, rho, p, 100, alpha)#
+ar_exp2(n, rho, p, 100, alpha)#
+rho_len <- 15#
+rho_path <- seq(-0.7, 0.7, length.out = 15)#
+M = 100#
+n = 200#
+p = 10#
+maxiter = 300#
+alpha = .5#
+#
+result_all_p_10 <- array(0, dim = c(M, p, rho_len))#
+#
+for(i in 1:rho_len){#
+	print(i)#
+	result_all_p_10[,,i] <- ar_exp_M(M, n, rho_path[i], p, maxiter, alpha)#
+}#
+#
+supp_all_p_10 <- array(0, dim = c(1, p, rho_len))#
+for(i in 1:rho_len){#
+	supp_all_p_10[,,i] <- colMeans(result_all_p_10[,,i]!=0)#
+}
