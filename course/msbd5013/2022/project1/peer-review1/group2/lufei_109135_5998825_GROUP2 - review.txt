@@ -1,0 +1,23 @@
+GROUP 2
+
+Summary: 
+In this report, the authors introduce their work on the M5 prediction project. Firstly, they perform some exploratory data analysis and feature engineering, and the importance of each feature to the sales is identified too. Secondly, they demonstrate the LGBM and ARIMA models which are utilized in the later prediction. Finally, they present the final results and the comparison of the two models.
+
+Strengths: 
+1. Both ARIMA and LGBM are utilized in the prediction, and LGBM shows a good result. The analysis of the two models is given reasonably.
+2. The lag and rolling features of sales are added to improve the prediction. 
+3. The importance of different features is calculated.
+
+Weakness:
+1. The problem statement, dataset description, and the goal of this project are not given clearly in this report.  
+2. The citation of figures and references is not standard.
+3. The basic idea of GBDT is not introduced clearly. Since the LGBM is based on GBDT, and the basic algorithm is important.
+
+Evaluation of Clarity and quality of writing: 3
+2 points are deducted due to the citation problem and the problem statement missing.
+
+Evaluation of Technical Quality: 5
+
+Overall rating: 4
+
+Confidence of assessment: 3

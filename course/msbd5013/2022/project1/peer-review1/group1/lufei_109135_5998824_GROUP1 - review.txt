@@ -1,0 +1,25 @@
+GROUP 1
+
+Summary: 
+The authors provide a detailed account of their work on the M5 prediction project in this report. Firstly, the introduction part clarifies the problem, the data set, and the authors' work. Secondly, they demonstrate the LGBM, which is the model that was employed to make the prediction. Thirdly, they perform some exploratory data analysis to identify some factors that are relevant to sales, and the LGBM model is tuned to do the final prediction. Finally, they present the final results as well as the further improvements.
+
+Strengths: 
+1. A suitable and powerful model is utilized to do the prediction, and it shows a good result on the public leaderboard.  
+2. In the introduction part, the problem statement, dataset description, and the goal of this project are given clearly. 
+3. In the data analysis part, some visualization is of great use to show the features of sales during different times, states, stores, etc. 
+4. The lag and rolling features of sales are added to improve the prediction. 
+
+Weakness:
+1. The citation of figures, tables, and references is not standard.
+2. The basic idea of GBDT is not introduced clearly. Since the LGBM is based on GBDT, and the basic algorithm is important.
+3. In the part of the final results, the authors got 4 points on the private leaderboard, and there must be some problems during the prediction.
+
+Evaluation of Clarity and quality of writing: 4
+1 point is deducted due to the citation problem.
+
+Evaluation of Technical Quality: 4
+1 point is deducted because the authors did not give the reason why the model shows great performance on the public dataset but a poor result on the private dataset.
+
+Overall rating: 4
+
+Confidence of assessment: 3
