@@ -1,0 +1,398 @@
+---
+title: "Re_Imag_in_ing Price Trends"
+author: "Zhuang CHU"
+date: "4/26/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(kableExtra)
+library(broom)
+library(purrr)
+library(lubridate)
+library(kableExtra)
+```
+## Stock level Average Accuracy
+The CNN's out-of-sample classification accuracy at the stock level is 51.8% for image sizes 20 days and forecast horizons 20 days. The significant level is over 99.9%.
+
+```{r, include=FALSE, eval = FALSE}
+# Confusion Matrix and ROC
+# https://www.youtube.com/watch?v=qcvAqAH60Yw
+# https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5
+Data = read.csv('Data//predictors.csv')
+
+library(caret)
+confusionMatrix(data = factor(Data$Predicted, levels = c(1,0)), 
+                reference = factor(Data$Retx_20d_label, levels = c(1,0)))
+
+library(pROC)
+# Data = read.csv('Data//predictors.csv')
+par(pty = "s")
+roc(Data$Retx_20d_label, Data$Predicted, plot = TRUE, legacy.axes = TRUE, percent = TRUE, xlab= "False Positive Percentage", ylab= "True Positive Percentage", col= "#3773b8", lwd=2, print.auc = TRUE)
+
+```
+
+
+
+```{r, echo = FALSE}
+Data = read.csv('Data//predictors.csv')
+Stock_accuracy <- Data %>%
+  mutate(TP = ((Retx_20d_label==1) & (Predicted==1)),
+         FP = (Retx_20d_label==0) & (Predicted==1),
+         TN = (Retx_20d_label==0) & (Predicted==0),
+         FN = (Retx_20d_label==1) & (Predicted==0)) %>%
+  group_by(Date) %>%
+  summarize(accuracy_total = (sum(TP) + sum(TN))/(sum(TP+FP+TN+FN)),
+            sensitivity = sum(TP)/sum(TP+FP),
+            specificity = sum(TN)/sum(TN+FN),
+            balanced_accuracy = 0.5*(sensitivity + specificity)
+            )
+
+t1 <- t.test(Stock_accuracy$accuracy_total,mu=0.5)
+t2 <- t.test(Stock_accuracy$sensitivity,mu=0.5)
+t3 <- t.test(Stock_accuracy$specificity,mu=0.5)
+t4 <- t.test(Stock_accuracy$balanced_accuracy,mu=0.5)
+
+tab <- map_df(list(t1, t2, t3,t4), tidy) %>%
+  select(estimate, statistic, p.value) %>%
+  mutate(accuracy = c("Total", "Sensitivity", "Specificity", "Balanced")) %>%
+  relocate(accuracy, .before = c(1))
+
+tab %>%
+  kable(caption = "Out-of-Sample Classification Accuracy (Null: mean = 0.5)", digits = 2) %>%
+  kable_classic_2("hover", full_width = FALSE) %>%
+   footnote(number = c("The Table reports out-of-sample forcast performance for imaged-based CNN models and benchmark signals.",
+                       "We calculate classification accuracy each period then report time series averages over each period in the test sample.",
+                       "Total Accuracy = (TP+TN)/(TP+FP+TN+FN)", 
+                       "sensitiviy = TP/(TP+FP)", 
+                       "specification = TN/(TN+FN)", 
+                       "Balanced accuracy = 0.5*(sensitivity + specification) "
+                       )
+            )
+
+# tab %>%
+#   kable(caption = "Out-of-Sample Classification Accuracy (Null: mean = 0.5)", digits = 2) %>%
+#   kable_classic_2("hover", full_width = FALSE) 
+```
+
+```{r, echo = FALSE, eval = FALSE}
+Data = read.csv('Data//predictors.csv')
+Stock_accuracy <- Data %>%
+  mutate(correct = (Retx_20d_label==Predicted)) %>%
+  group_by(Date) %>%
+  summarize(accuracy_total = sum(correct)/n(),
+            accuracy_up = sum(correct[Retx_20d_label==1])/sum(Retx_20d_label==1),
+            accuracy_down = sum(correct[Retx_20d_label==0])/sum(Retx_20d_label==0)
+            )
+
+t1 <- t.test(Stock_accuracy$accuracy_total,mu=0.5)
+t2 <- t.test(Stock_accuracy$accuracy_up,mu=0.5)
+t3 <- t.test(Stock_accuracy$accuracy_down,mu=0.5)
+
+tab <- map_df(list(t1, t2, t3), tidy) %>%
+  select(estimate, statistic, p.value) %>%
+  mutate(accuracy = c("Total", "Up", "Down")) %>%
+  relocate(accuracy, .before = c(1))
+
+tab %>%
+  kable(caption = "Out-of-Sample Classification Accuracy (Null: mean = 0.5)", digits = 2) %>%
+  kable_classic_2("hover", full_width = F) %>%
+   footnote(number = c("The Table reports out-of-sample forcast performance for imaged-based CNN models and benchmark signals.",
+                       "We calculate classification accuracy each period then report time series averages over each period in the test sample"
+                       )
+            )
+
+# tab %>%
+#   kable(caption = "Out-of-Sample Classification Accuracy (Null: mean = 0.5)", digits = 2) %>%
+#   kable_classic_2("hover", full_width = F) 
+```
+
+
+## Portfolio Sorting
+### Portfolio sorted by probability of a positive subsequent return
+Portfolio analysis provides more detailed insight into CNN forecast accuracy. By studying realized returns at different quantiles of model predictions, we can check how CNN forecasts is translated into stock return performance.
+
+At the begining of each month, we construct new forecasts based CNN model. we sort stocks into equal weighted/value decile portfolios based on out-of-sample CNN estimates for probability of a positive return.We also construct a long-short spread portfolio ("H-L") that is long decile 10 and short decile 1. The holding period for each portfolio is one month. 
+
+Since the strategy based on CNN forecast has a very high turnover rate, we verify how much of the performance will be hurt by considering trading costs. The trading cost per dollar at the end of period $t$ is calculated as the following equation:
+$$TradingCost_{t} = \sum_{i} |w_{i,t+1}(1+\sum_{j}(1+r_{j,t+1})w_{i,t} ) - w_{i,t}(1+r_{i,t+1}) | \times TradingFee $$
+We assume transaction fees of 0.5% for the total dollar amount traded and adjust the realized return by 
+$$ RetTc_{p,t+1} = Ret_{p,t+1} - TradingCost_{p,t}$$
+We reconduct the protfolio sorting based on such trading cost adjusted returns.
+
+Following table and figure reports porfolio performance in terms of monthly average returns.For the equal weighted portfolio, Decile 1, which corresponds to stocks having the lowest probability of a positive future return indeed realize lowest return. Average return increase monotonically across predicted "up" probability deciles. A long-only strategy based on stocks in decile 10 alone earns an average return of 1.26% per month. Long-short H-L strategies earn 1.05% return per month.
+
+For the equal weighted portfolio, despite the similar monotonic increase trend in average return for higher decile group. The slope is relative flatter. And the H-L portfolios has no significant average returns. Once weighting the return by firm size, then the predictabiltiy will seems disapear. 
+
+Considering the transaction cost, the 0.5% trading cost and monthly rebalancing will shift the average return downward both for equal-wegithed and value-weighted protfolio sorting *parallelly*. This means that all decile portfolios has similar turnover rates.
+
+#### Sharpe Ratio and turnover
+```{r, echo = FALSE}
+portfolio1 <- read.csv('Output//all_ret_panel_10ew_tcost.csv') %>% 
+  mutate(weight_type =  "EW")
+portfolio2 <- read.csv('Output//all_ret_panel_10vw_tcost.csv') %>% 
+  mutate(weight_type =  "VW")
+mylist <- list(portfolio1, portfolio2)
+portfolio <-  mylist %>% bind_rows() %>%
+  mutate(ret_tc = ret - transaction_cost,
+         DATE = as.Date(as.character(DATE), "%Y%m%d")
+         ) %>%
+  select(-transaction_cost) 
+
+#Import the risk-free rate to calculate risk-free rate
+return_space <- haven::read_sas("C:\\Users\\zchu\\Desktop\\zchu\\Mydata\\factors_monthly_c.sas7bdat") %>%
+  mutate(DATE = as.Date(as.character(date), "%Y-%m-%d")) %>%
+  select(DATE, rf) 
+
+portfolio <- left_join(x=portfolio, y=return_space, by= c("DATE"="DATE"))
+
+
+portfolio_sammary <- portfolio %>%
+  group_by(weight_type, idvolport) %>%
+  summarise(SharpeRatio = (mean(ret)-mean(rf))/sd(ret) * sqrt(12),
+            Turnvoer = mean(dollar_turnover), 
+            SharpeRatio_tc = (mean(ret_tc)-mean(rf))/sd(ret) * sqrt(12),
+            .groups = "keep"
+              ) %>%
+  ungroup()
+
+
+
+tab2 <-  portfolio_sammary %>% gather(., statistic, value, SharpeRatio:SharpeRatio_tc, factor_key=TRUE) %>%
+  spread(.,idvolport , value)
+
+tab2 <- tab2 %>% rename_with(., ~ paste0("X_", .x), num_range("",1:11)) %>%
+  rename(Lowest = X_1,
+         Highest = X_10,
+         "H-L" = X_11)
+
+tab2 %>%
+  kable(caption = "Out-of-Sample Sharpe Ratio and Turnover", digits = 2) %>%
+  kable_classic_2("hover", full_width = 0.5*F) %>%
+   footnote(number = c("Performance of decile portfolios sorted on out-of-sample predicted up probability for next month (20-days).",
+                       "Each panel reports the annualized sharpe ratio and average turnover rate",
+                       "EW and VW represents equal-weighted and value-wegithed respectively; TC indicates whether we consider the tranding cost.",
+                       "We assume transaction fees of 0.5% for the total dollar amount traded.")
+            )
+```
+
+#### Average Return for portfolio sorting
+```{r, echo=FALSE}
+
+all_param = read.csv('Output//all_outr_10ew.csv')
+dt1 <- all_param %>%
+  mutate(ivol_type = "EW") %>%
+  mutate(across(everything(), as.character)) %>%
+  subset((type =="Average ret")) %>%
+  mutate(ivol_type = factor(ivol_type) %>% fct_inorder(), type = factor(type,levels = c("Average ret", "FF3 Alpha","FF5 Alpha","FF6 Alpha","Q5_ Alpha", "SY4 Alpha", "BF3 Alpha"))) %>% 
+  rename(estimate = type,
+         type = ivol_type, 
+         var = NAME.OF.FORMER.VARIABLE, 
+         stat = NAME.OF.FORMER.VARIABLE.1,
+         Lowest = X_1,
+         Highest = X_10) %>%
+  select(-var) %>%
+  arrange(type,estimate)
+
+all_param = read.csv('Output//all_outr_10vw.csv')
+dt2 <- all_param %>%
+  mutate(ivol_type = "VW") %>%
+  mutate(across(everything(), as.character)) %>%
+  subset((type =="Average ret")) %>%
+  mutate(ivol_type = factor(ivol_type) %>% fct_inorder(), type = factor(type,levels = c("Average ret", "FF3 Alpha","FF5 Alpha","FF6 Alpha","Q5_ Alpha", "SY4 Alpha", "BF3 Alpha"))) %>% 
+  rename(estimate = type,
+         type = ivol_type, 
+         var = NAME.OF.FORMER.VARIABLE, 
+         stat = NAME.OF.FORMER.VARIABLE.1,
+         Lowest = X_1,
+         Highest = X_10) %>%
+  select(-var) %>%
+  arrange(type,estimate)
+
+all_param = read.csv('Output//all_outr_10ew_tcost.csv')
+dt3 <- all_param %>%
+  mutate(ivol_type = "EW_TC") %>%
+  mutate(across(everything(), as.character))%>%
+  subset((type =="Average ret")) %>%
+  select(-c("H_L")) %>%
+  mutate(ivol_type = factor(ivol_type) %>% fct_inorder(), type = factor(type,levels = c("Average ret", "FF3 Alpha","FF5 Alpha","FF6 Alpha","Q5_ Alpha", "SY4 Alpha", "BF3 Alpha"))) %>% 
+  rename(estimate = type,
+         type = ivol_type, 
+         var = NAME.OF.FORMER.VARIABLE, 
+         stat = NAME.OF.FORMER.VARIABLE.1,
+         Lowest = X_1,
+         Highest = X_10,
+         H_L = X_11) %>%
+  select(-var) %>%
+  arrange(type,estimate)
+
+all_param = read.csv('Output//all_outr_10vw_tcost.csv')
+dt4 <- all_param %>%
+  mutate(ivol_type = "VW_TC") %>%
+  mutate(across(everything(), as.character))%>%
+  subset((type =="Average ret")) %>%
+  select(-c("H_L")) %>%
+  mutate(ivol_type = factor(ivol_type) %>% fct_inorder(), type = factor(type,levels = c("Average ret", "FF3 Alpha","FF5 Alpha","FF6 Alpha","Q5_ Alpha", "SY4 Alpha", "BF3 Alpha"))) %>% 
+  rename(estimate = type,
+         type = ivol_type, 
+         var = NAME.OF.FORMER.VARIABLE, 
+         stat = NAME.OF.FORMER.VARIABLE.1,
+         Lowest = X_1,
+         Highest = X_10,
+         H_L = X_11) %>%
+  select(-var) %>%
+  arrange(type,estimate)
+
+mylist <- list(dt1, dt2,dt3,dt4)
+dt <-  mylist %>% bind_rows()
+
+
+dt %>%
+  kable(caption = "Performance of Portfolios: Average Returns in 10 Single-Sorted Portfolios", digits = 2) %>%
+  collapse_rows(columns = 1:2, valign = "top") %>%
+  kable_classic_2("hover", full_width = F) %>%
+   footnote(number = c("Performance of decile portfolios sorted on out-of-sample predicted up probability for next month (20-days).",
+                       "Monthly average returns (in percentage) acompanied by ***, **, * are significant at the 1%, 5%, and 10% significance level, respectively.",
+                       "EW and VW represents equal-weighted and value-wegithed respectively; TC indicates whether we consider the tranding cost.",
+                       "We assume transaction fees of 0.5% for the total dollar amount traded.")
+            )
+```
+
+```{r, echo = FALSE, fig.width= 6, fig.height=5}
+dt_long <- dt %>% subset(stat =="param") %>% 
+  select(type, Lowest:Highest) %>% 
+  mutate(across(c(Lowest:Highest), as.numeric)) %>%
+  gather(., portfolio, return, Lowest:Highest, factor_key=TRUE) %>%
+  mutate(weight_type = substr(type,1,2),
+         With_TC = str_detect(type, "_TC"),
+         portfolio_num = as.numeric(portfolio))  %>%
+  arrange(type, portfolio)
+
+p <- ggplot(data = dt_long, aes(x = portfolio_num, y = return, group = type, linetype = weight_type, colour= With_TC))
+
+p + geom_point(size=2,aes(shape = With_TC)) + geom_line(size =1)+ 
+  geom_hline(yintercept=0) +
+   ylim(-2,2) +
+  labs(x ="Signal Decile",
+         y = "Monthly Return (Percent)",
+         #title = "IVOL effects and investor sentiment"
+          ) +
+  # scale_shape_discrete(name= "Trade Cost", labels = c("No trading Cost", "With trading cost")) + 
+  #scale_linetype(name= "Weight type", labels = c("Equal-weighted", "Value Weighted")) +
+  theme_classic() + theme(legend.position = 'bottom')
+
+```
+
+In previous results, we find that the average return for the low decile group is positive, this is seemly puzzling that for those portfolio, our model tells us that the return should be negative. The reason might be, those portfolios are not risk neutral (holding those portofolio contains systematic risk for investors). 
+
+To allevaiate such concern, we use the cutting-edge asseting pricing model (rational and behavior model)to check whether there are alphas in the thoes models. The model includes: 1) "Fama and French 6FactorsModel". The monthly factor returns, including the market return (MKTRF), the size factor (SMB), the value factor (HML), the investment factor (CMA), the profitability factor (RMW), the momentum factor (UMD). (2)  “Hou, Xue, and Zhang Q5Model”, including the market return (MKTRF), the monthly size factor (SMB), the monthly investment factor (IA), the monthly profitability factor (ROE), and the monthly expected investment growth factor (EG).(3) Stambaugh and Yuan "MispricingFactormodel", the monthly performance mispricing factor (PERF), the monthly management mispricing factor (MGMT) and (4) “Daniel, Hirshleifer, and Sun BehavoralFacotrModel”, including the monthly long-term mispricing factor (FIN) and the monthly short-term mispricing factor (PEAD). 
+
+The equal-weighted portfolio returns has negative alphas for low deciles and high alphas for high deciles. We can still observe a monotonic increasing trend in all cases. In addition, the H-L portfolio can generate positive alpha under all pricing models. Such effects disapear after we use value weigthed protfolios. Similar as previously, trading cost would make all alphas significant negative.
+
+#### Alphas for portfolio sorting
+```{r, echo=FALSE}
+all_param = read.csv('Output//all_outr_10ew.csv')
+dt1 <- all_param %>%
+  mutate(ivol_type = "EW") %>%
+  mutate(across(everything(), as.character)) %>%
+  subset((substr(type,1,3) %in% c("FF6","Q5_", "SY4", "BF3"))) %>%
+  mutate(ivol_type = factor(ivol_type) %>% fct_inorder(), type = factor(type,levels = c("Average ret", "FF3 Alpha","FF5 Alpha","FF6 Alpha","Q5_ Alpha", "SY4 Alpha", "BF3 Alpha"))) %>% 
+  rename(estimate = type,
+         type = ivol_type, 
+         var = NAME.OF.FORMER.VARIABLE, 
+         stat = NAME.OF.FORMER.VARIABLE.1,
+         Lowest = X_1,
+         Highest = X_10) %>%
+  select(-var) %>%
+  arrange(type,estimate)
+
+all_param = read.csv('Output//all_outr_10vw.csv')
+dt2 <- all_param %>%
+  mutate(ivol_type = "VW") %>%
+  mutate(across(everything(), as.character)) %>%
+  subset((substr(type,1,3) %in% c("FF6","Q5_", "SY4", "BF3"))) %>%
+  mutate(ivol_type = factor(ivol_type) %>% fct_inorder(), type = factor(type,levels = c("Average ret", "FF3 Alpha","FF5 Alpha","FF6 Alpha","Q5_ Alpha", "SY4 Alpha", "BF3 Alpha"))) %>% 
+  rename(estimate = type,
+         type = ivol_type, 
+         var = NAME.OF.FORMER.VARIABLE, 
+         stat = NAME.OF.FORMER.VARIABLE.1,
+         Lowest = X_1,
+         Highest = X_10) %>%
+  select(-var) %>%
+  arrange(type,estimate)
+
+all_param = read.csv('Output//all_outr_10ew_tcost.csv')
+dt3 <- all_param %>%
+  mutate(ivol_type = "EW_TC") %>%
+  mutate(across(everything(), as.character))%>%
+  subset((substr(type,1,3) %in% c("FF6","Q5_", "SY4", "BF3"))) %>%
+  select(-c("H_L")) %>%
+  mutate(ivol_type = factor(ivol_type) %>% fct_inorder(), type = factor(type,levels = c("Average ret", "FF3 Alpha","FF5 Alpha","FF6 Alpha","Q5_ Alpha", "SY4 Alpha", "BF3 Alpha"))) %>% 
+  rename(estimate = type,
+         type = ivol_type, 
+         var = NAME.OF.FORMER.VARIABLE, 
+         stat = NAME.OF.FORMER.VARIABLE.1,
+         Lowest = X_1,
+         Highest = X_10,
+         H_L = X_11) %>%
+  select(-var) %>%
+  arrange(type,estimate)
+
+all_param = read.csv('Output//all_outr_10vw_tcost.csv')
+dt4 <- all_param %>%
+  mutate(ivol_type = "VW_TC") %>%
+  mutate(across(everything(), as.character))%>%
+  subset((substr(type,1,3) %in% c("FF6","Q5_", "SY4", "BF3"))) %>%
+  select(-c("H_L")) %>%
+  mutate(ivol_type = factor(ivol_type) %>% fct_inorder(), type = factor(type,levels = c("Average ret", "FF3 Alpha","FF5 Alpha","FF6 Alpha","Q5_ Alpha", "SY4 Alpha", "BF3 Alpha"))) %>% 
+  rename(estimate = type,
+         type = ivol_type, 
+         var = NAME.OF.FORMER.VARIABLE, 
+         stat = NAME.OF.FORMER.VARIABLE.1,
+         Lowest = X_1,
+         Highest = X_10,
+         H_L = X_11) %>%
+  select(-var) %>%
+  arrange(type,estimate)
+
+mylist <- list(dt1, dt2,dt3,dt4)
+dt <-  mylist %>% bind_rows()
+
+dt %>% 
+  kable(caption = "Alphas in 10 Single-Sorted Portfolios", digits = 2) %>% 
+  pack_rows(index = table(fct_inorder(dt$type))) %>%
+  # collapse_rows(columns = 1:2, valign = "top") %>%
+  kable_classic_2("hover", full_width = F)
+
+dt_new <-dt %>% filter(type %in% c("EW", "VW")) 
+dt_new$type <- factor(dt_new$type, levels = c("EW", "VW"))
+dt_new %>%
+  kable(caption = "Alphas in 10 Single-Sorted Portfolios", digits = 2) %>% 
+  pack_rows(index = table(fct_inorder(dt_new$type))) %>%
+  kable_classic_2("hover", full_width = F)
+
+
+dt_new <-dt %>% filter(type %in% c("EW_TC", "VW_TC")) 
+dt_new$type <- factor(dt_new$type, levels = c("EW_TC", "VW_TC"))
+dt_new %>%
+  kable(caption = "Alphas in 10 Single-Sorted Portfolios", digits = 2) %>% 
+  pack_rows(index = table(fct_inorder(dt_new$type))) %>%
+  kable_classic_2("hover", full_width = F)
+```
+
+
+
+```{r, echo=FALSE}
+mylist <- list(dt1[,c("estimate", "stat", "H_L")], "VW" = dt2[,c( "H_L")], "EW_TC" = dt3[,c("H_L")], "VW_TC" = dt4[,c("H_L")])
+dt_short <-  mylist %>% bind_cols() 
+names(dt_short)[3:6] = c("EW", "VW", "EW_TC", "VW_TC")
+
+dt_short %>%
+  kable(caption = "Alphas for H-L Portfolio", digits = 2) %>%
+  collapse_rows(columns = 1:2, valign = "top") %>%
+  kable_classic_2("hover", full_width = F)
+```
+
+

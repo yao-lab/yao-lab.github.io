@@ -1,0 +1,10 @@
+To run the code of polynomial features and domain knowledge features:
+
+python poly_domain_feature.py
+
+The training loss and the Cross Validation scores will be displayed. 
+The main part of the code is two functions:
+train, test = poly_process(train, test)
+X = domain_knowledge(X)
+
+You can call this two functions to generate desired features

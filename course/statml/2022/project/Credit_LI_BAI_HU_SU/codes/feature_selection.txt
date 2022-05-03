@@ -1,0 +1,7 @@
+To run the code of feature selection:
+
+python feature_selection.py
+
+The training loss and the Cross Validation scores will be displayed. 
+There are two series of experiments, running the correlation based feature selection and the backward elimination selection. 
+The submission files will be stored according to their experiment name and parameters.

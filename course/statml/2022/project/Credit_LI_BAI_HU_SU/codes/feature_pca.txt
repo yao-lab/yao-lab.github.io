@@ -1,0 +1,6 @@
+To run the code of feature reduction:
+
+python multiple_csv_feature_pca.py
+
+
+one parameter dim is set during training and this code will result the final predicted file.

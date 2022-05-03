@@ -1,0 +1,8 @@
+This work is primarily constituted of two parts, which are jointly accomplished by the two authors. For
+the first part, Mingyang Chen reproduces the framework of using CNN to predict the return trend of 2-D stock
+data. Specifically, Mingyang reconstructs the baseline models introduced in the original paper and verifies the
+performance, robustness and interpretability of the model from several aspects. For the second part, Bo Huang
+explores the feasibility of replacing the CNN-based feature extractor by adapting Masked Autoencoder (MAE)
+and self-supervised learning in this task. Specifically, Bo explicitly introduces the adaptation process and studies
+the influence of mask ratio on the prediction performance. Finally, the paperwork is organized and compiled by
+the two authors equally.
