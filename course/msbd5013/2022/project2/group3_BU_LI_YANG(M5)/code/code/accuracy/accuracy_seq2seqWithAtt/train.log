@@ -1,0 +1,185 @@
+******************************* K-fold Training ********************************
+
+********************************** Fold [1/3] **********************************
+************************* Model: seq2seq_w_attn_on_hid *************************
+Seq2Seq(
+  (encoder): Encoder(
+    (embeddings): ModuleList(
+      (0): Embedding(3049, 50)
+      (1): Embedding(7, 4)
+      (2): Embedding(3, 2)
+      (3): Embedding(10, 5)
+      (4): Embedding(3, 2)
+    )
+    (cal_embedding): Embedding(31, 16)
+    (rnns): ModuleList(
+      (0): LSTM(132, 128, bidirectional=True)
+      (1): LSTM(256, 128, bidirectional=True)
+    )
+    (rnn_dropouts): ModuleList(
+      (0): Dropout(p=0.2, inplace=False)
+    )
+  )
+  (decoder): AttnDecoder(
+    (embeddings): ModuleList(
+      (0): Embedding(3049, 50)
+      (1): Embedding(7, 4)
+      (2): Embedding(3, 2)
+      (3): Embedding(10, 5)
+      (4): Embedding(3, 2)
+    )
+    (cal_embedding): Embedding(31, 16)
+    (attns): ModuleList(
+      (0): Linear(in_features=644, out_features=364, bias=True)
+      (1): Linear(in_features=644, out_features=364, bias=True)
+    )
+    (attn_combine): ModuleList(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): Linear(in_features=256, out_features=128, bias=True)
+    )
+    (rnns): ModuleList(
+      (0): LSTM(132, 128, bidirectional=True)
+      (1): LSTM(256, 128, bidirectional=True)
+    )
+    (rnn_dropouts): ModuleList(
+      (0): Dropout(p=0.0, inplace=False)
+    )
+    (pred): Linear(in_features=256, out_features=1, bias=True)
+  )
+)
+
+********************************* Loading Data *********************************
+*********************************** Training ***********************************
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Epoch [1/2] xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Training Loss: 0.7834, Training Error: 1.0648, Training Secondary Error: 0.7472
+Validation Loss: 0.8606, Validation Error: 0.9811, Validation Secondary Error: 0.7279
+Best model obtained at the end of epoch 1
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Epoch [2/2] xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Training Loss: 0.7639, Training Error: 0.9017, Training Secondary Error: 0.7362
+Validation Loss: 0.8594, Validation Error: 0.6905, Validation Secondary Error: 0.7281
+Best model obtained at the end of epoch 2
+
+********************************** Fold [2/3] **********************************
+************************* Model: seq2seq_w_attn_on_hid *************************
+Seq2Seq(
+  (encoder): Encoder(
+    (embeddings): ModuleList(
+      (0): Embedding(3049, 50)
+      (1): Embedding(7, 4)
+      (2): Embedding(3, 2)
+      (3): Embedding(10, 5)
+      (4): Embedding(3, 2)
+    )
+    (cal_embedding): Embedding(31, 16)
+    (rnns): ModuleList(
+      (0): LSTM(132, 128, bidirectional=True)
+      (1): LSTM(256, 128, bidirectional=True)
+    )
+    (rnn_dropouts): ModuleList(
+      (0): Dropout(p=0.2, inplace=False)
+    )
+  )
+  (decoder): AttnDecoder(
+    (embeddings): ModuleList(
+      (0): Embedding(3049, 50)
+      (1): Embedding(7, 4)
+      (2): Embedding(3, 2)
+      (3): Embedding(10, 5)
+      (4): Embedding(3, 2)
+    )
+    (cal_embedding): Embedding(31, 16)
+    (attns): ModuleList(
+      (0): Linear(in_features=644, out_features=364, bias=True)
+      (1): Linear(in_features=644, out_features=364, bias=True)
+    )
+    (attn_combine): ModuleList(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): Linear(in_features=256, out_features=128, bias=True)
+    )
+    (rnns): ModuleList(
+      (0): LSTM(132, 128, bidirectional=True)
+      (1): LSTM(256, 128, bidirectional=True)
+    )
+    (rnn_dropouts): ModuleList(
+      (0): Dropout(p=0.0, inplace=False)
+    )
+    (pred): Linear(in_features=256, out_features=1, bias=True)
+  )
+)
+
+********************************* Loading Data *********************************
+*********************************** Training ***********************************
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Epoch [1/2] xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Training Loss: 0.7890, Training Error: 0.9032, Training Secondary Error: 0.7368
+Validation Loss: 0.8565, Validation Error: 0.7369, Validation Secondary Error: 0.7338
+Best model obtained at the end of epoch 1
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Epoch [2/2] xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Training Loss: 0.7692, Training Error: 0.8111, Training Secondary Error: 0.7254
+Validation Loss: 0.8342, Validation Error: 0.7655, Validation Secondary Error: 0.7282
+
+********************************** Fold [3/3] **********************************
+************************* Model: seq2seq_w_attn_on_hid *************************
+Seq2Seq(
+  (encoder): Encoder(
+    (embeddings): ModuleList(
+      (0): Embedding(3049, 50)
+      (1): Embedding(7, 4)
+      (2): Embedding(3, 2)
+      (3): Embedding(10, 5)
+      (4): Embedding(3, 2)
+    )
+    (cal_embedding): Embedding(31, 16)
+    (rnns): ModuleList(
+      (0): LSTM(132, 128, bidirectional=True)
+      (1): LSTM(256, 128, bidirectional=True)
+    )
+    (rnn_dropouts): ModuleList(
+      (0): Dropout(p=0.2, inplace=False)
+    )
+  )
+  (decoder): AttnDecoder(
+    (embeddings): ModuleList(
+      (0): Embedding(3049, 50)
+      (1): Embedding(7, 4)
+      (2): Embedding(3, 2)
+      (3): Embedding(10, 5)
+      (4): Embedding(3, 2)
+    )
+    (cal_embedding): Embedding(31, 16)
+    (attns): ModuleList(
+      (0): Linear(in_features=644, out_features=364, bias=True)
+      (1): Linear(in_features=644, out_features=364, bias=True)
+    )
+    (attn_combine): ModuleList(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): Linear(in_features=256, out_features=128, bias=True)
+    )
+    (rnns): ModuleList(
+      (0): LSTM(132, 128, bidirectional=True)
+      (1): LSTM(256, 128, bidirectional=True)
+    )
+    (rnn_dropouts): ModuleList(
+      (0): Dropout(p=0.0, inplace=False)
+    )
+    (pred): Linear(in_features=256, out_features=1, bias=True)
+  )
+)
+
+********************************* Loading Data *********************************
+*********************************** Training ***********************************
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Epoch [1/2] xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+loss = 0.783 : 100%|██████████| 2668/2668 [21:34<00:00,  2.06it/s]
+             : 100%|██████████| 191/191 [00:24<00:00,  7.66it/s]
+loss = 0.764 : 100%|██████████| 2668/2668 [21:34<00:00,  2.06it/s]
+             : 100%|██████████| 191/191 [00:24<00:00,  7.70it/s]
+loss = 0.789 : 100%|██████████| 2668/2668 [21:34<00:00,  2.06it/s]
+             : 100%|██████████| 191/191 [00:25<00:00,  7.61it/s]
+loss = 0.769 : 100%|██████████| 2668/2668 [21:34<00:00,  2.06it/s]
+             : 100%|██████████| 191/191 [00:24<00:00,  7.78it/s]
+loss = 0.797 : 100%|██████████| 2668/2668 [21:34<00:00,  2.06it/s]
+             : 100%|██████████| 191/191 [00:24<00:00,  7.67it/s]
+loss = 0.776 : 100%|██████████| 2668/2668 [21:34<00:00,  2.06it/s]
+             : 100%|██████████| 191/191 [00:24<00:00,  7.64it/s]

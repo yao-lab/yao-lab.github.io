@@ -1,0 +1,24 @@
+The files in this filefolder is the codes & reports of the final project of MSBD 5013, 2021-2022.
+
+The project is about the replication of paper: (Re-)Imag(in)ing Price Trends
+
+The filefolder "codes" includes the jypyter notebooks of all the models we have implemented, including:
+	HOG-Based model
+	Baseline CNN model
+	CNN model with 32 kernels
+	CNN model with 2 layers
+	CNN model without dropout
+	CNN model without batch normalization
+	CNN model without Xavier initialization
+	CNN model using ReLU as the activation function
+	CNN model using 2×2 as the size of Max-Pooling
+	CNN model with filter size of 3×3
+	CNN model with Dilation/Stride (1,1)/(3,1)
+
+Filefolder "codes" also include the codes of interpreting the CNN Model by visualization.
+
+The filefolder "report_n_slides" includes the poster of this project, as well as the presentation slides.
+
+The presentation video has been uploaded to the link below: 
+https://www.bilibili.com/video/BV1TT4y1k7Jx/
+Please check it online. Thank you.
