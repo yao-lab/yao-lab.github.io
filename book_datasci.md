@@ -4,7 +4,8 @@ title: book_datasci
 permalink: /book_datasci/
 ---
 
-# A Mathematical Introduction to Data Analysis
+# Geometric and Topological Data Reduction 
+# -- A Mathematical Introduction to Data Analysis
 ## Lecture notes in Peking University and HKUST
 ### Yuan YAO, 2017
 ### Hong Kong University of Science and Technology
