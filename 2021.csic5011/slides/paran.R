@@ -9,9 +9,7 @@ USArrests
 ## USArrests data vary by orders of magnitude, so scaling is appropriate
 # apply PCA - scale. = TRUE is highly 
 # advisable, but default is FALSE. 
-usa.pca <- prcomp(USArrests,
-                 center = TRUE,
-                 scale. = TRUE)
+usa.pca <- prcomp(USArrests, center = TRUE, scale. = TRUE)
 
 
 # The first component dominates:
