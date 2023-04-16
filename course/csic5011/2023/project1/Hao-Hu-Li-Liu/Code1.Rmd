@@ -1,0 +1,728 @@
+---
+title: "Reduction, visualization and classification"
+author: "Liu Yonglin"
+date: "2023-04-09"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(R.matlab)
+library(RDRToolbox)
+library(ggplot2)
+library(ggcorrplot)
+library(Rtsne)
+#library(rpca)
+library(rospca)
+library(sparsepca)
+#library(lle)
+library(randomForest)
+library(pROC)
+library(nnet)
+```
+
+## set seed
+```{r}
+set.seed(42)
+```
+
+## Load data
+```{r}
+path<-getwd()
+path<-paste(path,"snp452-data.mat",sep = "/")
+datmat<-readMat(path)
+#dat<-load("/snp500.Rda")
+
+x<-as.data.frame(datmat$X)
+y<-as.data.frame(t(array(unlist(datmat$stock),dim = c(3,452))))#name/full name/group
+colnames(y)<-c("name","detail","group")
+colnames(x)<-y[,1]
+
+```
+
+
+# Distribution of stock class
+```{r}
+library(ggplot2)
+z<-unique(y$group)
+n<-length(z)
+gp<-rep(0,n)
+for(i in 1:n){
+  gp[i]<-length(which(y$group==z[i]))
+}
+
+count_bar<-data.frame("group"=z,"frequency"=gp)
+ggplot(data = count_bar,aes(x=factor(group),y=frequency,fill=factor(group)))+geom_bar(stat = "identity")+xlab("Groups")+ylab("Frequency")+theme(axis.text.x = element_blank(),legend.key.size=unit(10,"pt"))+guides(fill=guide_legend(title = "Group"))
+```
+
+## Class
+```{r}
+target<-rep(0,10)
+index_all<-matrix(rep(0,10*100),nrow = 10)
+
+for(i in 1:10){
+  index<-count_bar$group[i]
+  print(index)
+  print(which(y$group==index)) ###
+  ii=as.vector(which(y$group==index))
+  index_all[i,]=c(ii,rep(0,100-gp[i]))
+  target[i]<-which(y$group==index)[1]
+}
+```
+
+## Select the first company in each class
+```{r}
+target_gp<-count_bar$group
+```
+
+## Price of stocks by days
+```{r}
+days=as.data.frame(c(1:1258))
+price <- data.frame(matrix(ncol = 1258, nrow = 0))
+dd <- data.frame(matrix(ncol = 1258, nrow = 0))
+for(i in 1:10){
+  price<-rbind(price,data.frame(x[,target[i]], "group"=target_gp[i]))
+  dd=rbind(dd,days)
+  #plot(1:1258,as.numeric(x[,target[i]]),type = "l",main = count_bar$group[i],xlab="Days",ylab="Stock Prices")
+}
+price=cbind(dd,price)
+colnames(price)<-c("x","y","group")
+ggplot(data = price,aes(x=x, y = y, col=factor(group)))  +geom_line()
+
+
+#ggplot(data=new.data,aes(x=name,y=mean_value))+
+#  geom_line(aes(color=variants,lty=`Reference genome`))+
+#  geom_point(aes(color=variants))
+
+```
+
+
+# Growth rate of selected companies
+```{r}
+rate<-matrix(rep(0,10*1257),nrow = 10)
+
+for(i in 1:10){
+  
+  x1=x[1:1257,target[i]]
+  x2=x[2:1258,target[i]]
+  dx=(x2-x1)/x1
+  
+  rate[i,]=dx
+  
+  plot(1:1257,as.numeric(dx),type = "l",main = count_bar$group[i],xlab="Days",ylab="Growth Rates")
+
+  hist(scale(dx),prob=T)
+  
+  xfit<-seq(min(scale(dx)),max(scale(dx)),length=40)
+  yfit<-dnorm(xfit,mean(scale(dx)),sd(scale(dx)))
+  lines(xfit,yfit,col="red",lwd=3)
+}
+```
+
+
+# Growth rate of all companies
+```{r}
+index_all=t(index_all)
+
+rate<-matrix(rep(0,452*1257),nrow = 452)
+
+for(i in 1:10){ #i:种类 j:每个种类中的企业
+  for(j in 1:gp[i]){
+  x1=x[1:1257,index_all[j,i]]
+  x2=x[2:1258,index_all[j,i]]
+  dx=(x2-x1)/x1
+  
+  rate[i,]=dx
+
+  rate[index_all[j,i],]=as.vector(dx)
+  }
+}
+
+#
+q=matrix(rep(0,1*452),nrow = 1)
+for (i in 1:10){
+  for(j in 1:gp[i]){
+    q[index_all[j,i]]=z[i]
+  }
+}
+q=t(q)
+
+#ratelle=rate
+```
+
+## Plot heatmaps
+```{r}
+## Heatmap
+#corr_matrix <- cor(X3)
+#ggcorrplot(corr_matrix)
+```
+
+## Heatmap in groups by Yifan
+```{r}
+#heatmap in-group
+library(ggcorrplot)
+target<-target[-9]
+target_gp<-count_bar$group[-9]
+h<-matrix(rep(0,452*452),ncol = 452)
+for(i in 1:452){
+  for(j in i:452){
+    h[i,j]<-cor(x[,i],x[,j])
+    h[j,i]<-h[i,j]
+  }
+}
+
+for(i in 1:9){
+  index<-which(y$group==target_gp[i])
+  plt<-ggcorrplot(h[index,index])
+  print(plt)
+}
+```
+
+
+
+
+### ISOMAP
+
+
+
+##Create data frame with 0 rows and 3 columns
+```{r}
+PC <- data.frame(matrix(ncol = 3, nrow = 0))
+```
+
+## Data reduction and creating new dataframe PC
+```{r}
+for (i in 1:10){
+  
+  index<-which(y$group==target_gp[i])
+
+  new=rate[index,]
+  #new=t(new)
+  new=as.matrix(new)
+  
+  X_ISO<-Isomap(data=new, dims=2, k=4)
+  X_ISO<-as.data.frame(X_ISO)
+    
+  PC<-rbind(PC,data.frame("x"=X_ISO$dim2.1, "y"=X_ISO$dim2.2, "group"<-rep(i,gp[i])))
+}
+
+```
+
+## provide column names
+```{r}
+colnames(PC)<-c("PC1","PC2","group")
+```
+
+## splitting
+```{r}
+set.seed(42)
+sample=sample(c(TRUE, FALSE), nrow(PC), replace=TRUE, prob=c(0.7,0.3))
+isotrain  <- PC[sample, ]
+isotest   <- PC[!sample, ]
+xtrain_iso=isotrain[,1:2]
+xtest_iso=isotest[,1:2]
+ytrain_iso=isotrain[,3]
+ytest_iso=isotest[,3]
+```
+
+#logistic regression
+```{r}
+lr_iso<-multinom(group~PC1+PC2,data=isotrain,maxit=500) #maxit:iteration times
+summary(lr_iso) 
+```
+
+
+## Error and accuracy
+```{r}
+prob_isotrain<-predict(lr_iso,type="probs") 
+head(prob_isotrain)
+
+pred_isotrain<-predict(lr_iso,type="class") 
+head(pred_isotrain)
+
+#Confusion Matrix
+table<-table(predicted=pred_isotrain,Actual=isotrain$group) 
+table
+
+#Accuracy
+Accuracy<-sum(diag(table))/sum(table)  
+Accuracy
+
+#lr_iso=glm(group~PC1+PC2,data=isotrain)
+
+#summary(lr_iso)
+
+```
+
+## Plot
+```{r}
+ggplot(data = PC,aes(x=PC1, y = PC2, col=factor(group)))+geom_point()
+```
+
+## Save
+```{r}
+v1=PC[1:452,1]
+v2=PC[1:452,2]
+d2=matrix(rep(0,452*452),nrow = 452)
+for (i in 1:452){
+  for (j in 1:452){
+    d2[i,j]=(v1[i]-v1[j])^2+(v2[i]-v2[j])^2
+  }
+}
+
+write.csv(d2,"iso3.csv")
+```
+
+
+
+
+### LLE
+
+
+
+##Create data frame with 0 rows and 3 columns
+```{r}
+PC <- data.frame(matrix(ncol = 3, nrow = 0))
+```
+
+## Data reduction
+```{r}
+for (i in 1:10){
+  
+  index<-which(y$group==target_gp[i])
+  
+  new=rate[index,]
+  #new=t(new)
+  new=as.matrix(new)
+  
+  X_LLE<-LLE(data=new, dim=2, k=2)
+  X_LLE<-as.data.frame(X_LLE)
+  
+  PC<-rbind(PC,data.frame("x"=X_LLE$V1, "y"=X_LLE$V2, "group"<-rep(target_gp[i],gp[i])))
+}
+```
+
+##provide column names
+```{r}
+colnames(PC)<-c("PC1","PC2","group")
+```
+
+##Plot
+```{r}
+ggplot(data = PC,aes(x=PC1, y = PC2, col=factor(group)))+geom_point()
+```
+
+## splitting
+```{r}
+set.seed(42)
+sample=sample(c(TRUE, FALSE), nrow(PC), replace=TRUE, prob=c(0.7,0.3))
+isotrain  <- PC[sample, ]
+isotest   <- PC[!sample, ]
+xtrain_iso=isotrain[,1:2]
+xtest_iso=isotest[,1:2]
+ytrain_iso=isotrain[,3]
+ytest_iso=isotest[,3]
+```
+
+#logistic regression
+```{r}
+lr_iso<-multinom(group~PC1+PC2,data=isotrain,maxit=500) #maxit:iteration times
+summary(lr_iso) 
+```
+
+## Error and accuracy
+```{r}
+prob_isotrain<-predict(lr_iso,type="probs") 
+head(prob_isotrain)
+
+pred_isotrain<-predict(lr_iso,type="class") 
+head(pred_isotrain)
+
+#Confusion Matrix
+table<-table(predicted=pred_isotrain,Actual=isotrain$group) 
+table
+
+#Accuracy
+Accuracy<-sum(diag(table))/sum(table)  
+Accuracy
+
+#lr_iso=glm(group~PC1+PC2,data=isotrain)
+
+#summary(lr_iso)
+
+```
+
+## Save data to csv
+```{r}
+v1=PC[1:452,1]
+v2=PC[1:452,2]
+d2=matrix(rep(0,452*452),nrow = 452)
+for (i in 1:452){
+  for (j in 1:452){
+    d2[i,j]=(v1[i]-v2[j])^2
+  }
+}
+
+write.csv(d2,"LLE2.csv")
+```
+
+
+
+
+### MDS
+
+
+
+## create data frame with 0 rows and 3 columns
+```{r}
+PC <- data.frame(matrix(ncol = 3, nrow = 0))
+```
+
+## Data reduction
+```{r}
+for (i in 1:10){
+  
+  index<-which(y$group==target_gp[i])
+  
+  new=rate[index,]
+  #new=t(new)
+  
+  dist = dist(new,p = 2)
+  X_MDS= cmdscale(dist)
+  X_MDS<-as.data.frame(X_MDS)
+
+  PC<-rbind(PC,data.frame("x"=X_MDS$V1, "y"=X_MDS$V2, "group"<-rep(i,gp[i])))
+
+}
+```
+
+## provide column names
+```{r}
+colnames(PC)<-c("PC1","PC2","group")
+```
+
+## Plot
+```{r}
+ggplot(data = PC,aes(x=PC1, y = PC2, col=factor(group)))+geom_point()
+```
+
+## splitting
+```{r}
+set.seed(42)
+sample=sample(c(TRUE, FALSE), nrow(PC), replace=TRUE, prob=c(0.7,0.3))
+mdstrain  <- PC[sample, ]
+mdstest   <- PC[!sample, ]
+xtrain_mds=mdstrain[,1:2]
+xtest_mds=mdstest[,1:2]
+ytrain_mds=mdstrain[,3]
+ytest_mds=mdstest[,3]
+```
+
+## logistic regression
+```{r}
+lr_mds<-multinom(group~PC1+PC2,data=mdstrain,maxit=500) #maxit表示迭代次数
+summary(lr_mds) 
+```
+
+## Accuracy
+```{r}
+prob_mdstrain<-predict(lr_mds,type="probs")   
+head(prob_mdstrain)
+
+pred_mdstrain<-predict(lr_mds,type="class")   
+head(pred_mdstrain)
+table<-table(predicted=pred_mdstrain,Actual=mdstrain$group)
+table
+Accuracy<-sum(diag(table))/sum(table)
+Accuracy
+
+```
+
+## Save
+```{r}
+v1=PC[1:452,1]
+v2=PC[1:452,2]
+d2=matrix(rep(0,452*452),nrow = 452)
+for (i in 1:452){
+  for (j in 1:452){
+    d2[i,j]=(v1[i]-v1[j])^2+(v2[i]-v2[j])^2
+  }
+}
+
+write.csv(d2,"mds3.csv")
+```
+
+
+
+
+### TSNE
+
+
+
+## create data frame with 0 rows and 3 columns
+```{r}
+PC <- data.frame(matrix(ncol = 3, nrow = 0))
+```
+
+#reduction
+```{r}
+for (i in 1:10){
+  
+  index<-which(y$group==target_gp[i])
+  
+  new=rate[index,]
+  #new=t(new)
+  new=as.matrix(new)
+  
+  tSNE_out = Rtsne(new,check_duplicates = FALSE, perplexity = 1)
+  X_tSNE = tSNE_out$Y
+  X_tSNE<-as.data.frame(X_tSNE)
+  
+  PC<-rbind(PC,data.frame("x"=X_tSNE$V1, "y"=X_tSNE$V2, "group"<-rep(i,gp[i])))
+  
+}
+```
+
+##provide column names
+```{r}
+colnames(PC)<-c("PC1","PC2","group")
+```
+
+##Plot
+```{r}
+ggplot(data = PC,aes(x=PC1, y = PC2, col=factor(group)))+geom_point()
+```
+
+## splitting
+```{r}
+set.seed(42)
+sample=sample(c(TRUE, FALSE), nrow(PC), replace=TRUE, prob=c(0.7,0.3))
+tsnetrain  <- PC[sample, ]
+tsnetest   <- PC[!sample, ]
+xtrain_tsne=tsnetrain[,1:2]
+xtest_tsne=tsnetest[,1:2]
+ytrain_tsne=tsnetrain[,3]
+ytest_tsne=tsnetest[,3]
+
+```
+
+## logistic regression
+```{r}
+lr_tsne<-multinom(group~PC1+PC2,data=tsnetrain,maxit=500) 
+summary(lr_tsne) 
+```
+
+## Result
+```{r}
+prob_tsnetrain<-predict(lr_tsne,type="probs")   
+head(prob_tsnetrain)
+
+pred_tsnetrain<-predict(lr_tsne,type="class")  
+head(pred_tsnetrain)
+table<-table(predicted=pred_tsnetrain,Actual=tsnetrain$group) 
+table
+Accuracy<-sum(diag(table))/sum(table) 
+Accuracy
+```
+
+## Save
+```{r}
+v1=PC[1:452,1]
+v2=PC[1:452,2]
+d2=matrix(rep(0,452*452),nrow = 452)
+for (i in 1:452){
+  for (j in 1:452){
+    d2[i,j]=(v1[i]-v1[j])^2+(v2[i]-v2[j])^2
+  }
+}
+
+write.csv(d2,"tsne3.csv")
+```
+
+
+
+### rPCA
+
+
+
+## create data frame with 0 rows and 3 columns
+```{r}
+PC <- data.frame(matrix(ncol = 3, nrow = 0))
+```
+
+## Reduction
+```{r}
+for (i in 1:10){
+  
+  index<-which(y$group==target_gp[i])
+  
+  new=rate[index,]
+  new=t(new)
+
+  X_rpca=robpca(new,k=2)
+  X_rpca = X_rpca$loadings
+  X_rpca=as.data.frame(X_rpca)
+ 
+  PC<-rbind(PC,data.frame("x"=X_rpca$PC1, "y"=X_rpca$PC2, "group"<-rep(target_gp[i],gp[i])))
+  
+
+}
+```
+
+## provide column names
+```{r}
+colnames(PC)<-c("PC1","PC2","group")
+```
+
+## Plot
+```{r}
+ggplot(data = PC,aes(x=PC1, y = PC2, col=factor(group)))+geom_point()
+```
+
+## splitting
+```{r}
+set.seed(42)
+sample=sample(c(TRUE, FALSE), nrow(PC), replace=TRUE, prob=c(0.7,0.3))
+isotrain  <- PC[sample, ]
+isotest   <- PC[!sample, ]
+xtrain_iso=isotrain[,1:2]
+xtest_iso=isotest[,1:2]
+ytrain_iso=isotrain[,3]
+ytest_iso=isotest[,3]
+```
+
+#logistic regression
+```{r}
+lr_iso<-multinom(group~PC1+PC2,data=isotrain,maxit=500) #maxit:iteration times
+summary(lr_iso) 
+```
+
+## Error and accuracy
+```{r}
+prob_isotrain<-predict(lr_iso,type="probs") 
+head(prob_isotrain)
+
+pred_isotrain<-predict(lr_iso,type="class") 
+head(pred_isotrain)
+
+#Confusion Matrix
+table<-table(predicted=pred_isotrain,Actual=isotrain$group) 
+table
+
+#Accuracy
+Accuracy<-sum(diag(table))/sum(table)  
+Accuracy
+
+#lr_iso=glm(group~PC1+PC2,data=isotrain)
+
+#summary(lr_iso)
+
+```
+
+## Save data to csv
+```{r}
+v1=PC[1:452,1]
+v2=PC[1:452,2]
+d2=matrix(rep(0,452*452),nrow = 452)
+for (i in 1:452){
+  for (j in 1:452){
+    d2[i,j]=(v1[i]-v2[j])^2
+  }
+}
+
+write.csv(d2,"LLE2.csv")
+```
+
+
+
+
+### sPCA
+
+
+
+#create data frame with 0 rows and 3 columns
+```{r}
+PC <- data.frame(matrix(ncol = 3, nrow = 0))
+```
+
+## Reduction
+```{r}
+for (i in 1:10){
+  
+  index<-which(y$group==target_gp[i])
+  
+  new=rate[index,]
+  new=t(new)
+
+  X_spca=spca(new,k=2)
+  X_spca = X_spca$loadings
+  X_spca=as.data.frame(X_spca)
+  
+  PC<-rbind(PC,data.frame("x"=X_spca$V1, "y"=X_spca$V2, "group"<-rep(i,gp[i])))
+  
+}
+```
+
+## provide column names
+```{r}
+colnames(PC)<-c("PC1","PC2","group")
+```
+
+## Plot
+```{r}
+ggplot(data = PC,aes(x=PC1, y = PC2, col=factor(group)))+geom_point()
+```
+
+## splitting
+```{r}
+set.seed(42)
+sample=sample(c(TRUE, FALSE), nrow(PC), replace=TRUE, prob=c(0.7,0.3))
+spcatrain  <- PC[sample, ]
+spcatest   <- PC[!sample, ]
+xtrain_spca=spcatrain[,1:2]
+xtest_spca=spcatest[,1:2]
+ytrain_spca=spcatrain[,3]
+ytest_spca=spcatest[,3]
+```
+
+## regression
+```{r}
+lr_spca<-multinom(group~PC1+PC2,data=spcatrain,maxit=500) 
+summary(lr_spca) 
+```
+
+## Result
+```{r}
+prob_spcatrain<-predict(lr_spca,type="probs")  
+head(prob_spcatrain)
+
+pred_spcatrain<-predict(lr_spca,type="class")  
+head(pred_spcatrain)
+table<-table(predicted=pred_spcatrain,Actual=spcatrain$group) 
+table
+Accuracy<-sum(diag(table))/sum(table)
+Accuracy
+
+```
+
+## Save
+```{r}
+v1=PC[1:452,1]
+v2=PC[1:452,2]
+d2=matrix(rep(0,452*452),nrow = 452)
+for (i in 1:452){
+  for (j in 1:452){
+    d2[i,j]=(v1[i]-v1[j])^2+(v2[i]-v2[j])^2
+  }
+}
+
+write.csv(d2,"spca3.csv")
+```
+
+## Plot in groups
+```{r}
+#demo<-data.frame("x"=X_spca$V1, "y"=X_spca$V2, "group"<-c(rep(1,6),rep(2,20),rep(3,11)))
+#colnames(demo)<-c("x","y","z")
+#ggplot(data = demo,aes(x=x, y = y, col=factor(z)))+geom_point()
+
+```
+

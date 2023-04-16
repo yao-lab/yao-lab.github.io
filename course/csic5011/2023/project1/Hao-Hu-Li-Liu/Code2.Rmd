@@ -1,0 +1,394 @@
+---
+title: "project1"
+author: "Yifan HAO"
+date: "2023-04-04"
+output: html_document
+---
+
+data loading
+===
+
+```{r}
+library(R.matlab)
+datmat<-readMat("C:/Users/Lenovo/Desktop/project1/snp452-data.mat")
+
+z<-datmat$X
+x<-datmat$X[-1,]
+for(i in 1:452){
+  x[,i]<-diff(z[,i])/z[-1258,i]
+}
+x<-as.data.frame(x)
+y<-as.data.frame(t(array(unlist(datmat$stock),dim = c(3,452))))#name/full name/group
+colnames(y)<-c("name","detail","group")
+colnames(x)<-y[,1]
+
+```
+
+
+```{r}
+#bar plot in group
+library(ggplot2)
+z<-unique(y$group)
+n<-length(z)
+gp<-rep(0,n)
+for(i in 1:n){
+  gp[i]<-length(which(y$group==z[i]))
+}
+
+count_bar<-data.frame("group"=z,"frequency"=gp)
+ggplot(data = count_bar,aes(x=factor(group),y=frequency,fill=factor(group)))+geom_bar(stat = "identity")+xlab("Groups")+ylab("Frequency")+theme(axis.text.x = element_blank(),legend.key.size=unit(10,"pt"))+guides(fill=guide_legend(title = "Group"))
+
+```
+
+
+data explore and target select
+===
+
+```{r}
+target<-rep(0,10)
+for(i in 1:10){
+  index<-count_bar$group[i]
+  print(index)
+  print(which(y$group==index))
+  target[i]<-which(y$group==index)[1]
+}
+```
+
+
+```{r}
+#ts plot
+for(i in 1:10){
+  plot(1:1257,as.numeric(x[,target[i]]),type = "l",main = count_bar$group[i])
+}
+```
+
+```{r}
+#heatmap in-group
+library(ggcorrplot)
+target<-target[-9]
+target_gp<-count_bar$group[-9]
+h<-matrix(rep(0,452*452),ncol = 452)
+for(i in 1:452){
+  for(j in i:452){
+    h[i,j]<-cor(x[,i],x[,j])
+    h[j,i]<-h[i,j]
+  }
+}
+
+for(i in 1:9){
+  index<-which(y$group==target_gp[i])
+  plt<-ggcorrplot(h[index,index])
+  print(plt)
+}
+```
+
+
+function define
+===
+
+```{r}
+library(forecast)
+
+#pca method
+sele.pca<-function(x,xt,nf=0){#input the predictors(n*t) and the number of factors(option)
+  n<-nrow(x)
+  t<-ncol(x)
+  tt<-ncol(xt)
+  dm<-apply(x,1,mean)
+  xd<-x-matrix(rep(dm,t),ncol = t)#n*t
+  ss<-1/n*t(xd)%*%xd
+  de<-eigen(ss)
+  te<-de$values[1]*min(n,t)^(-1/3)
+  num<-length(which(de$values>=te))
+  if(nf!=0){
+    num<-nf
+  }
+  fac<-sqrt(t)*matrix(as.numeric(de$vectors[,1:num]),nrow = t)#factor in sample t*nf
+  rr<-solve(t(fac)%*%fac,tol=.Machine$double.eps^3)%*%t(fac)%*%t(xd)#loading nf*n
+  fac<-t(fac)
+  if(tt>1){
+    dtm<-apply(xt,1,mean)
+    xtd<-xt-matrix(rep(dtm,tt),ncol = tt)
+  }else{
+    xtd<-as.matrix(xt,ncol=1)-matrix(dm,ncol = 1)
+  }
+  facf<-solve(rr%*%t(rr),tol=.Machine$double.eps^3)%*%rr%*%xtd#factor out of sample
+  l<-list("num"=num,"x.in"=fac,"x.out"=facf)
+  return(l)
+}
+
+#scaled-pca method
+sele.spca<-function(y,x,xt,nf=0){#input the predictors(n*t) and the number of factors(option)
+  n<-nrow(x)
+  t<-ncol(x)
+  tt<-ncol(xt)
+  z<-scale(t(x),scale = F)#center
+  gam<-rep(0,n)
+  #cat("a")
+  for(i in 1:n){
+    if(sum(abs(as.numeric(z[,i])))>0){
+      gam[i]<-lm(y~as.numeric(z[,i]))$coef[2]
+      #gam[i]<-qc.calcu(as.numeric(z[,i]),y,tau = tau)
+    }
+    #cat(i,gam[i],"\n")
+  }
+  xh<-diag(gam)%*%x#weighted
+  xth<-diag(gam)%*%xt
+  dm<-apply(xh,1,mean)
+  xd<-xh-matrix(rep(dm,t),ncol = t)#n*t
+  ss<-1/n*t(xd)%*%xd
+  de<-eigen(ss)
+  te<-de$values[1]*min(n,t)^(-1/3)
+  num<-length(which(de$values>=te))
+  if(nf!=0){
+    num<-nf
+  }
+  fac<-sqrt(t)*matrix(as.numeric(de$vectors[,1:num]),nrow = t)#factor in sample
+  rr<-solve(t(fac)%*%fac,tol=.Machine$double.eps^3)%*%t(fac)%*%t(xd)#loading
+  fac<-t(fac)
+  if(tt>1){
+    dtm<-apply(xth,1,mean)
+    xtd<-xth-matrix(rep(dtm,tt),ncol = tt)
+  }else{
+    xtd<-as.matrix(xth,ncol=1)-matrix(dm,ncol = 1)
+  }
+  facf<-solve(rr%*%t(rr),tol=.Machine$double.eps^3)%*%rr%*%xtd#factor out of sample
+  l<-list("num"=num,"x.in"=fac,"x.out"=facf)
+  return(l)
+}
+
+#target-pca method
+sele.tpca<-function(y,x,xt,nf=0,dis){#input the predictors(n*t) and the number of factors(option)
+  n<-nrow(x)
+  t<-ncol(x)
+  tt<-ncol(xt)
+  nn<-ceiling(t/log(t))
+  z<-scale(t(x),scale = F)#center
+  gam<-rep(1,n)
+  #gr<-rep(0,n)
+  #for(i in 1:n){
+    #if(sum(abs(as.numeric(z[,i])))>0){
+      #gam[i]<-lm(y~as.numeric(z[,i]))$coef[2]^2
+    #}
+    #cat(i,gam[i],"\n")
+  #}
+  gr<-rank(dis)
+  #gr<-n+1-rank(gam)
+  #gam[which(rank(gr)>=40)]<-rep(0,length(which(rank(gr)>=40)))
+  xh<-x[which(gr<=nn),]#weighted
+  xth<-xt[which(gr<=nn),]
+  #xh<-diag(gam)%*%x#weighted
+  #xth<-diag(gam)%*%xt
+  dm<-apply(xh,1,mean)
+  xd<-xh-matrix(rep(dm,t),ncol = t)#n1*t
+  ss<-1/nn*t(xd)%*%xd
+  de<-eigen(ss)
+  te<-de$values[1]*min(n,t)^(-1/3)
+  num<-length(which(de$values>=te))
+  if(nf!=0){
+    num<-nf
+  }
+  fac<-sqrt(t)*matrix(as.numeric(de$vectors[,1:num]),nrow = t)#factor in sample
+  rr<-solve(t(fac)%*%fac,tol=.Machine$double.eps^3)%*%t(fac)%*%t(xd)#loading
+  fac<-t(fac)
+  if(tt>1){
+    dtm<-apply(xth,1,mean)
+    xtd<-xth-matrix(rep(dtm,tt),ncol = tt)
+  }else{
+    xtd<-as.matrix(xth,ncol=1)-matrix(dm,ncol = 1)
+  }
+  facf<-solve(rr%*%t(rr),tol=.Machine$double.eps^3)%*%rr%*%xtd#factor out of sample
+  l<-list("num"=num,"x.in"=fac,"x.out"=facf)
+  return(l)
+}
+
+
+```
+
+
+forecasting
+===
+
+```{r}
+frst<-function(x,y,pt,fn,bk,dis){ 
+#(x,y) is data; pt is the forecasting point; fn is factor number max value; bk is the lag value; dis is the feature distance in different alg 
+  t<-length(y)
+  lt<-matrix(rep(0,7*(t-pt+1)),ncol = 7)#baseline/pca/spca/tpca-mds/tpca-iso/tpca-tsne/tpca-spca
+  ll<-list(lt)
+  for(k in 2:fn){
+    ll[[k]]<-lt
+  }
+  if(bk==0){
+    bk<-1
+    y_bk<-matrix(rep(0,bk*length(y[(bk+1):t])),ncol = bk)
+  }else{
+    y_bk<-matrix(rep(0,bk*length(y[(bk+1):t])),ncol = bk)
+    for(i in 1:bk){
+      y_bk[,i]<-y[(bk+1-i):(t-i)]
+    }
+  }
+  for(i in pt:t){
+    #print(paste(i,"-th"))
+    st<-bk+1+i-pt
+    ed<-i-1
+    #or
+    if(bk>0){
+      fit.or<-lm(y[st:ed]~y_bk[(st-bk):(ed-bk),])
+      cc<-fit.or$coefficients
+      cc[which(is.na(cc))]<-0
+      for(bn in 1:fn){
+        ll[[bn]][i-pt+1,1]<-sum(c(1,as.matrix(y_bk[i-bk,]))*cc)
+      }
+    }
+    
+    #print("baseline")
+    
+    #pca
+    para.pca<-sele.pca(t(as.matrix(x[(st-1):(ed-1),])),as.matrix(x[i-1,]),nf=fn)
+    for(bn in 1:fn){
+      if(bn==1){
+        fit.pca<-lm(y[st:ed]~para.pca$x.in[1,]+y_bk[(st-bk):(ed-bk),])
+      }else{
+        fit.pca<-lm(y[st:ed]~t(para.pca$x.in[1:bn,])+y_bk[(st-bk):(ed-bk),])
+      }
+      cc<-fit.pca$coefficients
+      cc[which(is.na(cc))]<-0
+      ll[[bn]][i-pt+1,2]<-sum(c(1,as.numeric(para.pca$x.out[1:bn,]),as.numeric(y_bk[i-bk,]))*cc)
+    }
+    #print("pca")
+    
+    #spca
+    para.spca<-sele.spca(y[st:ed],t(as.matrix(x[(st-1):(ed-1),])),as.matrix(x[i-1,]),nf=fn)
+    for(bn in 1:fn){
+      if(bn==1){
+        fit.spca<-lm(y[st:ed]~para.spca$x.in[1,]+y_bk[(st-bk):(ed-bk),])
+      }else{
+        fit.spca<-lm(y[st:ed]~t(para.spca$x.in[1:bn,])+y_bk[(st-bk):(ed-bk),])
+      }
+      cc<-fit.spca$coefficients
+      cc[which(is.na(cc))]<-0
+      ll[[bn]][i-pt+1,3]<-sum(c(1,as.numeric(para.spca$x.out[1:bn,]),as.numeric(y_bk[i-bk,]))*cc)
+    }
+    #print("spca")
+    
+    #tpca-mds
+    para.tpca<-sele.tpca(y[st:ed],t(as.matrix(x[(st-1):(ed-1),])),as.matrix(x[i-1,]),nf=fn,dis = dis[,1])
+    for(bn in 1:fn){
+      if(bn==1){
+        fit.tpca<-lm(y[st:ed]~para.tpca$x.in[1,]+y_bk[(st-bk):(ed-bk),])
+      }else{
+        fit.tpca<-lm(y[st:ed]~t(para.tpca$x.in[1:bn,])+y_bk[(st-bk):(ed-bk),])
+      }
+      cc<-fit.tpca$coefficients
+      cc[which(is.na(cc))]<-0
+      ll[[bn]][i-pt+1,4]<-sum(c(1,as.numeric(para.tpca$x.out[1:bn,]),as.numeric(y_bk[i-bk,]))*cc)
+    }
+    #print("tpca")
+    
+    #tpca-iso
+    para.tpca<-sele.tpca(y[st:ed],t(as.matrix(x[(st-1):(ed-1),])),as.matrix(x[i-1,]),nf=fn,dis = dis[,2])
+    for(bn in 1:fn){
+      if(bn==1){
+        fit.tpca<-lm(y[st:ed]~para.tpca$x.in[1,]+y_bk[(st-bk):(ed-bk),])
+      }else{
+        fit.tpca<-lm(y[st:ed]~t(para.tpca$x.in[1:bn,])+y_bk[(st-bk):(ed-bk),])
+      }
+      cc<-fit.tpca$coefficients
+      cc[which(is.na(cc))]<-0
+      #print("cc-iso")
+      ll[[bn]][i-pt+1,5]<-sum(c(1,as.numeric(para.tpca$x.out[1:bn,]),as.numeric(y_bk[i-bk,]))*cc)
+    }
+    #print("tpca")
+    
+    #tpca-tsne
+    para.tpca<-sele.tpca(y[st:ed],t(as.matrix(x[(st-1):(ed-1),])),as.matrix(x[i-1,]),nf=fn,dis = dis[,3])
+    for(bn in 1:fn){
+      if(bn==1){
+        fit.tpca<-lm(y[st:ed]~para.tpca$x.in[1,]+y_bk[(st-bk):(ed-bk),])
+      }else{
+        fit.tpca<-lm(y[st:ed]~t(para.tpca$x.in[1:bn,])+y_bk[(st-bk):(ed-bk),])
+      }
+      cc<-fit.tpca$coefficients
+      cc[which(is.na(cc))]<-0
+      #print("cc-tsne")
+      ll[[bn]][i-pt+1,6]<-sum(c(1,as.numeric(para.tpca$x.out[1:bn,]),as.numeric(y_bk[i-bk,]))*cc)
+    }
+    #print("tpca")
+    
+    #tpca-spca
+    para.tpca<-sele.tpca(y[st:ed],t(as.matrix(x[(st-1):(ed-1),])),as.matrix(x[i-1,]),nf=fn,dis = dis[,4])
+    for(bn in 1:fn){
+      if(bn==1){
+        fit.tpca<-lm(y[st:ed]~para.tpca$x.in[1,]+y_bk[(st-bk):(ed-bk),])
+      }else{
+        fit.tpca<-lm(y[st:ed]~t(para.tpca$x.in[1:bn,])+y_bk[(st-bk):(ed-bk),])
+      }
+      cc<-fit.tpca$coefficients
+      cc[which(is.na(cc))]<-0
+      #print("cc-spca")
+      ll[[bn]][i-pt+1,7]<-sum(c(1,as.numeric(para.tpca$x.out[1:bn,]),as.numeric(y_bk[i-bk,]))*cc)
+    }
+    #print("tpca")
+
+  }
+  return(ll)
+}
+```
+
+
+```{r}
+for(i in 1:9){
+  aa<-auto.arima(x[,target[i]],max.p = 20,max.q = 20,max.d = 20,ic="bic")
+  print(i)
+  print(aa)
+}
+#get the result that lag==1 is reasonable
+```
+
+
+```{r}
+tsne<-read.csv("tsne3.csv")[,-1]
+spca<-read.csv("spca3.csv")[,-1]
+mds<-read.csv("mds3.csv")[,-1]
+iso<-read.csv("iso3.csv")[,-1]
+```
+
+
+```{r}
+#total 1257; start from 755(pt == 755, bk == 1
+re<-data.frame(matrix(rep(0,7*7*9),ncol = 7))
+colnames(re)<-c("baseline","pca","spca","tpca-mds","tpca-iso","tpca-tsne","tpca-spca")
+re$fac<-rep(1:7,9)
+re$index<-rep(target_gp,each=7)
+
+for(i in 1:9){
+  print(i)
+  dis<-matrix(c(as.numeric(mds[target[i],-target[i]]),as.numeric(iso[target[i],-target[i]]),as.numeric(tsne[target[i],-target[i]]),as.numeric(spca[target[i],-target[i]])),ncol = 4)
+  ll<-frst(as.matrix(x[,-target[i]]),as.numeric(x[,target[i]]),pt=755,fn=7,bk=1,dis = dis)
+  for(j in 1:7){
+    for(k in 1:7){
+      re[(i-1)*7+j,k]<-mean((ll[[j]][,k] - x[755:1257,target[i]])^2)
+    }
+  }
+}
+```
+
+```{r}
+write.csv(re, file = "mse_result_0.2")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
