@@ -1,0 +1,171 @@
+This text file provides rough documentation of the variables contained
+in the STATA data set crime.dta.
+
+This data has been assembled by Steven Levitt for the paper "Using Electoral
+Cycles in Police Hiring to Estimate the Effect of Police on Crime."
+
+Questions can be addressed to: Steven Levitt, Harvard Society of Fellows,
+78 Mount Auburn St., Cambridge, MA 02138. (617) 868-3900 x465.
+e-mail:slevitt@fas.harvard.edu
+
+
+The level of observation is city-year.  The observations run from 1969-1992
+for 59 large U.S. cities.  The analysis in the paper covers the period 1971-
+1992; earlier observations in the data set are used only to get lagged values
+of some of the variables.
+
+The variables appear in the following order (variable names are the ones I've
+used in the accompanying stata do-files and sas-files):
+
+1) name
+	city name (string variable)
+
+2) city
+	city identifiers (numerical), unique number for each city
+
+3) statenam
+	state name (string variable)
+
+4) state
+	state identifiers (numerical)
+
+5) censdist
+	Census state code; useful for creating region dummies
+
+6) year
+	year 
+
+7) sworn
+	# of sworn police officers employed by city as of November 1
+	of year from FBI's Uniform Crime Reports
+
+8) civil
+	# of civilian police employees by city as of November 1 
+	of year from FBI's Uniform Crime Reports.
+	(Sworn+civil=total police.)
+
+9) elecyear
+	mayoral election year in city (indicator variable)
+	Sources: Various almanacs and documents from city associations 
+
+10) governor
+	gubernatorial election year in state (indicator variable)
+
+11) murder
+	number of homicide and non-negligent manslaughters in city reported
+	to police in city in year in question, from UCR.
+
+12) rape
+	reported rapes in city, from UCR.
+
+13) robbery
+	reported robberies in city, from UCR.
+
+14) assault
+	reported assaults in city, from UCR.
+
+15) burglary
+	reported burglaries in city, from UCR.
+
+16) larceny
+	reported larcenies in city, from UCR.
+
+17) auto
+	reported auto thefts in city, from UCR.
+
+18) rincpc
+	real income per capita in state.
+	Source: Author's calculations using data from
+	Blanchard and Katz (1993) and CPI.
+
+19) econgrow
+	percent change in rincpc, computed as delta-log 
+	rincpc.
+
+20) unemp
+	state unemployment rates
+	Source: Blanchard and Katz (1993).
+
+21) citypop
+	city-population estimates. 
+	source: FBI Arrests master file data tape.
+
+22) term2
+	indicator variable for cities with two-year mayoral
+	terms
+
+23) term3
+	indicator variable for cities with three-year mayoral
+	terms
+ 
+24) term4
+	indicator variable for cities with four-year mayoral
+	terms
+
+25) a0_5
+	% of smsa population within age range 0-4.
+	Source: marketing almanac (I would have to look up 
+	precise name of book I used; sorry!); interpolated
+	between decennial censuses
+	
+26) a5_9
+	% of smsa population within age range 5-9. 
+	Source: marketing almanac (I would have to look up 
+	precise name of book I used; sorry!); interpolated
+	between decennial censuses
+
+27) a10_14
+	% of smsa population within age range 10-14. 
+	Source: marketing almanac (I would have to look up 
+	precise name of book I used; sorry!); interpolated
+	between decennial censuses
+
+28) a15_19
+	% of smsa population within age range 15-19. 
+	Source: marketing almanac (I would have to look up 
+	precise name of book I used; sorry!); interpolated
+	between decennial censuses
+
+29) a20_24
+	% of smsa population within age range 20-24. 
+	Source: marketing almanac (I would have to look up 
+	precise name of book I used; sorry!); interpolated
+	between decennial censuses
+
+30) a25_29
+	% of smsa population within age range 25-29. 
+	Source: marketing almanac (I would have to look up 
+	precise name of book I used; sorry!); interpolated
+	between decennial censuses
+
+31) citybla
+	% of city population that is black.
+	Source: Statistical Abstract; interpolated between
+	decennial censuses
+
+32) cityfemh
+	% of city population residing in female-headed households.
+	Source: Statistical Abstract; interpolated between
+	decennial censuses
+
+33) sta_educ
+	Combined state and local spending per capita on education
+	in 1992 dollars.
+	Source: Statistical Abstract.
+
+34) sta_welf
+	Combined state and local spending per capita on public welfare
+	in 1992 dollars.
+	Source: Statistical Abstract.
+
+35) price
+	Consumer Price Index
+	Source: Economic Report of the President
+
+36) termlim
+	Indicator variable equal to 1 in years in which governor
+	is a lame duck due to term limits
+	Source: computed from data from Anne Case.
+
+ 
+	

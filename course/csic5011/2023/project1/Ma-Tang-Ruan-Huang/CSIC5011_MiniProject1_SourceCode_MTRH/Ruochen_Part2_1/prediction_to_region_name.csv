@@ -1,0 +1,1044 @@
+,ID,region,pca,mds,tsne,isomap
+0,HGDP00448,Africa,East Asia,Africa,America,America
+1,HGDP00479,Africa,East Asia,Africa,America,Europe
+2,HGDP00985,Africa,East Asia,Africa,America,Central/South Asia
+3,HGDP01094,Africa,East Asia,Africa,America,Europe
+4,HGDP00982,Africa,East Asia,Africa,America,America
+5,HGDP00911,Africa,East Asia,Africa,America,Africa
+6,HGDP01202,Africa,East Asia,Africa,America,Africa
+7,HGDP00927,Africa,East Asia,Africa,America,Europe
+8,HGDP00461,Africa,East Asia,Africa,America,Europe
+9,HGDP00451,Africa,East Asia,Africa,America,Central/South Asia
+10,HGDP00986,Africa,East Asia,Africa,America,Europe
+11,HGDP00449,Africa,East Asia,Africa,America,Europe
+12,HGDP00983,Africa,East Asia,Africa,America,America
+13,HGDP00912,Africa,East Asia,Africa,America,Africa
+14,HGDP01283,Africa,East Asia,Africa,America,Africa
+15,HGDP00928,Africa,East Asia,Africa,America,Europe
+16,HGDP00937,Africa,East Asia,Africa,America,Europe
+17,HGDP01408,Africa,East Asia,Africa,America,America
+18,HGDP00991,Africa,East Asia,Africa,America,Middle East
+19,HGDP01031,Africa,East Asia,Africa,America,America
+20,HGDP01263,Middle East,East Asia,Middle East,Africa,East Asia
+21,HGDP01275,Middle East,East Asia,Middle East,Africa,East Asia
+22,HGDP00611,Middle East,East Asia,Middle East,Africa,Central/South Asia
+23,HGDP00623,Middle East,East Asia,Middle East,Africa,Africa
+24,HGDP00634,Middle East,East Asia,Middle East,Africa,Central/South Asia
+25,HGDP00645,Middle East,East Asia,Middle East,Africa,Central/South Asia
+26,HGDP00557,Middle East,Middle East,Europe,Africa,Central/South Asia
+27,HGDP00569,Middle East,Middle East,Europe,Africa,Europe
+28,HGDP00581,Middle East,Middle East,Europe,Africa,Central/South Asia
+29,HGDP00594,Middle East,Middle East,Europe,Africa,Central/South Asia
+30,HGDP00675,Middle East,East Asia,Europe,Africa,Central/South Asia
+31,HGDP00687,Middle East,East Asia,Europe,Africa,Central/South Asia
+32,HGDP00697,Middle East,East Asia,Middle East,Africa,Central/South Asia
+33,HGDP00729,Middle East,East Asia,Europe,Africa,Central/South Asia
+34,HGDP00741,Middle East,East Asia,Middle East,Africa,Central/South Asia
+35,HGDP00011,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+36,HGDP00035,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+37,HGDP00058,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+38,HGDP00082,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+39,HGDP00103,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+40,HGDP00938,Africa,East Asia,Africa,America,Europe
+41,HGDP01411,Africa,East Asia,Africa,America,America
+42,HGDP01264,Middle East,East Asia,Middle East,Africa,East Asia
+43,HGDP01276,Middle East,East Asia,Middle East,Africa,East Asia
+44,HGDP00612,Middle East,East Asia,Middle East,Africa,Africa
+45,HGDP00624,Middle East,East Asia,Middle East,Africa,Africa
+46,HGDP00635,Middle East,East Asia,Europe,Africa,Central/South Asia
+47,HGDP00646,Middle East,East Asia,Middle East,Africa,Central/South Asia
+48,HGDP00558,Middle East,Middle East,Europe,Africa,Central/South Asia
+49,HGDP00570,Middle East,Middle East,Europe,Africa,Central/South Asia
+50,HGDP00582,Middle East,Middle East,Europe,Africa,Central/South Asia
+51,HGDP00595,Middle East,Middle East,Middle East,Africa,Central/South Asia
+52,HGDP00676,Middle East,East Asia,Europe,Africa,Central/South Asia
+53,HGDP00688,Middle East,East Asia,Europe,Africa,Central/South Asia
+54,HGDP00698,Middle East,East Asia,Europe,Africa,Central/South Asia
+55,HGDP00730,Middle East,East Asia,Middle East,Africa,Central/South Asia
+56,HGDP00742,Middle East,East Asia,Europe,Africa,Central/South Asia
+57,HGDP00013,Central/South Asia,East Asia,Middle East,East Asia,Africa
+58,HGDP00037,Central/South Asia,Africa,Europe,East Asia,Africa
+59,HGDP00060,Central/South Asia,East Asia,Central/South Asia,East Asia,Africa
+60,HGDP00084,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+61,HGDP00104,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+62,HGDP00464,Africa,East Asia,Africa,America,Central/South Asia
+63,HGDP01084,Africa,East Asia,Africa,America,America
+64,HGDP00450,Africa,East Asia,Africa,America,Europe
+65,HGDP00984,Africa,East Asia,Africa,America,Europe
+66,HGDP00913,Africa,East Asia,Africa,America,Africa
+67,HGDP01284,Africa,East Asia,Africa,America,Africa
+68,HGDP00929,Africa,East Asia,Africa,America,Europe
+69,HGDP00939,Africa,East Asia,Africa,America,Europe
+70,HGDP01412,Africa,East Asia,Africa,America,America
+71,HGDP01029,Africa,East Asia,Africa,America,Middle East
+72,HGDP01253,Middle East,East Asia,Middle East,Africa,East Asia
+73,HGDP01265,Middle East,East Asia,Middle East,Africa,East Asia
+74,HGDP01277,Middle East,East Asia,Middle East,Africa,East Asia
+75,HGDP00613,Middle East,East Asia,Europe,Africa,Central/South Asia
+76,HGDP00636,Middle East,East Asia,Europe,Africa,Africa
+77,HGDP00647,Middle East,East Asia,Middle East,Africa,Central/South Asia
+78,HGDP00559,Middle East,Middle East,Europe,Africa,Central/South Asia
+79,HGDP00571,Middle East,Middle East,Europe,Africa,Central/South Asia
+80,HGDP00583,Middle East,Middle East,Europe,Africa,Central/South Asia
+81,HGDP00597,Middle East,Middle East,Middle East,Africa,Central/South Asia
+82,HGDP00677,Middle East,East Asia,Middle East,Africa,Central/South Asia
+83,HGDP00689,Middle East,East Asia,Middle East,Africa,Central/South Asia
+84,HGDP00465,Africa,East Asia,Africa,America,Central/South Asia
+85,HGDP01085,Africa,East Asia,Africa,America,Europe
+86,HGDP00456,Africa,East Asia,Africa,America,Europe
+87,HGDP01081,Africa,East Asia,Africa,America,Europe
+88,HGDP00914,Africa,East Asia,Africa,America,Central/South Asia
+89,HGDP01285,Africa,East Asia,Africa,America,Central/South Asia
+90,HGDP00930,Africa,East Asia,Africa,America,Europe
+91,HGDP00940,Africa,East Asia,Africa,America,Europe
+92,HGDP01413,Africa,East Asia,Africa,America,America
+93,HGDP01032,Africa,East Asia,Africa,America,Middle East
+94,HGDP01254,Middle East,East Asia,Middle East,Africa,East Asia
+95,HGDP01266,Middle East,East Asia,Middle East,Africa,East Asia
+96,HGDP01278,Middle East,East Asia,Middle East,Africa,East Asia
+97,HGDP00614,Middle East,East Asia,Central/South Asia,Africa,Europe
+98,HGDP00626,Middle East,East Asia,Europe,Africa,Europe
+99,HGDP00637,Middle East,East Asia,Middle East,Africa,Central/South Asia
+100,HGDP00648,Middle East,East Asia,Europe,Africa,Africa
+101,HGDP00572,Middle East,Middle East,Europe,Africa,Central/South Asia
+102,HGDP00584,Middle East,Middle East,Europe,Africa,Central/South Asia
+103,HGDP00598,Middle East,Middle East,Europe,Africa,Central/South Asia
+104,HGDP00678,Middle East,East Asia,Middle East,Africa,Central/South Asia
+105,HGDP00690,Middle East,East Asia,Middle East,Africa,Central/South Asia
+106,HGDP00466,Africa,East Asia,Africa,America,Europe
+107,HGDP00454,Africa,East Asia,Africa,America,Central/South Asia
+108,HGDP01086,Africa,East Asia,Africa,America,America
+109,HGDP00462,Africa,East Asia,Africa,America,Central/South Asia
+110,HGDP00915,Africa,East Asia,Africa,America,Africa
+111,HGDP01286,Africa,East Asia,Africa,America,Central/South Asia
+112,HGDP00931,Africa,East Asia,Africa,America,Europe
+113,HGDP00992,Africa,East Asia,Africa,America,Middle East
+114,HGDP00941,Africa,East Asia,Africa,America,Europe
+115,HGDP01414,Africa,East Asia,Africa,America,America
+116,HGDP01036,Africa,East Asia,Africa,America,Middle East
+117,HGDP01255,Middle East,East Asia,Middle East,Africa,Central/South Asia
+118,HGDP01267,Middle East,East Asia,Middle East,Africa,East Asia
+119,HGDP01279,Middle East,East Asia,Middle East,Africa,East Asia
+120,HGDP00615,Middle East,East Asia,Middle East,Africa,Central/South Asia
+121,HGDP00627,Middle East,East Asia,Middle East,Africa,Africa
+122,HGDP00638,Middle East,East Asia,Middle East,Africa,Central/South Asia
+123,HGDP00649,Middle East,Middle East,Europe,Africa,Africa
+124,HGDP00561,Middle East,Middle East,Europe,Africa,Central/South Asia
+125,HGDP00573,Middle East,Middle East,Europe,Africa,Central/South Asia
+126,HGDP00585,Middle East,Middle East,Europe,Africa,Central/South Asia
+127,HGDP00599,Middle East,Middle East,Europe,Africa,Central/South Asia
+128,HGDP00679,Middle East,Middle East,Europe,Africa,Central/South Asia
+129,HGDP00691,Middle East,East Asia,Middle East,Africa,Central/South Asia
+130,HGDP00469,Africa,East Asia,Africa,America,America
+131,HGDP00455,Africa,East Asia,Africa,America,Europe
+132,HGDP01087,Africa,East Asia,Africa,America,Europe
+133,HGDP00463,Africa,East Asia,Africa,America,Central/South Asia
+134,HGDP00904,Africa,East Asia,Africa,America,Africa
+135,HGDP00916,Africa,East Asia,Africa,America,Africa
+136,HGDP00920,Africa,East Asia,Africa,America,Europe
+137,HGDP00932,Africa,East Asia,Africa,America,Europe
+138,HGDP00942,Africa,East Asia,Africa,America,Europe
+139,HGDP01415,Africa,East Asia,Africa,America,America
+140,HGDP00993,Africa,East Asia,Africa,America,Middle East
+141,HGDP01256,Middle East,East Asia,Middle East,Africa,East Asia
+142,HGDP01268,Middle East,East Asia,Middle East,Africa,East Asia
+143,HGDP01280,Middle East,East Asia,Middle East,Africa,East Asia
+144,HGDP00616,Middle East,East Asia,Middle East,Africa,Africa
+145,HGDP00628,Middle East,East Asia,Middle East,Africa,Europe
+146,HGDP00639,Middle East,East Asia,Middle East,Africa,Africa
+147,HGDP00650,Middle East,East Asia,Middle East,Africa,Africa
+148,HGDP00562,Middle East,Middle East,Europe,Africa,Central/South Asia
+149,HGDP00574,Middle East,Middle East,Europe,Africa,Central/South Asia
+150,HGDP00586,Middle East,Middle East,Europe,Africa,Central/South Asia
+151,HGDP00600,Middle East,Middle East,Europe,Africa,Central/South Asia
+152,HGDP00680,Middle East,East Asia,Middle East,Africa,Central/South Asia
+153,HGDP00692,Middle East,East Asia,Middle East,Africa,Central/South Asia
+154,HGDP00933,Africa,East Asia,Africa,America,America
+155,HGDP00470,Africa,East Asia,Africa,America,Europe
+156,HGDP00457,Africa,East Asia,Africa,America,America
+157,HGDP01088,Africa,East Asia,Africa,America,Central/South Asia
+158,HGDP00467,Africa,East Asia,Africa,America,Europe
+159,HGDP00905,Africa,East Asia,Africa,America,Africa
+160,HGDP00917,Africa,East Asia,Africa,America,Africa
+161,HGDP00921,Africa,East Asia,Africa,America,Europe
+162,HGDP00943,Africa,East Asia,Africa,America,Europe
+163,HGDP01416,Africa,East Asia,Africa,America,America
+164,HGDP00994,Africa,East Asia,Africa,America,America
+165,HGDP01257,Middle East,East Asia,Middle East,Africa,East Asia
+166,HGDP01269,Middle East,East Asia,Middle East,Africa,East Asia
+167,HGDP01281,Middle East,East Asia,Middle East,Africa,East Asia
+168,HGDP00617,Middle East,East Asia,Middle East,Africa,Central/South Asia
+169,HGDP00629,Middle East,East Asia,Middle East,Africa,Central/South Asia
+170,HGDP00640,Middle East,East Asia,Middle East,Africa,Central/South Asia
+171,HGDP00651,Middle East,East Asia,Middle East,Africa,Africa
+172,HGDP00563,Middle East,Middle East,Middle East,Africa,Central/South Asia
+173,HGDP00575,Middle East,Middle East,Middle East,Africa,Central/South Asia
+174,HGDP00587,Middle East,Middle East,Europe,Africa,Europe
+175,HGDP00601,Middle East,Middle East,Europe,Africa,Central/South Asia
+176,HGDP00681,Middle East,East Asia,Middle East,Africa,Central/South Asia
+177,HGDP00693,Middle East,East Asia,Middle East,Africa,Central/South Asia
+178,HGDP00473,Africa,East Asia,Africa,America,Europe
+179,HGDP00459,Africa,East Asia,Africa,America,Central/South Asia
+180,HGDP01090,Africa,East Asia,Africa,America,America
+181,HGDP00471,Africa,East Asia,Africa,America,Europe
+182,HGDP00907,Africa,East Asia,Africa,America,Central/South Asia
+183,HGDP00919,Africa,East Asia,Africa,America,Africa
+184,HGDP00923,Africa,East Asia,Africa,America,Europe
+185,HGDP00935,Africa,East Asia,Africa,America,Europe
+186,HGDP01418,Africa,East Asia,Africa,America,America
+187,HGDP01034,Africa,East Asia,Africa,America,America
+188,HGDP01259,Middle East,East Asia,Middle East,Africa,East Asia
+189,HGDP01271,Middle East,East Asia,Africa,America,Central/South Asia
+190,HGDP00607,Middle East,East Asia,Middle East,Africa,Africa
+191,HGDP00619,Middle East,East Asia,Middle East,Africa,Central/South Asia
+192,HGDP00631,Middle East,East Asia,Middle East,Africa,Africa
+193,HGDP00642,Middle East,East Asia,Middle East,Africa,Europe
+194,HGDP00653,Middle East,East Asia,Middle East,Africa,Africa
+195,HGDP00565,Middle East,Middle East,Europe,Africa,Central/South Asia
+196,HGDP00577,Middle East,Middle East,Europe,Africa,Central/South Asia
+197,HGDP00603,Middle East,Middle East,Europe,Africa,Central/South Asia
+198,HGDP00683,Middle East,East Asia,Middle East,Africa,Central/South Asia
+199,HGDP00695,Middle East,East Asia,Europe,Africa,Central/South Asia
+200,HGDP00472,Africa,East Asia,Africa,America,Central/South Asia
+201,HGDP00458,Africa,East Asia,Africa,America,Europe
+202,HGDP01089,Africa,East Asia,Africa,America,America
+203,HGDP00468,Africa,East Asia,Africa,America,Europe
+204,HGDP00906,Africa,East Asia,Africa,America,Africa
+205,HGDP00918,Africa,East Asia,Africa,America,Africa
+206,HGDP00922,Africa,East Asia,Africa,America,Europe
+207,HGDP00934,Africa,East Asia,Africa,America,Europe
+208,HGDP00641,Middle East,East Asia,Middle East,Africa,Africa
+209,HGDP00564,Middle East,Middle East,Europe,Africa,Central/South Asia
+210,HGDP00576,Middle East,East Asia,Europe,Africa,Europe
+211,HGDP00588,Middle East,Middle East,Europe,Africa,Central/South Asia
+212,HGDP00602,Middle East,Middle East,Middle East,Africa,Europe
+213,HGDP00682,Middle East,East Asia,Europe,Africa,Central/South Asia
+214,HGDP00694,Middle East,East Asia,Europe,Africa,Central/South Asia
+215,HGDP00725,Middle East,East Asia,Europe,Africa,Central/South Asia
+216,HGDP00736,Middle East,East Asia,Europe,Africa,Central/South Asia
+217,HGDP00001,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+218,HGDP00025,Central/South Asia,Africa,Europe,East Asia,Africa
+219,HGDP00049,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+220,HGDP00072,Central/South Asia,Africa,Europe,East Asia,Africa
+221,HGDP00096,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+222,HGDP00475,Africa,East Asia,Africa,America,Central/South Asia
+223,HGDP00460,Africa,East Asia,Africa,America,America
+224,HGDP01091,Africa,East Asia,Africa,America,Central/South Asia
+225,HGDP00474,Africa,East Asia,Africa,America,Europe
+226,HGDP00908,Africa,East Asia,Africa,America,Central/South Asia
+227,HGDP01199,Africa,East Asia,Africa,America,Africa
+228,HGDP00924,Africa,East Asia,Africa,America,Europe
+229,HGDP00936,Africa,East Asia,Africa,America,America
+230,HGDP00643,Middle East,East Asia,Europe,Africa,Africa
+231,HGDP00654,Middle East,East Asia,Middle East,Africa,Central/South Asia
+232,HGDP00566,Middle East,Middle East,Middle East,Africa,Central/South Asia
+233,HGDP00578,Middle East,Middle East,Europe,Africa,Central/South Asia
+234,HGDP00590,Middle East,Middle East,Europe,Africa,Central/South Asia
+235,HGDP00604,Middle East,Middle East,Europe,Africa,Central/South Asia
+236,HGDP00684,Middle East,East Asia,Europe,Africa,Central/South Asia
+237,HGDP00696,Middle East,East Asia,Middle East,Africa,Central/South Asia
+238,HGDP00727,Middle East,East Asia,Middle East,Africa,Central/South Asia
+239,HGDP00738,Middle East,East Asia,Europe,Africa,Central/South Asia
+240,HGDP00005,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+241,HGDP00029,Central/South Asia,East Asia,Central/South Asia,East Asia,Africa
+242,HGDP00054,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+243,HGDP00076,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+244,HGDP00099,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+245,HGDP00113,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+246,HGDP00477,Africa,East Asia,Africa,America,Europe
+247,HGDP00980,Africa,Middle East,Europe,Europe,Middle East
+248,HGDP00476,Africa,East Asia,Africa,America,Central/South Asia
+249,HGDP00909,Africa,East Asia,Africa,America,Africa
+250,HGDP01200,Africa,East Asia,Africa,America,Africa
+251,HGDP00925,Africa,East Asia,Africa,America,Europe
+252,HGDP00644,Middle East,East Asia,Europe,Africa,Central/South Asia
+253,HGDP00701,Middle East,East Asia,Middle East,Africa,Africa
+254,HGDP00567,Middle East,Middle East,Europe,Africa,Central/South Asia
+255,HGDP00579,Middle East,Middle East,Europe,Africa,Central/South Asia
+256,HGDP00591,Middle East,Middle East,Europe,Africa,Central/South Asia
+257,HGDP00605,Middle East,Middle East,Europe,Africa,Central/South Asia
+258,HGDP00685,Middle East,East Asia,Middle East,Africa,Central/South Asia
+259,HGDP00560,Middle East,Middle East,Europe,Africa,Central/South Asia
+260,HGDP00728,Middle East,East Asia,Middle East,Africa,Central/South Asia
+261,HGDP00739,Middle East,East Asia,Middle East,Africa,Central/South Asia
+262,HGDP00007,Central/South Asia,Africa,Europe,East Asia,Africa
+263,HGDP00031,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+264,HGDP00056,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+265,HGDP00078,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+266,HGDP00100,Central/South Asia,Central/South Asia,Central/South Asia,Oceania,America
+267,HGDP00686,Middle East,East Asia,Middle East,Africa,Central/South Asia
+268,HGDP01093,Africa,East Asia,Africa,America,America
+269,HGDP00478,Africa,East Asia,Africa,America,Central/South Asia
+270,HGDP00910,Africa,East Asia,Africa,America,Africa
+271,HGDP00926,Africa,East Asia,Africa,America,Europe
+272,HGDP00988,Africa,East Asia,Africa,America,Middle East
+273,HGDP01035,Africa,East Asia,Africa,America,Europe
+274,HGDP01262,Middle East,East Asia,Middle East,Africa,East Asia
+275,HGDP01274,Middle East,East Asia,Middle East,Africa,East Asia
+276,HGDP00610,Middle East,East Asia,Europe,Africa,Africa
+277,HGDP00622,Middle East,East Asia,Middle East,Africa,Central/South Asia
+278,HGDP00568,Middle East,Middle East,Europe,Africa,Central/South Asia
+279,HGDP00580,Middle East,Middle East,Europe,Africa,Central/South Asia
+280,HGDP00592,Middle East,Middle East,Europe,Africa,Central/South Asia
+281,HGDP00606,Middle East,Middle East,Europe,Africa,Central/South Asia
+282,HGDP00699,Middle East,East Asia,Middle East,Africa,Central/South Asia
+283,HGDP00731,Middle East,East Asia,Middle East,Africa,Central/South Asia
+284,HGDP00743,Middle East,East Asia,Middle East,Africa,Central/South Asia
+285,HGDP00015,Central/South Asia,Africa,Europe,East Asia,Africa
+286,HGDP00039,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+287,HGDP00062,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+288,HGDP00086,Central/South Asia,Africa,Europe,East Asia,Africa
+289,HGDP00105,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+290,HGDP00700,Middle East,East Asia,Middle East,Africa,Central/South Asia
+291,HGDP00732,Middle East,East Asia,Europe,Africa,Central/South Asia
+292,HGDP00744,Middle East,East Asia,Middle East,Africa,Central/South Asia
+293,HGDP00017,Central/South Asia,Africa,Europe,East Asia,Africa
+294,HGDP00041,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+295,HGDP00064,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+296,HGDP00088,Central/South Asia,Africa,Europe,East Asia,Africa
+297,HGDP00106,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+298,HGDP00119,Central/South Asia,Central/South Asia,Oceania,Oceania,Europe
+299,HGDP00131,Central/South Asia,Africa,Middle East,East Asia,Africa
+300,HGDP00146,Central/South Asia,Africa,Europe,East Asia,Africa
+301,HGDP00163,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+302,HGDP00187,Central/South Asia,Africa,Central/South Asia,East Asia,Central/South Asia
+303,HGDP00210,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+304,HGDP00234,Central/South Asia,Africa,Central/South Asia,East Asia,Central/South Asia
+305,HGDP00262,Central/South Asia,Africa,Central/South Asia,East Asia,Central/South Asia
+306,HGDP00290,Central/South Asia,Africa,Central/South Asia,East Asia,East Asia
+307,HGDP00321,Central/South Asia,Africa,Central/South Asia,East Asia,East Asia
+308,HGDP00356,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+309,HGDP00412,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+310,HGDP00973,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+311,HGDP00777,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+312,HGDP00820,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+313,HGDP01291,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+314,HGDP00722,Middle East,East Asia,Middle East,Africa,Central/South Asia
+315,HGDP00733,Middle East,East Asia,Europe,Africa,Central/South Asia
+316,HGDP00745,Middle East,East Asia,Middle East,Africa,Central/South Asia
+317,HGDP00019,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+318,HGDP00043,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+319,HGDP00066,Central/South Asia,Africa,Europe,East Asia,Africa
+320,HGDP00090,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+321,HGDP00108,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+322,HGDP00120,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+323,HGDP00133,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+324,HGDP00148,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+325,HGDP00165,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+326,HGDP00189,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+327,HGDP00213,Central/South Asia,Africa,Central/South Asia,East Asia,Central/South Asia
+328,HGDP00237,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+329,HGDP00264,Central/South Asia,Africa,Central/South Asia,East Asia,Central/South Asia
+330,HGDP00292,Central/South Asia,Africa,Central/South Asia,East Asia,East Asia
+331,HGDP00323,Central/South Asia,Africa,Central/South Asia,East Asia,East Asia
+332,HGDP00359,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+333,HGDP00417,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+334,HGDP01021,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+335,HGDP00778,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+336,HGDP00821,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+337,HGDP01292,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+338,HGDP00723,Middle East,East Asia,Middle East,Africa,Central/South Asia
+339,HGDP00734,Middle East,East Asia,Europe,Africa,Central/South Asia
+340,HGDP00746,Middle East,East Asia,Middle East,Africa,Central/South Asia
+341,HGDP00021,Central/South Asia,Africa,Europe,East Asia,Africa
+342,HGDP00045,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+343,HGDP00068,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+344,HGDP00092,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+345,HGDP00109,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+346,HGDP00121,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+347,HGDP00134,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+348,HGDP00149,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+349,HGDP00167,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+350,HGDP00191,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+351,HGDP00214,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+352,HGDP00239,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+353,HGDP00009,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+354,HGDP00298,Central/South Asia,Africa,Central/South Asia,East Asia,East Asia
+355,HGDP00326,Central/South Asia,Africa,Central/South Asia,East Asia,East Asia
+356,HGDP00364,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+357,HGDP00423,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+358,HGDP00775,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+359,HGDP00780,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+360,HGDP00822,East Asia,Central/South Asia,East Asia,Middle East,America
+361,HGDP01293,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+362,HGDP00724,Middle East,East Asia,Europe,Africa,Central/South Asia
+363,HGDP00735,Middle East,East Asia,Europe,Africa,Central/South Asia
+364,HGDP00047,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+365,HGDP00070,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+366,HGDP00094,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+367,HGDP00110,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+368,HGDP00740,Middle East,East Asia,Middle East,Africa,Central/South Asia
+369,HGDP00122,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+370,HGDP00135,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+371,HGDP00150,Central/South Asia,East Asia,Middle East,East Asia,Africa
+372,HGDP00169,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+373,HGDP00192,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+374,HGDP00216,Central/South Asia,Africa,Central/South Asia,East Asia,Central/South Asia
+375,HGDP00241,Central/South Asia,Africa,Central/South Asia,East Asia,Central/South Asia
+376,HGDP00267,Central/South Asia,Africa,Europe,East Asia,East Asia
+377,HGDP00302,Central/South Asia,Africa,Central/South Asia,East Asia,East Asia
+378,HGDP00328,Central/South Asia,Africa,Central/South Asia,East Asia,East Asia
+379,HGDP00371,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+380,HGDP00428,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+381,HGDP00779,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+382,HGDP00781,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+383,HGDP00972,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+384,HGDP01294,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+385,HGDP01201,Africa,East Asia,Africa,America,Africa
+386,HGDP01101,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+387,HGDP01186,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+388,HGDP01198,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+389,HGDP01213,East Asia,Central/South Asia,East Asia,Oceania,Middle East
+390,HGDP01225,East Asia,Central/South Asia,East Asia,Oceania,America
+391,HGDP01237,East Asia,Central/South Asia,East Asia,Oceania,America
+392,HGDP01249,East Asia,Central/South Asia,East Asia,Oceania,Middle East
+393,HGDP01305,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+394,HGDP01102,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+395,HGDP01187,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+396,HGDP01214,East Asia,Central/South Asia,East Asia,Oceania,Middle East
+397,HGDP01226,East Asia,Central/South Asia,East Asia,Oceania,America
+398,HGDP01238,East Asia,Central/South Asia,East Asia,Oceania,Middle East
+399,HGDP01250,East Asia,Central/South Asia,East Asia,Oceania,Middle East
+400,HGDP01306,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+401,HGDP00102,Central/South Asia,Central/South Asia,Oceania,Oceania,Europe
+402,HGDP01100,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+403,HGDP01185,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+404,HGDP01197,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+405,HGDP01212,East Asia,Central/South Asia,East Asia,Oceania,Middle East
+406,HGDP01224,East Asia,Central/South Asia,East Asia,Oceania,Middle East
+407,HGDP01236,East Asia,Central/South Asia,East Asia,Oceania,Middle East
+408,HGDP01248,East Asia,Central/South Asia,East Asia,Oceania,America
+409,HGDP01304,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+410,HGDP00726,Middle East,East Asia,Europe,Africa,Central/South Asia
+411,HGDP00737,Middle East,East Asia,Europe,Africa,Central/South Asia
+412,HGDP00003,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+413,HGDP00027,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+414,HGDP00052,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+415,HGDP00074,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+416,HGDP00098,Central/South Asia,Africa,Middle East,East Asia,Africa
+417,HGDP00112,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+418,HGDP00125,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+419,HGDP00137,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+420,HGDP00153,Central/South Asia,East Asia,Europe,East Asia,Africa
+421,HGDP00173,Central/South Asia,Africa,Central/South Asia,East Asia,Central/South Asia
+422,HGDP00197,Central/South Asia,Africa,Central/South Asia,East Asia,Central/South Asia
+423,HGDP00220,Central/South Asia,Central/South Asia,Central/South Asia,Oceania,Central/South Asia
+424,HGDP00244,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+425,HGDP00277,Central/South Asia,Africa,Central/South Asia,East Asia,East Asia
+426,HGDP00307,Central/South Asia,Africa,Central/South Asia,East Asia,East Asia
+427,HGDP00333,Central/South Asia,Africa,Central/South Asia,East Asia,East Asia
+428,HGDP00376,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+429,HGDP00438,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+430,HGDP00815,East Asia,Central/South Asia,East Asia,Middle East,America
+431,HGDP00785,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+432,HGDP00976,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+433,HGDP01296,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+434,HGDP00115,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+435,HGDP00129,Central/South Asia,Africa,Central/South Asia,Oceania,Europe
+436,HGDP00143,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+437,HGDP00158,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+438,HGDP00181,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+439,HGDP00205,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+440,HGDP00228,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+441,HGDP00254,Central/South Asia,Africa,Central/South Asia,East Asia,Central/South Asia
+442,HGDP00285,Central/South Asia,Africa,Central/South Asia,East Asia,East Asia
+443,HGDP00313,Central/South Asia,Africa,Central/South Asia,East Asia,East Asia
+444,HGDP00341,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+445,HGDP00397,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+446,HGDP00782,East Asia,Central/South Asia,East Asia,Middle East,America
+447,HGDP00813,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+448,HGDP01288,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+449,HGDP01097,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+450,HGDP01182,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+451,HGDP01194,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+452,HGDP01209,East Asia,Central/South Asia,East Asia,Oceania,America
+453,HGDP01221,East Asia,Central/South Asia,East Asia,Oceania,America
+454,HGDP01245,East Asia,Central/South Asia,East Asia,Oceania,Middle East
+455,HGDP01301,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+456,HGDP00116,Central/South Asia,Central/South Asia,Oceania,Oceania,Europe
+457,HGDP00130,Central/South Asia,East Asia,Middle East,East Asia,Africa
+458,HGDP00144,Central/South Asia,Africa,Europe,East Asia,Africa
+459,HGDP00160,Central/South Asia,Africa,Europe,East Asia,Africa
+460,HGDP00183,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+461,HGDP00206,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+462,HGDP00230,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+463,HGDP00258,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+464,HGDP00286,Central/South Asia,Africa,Central/South Asia,East Asia,East Asia
+465,HGDP00315,Central/South Asia,Africa,Central/South Asia,East Asia,East Asia
+466,HGDP00402,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+467,HGDP00783,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+468,HGDP00774,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+469,HGDP00817,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+470,HGDP01289,East Asia,Central/South Asia,East Asia,Middle East,America
+471,HGDP01098,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+472,HGDP01183,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+473,HGDP01195,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+474,HGDP01210,East Asia,Central/South Asia,East Asia,Oceania,America
+475,HGDP01222,East Asia,Central/South Asia,East Asia,Oceania,America
+476,HGDP01234,East Asia,Central/South Asia,East Asia,Oceania,America
+477,HGDP01246,East Asia,Central/South Asia,East Asia,Oceania,America
+478,HGDP01302,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+479,HGDP00118,Central/South Asia,Central/South Asia,Oceania,Oceania,Europe
+480,HGDP00145,Central/South Asia,Africa,Europe,East Asia,Africa
+481,HGDP00161,Central/South Asia,Africa,Europe,East Asia,Africa
+482,HGDP00185,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+483,HGDP00208,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+484,HGDP00232,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+485,HGDP00259,Central/South Asia,Africa,Europe,East Asia,Central/South Asia
+486,HGDP00033,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+487,HGDP00288,Central/South Asia,Africa,Central/South Asia,East Asia,East Asia
+488,HGDP00319,Central/South Asia,Africa,Central/South Asia,East Asia,East Asia
+489,HGDP00351,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+490,HGDP00407,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+491,HGDP00971,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+492,HGDP00776,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+493,HGDP00819,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+494,HGDP01290,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+495,HGDP01099,East Asia,Central/South Asia,East Asia,Middle East,America
+496,HGDP01184,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+497,HGDP01196,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+498,HGDP01211,East Asia,Central/South Asia,East Asia,Oceania,America
+499,HGDP01223,East Asia,Central/South Asia,East Asia,Oceania,America
+500,HGDP01235,East Asia,Central/South Asia,East Asia,Oceania,America
+501,HGDP01247,East Asia,Central/South Asia,East Asia,Oceania,America
+502,HGDP01303,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+503,HGDP00124,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+504,HGDP00136,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+505,HGDP00151,Central/South Asia,Africa,Middle East,East Asia,Africa
+506,HGDP00171,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+507,HGDP00195,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+508,HGDP00218,Central/South Asia,Africa,Central/South Asia,East Asia,Central/South Asia
+509,HGDP00243,Central/South Asia,Africa,Central/South Asia,East Asia,Central/South Asia
+510,HGDP00274,Central/South Asia,Africa,Central/South Asia,East Asia,East Asia
+511,HGDP00304,Central/South Asia,Africa,Central/South Asia,East Asia,East Asia
+512,HGDP00330,Central/South Asia,Africa,Central/South Asia,East Asia,East Asia
+513,HGDP00372,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+514,HGDP00433,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+515,HGDP00814,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+516,HGDP00784,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+517,HGDP00975,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+518,HGDP01295,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+519,HGDP01104,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+520,HGDP01189,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+521,HGDP01204,East Asia,Central/South Asia,East Asia,Oceania,America
+522,HGDP01216,East Asia,Central/South Asia,East Asia,Oceania,America
+523,HGDP01228,East Asia,Central/South Asia,East Asia,Oceania,America
+524,HGDP01240,East Asia,Central/South Asia,East Asia,Oceania,America
+525,HGDP01308,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+526,HGDP00057,Central/South Asia,East Asia,Middle East,East Asia,Africa
+527,HGDP00127,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+528,HGDP00139,Central/South Asia,East Asia,Central/South Asia,East Asia,Africa
+529,HGDP00154,Central/South Asia,Africa,Europe,East Asia,Africa
+530,HGDP00175,Central/South Asia,East Asia,Middle East,East Asia,Africa
+531,HGDP00199,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+532,HGDP00222,Central/South Asia,Africa,Central/South Asia,East Asia,Central/South Asia
+533,HGDP00279,Central/South Asia,Africa,Central/South Asia,East Asia,East Asia
+534,HGDP00309,Central/South Asia,Africa,Central/South Asia,East Asia,East Asia
+535,HGDP00382,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+536,HGDP00444,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+537,HGDP00818,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+538,HGDP00786,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+539,HGDP00977,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+540,HGDP01095,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+541,HGDP00080,Central/South Asia,Africa,Europe,East Asia,Africa
+542,HGDP01180,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+543,HGDP01191,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+544,HGDP01206,East Asia,Central/South Asia,East Asia,Oceania,America
+545,HGDP01218,East Asia,Central/South Asia,East Asia,Oceania,America
+546,HGDP01230,East Asia,Central/South Asia,East Asia,Oceania,America
+547,HGDP01242,East Asia,Central/South Asia,East Asia,Oceania,America
+548,HGDP01298,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+549,HGDP01310,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+550,HGDP00128,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+551,HGDP00140,Central/South Asia,Africa,Europe,East Asia,Africa
+552,HGDP00155,Central/South Asia,Africa,Europe,East Asia,Africa
+553,HGDP00177,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+554,HGDP00201,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+555,HGDP00224,Central/South Asia,Africa,Central/South Asia,East Asia,Central/South Asia
+556,HGDP00281,Central/South Asia,Africa,Europe,East Asia,East Asia
+557,HGDP00141,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+558,HGDP00157,Central/South Asia,Africa,Europe,East Asia,Africa
+559,HGDP00179,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+560,HGDP00226,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+561,HGDP00251,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+562,HGDP01193,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+563,HGDP01208,East Asia,Central/South Asia,East Asia,Oceania,America
+564,HGDP01181,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+565,HGDP01192,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+566,HGDP01207,East Asia,Central/South Asia,East Asia,Oceania,America
+567,HGDP01231,East Asia,Central/South Asia,East Asia,Oceania,Middle East
+568,HGDP01243,East Asia,Central/South Asia,Oceania,Oceania,America
+569,HGDP01299,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+570,HGDP01311,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+571,HGDP00311,Central/South Asia,Africa,Europe,East Asia,East Asia
+572,HGDP00336,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+573,HGDP00388,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+574,HGDP00445,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+575,HGDP00974,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+576,HGDP00811,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+577,HGDP01096,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+578,HGDP01103,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+579,HGDP01188,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+580,HGDP01203,East Asia,Central/South Asia,East Asia,Oceania,America
+581,HGDP01215,East Asia,Central/South Asia,East Asia,Oceania,America
+582,HGDP01227,East Asia,Central/South Asia,East Asia,Oceania,Middle East
+583,HGDP01239,East Asia,Central/South Asia,East Asia,Oceania,Middle East
+584,HGDP01251,East Asia,Central/South Asia,East Asia,Oceania,Middle East
+585,HGDP01307,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+586,HGDP01179,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+587,HGDP01190,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+588,HGDP01205,East Asia,Central/South Asia,East Asia,Oceania,America
+589,HGDP01217,East Asia,Central/South Asia,East Asia,Oceania,America
+590,HGDP01229,East Asia,Central/South Asia,East Asia,Oceania,America
+591,HGDP01241,East Asia,Central/South Asia,East Asia,Oceania,America
+592,HGDP01297,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+593,HGDP01309,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+594,HGDP01312,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+595,HGDP01323,East Asia,Central/South Asia,East Asia,Middle East,America
+596,HGDP01335,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+597,HGDP01347,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+598,HGDP00946,East Asia,Central/South Asia,East Asia,Oceania,Central/South Asia
+599,HGDP00958,East Asia,Central/South Asia,East Asia,Oceania,Central/South Asia
+600,HGDP00747,East Asia,Central/South Asia,East Asia,America,Middle East
+601,HGDP00759,East Asia,Central/South Asia,East Asia,America,Middle East
+602,HGDP00769,East Asia,Central/South Asia,East Asia,America,Middle East
+603,HGDP00712,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+604,HGDP00542,Oceania,Central/South Asia,Oceania,Middle East,America
+605,HGDP00554,Oceania,Central/South Asia,Oceania,Middle East,Central/South Asia
+606,HGDP00662,Oceania,Central/South Asia,Oceania,Middle East,Europe
+607,HGDP01027,Oceania,Central/South Asia,Oceania,Middle East,Europe
+608,HGDP00521,Europe,Middle East,Europe,Europe,America
+609,HGDP00533,Europe,Middle East,Europe,Europe,Middle East
+610,HGDP01361,Europe,Middle East,Europe,Europe,Middle East
+611,HGDP01372,Europe,Middle East,Europe,Europe,Middle East
+612,HGDP00667,Europe,Middle East,Europe,Africa,Europe
+613,HGDP01066,Europe,Middle East,Europe,Africa,Europe
+614,HGDP01078,Europe,Middle East,Europe,Africa,Europe
+615,HGDP01172,Europe,Middle East,Europe,Europe,America
+616,HGDP00794,Europe,Middle East,Europe,Europe,Middle East
+617,HGDP00806,Europe,Middle East,Europe,Europe,Middle East
+618,HGDP01313,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+619,HGDP01324,East Asia,Central/South Asia,East Asia,Middle East,Europe
+620,HGDP01336,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+621,HGDP01348,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+622,HGDP00947,East Asia,Central/South Asia,East Asia,Oceania,Central/South Asia
+623,HGDP00959,East Asia,Central/South Asia,East Asia,Oceania,America
+624,HGDP00748,East Asia,Central/South Asia,East Asia,America,Middle East
+625,HGDP00760,East Asia,Central/South Asia,East Asia,America,Middle East
+626,HGDP00770,East Asia,Central/South Asia,East Asia,Central/South Asia,Europe
+627,HGDP00713,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+628,HGDP00543,Oceania,Central/South Asia,Oceania,Middle East,America
+629,HGDP00555,Oceania,Central/South Asia,Oceania,Middle East,Central/South Asia
+630,HGDP00663,Oceania,Central/South Asia,Oceania,Middle East,Europe
+631,HGDP00522,Europe,Middle East,Europe,Europe,America
+632,HGDP00534,Europe,Middle East,Europe,Europe,Europe
+633,HGDP01220,East Asia,Central/South Asia,East Asia,Oceania,America
+634,HGDP01362,Europe,Middle East,Europe,Europe,Middle East
+635,HGDP01373,Europe,Middle East,Europe,Europe,Middle East
+636,HGDP00668,Europe,Middle East,Europe,Africa,America
+637,HGDP01067,Europe,Middle East,Europe,Africa,Europe
+638,HGDP01079,Europe,Middle East,Europe,Africa,Europe
+639,HGDP01173,Europe,Middle East,Europe,Europe,America
+640,HGDP00795,Europe,Middle East,Europe,Europe,America
+641,HGDP00807,Europe,Middle East,Europe,Europe,Middle East
+642,HGDP01314,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+643,HGDP01325,East Asia,Central/South Asia,East Asia,Middle East,Europe
+644,HGDP01337,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+645,HGDP01349,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+646,HGDP00948,East Asia,Central/South Asia,East Asia,Oceania,Central/South Asia
+647,HGDP00960,East Asia,Central/South Asia,East Asia,Oceania,Central/South Asia
+648,HGDP00749,East Asia,Central/South Asia,East Asia,America,Middle East
+649,HGDP00761,East Asia,Central/South Asia,East Asia,America,Middle East
+650,HGDP00771,East Asia,Central/South Asia,East Asia,America,Middle East
+651,HGDP00714,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+652,HGDP00544,Oceania,Central/South Asia,Oceania,Middle East,Europe
+653,HGDP00556,Oceania,Central/South Asia,Oceania,Middle East,Central/South Asia
+654,HGDP00664,Oceania,Central/South Asia,Oceania,Middle East,Europe
+655,HGDP00511,Europe,Middle East,Europe,Europe,Middle East
+656,HGDP00523,Europe,Middle East,Europe,Europe,America
+657,HGDP00535,Europe,Middle East,Europe,Europe,Middle East
+658,HGDP01363,Europe,Middle East,Europe,Europe,America
+659,HGDP01374,Europe,Middle East,Europe,Europe,Middle East
+660,HGDP00669,Europe,Middle East,Europe,Africa,Europe
+661,HGDP01068,Europe,Middle East,Europe,Africa,Europe
+662,HGDP01147,Europe,Middle East,Europe,Europe,America
+663,HGDP01174,Europe,Middle East,Europe,Europe,Europe
+664,HGDP00796,Europe,Middle East,Europe,Europe,Middle East
+665,HGDP00808,Europe,Middle East,Europe,Europe,Middle East
+666,HGDP01315,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+667,HGDP01326,East Asia,Central/South Asia,East Asia,Middle East,Europe
+668,HGDP01338,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+669,HGDP01350,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+670,HGDP00949,East Asia,Central/South Asia,Oceania,Oceania,America
+671,HGDP00961,East Asia,Central/South Asia,East Asia,Oceania,Central/South Asia
+672,HGDP00750,East Asia,Central/South Asia,East Asia,America,Middle East
+673,HGDP00762,East Asia,Central/South Asia,East Asia,America,Middle East
+674,HGDP00772,East Asia,Central/South Asia,East Asia,America,Middle East
+675,HGDP00715,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+676,HGDP00545,Oceania,Central/South Asia,Oceania,Middle East,America
+677,HGDP00490,Oceania,Central/South Asia,Oceania,Middle East,Europe
+678,HGDP00787,Oceania,Central/South Asia,Oceania,Middle East,Central/South Asia
+679,HGDP00512,Europe,Middle East,Europe,Europe,America
+680,HGDP00524,Europe,Middle East,Europe,Europe,America
+681,HGDP00536,Europe,Middle East,Europe,Europe,America
+682,HGDP00338,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+683,HGDP00392,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+684,HGDP01023,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+685,HGDP00812,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+686,HGDP01287,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+687,HGDP00625,Middle East,East Asia,Middle East,Africa,Europe
+688,HGDP01316,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+689,HGDP01327,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+690,HGDP01339,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+691,HGDP01351,East Asia,Central/South Asia,East Asia,Middle East,America
+692,HGDP00950,East Asia,Central/South Asia,East Asia,Oceania,Central/South Asia
+693,HGDP00962,East Asia,Central/South Asia,East Asia,Oceania,Central/South Asia
+694,HGDP00751,East Asia,Central/South Asia,East Asia,America,Middle East
+695,HGDP00763,East Asia,Central/South Asia,East Asia,America,Middle East
+696,HGDP00773,East Asia,Central/South Asia,East Asia,America,Middle East
+697,HGDP00716,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+698,HGDP00546,Oceania,Central/South Asia,Oceania,Middle East,America
+699,HGDP00491,Oceania,Central/South Asia,Oceania,Middle East,Europe
+700,HGDP00788,Oceania,Central/South Asia,Oceania,Middle East,America
+701,HGDP00513,Europe,Middle East,Europe,Europe,America
+702,HGDP00525,Europe,Middle East,Europe,Europe,America
+703,HGDP00537,Europe,Middle East,Europe,Europe,Middle East
+704,HGDP01334,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+705,HGDP01346,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+706,HGDP00945,East Asia,Central/South Asia,East Asia,Oceania,Central/South Asia
+707,HGDP00957,East Asia,Central/South Asia,East Asia,Oceania,Central/South Asia
+708,HGDP00969,East Asia,Central/South Asia,Oceania,Oceania,Central/South Asia
+709,HGDP00758,East Asia,Central/South Asia,East Asia,America,Middle East
+710,HGDP01317,East Asia,Central/South Asia,East Asia,Middle East,Europe
+711,HGDP01328,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+712,HGDP01340,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+713,HGDP01352,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+714,HGDP00951,East Asia,Central/South Asia,East Asia,Oceania,Central/South Asia
+715,HGDP00963,East Asia,Central/South Asia,East Asia,Oceania,Central/South Asia
+716,HGDP00752,East Asia,Central/South Asia,East Asia,America,Middle East
+717,HGDP00764,East Asia,Central/South Asia,East Asia,America,Middle East
+718,HGDP00790,East Asia,Central/South Asia,East Asia,America,Middle East
+719,HGDP00717,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+720,HGDP00547,Oceania,Central/South Asia,Oceania,Middle East,America
+721,HGDP00655,Oceania,Central/South Asia,Oceania,Middle East,Europe
+722,HGDP00789,Oceania,Central/South Asia,Oceania,Middle East,America
+723,HGDP00514,Europe,Middle East,Europe,Europe,America
+724,HGDP00526,Europe,Middle East,Europe,Europe,America
+725,HGDP00538,Europe,Middle East,Europe,Europe,Europe
+726,HGDP01370,Europe,Middle East,Europe,Europe,America
+727,HGDP01063,Europe,Middle East,Europe,Africa,Europe
+728,HGDP01075,Europe,Middle East,Europe,Africa,Europe
+729,HGDP01156,Europe,Middle East,Europe,Europe,Europe
+730,HGDP01167,Europe,Middle East,Europe,Europe,America
+731,HGDP00803,Europe,Middle East,Europe,Europe,Middle East
+732,HGDP01385,Europe,Middle East,Europe,Africa,America
+733,HGDP00023,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+734,HGDP01318,East Asia,Central/South Asia,East Asia,Middle East,Central/South Asia
+735,HGDP01329,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+736,HGDP01341,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+737,HGDP01353,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+738,HGDP00952,East Asia,Central/South Asia,East Asia,Oceania,Central/South Asia
+739,HGDP00964,East Asia,Central/South Asia,East Asia,Oceania,Central/South Asia
+740,HGDP00753,East Asia,Central/South Asia,East Asia,America,Middle East
+741,HGDP00765,East Asia,Central/South Asia,East Asia,America,Middle East
+742,HGDP00791,East Asia,Central/South Asia,East Asia,America,Middle East
+743,HGDP00718,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+744,HGDP00548,Oceania,Central/South Asia,Oceania,Middle East,Central/South Asia
+745,HGDP00656,Oceania,Central/South Asia,Oceania,Middle East,Central/South Asia
+746,HGDP00823,Oceania,Central/South Asia,Oceania,Middle East,Europe
+747,HGDP00515,Europe,Middle East,Europe,Europe,America
+748,HGDP00527,Europe,Middle East,Europe,Europe,America
+749,HGDP00539,Europe,Middle East,Europe,Europe,America
+750,HGDP01388,Europe,Africa,Europe,Africa,America
+751,HGDP00880,Europe,Africa,Central/South Asia,Europe,Middle East
+752,HGDP00892,Europe,Africa,Central/South Asia,Europe,Middle East
+753,HGDP01048,America,Central/South Asia,East Asia,Central/South Asia,America
+754,HGDP01060,America,Central/South Asia,East Asia,Central/South Asia,Europe
+755,HGDP00864,America,Central/South Asia,East Asia,Central/South Asia,Europe
+756,HGDP00876,America,Central/South Asia,Oceania,Central/South Asia,Central/South Asia
+757,HGDP00541,Oceania,Central/South Asia,Oceania,Middle East,America
+758,HGDP00553,Oceania,Central/South Asia,Oceania,Middle East,Central/South Asia
+759,HGDP00661,Oceania,Central/South Asia,Oceania,Middle East,Central/South Asia
+760,HGDP00979,Oceania,Central/South Asia,Oceania,Middle East,Europe
+761,HGDP00520,Europe,Middle East,Europe,Europe,Europe
+762,HGDP00532,Europe,Middle East,Europe,Europe,Middle East
+763,HGDP01321,East Asia,Central/South Asia,East Asia,Middle East,Central/South Asia
+764,HGDP01332,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+765,HGDP01356,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+766,HGDP00955,East Asia,Central/South Asia,East Asia,Oceania,Central/South Asia
+767,HGDP00967,East Asia,Central/South Asia,East Asia,Oceania,Central/South Asia
+768,HGDP00756,East Asia,Central/South Asia,East Asia,America,Middle East
+769,HGDP01366,Europe,Middle East,Europe,Europe,America
+770,HGDP01377,Europe,Middle East,Europe,Europe,Middle East
+771,HGDP00672,Europe,Middle East,Europe,Africa,Europe
+772,HGDP01071,Europe,Middle East,Europe,Africa,Europe
+773,HGDP01152,Europe,Middle East,Europe,Europe,Europe
+774,HGDP01162,Europe,Middle East,Europe,Europe,Europe
+775,HGDP00799,Europe,Middle East,Europe,Europe,America
+776,HGDP01381,Europe,Africa,Central/South Asia,Africa,America
+777,HGDP00708,America,Central/South Asia,East Asia,Central/South Asia,America
+778,HGDP00998,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+779,HGDP01011,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+780,HGDP00833,America,Central/South Asia,East Asia,Central/South Asia,Europe
+781,HGDP00846,America,Central/South Asia,East Asia,Central/South Asia,America
+782,HGDP01010,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+783,HGDP00832,America,Central/South Asia,East Asia,Central/South Asia,America
+784,HGDP00845,America,Central/South Asia,East Asia,Central/South Asia,Europe
+785,HGDP01320,East Asia,Central/South Asia,East Asia,Middle East,America
+786,HGDP01331,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+787,HGDP01343,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+788,HGDP01355,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+789,HGDP00954,East Asia,Central/South Asia,East Asia,Oceania,Central/South Asia
+790,HGDP00966,East Asia,Central/South Asia,East Asia,Oceania,Central/South Asia
+791,HGDP00755,East Asia,Central/South Asia,East Asia,America,Middle East
+792,HGDP00767,East Asia,Central/South Asia,East Asia,America,Middle East
+793,HGDP00720,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+794,HGDP00550,Oceania,Central/South Asia,Oceania,Middle East,Central/South Asia
+795,HGDP00658,Oceania,Central/South Asia,Oceania,Middle East,Europe
+796,HGDP00825,Oceania,Central/South Asia,Oceania,Middle East,Central/South Asia
+797,HGDP00517,Europe,Middle East,Europe,Europe,America
+798,HGDP00529,Europe,Middle East,Europe,Europe,America
+799,HGDP01358,Europe,Middle East,Europe,Europe,Middle East
+800,HGDP00709,America,Central/South Asia,East Asia,Central/South Asia,America
+801,HGDP00999,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+802,HGDP01012,America,Central/South Asia,East Asia,Central/South Asia,Europe
+803,HGDP00834,America,Central/South Asia,East Asia,Central/South Asia,Europe
+804,HGDP00847,America,Central/South Asia,East Asia,Central/South Asia,America
+805,HGDP00666,Europe,Middle East,Europe,Africa,Europe
+806,HGDP01065,Europe,Middle East,Europe,Africa,Europe
+807,HGDP01077,Europe,Middle East,Europe,Africa,America
+808,HGDP00711,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+809,HGDP00540,Oceania,Central/South Asia,Oceania,Middle East,America
+810,HGDP00552,Oceania,Central/South Asia,Oceania,Middle East,Central/South Asia
+811,HGDP00978,Oceania,Central/South Asia,Oceania,Middle East,Europe
+812,HGDP00519,Europe,Middle East,Europe,Europe,America
+813,HGDP00531,Europe,Middle East,Europe,Europe,America
+814,HGDP01360,Europe,Middle East,Europe,Europe,Middle East
+815,HGDP01367,Europe,Middle East,Europe,Europe,Middle East
+816,HGDP01378,Europe,Middle East,Europe,Europe,Middle East
+817,HGDP00673,Europe,Middle East,Europe,Africa,Europe
+818,HGDP01072,Europe,Middle East,Europe,Africa,Europe
+819,HGDP01153,Europe,Middle East,Europe,Europe,Europe
+820,HGDP01163,Europe,Middle East,Europe,Europe,America
+821,HGDP00800,Europe,Middle East,Europe,Europe,Middle East
+822,HGDP01382,Europe,Middle East,Europe,Africa,America
+823,HGDP00710,America,Central/South Asia,East Asia,Central/South Asia,America
+824,HGDP01000,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+825,HGDP01013,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+826,HGDP00835,America,Central/South Asia,East Asia,Central/South Asia,Europe
+827,HGDP00848,America,Central/South Asia,East Asia,Central/South Asia,Europe
+828,HGDP01171,Europe,Middle East,Middle East,Europe,America
+829,HGDP01169,Europe,Middle East,Europe,Europe,Europe
+830,HGDP00805,Europe,Middle East,Europe,Europe,America
+831,HGDP01368,Europe,Middle East,Europe,Europe,Middle East
+832,HGDP01379,Europe,Middle East,Europe,Europe,Middle East
+833,HGDP00674,Europe,Middle East,Europe,Africa,Europe
+834,HGDP01073,Europe,Middle East,Europe,Africa,Europe
+835,HGDP01154,Europe,Middle East,Europe,Europe,America
+836,HGDP01164,Europe,Middle East,Europe,Europe,Europe
+837,HGDP00801,Europe,Middle East,Europe,Europe,Middle East
+838,HGDP01383,Europe,Middle East,Europe,Africa,America
+839,HGDP01387,Europe,Middle East,Europe,Africa,America
+840,HGDP00879,Europe,Africa,Central/South Asia,Europe,Middle East
+841,HGDP00891,Europe,Africa,Central/South Asia,Europe,Middle East
+842,HGDP00903,Europe,Africa,Central/South Asia,Europe,Middle East
+843,HGDP01047,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+844,HGDP01059,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+845,HGDP00863,America,Central/South Asia,East Asia,Central/South Asia,Europe
+846,HGDP00875,America,Central/South Asia,East Asia,Central/South Asia,Europe
+847,HGDP00792,America,Central/South Asia,East Asia,Central/South Asia,America
+848,HGDP01001,America,Central/South Asia,East Asia,Central/South Asia,Europe
+849,HGDP01014,America,Central/South Asia,East Asia,Central/South Asia,Europe
+850,HGDP00837,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+851,HGDP00849,America,Central/South Asia,East Asia,Central/South Asia,Europe
+852,HGDP01232,East Asia,Central/South Asia,East Asia,Oceania,Middle East
+853,HGDP01244,East Asia,Central/South Asia,East Asia,Oceania,Middle East
+854,HGDP01300,Central/South Asia,Central/South Asia,Oceania,Oceania,America
+855,HGDP01405,Africa,East Asia,Africa,America,America
+856,HGDP01419,Africa,East Asia,Africa,America,America
+857,HGDP01033,Africa,East Asia,Africa,America,Middle East
+858,HGDP01260,Middle East,East Asia,Middle East,Africa,East Asia
+859,HGDP01272,Middle East,East Asia,Middle East,Africa,East Asia
+860,HGDP00608,Middle East,East Asia,Middle East,Africa,Africa
+861,HGDP00620,Middle East,East Asia,Middle East,Africa,Central/South Asia
+862,HGDP00632,Middle East,East Asia,Europe,Africa,Central/South Asia
+863,HGDP01369,Europe,Middle East,Middle East,Europe,America
+864,HGDP01380,Europe,Middle East,Europe,Europe,Middle East
+865,HGDP01062,Europe,Middle East,Europe,Africa,Europe
+866,HGDP01074,Europe,Middle East,Europe,Africa,Europe
+867,HGDP01155,Europe,Middle East,Europe,Europe,Europe
+868,HGDP01166,Europe,Middle East,Europe,Europe,America
+869,HGDP00802,Europe,Middle East,Europe,Europe,Middle East
+870,HGDP01384,Europe,Africa,Central/South Asia,Africa,America
+871,HGDP00793,America,Central/South Asia,East Asia,Central/South Asia,America
+872,HGDP01003,America,Central/South Asia,East Asia,Central/South Asia,Europe
+873,HGDP01015,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+874,HGDP00838,America,Central/South Asia,East Asia,Central/South Asia,Europe
+875,HGDP00850,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+876,HGDP00890,Europe,Africa,Europe,Europe,Middle East
+877,HGDP00902,Europe,Africa,Central/South Asia,Europe,Middle East
+878,HGDP01046,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+879,HGDP01371,Europe,Middle East,Europe,Europe,Middle East
+880,HGDP00665,Europe,Middle East,Europe,Africa,Europe
+881,HGDP01064,Europe,Middle East,Central/South Asia,Africa,Europe
+882,HGDP01076,Europe,Middle East,Europe,Africa,Europe
+883,HGDP01157,Europe,Middle East,Europe,Europe,America
+884,HGDP01168,Europe,Middle East,Europe,Europe,Europe
+885,HGDP00804,Europe,Middle East,Europe,Europe,Middle East
+886,HGDP01386,Europe,Middle East,Europe,Africa,America
+887,HGDP01396,Europe,Africa,Europe,Africa,America
+888,HGDP00881,Europe,Africa,Central/South Asia,Europe,Middle East
+889,HGDP00893,Europe,Africa,Central/South Asia,Europe,Middle East
+890,HGDP01037,America,Central/South Asia,East Asia,Central/South Asia,Europe
+891,HGDP01049,America,Central/South Asia,East Asia,Central/South Asia,America
+892,HGDP01061,America,Central/South Asia,East Asia,Central/South Asia,Europe
+893,HGDP00865,America,Central/South Asia,East Asia,Central/South Asia,Europe
+894,HGDP00877,America,Central/South Asia,East Asia,Central/South Asia,Europe
+895,HGDP00827,America,Central/South Asia,East Asia,Central/South Asia,America
+896,HGDP01004,America,Central/South Asia,East Asia,Central/South Asia,Europe
+897,HGDP01016,America,Central/South Asia,East Asia,Central/South Asia,Europe
+898,HGDP00839,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+899,HGDP00851,America,Central/South Asia,East Asia,Central/South Asia,Europe
+900,HGDP01058,America,Central/South Asia,East Asia,Central/South Asia,Europe
+901,HGDP00862,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+902,HGDP00874,America,Central/South Asia,East Asia,Central/South Asia,Europe
+903,HGDP01417,Africa,East Asia,Africa,America,America
+904,HGDP01030,Africa,East Asia,Africa,America,Middle East
+905,HGDP01258,Middle East,East Asia,Middle East,Africa,East Asia
+906,HGDP01270,Middle East,East Asia,Africa,America,Central/South Asia
+907,HGDP01282,Middle East,East Asia,Middle East,Africa,East Asia
+908,HGDP00618,Middle East,East Asia,Middle East,Africa,Africa
+909,HGDP00630,Middle East,East Asia,Middle East,Africa,Africa
+910,HGDP01406,Africa,East Asia,Africa,America,America
+911,HGDP01028,Africa,East Asia,Africa,America,America
+912,HGDP01261,Middle East,East Asia,Middle East,Africa,East Asia
+913,HGDP01273,Middle East,East Asia,Middle East,Africa,Central/South Asia
+914,HGDP00609,Middle East,East Asia,Middle East,Africa,Central/South Asia
+915,HGDP00621,Middle East,East Asia,Africa,America,Central/South Asia
+916,HGDP00633,Middle East,East Asia,Middle East,Africa,Africa
+917,HGDP01322,East Asia,Central/South Asia,East Asia,Middle East,Europe
+918,HGDP01333,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+919,HGDP01345,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+920,HGDP00956,East Asia,Central/South Asia,East Asia,Oceania,Central/South Asia
+921,HGDP00968,East Asia,Central/South Asia,East Asia,Oceania,Central/South Asia
+922,HGDP00757,East Asia,Central/South Asia,East Asia,America,Middle East
+923,HGDP00768,East Asia,Central/South Asia,East Asia,America,Middle East
+924,HGDP00843,America,Central/South Asia,East Asia,Central/South Asia,Europe
+925,HGDP01397,Europe,Africa,Europe,Africa,America
+926,HGDP00882,Europe,Africa,Central/South Asia,Europe,Middle East
+927,HGDP00894,Europe,Africa,Central/South Asia,Europe,Middle East
+928,HGDP01038,America,Central/South Asia,East Asia,Central/South Asia,America
+929,HGDP01050,America,Central/South Asia,East Asia,Central/South Asia,America
+930,HGDP00854,America,Central/South Asia,East Asia,Central/South Asia,Europe
+931,HGDP00866,America,Central/South Asia,East Asia,Central/South Asia,America
+932,HGDP00878,America,Central/South Asia,Oceania,Central/South Asia,Central/South Asia
+933,HGDP01399,Europe,Middle East,Europe,Africa,America
+934,HGDP00884,Europe,Middle East,Europe,Europe,America
+935,HGDP00896,Europe,Africa,Central/South Asia,Europe,Middle East
+936,HGDP01040,America,Central/South Asia,East Asia,Central/South Asia,Europe
+937,HGDP01052,America,Central/South Asia,East Asia,Central/South Asia,America
+938,HGDP00856,America,Central/South Asia,East Asia,Central/South Asia,Europe
+939,HGDP00868,America,Central/South Asia,East Asia,Central/South Asia,Europe
+940,HGDP00702,America,Central/South Asia,East Asia,Central/South Asia,America
+941,HGDP00970,America,Central/South Asia,East Asia,Central/South Asia,America
+942,HGDP01005,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+943,HGDP01017,America,Central/South Asia,East Asia,Central/South Asia,Europe
+944,HGDP00840,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+945,HGDP00852,America,Central/South Asia,East Asia,Central/South Asia,America
+946,HGDP01006,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+947,HGDP01018,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+948,HGDP00841,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+949,HGDP00996,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+950,HGDP01008,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+951,HGDP00721,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+952,HGDP00551,Oceania,Central/South Asia,Oceania,Middle East,Central/South Asia
+953,HGDP00518,Europe,Middle East,Europe,Europe,America
+954,HGDP00530,Europe,Middle East,Europe,Europe,America
+955,HGDP01359,Europe,Middle East,Europe,Europe,Middle East
+956,HGDP01400,Europe,Middle East,Europe,Africa,America
+957,HGDP00885,Europe,Africa,Central/South Asia,Europe,Middle East
+958,HGDP00897,Europe,Africa,Central/South Asia,Europe,Middle East
+959,HGDP01041,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+960,HGDP01053,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+961,HGDP00857,America,Central/South Asia,East Asia,Central/South Asia,Europe
+962,HGDP00869,America,Central/South Asia,Oceania,Central/South Asia,Central/South Asia
+963,HGDP00703,America,Central/South Asia,East Asia,Central/South Asia,America
+964,HGDP00995,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+965,HGDP01007,America,Central/South Asia,East Asia,Central/South Asia,Europe
+966,HGDP01019,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+967,HGDP00842,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+968,HGDP00997,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+969,HGDP01009,America,Central/South Asia,East Asia,Central/South Asia,Europe
+970,HGDP00830,America,Central/South Asia,East Asia,Central/South Asia,Europe
+971,HGDP00844,America,Central/South Asia,East Asia,Central/South Asia,America
+972,HGDP00346,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+973,HGDP00203,Central/South Asia,Africa,Central/South Asia,East Asia,Africa
+974,HGDP01364,Europe,Middle East,Europe,Europe,America
+975,HGDP01375,Europe,Middle East,Europe,Europe,Middle East
+976,HGDP00670,Europe,Middle East,Europe,Africa,Europe
+977,HGDP01069,Europe,Middle East,Europe,Africa,Europe
+978,HGDP01177,Europe,Middle East,Europe,Europe,America
+979,HGDP00797,Europe,Middle East,Europe,Europe,Middle East
+980,HGDP00810,Europe,Middle East,Europe,Europe,Middle East
+981,HGDP01401,Europe,Middle East,Europe,Africa,America
+982,HGDP00886,Europe,Africa,Central/South Asia,Europe,Middle East
+983,HGDP00898,Europe,Africa,Central/South Asia,Europe,Middle East
+984,HGDP01042,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+985,HGDP01054,America,Central/South Asia,East Asia,Central/South Asia,Europe
+986,HGDP00858,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+987,HGDP00870,America,Central/South Asia,East Asia,Central/South Asia,Europe
+988,HGDP00704,America,Central/South Asia,East Asia,Central/South Asia,America
+989,HGDP01402,Europe,Middle East,Europe,Africa,America
+990,HGDP00887,Europe,Africa,Europe,Europe,Middle East
+991,HGDP00899,Europe,Africa,Europe,Europe,America
+992,HGDP01043,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+993,HGDP01055,America,Central/South Asia,East Asia,Central/South Asia,Europe
+994,HGDP00859,America,Central/South Asia,East Asia,Central/South Asia,Europe
+995,HGDP00871,America,Central/South Asia,Oceania,Central/South Asia,Europe
+996,HGDP00705,America,Central/South Asia,East Asia,Central/South Asia,America
+997,HGDP01398,Europe,Middle East,Europe,Africa,America
+998,HGDP00883,Europe,Africa,Central/South Asia,Europe,Middle East
+999,HGDP00895,Europe,Africa,Central/South Asia,Europe,Middle East
+1000,HGDP01039,America,Central/South Asia,East Asia,Central/South Asia,Europe
+1001,HGDP01051,America,Central/South Asia,East Asia,Central/South Asia,Europe
+1002,HGDP00855,America,Central/South Asia,East Asia,Central/South Asia,Europe
+1003,HGDP00867,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+1004,HGDP01403,Europe,Middle East,Europe,Africa,Central/South Asia
+1005,HGDP00888,Europe,Africa,Europe,Europe,Middle East
+1006,HGDP00900,Europe,Middle East,Central/South Asia,Europe,Middle East
+1007,HGDP01044,America,Central/South Asia,East Asia,Central/South Asia,Europe
+1008,HGDP01056,America,Central/South Asia,East Asia,Central/South Asia,Europe
+1009,HGDP00860,America,Central/South Asia,Oceania,Central/South Asia,Europe
+1010,HGDP00872,America,Central/South Asia,East Asia,Central/South Asia,America
+1011,HGDP00706,America,Central/South Asia,East Asia,Central/South Asia,America
+1012,HGDP00901,Europe,Africa,Central/South Asia,Europe,Middle East
+1013,HGDP01045,America,Central/South Asia,East Asia,Central/South Asia,Central/South Asia
+1014,HGDP01057,America,Central/South Asia,East Asia,Central/South Asia,Europe
+1015,HGDP00861,America,Central/South Asia,East Asia,Central/South Asia,Europe
+1016,HGDP00873,America,Central/South Asia,East Asia,Central/South Asia,Europe
+1017,HGDP00707,America,Central/South Asia,East Asia,Central/South Asia,America
+1018,HGDP01404,Europe,Africa,Europe,Africa,America
+1019,HGDP00889,Europe,Africa,Europe,Europe,Middle East
+1020,HGDP01151,Europe,Middle East,Europe,Europe,America
+1021,HGDP01330,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+1022,HGDP00528,Europe,Middle East,Europe,Europe,Middle East
+1023,HGDP00719,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+1024,HGDP01161,Europe,Middle East,Europe,Europe,America
+1025,HGDP00828,East Asia,Central/South Asia,East Asia,America,Middle East
+1026,HGDP00965,East Asia,Central/South Asia,East Asia,Oceania,Central/South Asia
+1027,HGDP00516,Europe,Middle East,Europe,Europe,America
+1028,HGDP01365,Europe,Middle East,Europe,Europe,Middle East
+1029,HGDP00766,East Asia,Central/South Asia,East Asia,America,Middle East
+1030,HGDP00657,Oceania,Central/South Asia,Oceania,Middle East,Central/South Asia
+1031,HGDP01354,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+1032,HGDP00798,Europe,Middle East,Europe,Europe,Middle East
+1033,HGDP01342,East Asia,Central/South Asia,East Asia,Middle East,Middle East
+1034,HGDP00824,Oceania,Central/South Asia,Oceania,Middle East,America
+1035,HGDP01319,East Asia,Central/South Asia,East Asia,Middle East,Central/South Asia
+1036,HGDP01357,Europe,Middle East,Europe,Europe,Middle East
+1037,HGDP00549,Oceania,Central/South Asia,Oceania,Middle East,Central/South Asia
+1038,HGDP00953,East Asia,Central/South Asia,Oceania,Oceania,Central/South Asia
+1039,HGDP01070,Europe,Middle East,Europe,Africa,Europe
+1040,HGDP01376,Europe,Middle East,Europe,Europe,America
+1041,HGDP00671,Europe,Middle East,Europe,Africa,America
+1042,HGDP01024,East Asia,Central/South Asia,East Asia,Middle East,Middle East

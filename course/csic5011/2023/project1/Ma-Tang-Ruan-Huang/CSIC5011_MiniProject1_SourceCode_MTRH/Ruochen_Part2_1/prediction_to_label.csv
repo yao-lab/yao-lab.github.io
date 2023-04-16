@@ -1,0 +1,10 @@
+﻿,pca,mds,tsne,isomap
+1,Africa ,Europe,Africa ,America
+2,Central/South Asia,Oceania ,East Asia ,Middle East   
+3,Oceania,Central/South Asia,East Asia ,Central/South Asia
+4,Central/South Asia,Africa,Middle East   ,East Asia 
+5,Europe,Africa,Central/South Asia,Europe
+6,Middle East ,Middle East,Europe ,Middle East   
+7,East Asia ,East Asia,America,East Asia 
+,,,,
+ARI,0.496424391,0.58472923,0.679325677,0.285761016
