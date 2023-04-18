@@ -1,0 +1,477 @@
+---
+title: "Untitled"
+output: html_document
+date: "2023-04-01"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r}
+library(tidyverse)
+crime_data <- read_csv("crime2.csv") 
+crime_data
+```
+
+
+
+```{r}
+crime_data %>% 
+  mutate(date = if_else(date_wa == ".", date_my, date_wa)) %>% 
+  filter(date != ".") %>% 
+  mutate(police_number = sworn+civil) %>% 
+  select(elecyear:web, -mayor, -termlim, -web, -date_wa, -date_my, -sworn, -civil, -jid, date, police_number) %>% 
+  drop_na() %>% 
+  mutate(crime_rate = (murder+rape+robbery+assault+burglary+larceny+auto)/citypop) %>% 
+  select(-murder, -rape, -robbery, -assault, -burglary, -larceny, -auto) %>% 
+  view()
+```
+
+
+
+
+
+
+```{r}
+crime_data_mod <- crime_data %>% 
+  mutate(police_number = sworn+civil) %>% 
+  select(name:web, -city, -statenam, -state, -censdist, -mayor, -termlim, -web, -date_wa, -date_my, -sworn, -civil, -jid, police_number) %>% 
+  drop_na() %>% 
+  mutate(crime_rate = (murder+rape+robbery+assault+burglary+larceny+auto)/citypop) %>% 
+  select(-murder, -rape, -robbery, -assault, -burglary, -larceny, -auto) 
+
+crime_data_mod
+
+```
+
+
+
+```{r}
+library(tidymodels)
+
+pca_rec <- recipe(crime_rate ~ ., data = crime_data_mod) %>%
+  update_role(name, year, new_role = "id") %>%
+  step_normalize(all_predictors()) %>%
+  step_pca(all_predictors(), num_comp = 5)
+
+pca_prep <- prep(pca_rec)
+
+pca_prep
+```
+
+
+
+```{r}
+sdev <- pca_prep$steps[[2]]$res$sdev
+
+sdev/sum(sdev)
+```
+
+
+```{r}
+pca_prep$steps
+```
+
+
+
+
+
+
+
+```{r}
+tidied_pca <- tidy(pca_prep, 2)
+
+tidied_pca %>%
+  filter(component %in% paste0("PC", 1:5)) %>%
+  mutate(component = fct_inorder(component)) %>%
+  ggplot(aes(value, terms, fill = terms)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~component, nrow = 1) +
+  labs(y = NULL) 
+
+ggsave("1.png")
+```
+
+
+
+
+```{r}
+library(tidytext)
+
+tidied_pca %>%
+  filter(component %in% paste0("PC", 1:4)) %>%
+  group_by(component) %>%
+  top_n(8, abs(value)) %>%
+  ungroup() %>%
+  mutate(terms = reorder_within(terms, abs(value), component)) %>%
+  ggplot(aes(abs(value), terms, fill = value > 0)) +
+  geom_col() +
+  facet_wrap(~component, scales = "free_y") +
+  scale_y_reordered() +
+  labs(
+    x = "Absolute value of contribution",
+    y = NULL, fill = "Positive?"
+  )
+
+ggsave("2.png")
+```
+
+```{r}
+juice(pca_prep)
+```
+
+
+```{r}
+juice(pca_prep) %>%
+  ggplot(aes(PC01, PC02, label = str_c(name, year, sep = ","))) +
+  geom_point(aes(color = crime_rate), alpha = 1, size = 2) +
+  geom_text(check_overlap = FALSE, vjust = -0.8, hjust = "outward", size = 2.3) +
+  labs(color = NULL) +
+  scale_color_gradient(
+    low = "dark blue",
+    high = "tomato",
+  ) +
+  theme(legend.key.height = unit(1.5, "cm"))
+
+ggsave("8.png", scale = 6)
+```
+
+
+
+
+
+
+
+```{r}
+juice(pca_prep) %>%
+  filter(year == 1975) %>% 
+  ggplot(aes(PC01, PC02, label = name)) +
+  geom_point(aes(color = crime_rate), alpha = 1, size = 2) +
+  geom_text(check_overlap = TRUE, vjust = -1, size = 2.3) +
+  labs(color = NULL) +
+  scale_color_gradient(
+    low = "dark blue",
+    high = "tomato",
+  ) +
+  theme(legend.key.height = unit(1.5, "cm"))
+
+ggsave("3.png")
+```
+
+
+
+```{r}
+juice(pca_prep) %>%
+  filter(year == 1985) %>% 
+  ggplot(aes(PC01, PC02, label = name)) +
+  geom_point(aes(color = crime_rate), alpha = 1, size = 2) +
+  geom_text(check_overlap = TRUE, vjust = -1, size = 2.3) +
+  labs(color = NULL) +
+  scale_color_gradient(
+    low = "dark blue",
+    high = "tomato",
+  ) +
+  theme(legend.key.height = unit(1.5, "cm"))
+
+ggsave("6.png")
+```
+
+
+
+
+
+
+
+
+```{r}
+juice(pca_prep) %>%
+  filter(name == "atlanta") %>% 
+  ggplot(aes(PC01, PC02, label = year)) +
+  geom_point(aes(color = crime_rate), alpha = 1, size = 2) +
+  geom_text(check_overlap = TRUE, vjust = -1.1, size = 2) +
+  labs(color = NULL) +
+  scale_color_gradient(
+    low = "dark blue",
+    high = "tomato",
+  ) +
+  theme(legend.key.height = unit(1.5, "cm")) 
+
+ggsave("4.png")
+```
+
+
+
+
+```{r}
+juice(pca_prep) %>%
+  filter(name == "chicago") %>% 
+  ggplot(aes(PC01, PC02, label = year)) +
+  geom_point(aes(color = crime_rate), alpha = 1, size = 2) +
+  geom_text(check_overlap = TRUE, vjust = -1.1, size = 2) +
+  labs(color = NULL) +
+  scale_color_gradient(
+    low = "dark blue",
+    high = "tomato",
+  ) +
+  theme(legend.key.height = unit(1.5, "cm")) 
+
+ggsave("5.png")
+```
+
+
+
+
+
+
+```{r}
+isomap_rec <- recipe(crime_rate ~ ., data = crime_data_mod) %>%
+  update_role(name, year, new_role = "id") %>%
+  step_normalize(all_predictors()) %>%
+  step_isomap(all_predictors())
+
+isomap_prep <- prep(isomap_rec)
+
+isomap_prep
+```
+
+```{r}
+juice(isomap_prep)
+```
+
+
+
+```{r}
+juice(isomap_prep) %>%
+  ggplot(aes(Isomap1, Isomap2, label = str_c(name, year, sep = ","))) +
+  geom_point(aes(color = crime_rate), alpha = 1, size = 2) +
+  geom_text(check_overlap = FALSE, vjust = -0.8, hjust = "outward", size = 2.3) +
+  labs(color = NULL) +
+  scale_color_gradient(
+    low = "dark blue",
+    high = "tomato",
+  ) +
+  theme(legend.key.height = unit(1.5, "cm"))
+
+ggsave("7.png", scale = 6)
+```
+
+
+```{r}
+library(embed)
+
+umap_rec <- recipe(crime_rate ~ ., data = crime_data_mod) %>%
+  update_role(name, year, new_role = "id") %>%
+  step_normalize(all_predictors()) %>%
+  step_umap(all_predictors(), num_comp = 5)
+
+umap_prep <- prep(umap_rec)
+
+umap_prep
+```
+
+```{r}
+juice(umap_prep)
+```
+
+
+```{r}
+juice(umap_prep) %>%
+  ggplot(aes(UMAP1, UMAP2, label = str_c(name, year, sep = ","))) +
+  geom_point(aes(color = crime_rate), alpha = 1, size = 2) +
+  geom_text(check_overlap = FALSE, vjust = -0.8, hjust = "outward", size = 2.3) +
+  labs(color = NULL) +
+  scale_color_gradient(
+    low = "dark blue",
+    high = "tomato",
+  ) +
+  theme(legend.key.height = unit(1.5, "cm"))
+
+ggsave("11.png", scale = 6)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+library(ggforce)
+
+juice(pca_prep) %>%
+  select(crime_rate:PC05) %>% 
+  ggplot() +
+  geom_autopoint(aes(color = crime_rate), alpha = 0.4, size = 0.5) +
+  geom_autodensity(alpha = .3) +
+  facet_matrix(vars(-crime_rate), layer.diag = 2) +
+  labs(color = NULL) +
+  scale_color_gradient(
+    low = "dark blue",
+    high = "tomato",
+  ) +
+  theme(legend.key.height = unit(1.5, "cm"))
+
+ggsave("9.png")
+```
+
+
+
+```{r}
+juice(isomap_prep) %>%
+  select(crime_rate:Isomap5) %>% 
+  ggplot() +
+  geom_autopoint(aes(color = crime_rate), alpha = 0.4, size = 0.5) +
+  geom_autodensity(alpha = .3) +
+  facet_matrix(vars(-crime_rate), layer.diag = 2) +
+  labs(color = NULL) +
+  scale_color_gradient(
+    low = "dark blue",
+    high = "tomato",
+  ) +
+  theme(legend.key.height = unit(1.5, "cm"))
+
+ggsave("10.png")
+```
+
+
+```{r}
+juice(umap_prep) %>%
+  select(crime_rate:UMAP5) %>% 
+  ggplot() +
+  geom_autopoint(aes(color = crime_rate), alpha = 0.4, size = 0.5) +
+  geom_autodensity(alpha = .3) +
+  facet_matrix(vars(-crime_rate), layer.diag = 2) +
+  labs(color = NULL) +
+  scale_color_gradient(
+    low = "dark blue",
+    high = "tomato",
+  ) +
+  theme(legend.key.height = unit(1.5, "cm"))
+
+ggsave("12.png")
+```
+
+
+
+
+
+
+```{r}
+lm_spec <- 
+  linear_reg() %>% 
+  set_engine("lm")
+
+lm_wf <- workflow(pca_rec, lm_spec)
+
+lm_fit <- lm_wf %>% fit(crime_data_mod)
+
+
+lm_fit
+```
+
+
+
+
+```{r}
+lm_fit$fit$fit$fit %>% summary()
+```
+
+
+
+
+
+
+```{r}
+null_rec <- recipe(crime_rate ~ ., data = crime_data_mod) %>%
+  update_role(name, year, new_role = "id")
+
+lm_wf2 <- workflow(null_rec, lm_spec)
+
+lm_fit2 <- lm_wf2 %>% fit(crime_data_mod)
+
+
+lm_fit2
+```
+
+
+
+
+
+```{r}
+lm_fit2$fit$fit$fit %>% summary()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+library(Rdimtools)
+
+mds <- do.mds(crime_data_mod %>% 
+  select(-name, -year, -crime_rate) |> 
+  as.matrix() , ndim = 5)
+  
+mds$Y %>% 
+  as_tibble() %>% 
+  rename(MDS1 = V1, MDS2 = V2,  MDS3 = V3,  MDS4 = V4,  MDS5 = V5)
+  
+
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
