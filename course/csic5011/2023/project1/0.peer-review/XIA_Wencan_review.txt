@@ -1,0 +1,125 @@
+YAN, Ningyu; YAN, Bokai; LAI, Yanming.
+The statistic explanation of the US crime data：
+
+• Summary of the report.
+The authors conduct a statiatical analysis of US crime rate and find the main contributions to the average crime rate using the crime data using various dimension reduction
+and regresion method.
+
+• Describe the strengths of the report. 
+The authors clearly described their goals and the methods they chose, and analyzed their results well.
+
+• Describe the weaknesses of the report.
+The data visualization is not well performed. Some table would be more informatic if they are visualized.
+
+• Evaluation on Clarity and quality of writing (1-5): 4.5
+
+• Evaluation on Technical Quality (1-5): 5
+
+• Overall rating: 5
+
+• Confidence on your assessment (1-3) : 3
+
+
+
+
+HAO, Yifan; Yueying Hu; Yakun Li; Yonglin Liu.
+Visualization and Forecasting on Finance Data.
+
+• Summary of the report.
+The authors first conduct analyses on a collection of stock market index of 500 companies using various dimension reduction techniques and then use 
+ several prediction methods to give prediction.
+
+• Describe the strengths of the report. 
+1) The group provides detail implement of their experiment.
+2) Great analyze on the obtained results.
+
+
+• Describe the weaknesses of the report.
+The prediction data visualization is not well performed. 
+
+• Evaluation on Clarity and quality of writing (1-5): 5
+
+• Evaluation on Technical Quality (1-5): 4.5
+
+• Overall rating: 5
+
+• Confidence on your assessment (1-3) : 2
+
+
+
+
+CAI Bibi; QIU Zhenyu; WANG Zhiwei.
+Topic Modeling For NIPS Words.
+
+• Summary of the report.
+The authors perform statistical topic modeling to analyze the NIPS words dataset using LDA further clustering and
+dimension reduction methods are used for latent representation .
+
+• Describe the strengths of the report. 
+There is clear initial data processing and checking. Writing is clear and easy to understand. 
+Analysis of results is clear, reasonable and convincing.
+
+• Describe the weaknesses of the report.
+Better to give a summary.
+
+• Evaluation on Clarity and quality of writing (1-5): 4.5
+
+• Evaluation on Technical Quality (1-5): 5
+
+• Overall rating: 5
+
+• Confidence on your assessment (1-3) : 3
+
+
+
+
+MA Ruochen; Jihong TANG; Yuyan RUAN; Zhi HUANG.
+Ancestry Prediction via Dimensionality Reduction Techniques on SNPs Data.
+
+• Summary of the report.
+The authors utilized and compared several popular dimensionality reduction techniques on SNPs data and do
+ancestry rrediction.
+
+• Describe the strengths of the report. 
+This report descripted the dimensionality reduction methods clearly and contained detail 
+and holistic comparison the prediction accuracy for different combination of the methods.
+
+• Describe the weaknesses of the report.
+lack of mathematical statement of algorithms.
+
+• Evaluation on Clarity and quality of writing (1-5): 4
+
+• Evaluation on Technical Quality (1-5): 4.5
+
+• Overall rating: 4
+
+• Confidence on your assessment (1-3) : 2
+
+
+
+SHEN, Lue.
+Human Migration History: A Single Nucleotide Polymorphisms Perspective.
+
+• Summary of the report.
+The authors utilized and compared several popular dimensionality reduction techniques on SNPs data and analysis the human migration
+to verify African origin hypothesis.
+
+• Describe the strengths of the report. 
+This report descripted the dimensionality reduction 
+methods clearly and contained detail and holistic comparison the prediction accuracy for different combination of the methods.
+
+• Describe the weaknesses of the report.
+No
+
+• Evaluation on Clarity and quality of writing (1-5): 4.5
+
+• Evaluation on Technical Quality (1-5): 4.5
+
+• Overall rating: 4.5
+
+• Confidence on your assessment (1-3) : 3
+
+
+
+
+

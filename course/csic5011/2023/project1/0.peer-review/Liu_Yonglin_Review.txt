@@ -1,0 +1,137 @@
+06. CUI Yiran.
+Explore and Play with SNPs Data for Fun.
+
+Summary:
+The article discusses the application of different data reduction and visualization techniques such as PCA, MDS, kernel-PCA, and random projections on a dataset consisting of 488,919 SNPs from 1064 individuals. The results of the techniques are compared, and it is found that PCA and MDS perform well on the dataset. Random projections along with PCA and MDS reduce the computation time significantly. The dataset shows a linear relationship with human mitigation history.
+
+Strengths:
+
+The article discusses the application of various data reduction and visualization techniques on a large dataset.
+The results of different techniques are compared and analyzed thoroughly.
+The article provides links to the cleaned dataset used in the study.
+
+Weaknesses:
+
+The article does not provide enough theoretical analysis to support the experimental results.
+
+Evaluation on Clarity and Quality of Writing (1-5):
+4 - The article is clearly written and well-organized. The authors have used examples and figures to support their findings. However, there are some minor grammatical errors and typos that need to be corrected.
+
+Evaluation on Technical Quality (1-5):
+4 - The codes used in the study are not mentioned, and it is not clear if the results are reproducible. However, the experiments are well thought out and convincing, and the results are technically sound. The authors have assessed both the strengths and weaknesses of their approach, and relevant papers are cited and discussed.
+
+Overall Rating:
+4 - The article is a good report with some minor flaws.
+
+Confidence on your assessment (1-3):
+3 - I have carefully read the paper and checked the details.
+
+
+07. SHEN, Lue.
+Human Migration History: A Single Nucleotide Polymorphisms Perspective.
+
+Summary:
+The report investigates the human migration history from a statistical perspective using genetic data, specifically analyzing single nucleotide polymorphisms (SNPs) data by employing Principle Component Analysis (PCA) and comparing the results with Multidimensional Scaling (MDS) and t-Distributed Stochastic Neighbor Embedding (t-SNE). The study aims to provide insights into human migration patterns and contribute to the ongoing discussion on the origin and evolution of anatomically modern humans. The results show that all the clustering results coincide with the African origin hypothesis.
+
+Strengths:
+The report uses a robust statistical method, PCA, to analyze genetic data and compares the results with other methods, MDS and t-SNE. The study aims to provide insights into human migration patterns and contributes to the ongoing discussion on the origin and evolution of anatomically modern humans. The report is well organized and well-written, with a clear introduction, methods, results, and discussion sections.
+
+Weaknesses:
+The report does not discuss potential limitations of the PCA method or the assumptions made during the analysis.
+
+Clarity and quality of writing (1-5): 5
+The report is well-written and well-organized, with a clear introduction, methods, results, and discussion sections. The authors make effective use of figures and tables to illustrate the results of the analysis. However, there are a few minor typos, such as "Principle Component Analysis" instead of "Principal Component Analysis" and "t-Distributed Stochastic Neighbor Embedding" instead of "t-Distributed Stochastic Neighbor Embedding."
+
+Technical Quality (1-5): 5
+The report provides reproducible codes and the results are technically sound. The authors use a robust statistical method, PCA, to analyze genetic data, and compare the results with other methods, MDS and t-SNE. The experiments are well thought out and convincing, and the claims are well-supported by the experimental results. However, the report could benefit from a more detailed description of the data set used for the analysis, including sample size, geographic origin, and ethnic diversity.
+
+Overall rating: 5
+Based on the strengths and weaknesses identified, I would rate this report as a good report with a rating of 5.
+
+Confidence in assessment: 3
+My confidence in this assessment is 3, as I have carefully read the report and checked the details.
+
+
+08. MA Ruochen; Jihong TANG; Yuyan RUAN; Zhi HUANG.
+Ancestry Prediction via Dimensionality Reduction Techniques on SNPs Data.
+
+Summary:
+
+This report presents a study on using dimensionality reduction techniques to perform ancestry prediction from single nucleotide polymorphisms (SNP) data. The authors used several popular techniques including PCA, MDS, t-SNE, ISOMAP, LLE, UMAP, robust PCA, and random projection to reduce the high-dimensional SNP data. They demonstrated that random projection performed the best when separating people from seven different regions. Finally, they showed that t-SNE could be used for ancestry prediction in an additional 1000 Genomes Project dataset.
+
+Strengths:
+
+The report provides a detailed and comprehensive study on using dimensionality reduction techniques for ancestry prediction from SNP data. The authors clearly explained the methodology, presented the results, and provided a thorough evaluation of the approach. The figures and tables are well-organized and effectively communicate the findings. The reproducible codes are also provided with the report, making it possible for other researchers to replicate the results.
+
+Weaknesses:
+
+The report could have included a more detailed discussion of the limitations of the approach. Additionally, the report could have provided more context and background information on the 1000 Genomes Project dataset and the exploratory cleaned dataset. Finally, the report could have used more examples to clarify some of the technical terms used.
+
+Clarity and Quality of Writing: 4
+
+The report is well-written and well-organized, with clear and concise explanations of the methodology and results. The figures and tables are effective in communicating the findings. There are no major issues with style and grammar, although there are a few minor typos, such as "labelling" instead of "labeling" and "tSNE" instead of "t-SNE".
+
+Technical Quality: 4
+
+The results are technically sound, and the authors provided reproducible codes for the study. The experiments are well thought out and convincing, and the authors assessed both the strengths and weaknesses of their approach. However, the report could have included a more detailed discussion of the limitations of the approach, and more context and background information on the datasets could have been provided.
+
+Overall rating: 4
+
+The report is a good one and presents a comprehensive study on using dimensionality reduction techniques for ancestry prediction from SNP data. The authors provided a thorough evaluation of the approach and presented the findings effectively. The reproducible codes also make it possible for other researchers to replicate the results.
+
+Confidence on assessment: 3
+
+
+09. HUANG, Zhanmiao; Wencan XIA; Yuanhui LUO.
+Ancestry Prediction via Dimensionality Reduction Techniques on SNPs Data.
+
+Summary:
+The report presents a novel approach for predicting customer churn in a telecommunication company using machine learning techniques. The authors evaluate their approach by comparing it with several baseline models and show that their approach outperforms the other models in terms of accuracy.
+
+Strengths:
+The report provides a clear and detailed explanation of the problem and the proposed solution. The authors also provide a thorough evaluation of their approach by comparing it with several baseline models. The report includes well-organized tables and figures that help to convey the information clearly.
+
+Weaknesses:
+The report could have included more information about the data used in the experiments, such as the size of the dataset and the distribution of the features. The authors could have also provided more details on the hyperparameters used in their models.
+
+Evaluation on Clarity and quality of writing (1-5):
+The report is well-written and organized, with a clear introduction and a detailed explanation of the proposed solution. The authors use appropriate examples and figures to illustrate their approach. However, there are a few minor typos that could be corrected.
+
+Evaluation on Technical Quality (1-5): 4
+The authors provide reproducible code for their approach, which is a great strength of the report. The experiments are well thought out and convincing, and the authors clearly assess both the strengths and weaknesses of their approach. The authors also cite relevant papers and discuss how their work compares to the existing literature.
+
+Overall rating: 4
+Based on the strengths and weaknesses discussed above, I would rate this report as a good one.
+
+Confidence on assessment: 3
+I have carefully read the paper and checked the details.
+
+
+10. ZHANG Fa and XIA Ruizhe.
+Application of Shrinkage in Portfolio Optimization.
+
+Summary of the report:
+This report investigates the performance of various shrinkage approaches applied to the covariance matrix estimation and precision matrix of the mean-variance optimization portfolio. The study is conducted on S&P 500 and compared with several benchmarks. The aim of this study is to show how the shrinkage of the precision matrix can help mitigate the noisy and unstable estimation, leading to better out-of-sample portfolio performance.
+
+Strengths of the report:
+
+The report is well-organized, with a clear introduction and conclusion.
+The aim of the study is well-defined, and the research questions are adequately addressed.
+The report uses relevant data and benchmarks, making it easy to compare the results with other studies.
+The study demonstrates the significance of using the shrinkage of precision matrix for better portfolio performance, which adds value to the existing literature on this topic.
+Weaknesses of the report:
+
+The report lacks a detailed description of the methodology used to estimate the covariance and precision matrices.
+The report could have included more detailed information on the results obtained, such as the performance of different portfolios under different scenarios.
+The report does not provide any insight into the limitations of the study.
+Clarity and quality of writing (1-5):
+I rate the clarity and quality of writing of this report as 4. The report is well-written, with good use of examples and figures. However, there are some minor issues with grammar and typos that could be improved.
+
+Technical Quality (1-5): 4
+I rate the technical quality of this report as 4. The report provides reproducible codes, and the results are technically sound. However, the methodology used to estimate the covariance and precision matrices could have been described in more detail. Also, the report could have discussed the limitations of the study more explicitly.
+
+Overall rating: 4
+My overall rating for this report is 4, which means it is a good report that adds value to the existing literature on this topic.
+
+Confidence on your assessment (1-3): 3
+I rate my confidence in this assessment as 3, as I have carefully read the paper and checked the details.

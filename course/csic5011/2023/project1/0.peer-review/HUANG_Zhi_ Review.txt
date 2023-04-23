@@ -1,0 +1,99 @@
+Review of XuZhuangZhou
+Summary of the report
+The report aims to provide an analysis of crime trends in 59 major US cities between 1969 and 1992, focusing on the factors that contribute to overall crime occurrence. The dataset used contains 36 variables related to socio-economic, demographic, and environmental factors. The authors preprocessed the data by eliminating non-dominating parameters, summing different crime types, and categorizing the total number of crimes. They employed five data visualization methods, including PCA, Sparse PCA, MDS, ISOMAP, and LLE, to analyze the relationship between region-related parameters and the total number of crimes. The results showed the effectiveness of PCA in data reduction and visualization.
+Strengths of the report
+1.	The authors provide a clear and concise introduction to the problem they are addressing and the goals of their project.
+2.	The dataset is comprehensive, and the preprocessing steps are well-explained.
+3.	The methodology is sound, and the authors have employed multiple data visualization techniques to ensure a thorough analysis.
+4.	The experimental results section is detailed, and the figures effectively demonstrate the performance of the chosen methods.
+Weaknesses of the report
+1.	The authors could have provided more context and background information on the chosen methods, particularly for readers who may not be familiar with them.
+2.	The conclusion is relatively brief and could have been expanded to include more insights or recommendations based on the findings.
+Evaluation on Clarity and quality of writing (1-5): 4
+The report is clearly written, well-organized, and presents the information in a logical manner. The use of examples and figures is effective. There are minor issues with grammar, but they do not detract from the overall quality of the paper.
+Evaluation on Technical Quality (1-5): 4
+The report demonstrates technical soundness, and the results appear to be well-supported by theoretical analysis and experimental results. The authors have provided reproducible code, and the experiments seem well thought out and convincing. Relevant papers are cited, but a more thorough comparison to related work could improve the report. The evaluation of the authors' approach is mostly clear, but they could have elaborated more on the weaknesses of their methods.
+Overall rating: 4 (A good report)
+The report is well-written and demonstrates a thorough analysis of the crime dataset using multiple visualization methods. The methodology is sound, and the results are well-presented. Some areas for improvement include providing more background information on the chosen methods and expanding the conclusion with more insights or recommendations.
+Confidence on your assessment (1-3): 3
+I have carefully read the paper and checked the results, and I am confident in my assessment of the report.
+
+Review of Yan-YanLai
+Summary of the report
+The report aims to analyze US crime data from 1969 to 1992 and predict the crime rate based on selected features. The authors remove some useless features which may make a negative impact on dimension reduction algorithms. They performed three methods – PCA, Isomap, and UMAP to reduce the dimension and visualize the dataset. The result shows the different characters of each city and separates 85 cities into 5 groups. Finally, they perform a linear regression model to predict crime rates based on the reduced dimensions.
+
+Strengths of the report
+1.	The report progressively establishes a crime rate prediction model. The entire modeling process is clear and straightforward.
+2.	The data preprocessing procedure is well-explained and sound. The procedure indeed removes some irrelevant features.
+3.	The research report is very application valuable. The report skilfully used the linear regression model to verify the help of dimensionality reduction methods for the predictive model.
+Weaknesses of the report
+1.	The report lacks performance testing procedures for linear regression models. It will be better if the reduced data can improve the prediction performance.
+2.	It’s better to make a comparison of feature selection methods. Because the report highlights that the data reduction methods are helpful for the prediction model, it’s important to analyze the advantage of these methods compared with other common feature selection methods.
+
+Evaluation on Clarity and quality of writing (1-5): 4
+The report is clearly written, well-organized, and presents the information in a logical manner. The use of examples and figures is effective. There are minor issues with grammar, but they do not detract from the overall quality of the paper.
+
+Evaluation on Technical Quality (1-5): 3.5
+The report provides reproducible codes, and the results seem technically sound. However, the method's instability when dealing with highly damaged images is a significant limitation. The authors could improve their work by comparing their method with other image inpainting techniques and exploring other potential improvements, such as using image patches for constructing the dictionary.
+
+Overall rating: 3.5 (An average one)
+Confidence on your assessment (1-3): 2 (I just browsed the paper without checking the details)
+ 
+Review of ZhouQiQi
+Summary of the report:
+The report discusses the problem of image inpainting, a task in computer vision and image processing where missing or damaged parts of an image need to be filled in. The authors propose a method using PCA (Principal Component Analysis) to construct a dictionary for inpainting handwritten digit images. The method shows success in restoring semantic information for moderately damaged images but faces some instability when dealing with highly damaged images.
+Strengths of the report:
+1.	The report is well-structured and presents a clear flow of information from the introduction to the conclusion.
+2.	The problem and method sections provide a clear overview of the proposed approach.
+3.	The authors include visual examples to illustrate the damage patterns and inpainting results, which aids understanding.
+Weaknesses of the report:
+1.	There is a lack of comparison to other related works or methods in the field of image inpainting.
+2.	Some figures mentioned in the report are missing, making it difficult to follow the results and analysis. And the third part is incomplete.
+Evaluation on Clarity and quality of writing (1-5): 4
+The report is well-written and organized, with clear explanations and visual examples. However, there are some minor grammatical errors and typos. Suggestions for improvement include proofreading for grammar and typos and adding more references to related works.
+Evaluation on Technical Quality (1-5): 3.5
+The report provides reproducible codes, and the results seem technically sound. However, the method's instability when dealing with highly damaged images is a significant limitation. The authors could improve their work by comparing their method with other image inpainting techniques and exploring other potential improvements.
+Overall rating: 3.5 (An average one)
+Confidence on your assessment (1-3): 2 (I just browsed the paper without checking the details)
+ 
+Review of Li-Chen-Teng
+Summary of the report:
+The report focuses on the impact of academic writing style on paper acceptance, proposing a visual analytics approach to help researchers explore the evolution of word usage across time in accepted papers. The authors utilized a dataset of NIPS conference papers from 1987 to 2015, and developed a visualization tool to track the progression of word distribution. The report also presents an experiment to estimate the probability of word occurrences in 2015 papers based on previous data.
+
+Strengths of the report:
+1.	The report addresses a relevant and interesting topic for researchers in academic writing.
+2.	The methodology section is clear, detailing the processing pipeline and the steps involved.
+3.	The visualization provided is insightful and helps the reader understand the evolution of word usage across time.
+Weaknesses of the report:
+1.	The report lacks a proper comparison with other related works or methods in the field of visual analytics or text analysis.
+2.	There is limited discussion on the performance evaluation of the method, aside from the mention of the MAE score.
+
+Evaluation on Clarity and quality of writing (1-5): 3.5
+The report is organized and presents a clear flow of information from the introduction to the conclusion. However, there are some grammatical errors and typos. Suggestions for improvement include proofreading for grammar and typos and adding more references to related works.
+
+Evaluation on Technical Quality (1-5): 4
+The report presents a visualization tool and a prediction experiment. Also, the report used many stat-of-art models to process the data. While the visualization is informative, the prediction experiment lacks sufficient detail, and there is no mention of reproducible codes. The authors could improve their work by providing more details on the performance evaluation of their method.
+
+Overall rating: 4 (Good report)
+Confidence on your assessment (1-3): 2 (I just browsed the paper without checking the details)
+ 
+Review of HuangXiaLuo
+Summary of the report:
+The report investigates the relationship between genetic variation and geographical variation using dimension reduction methods applied to Single-nucleotide polymorphisms (SNPs) data. The authors use Principal Component Analysis (PCA), Multidimensional Scaling (MDS), and ensemble learning methods, such as Random Forest (RF) and Extra Trees (ET), to analyze the data. They also perform a case study focusing on the genetic variability among populations in China and neighboring East Asia areas, finding that there is a close relationship between human genes and geographic variation.
+
+Strengths of the report:
+1.	The report addresses a fascinating and complex topic, using a variety of dimension-reduction methods to analyze the data.
+2.	The case study on China and neighboring East Asia areas offer interesting insights into the relationship between genetic variations and geographical locations.
+3.	The methodology is well-explained, providing a clear understanding of the methods used in the analysis.
+Weaknesses of the report:
+1.	The report could benefit from a more detailed discussion of the limitations and potential biases of the methods used.
+2.	The conclusion could be improved by summarizing the main findings more concisely and highlighting future research directions.
+
+Evaluation on Clarity and quality of writing (1-5): 4
+The report is well-organized and generally well-written. However, there are some issues with grammar and typos. Additionally, the missing figures make it difficult to follow some parts of the analysis. To improve clarity, the authors should proofread the report for grammar and typos and ensure that all mentioned figures are included.
+
+Evaluation on Technical Quality (1-5): 4
+The report demonstrates a solid understanding of the dimension reduction methods and their application to the SNPs data. The authors analyze the data using various methods and provide a case study to further explore their findings. However, there is room for improvement in discussing potential limitations and biases of the methods used.
+
+Overall rating: 4 (A good report)
+Confidence on your assessment (1-3): 2 (I just browsed the paper without checking the details)

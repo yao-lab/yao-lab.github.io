@@ -1,0 +1,127 @@
+
+09. HUANG, Zhanmiao; Wencan XIA; Yuanhui LUO.
+Explore Geographical Variation of Human Gene with SNPs Data.
+
+• Summary of the report.
+The authors apply different dimension reduction methods on SNPs data to explore the relationship between the genetic variation and geographical variation. 
+
+• Describe the strengths of the report.
+The author vividly depicts the main contents and their intriguing relationships through the use of lucid diagrams and tables.
+
+• Describe the weaknesses of the report.
+The level of detail in the content is relatively limited due to space constraints.
+
+• Evaluation on Clarity and quality of writing (1-5): 4
+The report is well-written and the figures are appropriately utilized and arranged, demonstrating an excellent writing style. Nonetheless, it would be more advantageous if all the figures were explained or compared instead of being presented without any clarification. Alternatively, highlighting the key figures could also be a viable approach.
+
+• Evaluation on Technical Quality (1-5): 5
+The project's technical methods are well-explained and the logic presented is clear and rational.
+
+• Overall rating: 5
+
+• Confidence on your assessment (1-3) 3
+
+
+--------------------------------------------------------------------
+
+
+17. LI Qichao and HUANG Haohan.
+Exploration of PCA family for handwritten digit classification.
+
+• Summary of the report.
+The authors compared the performance of different types of PCA, including original PCA, Sparse PCA, and Kernel PCA with various kernel functions.
+
+• Describe the strengths of the report.
+The report provided a clear description of the dimensionality reduction methods and included a detailed and comprehensive comparison of the prediction accuracy for different combinations of these methods.
+
+• Describe the weaknesses of the report.
+The report is well-written, and the figures are appropriately used and arranged, showcasing excellent writing skills. However, it would be more beneficial if all the figures were explained or compared, rather than being presented without any clarification. Alternatively, emphasizing the key figures could also be a viable approach. It should also be noted that the hand-written digits dataset is a well-known and commonly used dataset in the field of machine learning. As such, it may not be necessary to present it in a full-sided graph, as most readers may already be familiar with it. 
+
+• Evaluation on Clarity and quality of writing (1-5): 3
+Numbering every equation may impede readability. The first letter of section 4.3 is not capitalized.
+
+• Evaluation on Technical Quality (1-5): 4
+
+• Overall rating: 3
+
+• Confidence on your assessment (1-3) 2
+
+
+--------------------------------------------------------------------
+
+
+15. MENG, Xiao; Ziyu ZHONG; Shunpeng YANG; Tianshu JIANG.
+Four variants of Principal Component Analysis on Video Background/Foreground Separation.
+
+• Summary of the report.
+The authors use four variants of PCA to separate the background and foreground of video clip and compare their performance.
+
+• Describe the strengths of the report.
+The clarity of the formula is commendable in effectively illustrating the differences between the methods. The poster has been thoughtfully organized, allowing the audience to easily follow the information presented. 
+
+• Describe the weaknesses of the report.
+More than a third of the entire poster is dedicated to the introduction, reference, and contribution, which results in the critical content being squeezed and the overall content of the poster appearing somewhat insufficient. Additionally, while the pictures provide a helpful representation of the results, it would be advantageous to include both qualitative and quantitative analyses. This would not only offer a deeper understanding of the methods utilized but also provide a more comprehensive evaluation of the findings.
+
+• Evaluation on Clarity and quality of writing (1-5): 3
+There are some grammatical mistakes in the text.
+
+• Evaluation on Technical Quality (1-5): 4
+
+• Overall rating: 3
+
+• Confidence on your assessment (1-3) 2
+
+
+--------------------------------------------------------------------
+
+
+16. Chris HC Nguyen and James M Shihua.
+Robust PCA for Moving Object Detection in Video.
+
+• Summary of the report.
+This project showcases the use of Robust Principal Component Analysis (RPCA) for detecting and removing moving objects in a video.
+
+• Describe the strengths of the report.
+The clarity of the formula is commendable in effectively illustrating the differences between the methods. The poster has been thoughtfully organized, allowing the audience to easily follow the information presented. The results are analyzed in detail.
+
+• Describe the weaknesses of the report.
+Although the structure of the poster is apparent, the color scheme causes some confusion, particularly the gray background, which hinders readability. Additionally, the layout limitations lead to untidy typesetting of the pseudocode section.
+
+• Evaluation on Clarity and quality of writing (1-5): 4
+
+• Evaluation on Technical Quality (1-5): 4
+
+• Overall rating: 4
+
+• Confidence on your assessment (1-3) 2
+
+
+--------------------------------------------------------------------
+
+
+11. HAO, Yifan; Yueying Hu; Yakun Li; Yonglin Liu.
+Visualization and Forecasting on Finance Data.
+
+• Summary of the report.
+The authors conduct analyses on a collection of stock market index of 500 companies.
+
+• Describe the strengths of the report.
+The report provided a clear description of various dimensionality reduction methods and included a detailed and comprehensive comparison of their predictive performance for different combinations of these methods.
+
+• Describe the weaknesses of the report.
+Increasing the font size of the text in the illustration would improve its readability.
+
+• Evaluation on Clarity and quality of writing (1-5): 5
+The report is highly legible and lucid for readers, with high-quality writing and data visualization. The color selection is particularly impressive, as it strikes a perfect balance between being too dark or too light. The examples, charts, and figures are well-structured and thoroughly elucidated.
+
+• Evaluation on Technical Quality (1-5): 5
+The project's technical methods are well-explained and the logic presented is clear and rational.
+
+• Overall rating: 5
+
+• Confidence on your assessment (1-3) 2
+
+
+
+
+

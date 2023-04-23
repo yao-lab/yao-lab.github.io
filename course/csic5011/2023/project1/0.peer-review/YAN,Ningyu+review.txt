@@ -1,0 +1,115 @@
+YAN Ningyu:
+
+05. XU Yingxue; Jiaxin ZHUANG; Fengtao ZHOU.
+Visualization and Dimensionality Reduction Techniques for US Crime Data.
+
+Summary: This report focused on the US crime dataset. They used PCA, Sparse PCA,  Multidimensional Scaling (MDS), Isometric Mapping (ISOMAP), and Locally Linear Embedding (LLE) methods to convert the dataset from 24 dimensions to 2/3 while preserving most information. They found that PCA is a useful tool for data reduction.
+
+Strength: They used abundant data reduction methods, making this report excellent. And they gave detailed discussion to the results of visualization.
+
+Weakness: The data preprocessing may lack some details, e.g. what the non-dominating parameters are. And It will be better if you can include more figures to make this report more vivid.
+
+Evaluation on Clarity and quality of writing (1-5): 4
+This report is well organized, especially the arrangement of sections, which is logical. But I think the poster presented too many words, and more figures will be better. 
+
+Evaluation on Technical Quality (1-5): 4
+This report is technically sound. I deem the experiments convincing. It coule be better if more disscussion be included i.e. weakness of these methods.
+
+Overall rating: 4.
+Confidence: 3
+
+
+----------------------------------------------
+17. LI Qichao and HUANG Haohan.
+Exploration of PCA family for handwritten digit classification.
+
+Summary:  This report used original PCA, sparse PCA and kernel PCA with different kinds of kernel functions to conduct handwritten digit classification. And they found that KPCA with linear kernel function achieved the best performance.
+
+Strength: They gave detailed presentation about the theories of PCA and its extensions. And they displayed the comparasion among RF, PCA, SPCA and KPCA, which is vivid.
+
+Weakness: There exists some shortcomings on writing. 
+
+Evaluation on Clarity and quality of writing (1-5): 3
+Some formulas add ',' but others don't. And I think the subfigures should have their sub identifiers. I think we should not add "As what we have learnt from the lectures" in abstract because it seems little bit casual.
+
+Evaluation on Technical Quality (1-5): 4
+This report has no obvious flaws in the reasoning. The experiments are convincing. It would be better to have more disscussion about weakness.
+
+Overall rating:4
+Confidence:3
+
+
+--------------------------------------------------------
+09. HUANG, Zhanmiao; Wencan XIA; Yuanhui LUO.
+Ancestry Prediction via Dimensionality Reduction Techniques on SNPs Data.
+
+Summary: In this report, they used PCA, MDS and random projections on SNPs dataset to explore the genetic variation with geographic variations. They found that there is a close relationship between human genes and geographic variation.
+
+Strength: Their poster displayed aboundant contents. They gave detailed results review and a wounderful case study.
+
+Weakness: It would be better if they contains more disscussion about the weakness.
+
+Evaluation on Clarity and quality of writing (1-5): 5
+The poster is well organized. It has a excellent banance between words and figures, which is quite vivid. And the whole content is logical.
+
+Evaluation on Technical Quality (1-5): 5
+There is no obvious flaws in the reasoning. The experiments and case studies are convincing and quite useful in real research.
+
+Overall rating:5
+Confidence:3
+
+
+----------------------------------------------------
+13. LI Haobo, CHEN Zixin, TENG fei, SHENG Rui.
+NIPS Conference Papers 1987-2015 Data Set.
+
+Summary: This team focused on NIPS Conference Papers dataset. They conducted an experiment to estimate the probability 
+of word occurrences of conference papers and conducted the word prediction.
+
+Strength: They gave the prediction section, which makes this research useful in real life. And they give detailed disscussion about the visualization.
+
+Weakness: It would be better if they add more disscussion about the weakness of methods. And I think more data reduction methods will make the content vivid.
+
+Evaluation on Clarity and quality of writing (1-5): 3
+I think the figures are too large and they don't have identifers. Some efforts can be made to have a better arrangement between word and figures.
+
+Evaluation on Technical Quality (1-5): 3
+It's possible for other researchers to replicate these results. The results are technically sound.
+
+Overall rating:3
+Confidence:2
+
+------------------------------------------------------
+08. MA Ruochen; Jihong TANG; Yuyan RUAN; Zhi HUANG.
+Ancestry Prediction via Dimensionality Reduction Techniques on SNPs Data.
+
+Summary: This team used PCA, MDS, t-SNE, ISOMAP, LLE, UMAP, robust PCA and random projection to conduct dimension reduction about SNP dataset.
+
+Strength: They gave detailed comparison of different methods. And the Ancestry Prediction in Independent Cohort section makes this research quite useful.
+
+Weakness: It would be better if they add more disscussion about the weakness of methods and give some reasons.
+
+Evaluation on Clarity and quality of writing (1-5): 4
+The whole contents are well organized and logical. It could be better if the figures have their identifers. 
+
+Evaluation on Technical Quality (1-5): 5
+The poster displayed data reduction, comparison, prediction, which is quite technically sound. The experiments and results are convincing.
+
+Overall rating:4
+Confidence:2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

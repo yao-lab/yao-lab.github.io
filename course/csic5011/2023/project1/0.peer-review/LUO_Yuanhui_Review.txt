@@ -1,0 +1,91 @@
+Peer Review of MATH5473/CSIC5011 Project1 - LUO Yuanhui
+
+
+
+Report 03 The statistic explanation of the US crime data
+
+• Summary of the report: In this report, the author utilizes PCA, Isomer and UMAP to investigate the main factors which impacts the US crime rate. Different factors such as population structure and police number are found to play an important role.
+
+• Describe the strengths of the report: Complete analysis is given for the obtained principal components, including the importance and regression analysis. The corresponding visualizations are clear and vivid.
+
+• Describe the weaknesses of the report: It would be better if more interpretations are given to the constructed principal components.
+
+• Evaluation on Clarity and quality of writing (1-5): 4
+
+• Evaluation on Technical Quality (1-5): 5
+
+• Overall rating: 5
+
+• Confidence on your assessment (1-3): 3
+
+
+
+Report 06 Explore and Play with SNPs Data for Fun
+
+• Summary of the report: This report applies PCA, kernel-PCA, MDS and PCA and MDS with random projections on SNPs data, the performances with different methods are compared and kernel-PCA performs generally worse.
+
+• Describe the strengths of the report: Additional method kernel-PCA is discussed and the discussion is complete. The computation complexity indicated by CPU time is also considered.
+
+• Describe the weaknesses of the report: More explorations such as case study can be considered.
+
+• Evaluation on Clarity and quality of writing (1-5): 4.5
+
+• Evaluation on Technical Quality (1-5): 4
+
+• Overall rating: 4
+
+• Confidence on your assessment (1-3): 3
+
+
+
+Report 07 Human Migration History: A Single Nucleotide Polymorphisms Perspective
+
+• Summary of the report: This report analyzes the results of PCA, MDS and t-SNE, and K-means clustering based on the PCA-reduced data. The author discussed how them indicates the relationship between SNPs and geographical information, and further human migration history.  
+
+• Describe the strengths of the report: Additional method t-SNE is discussed. Detailed introduction is given to each method and geographical information is utilized and analyzed in four aspects.
+
+• Describe the weaknesses of the report: How human migration history is revealed by the relationship between SNPs and geographical information can be clearer.
+
+• Evaluation on Clarity and quality of writing (1-5): 4
+
+• Evaluation on Technical Quality (1-5): 4.5
+
+• Overall rating: 4.5
+
+• Confidence on your assessment (1-3): 2.5
+
+
+
+Report 08 Ancestry Prediction via Dimensionality Reduction Techniques on SNPs Data
+
+• Summary of the report: Several dimension reduction methods including PCA, MDS, t-SNE, ISOMAP, LLE, UMAP, robust PCA and random projections are conducted on SNPs data, evaluated and compared by ARI score.
+
+• Describe the strengths of the report: Multiple methods are considered simultaneously and quantitive evaluation score is adopted.
+
+• Describe the weaknesses of the report: How SNPs reveal ancestry information can be cleared since the two concepts are not exactly the same. Besides, prediction conducted on new testing data instead of training data could be better.
+
+• Evaluation on Clarity and quality of writing (1-5): 4
+
+• Evaluation on Technical Quality (1-5): 5
+
+• Overall rating: 4.5
+
+• Confidence on your assessment (1-3): 2.5
+
+
+
+Report 13 NIPS Conference Papers 1987-2015 Data Set
+
+• Summary of the report: The report investigates the influence of academic writing style indicated by word distribution on paper acceptance, plot the historical word distributions and further predicts the future trends.
+
+• Describe the strengths of the report: Various models such as K-means, t-SNE, HMM and BERT neural network are used for analysis.
+
+• Describe the weaknesses of the report: More introductions about the methods and how to apply them to obtain the results can be given.
+
+• Evaluation on Clarity and quality of writing (1-5): 4
+
+• Evaluation on Technical Quality (1-5): 4.5
+
+• Overall rating: 4
+
+• Confidence on your assessment (1-3): 2

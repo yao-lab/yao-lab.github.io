@@ -1,0 +1,96 @@
+08. MA Ruochen; Jihong TANG; Yuyan RUAN; Zhi HUANG.
+Ancestry Prediction via Dimensionality Reduction Techniques on SNPs Data.
+
+summary: The project applied several popular dimensionality reduction techniques to SNPs data and compared the extent of remaining information after dimension reduction by kNN classification. Additionally, it selected a small sample dataset and did similar prediction on it.
+
+strength: The report contains considerable work with many methods and applied a specific quantification ARI to compare. The authors also made a good arrangement of figures and texts. 
+
+weakness: Some methods and ideas are not explained so clearly. For instance, it says clustering using kNN in part 2, but the method in the contribution part is k-means. And in part 3, the idea that "gathered independent 400 samples" is not much understandable to readers, which may need a clearer and direct expression or explanation.
+
+Evaluation on Clarity and quality of writing: 4
+
+Evaluation on Technical Quality: 4
+
+Overall rating: 4
+
+Confidence on your assessment: 2
+
+
+
+
+
+06. CUI Yiran
+Explore and Play with SNPs Data for Fun.
+
+summary: The report did a basic exploration of SNPs data, by applying PCA, MDS, kernel-PCA and random projection.
+
+strength: The writing is careful and gives the theoretical overview of each method in use. It considered choosing several sets of parameters and made comparison in visualization.
+
+weakness: The contents and explored questions are too basic and plain, not so informative.
+
+Evaluation on Clarity and quality of writing: 3
+
+Evaluation on Technical Quality: 3
+
+Overall rating: 3
+
+Confidence on your assessment: 2
+
+
+
+07. SHEN, Lue.
+Human Migration History: A Single Nucleotide Polymorphisms Perspective.
+
+summary: The report did a basic exploration of SNPs data, by applying PCA, MDS, k-means, t-SNE with visualization. It also show the account of SNPs in PC1 and PC2.
+
+strength: The paper is well organized with detailed and good writing. It gives detailed introduction of background, detailed theories and the overall description of dataset, which looks like a real paper. 
+
+weakness: The contents and explored questions are relatively basic and simple. The investigation can go deeper.
+
+Evaluation on Clarity and quality of writing: 5
+
+Evaluation on Technical Quality: 3
+
+Overall rating: 3.5
+
+Confidence on your assessment: 2
+
+
+
+
+13. LI Haobo, CHEN Zixin, TENG fei, SHENG Rui.
+NIPS Conference Papers 1987-2015 Data Set.
+
+summary: The report analyzed the trend of word usage, publication count and community size with years, and clustered the papers using MDS. These findings demonstrate the importance of considering community size and using advanced analysis methods.
+
+strength: The paper is well organized. It is clear to give detailed introduction of methodology before presenting the results. The author made careful exploration by comparing several specific example papers.
+
+weakness: The investigation using data reduction methods of the top topic in NIPS could go deeper.
+
+Evaluation on Clarity and quality of writing: 5
+
+Evaluation on Technical Quality: 3.5
+
+Overall rating: 3.5
+
+Confidence on your assessment: 2
+
+
+
+17. LI Qichao and HUANG Haohan.
+Exploration of PCA family for handwritten digit classification.
+
+summary: The report shows the results of different kinds of PCA on the handwriting digits, and then perform random forest on the data after reduction. 
+
+strength: It clearly listed different kinds of PCA methods, and compare the projections on PC1 and PC2 with visualization.
+
+weakness: The results are not so intuitive and clear in visualization concerning the digits figures. For instance, the authors can show the figures of PC1 and PC2, and compare them.
+
+Evaluation on Clarity and quality of writing: 4
+
+Evaluation on Technical Quality: 3.5
+
+Overall rating: 3.5
+
+Confidence on your assessment: 2
+

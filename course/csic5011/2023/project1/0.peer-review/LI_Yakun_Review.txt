@@ -1,0 +1,87 @@
+Peer Review
+1. CAI Bibi; QIU Zhenyu; WANG Zhiwei.
+   Topic Modeling For NIPS Words.
+
+Summary, the strengths and weakness of the report：
+In this report, then have performed statistical topic modeling to analyze the NIPS words dataset. Specifically, they use the latent Dirichlet allocation (LDA), which introduces the latent variable topic to model the generative process of each word in the
+document. Besides, they also use clustering and dimension reduction methods, such as K-means, MDS, and tSNE, to analyze this latent representation to gain more insights into this dataset. 
+I find the report is interesting, well written and definitely think that it deserves high praise.
+
+Evaluation on Clarity and quality of writing (1-5): 4
+The report is well written and organized, with a clear introduction and detailed explanations of the proposed solutions. The authors illustrate their method with appropriate examples and figures. However, there are a few minor typos that could be corrected.
+ 
+Evaluation on Technical Quality (1-5): 4.5
+The authors provide reproducible code for their method, which is a major strength of the report. The experiments are well thought out and convincing, and the authors clearly assess the strengths and weaknesses of their approach.
+ 
+Overall rating: 4.5
+ 
+Confidence on my assessment: 3
+
+2. ZHANG Fa and XIA Ruizhe.
+    Application of Shrinkage in Portfolio Optimization.
+
+Summary, the strengths and weakness of the report：
+In this report, then have tested several shrinkage approaches, that applied to covariance matrix estimation and precision matrix, on S&P 500 and compare with some benchmarks. They show the shrinkage of precision matrix does mitigate the noisy and unstable estimation and lead to a better out-of-sample portfolio performance. 
+I find the report is well-organized, with a clear introduction and conclusion. But, it The report lacks a detailed description of the methods used to estimate the covariance and precision matrices.
+ 
+Evaluation on Clarity and quality of writing (1-5): 4
+The report is well written and organized, with a clear introduction, detailed explanations of the proposed solutions and good use of figures. However, there are some minor typos to be corrected.
+ 
+Evaluation on Technical Quality (1-5): 4
+The report provides reproducible code and the results are technically sound. It would be better if the methods used to estimate the covariance and precision matrices could be described in more detail.
+ 
+Overall rating: 4
+ 
+Confidence on my assessment: 3
+
+3. CUI Yiran.
+    Explore and Play with SNPs Data for Fun
+
+Summary, the strengths and weakness of the report：
+This report explores the application of PCA, kernel-PCA, MDS, and random 2 projection with both PCA and MDS by SNPs data. 
+The aim of the study is well-defined, and the research questions are adequately addressed. Various methods are discussed and the corresponding results are clearly present. It would be better if there has more theoretical analysis.
+ 
+Evaluation on Clarity and quality of writing (1-5): 4
+The report is well written and organized. The author illustrates the argument with appropriate examples and figures. However, there are a few grammatical typos to corrected.
+ 
+Evaluation on Technical Quality (1-5): 4
+The author provides reproducible code for their method, which is a major strength of the report. The experiments are well thought out and convincing, and the authors clearly assess the strengths and weaknesses of their approach.
+ 
+Overall rating: 4
+ 
+Confidence on my assessment: 3
+
+4. ZHONG Guangzheng.
+    A distance function for ordinal regression dimensional reduction.
+ 
+Summary, the strengths and weakness of the report.
+In this report, the authors have proposed a distance function for ordinal regression dimensional reduction problem. The class information in datasets is considered and the resulting representation in low dimensional space is clear and easily to separate. Moreover, they also consider the ordinal information in classes. We introduce the distance function in 
+3-dimensional reduction methods and perform experiments on the Hand-written Digits dataset, which is a strength of the report. It would be better if the report has a more detailed discussion of the limitations of the approach.
+ 
+Evaluation on Clarity and quality of writing (1-5): 4
+The report is well-written and well-organized, with clear and concise explanations of the methodology and results. The figures and tables are effective in communicating the findings. There are no major issues with style and grammar, although there are a few minor typos.
+ 
+Evaluation on Technical Quality (1-5): 4
+ 
+Overall rating: 4
+ 
+Confidence on my assessment: 3
+
+
+5. SHEN, Lue.
+    Human Migration History: A Single Nucleotide Polymorphisms Perspective.
+ 
+Summary, the strengths and weakness of the report.
+In this report, the author aims to investigate the human migration history from a statistical perspective using genetic data. 
+Various methods are used and compared to provide valuable insights to human migration patterns, which is a major strength of the report. It would be better if potential limitations of these methods are discussed in the report.
+ 
+Evaluation on Clarity and quality of writing (1-5): 4.5
+The report is well written and organized, with a clear introduction and detailed explanations of the obtained results, together with appropriate examples and figures. However, there are some minor typos that could be corrected.
+ 
+Evaluation on Technical Quality (1-5): 4.5
+The author provides reproducible code for their method, and the experiments are well thought out and convincing. I find the report is interesting, well written and definitely think that it deserves high praise.
+ 
+Overall rating: 4.5
+ 
+Confidence on my assessment: 3
+
