@@ -1,0 +1,123 @@
+1st: Review of ZHOU Qiqi (Group 2)
+* Summary of the report:
+The report describes a traditional approach (PCA) for image inpainting, where missing or damaged parts of an image are filled in. The report applies the approach to handwritten digits dataset and uses three different damage patterns to demonstrate the effectiveness of the approach. After applying PCA on the training set to determine the number of components k, the author quantized the representation of training images in the base space using k-means clustering to get the dictionary can depict the distribution, and finally converted the representation back to an image to fill in the missing or damaged parts. The report presents the results in figures and highlights the effectiveness and limitations of the method.
+
+* Strengths of the report:
+1.	The report is well-organized and clearly presents the approach and results using appropriate figures.
+2.	The report provides detailed steps on how the approach is applied to the dataset, making it easy to understand (especially for readers who have no background on this topic).
+3.	The report provides a discussion about the limits of current methods and makes a clear statement.
+
+* Weaknesses of the report:
+1.	The report could be improved by filling out some missing parts, for example, the end of part 3.
+2.	The report could be improved by providing more comparison results of the less stable scenario. 
+
+* Evaluation on Clarity and quality of writing: 4
+The report is clearly written and well-organized. The report uses appropriate examples and figures to present the approach and results. There are no major issues with style and grammar, but there seems to be a missing part at the end of part 3.
+
+* Evaluation on Technical Quality: 4
+The report provides reproducible codes and the results are technically sound. The report presents the reasoning clearly, and the experiments are well thought out and convincing. The evaluation is appropriate, and the authors clearly assess both the strengths and weaknesses of their approach. The related works are cited correctly, however, there are no comparisons between other works.
+
+* Overall rating: 3.5 (Above average)
+
+* Confidence on your assessment: 3
+I have carefully read the report and checked the results
+--------------------------------------------------------------------------------------
+
+2nd: Review of XU Yingxue; Jiaxin ZHUANG; Fengtao ZHOU (Group 5)
+* Summary of the report:
+The report discusses the use of multivariate analysis techniques to gain a comprehensive understanding of crime patterns and identify key parameters that contribute to the overall number of crimes committed. The report uses a dataset of crime trends in 59 major US cities spanning from 1969 to 1992, with 36 variables capturing various socio-economic, demographic, and environmental factors. The authors used principal component analysis (PCA) and manifold learning methods such as Multidimensional Scaling (MDS), Isometric Mapping (ISOMAP), and Locally Linear Embedding (LLE) to reduce the dimensions and visualize the data effectively.
+
+* Strengths of the report:
+1.	The report is well-organized and clearly presents the approach and results using appropriate figures.
+2.	The report provides detailed information about the data preprocessing method, and such feature engineering brings advantages in data analysis.
+3.	The report makes 3D visualization of part of the analysis results which brings more information.
+
+* Weaknesses of the report:
+1.	The report could be improved by providing more analysis about the relationship between reduced features and their aim: "provide actionable information that can informevidence based strategies for crime prevention and intervention, thereby contributing to safer and more secure communities."
+2.	The report could be improved by making some comparison between their current work and other existed work (if there are any such kinds of work)
+3.	The report could be improved by including more information on the limitations and assumptions made in the analysis, such as the assumption that the underlying parameters have similar effects on all crime types
+
+* Evaluation on Clarity and quality of writing:5
+The report is clearly written and well-organized. The report uses appropriate examples and figures to present the approach and results. There are no major issues with style and grammar.
+
+* Evaluation on Technical Quality:3.5
+The report provides reproducible codes and the results are technically sound. The report presents the reasoning clearly, and the experiments are well thought out and convincing. The evaluation is appropriate, however, the authors donot assess the strengths and weaknesses of their approach. In addition, the citation of other related work, discussion, and comparison to their current work are lacking. 
+
+* Overall rating: 3 (Average one)
+
+* Confidence on your assessment: 3
+I have carefully read the report and checked the results
+--------------------------------------------------------------------------------------
+
+3rd: Review of HAO, Yifan; Yueying Hu; Yakun Li; Yonglin Liu (Group 11)
+* Summary of the report:
+The report discusses the analysis of a collection of stock market indices of 500 companies. The authors use various techniques, such as Principal Component Analysis (PCA), Sparse PCA (SPCA), Multi-Dimension Scaling (MDS), Mapping (ISOMAP), and t-distributed Stochastic Neighbor Embedding (t-SNE) for data reduction, followed by forecasting using PCA, SPCA, and target-PCA (t-PCA). The authors conclude that PCA and SPCA can improve performance in data reduction and visualization, while the t-PCA of four different models maintains similar accuracy with less data dimension. 
+
+* Strengths of the report:
+1.	The report is well-organized and clearly presents the approach and results using appropriate figures.
+2.	The report includes detailed explanations and interpretations of the forecasting results, and a detailed discussion of the limitation of their current work. 
+
+* Weeknesses of the report:
+1.	The report could be improved by making some comparison between their current work and other existed work (if there are any such kinds of work)
+2.	The report could be improved by providing a more detailed analysis of the results, such as statistical significance tests, to support the conclusions drawn.
+
+* Evaluation on Clarity and quality of writing:5
+The report is clearly written and well-organized. The report uses appropriate examples and figures to present the approach and results. There are no major issues with style and grammar.
+
+* Evaluation on Technical Quality:4
+The report provides reproducible codes and the results are technically sound. The report presents the reasoning clearly, and the experiments are well thought out and convincing. The evaluation is appropriate, and the authors clearly assess both the strengths and weaknesses of their approach. More comparison with other related work will be better. 
+
+* Overall rating: 4 (A good report)
+
+* Confidence on your assessment: 2
+I just browse the paper without checking the details.
+--------------------------------------------------------------------------------------
+
+4th: Review of LI Haobo, CHEN Zixin, TENG Fei, SHENG Rui (Group 13)
+* Summary of the report:
+The report proposed a tool to predict the possibly frequent words or phrases based on the progression of word distribution in academic writing. They used a co-occurrence matrix of 11463 words and 5811 NIPS conference papers and conducted an experiment to estimate the probability of word occurrences in conference papers in 2015 based on the previous word distribution of papers from 1987 to 2014. The authors used a K-means HMM model and a t-SNE to cluster and visualize the data. The report also shows the top 100 possible words with a sunburst chart that shows the probability of each word and the cluster it belongs to. The authors concluded that the emerging neural network technology tends to have a high probability in 2015 NIPS accepted papers, while traditional methods like random algorithms were used less.
+
+* Strengths of the report:
+1.	The report is well-organized and clearly presents the approach and results using appropriate and impressive figures.
+2.	The report shows well-designed workflow and high-technique methods for their specific question and task 
+3.	The report shows detailed discussion about the prediction results and well-visualized results.
+
+* Weaknesses of the report:
+1.	The report could be improved by making some comparison between their current work and other existed work (if there are any such kinds of work)
+2.	The report could be improved by providing more details about their methods and the visualization work (beautiful and impressive work lead to more curiosity about the detailed methods)
+
+* Evaluation on Clarity and quality of writing:5
+The report is clearly written and well-organized. The report uses appropriate examples and figures to present the approach and results. There are no major issues with style and grammar.
+
+* Evaluation on Technical Quality:4
+The report provides reproducible codes and the results are technically sound. The report presents the reasoning clearly, and the experiments are well thought out and convincing. The evaluation is appropriate, and the authors clearly assess both the strengths and weaknesses of their approach. More comparison with other related work will be better. 
+
+* Overall rating: 4.5 (A good to best report)
+
+* Confidence on your assessment: 3
+I have carefully read the report and checked the results
+--------------------------------------------------------------------------------------
+
+5th: Review of Chris HC Nguyen and James M Shihua (Group 16)
+* Summary of the report:
+This report discusses the use of Robust Principal Component Analysis (RPCA) for detecting and removing moving objects in a video. The RPCA algorithm separates each frame of the image sequence into a low-rank background matrix and a sparse moving object matrix, enabling the identification and elimination of moving objects from the background. The report explains that the RPCA algorithm is particularly useful for applications where the data contains outliers or is corrupted by noise. The project demonstrates the use of RPCA with a Lagrange multiplier and dual gradient calculation method for improved efficiency. 
+
+* Strengths of the report:
+1.	The report is well-organized and clearly presents the approach using detailed pseudo code and results using appropriate and impressive figures.
+2.	The report implements well-defined workflows and mathematical methods on the clear question, which brings a complete logistic circle for research question answering.
+3.	The report provides a well-illustrated statement about the weaknesses and strengths of their methods and the comparison with another baseline method. 
+
+* Weaknesses of the report:
+1.	The report could be improved by providing more details about their compared baseline methods (ADMM Algorithm)
+
+* Evaluation on Clarity and quality of writing:5
+The report is clearly written and well-organized. The report uses appropriate examples and figures to present the approach and results. There are no major issues with style and grammar.
+
+* Evaluation on Technical Quality:5
+The report provides reproducible codes and the results are technically sound. The report presents the reasoning clearly, and the experiments are well thought out and convincing. The evaluation is appropriate, and the authors assess both the strengths and weaknesses of their approach. In addition, the comparison of their work and other work is included. 
+
+* Overall rating: 5 (My vote for best report)
+
+* Confidence on your assessment: 2.5
+I have carefully read the report, but some results are above my knowledge
+
