@@ -1,0 +1,24 @@
+---
+title: "Untitled"
+author: "WANG Zhiwei"
+date: "2023-05-12"
+output: html_document
+---
+
+```{r}
+source("./mf.R")
+```
+
+```{r}
+rating <- read.csv("./rating.csv")
+# head(rating)
+dim(rating)
+genre <- read.csv("./genre.csv")
+# head(genre)
+dim(genre)
+```
+
+```{r}
+# factor1 <- mf_single_factor(Y = t(rating), X = genre)
+mf_results <- mf(Y = t(rating), X = genre, K_max = 20)
+```

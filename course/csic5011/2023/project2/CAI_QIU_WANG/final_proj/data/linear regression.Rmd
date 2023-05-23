@@ -1,0 +1,139 @@
+---
+title: "linear regression"
+output: html_document
+date: "2023-05-16"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+rm(list=ls())
+setwd("D:/math 5473/final project/final_proj/final_proj/data")
+genre <- read.csv("./genre.csv")
+Funksvd=read.csv("./vfactor_lfm.csv")[,-1]
+MF=read.csv("./vfactor_proposed.csv")[,-1]
+truncsvd=read.csv("./vfactor_truncsvd.csv")[,-1]
+
+
+dim(Funksvd)
+dim(MF)
+dim(truncsvd)
+n=dim(Funksvd)[2]
+
+```
+
+
+##  linear regression for Funksvd 
+
+```{r}
+for (i in 1:n) {
+  da<-cbind(genre,Funksvd[,i])
+  name<-colnames(genre)
+  name1<-c(name,"mu")
+  colnames(da)<-name1
+  da<-as.data.frame(da)
+  barplot(lm(mu~.,data=da)$coefficients[-c(1,2)],las=2)
+  title(paste("Funksvd factor",i))
+}
+
+da<-cbind(genre,Funksvd[,1])
+name<-colnames(genre)
+name1<-c(name,"mu")
+colnames(da)<-name1
+da<-as.data.frame(da)
+summary(lm(mu~.,data=da))
+
+
+da<-cbind(genre,Funksvd[,2])
+name<-colnames(genre)
+name1<-c(name,"mu")
+colnames(da)<-name1
+da<-as.data.frame(da)
+summary(lm(mu~.,data=da))
+
+da<-cbind(genre,Funksvd[,3])
+name<-colnames(genre)
+name1<-c(name,"mu")
+colnames(da)<-name1
+da<-as.data.frame(da)
+summary(lm(mu~.,data=da))
+
+
+```
+
+##  linear regression for Proposed MF
+```{r}
+for (i in 1:n) {
+  da<-cbind(genre,MF[,i])
+  name<-colnames(genre)
+  name1<-c(name,"mu")
+  colnames(da)<-name1
+  da<-as.data.frame(da)
+  barplot(lm(mu~.,data=da)$coefficients[-c(1,2)],las=2)
+  title(paste(" Proposed MF factor",i))
+}
+
+
+da<-cbind(genre,MF[,1])
+name<-colnames(genre)
+name1<-c(name,"mu")
+colnames(da)<-name1
+da<-as.data.frame(da)
+summary(lm(mu~.,data=da))
+
+
+da<-cbind(genre,MF[,2])
+name<-colnames(genre)
+name1<-c(name,"mu")
+colnames(da)<-name1
+da<-as.data.frame(da)
+summary(lm(mu~.,data=da))
+
+da<-cbind(genre,MF[,3])
+name<-colnames(genre)
+name1<-c(name,"mu")
+colnames(da)<-name1
+da<-as.data.frame(da)
+summary(lm(mu~.,data=da))
+
+```
+
+
+##  linear regression for truncsvd 
+
+```{r}
+for (i in 1:n) {
+  da<-cbind(genre,truncsvd[,i])
+  name<-colnames(genre)
+  name1<-c(name,"mu")
+  colnames(da)<-name1
+  da<-as.data.frame(da)
+  barplot(lm(mu~.,data=da)$coefficients[-c(1,2)],las=2)
+  title(paste("truncsvd factor",i))
+}
+
+
+da<-cbind(genre,truncsvd[,1])
+name<-colnames(genre)
+name1<-c(name,"mu")
+colnames(da)<-name1
+da<-as.data.frame(da)
+summary(lm(mu~.,data=da))
+
+
+da<-cbind(genre,truncsvd[,2])
+name<-colnames(genre)
+name1<-c(name,"mu")
+colnames(da)<-name1
+da<-as.data.frame(da)
+summary(lm(mu~.,data=da))
+
+da<-cbind(genre,truncsvd[,3])
+name<-colnames(genre)
+name1<-c(name,"mu")
+colnames(da)<-name1
+da<-as.data.frame(da)
+summary(lm(mu~.,data=da))
+```
