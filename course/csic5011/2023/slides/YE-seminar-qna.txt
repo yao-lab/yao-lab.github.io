@@ -1,0 +1,74 @@
+
+***************
+Hi, Prof. Yao,
+
+Hope all is good and going well!
+
+I am Yiran(Tom) CUI. First I want to thank you for providing the opportunity that you bring Prof. Ye to us and providing us with a very interesting talk! 
+
+My question in today`s talk is:
+Online Linear Programming (OLP) seems very useful especially when we expect to keep our dataset keeping updated. However, the OLP meanly dealing with a data vector (e.g. customers) and somehow it will finally converge to an equilibrium state. However, if I am interested in not only the prime state (like the equilibrium state) but also interested the eigenvector corresponding to the second-largest eigenvalue, can the OLP still work?
+
+Answer:
+Probably yes. In your case, you should substitute the vector in OLP with a rank-2 matrix, and you may try to combine SDP with OLP to solve your problem.
+
+Have a nice day!
+
+Yiran (Tom) CUI
+Postgraduate student
+Department of Civil and Environmental Engineering
+The Hong Kong University of Science and Technology
+Clearwater Bay, Kowloon
+Hong Kong
+
+
+************
+Dear Prof. Yao,
+Questions: Prof. Ye talked about his work on online linear programming and the method is upper bounded by the offline LP. Thus, I was wondering about the performance of the Online LP or what is the approximation ratio of the Online LP over the Offline LP. Is it depend on different tasks or it exactly has a lower bound? 
+It is also interesting that if some customers can take advantage of the model after observing its output for some time. And if yes, are there some strategies to prevent the case?
+
+Understanding: Online linear programming is a form of optimization that deals with making decisions in real time based on incomplete information. It involves formulating a linear program in advance and then updating it as new information becomes available. I think Online LP is a very powerful and interesting optimization method since the data in the real world is usually dynamic and not offline. It is very important that we can make the decision instantly according to the current situation and historical data. 
+In terms of other optimization methods introduced by Prof. YE, they help save energy and as in result, protect the environment, as sustainability and green development are getting more important. Also, for the last method, which is Equitable Covering & Partition, besides the applications given by Prof. YE, I think it is very suitable for auto-driving technology. For example, we can detect other cars' signals and use the signal from the base station as the anchor, then we can estimate the position of every car using the method.
+
+Regards,
+Haobo LI
+
+***********
+Reflection of the sharing from Rui SHENG (20787795)
+
+I am very thankful for the professor's sharing. First, what I gained most from this lecture was not only mathematical knowledge but inspiration. With the advent of big data and machine learning, the most exposure I have had in my life has been taken over by AI. Without this sharing, especially the introduction of the various examples (the red packet grabbing system is the most interesting), I can just remember the applied science around me that leveraged AI (automatic driving, face recognition); after all, many computer science researchers have entered the world of tuning and referencing. The end-to-end model actually makes the bar for computer science a lot lower, and I can perceive my maths skills are declining. But then it suddenly hit me, is it just that AI is so popular and the usual coverage is just AI, causing the applications of maths to be overlooked? Or, in fact, an instinctive fear of mathematics has developed because the usual exposure to data science is only to the simple processing of data. But today, the professor was so clear and impressive that I was discussing with the other students that "we could actually understand it". If I chose the one that intrigued me the most, it would be the eighth application (Beijing-Shanghai High-speed Railway Scheduling Optimization). It highlights the challenges of learning models in the old solution (how to reduce the risk of the learned information remains challenging). The performance of the new method is amazing. The advancement of math really benefits the world economy.
+
+
+***********
+LIU Chen:
+
+The talk given by Prof. Yinyu Ye offers us the introduction of using optimization for machine learning or decision making. The talk introduces works on Online Learning Programming, Accelerated Second-Order Methods for Nonlinear Optimization, Pretrained Mixed Linear Programming and Divide and Conquer. My interest lies on the first part.
+For Online Learning Programming, the major difference to Offline Linear Programming is that we can not access all the data at once. Instead we access the data in a stream way. For instance, for the online auction problem, we have to decide whether sell or not sell.  So to solve the problem, the algorithm should learning some parameters while making decisions. For my understanding, we have to update our optimal price regarding the input data and make decisions according to the current optimal price. How to design the update can be quite difficult. For me, I am currently conduct research on subsampling, we sample a subset from the whole set according to some uncertainty metrics. It occurs to me that there are some similarities between the two task, for the OLP, we have to update some local parameters for decision making. Here, we can view it as the subsampling, and each input has different uncertainty which can also be associated with decisions. Then we can update our local parameters according to some uncertainty. I will read the paper of Prof.Yinyu Ye and try to figure out whether I can understand the problem from the view of subsampling and apply the method for my research.
+
+***********
+Dear Prof. Yao,
+ 
+This is Jihong, and I am writing to report on my personal understanding of the seminar given by Prof. Yinyu Ye.
+ 
+Since my background is computational biology, I was not familiar with the topic before the seminar, therefore I did not prepare some meaningful questions for the seminar. However, during the seminar, I found that Prof. Yinyu Ye is so good at explaining concepts, questions, and ideas that even I could understand some very interesting questions.  Thanks for his choice to stand on a high level for this seminar which gives me the chance to catch up with the main ideas. Although I finally lost the last two questions, I am already very impressed by the online linear programming algorithm and its application. I have to admit that it is my first time to be so impressed by such kind of computational seminar, not only the science contents but also the speaker?s personal style. In addition, I am happy to find that mathematical algorithms and computational methods could donate so much to practical industries with so much powerful evidence.
+ 
+It is really mu pleasure to have the chance to hear something from Prof. Yinyu Ye. Thank you so much for the organization and for providing us with such kind of chances.
+ 
+Bests,
+Jihong TANG
+
+***********
+Dear Professor,
+ 
+I am sorry that I forget to send an email directly after Monday?s guest talk. My question and some understanding are as follows. Please have a check.
+ 
+Question: Can HSODM be applied for the optimization of some off-policy RL algorithms?
+ 
+Understanding: HSODM can be used to update the parameters of the policy to improve its performance. If the RL algorithm uses a gradient-based approach like policy gradient methods, then HSODM could potentially be used to accelerate the optimization process by efficiently computing second-order derivatives. However, if the RL algorithm uses a value-based approach like Q-learning, then HSODM may not be as directly applicable. On the other hand, since the training process of Chat-GPT also involve reinforcement learning with human feedback. I am thinking if there is a potential to apply these advance algorithms to achieve an easier training of large language models.
+ 
+Again, thank you very much for arranged this wonderful talk!
+ 
+Sincerely,
+Zixin CHEN
+
+*************
