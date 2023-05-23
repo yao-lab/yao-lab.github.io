@@ -1,0 +1,103 @@
+To DUNDA, Gerry Windiarto Mohamad:
+
+Thanks for your kind suggestions. 
+For the explanation on the description of SNP dataset, since the background of SNPs dataset including the meaning of SNPs statistics has been 
+described clearly in the project requirement file, we simplify this part due to the limited size of poster and focus on the methodology and result analysis. 
+Due to the limited size, some details about data analysis such as proportion of train-valid-test, choice of hyperparameters and data preprocessing are not included in the poster, 
+we strongly recommend interested readers to read the descriptions in our source files.
+
+In addition, it would be better to include discussions on potential limitations and further analyze the representativeness of SNPs dataset 
+and the statistical assumptions of different data reduction methods. We will make improvements on this part.
+
+
+
+----------------------------------------------------------
+To Shen Lue:
+
+Thanks for your careful review and suggestions! Below are our answers to your review opinions.
+
+1. Answer to "Only uses region-level labels, while the dataset contains 4 granualarity levels.":
+We have two reasons to not consider the other three labels. 
+The first one is that we have already got supportive conclusion on this single kind of labels, while the other three labels would give similar result of the general migration trend. 
+The second one is that we believe different labels can have different aspects, instead of using all of them to assist each other and get a same general conclusion. 
+Therefore, in our case study, we did a more precise analysis with the population label solely on the East Asia area, which can show the value of other labels. 
+
+2. Answer to "Methodology part can be explained in a more detailed way.":
+Since this is a poster and we focus on addressing the scientific questions, we have given the basic clear description of the methods in use, 
+and also there is no more space for more detailed explanation (I guess you mean equations etc.). 
+Furthermore, we provided references for all the methods mentioned in the poster. If the readers are interested they may refer to the reference for details themselves.
+
+3. Answer to "Did not analyse the geographic variations on the results from PCA/MDS and random projections.":
+Yes we did not include this conclusion, and we will try to add it. 
+The main reason that we omitted it previously is that we think this conclusion has been covered in our lecture, but we will add it to make this poster an independent and complete work.
+
+4. Answer to "Only uses random projections on PCA, but does not apply for MDS.":
+We think it is not so necessary to apply random projections on MDS, for the same reason as "only use region-level labels"
+
+5. For the other small issues, like the HKUST logo and code comments, we will make modifications on them.
+
+
+
+----------------------------------------------------------
+To HU Yueying:
+
+Thanks for your comments. 
+We are sorry that as the size of poster is limited, though we want to include more information and more detailed descriptions, 
+we have to reduce the figure size and omit their captions otherwise the space will not be enough. 
+We will choose vector diagram and pay more attention to typesetting and formats.
+
+
+
+----------------------------------------------------------
+To LIN Hangyu:
+
+Thanks for your advice. 
+Though some conclusions are qualitative, they are actually drawn from the qualitative analysis on the dataset. 
+If the poster size allows, we would like to include the quantitative information about those results for better illustrations.
+
+
+
+----------------------------------------------------------
+To Ningyu Yan:
+
+Thanks for your attention. Due to the limited space of the poster, we can only prioritize the important information, 
+perhaps writing a report contained more analysis of weakness is the best choice.
+
+
+
+----------------------------------------------------------
+To Bokai Yan:
+
+Thanks for your acvice. We really want to explain every details about figures, but we can not balance the space and information.
+If you are interested in details, we are happy to write you a report to give a further explaination.
+
+
+
+----------------------------------------------------------
+To Zhiwei Wang:
+
+Thanks for your comments. Due to time constraints, we only tested tree methods with 5-fold test and did not do strict statistical tests.
+The random forest method is confirmed to be feasible, which is shown in several papers, but for completeness we should add some cross-validation methods, 
+or verify on other data sets.
+
+
+
+----------------------------------------------------------
+To Huang Zhi:
+
+Thank you for your advice! 
+We have omitted the figure caption due to the limited space, which may cause some unclear pointing to the figures in the current version, 
+but there is no missing figures mentioned in the context. We will revise the figure caption to make it more readable. 
+Moreover, we will improve the conclusion part by putting the specific results into it and check the grammar whether there is some.
+
+
+---------------------------------------------------------
+To Ruan Yuyan:
+
+Thank you for your opinion!
+With the dataset of 1064 people, we have already got a solid and obvious conclusion from our analysis using multiple methods. 
+Analyzing on a larger dataset would definitely give a better conclusion and generalization, but 1064 people are all the information in the dataset given here.
+
+
+
+
