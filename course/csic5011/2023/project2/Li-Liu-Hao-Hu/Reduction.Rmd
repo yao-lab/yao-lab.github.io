@@ -1,0 +1,1122 @@
+---
+title: "Reduction, visualization and classification"
+author: "Liu Yonglin"
+date: "2023-04-09"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(R.matlab)
+library(RDRToolbox)
+library(ggplot2)
+library(ggcorrplot)
+library(Rtsne)
+#library(rpca)
+library(rospca)
+library(sparsepca)
+#library(lle)
+library(randomForest)
+library(pROC)
+library(nnet)
+```
+
+## set seed
+```{r}
+set.seed(42)
+```
+
+## Load data
+```{r}
+library(fbi)
+#md <- fredmd(file = "monthly.csv", transform = TRUE)
+qd <- fredqd(file = "quarterly.csv",transform = TRUE)
+#View(md)
+View(qd)
+qd_dis<-fredqd_description
+#md_dis<-fredmd_description
+
+for(i in 2:247){
+  aa<-which(is.na(qd[61:252,i]))
+  if(length(aa)>0){
+    print("r.v")
+    print(i)
+    print(aa+60)
+  }
+}
+
+#remove 22,76,92,135,138,142,168,179,180,182,188,232
+#from 1974Q1 to 2021Q4
+#total: 192 variables number: 235-1=234
+qdt<-qd[61:252,-c(22,76,92,135,138,142,168,179,180,182,188,232)]
+
+#将qdt中缺失值替换为0
+for(i in 2:234){
+  qdt[which(is.na(qdt[,i])),i]<-0
+}
+
+am<-as.matrix(qdt[,-1])
+
+
+
+path<-getwd()
+path<-paste(path,"index-group.csv",sep = "/")
+ig <- read.csv(path, header=TRUE)
+```
+
+
+
+
+```{r}
+col_names <- colnames(am[,2:10])
+years<- qdt$date
+
+y=years
+for (i in 1:8){
+  y=c(y,years)
+}
+
+test <- qdt[1:192, 2:10]
+abc = unlist(test)
+abc=as.data.frame(abc)
+xxx=abc[1:1728,]
+
+index <- rep(col_names, each = 192)
+
+bb<- data.frame(years = y, value = xxx, index = index)
+ggplot(data = bb, aes(x=years,  y=value, colour=index)) +geom_line() 
+```
+
+
+all <- data.frame(matrix(ncol = 2, nrow = 0))
+
+
+### ISOMAP
+
+
+##Create data frame with 0 rows and 2 columns
+```{r}
+PC <- data.frame(matrix(ncol = 2, nrow = 0))
+```
+
+## Data reduction and creating new dataframe PC with 4 principle components
+```{r}
+X_ISO<-Isomap(data=am, dims=2, k=4)
+X_ISO<-as.data.frame(X_ISO)
+  
+PC<-rbind(PC,data.frame("x"=X_ISO$dim2.1, "y"=X_ISO$dim2.2))
+
+```
+
+## provide column names
+```{r}
+colnames(PC)<-c("PC1","PC2")
+```
+
+all <- rbind(all, PC)
+
+
+## splitting
+```{r}
+set.seed(42)
+sample=sample(c(TRUE, FALSE), nrow(PC), replace=TRUE, prob=c(0.7,0.3))
+isotrain  <- PC[sample, ]
+isotest   <- PC[!sample, ]
+xtrain_iso=isotrain[,1:2]
+xtest_iso=isotest[,1:2]
+ytrain_iso=isotrain[,3]
+ytest_iso=isotest[,3]
+```
+
+#logistic regression
+```{r}
+lr_iso<-multinom(group~PC1+PC2,data=isotrain,maxit=500) #maxit:iteration times
+summary(lr_iso) 
+```
+
+
+## Error and accuracy
+```{r}
+prob_isotrain<-predict(lr_iso,type="probs") 
+head(prob_isotrain)
+
+pred_isotrain<-predict(lr_iso,type="class") 
+head(pred_isotrain)
+
+#Confusion Matrix
+table<-table(predicted=pred_isotrain,Actual=isotrain$group) 
+table
+
+#Accuracy
+Accuracy<-sum(diag(table))/sum(table)  
+Accuracy
+
+#lr_iso=glm(group~PC1+PC2,data=isotrain)
+
+#summary(lr_iso)
+
+```
+
+## Plot
+```{r}
+
+ggplot(data = PC,aes(  x= PC1, y = PC2) )+ geom_point(color="red",size=2) + coord_cartesian(xlim=c(-1e+06,1e+06),ylim=c(-250000,250000))+ labs(title = "ISOMAP") + theme(plot.title = element_text(hjust = 0.5))
+```
+
+## Plot2
+```{r}
+rr=ig$group
+PC$"group"<-rr[1:192]
+ggplot(data = PC,aes(  x= PC1, y = PC2,col=group) ) + geom_point() + coord_cartesian(xlim=c(-1e+06,1e+06),ylim=c(-250000,250000))+ labs(title = "ISOMAP") + theme(plot.title = element_text(hjust = 0.5))
+```
+
+## Save
+```{r}
+write.csv(PC,"isomap-2pc.csv")
+
+v1=PC[1:192,1]
+v2=PC[1:192,2]
+d2=matrix(rep(0,192*192),nrow = 192)
+for (i in 1:192){
+  for (j in 1:192){
+    d2[i,j]=(v1[i]-v1[j])^2+(v2[i]-v2[j])^2
+  }
+}
+
+write.csv(d2,"isomap-dist-2pc.csv")
+```
+
+
+##Create data frame with 0 rows and 4 columns
+```{r}
+PC <- data.frame(matrix(ncol = 4, nrow = 0))
+```
+
+
+## Data reduction and creating new dataframe PC with 4 principle components
+```{r}
+X_ISO<-Isomap(data=am, dims=4, k=4)
+X_ISO<-as.data.frame(X_ISO)
+  
+PC<-rbind(PC,data.frame("1"=X_ISO$dim4.1, "2"=X_ISO$dim4.2, "3"=X_ISO$dim4.3, "4"=X_ISO$dim4.4))
+
+```
+
+## provide column names
+```{r}
+colnames(PC)<-c("PC1","PC2","PC3","PC4")
+```
+
+## Save-pc4
+```{r}
+write.csv(PC,"isomap-4pc.csv")
+
+d2 <- dist(PC)
+
+d2 <- as.data.frame(as.matrix(d2))
+write.csv(d2,"isomap-dist-4pc.csv")
+```
+
+
+##Create data frame with 0 rows and 6 columns
+```{r}
+PC <- data.frame(matrix(ncol = 6, nrow = 0))
+```
+
+
+## Data reduction and creating new dataframe PC with 6 principle components
+```{r}
+X_ISO<-Isomap(data=am, dims=6, k=4)
+X_ISO<-as.data.frame(X_ISO)
+  
+PC<-rbind(PC,data.frame("1"=X_ISO$dim6.1, "2"=X_ISO$dim6.2, "3"=X_ISO$dim6.3, "4"=X_ISO$dim6.4, X_ISO$dim6.5, X_ISO$dim6.6))
+
+```
+
+## provide column names
+```{r}
+colnames(PC)<-c("PC1","PC2","PC3","PC4","PC5","PC6")
+```
+
+## Save-pc4
+```{r}
+write.csv(PC,"isomap-6pc.csv")
+
+d2 <- dist(PC)
+
+d2 <- as.data.frame(as.matrix(d2))
+write.csv(d2,"isomap-dist-6pc.csv")
+```
+
+
+### LLE
+
+
+
+##Create data frame with 0 rows and 2 columns
+```{r}
+PC <- data.frame(matrix(ncol = 2, nrow = 0))
+```
+
+## Data reduction
+```{r}
+X_LLE<-LLE(data=am, dim=2, k=2)
+X_LLE<-as.data.frame(X_LLE)
+
+PC<-rbind(PC,data.frame("x"=X_LLE$V1, "y"=X_LLE$V2))
+```
+
+##provide column names
+```{r}
+colnames(PC)<-c("PC1","PC2")
+```
+
+all <- rbind(all, PC)
+
+##Plot
+```{r}
+ggplot(data = PC,aes(x=PC1, y = PC2, col=factor(group)))+geom_point(color="darkorange",size=2.5)+ coord_cartesian(xlim=c(-2,2),ylim=c(-1.7,3))+ labs(title = "LLE") + theme(plot.title = element_text(hjust = 0.5))
+```
+## Plot2
+```{r}
+rr=ig$group
+PC$"group"<-rr[1:192]
+ggplot(data = PC,aes(  x= PC1, y = PC2,col=group) ) + geom_point() + coord_cartesian(xlim=c(-2,2),ylim=c(-1.7,3))+ labs(title = "LLE") + theme(plot.title = element_text(hjust = 0.5))
+```
+
+
+## splitting
+```{r}
+set.seed(42)
+sample=sample(c(TRUE, FALSE), nrow(PC), replace=TRUE, prob=c(0.7,0.3))
+isotrain  <- PC[sample, ]
+isotest   <- PC[!sample, ]
+xtrain_iso=isotrain[,1:2]
+xtest_iso=isotest[,1:2]
+ytrain_iso=isotrain[,3]
+ytest_iso=isotest[,3]
+```
+
+#logistic regression
+```{r}
+lr_iso<-multinom(group~PC1+PC2,data=isotrain,maxit=500) #maxit:iteration times
+summary(lr_iso) 
+```
+
+## Error and accuracy
+```{r}
+prob_isotrain<-predict(lr_iso,type="probs") 
+head(prob_isotrain)
+
+pred_isotrain<-predict(lr_iso,type="class") 
+head(pred_isotrain)
+
+#Confusion Matrix
+table<-table(predicted=pred_isotrain,Actual=isotrain$group) 
+table
+
+#Accuracy
+Accuracy<-sum(diag(table))/sum(table)  
+Accuracy
+
+#lr_iso=glm(group~PC1+PC2,data=isotrain)
+
+#summary(lr_iso)
+
+```
+
+## Save data to csv
+```{r}
+write.csv(PC,"lle-2pc.csv")
+
+v1=PC[1:192,1]
+v2=PC[1:192,2]
+d2=matrix(rep(0,192*192),nrow = 192)
+for (i in 1:192){
+  for (j in 1:192){
+    d2[i,j]=(v1[i]-v1[j])^2+(v2[i]-v2[j])^2
+  }
+}
+
+write.csv(d2,"lle-dist-2pc.csv")
+```
+
+##Create data frame with 0 rows and 4 columns
+```{r}
+PC <- data.frame(matrix(ncol = 4, nrow = 0))
+```
+
+## Data reduction
+```{r}
+X_LLE<-LLE(data=am, dim=4, k=2)
+X_LLE<-as.data.frame(X_LLE)
+
+PC<-rbind(PC,data.frame("x"=X_LLE$V1, "y"=X_LLE$V2, X_LLE$V3, X_LLE$V4))
+```
+
+##provide column names
+```{r}
+colnames(PC)<-c("PC1","PC2","PC3","PC4")
+```
+
+## Save data to csv
+```{r}
+write.csv(PC,"lle-4pc.csv")
+
+d2 <- dist(PC)
+
+d2 <- as.data.frame(as.matrix(d2))
+
+write.csv(d2,"lle-dist-4pc.csv")
+```
+
+##Create data frame with 0 rows and 6 columns
+```{r}
+PC <- data.frame(matrix(ncol = 6, nrow = 0))
+```
+
+## Data reduction
+```{r}
+X_LLE<-LLE(data=am, dim=6, k=2)
+X_LLE<-as.data.frame(X_LLE)
+
+PC<-rbind(PC,data.frame("x"=X_LLE$V1, "y"=X_LLE$V2, X_LLE$V3, X_LLE$V4, X_LLE$V5, X_LLE$V6))
+```
+
+##provide column names
+```{r}
+colnames(PC)<-c("PC1","PC2","PC3","PC4","PC5","PC6")
+```
+
+## Save data to csv
+```{r}
+write.csv(PC,"lle-6pc.csv")
+
+d2 <- dist(PC)
+
+d2 <- as.data.frame(as.matrix(d2))
+
+write.csv(d2,"lle-dist-6pc.csv")
+```
+
+### MDS
+
+
+
+## create data frame with 0 rows and 2 columns
+```{r}
+PC <- data.frame(matrix(ncol = 2, nrow = 0))
+```
+
+## Data reduction
+```{r}
+
+dist = dist(am,p = 2)
+X_MDS= cmdscale(dist)
+X_MDS<-as.data.frame(X_MDS)
+
+PC<-rbind(PC,data.frame(X_MDS$V1, X_MDS$V2))
+
+```
+
+## provide column names
+```{r}
+colnames(PC)<-c("PC1","PC2")
+```
+
+
+all <- rbind(all, PC)
+
+## Plot
+```{r}
+ggplot(data = PC,aes(x=PC1, y = PC2, col=factor(group)))+geom_point(color="darkgreen",size=2.5)+ coord_cartesian(xlim=c(-1e+06,1e+06),ylim=c(-2e+05,1e+05))+ labs(title = "MDS") + theme(plot.title = element_text(hjust = 0.5))
+```
+
+## Plot2
+```{r}
+rr=ig$group
+PC$"group"<-rr[1:192]
+ggplot(data = PC,aes(  x= PC1, y = PC2,col=group) ) + geom_point()+ coord_cartesian(xlim=c(-1e+06,1e+06),ylim=c(-2e+05,1e+05))+ labs(title = "MDS") + theme(plot.title = element_text(hjust = 0.5))
+```
+
+## splitting
+```{r}
+set.seed(42)
+sample=sample(c(TRUE, FALSE), nrow(PC), replace=TRUE, prob=c(0.7,0.3))
+mdstrain  <- PC[sample, ]
+mdstest   <- PC[!sample, ]
+xtrain_mds=mdstrain[,1:2]
+xtest_mds=mdstest[,1:2]
+ytrain_mds=mdstrain[,3]
+ytest_mds=mdstest[,3]
+```
+
+## logistic regression
+```{r}
+lr_mds<-multinom(group~PC1+PC2,data=mdstrain,maxit=500) #maxit表示迭代次数
+summary(lr_mds) 
+```
+
+## Accuracy
+```{r}
+prob_mdstrain<-predict(lr_mds,type="probs")   
+head(prob_mdstrain)
+
+pred_mdstrain<-predict(lr_mds,type="class")   
+head(pred_mdstrain)
+table<-table(predicted=pred_mdstrain,Actual=mdstrain$group)
+table
+Accuracy<-sum(diag(table))/sum(table)
+Accuracy
+
+```
+
+## Save
+```{r}
+write.csv(PC,"mds-2pc.csv")
+
+v1=PC[1:192,1]
+v2=PC[1:192,2]
+d2=matrix(rep(0,192*192),nrow = 192)
+for (i in 1:192){
+  for (j in 1:192){
+    d2[i,j]=(v1[i]-v1[j])^2+(v2[i]-v2[j])^2
+  }
+}
+
+write.csv(d2,"mds-dist-2pc.csv")
+```
+
+## create data frame with 0 rows and 4 columns
+```{r}
+PC <- data.frame(matrix(ncol = 4, nrow = 0))
+```
+
+## Data reduction
+```{r}
+
+dist = dist(am,p = 2)
+X_MDS= cmdscale(dist,k=4)
+X_MDS<-as.data.frame(X_MDS)
+
+PC<-rbind(PC,data.frame(X_MDS$V1, X_MDS$V2, X_MDS$V3, X_MDS$V4))
+
+```
+
+##provide column names
+```{r}
+colnames(PC)<-c("PC1","PC2","PC3","PC4")
+```
+## Save
+```{r}
+write.csv(PC,"mds-4pc.csv")
+
+d2 <- dist(PC)
+
+d2 <- as.data.frame(as.matrix(d2))
+
+write.csv(d2,"mds-dist-4pc.csv")
+
+```
+
+
+## create data frame with 0 rows and 6 columns
+```{r}
+PC <- data.frame(matrix(ncol = 6, nrow = 0))
+```
+
+## Data reduction
+```{r}
+
+dist = dist(am,p = 2)
+X_MDS= cmdscale(dist,k=6)
+X_MDS<-as.data.frame(X_MDS)
+
+PC<-rbind(PC,data.frame(X_MDS$V1, X_MDS$V2, X_MDS$V3, X_MDS$V4, X_MDS$V5, X_MDS$V6))
+
+```
+
+##provide column names
+```{r}
+colnames(PC)<-c("PC1","PC2","PC3","PC4","PC5","PC6")
+```
+## Save
+```{r}
+write.csv(PC,"mds-6pc.csv")
+
+d2 <- dist(PC)
+
+d2 <- as.data.frame(as.matrix(d2))
+
+write.csv(d2,"mds-dist-6pc.csv")
+
+```
+
+
+### TSNE
+
+
+
+## create data frame with 0 rows and 2 columns
+```{r}
+PC <- data.frame(matrix(ncol = 2, nrow = 0))
+```
+
+#reduction
+```{r}
+
+  
+tSNE_out = Rtsne(am,check_duplicates = FALSE, perplexity = 1)
+X_tSNE = tSNE_out$Y
+X_tSNE<-as.data.frame(X_tSNE)
+
+PC<-rbind(PC,data.frame("x"=X_tSNE$V1, "y"=X_tSNE$V2))
+
+```
+
+##provide column names
+```{r}
+colnames(PC)<-c("PC1","PC2")
+```
+
+all <- rbind(all, PC)
+
+##Plot
+```{r}
+ggplot(data = PC,aes(x=PC1, y = PC2, col=factor(group)))+geom_point(colour="blue",size=2.2)+ labs(title = "TSNE") + theme(plot.title = element_text(hjust = 0.5))
+```
+
+## Plot2
+```{r}
+rr=ig$group
+PC$"group"<-rr[1:192]
+ggplot(data = PC,aes(  x= PC1, y = PC2,col=group) ) + geom_point()+ labs(title = "TSNE") + theme(plot.title = element_text(hjust = 0.5))
+```
+
+## splitting
+```{r}
+set.seed(42)
+sample=sample(c(TRUE, FALSE), nrow(PC), replace=TRUE, prob=c(0.7,0.3))
+tsnetrain  <- PC[sample, ]
+tsnetest   <- PC[!sample, ]
+xtrain_tsne=tsnetrain[,1:2]
+xtest_tsne=tsnetest[,1:2]
+ytrain_tsne=tsnetrain[,3]
+ytest_tsne=tsnetest[,3]
+
+```
+
+## logistic regression
+```{r}
+lr_tsne<-multinom(group~PC1+PC2,data=tsnetrain,maxit=500) 
+summary(lr_tsne) 
+```
+
+## Result
+```{r}
+prob_tsnetrain<-predict(lr_tsne,type="probs")   
+head(prob_tsnetrain)
+
+pred_tsnetrain<-predict(lr_tsne,type="class")  
+head(pred_tsnetrain)
+table<-table(predicted=pred_tsnetrain,Actual=tsnetrain$group) 
+table
+Accuracy<-sum(diag(table))/sum(table) 
+Accuracy
+```
+
+## Save
+```{r}
+write.csv(PC,"tsne-2pc.csv")
+
+v1=PC[1:192,1]
+v2=PC[1:192,2]
+d2=matrix(rep(0,192*192),nrow = 192)
+for (i in 1:192){
+  for (j in 1:192){
+    d2[i,j]=(v1[i]-v1[j])^2+(v2[i]-v2[j])^2
+  }
+}
+
+write.csv(d2,"tsne-dist-2pc.csv")
+```
+
+## create data frame with 0 rows and 4 columns
+```{r}
+PC <- data.frame(matrix(ncol = 4, nrow = 0))
+```
+
+#reduction(max_dim=3)
+```{r}
+
+  
+tSNE_out = Rtsne(am, dim = 3, check_duplicates = FALSE, perplexity = 1)
+X_tSNE = tSNE_out$Y
+X_tSNE<-as.data.frame(X_tSNE)
+
+PC<-rbind(PC,data.frame("x"=X_tSNE$V1, "y"=X_tSNE$V2))
+
+```
+
+### rPCA
+
+
+
+## create data frame with 0 rows and 2 columns
+```{r}
+PC <- data.frame(matrix(ncol = 2, nrow = 0))
+```
+
+## Reduction
+```{r}
+
+am1=t(am)
+
+X_rpca=robpca(am1,k=2)
+X_rpca = X_rpca$loadings
+X_rpca=as.data.frame(X_rpca)
+
+PC<-rbind(PC,data.frame("x"=X_rpca$PC1, "y"=X_rpca$PC2))
+  
+
+```
+
+## provide column names
+```{r}
+colnames(PC)<-c("PC1","PC2")
+```
+
+all <- rbind(all, PC)
+
+## Plot
+```{r}
+ggplot(data = PC,aes(x=PC1, y = PC2, col=factor(group)))+geom_point(colour="purple",size=2.5)+ coord_cartesian(xlim=c(-0.2,0.3),ylim=c(-0.3,0.25))+ labs(title = "rPCA") + theme(plot.title = element_text(hjust = 0.5))
+```
+
+## Plot2
+```{r}
+rr=ig$group
+PC$"group"<-rr[1:192]
+ggplot(data = PC,aes(  x= PC1, y = PC2,col=group) ) + geom_point()+ coord_cartesian(xlim=c(-0.2,0.3),ylim=c(-0.3,0.25))+ labs(title = "rPCA") + theme(plot.title = element_text(hjust = 0.5))
+```
+
+## splitting
+```{r}
+set.seed(42)
+sample=sample(c(TRUE, FALSE), nrow(PC), replace=TRUE, prob=c(0.7,0.3))
+isotrain  <- PC[sample, ]
+isotest   <- PC[!sample, ]
+xtrain_iso=isotrain[,1:2]
+xtest_iso=isotest[,1:2]
+ytrain_iso=isotrain[,3]
+ytest_iso=isotest[,3]
+```
+
+#logistic regression
+```{r}
+lr_iso<-multinom(group~PC1+PC2,data=isotrain,maxit=500) #maxit:iteration times
+summary(lr_iso) 
+```
+
+## Error and accuracy
+```{r}
+prob_isotrain<-predict(lr_iso,type="probs") 
+head(prob_isotrain)
+
+pred_isotrain<-predict(lr_iso,type="class") 
+head(pred_isotrain)
+
+#Confusion Matrix
+table<-table(predicted=pred_isotrain,Actual=isotrain$group) 
+table
+
+#Accuracy
+Accuracy<-sum(diag(table))/sum(table)  
+Accuracy
+
+#lr_iso=glm(group~PC1+PC2,data=isotrain)
+
+#summary(lr_iso)
+
+```
+
+## Save data to csv
+```{r}
+write.csv(PC,"rpca-2pc.csv")
+
+v1=PC[1:192,1]
+v2=PC[1:192,2]
+d2=matrix(rep(0,192*192),nrow = 192)
+for (i in 1:192){
+  for (j in 1:192){
+    d2[i,j]=(v1[i]-v1[j])^2+(v2[i]-v2[j])^2
+  }
+}
+
+write.csv(d2,"rpca-dist-2pc.csv")
+```
+
+
+
+## create data frame with 0 rows and 4 columns
+```{r}
+PC <- data.frame(matrix(ncol = 4, nrow = 0))
+```
+
+## Reduction
+```{r}
+
+am1=t(am)
+
+X_rpca=robpca(am1,k=4)
+X_rpca = X_rpca$loadings
+X_rpca=as.data.frame(X_rpca)
+
+PC<-rbind(PC,data.frame(X_rpca$PC1, X_rpca$PC2, X_rpca$PC3, X_rpca$PC4))
+  
+
+```
+
+## provide column names
+```{r}
+colnames(PC)<-c("PC1","PC2","PC3","PC4")
+```
+
+## Save
+```{r}
+write.csv(PC,"rpca-4pc.csv")
+
+d2 <- dist(PC)
+
+d2 <- as.data.frame(as.matrix(d2))
+
+write.csv(d2,"rpca-dist-4pc.csv")
+
+```
+
+## create data frame with 0 rows and 6 columns
+```{r}
+PC <- data.frame(matrix(ncol = 6, nrow = 0))
+```
+
+## Reduction
+```{r}
+
+am1=t(am)
+
+X_rpca=robpca(am1,k=6)
+X_rpca = X_rpca$loadings
+X_rpca=as.data.frame(X_rpca)
+
+PC<-rbind(PC,data.frame(X_rpca$PC1, X_rpca$PC2, X_rpca$PC3, X_rpca$PC4, X_rpca$PC5, X_rpca$PC6))
+  
+
+```
+
+## provide column names
+```{r}
+colnames(PC)<-c("PC1","PC2","PC3","PC4","PC5","PC6")
+```
+
+## Save
+```{r}
+write.csv(PC,"rpca-6pc.csv")
+
+d2 <- dist(PC)
+
+d2 <- as.data.frame(as.matrix(d2))
+
+write.csv(d2,"rpca-dist-6pc.csv")
+
+```
+### sPCA
+
+
+
+#create data frame with 0 rows and 2 columns
+```{r}
+PC <- data.frame(matrix(ncol = 2, nrow = 0))
+```
+
+## Reduction
+```{r}
+
+am2=t(am)
+
+X_spca=spca(am2,k=2)
+X_spca = X_spca$loadings
+X_spca=as.data.frame(X_spca)
+
+PC<-rbind(PC,data.frame("x"=X_spca$V1, "y"=X_spca$V2))
+  
+```
+
+## provide column names
+```{r}
+colnames(PC)<-c("PC1","PC2")
+```
+
+all <- rbind(all, PC)
+
+## Plot
+```{r}
+ggplot(data = PC,aes(x=PC1, y = PC2, col=factor(group)))+geom_point(colour="#FF6699",size=2.5)+ coord_cartesian(xlim=c(0,0.17),ylim=c(-0.3,0.15))+ labs(title = "sPCA") + theme(plot.title = element_text(hjust = 0.5))
+```
+## Plot2
+```{r}
+rr=ig$group
+PC$"group"<-rr[1:192]
+ggplot(data = PC,aes(  x= PC1, y = PC2,col=group) ) + geom_point()+ coord_cartesian(xlim=c(0,0.17),ylim=c(-0.3,0.15))+ labs(title = "sPCA") + theme(plot.title = element_text(hjust = 0.5))
+```
+## splitting
+```{r}
+set.seed(42)
+sample=sample(c(TRUE, FALSE), nrow(PC), replace=TRUE, prob=c(0.7,0.3))
+spcatrain  <- PC[sample, ]
+spcatest   <- PC[!sample, ]
+xtrain_spca=spcatrain[,1:2]
+xtest_spca=spcatest[,1:2]
+ytrain_spca=spcatrain[,3]
+ytest_spca=spcatest[,3]
+```
+
+## regression
+```{r}
+lr_spca<-multinom(group~PC1+PC2,data=spcatrain,maxit=500) 
+summary(lr_spca) 
+```
+
+## Result
+```{r}
+prob_spcatrain<-predict(lr_spca,type="probs")  
+head(prob_spcatrain)
+
+pred_spcatrain<-predict(lr_spca,type="class")  
+head(pred_spcatrain)
+table<-table(predicted=pred_spcatrain,Actual=spcatrain$group) 
+table
+Accuracy<-sum(diag(table))/sum(table)
+Accuracy
+
+```
+
+## Save
+```{r}
+write.csv(PC,"spca-2pc.csv")
+
+v1=PC[1:192,1]
+v2=PC[1:192,2]
+d2=matrix(rep(0,192*192),nrow = 192)
+for (i in 1:192){
+  for (j in 1:192){
+    d2[i,j]=(v1[i]-v1[j])^2+(v2[i]-v2[j])^2
+  }
+}
+
+write.csv(d2,"spca-dist-2pc.csv")
+```
+
+
+## create data frame with 0 rows and 4 columns
+```{r}
+PC <- data.frame(matrix(ncol = 4, nrow = 0))
+```
+
+## Reduction
+```{r}
+
+am1=t(am)
+
+X_spca=spca(am1,k=4)
+X_spca = X_spca$loadings
+X_spca=as.data.frame(X_spca)
+
+PC<-rbind(PC,data.frame(X_spca$PC1, X_spca$PC2, X_spca$PC3, X_spca$PC4))
+  
+
+```
+
+## provide column names
+```{r}
+colnames(PC)<-c("PC1","PC2","PC3","PC4")
+```
+
+## Save
+```{r}
+write.csv(PC,"spca-4pc.csv")
+
+d2 <- dist(PC)
+
+d2 <- as.data.frame(as.matrix(d2))
+
+write.csv(d2,"spca-dist-4pc.csv")
+
+```
+
+## create data frame with 0 rows and 6 columns
+```{r}
+PC <- data.frame(matrix(ncol = 6, nrow = 0))
+```
+
+## Reduction
+```{r}
+
+am1=t(am)
+
+X_spca=spca(am1,k=6)
+X_spca = X_spca$loadings
+X_spca=as.data.frame(X_spca)
+
+PC<-rbind(PC,data.frame(X_spca$PC1, X_spca$PC2, X_spca$PC3, X_spca$PC4, X_spca$PC5, X_spca$PC6))
+  
+
+```
+
+## provide column names
+```{r}
+colnames(PC)<-c("PC1","PC2","PC3","PC4","PC5","PC6")
+```
+
+## Save
+```{r}
+write.csv(PC,"spca-6pc.csv")
+
+d2 <- dist(PC)
+
+d2 <- as.data.frame(as.matrix(d2))
+
+write.csv(d2,"spca-dist-6pc.csv")
+```
+
+## Plot in groups
+```{r}
+index <- rep(c("ISOMAP","LLE", "MDS", "TSNE", "RPCA", "SPCA"), each = 192)
+all$method <- index
+```
+
+
+```{r}
+ggplot(data = all,aes(x=PC1, y = PC2, col=index))+geom_point(size=0.5)
+```
+
+#Plot
+
+library(ggplot2)
+library(scales)
+
+path<-getwd()
+path<-paste(path,"final_mse.csv",sep = "/")
+df <- read.csv(path, header=TRUE)
+
+df1 <- df[df$index == "GDPC1", ]
+df11 <- df1[, 2:10]
+df11 <- t(df11)
+
+rows <- c(1, 2, 5, 8, 9)
+new_df <- t(df11[rows, ])
+
+mse2 = unlist(df1)
+
+mse2=as.data.frame(mse2)
+
+factor <- rep(1:9, each = 7)
+mse3 <- mse2[8:70, ]
+index <- rep(c("baseline","pca", "spca", "tpca-mds", "tpca-iso", "tpca-tsne", "tpca-spca", "tpca-rpca", "tpca-lle"), each = 7)
+
+q=c(1,2,3,4,5,6,7)
+
+t=q
+for (i in 1:8){
+  t=c(t,q)
+}
+
+
+aa <- data.frame(factor = t, mse = mse3, index = index)
+
+aa$mse <- format(aa[,2], scientific = TRUE)
+
+ggplot(data = aa, aes(x=factor,y=mse,colour=index)  ) + geom_line()
+
+
+
+
+
+
+df2 <- df[df$index == "INDPRO", ]
+df22 <- t(df2[, 2:10])
+
+mse2 = unlist(df2)
+
+mse2=as.data.frame(mse2)
+
+factor <- rep(1:9, each = 7)
+mse <- mse2[8:70, ]
+index <- rep(c("baseline","pca", "spca", "tpca-mds", "tpca-iso", "tpca-tsne", "tpca-spca", "tpca-rpca", "tpca-lle"), each = 7)
+
+q=c(1,2,3,4,5,6,7)
+
+t=q
+for (i in 1:8){
+  t=c(t,q)
+}
+
+
+aa <- data.frame(factor = t, mse = mse, index = index)
+
+ggplot(data = aa, aes(x=factor,  y=mse , colour=index)) +geom_point()  
+
+
+
+
+
+
+
+df2 <- df[df$index == "HWIURATIOx", ]
+df22 <- t(df2[, 2:10])
+
+mse2 = unlist(df2)
+
+mse2=as.data.frame(mse2)
+
+factor <- rep(1:9, each = 7)
+mse3 <- mse2[8:70, ]
+index <- rep(c("baseline","pca", "spca", "tpca-mds", "tpca-iso", "tpca-tsne", "tpca-spca", "tpca-rpca", "tpca-lle"), each = 7)
+
+q=c(1,2,3,4,5,6,7)
+
+t=q
+for (i in 1:8){
+  t=c(t,q)
+}
+
+
+aa <- data.frame(factor = t, mse = mse3, index = index)
+
+ggplot(data = aa, aes(x=factor,  y=mse , colour=index)) +geom_point()  
+
+
+
+
+
+
+df2 <- df[df$index == "DFSARG3Q086SBEA", ]
+df22 <- t(df2[, 2:10])
+
+mse2 = unlist(df2)
+
+mse2=as.data.frame(mse2)
+
+factor <- rep(1:9, each = 7)
+mse <- mse2[8:70, ]
+index <- rep(c("baseline","pca", "spca", "tpca-mds", "tpca-iso", "tpca-tsne", "tpca-spca", "tpca-rpca", "tpca-lle"), each = 7)
+
+q=c(1,2,3,4,5,6,7)
+
+t=q
+for (i in 1:8){
+  t=c(t,q)
+}
+
+
+aa <- data.frame(factor = t, mse = mse, index = index)
+
+ggplot(data = aa, aes(x=factor,  y=mse , colour=index)) +geom_point()  
