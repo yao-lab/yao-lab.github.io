@@ -1,3 +1,0 @@
-# Statistical Prediction
-
-## Yuan Yao
