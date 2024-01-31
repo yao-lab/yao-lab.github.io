@@ -1,0 +1,231 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\def\N{{\mathbb N}}
+\def\NN{{\mathcal N}}
+\def\R{{\mathbb R}}
+\def\E{{\mathbb E}}
+\def\rank{{\mathrm{rank}}}
+\def\tr{{\mathrm{trace}}}
+\def\P{{\mathrm{Prob}}}
+\def\sign{{\mathrm{sign}}}
+\def\diag{{\mathrm{diag}}}
+
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0.25 in}
+\setlength{\parskip}{0.1 in}
+
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{page}{1}
+   \setcounter{section}{0}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf A Mathematical Introduction to Data Science \hfill #4} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\Large \hfill #1  \hfill} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\it Instructor: #2\hfill #3} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{#1}{#1}
+   \vspace*{4mm}
+}
+
+\graphicspath{{figures/}{../book.datasci/figures/}}
+
+\begin{document}
+
+\lecture{Homework 8. Persistent Homology}{Yuan Yao}{Due: 1.5 weeks later}{Apr. 23, 2021}
+
+The problem below marked by $^*$ is optional with bonus credits. % For the experimental problem, include the source codes which are runnable under standard settings. 
+
+\begin{enumerate}
+\item {\em Persistent Homology:} Download the Javaplex (latest version 4.3.4) from the following site
+
+\url{http://appliedtopology.github.io/javaplex/}
+
+Follow the tutorial at 
+
+\url{https://github.com/appliedtopology/javaplex/wiki/Tutorial} 
+
+to get it work under Matlab environment. For example, extract the zip file and open Matlab, change Matlab's ``Current Folder" to the directory where the \texttt{load\_javaplex.m} file is located (\texttt{src/matlab/for\_distribution/} in version 4.3.4), run the file: 
+
+\begin{quote} \begin{verbatim} 
+>> load_javaplex
+\end{verbatim} \end{quote}
+
+Also in the Matlab command window, type the following command.
+
+\begin{quote} \begin{verbatim} 
+>> import edu.stanford.math.plex4.*;
+\end{verbatim} \end{quote}
+
+Installation is complete. Confirm that Javaplex is working properly with the following command.
+
+\begin{quote} \begin{verbatim}
+>> api.Plex4.createExplicitSimplexStream()
+ans = edu.stanford.math.plex4.streams.impl.ExplicitSimplexStream@16966ef
+\end{verbatim} \end{quote}
+
+Your output should be the same except for the last several characters. Each time upon starting a new Matlab session, you will need to run \texttt{load\_javaplex.m}.
+
+
+Now conduct the following numerical experiment with the example shown in class: 
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.4\textwidth]{persistence.jpg}  
+\includegraphics[width=0.33\textwidth]{PersistentBettiNumbers.png}  \\
+(a) \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (b)
+\caption{(a) A filtration of simplices; (b) barcodes of Persistent Betti Numbers. \label{fig:filtration} }
+\end{figure}
+
+
+\begin{enumerate}
+\item Construct a filtration (stream) of the simplicial complex in the Figure \ref{fig:filtration} (a). This could be done by 
+\subitem 
+\begin{quote} \begin{verbatim}
+>> stream = api.Plex4.createExplicitSimplexStream(); 
+>> stream.addVertex(0,0);
+>> stream.addVertex(1,1);
+>> stream.addVertex(2,2);
+>> stream.addVertex(3,3);
+>> stream.addElement([0,2],4);
+>> stream.addElement([0,1],5);
+>> stream.addElement([2,3],6);
+>> stream.addElement([1,3],7);
+>> stream.addElement([1,2],8);
+>> stream.addElement([1,2,3],9);
+>> stream.addElement([0,1,2],10);
+>> stream.finalizeStream();
+\end{verbatim} \end{quote}
+\subitem where you can check the number of simplices in the filtration (stream) is 11
+\begin{quote} \begin{verbatim} 
+>> num_simplices = stream.getSize()
+\end{verbatim} \end{quote}
+\item Compute the persistent homology for the filtration and plot the barcode as Figure \ref{fig:filtration} (b).
+\begin{quote} \begin{verbatim} 
+>> % Compute the Z/2Z persistence homology of dimension less than 3:
+>> persistence = api.Plex4.getModularSimplicialAlgorithm(3, 2); 
+>> intervals = persistence.computeIntervals(stream);
+>> options.filename = 'Persistent-Betti-Numbers';
+>> options.max_filtration_value = 11;
+>> % Plot the barcode of persistent Betti numbers:
+>> plot_barcodes(intervals, options); 
+\end{verbatim} \end{quote}
+\end{enumerate}
+
+\item {\em Torus example:} In \texttt{javaplex}, construct a torus, the Vietoris-Rips complex, persistent homology, and plot the barcodes of persistent Betti numbers. 
+
+\begin{enumerate}
+\item Load a pre-stored torus embeded in 4-dimensional space with 400 samples
+\begin{quote} \begin{verbatim}
+>> load tutorial_examples/pointsTorusGrid.mat
+>> scatter3(pointsTorusGrid(:,1), pointsTorusGrid(:,2), pointsTorusGrid(:,3))
+\end{verbatim} \end{quote}
+\item Construct a Vietoris-Rips complex
+\begin{quote} \begin{verbatim} 
+>> max_dimension = 3;
+>> max_filtration_value = 0.9;
+>> num_divisions = 1000;
+>> stream = api.Plex4.createVietorisRipsStream(pointsTorusGrid, ... 
+    max_dimension, max_filtration_value, num_divisions);
+>> num_simplices = stream.getSize()
+\end{verbatim} \end{quote}
+\item Compute the persistent homology for the Vietoris-Rips complex
+\begin{quote} \begin{verbatim} 
+>> persistence = api.Plex4.getModularSimplicialAlgorithm(max_dimension, 2);
+>> intervals = persistence.computeIntervals(stream);
+\end{verbatim} \end{quote}
+\item Plot the barcode for the persistent Betti numbers, like Fig. \ref{fig:torus}
+\begin{quote} \begin{verbatim} 
+>> options.filename = 'ripsTorus4.png';
+>> options.max_filtration_value = max_filtration_value;
+>> options.max_dimension = max_dimension - 1;
+>> options.side_by_side = true;
+>> plot_barcodes(intervals, options);
+\end{verbatim} \end{quote}
+\item Explain the picture you find.
+\end{enumerate}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.4\textwidth]{ripsTorus4.png}  
+\caption{Barcodes of Persistent Betti Numbers of a Torus. \label{fig:torus} }
+\end{figure}
+
+
+\item {\em Single Linkage Clustering and Persistent 0-Homology}: Hierarchical clustering algorithms performs the following algorithm to build up a cluster tree.
+
+\begin{enumerate}
+\item Start with a set of $n$ data points as $n$ initial clusters (leaves). 
+\item Repeatedly merge two ``closest" clusters.
+\end{enumerate}
+
+There are a variety of ``distance" (or ``dissimilarity") notions between clusters:
+\begin{enumerate}
+\item[(1)] {\bf Single Linkage}: distances (dissimilarity) between two \emph{closest} pair of points in two clusters;
+\item[(2)] {\bf Complete Linkage}: distances (dissimilarity) between two \emph{furthest} pair of points in two clusters;
+\item[(3)] {\bf Complete Linkage}: average pairwise distances (dissimilarity) between two clusters.
+\end{enumerate}
+
+     	\begin{figure}
+                   		\centering
+                   		\includegraphics[width=.6\linewidth]{../ISLR/graphics/ISLRFigures/10_12.pdf}
+                   		%\caption{A subfigure}
+                   		\caption{\scriptsize 10.12 (Introduction to Statistical Learning with Applications in R). Average, complete, and single linkage applied to an example
+                   			data set. Average and complete linkage tend to yield more balanced clusters.
+                   		}
+        \end{figure}
+        
+Show that 
+\begin{enumerate}
+\item \emph{$0$-dimensional Persistent Homology of $n$ points in a metric space is equivalent to single linkage clustering without labeling, i.e. permutation invariant}; 
+\item \emph{For a continuous density function $p:\R^d\to \R_+$, let 
+$$C_p(\lambda):=\{\mbox{connected components of $x\in\R^d$}: p(x)\geq \lambda\} $$ 
+be the connected components of super-level sets of $p(x)\geq \lambda\geq 0$, then $C_p(\lambda)\subseteq C_p(\lambda^\prime)$ as $\lambda \geq \lambda^\prime$ and $C_p(\lambda)$ induces a tree such that the vertex set at level $\lambda$ consists of connected components and an edge connects connected components at adjacent levels if $\sigma \subseteq\tau$ for $\sigma\in C_p(\lambda)$ and $\tau \in C_p(\lambda^\prime)$}. 
+\item \emph{*Under what conditions, $0$-dimensional Persistent Homology of $n$ sample points in Euclidean space is consistent to recover connectivity of a probability density super-level set}?  (Hartigen, J. A. ``Statistical theory in clustering", Journal of Classification, 2: 63-76, 1985)
+\end{enumerate}
+
+\item *{\em Niyogi-Smale-Weinberger Consistency Theorem.} The following theorem establishes the homology consistency of \v{C}ech complex of discrete samples uniformly from a compact submanifold of $\R^d$. 
+\paragraph{Theorem.}{} Let $M$ be a compact submanifold of $\mathbb{R}^{d}$ with condition number $\tau$ and let $\left\{x_{1}, \ldots, x_{n}\right\}$ be a set of points drawn from $M$ according to the volume measure. Fix $0<\epsilon<\frac{\tau}{2}$. Then if
+$$
+n>\beta_{1}\left(\log \left(\beta_{2}\right)+\log \left(\frac{1}{\delta}\right)\right),
+$$
+there is a homotopy equivalence
+$$
+\bigcup_{z \in\left\{x_{1}, \ldots, x_{n}\right\}} B_{\epsilon}(z) \simeq M
+$$
+between the union of balls and $M$ (and in particular the homology groups coincide) with probability $>1-\delta$.
+Here
+$$
+\beta_{1}=\frac{\operatorname{vol}(M)}{\cos ^{d}\left(\theta_{1}\right) \operatorname{vol}\left(B_{\frac{\epsilon}{4}}^{d}\right)}
+$$
+and
+$$
+\beta_{2}=\frac{\operatorname{vol}(M)}{\cos ^{d}\left(\theta_{2}\right) \operatorname{vol}\left(B^d_{\frac{\epsilon}{8}} \right)},
+$$
+where $\theta_{1}=\arcsin \left(\frac{\epsilon}{8 \tau}\right), \theta_{2}=\arcsin \left(\frac{\epsilon}{16 \tau}\right)$, and $\operatorname{vol}\left(B_{r}^{d}\right)$ denotes the volume of the
+$d$-dimensional ball of radius $r$.
+\emph{Can you read the paper and sketch the main idea for the proof? What about the noisy samples near the submanifold? }
+\paragraph{Reference:} Partha Niyogi, Stephen Smale, and Shmuel Weinberger. \emph{Finding the homology of submanifolds with high confidence from random samples}. Discrete Comput. Geom. 39(1-3): 419-441, 2008.
+%\item {\em Mapper}: 
+\end{enumerate}
+
+\end{document}
+
+
