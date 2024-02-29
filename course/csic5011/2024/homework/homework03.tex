@@ -148,14 +148,14 @@ which minimizes the mean square error (risk) $R(\widehat{\theta}) = \E(\widehat{
 In \emph{Empirical Bayes}, prior is not given and needs to be estimated from data, in contrast to the traditional Bayes where prior is given and independent to data. 
 
 \begin{enumerate}
-\item (James-Stein) Consider the following two-level Gaussian sampling process: let $\mu_i \sim \mathcal{N}(0,\sigma^2)$ ($i=1,\ldots, n$), and for each $i$, $x_i\sim \mathcal{N}(\mu_i,1)$. In other words, $\mu_i$ is sampled from a Gaussian prior $ p(\theta) = \mathcal{N}(0,\sigma^2)$ with unknown $\sigma^2$ and data $x_i$ is further sampled from Gaussian distribution $p(x|\theta)=\mathcal{N}(\mu_i,1)$. Show that 
-\subitem[i.] the marginal $p(x) = \mathcal{N}(0, \sigma^2+1)$; 
-\subitem[ii.] the posterior $p(\theta | x) = \mathcal{N}\left( \frac{\sigma^2 x}{\sigma^2+1}, \frac{\sigma^2}{\sigma^2+1} \right)$;
-\subitem[iii.] the posterior mean gives
-\[  \E[\theta | x] = \frac{\sigma^2 x}{\sigma^2+1} = \left( 1 - \frac{1}{\sigma^2+1} \right) x
+\item (James-Stein) Consider the following two-level Gaussian sampling process: let $\mu_i \sim \mathcal{N}(M,A)$ ($i=1,\ldots, n$), and for each $i$, $x_i\sim \mathcal{N}(\mu_i,1)$. In other words, $\mu_i$ is sampled from a Gaussian prior $ p(\theta) = \mathcal{N}(M,A)$ with unknown $A,M$ and data $x_i$ is further sampled from Gaussian distribution $p(x|\theta)=\mathcal{N}(\mu_i,1)$. Show that 
+\subitem[i.] the marginal $p(x) = \mathcal{N}(M, A+1)$; 
+\subitem[ii.] the posterior $p(\theta | x) = \mathcal{N}\left( {\bf M}+B({\bf x}-{\bf M}), B\right)$ where $B=\frac{A}{A+1}$, ${\bf x}=(x_1,\ldots,x_n)^T$ and ${\bf M}=(M,\ldots, M)^T$ as vector;
+\subitem[iii.] the posterior mean gives, for each $i=1,\ldots,n$
+\[ \widehat{\mu}_i^{Bayes} = \E[\theta | x_i] = M + B(x_i-M) 
 \] 
-which equals to by plugging in the unbiased estimate $\widehat{\sigma}^2 + 1 = \frac{1}{n-1} \sum_{i=1}^n x_i^2$,
-\[  \widehat{\mu}^{JS} =  \left( 1 - \frac{n-1 }{\sum_{i=1}^n x_i^2} \right) x .
+where the unbiased estimates of $M$ and $B$ give $\widehat{M}=\bar{x}=\frac{1}{n}\sum_{i=1}^n x_i$, $\widehat{B}=1-(n-3)/S$ with $S = \sum_{i=1}^n x_i^2$. This leads to the James-Stein estimator in the form 
+\[  \widehat{\mu}^{JS}_i =  \bar{x} + \left(1- \frac{n-3 }{S} \right) (x_i - \bar{x}) .
 \] 
 \item (Tweedie Formula) Consider a general prior $p(\theta)$ and the Gaussian likelihood $p(x|\theta) = \mathcal{N}(\theta,\sigma^2)$. Show that the posterior mean must be
 \begin{equation} 
