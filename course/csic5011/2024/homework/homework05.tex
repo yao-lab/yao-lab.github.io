@@ -1,0 +1,173 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\def\N{{\mathbb N}}
+\def\NN{{\mathcal N}}
+\def\R{{\mathbb R}}
+\def\E{{\mathbb E}}
+\def\tr{{\mathrm{trace}}}
+\def\P{{\mathrm{Prob}}}
+
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0.25 in}
+\setlength{\parskip}{0.1 in}
+
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{page}{1}
+   \setcounter{section}{0}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf A Mathematical Introduction to Data Science \hfill #4} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\Large \hfill #1  \hfill} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\it Instructor: #2\hfill #3} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{#1}{#1}
+   \vspace*{4mm}
+}
+
+
+\begin{document}
+
+\lecture{Homework 5. SDP Extensions of PCA and MDS}{Yuan Yao}{Due: 1 week}{Mar. 13, 2024}
+
+The problem below marked by $^*$ is optional with bonus credits. % For the experimental problem, include the source codes which are runnable under standard settings. 
+
+\begin{enumerate}
+
+%\item {\em MDS/PCA Exploratory Data Analysis}: choose \emph{ONE} of the following two datasets (you may analyze both of the two datasets if you like), explore it by MDS/PCA and explain what you observed with your background knowledge about the stories. 
+%\subitem {\em A Dream of Red Mansion:} This dataset contains a 376-by-475 matrix $X$ with 376 characters and 475 scenes collected from 120 chapters in
+%the classic novel by CAO, Xueqin. Each element contains either 0 or 1 indicating if the character appears in the scene.  The construction of this matrix from original data can be found in Matlab file: 
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/data/hongloumeng/readme.m}
+%
+%Thanks to Ms. WAN, Mengting (now at UIUC), an update of data matrix consisting 374 characters (two of 376 are repeated) which is readable by R read.table() can be found at 
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/data/hongloumeng/HongLouMeng374.txt}
+%
+%\noindent She also kindly shares her BS thesis for your reference
+% 
+% \url{http://www.math.pku.edu.cn/teachers/yaoy/reference/WANMengTing2013_HLM.pdf}
+%
+%\subitem {\em Journey to the West:} This dataset contains a 302-by-408 matrix $X$ with 302 characters and 408 scenes collected from one hundred chapters in the classic novel by WU, Cheng-En. Each element contains either 0 or 1 indicating if the character appears in the scene. 
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/data/xiyouji/xiyouji.mat} 
+%
+%The construction of this matrix from original data can be found in Matlab file: 
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/data/xiyouji/readData.m}
+
+
+
+\item {\em RPCA}: Construct a random rank-$r$ matrix: let $A\in \R^{m\times n}$ with $a_{ij} \sim \NN(0,1)$ whose top-$r$ singular value/vector is $\lambda_i$, $u_i\in \R^m$ and $v_i \in \R^n$ ($i=1,\ldots,r$), define $L = \sum_{i=1}^r u_i v_i^T$. Construct a sparse matrix $E$ with $p$ percentage ($p\in [0,1]$) nonzero entries distributed uniformly. Then define
+\[ M = L + E. \]
+
+\begin{enumerate}
+\item Set $m=n=20$, $r=1$, and $p=0.1$, use Matlab toolbox CVX or its Python version CVXPY (\url{https://www.cvxpy.org/install/index.html}) to formulate a semi-definite program for Robust PCA of $M$:
+\begin{eqnarray} \label{eq:RPCA_SDP}
+& \min & \frac{1}{2} (\tr(W_1)+\tr(W_2)) + \lambda \|S\|_1 \\
+& s.t. & L_{ij} +S_{ij} = X_{ij}, \quad (i,j)\in E  \nonumber \\
+& & \displaystyle \left[ \begin{array}{cc} 
+W_1 & L \\
+L^T & W_2
+\end{array}
+\right] \succeq 0, \nonumber
+\end{eqnarray}
+where you can use the matlab implementation in lecture notes as a reference;
+\item Choose different parameters $p\in [0,1]$ to explore the probability of successful recover;
+\item Increase $r$ to explore the probability of successful recover;
+\item $^\star$ Increase $m$ and $n$ to values beyond $50$ will make CVX difficult to solve. In this case, use the Augmented Lagrange Multiplier method, e.g. in E. J. Candes, X. Li, Y. Ma, and J. Wright (2009) ``Robust Principal Component Analysis?". Journal of ACM, 58(1), 1-37. Make a code yourself (just a few lines of Matlab or Python) and test it for $m=n=1000$. A convergence criterion often used can be $\|M-\hat{L} - \hat{S} \|_F / \|M\|_F \leq \epsilon$ ($\epsilon=10^{-6}$ for example).  
+\end{enumerate}
+
+
+\item {\em SPCA}: Define three hidden factors: 
+\[ V_1 \sim \NN(0,290), \ \ V_2 \sim \NN(0,300), \ \ V_3 = -0.3 V_1 + 0.925  V_2 + \epsilon, \ \ \ \epsilon \sim \NN(0,1), \]
+where $V_1,V_2$, and $\epsilon$ are independent. Construct 10 observed variables as follows
+\[ X_i = V_j + \epsilon^j_i, \ \ \ \epsilon^j_i \sim \NN(0,1), \] 
+with $j=1$ for $i=1,\ldots,4$, $j=2$ for $i=5,\ldots,8$, and $j=3$ for $i=9,10$ and $\epsilon^j_i$ independent for $j=1,2,3$, $i=1,\ldots,10$. 
+
+The first two principal components should be concentrated on $(X_1,X_2,X_3,X_4)$ and $(X_5,X_6,X_7,X_8)$, respectively. This is an example given
+by H. Zou, T. Hastie, and R. Tibshirani, Sparse principal component analysis, J. Comput. Graphical Statist., 15 (2006), pp. 265-286.
+
+\begin{enumerate}
+\item Compute the true covariance matrix $\Sigma$ (and the sample covariance matrix with $n$ examples, say $n=1000$);
+\item Compute the top 4 principal components of $\Sigma$ using eigenvector decomposition;
+\item Use Matlab CVX toolbox or Python CVXPY to compute the first \emph{sparse} principal component by solving the SDP problem
+\begin{eqnarray*}
+& \max & \tr (\Sigma X) - \lambda \|X\|_1 \\
+ & s.t. & \tr (X) = 1 \\
+ & & X \succeq 0
+\end{eqnarray*}
+Choose $\lambda =0$ and other positive numbers to compare your results with normal PCA;  
+
+\item Remove the first sparse PCA from $\Sigma$ and compute the second sparse PCA with the same code;
+\item Again compute the 3rd and the 4th sparse PCA of $\Sigma$ and compare them against the normal PCAs.  
+\item $^\star$ Construct an example with $200$ observed variables which is hard to deal with by CVX. 
+In this case, try the Augmented Lagrange Multiplier method by Allen Yang et al. (UC Berkeley) whose Matlab codes can be found at 
+\url{http://www.eecs.berkeley.edu/~yang/software/SPCA/SPCA_ALM.zip}, or Python \url{scikit-learn} Sparse PCA package. 
+\end{enumerate}
+
+\item{\em $^\star$Protein Folding:} Consider the 3D structure reconstruction based on incomplete MDS with uncertainty. Data file: 
+
+\url{http://yao-lab.github.io/data/protein3D.zip}
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.5\textwidth]{../2013_Spring_PKU/Yes_Human.png}  
+\caption{3D graphs of file PF00018\_2HDA.pdf (YES\_HUMAN/97-144, PDB 2HDA)}
+\label{yes_human}
+\end{center}
+\end{figure}
+
+\noindent In the file, you will find 3D coordinates for the following three protein families: 
+\subitem PF00013 (PCBP1\_HUMAN/281-343, PDB 1WVN), \\
+\subitem PF00018 (YES\_HUMAN/97-144, PDB 2HDA), and \\
+\subitem PF00254 (O45418\_CAEEL/24-118, PDB 1R9H). \\
+
+For example, the file {\tt PF00018\_2HDA.pdb} contains the 3D coordinates of alpha-carbons for a particular amino acid sequence in the family, YES\_HUMAN/97-144, read as
+
+{\tt{VALYDYEARTTEDLSFKKGERFQIINNTEGDWWEARSIATGKNGYIPS}}
+
+\noindent where the first line in the file is 
+
+97	V	0.967	18.470	4.342
+
+\noindent Here
+\begin{itemize}
+\item `97': start position 97 in the sequence
+\item `V': first character in the sequence
+\item $[x,y,z]$: 3D coordinates in unit $\AA$.
+\end{itemize}
+
+\noindent Figure \ref{yes_human} gives a 3D representation of its structure. 
+
+
+Given the 3D coordinates of the amino acids in the sequence, one can computer pairwise distance between amino acids, $[d_{ij}]^{l\times l}$ where $l$ is the sequence length. A \emph{contact map} is defined to be a graph $G_\theta=(V,E)$ consisting $l$ vertices for amino acids such that and edge $(i,j)\in E$ if $d_{ij} \leq \theta$, where the threshold is typically $\theta=5\AA$ or $8\AA$ here. 
+
+Can you recover the 3D structure of such proteins, up to an Euclidean transformation (rotation and translation), given noisy pairwise distances restricted on the contact map graph $G_\theta$, i.e. given noisy pairwise distances between vertex pairs whose true distances are no more than $\theta$? Design a noise model (e.g. Gaussian or uniformly bounded) for your experiments. 
+
+When $\theta=\infty$ without noise, classical MDS will work; but for a finite $\theta$ with noisy measurements, SDP approach can be useful. You may try the matlab package SNLSDP by Kim-Chuan Toh, Pratik Biswas, and Yinyu Ye, or the facial reduction speed up by Nathan Krislock and Henry Wolkowicz. For python users, you may try the Python version of CVX (CVXPY): \url{https://www.cvxpy.org/install/index.html}. 
+
+
+\end{enumerate}
+
+\end{document}
+
+
