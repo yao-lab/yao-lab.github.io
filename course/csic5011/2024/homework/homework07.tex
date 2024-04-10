@@ -1,0 +1,240 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\def\A{{\mathcal A}}
+\def\Ln{{\mathcal L}}
+\def\N{{\mathbb N}}
+\def\NN{{\mathcal N}}
+\def\R{{\mathbb R}}
+\def\E{{\mathbb E}}
+\def\rank{{\mathrm{rank}}}
+\def\tr{{\mathrm{trace}}}
+\def\P{{\mathrm{Prob}}}
+\def\sign{{\mathrm{sign}}}
+\def\diag{{\mathrm{diag}}}
+
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0.25 in}
+\setlength{\parskip}{0.1 in}
+
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{page}{1}
+   \setcounter{section}{0}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf A Mathematical Introduction to Data Science \hfill #4} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\Large \hfill #1  \hfill} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\it Instructor: #2\hfill #3} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{#1}{#1}
+   \vspace*{4mm}
+}
+
+
+\begin{document}
+
+\lecture{Homework 7. Markov Chains on Graphs and Spectral Theory}{Yuan Yao}{Due: 1 weeks later}{April 10, 2024}
+
+The problem below marked by $^*$ is optional with bonus credits. % For the experimental problem, include the source codes which are runnable under standard settings. 
+
+\begin{enumerate}
+
+\item {\em PageRank}:  The following dataset contains Chinese (mainland) University Weblink during 12/2001-1/2002,
+
+\url{https://github.com/yao-lab/yao-lab.github.io/blob/master/data/univ_cn.mat}
+
+where $\tt{rank\_{}cn}$ is the research ranking of universities in that year, $\tt{univ\_{}cn}$ contains the webpages of universities, and $\tt{W\_{}cn}$ is the link matrix from university
+$i$ to $j$. 
+ 
+\begin{enumerate}
+\item Compute PageRank with Google's hyperparameter $\alpha=0.85$;
+\item Compute HITS authority and hub ranking using SVD of the link matrix; 
+\item Compare these rankings against the research ranking (you may consider Kendall's $\tau$ distance -- as the number of pairwise mismatches between two orders -- to compare different rankings);  
+\item Compute extended PageRank with various hyperparameters $\alpha\in (0,1)$, investigate its effect on ranking stability. 
+\end{enumerate} 
+
+For your reference, an implementation of PageRank and HITs can be found at 
+
+\url{https://github.com/yao-lab/yao-lab.github.io/blob/master/data/pagerank.m}
+
+\item {\em Perron Theorem:} Assume that $A>0$. Consider the following optimization problem:
+\begin{eqnarray*}
+& & \max \delta \\
+& s.t. & Ax\geq\delta x \\
+&& x\geq 0 \\
+&& x \neq 0.
+\end{eqnarray*}
+Let $\lambda^*$ be optimal value with $\nu^*\geq0,\quad 1^T\nu^*=1$, and $A\nu^*\geq\lambda^*\nu^*$. Show that
+\begin{enumerate}
+\item $A\nu^*=\lambda^*\nu^*$, i.e. $(\lambda^*,\nu^*)$ is an eigenvalue-eigenvector pair of $A$;\\
+\item  $\nu^*>0$;\\
+\item[*(c)]$\lambda^*$ is unique and $\nu^*$ is unique;\\
+\item[*(d)] For other eigenvalue $\lambda\quad(\lambda z=Az\quad when\quad z\neq0)$, $|\lambda|<\lambda^*$.
+\end{enumerate}
+
+
+\item {\em *Absorbing Markov Chain:} 
+
+Let $P$ be a row Markov matrix on $n+1$ states with non-absorbing state $\{1,\ldots,n\}$ and absorbing state $n+1$. Then $P$ can be partitioned into 
+\[
+	P=\left[
+	\begin{array}{cc} 
+	Q & R \\ 
+	0 & 1 
+	\end{array} \right]
+\]
+Assume that $Q$ is primitive. Let $N(i,j)$ be the expected number of jumps starting from nonabsorbent state $i$ and hitting state $j$, before reaching the absorbing state $n+1$. Show
+that
+\begin{enumerate}
+\item $N(i,i) = 1 + \sum_k N(i,k) Q(k,i)$, for $i=1,\ldots,n$;
+\item $N(i,j) = \sum_k N(i,k) Q(k,j)$, for $i\neq j$;
+\item These identities together imply that $N=(I-Q)^{-1}$, called the fundamental matrix; 
+\item Show that the probability of absorption from state $i$, $B(i)$ ($i=1\ldots,n$), is given by $B=NR$.   
+\end{enumerate}
+
+\item {\em Spectral Bipartition}: Consider the 374-by-475 matrix $X$ of character-event for A Dream of Red Mansions, e.g. in the Matlab format 
+
+\url{https://github.com/yuany-pku/dream-of-the-red-chamber/blob/master/HongLouMeng374.txt}
+
+\noindent with a readme file:
+
+\url{https://github.com/yuany-pku/dream-of-the-red-chamber/blob/master/README.md}
+
+Construct a weighted adjacency matrix for character-cooccurance network $A=X X^T$. Define the degree matrix $D=\diag(\sum_j A_{ij})$. Check if the graph is connected. 
+If you are not familiar with this novel and would like to work on a different network, you may consider the Karate Club Network: 
+
+\url{https://github.com/yao-lab/yao-lab.github.io/blob/master/data/karate.mat} 
+
+\noindent that contains a 34-by-34 adjacency matrix. 
+
+\begin{enumerate}
+\item Find the second smallest generalized eigenvector of $L=D-A$, i.e. $(D-A)f = \lambda_2 f$ where $\lambda_2>0$;
+\item Sort the nodes (characters) according to the ascending order of $f$, such that $f_1\leq f_2 \leq \ldots \leq f_n$, and construct the subset $S_i = \{1,\ldots, i\}$;
+\item Find an optimal subset $S^\ast$ such that the following is minimized  
+\[ \alpha_f = \min_{S_i} \left\{ \frac{|\partial S_i|} {\min(|S_i|, |\bar{S}_i|)} \right\}\]  
+where $|\partial S_i|=\sum_{x\sim y, x\in S_i, y\in \bar{S}_i} A_{xy}$ and $|S_i|=\sum_{x\in S_i} d_x = \sum_{x\in S_i, y} A_{xy}$.  
+\item Check if $\lambda_2 > \alpha_f$;
+\item Quite often people find a suboptimal cut by $S^+=\{i: f_i \geq 0\}$ and $S^-=\{i: f_i <0\}$. Compute its Cheeger ratio
+\[ h_{S^+} =  \frac{|\partial S^+|} {\min(|S^+|, |S^-|)} \]
+and compare it with $\alpha_f$, $\lambda_2$. 
+\item You may further recursively bipartite the subgraphs into two groups, which gives a recursive spectral bipartition. 
+\end{enumerate} 
+
+\item {\em Degree Corrected Stochastic Block Model (DCSBM)}: A random graph is generated from a DCSBM with respect to partition $\Omega=\{\Omega_k: k=1,\ldots,K\}$ if its adjacency matrix $A \in \{0,1\}^{N\times N}$ has the following expectation
+
+\[ \E [A] = \A = \Theta Z B Z^T \Theta\]
+
+where $Z^{N \times k}$ has row vectors $\thickspace \in {\{0,1\}}^K$ as the block membership function $z:V\to \Omega$,
+\begin{equation*}
+z_{ik}=
+ \begin{cases}
+    1,   &  i\in \Omega_k, \\
+    0,   &  otherwise.
+ \end{cases}
+\end{equation*}
+and $\Theta = \diag(\theta_i)$ is the expected degree satisfying,
+\begin{equation*}
+  \sum_{i\in \Omega_k}\theta_i=1, \ \ \ \forall k=1,\ldots,K.
+\end{equation*}
+
+The following matlab codes simulate a DCSBM of $n K$ nodes, written by Kaizheng Wang, 
+
+\url{https://github.com/yao-lab/yao-lab.github.io/blob/master/data/DCSBM.m} 
+
+Construct a DCSBM yourself, and simulate random graphs of 10 times. Then try to compare the following two spectral clustering methods in finding the $K$ blocks (communities).  
+\begin{enumerate}
+\item[Alg. A]
+\subitem[1] Compute the \emph{top} $K$ generalized eigenvector $$(D - A) \phi_i = \lambda_i D \phi_i,$$ construct a $K$-dimensional embedding of $V$ using $\Phi^{N\times K} = [\phi_1, \ldots, \phi_K]$; 
+\subitem[2] Run $k$-means algorithm (call {\tt{kmeans}} in matlab) on $\Phi$ to find $K$ clusters.
+\item[Alg. B]
+\subitem[1] Compute the \emph{bottom} $K$ eigenvector of $$\Ln = D^{-1/2}(D-A)D^{-1/2} = U \Lambda U^T,$$ construct an embedding of $V$ using $U^{N\times K}$;
+\subitem[2] Normalized the row vectors $u_{i\ast}$ on to the sphere: $\hat{u}_{i\ast} = u_{i\ast}/\|u_{i\ast}\|$;
+\subitem[3] Run $k$-means algorithm (call {\tt{kmeans}} in matlab) on $\hat{U}$ to find $K$ clusters.
+\end{enumerate} 
+
+You may run it multiple times with a stabler clustering. Suppose the estimated membership function is $\hat{z}: V\to \{1,\ldots,K\}$ in either methods. Compare the performance using mutual information between membership function $z$ and estimate $\hat{z}$,
+\begin{equation}
+I(z, \hat{z}) = \sum_{s,t=1}^K Prob(z_i = s, \hat{z}_i=t) \log \frac{Prob(z_i=s, \hat{z}_i=t)}{Prob(z_i= s) Prob(\hat{z}_i= t)}.
+\end{equation}
+For example, 
+
+\url{https://github.com/yao-lab/yao-lab.github.io/blob/master/data/NormalizedMI.m}
+
+
+
+
+%$$
+%\begin{array}{ll}{{\text { minimize }}} & {\|L\|_{*}+\lambda\|S\|_{1}} \\ {\text { subject to }} & {L+S=M}\end{array}
+%$$
+
+%\item {\em James Stein Estimator for $p=1$:} 
+%
+%From Theorem 3.1 in the lecture notes, we know that MLE $\hat{\mu} = Y$ is admissible when $p=1 \text{ or } 2$. However if we use SURE to calculate the risk of James Stein Estimator,
+%\[
+%	R(\hat{\mu}^{\text{JS}},\mu) = \E U(Y) 
+%	= p - \E_\mu \frac{(p-2)^2}{\lVert Y \rVert^2}
+%	< p = R(\hat{\mu}^{\text{MLE}},\mu)
+%\]
+%it seems that for $p=1$ James Stein Estimator should still has lower risk than MLE for any $\mu$.
+% Explain what violates the above calculation for $p=1$.
+%
+
+\item {\em *Directed Graph Laplacian}: Consider the following dataset with Chinese (mainland) University Weblink during 12/2001-1/2002,
+
+\url{https://github.com/yao-lab/yao-lab.github.io/blob/master/data/univ_cn.mat}
+
+where $\tt{rank\_{}cn}$ is the research ranking of universities in that year, $\tt{univ\_{}cn}$ contains the webpages of universities, and $\tt{W\_{}cn}$ is the link matrix from university
+$i$ to $j$. 
+
+Define a PageRank Markov Chain
+\[  P = \alpha P_0 + (1-\alpha) \frac{1}{n} e e^T, \ \ \ \alpha = 0.85 \]
+where $P_0 = D_{out}^{-1} A$. Let $\phi\in \R_+^n$ be the stationary distribution of $P$, i.e. PageRank vector. Define $\Phi = \diag(\phi_i)\in \R^{n\times n}$.
+\begin{enumerate}
+\item Construct the normalized directed Laplacian 
+\[ \mathcal{\vec{L}}=I - \frac{1}{2}(\Phi^{1/2} P \Phi^{-1/2} + \Phi^{-1/2} P^T \Phi^{1/2} ) \]
+\item Use the second eigenvector of $\mathcal{\vec{L}}$ to bipartite the universities into two groups, and describe your algorithm in detail;
+\item Try to explain your observation through directed graph Cheeger inequality.
+\end{enumerate} 
+  
+
+
+\item {\em *Chung's Short Proof of Cheeger's Inequality}: 
+
+Chung's short proof is based on the fact that 
+\begin{equation} 
+h_G = \inf_{f\neq 0} \sup_{c\in \R} \frac{\sum_{x\sim y} |f(x) - f(y)|}{\sum_x |f(x) -c|d_x} 
+\end{equation}
+where the supreme over $c$ is reached at $c^*\in median(f(x):x\in V)$. Such a claim can be found in Theorem 2.9 in Chung's monograph, Spectral Graph Theory. In fact, Theorem 2.9 implies that the infimum above is reached at certain function $f$. From here, 
+\begin{eqnarray}
+\lambda_1 & =& R(f)=\sup_c \dfrac{\sum_{x\sim y}(f(x) - f(y))^2}{\sum_{x}(f(x)-c)^2 d_x},  \\
+& \geq  &\dfrac{\sum_{x\sim y}(g(x) - g(y))^2}{\sum_{x}g(x)^2 d_x}, \ \ \ g(x)=f(x)-c\\
+& = & \dfrac{(\sum_{x\sim y}(g(x) - g(y))^2)(\sum_{x\sim y}(g(x) +g(y))^2)}{(\sum_{x\in V}g^2(x)d_x)((\sum_{x\sim y}(g(x) +g(y))^2)} \\
+& \ge & \dfrac{(\sum_{x\sim y}|g^2(x) - g^2(y)|)^2}{(\sum_{x\in V}g^2(x)d_x)((\sum_{x\sim y}(g(x) +g(y))^2)} , \ \ \textrm{Cauchy-Schwartz Inequality} \\
+& \ge & \dfrac{(\sum_{x\sim y}|g^2(x) - g^2(y)|)^2}{2( \sum_{x\in V}g^2(x)d_x)^2} , \ \ \textrm{$(g(x)+g(y))^2\leq 2 (g^2(x)+g^2(y))$} \\
+& \ge & \dfrac{h_G^2}{2}.
+\end{eqnarray}
+Is there any step {\bf wrong} in the reasoning above? If yes, can you remedy it/them?
+
+\end{enumerate}
+
+\end{document}
+
+
