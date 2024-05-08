@@ -10,8 +10,9 @@ class ContactMapConditioner(Conditioner):
     def __init__(
         self,
         D_inter: torch.Tensor,
+        noise_schedule,
         weight: float = 1.0,
-        eps: float = 1e-3,
+        eps: float = 1e-6,
         ca_only:bool = False
     ):
         """
@@ -19,6 +20,7 @@ class ContactMapConditioner(Conditioner):
         """
         super().__init__()
         self.D_inter = D_inter
+        self.noise_schedule = noise_schedule
         self.weight = weight
         self.eps = eps
         self.ca_only = ca_only
@@ -39,9 +41,10 @@ class ContactMapConditioner(Conditioner):
         t: Union[torch.Tensor, float],
     ):
         if self.ca_only:
-            D_inter = self._distance(X[..., :1, :])
+            D_inter = self._distance(X[..., 1:2, :])
         else:
             D_inter = self._distance(X)
         loss = (D_inter - self.D_inter).abs()
-        U = U + self.weight * loss
+        scale_t = self.weight * self.noise_schedule.SNR(t).sqrt().clamp(min=1e-3, max=3.0)
+        U = U + scale_t * loss
         return X, C, O, U, t

@@ -1,1 +1,7 @@
+__pycache__
 example_bak.ipynb
+*.pdb
+*.cif
+*.png
+*.zip
+*.json
