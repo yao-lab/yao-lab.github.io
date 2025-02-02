@@ -1,0 +1,955 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <META http-equiv=Content-Type content="text/html; charset=gb2312">
+   <title>MATH 5470: Statistical Machine Learning </title>
+</head>
+<body background="../../../../images/crysback.jpg">
+
+<!-- PAGE HEADER -->
+
+<div class="Section1">
+<table border="0" cellpadding="0" width="100%" style="width: 100%;">
+      <tbody>
+        <tr>
+
+       <td style="padding: 0.75pt;" width="80" align="center">
+
+      <p class="MsoNormal">&nbsp;<img width="64" height="64"
+ id="_x0000_i1025"
+ src="../../../../images/hkust0_starry.jpg" alt="HKUST">
+          </p>
+       </td>
+       <td style="padding: 0.75pt;">
+      <p>
+<span style="font-size: 18pt;">
+<b><big>MATH 5470: Statistical Machine Learning <br>
+   Spring 2024</big></b>
+<br>
+</p>
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<div class="MsoNormal" align="center" style="text-align: center;">
+<hr size="2" width="100%" align="center">  </div>
+
+<ul type="disc">
+
+</ul>
+
+<!-- COURSE INFORMATION BANNER -->
+
+<table border="0" cellpadding="0" width="100%" bgcolor="#990000"
+ style="background: rgb(153,0,0) none repeat scroll 0% 50%; width: 100%;">
+      <tbody>
+
+        <tr>
+       <td style="padding: 2.25pt;">
+      <p class="MsoNormal"><b><span
+ style="font-size: 13.5pt; color: white;">Course Information</span></b></p>
+       </td>
+      </tr>
+
+  </tbody>
+</table>
+
+<!-- COURSE INFORMATION -->
+
+<h3>Synopsis</h3>
+<p style="margin-left: 0.5in;">
+<big> This course covers several topics in statistical machine learning: 
+	<br>
+	<ul>
+	<li> 1. supervised learning (linear and nonlinear models, e.g. trees, support vector machines, deep neural networks), 
+	</li>
+	<li> 2. unsupervised learning (dimensionality reduction, cluster trees, generative models, generative adversarial networks),
+	</li>
+	<li> 3. reinforcement learning (markov decision process, deep rl).
+	</li>
+	</ul>
+	</big>
+<br>
+	<big>
+		<b>Prerequisite</b>: Some preliminary course on (statistical) machine learning, applied statistics, and deep learning will be helpful.
+	</big>
+</p>
+
+
+<h3>Instructors: </h3>
+		
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="http://yao-lab.github.io/">Yuan Yao</a>  </em>
+</big>
+</p>
+
+<h3>Time and Place:</h3>
+<p style="margin-left: 0.5in;">
+<big><em>Mon 6:30-9:20pm, Rm 4579, Lift 27/28 (60) and Zoom from CANVAS, HKUST</em> <br>
+</big>
+<!---
+<big><em>This term we will be using Piazza for class discussion. The system is highly catered to getting you help fast and efficiently from classmates and myself. 
+	Rather than emailing questions to the teaching staff, I encourage you to post your questions on Piazza. If you have any problems or feedback for the developers, email team@piazza.com. <br>
+Find our class page at: <a href="https://piazza.com/ust.hk/spring2020/mafs6010u/home">https://piazza.com/ust.hk/spring2020/mafs6010u/home</a></em></big> 
+--->
+<br>
+</p>
+	
+<h3>Reference (&#21442;&#32771;&#25945;&#26448;)</h3>
+
+	
+
+	<p style="margin-left: 0.5in;">
+
+	<big>
+
+		<em> <a href="https://www.statlearning.com/">An Introduction to Statistical Learning, with applications in R (ISLR).</a> By James, Witten, Hastie, and Tibshirani </em>
+
+	</big>
+
+	</p>
+
+	
+
+	<p style="margin-left: 0.5in;">
+
+	<big>
+
+		<em> <a href="https://github.com/JWarmenhoven/ISLR-python/">ISLR-python, By Jordi Warmenhoven</a>. </em>
+
+	</big>
+
+	</p>
+
+	
+
+	<p style="margin-left: 0.5in;">
+
+	<big>
+
+		<em> <a href="https://github.com/mscaudill/IntroStatLearn">ISLR-Python: Labs and Applied, by Matt Caudill</a>. </em>
+
+	</big>
+
+	</p>
+
+	<p style="margin-left: 0.5in;">
+<big>
+<em><a href="https://www.manning.com/books/deep-learning-with-python?a_aid=keras&a_bid=76564dff">Manning: Deep Learning with Python</a>, by Francois Chollet</em> [<a href="https://github.com/fchollet/deep-learning-with-python-notebooks">GitHub source in Python 3.6 and Keras 2.0.8</a>]
+</big>
+</p>
+
+	<p style="margin-left: 0.5in;">
+<big>
+<em><a href="http://www.deeplearningbook.org/">MIT: Deep Learning</a>, by Ian Goodfellow, Yoshua Bengio, and Aaron Courville
+</em>
+</big>
+</p>
+
+	
+
+<h3>Tutorials: preparation for beginners</h3>
+<p style="margin-left: 0.5in;">
+<big>
+	<em><a href="http://cs231n.github.io/python-numpy-tutorial/">Python-Numpy Tutorials</a> by Justin Johnson </em>
+</big>
+</p>
+
+<p style="margin-left: 0.5in;">
+<big>
+	<em><a href="http://scikit-learn.org/stable/tutorial/">scikit-learn Tutorials</a>: An Introduction of Machine Learning in Python</em>
+</big>
+</p>	
+
+<p style="margin-left: 0.5in;">
+<big>
+	<em><a href="http://cs231n.github.io/ipython-tutorial/">Jupyter Notebook Tutorials</a> </em>
+</big>
+</p>
+	
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="http://pytorch.org/tutorials/">PyTorch Tutorials</a> </em>
+</big>
+</p>
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="http://www.di.ens.fr/~lelarge/dldiy/">Deep Learning: Do-it-yourself with PyTorch</a>, </em> A course at ENS
+</big>
+</p>
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="https://www.tensorflow.org/tutorials/">Tensorflow Tutorials</a></em>
+</big>
+</p>
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="https://mxnet.incubator.apache.org/tutorials/index.html">MXNet Tutorials</a></em>
+</big>
+</p>
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="http://deeplearning.net/software/theano/tutorial/">Theano Tutorials</a></em>
+</big>
+</p>	
+
+
+<p style="margin-left: 0.5in;">
+
+<big>
+
+<em> <a href="http://www-stat.stanford.edu/~hastie/ElemStatLearn/">The Elements of Statistical Learning (ESL).</a> 2nd Ed. By Hastie, Tibshirani, and Friedman </em>
+
+</big>
+
+</p>
+
+	
+
+	<p style="margin-left: 0.5in;">
+
+	<big>
+
+	<em> <a href="https://github.com/sujitpal/statlearning-notebooks">statlearning-notebooks</a>, by Sujit Pal, Python implementations of the R labs for the <a href="https://lagunita.stanford.edu/courses/HumanitiesScience/StatLearning/Winter2014/about">StatLearning: Statistical Learning</a> online course from Stanford taught by Profs Trevor Hastie and Rob Tibshirani.</em>
+
+	</big>
+
+	</p>
+
+
+<h3>Homework and Projects:</h3>
+
+<p style="margin-left: 0.5in;">
+<big><em> TBA (To Be Announced) </em>
+</big></p>
+
+<!---
+<h3>Teaching Assistant:</h3>
+<p style="margin-left: 0.5in;">
+<big> <br>
+Email: Mr. WANG, He < <em> aifin.hkust (add "AT gmail DOT com" afterwards) </em> >
+	<br>
+	<em> <a href=" https://www.linkedin.com/in/katrinafong/">Ms. Katrina Fong</a> </em>
+
+</big>
+</p>
+--->	
+				
+<h3>Schedule</h3>
+
+<table border="1" cellspacing="0">
+<tbody>
+
+<tr>
+<td align="left"><strong>Date</strong></td>
+<td align="left"><strong>Topic</strong></td>
+<td align="left"><strong>Instructor</strong></td>
+<td align="left"><strong>Scriber</strong></td>
+</tr>
+
+<tr>
+<td>05/02/2024, Mon </td>
+<td>Lecture 01: A Historic Overview and Introduction to Supervised Learning. [<a href="slides/Lecture01_introduction.pdf"> slides (pdf) </a>] [<a href="slides/Lecture01_supervised.pdf"> slides (pdf) </a>]
+	
+	<ul>[ Seminar ]
+		<li> <B>Title</B>: Solving olympiad geometry without human demonstrations [<a href="slides/Seminar-Trinh.jpg"> announcement </a>] </li>
+		<li> <B>Speaker</B>: Dr. <a href="https://thtrieu.github.io/">Trieu H. TRINH</a>, New York University </li>
+		<li> <B>Time</B>: Tuesday Feb 6, 2024, 2-3pm </li>
+		<li> <B>Abstract</B>: Proving mathematical theorems at the olympiad level represents a notable milestone in human-level automated reasoning, owing to their reputed difficulty among the world’s best talents in pre-university mathematics. 
+			Current machine-learning approaches, however, are not applicable to most mathematical domains owing to the high cost of translating human proofs into machine-verifiable format. The problem is even worse for geometry because of its unique translation challenges, 
+			resulting in severe scarcity of training data. We propose AlphaGeometry, a theorem prover for Euclidean plane geometry that sidesteps the need for human demonstrations by synthesizing millions of theorems and proofs across different levels of complexity. 
+			AlphaGeometry is a neuro-symbolic system that uses a neural language model, trained from scratch on our large-scale synthetic data, to guide a symbolic deduction engine through infinite branching points in challenging problems. 
+			On a test set of 30 latest olympiad-level problems, AlphaGeometry solves 25, outperforming the previous best method that only solves ten problems and approaching the performance of an average International Mathematical Olympiad (IMO) gold medallist. 
+			Notably, AlphaGeometry produces human-readable proofs, solves all geometry problems in the IMO 2000 and 2015 under human expert evaluation and discovers a generalized version of a translated IMO theorem in 2004. 
+		</li>
+		<li> <B>Bio</B>: Trieu recently graduated from his PhD program at New York University in January 2024. Prior to NYU, he worked for 2 years at Google Brain. His research covers a wide range of topics: Self-supervised learning in images, long term dependencies in RNNs, 
+			Commonsense reasoning in LLMs, and most recently mathematical reasoning.
+		</li>
+	</ul>
+	<ul>[ Reference ]:
+
+		<li> Trieu H. Trinh, Yuhuai Wu, Quoc V. Le, He He and Thang Luong. Solving olympiad geometry without human demonstrations. Nature, 625:476-482, 17 January 2024. [<a href="https://doi.org/10.1038/s41586-023-06747-5"> https://doi.org/10.1038/s41586-023-06747-5 </a>]
+		</li>
+
+	</ul>
+	
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+	<tr>
+<td>19/02/2024, Mon </td>
+<td> Today's lecture is cancelled and will be rescheduled to later this semester.	
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>		
+
+
+<tr>
+<td>26/02/2024, Mon </td>
+<td>Lecture 02: Supervised Learning: linear regression and classification <a href="slides/Lecture02_linear.pdf">[ slides ]</a>
+	
+	<ul>[ Reference ]
+		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+		<li> Linear Regression Python Notebook <a href="notebook/MAFS6010_Regression.ipynb"> [ MAFS6010_Regression.ipynb ] </a> </li> 
+		<li> Linear Classification Python Notebook <a href="notebook/MAFS6010_Classification.ipynb"> [ MAFS6010_Classification.ipynb ] </a> </li> 
+ 	</ul>
+ 	
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>		
+
+
+
+<tr>
+<td>04/03/2024, Mon </td>
+<td>Lecture 03: Model Assessment and Selection: Subset, Ridge, Lasso, and PCR <a href="slides/Lecture03_selection.pdf">[ slides ]</a> 
+	<br>
+	<ul>[Reference]:
+		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+		<li> Python Notebook for Model Selection (Subset, Ridge, Lasso, and Principal Component Regression) 
+			<a href="notebook/MAFS6010_Selection.ipynb"> [ Selection.ipynb ] </a> </li> 
+	</li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+
+<td>11/03/2024, Mon </td>
+<td>Lecture 04: Moving beyond Linearity <a href="slides/Lecture04_nonlinear.pdf">[ slides ]</a> 
+	<br>
+	<ul>[Reference]:
+		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+		<li> Python Notebook for ISLR Chapter 7 Lab 
+			<a href="https://github.com/mscaudill/IntroStatLearn/blob/master/notebooks/Ch7_Moving_Beyond_Linearity/Ch7_Lab.ipynb"> [Ch7_Lab.ipynb ] </a> </li> 
+	</li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+
+<tr>
+<td>18/03/2024, Mon </td>
+<td>Lecture 05: Decision Tree, Bagging, Random Forests and Boosting <a href="slides/Lecture05_tree.pdf">[ YY's slides ]</a> 
+	<br>
+	<ul>[Reference]:
+		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+		<li> Python Notebook for Decision Trees, Bagging, Random Forests and Boosting 
+			<a href="notebook/MAFS6010_tree.ipynb"> [ tree.ipynb ] </a> </li> 
+	</li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>25/03/2024, Mon</td>
+<td>Lecture 06: Support Vector Machines <a href="slides/Lecture06_svm.pdf">[ YY's slides ]</a> and Final Project Initialization [<a href="2024/project/project.pdf"> project.pdf </a>] 
+	<br>
+	<ul>[Reference]:
+		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+		<li> Python Notebook for Support Vector Machines 
+			<a href="notebook/MAFS6010_svm.ipynb"> [ svm.ipynb ] </a> </li> 
+		</li>
+		<li> Daniel Soudry, Elad Hoffer, Mor Shpigel Nacson, Suriya Gunasekar, Nathan Srebro. The Implicit Bias of Gradient Descent on Separable Data. 
+		[<a href="https://arxiv.org/abs/1710.10345"> arXiv:1710.10345 </a>]. ICLR 2018. Gradient descent on logistic regression leads to max margin. </li>
+		<li> Matus Telgarsky. Margins, Shrinkage, and Boosting. <a href="https://arxiv.org/abs/1303.4172">[ arXiv:1303.4172 ]</a>. ICML 2013. An older paper on gradient descent on exponential/logistic loss 
+		leads to max margin. </li>
+	</ul>
+	
+	<ul>[Reading Material]:
+	<li> <B>Shihao Gu, Bryan Kelly and <a href="https://dachxiu.chicagobooth.edu/#research">Dacheng Xiu</a></B>
+		<br> <B>"Empirical Asset Pricing via Machine Learning"</B>, Review of Financial Studies, Vol. 33, Issue 5, (2020), 2223-2273. Winner of the 2018 Swiss Finance Institute Outstanding Paper Award.
+	 	<br> 
+		[<a href="https://dachxiu.chicagobooth.edu/download/ML.pdf"> link </a>]
+	<p>
+	</li>	
+	<li> <B>Jingwen Jiang, Bryan Kelly and <a href="https://dachxiu.chicagobooth.edu/#research">Dacheng Xiu</a></B>
+		<br> <B>"(Re-)Imag(in)ing Price Trends"</B>, Chicago Booth Report, Aug 2021
+	 	<br> 
+		[<a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3756587"> link </a>]
+	<p>
+	</li>	
+<!---	
+	<li> <B>Tracy Ke, Bryan Kelly and <a href="https://dachxiu.chicagobooth.edu/#research">Dacheng Xiu</a></B>
+		<br> <B>"Predicting Returns with Text Data"</B>, Aug. 2021. Winner of the 2019 CICF Best Paper Award.
+	 	<br> 
+		[<a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3389884"> link </a>]
+	<p>
+	</li>
+--->		
+	</ul>
+	
+	<ul>[ Reference ]:
+		<li> Kaggle: Home Credit Default Risk [<a href="https://www.kaggle.com/c/home-credit-default-risk"> link </a>]
+		</li>
+		<li> Kaggle: M5 Forecasting - Accuracy, Estimate the unit sales of Walmart retail goods. 
+		[<a href="https://www.kaggle.com/c/m5-forecasting-accuracy"> link </a>]
+		</li>
+		<li> Kaggle: M5 Forecasting - Uncertainty, Estimate the uncertainty distribution of Walmart unit sales. 
+		[<a href="https://www.kaggle.com/c/m5-forecasting-uncertainty"> link </a>]
+		</li>
+		<li> Kaggle: Ubiquant Market Prediction - Make predictions against future market data. 
+		[<a href="https://www.kaggle.com/competitions/ubiquant-market-prediction"> link </a>]
+		</li>
+		<li> Kaggle: G-Research Crypto Forecasting.
+		[<a href="https://www.kaggle.com/c/g-research-crypto-forecasting"> link </a>]
+		</li>
+		<!--- 
+		<li> Type-II diabetes and Alzheimer’s disease.
+		[<a href="https://yao-lab.github.io/course/statml/2022/slides/MATH_5470_probject_intro_MAR2022.pdf"> slides (pdf) </a>]
+		[<a href="https://yao-lab.github.io/course/statml/2022/slides/MATH_5470_probject_intro_MAR2022.pptx"> slides (pptx) </a>]
+		</li>
+		--->
+	</ul>
+
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+
+<tr>
+<td>08/04/2024, Mon</td>
+<td>Lecture 07: An Introduction to Convolutional Neural Networks [<a href="slides/Lecture07_CNN.pdf"> YY's slides </a>] </a>  
+	<br>
+	<ul>[Reference]:
+		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+		<li> LeNet5 for MNIST dataset in Pytorch Notebook 
+			[<a href="https://aifin-hkust.github.io/notebook/LeNet5_mnist.ipynb"> LeNet5_mnist.ipynb </a>] </li>
+		<li> LeNet5 for Cifar10 dataset in Pytorch Notebook 
+			[<a href="https://aifin-hkust.github.io/notebook/LeNet5_cifar10.ipynb"> LeNet5_cifar10.ipynb </a>] </li>
+		<li> AlexNet for Cifar10 dataset in Pytorch Notebook 
+			[<a href="https://aifin-hkust.github.io/notebook/AlexNet_cifar10.ipynb"> AlexNet_cifar10.ipynb </a>] </li>
+		<li> ResNet for Cifar10 dataset in Pytorch Notebook 
+			[<a href="https://aifin-hkust.github.io/notebook/ResNet_cifar10.ipynb"> ResNet_cifar10.ipynb </a>] </li>
+	</ul>
+
+	<ul>[ Topics on CNNs ]:
+		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+		<li> Fine-tuning (transfer learning) of ResNet in Pytorch Notebook 
+			[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/notebook/finetuning_resnet.ipynb"> finetuning_resnet.ipynb </a>] </li>
+		<li> Visualization of VGG16 in Pytorch Notebook 
+			[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/notebook/vgg16-visualization.ipynb"> vgg16-visualization.ipynb </a>] </li>
+		<li> Class activation heatmap of VGG16 in Pytorch Notebook 
+			[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/notebook/vgg16-heatmap.ipynb"> vgg16-heatmap.ipynb </a>] </li>
+		<li> Neural Style of HKUST at Starry Night in Pytorch Notebook 
+			[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/notebook/neural_style_starry-hkust.ipynb"> neural_style_starry-hkust.ipynb </a>] </li>
+		<li> Adversarial examples of LeNet5 with MNIST 
+			[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/notebook/LeNet5_mnist_fgsm.ipynb"> LeNet5_mnist_fgsm.ipynb </a>] </li>
+	</ul>
+
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+
+<tr>
+<td>15/04/2024, Mon</td>
+<td>Lecture 08: An Introduction to Recurrent Neural Networks (RNN), Long Short Term Memory (LSTM), Attention and Transformer [<a href="slides/Lecture08_RNN-LSTM-Transformer.pdf"> YY's slides </a>]   
+	<br>
+	<ul>[Reference]:
+		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+		<li> Character-level RNN, LSTM and GRU for Name Classification 
+		[<a href="notebook/char_rnn_classification_tutorial.ipynb"> char_rnn_classification_tutorial.ipynb </a>] 
+		</li>
+		<li> Generating Shakespeare's Sonnet: RNN, LSTM, Bidirectional LSTM 
+		[<a href="notebook/rnn_lstm_shakespeare.ipynb"> rnn_lstm_shakespeare.ipynb </a>] 
+		[<a href="notebook/rnn_lstm_BiLSTM_shakespeare.ipynb"> rnn_lstm_biLSTM_shakespeare.ipynb </a>] 
+		[<a href="notebook/shakespeare.txt"> shakespeare.txt </a>]
+		</li>
+		<li> Bidirectional RNN for MNIST in pytorch
+		[<a href="notebook/bidirection_lstm_mnist.ipynb"> bidirection_lstm_mnist.ipynb </a>] 
+		[<a href="https://www.youtube.com/watch?v=jGst43P-TJA"> Youtube </a>]
+		</li>	
+		<li> Illustrated Transformer by Jay Alammar: [<a href="https://jalammar.github.io/illustrated-transformer/"> link </a>] </li>
+		<li> The Annotated Transformer Tutorial by Sasha Rush: [<a href="http://nlp.seas.harvard.edu/2018/04/03/attention.html"> link </a>]
+		<p>
+		<li> Jorgen Schmidhuber: [<a href="https://people.idsia.ch/~juergen/deep-learning-miraculous-year-1990-1991.html"> Deep Learning: Our Miraculous Year 1990-1991
+ </a>] [<a href="https://people.idsia.ch/~juergen/critique-honda-prize-hinton.html"> Critique of Honda Prize for Dr. Hinton </a>]
+		</li>	  
+
+		</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+
+<tr>
+<td>22/04/2024, Mon</td>
+<td>Lecture 09: Transformer, GPT, and BERT [<a href="slides/Lecture09_transformer.pdf"> slides </a>]  
+	<br>
+	<ul>[Reference]:
+		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+		<li> Pytorch Twitter Sentiment Analysis: RNN, LSTM, BiLSTM, Multihead Self-Attention. 
+		[<a href="notebook/PyTorch-RNN.ipynb"> RNN (ipynb) </a>] 
+		[<a href="notebook/PyTorch-LSTM.ipynb"> LSTM (ipynb) </a>] 
+		[<a href="notebook/PyTorch-BiLSTM.ipynb"> BiLSTM (ipynb) </a>] 
+		[<a href="notebook/PyTorch-BiLSTM-with-MHSA.ipynb"> BiLSTM with Multihead Attention (ipynb) </a>] 	
+		[<a href="notebook/PyTorch-BiLSTM-with-bertEmbedding.ipynb"> BERT embedding with BiLSTM (ipynb) </a>]
+		[<a href="https://www.kaggle.com/kazanova/sentiment140"> Sentiment140 dataset </a>]
+		</li>
+		<li> Pytorch Sentiment Analysis with IMDB data: RNN, (bi)-LSTM, CNN, Transformer, BERT, etc. 
+			[<a href="https://github.com/bentrevett/pytorch-sentiment-analysis"> GitHub </a>]
+		</li>
+		<li> Illustrated Transformer by Jay Alammar: [<a href="https://jalammar.github.io/illustrated-transformer/"> link </a>] </li>
+		<li> The Annotated Transformer Tutorial by Sasha Rush: [<a href="http://nlp.seas.harvard.edu/2018/04/03/attention.html"> link </a>]
+		</li>
+		<li> BERT generation of Shakespeare's sonnet: [<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/data/BERT_shakespeare_gen.ipynb"> BERT_shakespeare_gen.ipynb </a>]
+		</li>
+		<li> BERT next sentence generation of Shakespeare's sonnet and Chinese poems: 
+			[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/data/BERT_shakespeare_nextsen.ipynb"> BERT_shakespeare_nextsen.ipynb </a>]
+		</li>
+		<li> Chinese BERT (Whole-Word-Masking): [<a href="https://github.com/ymcui/Chinese-BERT-wwm"> link </a>]
+		</li>
+	</ul>	
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+
+<tr>
+<td>25/04/2024, Thu</td>
+<td>Guest Lecture: An Invitation to Information Geometry
+	<br>
+	<ul>[ Title ] <B>An Invitation to Information Geometry</B>
+		<li> [ Speaker ] Prof. <a href="https://webapps.lsa.umich.edu/psych/junz/">Jun ZHANG</a>, University of Michigan and SIMIS. </li>
+		<li> [ Time and Venue ] 3-5pm, CYT LTL (CMA Lecture Theater) 
+		<li> [ Abstract ] 
+		Information Geometry is the differential geometric study of the manifold of probability models, and promises to be a unifying geometric framework for investigating statistical inference, information theory, machine learning, etc. Central to such manifolds are divergence functions (in place of distance) for measuring proximity of two points, for instance Kullback-Leibler divergence, Bregman divergence, etc. Such divergence functions are known to induce a beautiful geometric structure of the set of parametric probability models. This talk will use two examples to introduce some basic ingredients of this geometric framework: the univariate normal distributions (a case with continuous support) and the probability simplex (a case with discrete support). The fundamental duality e/m duality is explained in terms of two most popular parametric statistical families: the exponential and the mixture families. This introduction is intended for an audience with little background in differentiable manifold; instead it only assumes the knowledge of multi-variable calculus.
+		</li>
+	</ul>	
+	
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>26/04/2024, Fri</td>
+<td>Mathematics Colloquium.
+	<br>
+	<ul>[ Title ] <B>Information Geometry: Geometric Science of Information</B>
+		<li> [ Speaker ] Prof. <a href="https://webapps.lsa.umich.edu/psych/junz/">Jun ZHANG</a>, University of Michigan, Ann Arbor and SIMIS. </li>
+		<li> [ Time and Venue ] 3-4pm, Lecture Theater F (Lifts 25/26), with tea-time discussion 4-5pm at magic square
+		<li> [ Abstract ] 
+		Information geometry investigates parametric families of statistical model by representing probability density functions over a given sample space as points of a differentiable manifold M. Treating parameters as a local coordinate chart, M is endowed with a Riemannian metric g given by the Fisher-information (the well-known Fisher-Rao metric). However, in place of the Riemannian distance, information geometry uses a non-negative but non-symmetric divergence function (also called contrast function) for measuring proximity of two points, for instance Kullback-Leibler divergence, f-divergence, etc. Such divergence functions not only recovers the Fisher-Rao metric, but also a pair of dual connections with respect to the metric (equivalently Amari-Censov tensor). This talk will use two examples to introduce some basic ingredients of this geometric framework: the probability simplex (a case with discrete support) and the univariate normal distributions (a case with continuous support). In the former case, the application to the popular data-analytic method Compositional Data Analysis (CDA) is explained in terms of duality between exponential and mixture families. In the latter case, the construction of statistical mirror is briefly explained as an application of the concept of dual connections.  This talk assumes some basic concepts of differentiable manifold (such as parallel transport and affine connection). 
+		</li>
+		<li> [ Bio ] Jun Zhang is a Professor at the Shanghai Institute of Mathematics and Interdisciplinary Sciences (SIMIS) and one of its co-founders. He is currently on leave from the University of Michigan, Ann Arbor, where he has worked since 1992 as an Assistant, Associate, and Full Professor in the Department of Psychology, with adjunct appointments in the Department of Mathematics, Department of Statistics, and Michigan Institute of Data Sciences. He received his PhD in Neuroscience from the University of California, Berkeley in 1991. An elected fellow of Association for Psychological Sciences (APS) since 2012 and Psychonomic Society since 2016,  Professor Jun Zhang's scholarly contributions have been in the various fields of computation neuroscience, cognition and behavior modeling, machine learning, statistical science, complex systems, etc, and is well known in the field of mathematical psychology. In recent years, his research has focused on the interdisciplinary subject of Information Geometry. 
+	</ul>	
+	
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+
+
+
+<tr>
+<td>26/04/2024, Sat</td>
+<td>Guest Lecture: Information Beyond Shannon 
+	<br>
+	<ul>[ Title ] <B>Information Beyond Shannon</B>
+		<li> [ Speaker ] Prof. <a href="https://webapps.lsa.umich.edu/psych/junz/">Jun ZHANG</a>, University of Michigan and SIMIS. </li>
+		<li> [ Time and Venue ] 3-5pm, <B> Rm 2504 (Lift 25/26) </B>
+		<li> [ Abstract ] 
+		Shannon's theory for source and channel coding (and the duality between capacity and rate-distortion) has been the hallmark for information science. Shannon entropy, and its associated exponential family of probability measures resulting from maximum entropy (MaxEnt) inference and the Kullback-Leibler divergence measuring the difference of any two probability densities, have found wide applications in statistical inference, machine learning, optimization, etc. Past research in Information Geometry has tied together the above concepts into a geometric structure called Hessian geometry, which is dually flat with biorthogonal coordinates.
+		<br>
+Given the deep mathematical understanding of Hessian geometry and its elegant picture, it is natural to ask whether it can be generalized (deformed, technically) to more broad settings that corresponds to generalize entropies and cross entropies (e.g., that is Tsallis and Renyi). This question has now been answered positively by a series of recent work on deformation theory. My talk will explain this recent development of information geometry, including the rho-tau deformation (which unifies the so-called phi-model and U-model known to information geometers) and the lambda-deformation theory (which unified Tsallis and Renyi deformation known to information theorists). This talk is intended for an audience with background in information theory and theoretical physics.
+<br>
+(Joint work with Jan Naudts in the former case and with TKL Wong in the latter case).		
+		</li>
+	</ul>	
+	
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+
+
+<tr>
+<td>29/04/2024, Mon </td>
+
+<td>Lecture 10: An Introduction to Reinforcement Learning with Applications [<a href="slides/Lecture10_reinforcement.pdf"> slides </a>]  
+	<br>
+	<ul>[ Reference ]:
+		<li> Google DeepMind's Deep Q-learning playing Atari Breakout:
+		[<a href="https://www.youtube.com/watch?v=V1eYniJ0Rnk"> youtube </a>]
+		</li>
+		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+		<li> Deep Q-Learning Pytorch Tutorial: [<a href="https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html"> link </a> ]
+		</li>
+		<li> A Tutorial of Reinforcement Learning for Quantitative Trading: 
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/aifin/2021/tutorial/Tutorial_FinRL_stock_trading_NeurIPS_2018_3run.ipynb"> Tutorial </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/aifin/2021/tutorial/Tutorial_FinRL_replicate_3run.ipynb"> Replicate </a>]
+		</li>
+		<li> FinRL: Deep Reinforcement Learning for Quantitative Finance
+		[<a href="https://github.com/AI4Finance-Foundation/FinRL"> GitHub </a>]
+		</li>
+		<li> Reinforcement Learning and Supervised Learning for Quantitative Finance: [<a href="https://github.com/Ceruleanacg/Personae/blob/master/README.md"> link </a>]
+		</li>
+		<li> Prof. Michael Kearns, University of Pennsyvania, Algorithmic Trading and Machine Learning, 
+			Simons Institute at Berkeley [<a href="https://simons.berkeley.edu/talks/michael-kearns-2015-11-19"> link </a> ]
+		</li>
+	</ul>
+
+</td>
+
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+
+<tr>
+<td>06/05/2024, Mon</td>
+<td> Final Presentation. 
+	<br>
+		
+<ul> [ Final Report Collection ]
+	<li> Description of Final Project: [<a href="https://yao-lab.github.io/course/statml/2024/project/project.pdf"> pdf </a>]
+	</li>
+	<li> GitHub Repository for reports of Final Project
+		<a href="https://github.com/yao-lab/yao-lab.github.io/tree/master/course/statml/2024/project"> [ GitHub ] </a>
+	<p>
+	</li>
+</ul>
+
+<ul> [ Paper Replication: Empirical Asset Pricing via Machine Learning ]
+	<li> <B> CHEN Yuxuan.</B>
+	 	<br> 
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/CHEN_Yuxuan/report.pdf"> report (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/CHEN_Yuxuan/finalproject-cyx.pptx"> slides (pptx) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/CHEN_Yuxuan/code/"> source (py) </a>] 
+		<!--- [<a href="https://www.youtube.com/watch?v=u5s7br2Ijbo"> presentation (youtube) </a>] --->
+	<p>
+	</li>
+	<li> <B> CHEN Qixu, Siqi HE, Zhiqiu XIA and Meiying ZHANG.</B>
+	 	<br> 
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/ChenHeXiaZhang/poster.pdf"> report (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/ChenHeXiaZhang/code/"> source (ipynb) </a>]
+	<p>
+	</li>
+	<li> <B> CUI Daorong, LI Meng, HE Jiayi.</B>
+	 	<br> 
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/CUI_LI_HE.pdf"> report (pdf) </a>]
+		[<a href="https://github.com/simateisme/Final-Project.git"> source (github) </a>]
+	<p>
+	</li>
+	<li> <B> HE Haolin, Lingchong LIU, Ruizhao HUANG.</B>
+	 	<br> 
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/HeLiuHuang/report.pdf"> report (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/Code.zip"> source (zip) </a>] 
+	<p>
+	</li>
+	<li> <B> HOU Zhen, Jianda MAO, Xiaolong WANG.</B>
+	 	<br> 
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/HouMaoWang/report.pdf"> report (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/HouMaoWang/slides.pdf"> slides (pdf) </a>] 
+		[<a href="https://github.com/hdsfade/math5470-final-project"> source (github) </a>] 
+		[<a href="https://youtu.be/6NaL8qs5bfM"> presentation (youtube) </a>] 
+	<p>
+	</li>
+	<li> <B> ZHANG Jiaming.</B>
+	 	<br> 
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/ZHANG_Jiaming/report_5470.pdf"> report (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/ZHANG_Jiaming/coding.zip"> source (zip) </a>] 
+	<p>	
+	</li>  
+	<li> - <B> WU Linshan.</B>
+	 	<br> 
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/WU_Linshan/poster.pdf"> report (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/WU_Linshan/code/"> source (ipynb) </a>] 
+		[<a href="https://youtu.be/MLjOO-qXolg"> presentation (youtube) </a>] 
+	<p>	
+	</li>  	
+</ul>
+
+<ul> [ Paper Replication: (Re-)Imag(in)ing Price Trends ]
+	<li> <B> LI Kaican, ZHAO Zening, LYU Yunhong.</B>
+	 	<br> 
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/LiZhaoLyu/Report_Li_Zhao_Lyu.pdf"> report (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/LiZhaoLyu/code.zip"> source (zip) </a>] 
+	<p>
+	</li>
+	<li> <B> WANG Wentao, Yingyue HAN, Yuhang JIN.</B>
+	 	<br> 
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/WangHanJin/Report_MATH5470.pdf"> report (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/WangHanJin/Slides_MATH5470.pptx"> slides (pptx) </a>]
+		[<a href="https://github.com/wwangdg/reimagining_price_trends.git "> source (github) </a>]
+	<p>
+	</li>
+	<li> - <B> HUANG Zhanmiao, Xuanyu SHEN. </B>
+	 	<br> 
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/HuangShen/MATH5470_Final_report.pdf"> report (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/HuangShen/MATH5470_Final_Poster.pdf"> poster (pdf) </a>]
+	<p>
+	</li>
+
+	
+
+</ul>
+
+
+<ul> [ Kaggle ]
+	<li> <B> DING Zezhen.</B>
+		<br> G-Research Crypto Forecasting.
+	 	<br> 
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/DING_Zezhen/report.pdf"> report (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/DING_Zezhen/presentation.pptx"> slides (pptx) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/DING_Zezhen/code/"> source (ipynb) </a>] 
+		[<a href="https://www.youtube.com/watch?v=5MhllnCfp40"> presentation (youtube) </a>]
+	<p>
+	</li>
+	<li> *<B>LIN Hangyu.</B>
+		<br> G-Research Crypto Forecasting.
+	 	<br> 
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/LIN_Hangyu.pdf"> report (pdf) </a>]
+		[<a href="https://github.com/avalonstrel/CryptoAnalysis.git"> source (github) </a>]
+		[<a href="https://www.bilibili.com/video/BV1Jf421U7HY/?vd_source=b4ddb5fb03af567f6941f024ca320bc7"> presentation (bilibili) </a>] 
+	<p>
+	</li>
+	<li> <B> LI Shihao.</B>
+		<br> G-Research Crypto Forecasting.
+	 	<br> 
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/LI_Shihao/Li_poster.pptx"> report (pptx) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/LI_Shihao/LI_slides.pptx"> slides (pptx) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/LI_Shihao/MATH5470_Li.ipynb"> source (ipynb) </a>]
+		[<a href="https://youtu.be/uDfEL4mmJKk"> presentation (youtube) </a>] 
+	<p>
+	</li>
+	<li> <B> WU Shuang, Yuhao YAN, Haowei YANG.</B>
+		<br> G-Research Crypto Forecasting.
+	 	<br> 
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/WuYanYang/MATH5470 poster.pptx"> report (pptx) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/WuYanYang/MATH5470_presentation.pptx"> slides (pptx) </a>]
+		[<a href="https://github.com/YAN-Yuhao/G-research"> source (github) </a>]
+	<p>
+	</li>
+	
+	<li> - <B> Ricky CHAN Tsz Wai.</B>
+		<br> G-Research Crypto Forecasting.
+	 	<br> 
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/CHAN_Tszwai/chantszwai.pdf"> report (pptx) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/CHAN_Tszwai/CHAN_tsziwai_Presentation.pdf"> slides (pdf) </a>]
+	<p>
+	</li>
+	<li> - <B> HU Bo, WU Hongfan, QIU wenxi and WANG Zetao.</B>
+		<br>G-Research Crypto Forecasting.
+	 	<br> 
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/HuWuQiuWang/HuWuQiuWang_poster.pdf"> report (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/HuWuQiuWang/MATH5470_Slides.pptx"> slides (pptx) </a>]
+		[<a href="https://www.kaggle.com/code/bohuccaarroott/math5470-hu-wu-qiu-wang"> source (kaggle) </a>]
+	<p>
+	</li>
+	
+
+	<li> <B> GUPTA Anchal, Dinusara Sasindu GAMAGE NANAYAKKARA, Minji SEO, ZHAO Hang.</B>
+		<br> M5 Forecasting: Accuracy.
+	 	<br> 
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/GuptaGamagenanayakkaraSeoZhao/math_5470_project.pdf"> report (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/2024/project/GuptaGamagenanayakkaraSeoZhao/presentation_slides.pdf"> slides (pdf) </a>]
+		[<a href="https://hkustconnect-my.sharepoint.com/:u:/g/personal/mseoab_connect_ust_hk/EWhmlUq0rUBHkEKq00-bN7EB5J42ACuiZbejaaV6ewDoTg"> source (zip) </a>]
+		[<a href="https://youtu.be/qwItk8wotq8"> presentation (youtube) </a>] 
+	<p>
+	</li>
+	
+
+</ul>
+	
+	<ul>[Reading Material]:
+	<li> <B>Shihao Gu, Bryan Kelly and <a href="https://dachxiu.chicagobooth.edu/#research">Dacheng Xiu</a></B>
+		<br> <B>"Empirical Asset Pricing via Machine Learning"</B>, Review of Financial Studies, Vol. 33, Issue 5, (2020), 2223-2273. Winner of the 2018 Swiss Finance Institute Outstanding Paper Award.
+	 	<br> 
+		[<a href="https://dachxiu.chicagobooth.edu/download/ML.pdf"> link </a>]
+	<p>
+	</li>	
+	<li> <B>Jingwen Jiang, Bryan Kelly and <a href="https://dachxiu.chicagobooth.edu/#research">Dacheng Xiu</a></B>
+		<br> <B>"(Re-)Imag(in)ing Price Trends"</B>, Chicago Booth Report, Aug 2021
+	 	<br> 
+		[<a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3756587"> link </a>]
+	<p>
+	</li>	
+	</ul>
+	
+	<ul>[ Reference ]:
+		<li> Kaggle: Home Credit Default Risk [<a href="https://www.kaggle.com/c/home-credit-default-risk"> link </a>]
+		</li>
+		<li> Kaggle: M5 Forecasting - Accuracy, Estimate the unit sales of Walmart retail goods. 
+		[<a href="https://www.kaggle.com/c/m5-forecasting-accuracy"> link </a>]
+		</li>
+		<li> Kaggle: M5 Forecasting - Uncertainty, Estimate the uncertainty distribution of Walmart unit sales. 
+		[<a href="https://www.kaggle.com/c/m5-forecasting-uncertainty"> link </a>]
+		</li>
+		<li> Kaggle: Ubiquant Market Prediction - Make predictions against future market data. 
+		[<a href="https://www.kaggle.com/competitions/ubiquant-market-prediction"> link </a>]
+		</li>
+		<li> Kaggle: G-Research Crypto Forecasting.
+		[<a href="https://www.kaggle.com/c/g-research-crypto-forecasting"> link </a>]
+		</li>
+		<!--- <li> Type-II diabetes and Alzheimer's disease.
+		[<a href="https://yao-lab.github.io/course/statml/2022/slides/MATH_5470_probject_intro_MAR2022.pdf"> slides (pdf) </a>]
+		[<a href="https://yao-lab.github.io/course/statml/2022/slides/MATH_5470_probject_intro_MAR2022.pptx"> slides (pptx) </a>]
+		</li> --->
+		
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+
+
+</tbody>
+</table>
+
+
+
+<hr>
+
+<address>
+by <a href="http://yao-lab.github.io/">YAO, Yuan</a>.
+</address>
+
+</body>
+</html>
+
+<!---
+
+
+<tr>
+<td>20/04/2022, Wed</td>
+<td>Lecture 20: Robust Statistics and Generative Adversarial Networks [<a href="slides/robust-gan.pdf"> slides </a>] </a>  
+	<br>
+	<ul>[Reference]:
+		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+		
+		
+		<li> DCGAN for MNIST Tutorial in Pytorch Notebook 
+			[<a href="https://github.com/aifin-hkust/aifin-hkust.github.io/blob/master/2020/notebook/dcgan_mnist_tutorial.ipynb"> dcgan_mnist_tutorial.ipynb </a>] 
+		</li>
+		<p>
+		
+	
+		<li> Credit Card Fraud Detection via GAN implemented by Ruoxue LIU: [<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/aifin/2021/notebook/gan_creditcard_augmentation_11_23_2/simple_gan.ipynb"> GitHub </a>]
+		</li>
+		<li> Credit Card Fraud Detection dataset: [<a href="https://www.kaggle.com/mlg-ulb/creditcardfraud/home"> Kaggle </a>]	
+		</li>
+		
+		
+		<p>
+		<li> <a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/data/RobustGAN/Robust_GAN.ipynb"> Robust_GAN.ipynb </a>: Jupyter Notebook for demonstration </li>
+		<li> <a href="https://github.com/yao-lab/Robust-GAN-Center"> Robust-GAN-Center </a>: robust center (mean) estimate via GANs </li>
+		<li> <a href="https://github.com/zhuwzh/Robust-GAN-Scatter"> Robust-GAN-Scatter </a>: robust scatter (covariance) estimate via GANs </li>
+		<p>
+		<li>  <B> GAO, Chao, Jiyi LIU, Yuan YAO, and Weizhi ZHU.</B>
+			<br>
+			Robust Estimation and Generative Adversarial Nets. 
+			<br>
+			<I>ICLR</I> 2019.
+			<br>
+			[<a href="https://arxiv.org/abs/1810.02030"> arXiv:1810.02030 </a>] [<a href="https://github.com/zhuwzh/Robust-GAN-Center"> GitHub </a>] [<a href="https://simons.berkeley.edu/talks/robust-estimation-and-generative-adversarial-nets"> GAO, Chao's Simons Talk </a>]
+		</li>
+		<p>
+		<li> <B>GAO, Chao, Yuan YAO, and Weizhi ZHU.</B>
+			<br>
+			Generative Adversarial Nets for Robust Scatter Estimation: A Proper Scoring Rule Perspective. 
+			<br>
+			<I>Journal of Machine Learning Research</I>, 21(160):1-48, 2020. 
+			<br>
+			[<a href="https://arxiv.org/abs/1903.01944"> arXiv:1903.01944 </a>] [<a href="https://github.com/zhuwzh/Robust-GAN-Scatter"> GitHub </a>]
+		</li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+--->
+
+<!---
+
+
+
+<tr>
+<td>25/04/2022, Mon</td>
+<td>Lecture 21: An Introduction to Self-supervised Learning [<a href="slides/Lecture11_ssl.pdf"> slides </a>]  
+	<br>
+	<ul>[ Reference ]:
+		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+		<li> A tutorial on MoCo: 
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/msbd5013/2022/notebook/moco_tutorial.ipynb"> moco_tutorial.ipynb </a>]
+		</li>
+
+	</ul>
+	
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>27/04/2022, Wed</td>
+<td>Seminar: <B> Conformal Prediction </B> 
+	<br>
+	<ul> 
+		<li> Speaker: Prof. <a href="https://candes.su.domains/">Emmanuel Candès</a>, Stanford University </li>
+		<li> Abstract: Recent progress in machine learning provides us with many potentially effective tools to learn from datasets of ever-increasing sizes and make useful predictions. How do we know that these tools can be trusted in critical and highly-sensitive domains? If a learning algorithm predicts the GPA of a prospective college applicant, what guarantees do we have concerning the accuracy of this prediction? How do we know that it is not biased against certain groups of applicants? To address questions of this kind, this talk reviews a wonderful field of research known under the name of conformal inference/prediction, pioneered by Vladimir Vovk and his colleagues 20 years ago. After reviewing some of the basic ideas underlying distribution-free predictive inference, we shall survey recent progress in the field touching upon several issues: (1) efficiency: how can we provide tighter predictions?, (2) data-reuse: what do we do when data is scarce? (3) algorithmic fairness: how do we make sure that learned models apply to individuals in an equitable manner?, and (4) causal inference: can we predict the counterfactual response to a treatment given that the patient was not treated?
+		</li>
+		<li> This is the keynote talk at the Bernoulli-IMS One World Symposium on 27 Aug 2020.
+			[<a href="https://datascience.stanford.edu/news/dsi-director-keynotes-one-world-symposium-2020"> link </a>]
+		</li>
+	</ul>
+	<ul> [ Reference ]
+		<li>Alex Gammerman, Volodya Vovk, Vladimir Vapnik. Learning by Transduction. In Proceedings of the Fourteenth Conference on Uncertainty in Artificial Intelligence (UAI1998). 1998.
+			[<a href="https://arxiv.org/abs/1301.7375"> arXiv:1301.7375 </a>]
+		</li>
+		<li> Glenn Shafer, Vladimir Vovk, A Tutorial on Conformal Prediction. Journal of Machine Learning Research 9 (2008) 371-421.
+		[<a href="https://jmlr.csail.mit.edu/papers/volume9/shafer08a/shafer08a.pdf"> link </a>]
+		</li>
+		<li> Jing Lei, Max G’Sell, Alessandro Rinaldo, Ryan J. Tibshirani, and Larry Wasserman.
+		Distribution-Free Predictive Inference for Regression.
+		Journal of the American Statistical Association, 2018, 113(523):1094-1111.
+		[<a href="https://www.tandfonline.com/doi/full/10.1080/01621459.2017.1307116"> link </a>][<a href="https://arxiv.org/abs/1604.04173"> arXiv:1604.04173 </a>]
+		</li>
+		<li> Y. Romano, E. Patterson, E. J. Candès. Conformalized quantile regression. Advances in neural information processing systems 32 (NIPS), 2019.
+			[<a href="https://arxiv.org/abs/1905.03222"> arXiv:1905.03222 </a>]
+		</li>
+		<li> R. F. Barber, E. J. Candès, A. Ramdas, R. J. Tibshirani. Predictive inference with the jackknife+. Ann. Statist.. 2021.
+		[<a href="https://arxiv.org/abs/1905.02928"> arXiv:1905.02928 </a>]  
+		</li>
+		<li> Y. Romano, M. Sesia, E. J. Candès. Classification with valid and adaptive coverage. Advances in neural information processing systems 33 (neurips 2020). 2020. 
+			[<a href="https://arxiv.org/abs/2006.02544"> arXiv:2006.02544 </a>]
+		</li> 
+		<li> I. Gibbs, E. Candès. Adaptive conformal inference under distribution shift. Advances in Neural Information Processing Systems 34 (NeurIPS 2021). 2021.
+		[<a href="https://arxiv.org/abs/2106.00170"> arXiv:2106.00170 </a>]
+		</li> 
+		<li> L. Lei, E. J. Candès. Conformal inference of counterfactuals and individual treatment effects. Journal of the Royal Statistical Society Series B. 2021. 
+		[<a href="https://arxiv.org/abs/2006.06138"> arXiv:2006.06138 </a>]
+		</li>
+
+		<li> R. F. Barber, E. J. Candès, A. Ramdas, R. J. Tibshirani. Conformal prediction beyond exchangeability. 2022. 
+		[<a href="https://arxiv.org/abs/2202.13415"> arXiv:2202.13415 </a>]
+		</li>
+	</ul>
+	
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+--->
