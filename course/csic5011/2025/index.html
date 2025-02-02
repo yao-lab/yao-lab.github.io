@@ -1,0 +1,1049 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <META http-equiv=Content-Type content="text/html; charset=gb2312">
+   <title>CSIC5011-Math5473: Topological and Geometric Data Reduction and Visualization</title>
+</head>
+<body background="../../../../images/crysback.jpg">
+
+<!-- PAGE HEADER -->
+
+<div class="Section1">
+<table border="0" cellpadding="0" width="100%" style="width: 100%;">
+      <tbody>
+        <tr>
+
+       <td style="padding: 0.75pt;" width="80" align="center">
+
+      <p class="MsoNormal">&nbsp;<img width="64"
+ id="_x0000_i1025"
+ src="../../../../images/hkust0_starry.jpg" alt="HKUST">
+          </p>
+       </td>
+       <td style="padding: 0.75pt;">
+      <p>
+<span style="font-size: 18pt;">
+<b><big>CSIC5011-Math5473: Topological and Geometric Data Reduction and Visualization<br>
+   Spring 2024</big></b>
+<br>
+</p>
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<div class="MsoNormal" align="center" style="text-align: center;">
+<hr size="2" width="100%" align="center">  </div>
+
+<ul type="disc">
+
+</ul>
+
+<!-- COURSE INFORMATION BANNER -->
+
+<table border="0" cellpadding="0" width="100%" bgcolor="#990000"
+ style="background: rgb(153,0,0) none repeat scroll 0% 50%; width: 100%;">
+      <tbody>
+
+        <tr>
+       <td style="padding: 2.25pt;">
+      <p class="MsoNormal"><b><span
+ style="font-size: 13.5pt; color: white;">Course Information</span></b></p>
+       </td>
+      </tr>
+
+  </tbody>
+</table>
+
+<!-- COURSE INFORMATION -->
+
+<!-- 
+    <p style="margin-left: 0.5in;">
+    <img height="200" src="boya_starry.png">
+    <img height="200" src="boya_wreck.png">
+    <img height="200" src="boya_twilight.png">
+    </p>
+-->
+
+<h3>Synopsis (&#25688;&#35201;)</h3>
+<p style="margin-left: 0.5in;">
+<big> This course is open to graduates and senior undergraduates in applied mathematics, statistics, and engineering, who are interested in learning from data.
+Students with other backgrounds such as life sciences are also welcome, provided you have certain maturity of mathematics. It will cover wide topics in geometric (principal component analysis and manifold learning, etc.) and topological data reduction (clustering and computational homology group, etc.). 
+<br>
+Prerequisite: linear and abstract algebra, basic probability and multivariate statistics, basic stochastic process (Markov chains), convex optimization; familiarity with Matlab, R, and/or Python, etc.
+</big>
+</p>
+
+
+<h3>Reference (&#21442;&#32771;&#25945;&#26448;)</h3>
+<p style="margin-left: 0.5in;">
+ <big> <a href="https://yao-lab.github.io/book_datasci/"> [pdf download] </a> <img src="../../../../images/new.jpg" height="40">
+ </big>
+ </p>
+<p style="margin-left: 0.5in;">
+ <big> Topological Data Analysis for Genomics and Evolution: Topology in Biology. By Raul Rabadan and Andrew J. Blumberg [<a href="https://www.amazon.com/gp/product/1107159547/ref=ox_sc_act_title_2?smid=ATVPDKIKX0DER&psc=1"> Amazon </a>] <img src="../../../../images/new.jpg" height="40">
+ </big>
+ </p>	
+
+
+<h3>Instructors: </h3>
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="http://yao-lab.github.io/">Yuan YAO</a>  </em>
+</big>
+</p>
+
+<h3>Time and Place:</h3>
+<p style="margin-left: 0.5in;">
+	<big><em>Wednesday 15:00am-17:50pm, Rm 1032, LSK Bldg </em> <br> </big>
+<!-- <big><em>This term we will be using Piazza for class discussion. The system is highly catered to getting you help fast and efficiently 
+	from classmates and myself. Rather than emailing questions to the teaching staff, I encourage you to post your 
+	questions on Piazza. If you have any problems or feedback for the developers, email team@piazza.com. <br>
+Find our class page at: <a href="https://piazza.com/ust.hk/spring2019/csic5011/home">https://piazza.com/ust.hk/spring2019/csic5011/home</a></em></big> <br>
+-->
+</p>
+
+<h3>Homework and Projects:</h3>
+
+<p style="margin-left: 0.5in;">
+<big><em> Weekly homeworks (no grader, but I'll read your submissions and give bonus credits), mini-projects, and a final major project. No final exam. </em>
+<br>
+	Email: <em> datascience.hw (add "AT gmail DOT com" afterwards) </em>
+</big></p>
+
+<!-- <h3>Teaching Assistant (&#21161;&#25945;):</h3>
+    <p style="margin-left: 0.5in;">
+    <big>SUN, Xinwei; XIONG, Jiechao; YUAN, Huizhuo; WU, Bingzhe. <br>
+    Email:<em> statlearning_hw (add "@ 126 DOT com" afterwards) </em>
+    </big>
+    </p>
+-->
+				
+<h3>Schedule (&#26102;&#38388;&#34920;)</h3>
+
+<table border="1" cellspacing="0">
+<tbody>
+
+<tr>
+<td align="left"><strong>Date</strong></td>
+<td align="left"><strong>Topic</strong></td>
+<td align="left"><strong>Instructor</strong></td>
+<td align="left"><strong>Scriber</strong></td>
+</tr>
+
+<tr>
+<td>01/31/2024, Wed </td>
+<td>Lecture 01: Syllabus, Principal Component Analysis, and Multidimensional Scaling 
+[<a href="../slides/Lecture01_outline.pdf"> Class outline </a>] 
+[<a href="../slides/Lecture01_PCA-MDS.pdf"> PCA-MDS slides </a>]
+<br>
+<ul> [Reference]:
+<li> To view .jpynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+<li> PCA in iPython Notebook <a href="../slides/pca.ipynb"> [ pca.ipynb ] </a> <a href="../slides/pca.py"> [ pca.py ] </a> </li>
+<li> MDS in Python <a href="http://scikit-learn.org/stable/auto_examples/manifold/plot_mds.html#sphx-glr-auto-examples-manifold-plot-mds-py"> [ scikit-learn MDS] </a> </li>
+<li> PCA with Logistic regression for digit classification: <a href="../slides/pca_logistic.ipynb"> [ pca_logistic.ipynb ] </a> <a href="../slides/pca_logistic.py"> [ pca_logistic.py ] </a> </li>
+</ul>
+<ul>[Homework 1]:
+<li> <a href="homework/homework01.pdf">Homework 1 [pdf]</a>. Just for fun, no grading; but I'll read your submissions and give your bonus credits. </li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+	
+<tr>
+<td>02/07/2024, Wed </td>
+<td>Lecture 02: Horn's Parallel Analysis and Random Matrix Theory for PCA, Sufficient Dimensionality Reduction and Supervised PCA (Chap 2: 3-5)
+[<a href="../slides/Lecture02_RMT.pdf"> slides </a>] [<a href="../slides/Lecture02_SDR.pdf"> Sufficient Dimensionality Reduction and Supervised PCA </a>]
+<br>
+
+	<ul>[Reference]:
+<li> Horn's Parallel Analysis in R: <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/paran.R"> [ paran.R ] </a> </li> 
+<li> Parallel Analysis in Matlab: <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/papca.m"> [ papca.m ] </a> </li>
+<li> Parallel Analysis in Python by LI, Zhen: <a href="../slides/paPCA_curve.py"> [ paPCA_curve.py ] </a> <a href="../slides/paPCA_image.py"> [ paPCA_image.py ] </a> </li>
+<li> Marcenko-Pastur Law of Wishart matrices in Matlab: <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/mp.m"> [ mp.m ] </a> </li> 
+<li> S&P500 dataset in class: <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/snp500.Rda"> [ snp500.Rda ] </a> <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/snp452-data.mat"> [ snp452-data.mat ] </a> <a href="http://math.stanford.edu/~yuany/course/data/snp500.txt"> [ snp500.txt ] </a> </li> 
+<li>  <a href="http://www.icm2006.org/proceedings/Vol_I/17.pdf">[Johnstone06]</a> High dimensional statistical inference and random
+matrices, ICM2006.</li>
+<li> <a href="https://www.sciencedirect.com/science/article/pii/S0169743908001111">[KN08 for multi-rank signal]</a> S. Kritchman and B. Nadler, Determining the number of components in a factor model from limited noisy data, Chemometrics and Intelligent Laboratory Systems 94(1):19-32, 2008. </li>
+<li>  <a href="https://ieeexplore.ieee.org/document/5606726">[ NB10: multi-rank subspace ]</a> R. R. Nadakuditi and F. Benaych-Georges, The breakdown point of signal sub- space estimation, IEEE Sensor Array and Multichannel Signal Processing Workshop (2010),  Jerusalem, Israel, 2010, pp. 177-180, doi: 10.1109/SAM.2010.5606726.</li> 
+<li>  <a href="https://arxiv.org/abs/0910.2120">Florent Benaych-Georges and Raj Rao Nadakuditi (2009) The eigenvalues and eigenvectors of finite, low rank perturbations of large random matrices.</a> </li>
+<li>  <a href="https://link.springer.com/article/10.1007/BF02289447">[Parallel Analysis: Horn (1965) original paper]</a> 
+<li>  <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.43.3813&rep=rep1&type=pdf">[Parallel Analysis: Buja-Eyuboglu (1992) with random permutation]</a> 
+<li> <a href="https://www.biorxiv.org/content/early/2018/10/05/426239">[Raul Rabadan (2018)]</a>: applications of RMT in single cell data analysis</li>
+</ul>
+	
+	<ul>[Homework 2]:
+<li> <a href="homework/homework02.pdf">Homework 2 [pdf]</a>. Just for fun, no grading; but I'll read your submissions and give your bonus credits </li>
+</ul>
+	
+</td>
+<td>Y.Y.</td>
+<td>LI, Zhen</td>
+</tr>
+
+	<tr>
+<td>02/14/2024, Wed </td>
+<td> Rescheduled to later class. Happy Lunar New Year! <br>
+</td>
+<td></td>
+<td></td>
+</tr>
+
+	<tr>
+<td>02/21/2024, Wed </td>
+<td> Rescheduled to later for COVID'19. <br>
+</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>02/28/2024, Wed </td>
+<td>Lecture 03: High Dimensional Sample Mean: Inadmissibility of MLE and James-Stein Estimators (Chap 2: 1-2) [<a href="../slides/Lecture03_JSE.pdf"> slides </a>]<br>
+
+	<ul>[Reference]:
+<li> Comparing Maximum Likelihood Estimator and James-Stein Estimator in R: <a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/2020.csic5011/slides/JSE.R"> [ JSE.R ] </a> </li> 
+<li> James-Stein estimator via multi-task ridge regression: Yaqi Duan, Kaizheng Wang (2022) Adaptive and Robust Multi-task Learning, [<a href="https://arxiv.org/abs/2202.05250"> arXiv:2202.05250 </a>]</li>
+</ul>
+	<ul>[Homework 3]:
+<li> <a href="homework/homework03.pdf">Homework 3 [pdf]</a>. Just for fun, no grading; but I'll read your submissions and give your bonus credits </li>
+</ul>
+	
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+
+<tr>
+<td>03/06/2024, Wed </td>
+<td>Lecture 04: Random Projections, Johnson-Lindenstrauss Lemma, and Applications in Compressed Sensing etc. (Chap 3) [<a href="../slides/Lecture04_RP.pdf"> slides </a>]<br>
+<ul>[Reference]:
+	<li> Joseph Salmon's lecture on Johnson-Lindenstrauss Theory <a href="../slides/JLlemma.pdf"> [ JLlemma.pdf ] </a> </li>
+	<li> Random Projections in Scikit-learn: [<a href="https://scikit-learn.org/stable/modules/random_projection.html"> link </a>]</li> 
+	<li> Dennis Amelunxen, Martin Lotz, Michael B. McCoy, Joel A. Tropp. Living on the edge: Phase transitions in convex programs with random data. [<a href="https://arxiv.org/abs/1303.6672"> arXiv:1303.6672 </a>] </li>
+</ul>
+	<ul>[Homework 4]:
+	<li> <a href="homework/homework04.pdf">Homework 4 [pdf]</a>. Just for fun, no grading; but I'll read your submissions and give your bonus credits </li>
+</ul>
+	
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+	<tr>
+<td>03/13/2024, Wed </td>
+<td>Lecture 05: Robust PCA, Sparse PCA, and Graph Realization (MDS) with Uncertainty -- SDP relaxations <a href="../slides/Lecture05_SDP.pdf">[ slides ]</a><br>
+<ul>[Reference]:
+<li> You need Matlab <a href="http://cvxr.com/cvx/">CVX</a> optimization toolbox to run the following demo codes.
+<li> Robust PCA demo: <a href="../slides/testRPCA.m"> [ testRPCA.m ] </a> </li>
+<li> Robust PCA via ADMM by Stephen Boyd et al.: [<a href="http://web.stanford.edu/~boyd/papers/prox_algs/matrix_decomp.html"> link </a>] </li>
+<li> Robust PCA via ADMM in Python <a href="https://jeremykarnowski.wordpress.com/2015/08/31/robust-principal-component-analysis-via-admm-in-python/"> [ weblink ] </a> </li>
+<li> Sparse PCA demo: <a href="../slides/testSPCA.m"> [ testSPCA.m ] </a> </li>
+<li> Sparse PCA in Python <a href="http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.SparsePCA.html"> [ sklearn ] </a></li>
+<li> Sensor Network Localization in Matlab: an old package collected by Kirill Konovalov from previous CSIC5011 (2017) [<a href="https://github.com/AlasGarn/CSIC5011_prj/tree/master/prj1/SNLSDP-0"> SNLSDP-0 </a>]  </li>
+<li> Sensor Network Localization with Facial Reduction in Matlab: <a href="http://www.math.uwaterloo.ca/~hwolkowi//henry/reports/ABSTRACTS.html#krislockwolkSNL"> [ SNLSDPclique ]</a></li>
+<li> Teng ZHANG's Tyler's M-estimator <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/tyler_m_estimator.m"> [ Matlab: tyler_m_estimator.m ] </a></li>
+<li> Duembgen, Nordhausen and Schuhmacher (2016): R package for M-scatter estimates <a href="https://cran.r-project.org/web/packages/fastM/index.html"> [ R package fastM ] </a></li>
+	</ul>
+	<ul>[Homework 5]:
+<li> <a href="homework/homework05.pdf">Homework 5 [pdf]</a>. Just for fun, no grading; but I'll read and give bonus credits if you submitted. </li>
+</ul>
+
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>03/20/2024, Wed </td>
+<td>Lecture 06: Introduction to Manifold Learning: ISOMAP and LLE (Modified LLE, Hessian LLE, and LTSA) <a href="../slides/Lecture06_ISOMAP-LLE.pdf">[ slides ]</a> <br>
+<ul>[Reference]:
+<li>  <a href="http://web.mit.edu/cocosci/isomap/isomap.html">[ISOMAP]</a>: Tenenbaum's website on science paper with datasets; 
+</li>
+<li>  <a href="https://www.cs.nyu.edu/~roweis/lle/">[LLE]</a>: Roweis' website on science paper; 
+</li>
+<li>  <cite>Donoho, D. &amp; Grimes, C. Hessian eigenmaps: Locally
+linear embedding techniques for high-dimensional data.
+Proc Natl Acad Sci U S A.  100:5591 (2003).</cite> [<a href="http://www.pnas.org/content/100/10/5591.full">doi: 10.1073/pnas.1031596100</a>] </li>
+<li><cite>Zhang, Z. &amp; Wang, J. MLLE: Modified Locally Linear
+Embedding Using Multiple Weights. </cite> [<a class="reference external" href="https://papers.nips.cc/paper/3132-mlle-modified-locally-linear-embedding-using-multiple-weights"> NIPS 2006 </a>]</li>
+<li><cite>Zhang, Z. &amp; Zha, H. (2005) Principal manifolds and nonlinear
+dimensionality reduction via tangent space alignment. 
+	SIAM Journal on Scientific Computing. 26 (1): 313-338. </cite> 
+	[<a href="https://doi.org/10.1137/S1064827502419154">doi:10.1137/s1064827502419154</a>] </li>
+	</ul>
+<ul>[Python]: 
+	<li> <a href="https://nbviewer.jupyter.org/url/github.com/yuany-pku/2017_CSIC5011/blob/master/slides/plot_mani_digits.ipynb"> plot_mani_digits.ipynb </a>: demo of digits in class </li>
+	<li> <a href="https://nbviewer.jupyter.org/github/yuany-pku/2017_CSIC5011/blob/master/slides/plot_compare_methods.ipynb"> plot_compare_methods.ipynb </a>: demo of Swiss roll in class </li>
+	<li> <a href="http://scikit-learn.org/stable/modules/manifold.html#manifold"> scikit-learn manifold module </a> </li>
+</ul>
+<ul>[Matlab]:
+<li> <a href="https://yao-lab.github.io/data/IsomapR1/"> IsomapR1 </a>: isomap codes by Tennenbaum, de Silva (isomapII.m with sparsity, fast mex with dijkstra.cpp and fibheap.h </li>
+</li> 
+<li> <a href="https://yao-lab.github.io/data/lle.m"> lle.m </a>: lle with k-nearest neighbors
+</li>
+<li> <a href="https://yao-lab.github.io/data/kcenter.m"> kcenter.m </a>: k-center algorithm to find 'landmarks' in a metric space
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>	
+
+	<tr>
+<td>03/27/2024, Wed </td>
+<td>Lecture 07: Manifold Learning II: Laplacian Eigenmap, Diffusion Map, and Stochastic Neighbor Embedding <a href="../slides/Lecture07_manifold2.pdf">[ slides ]</a> and Final Project Kickoff <a href="project/project.pdf">[ project.pdf ]</a> <br>
+<ul>[Reference]:
+<li><cite>Mikhail Belkin, Partha Niyogi. Laplacian Eigenmaps and Spectral Techniques for Embedding and Clustering, Advances in Neural Information Processing Systems (NIPS) 14, 2001, p. 586-691, MIT Press</cite>
+<a href="https://papers.nips.cc/paper/1961-laplacian-eigenmaps-and-spectral-techniques-for-embedding-and-clustering">
+	[nips link] </a> </li>
+<li> R. R. Coifman, S. Lafon, A. B. Lee, M. Maggioni, B. Nadler, F. Warner, and S. W. Zucker. Geometric diffusions as a tool for harmonic analysis and structure definition of data: Diffusion maps. PNAS 102 (21):7426-7431, 2005 <a href="http://www.pnas.org/content/102/21/7426.long"> [doi: 10.1073/pnas.0500334102] </a> </li>
+<li> <cite>Nadler, Boaz; Stephane Lafon; Ronald R. Coifman; Ioannis G. Kevrekidis (2005). <a href="http://www.wisdom.weizmann.ac.il/~nadler/Publications/dm_nips05.pdf">"Diffusion Maps, Spectral Clustering and Eigenfunctions of Fokker-Planck Operators"</a> <span>(PDF)</span> <i>in Advances in Neural Information Processing Systems (NIPS) 18, 2005</i>.</cite></li>
+<li> <cite>Coifman, R.R.; S. Lafon. (2006). "Diffusion maps". <i>Applied and Computational Harmonic Analysis.</i> 21: 5-30. <a href="//doi.org/10.1016%2Fj.acha.2006.04.006">10.1016/j.acha.2006.04.006</a>.</cite></li>
+<li> Stochastic Neighbor Embedding <a href="http://www.cs.toronto.edu/~hinton/absps/sne.pdf"> [ .pdf ] </a></li>
+<li> Visualizing Data using t-SNE <a href="http://www.cs.toronto.edu/~hinton/absps/tsnefinal.pdf"> [ .pdf ] </a></li>
+<li> A paper that relates SNE to Laplacian Eigenmaps <a href="http://www.cs.toronto.edu/~hinton/csc2535/readings/miguel.pdf"> [ .pdf ] </a></li>
+<li> A helpful website: How to use t-SNE effectively? <a href="https://distill.pub/2016/misread-tsne/"> [ link ]</a></li>
+</ul>
+<ul>[Matlab]
+<li> Matlab code to compare manifold learning algorithms <a href="https://github.com/yuany-pku/2017_CSIC5011/blob/master/slides/mani.m"> [ mani.m ] </a>: PCA, MDS, ISOMAP, LLE, Hessian LLE, LTSA, Laplacian, Diffusion (no SNE!)</li>
+</ul>
+<ul>[Python]: 
+<li> <a href="https://nbviewer.jupyter.org/url/github.com/yuany-pku/2017_CSIC5011/blob/master/slides/plot_compare_methods.ipynb"> plot_compare_methods.ipynb </a>: demo in class </li>
+<li> <a href="https://nbviewer.jupyter.org/url/github.com/yuany-pku/2017_CSIC5011/blob/master/slides/plot_mani_digits.ipynb"> plot_mani_digits.ipynb </a>: demo of digits in class </li>
+<li> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.manifold.locally_linear_embedding.html#sklearn.manifold.locally_linear_embedding"> scikit-learn manifold LLE </a>: PCA/MDS, ISOMAP, LLE/MLLE, Hessian, LTSA, Laplacian (Spectral), t-SNE (no Diffusion map)</li>
+<li> <a href="http://lvdmaaten.github.io/tsne/"> Laurens van der Maaten's website for t-SNE codes </a></li>
+	</ul>
+	<ul>[Homework 6]:
+<li> <a href="homework/homework06.pdf">Homework 6 [pdf]</a>. Just for fun, no grading. </li>
+	</ul>
+
+
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>04/10/2024, Mon </td>
+<td>Lecture 08: Random Walk on Graphs and Spectral Graph Theory: Perron-Frobenius (PageRank), Fiedler (Algebraic Connectivity), Cheeger Inequality (Normalized Cut), Lumpability (Spectral Clustering) and Transition Path Theory (Semi-supervised Learning) [<a href="../slides/Lecture08_graph.pdf"> slides </a>]  <br>
+<ul>[Reference]:
+<li> Amy N. Langville and Carl D. Meyer's book: <a href="http://geza.kzoo.edu/~erdi/patent/langvillebook.pdf"> Google's PageRank and Beyond </a> </li>
+<li> Jim Demmel's courseweb at UC Berkeley for Fiedler Theory and Graph Bipartition: <a href="https://people.eecs.berkeley.edu/~demmel/cs267/lecture20/lecture20.html"> [ link ] </a></li>
+<li> T. Buehler, M. Hein. <span class="bibbook"> <a href="http://www.ml.uni-saarland.de/Publications/BueHei-pSpectralClustering2009.pdf">Spectral Clustering based on the graph p-Laplacian</a>. Proceedings of the 26th International Conference on Machine Learning (ICML 2009), 81-88. </span> 
+</li>
+<li> James R. Lee, Shayan Oveis Gharan, Luca Trevisan. <span class="bibbook"> <a href="https://arxiv.org/abs/1111.1055">Multi-way spectral partitioning and higher-order Cheeger inequalities</a>. Proceeding STOC'12 Proceedings of the forty-fourth annual ACM symposium on Theory of computing, Pages 1117-1130. arXiv:1111.1055. </span>
+</li>
+<li> Weinan E, Jianfeng Lu, and Yuan Yao. <span class="bibbook"> <a href="http://arxiv.org/abs/1204.6376"> The Landscape of Complex Networks: Critical Nodes and A Hierarchical Decomposition. </a>
+Methods and Applications of Analysis, special issue in honor of Professor Stanley Osher on his 70th birthday, 20(4):383-404, 2013.
+</li>
+</ul>
+	
+<ul>[Homework 7]:
+<li> <a href="homework/homework07.pdf">Homework 7 [pdf]</a>. Just for fun, no grading. </li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+
+	<tr>
+<td>04/17/2024, Wed </td>
+<td>Lecture 09: Introduction to Topological Data Analysis. 
+[<a href="../slides/Lecture09_TDA.pdf"> slides </a>] 
+<br>
+<ul>[Reference]:
+	<li>
+<B>Topological Methods for Exploring Low-density States in Biomolecular Folding Pathways.</B>
+<br>
+Yuan Yao, Jian Sun, Xuhui Huang, Gregory Bowman, Gurjeet Singh, Michael Lesnick, <a href="http://folding.stanford.edu/Pande/Main">Vijay Pande</a>, <a href="http://www-graphics.stanford.edu/~guibas/ ">Leonidas Guibas</a> and  <a href="http://math.stanford.edu/~gunnar/">Gunnar Carlsson</a>.
+<br>
+ <i>J. Chem. Phys</i>. <B>130</B>, 144115 (2009).
+<br>
+[<a href="publications/RNA_mapper_JCP2009.pdf">pdf</a>][<a href="http://link.aip.org/link/?JCP/130/144115">Online Publication</a>][<a href="https://simtk.org/home/rna-mapper">SimTK Link: Data and Mapper Matlab Codes</a>] [Selected by <a href="http://www.vjbio.org/">Virtual Journal of Biological Physics Research, 04/15/2009</a>]. 
+<p>
+	</li>
+
+	<li>
+<B>Structural insight into RNA hairpin folding intermediates.</B>
+<br>
+Bowman, Gregory R., <a href="http://csb.stanford.edu/~xhuang/">Xuhui Huang</a>, Yuan Yao, <a href="http://www.stanford.edu/~sunjian/">Jian Sun</a>, <a href="http://math.stanford.edu/~gunnar/">Gunnar Carlsson</a>, <a href="http://www-graphics.stanford.edu/~guibas/ ">Leonidas Guibas</a> and <a href="http://folding.stanford.edu/Pande/Main">Vijay Pande</a>. 
+<br>
+<i>Journal of American Chemistry Society</i>, 2008, 130 (30): 9676-9678. 
+<br> 
+[<a href="http://pubs.acs.org/cgi-bin/abstract.cgi/jacsat/2008/130/i30/abs/ja8032857.html">link</a>]
+<p>
+	</li>
+
+
+	<li> <B> Single-cell topological RNA-seq analysis reveals insights into cellular differentiation and development. </B>
+<br>
+Abbas H Rizvi, Pablo G Camara, Elena K Kandror, Thomas J Roberts, Ira Schieren, Tom Maniatis & Raul Rabadan.
+<br>
+<i>Nature Biotechnology</i>. 2017 May. doi:10.1038/nbt.3854
+<p>
+	</li>
+
+	<li>
+<B>Spatiotemporal genomic architecture informs precision oncology in glioblastoma.</B>
+<br> Lee JK, Wang J, Sa JK, Ladewig E, Lee HO, Lee IH, Kang HJ, Rosenbloom DS, Camara PG, Liu Z, van Nieuwenhuizen P, Jung SW, Choi SW, Kim J, Chen A, Kim KT, Shin S, Seo YJ, Oh JM, Shin YJ, Park CK, Kong DS, Seol HJ, Blumberg A, Lee JI, Iavarone A, Park WY, Rabadan R, Nam DH.
+<br>
+<I>Nat Genet.</I> 2017 Apr. doi: 10.1038/ng.3806.
+<p>
+	</li>
+<li> A Python Implementation of Mapper <a href="https://github.com/szairis/sakmapper"> [ sakmapper ] </a> in single cell data analysis. 
+<li> Single Cell TDA <a href="https://github.com/pcamara/scTDA"> [ scTDA ] </a> with <a href="https://github.com/pcamara/scTDA/blob/master/doc/scTDA%20Tutorial.html"> [ tutorial in html ]</a>
+<li> A Java package for persistent homology and barcodes: <span class="bibbook"> <a href="https://github.com/appliedtopology/javaplex/wiki/Tutorial">Javaplex Tutorial</a>. </span>
+<p>
+	</li>
+
+	<li>
+<B>Persistent Homology Analysis of Biomolecular Data</B> 
+		<br>
+	Guo-Wei Wei. <br>
+		<a href="http://users.math.msu.edu/users/wei/SIAM_News2017.pdf"> SIAM News 2017</a>
+<br><p>
+	</li>
+
+
+	<li> <B> Topological Data Analysis Generates High-Resolution, Genome-wide Maps of Human Recombination. </B>
+<br>
+Pablo G. Camara, Daniel I.S. Rosenbloom, Kevin J. Emmett, Arnold J. Levine, Raul Rabadan.
+<br>
+<i>Cell Systems</i>. 2016 June. doi: 10.1016/j.cels.2016.05.008.
+<p>
+	</li>
+
+	<li> <B> Topology of viral evolution.</B>
+<br>
+Chan JM, Carlsson G, Rabadan R.
+<br>
+<i></i>Proc Natl Acad Sci USA</i> 2013 Oct 29. doi: 10.1073/pnas.1313480110.
+<p>
+	</li>
+
+	<li> Robert Ghrist's monograph on applied Topology <B> <a href="https://www.math.upenn.edu/~ghrist/notes.html"> Elementary Applied Topology </a> </B> 
+<p>
+	</li>
+	</ul>
+	
+	<ul>[Homework 8]:
+	<li> <a href="homework/homework08.pdf">Homework 8 [pdf]</a>. Just for fun, no grading. </li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+	<tr>
+<td>04/23/2024, Tue </td>
+<td> Seminars: HKUST Red Bird Visiting Scholars Lecture Series
+<br> 
+	
+	<ul>[ Title ]: <B>From Descriptive to Predictive: Universality and Language Models in Cancer Genomics</B> 
+	<li>[ Speaker ]: <a href="https://www.rabadanlab.org/people-current">Raul RABADAN</a>, Columbia University </li>
+	<li>[ Time ]: April 23, 2024 (Tue) / 4:00 - 5:30 pm </li>
+	<li>[ Venue ]: Kaisa Group Lecture Theater (IAS LT), Lo Ka Chung Building, Lee Shau Kee Campus, HKUST </li>
+	<li>[ Abstract ]: Biology has traditionally been a descriptive science. Starting from the notion of universality in physics and mathematics, in this talk the speaker will explore a couple of approaches to transcend the descriptive nature of biology research, with a special focus on cancer genomics. Cancers are seeded by mutations, both inherited and acquired during a lifetime. While the speaker?s research group and many other groups have extensively studied the role of protein mutations, the functional impact of most mutations found in cancer remains unknown. Foundation models have demonstrated significant potential for integrating vast amounts of data and exerting considerable impact across various scientific domains. Initially, the speaker will introduce the Evolutionary and Structure (ES) score, which builds upon protein language models and AlphaFold. The ES score amalgamates evolutionary data with protein structure prediction to prioritize functional regions in proteins. This approach is empirically validated within the context of relapsed pediatric leukemias. Simultaneously, they present GET, a foundation model trained on chromatin accessibility data spanning 235 human cell types. GET excels at predicting gene expression in previously unseen cell types and identifies both universal and cell-specific transcription factor interaction networks. Noteworthy applications encompass the discovery of distant regulatory regions in fetal erythroblasts and the elucidation of the regulatory impact of germline coding mutations in lymphoma-associated transcription factors such as PAX5. Collectively, these computational methodologies exemplify how foundation models can facilitate the study of biological data, yielding functionally relevant insights. 
+		</li>
+	<li>[ Bio ]: Prof. Raul RABADAN is a Gerald and Janet Carrus Professor in the Departments of Systems Biology, Biomedical Informatics and Surgery at Columbia University. He is currently the Director of the Program for Mathematical Genomics at Columbia University and previously the Director of the NCI Center for Topology of Cancer Evolution and Heterogeneity at Columbia University (2015-2021). From 2001 to 2003, he was a Fellow at the Theoretical Physics Division at CERN, the European Organization for Nuclear Research, in Geneva, Switzerland. In 2003 he joined the Physics Group of the School of Natural Sciences at the Institute for Advanced Study in Princeton. In 2005, he became a Martin A. and Helen Chooljian Member at The Simons Center for Systems Biology at the Institute for Advanced Study in Princeton.
+Prof. Rabadan?s current interest focuses on uncovering patterns of evolution in biological systems through the lens of genomics. His recent interests include the development of mathematical approaches to uncover the evolution of cancer and infectious diseases, including topological data analysis and Random Matrix Theory, among others.
+Prof. Rabadan has been named one of Popular Science's Brilliant 10 (2010), a Stewart Trust Fellow (2013), and he received the Harold and Golden Lamport Award at Columbia University (2014) and the Diz Pintado award (2018). He received the 2021 Outstanding Investigator Award by the National Cancer Institute. He is also a member of the Cancer Convergence Team by Stand Up to Cancer.
+		</li>
+	</ul>
+		
+		<!---
+	<ul> [Title]: <B>Robust Statistical Learning and Generative Adversarial Networks</B>
+	[<a href="slides/Lecture11_robustGAN.pdf"> slides </a>] 
+	<li>[ Abstract ]: Robust learning under Huber's contamination model has become an important topic in statistics and theoretical computer science. Statistically optimal procedures such as Tukey's median and other estimators based on depth functions are impractical because of their computational intractability. In this talk, we present an intriguing connection between f-GANs and various depth functions through the lens of f-Learning. Similar to the derivation of f-GANs, we show that these depth functions that lead to statistically optimal robust estimators can all be viewed as variational lower bounds of the total variation distance in the framework of f-Learning. This connection opens the door of computing robust estimators using tools developed for training GANs. In particular, we show in both theory and experiments that some appropriate structures of discriminator networks with hidden layers in GANs lead to statistically optimal robust location estimators for both Gaussian distribution and general elliptical distributions where first moment may not exist. Some applications are discussed on robust denoising of Cryo-EM images.
+	</li>
+	</ul>
+
+        <ul>[Reference]:
+        <li><cite>Chao Gao, Jiyi Liu, Yuan Yao, Weizhi Zhu, Robust Estimate and Generative Adversarial Networks, ICLR 2019. </cite> [<a href="https://arxiv.org/abs/1810.02030">arXiv:1810.02030</a>]</li>
+        <li><cite>Chao Gao, Yuan Yao, Weizhi Zhu, Generative Adversarial Nets for Robust Scatter Estimation: A Proper Scoring Rule Perspective. Journal of Machine Learning Research, 21(160):1-48, 2020. </cite> [<a href="https://arxiv.org/abs/1903.01944"> arXiv:1903.01944 </a>] </li>
+        <li> <cite>Hanlin Gu, Yin Xian, Ilona Christy Unarta, Yuan Yao, Generative Adversarial Networks for Robust Cryo-EM Image Denoising. Handbook of Mathematical Models and Algorithms in Computer Vision and Imaging, by Ke Chen (Editor), Carola-Bibiane Sch\"{o}nlieb (Editor), Xue-Cheng Tai (Editor), Laurent Younes (Editor), Springer, 2022. </cite> [<a href="https://arxiv.org/abs/2008.07307"> arXiv:2008.07307 </a>] [<a href="https://doi.org/10.1007/978-3-030-03009-4_126-1"> DOI:10.1007/978-3-030-03009-4_126-1 </a>] </li>
+        </ul>
+        <ul>[Python]: 
+        <li> <a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/data/RobustGAN/Robust_GAN.ipynb"> Robust_GAN.ipynb </a>: Jupyter Notebook for demonstration </li>
+        <li> <a href="https://github.com/yao-lab/Robust-GAN-Center"> Robust-GAN-Center </a>: robust center (mean) estimate via GANs </li>
+        <li> <a href="https://github.com/zhuwzh/Robust-GAN-Scatter"> Robust-GAN-Scatter </a>: robust scatter (covariance) estimate via GANs </li>
+        <li> <a href="https://github.com/ghl1995/denoise-gan-in-cryo-em"> Rubust Denoising GAN in Cryo-EM </a></li>
+        </ul>
+
+
+	<ul>[ Title ]: <B>A Tutorial on Single-Cell Topological Data Analysis.</B> [<a href="slides/scTDA_tutorial.pdf"> slides </a>]
+	<br>
+	<li>[ Speaker ]: Dr. <a href="https://wang-lab.ust.hk/people/cv_html/qmu_cv.html">MU, Quanhua</a>, HKUST
+	</li>
+	<li>[ Abstract ]
+	In this tutorial, we first give an introduction to single cell RNA sequencing. Then we introduced scTDA, a python toolbox for topological data analysis (Mapper)
+	in single cell data. A case study is illustrated using human embryo development at single-cell resolution.
+	</li>
+	</ul>		
+	--->
+
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>	
+
+
+	<tr>
+<td>04/24/2024, Wed </td>
+<td>Lecture 10: Hodge Theory and Applications: Social Choice, Crowdsourced Ranking, and Game Theory 
+[<a href="../slides/Lecture10_Hodge.pdf"> slides </a>]
+<br>
+<ul>[ Reference ]:
+<li>
+<B>Statistical Ranking and Combinatorial Hodge Theory.</B>
+<br>
+<a href="http://graphics.stanford.edu/projects/lgl/person.php?id=xiaoyej">Xiaoye Jiang</a>, <a href="https://www.stat.uchicago.edu/~lekheng/">Lek-Heng Lim</a>, Yuan Yao and <a href="http://www.stanford.edu/~yyye/">Yinyu Ye</a>. 
+<br>
+<i>Mathematical Programming</i>, Volume 127, Number 1, Pages 203-244, 2011. 
+<br>
+[<a href="http://math.stanford.edu/~yuany/publications/HodgeRank.MathProg.B.2010.pdf">pdf</a>][<a href=" http://arxiv.org/abs/0811.1067"> arxiv.org/abs/0811.1067</a>][<a href="http://math.stanford.edu/~yuany/publications//MathProg.zip"> Matlab Codes</a>]
+<p>
+</li>
+<li> 
+<B>Flows and Decompositions of Games: Harmonic and Potential Games</B>
+<br>
+Ozan Candogan, Ishai Menache, Asuman Ozdaglar, and Pablo A. Parrilo
+<br> 
+<a href=""> </a>Mathematics of Operations Research, 36(3): 474 - 503, 2011
+<br>
+[<a href="https://arxiv.org/abs/1005.2405">arXiv.org/abs/1005.2405</a>][<a href="http://pubsonline.informs.org/doi/abs/10.1287/moor.1110.0500"> doi:10.1287/moor.1110.0500 </a>]
+<p> 
+</li>
+<li> 
+<B>HodgeRank on Random Graphs for Subjective Video Quality Assessment.</B>
+<br>
+Qianqian Xu, Qingming Huang, Tingting Jiang, Bowei Yan, Weisi Lin, and Yuan Yao.
+<br> 
+<a href=""> </a> IEEE Transactions on Multimedia, 14(3):844-857, 2012 
+<br>
+[<a href="http://math.stanford.edu/~yuany/publications/TMM12-final.pdf">pdf</a>][<a href="http://math.stanford.edu/~yuany/publications/BatchHodge.zip"> Matlab codes in zip </a>]
+<p> 
+</li>
+<li>
+<B>Robust Evaluation for Quality of Experience in Crowdsourcing.
+</B>
+<br>
+Qianqian Xu, Jiechao Xiong, Qingming Huang, and Yuan Yao
+<br> 
+<a href="http://www.acmmm13.org/"> <I>ACM Multimedia 2013</I>.</a>
+<br>
+[<a href="publications/ACMMM13.pdf">pdf</a>]
+<p> 
+</li>
+<li>
+<B>Online HodgeRank on Random Graphs for Crowdsourceable QoE Evaluation.
+</B>
+<br>
+Qianqian Xu, Jiechao Xiong, Qingming Huang, and Yuan Yao
+<br> 
+<I>IEEE Transactions on Multimedia</I>, 16(2):373-386, Feb. 2014.
+<br>
+[<a href="http://math.stanford.edu/~yuany/publications/TMM13.pdf">pdf</a>]
+<p> 
+</li>
+<li>
+<B>Analysis of Crowdsourced Sampling Strategies for HodgeRank with Sparse Random Graphs
+</B>
+<br>
+Braxton Osting, Jiechao Xiong, Qianqian Xu, and Yuan Yao
+<br>
+<I>Applied and Computational Harmonic Analysis</I>, 41 (2): 540-560, 2016
+<br>
+[<a href="http://arxiv.org/abs/1503.00164"> arXiv:1503.00164 </a>] [<a href="http://authors.elsevier.com/sd/article/S1063520316000300
+"> ACHA online </a>] [<a href="http://math.stanford.edu/~yuany/data/TIP_matlab.zip">Matlab codes to reproduce our results</a>] 
+<p> 
+</li>
+<li>
+<B>
+False Discovery Rate Control and Statistical Quality Assessment of Annotators in Crowdsourced Ranking
+</B>
+<br>
+Qianqian Xu, Jiechao Xiong, Xiaochun Cao, Yuan Yao
+<br>
+<I>Proceedings of The 33rd International Conference on Machine Learning (ICML)</I>, New York, June 19-24, 2016.
+<br>
+[<a href="http://arxiv.org/abs/1605.05860"> arXiv:1605.05860 </a>] [<a href="http://math.stanford.edu/~yuany/publications/ICML2016_cameraready_ID_600.pdf"> pdf </a>] [<a href="http://math.stanford.edu/~yuany/publications/ICML2016_camerareadySI_ID_600.pdf"> supplementary </a>]
+<p> 
+</li>
+<li>
+<B>
+Parsimonious Mixed-Effects HodgeRank for Crowdsourced Preference Aggregation
+</B>
+<br>
+Qianqian Xu, Jiechao Xiong, Xiaochun Cao, Yuan Yao
+<br>
+<I>ACM Multimedia Conference (ACMMM)</I>, Amsterdam, Netherlands, October 15-19, 2016.
+<br>
+[<a href="http://arxiv.org/abs/1607.03401"> arXiv:1607.03401 </a>] [<a href="http://math.stanford.edu/~yuany/publications/AMM-20160712.pdf"> pdf </a>] 
+<p> 
+</li>
+<li>
+<B>
+HodgeRank with Information Maximization for Crowdsourced Pairwise Ranking Aggregation
+</B>
+<br>
+Qianqian Xu, Jiechao Xiong, Xi Chen, Qingming Huang, Yuan Yao
+<br>
+<I>The Thirty-Second AAAI Conference on Artificial Intelligence (AAAI-18)</I>, New Orleans, Louisiana, USA, February 27, 2018.
+<br>
+[<a href="https://arxiv.org/abs/1711.05957"> arXiv:1711.05957 </a>] [<a href="https://github.com/yuany-pku/activesample"> Matlab Source Codes </a>] 
+<p> 
+</li>
+<li>
+<B>
+From Social to Individuals: a Parsimonious Path of Multi-level Models for Crowdsourced Preference Aggregation
+</B>
+<br>
+Qianqian Xu, Jiechao Xiong, Xiaochun Cao, Qingming Huang, Yuan Yao
+<br>
+<I>IEEE Transactions on Pattern Analysis and Machine Intelligence</I>, 41(4):844-856, 2019. Extended from MM'16 in [<a href="https://arxiv.org/abs/1607.03401"> arXiv:1607.03401 </a>].
+<br>
+[<a href="https://arxiv.org/abs/1804.11177"> arXiv:1804.11177 </a>] [<a href="https://ieeexplore.ieee.org/document/8319957/"> doi: 10.1109/TPAMI.2018.2817205 </a>][<a href="https://github.com/yao-lab/TPAMI2018"> GitHub source</a>]
+<p> 
+	</li>
+	
+	<li>
+<B>
+	Evaluating Visual Properties via Robust HodgeRank
+</B>
+<br>
+Qianqian Xu, Jiechao Xiong, Xiaochun Cao, Qingming Huang and Yuan Yao 
+<br>
+	<I>International Journal of Computer Vision</I>, 129: 1732-1753, 2021.
+<br>
+[<a href="http://arxiv.org/abs/1408.3467"> arXiv:1408.3467 </a>] [<a href="https://doi.org/10.1007/s11263-021-01438-y"> DOI: 10.1007/s11263-021-01438-y </a>]
+<p> 
+	</li>
+
+	<li> Professor Don Saari: <span class="bibbook"> <a href="https://www.math.uci.edu/~dsaari/">[ UCI homepage ]</a> <a href="https://ac.els-cdn.com/S0895717708001738/1-s2.0-S0895717708001738-main.pdf?_tid=019776d4-cdd3-11e7-b9af-00000aab0f6b&acdnat=1511169360_f28a9308e65cf0032e95525053dcb3a3"> [ Book Info: Disposing Dictators, Demstifying Voting Paradoxes ] </a> <a href="https://www.amazon.com/Disposing-Dictators-Demystifying-Voting-Paradoxes/dp/0521731607"> [ Amazon link ]</a> </span>
+<p>
+	</li>
+
+	<li>
+<B>
+	Quantum algorithms for topological and geometric analysis of data
+</B>
+<br>
+Lloyd, Seth and Garnerone, Silvano and Zanardi, Paolo 
+<br>
+	<I>Nature Communications</I>, 7(1): 10138, 2016. 
+	<br>
+	[<a href="https://doi.org/10.1038/ncomms10138"> DOI: 10.1038/ncomms10138 </a>]
+<p> 
+	</li>
+
+</ul>
+	
+	<ul>[Homework 9]:
+	<li> <a href="homework/homework09.pdf">Homework 9 [pdf]</a>. Just for fun, no grading. </li>
+	</ul>
+
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+
+<tr>
+<td>25/04/2024, Thu</td>
+<td>Guest Lecture: An Invitation to Information Geometry
+	<br>
+	<ul>[ Title ] <B>An Invitation to Information Geometry</B>
+		<li> [ Speaker ] Prof. <a href="https://webapps.lsa.umich.edu/psych/junz/">Jun ZHANG</a>, University of Michigan and SIMIS. </li>
+		<li> [ Time and Venue ] 3-5pm, CYT LTL (CMA Lecture Theater) 
+		<li> [ Abstract ] 
+		Information Geometry is the differential geometric study of the manifold of probability models, and promises to be a unifying geometric framework for investigating statistical inference, information theory, machine learning, etc. Central to such manifolds are divergence functions (in place of distance) for measuring proximity of two points, for instance Kullback-Leibler divergence, Bregman divergence, etc. Such divergence functions are known to induce a beautiful geometric structure of the set of parametric probability models. This talk will use two examples to introduce some basic ingredients of this geometric framework: the univariate normal distributions (a case with continuous support) and the probability simplex (a case with discrete support). The fundamental duality e/m duality is explained in terms of two most popular parametric statistical families: the exponential and the mixture families. This introduction is intended for an audience with little background in differentiable manifold; instead it only assumes the knowledge of multi-variable calculus.
+		</li>
+	</ul>	
+	
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>26/04/2024, Fri</td>
+<td>Mathematics Colloquium.
+	<br>
+	<ul>[ Title ] <B>Information Geometry: Geometric Science of Information</B>
+		<li> [ Speaker ] Prof. <a href="https://webapps.lsa.umich.edu/psych/junz/">Jun ZHANG</a>, University of Michigan, Ann Arbor and SIMIS. </li>
+		<li> [ Time and Venue ] 3-4pm, Lecture Theater F (Lifts 25/26), with tea-time discussion 4-5pm at magic square
+		<li> [ Abstract ] 
+		Information geometry investigates parametric families of statistical model by representing probability density functions over a given sample space as points of a differentiable manifold M. Treating parameters as a local coordinate chart, M is endowed with a Riemannian metric g given by the Fisher-information (the well-known Fisher-Rao metric). However, in place of the Riemannian distance, information geometry uses a non-negative but non-symmetric divergence function (also called contrast function) for measuring proximity of two points, for instance Kullback-Leibler divergence, f-divergence, etc. Such divergence functions not only recovers the Fisher-Rao metric, but also a pair of dual connections with respect to the metric (equivalently Amari-Censov tensor). This talk will use two examples to introduce some basic ingredients of this geometric framework: the probability simplex (a case with discrete support) and the univariate normal distributions (a case with continuous support). In the former case, the application to the popular data-analytic method Compositional Data Analysis (CDA) is explained in terms of duality between exponential and mixture families. In the latter case, the construction of statistical mirror is briefly explained as an application of the concept of dual connections.  This talk assumes some basic concepts of differentiable manifold (such as parallel transport and affine connection). 
+		</li>
+		<li> [ Bio ] Jun Zhang is a Professor at the Shanghai Institute of Mathematics and Interdisciplinary Sciences (SIMIS) and one of its co-founders. He is currently on leave from the University of Michigan, Ann Arbor, where he has worked since 1992 as an Assistant, Associate, and Full Professor in the Department of Psychology, with adjunct appointments in the Department of Mathematics, Department of Statistics, and Michigan Institute of Data Sciences. He received his PhD in Neuroscience from the University of California, Berkeley in 1991. An elected fellow of Association for Psychological Sciences (APS) since 2012 and Psychonomic Society since 2016,  Professor Jun Zhang's scholarly contributions have been in the various fields of computation neuroscience, cognition and behavior modeling, machine learning, statistical science, complex systems, etc, and is well known in the field of mathematical psychology. In recent years, his research has focused on the interdisciplinary subject of Information Geometry. 
+	</ul>	
+	
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+
+<tr>
+<td>27/04/2024, Sat</td>
+<td>Guest Lecture: Information Beyond Shannon 
+	<br>
+	<ul>[ Title ] <B>Information Beyond Shannon</B>
+		<li> [ Speaker ] Prof. <a href="https://webapps.lsa.umich.edu/psych/junz/">Jun ZHANG</a>, University of Michigan and SIMIS. </li>
+		<li> [ Time and Venue ] 3-5pm, <B> Rm 2504 (Lift 25/26) </B>
+		<li> [ Abstract ] 
+		Shannon's theory for source and channel coding (and the duality between capacity and rate-distortion) has been the hallmark for information science. Shannon entropy, and its associated exponential family of probability measures resulting from maximum entropy (MaxEnt) inference and the Kullback-Leibler divergence measuring the difference of any two probability densities, have found wide applications in statistical inference, machine learning, optimization, etc. Past research in Information Geometry has tied together the above concepts into a geometric structure called Hessian geometry, which is dually flat with biorthogonal coordinates.
+		<br>
+Given the deep mathematical understanding of Hessian geometry and its elegant picture, it is natural to ask whether it can be generalized (deformed, technically) to more broad settings that corresponds to generalize entropies and cross entropies (e.g., that is Tsallis and Renyi). This question has now been answered positively by a series of recent work on deformation theory. My talk will explain this recent development of information geometry, including the rho-tau deformation (which unifies the so-called phi-model and U-model known to information geometers) and the lambda-deformation theory (which unified Tsallis and Renyi deformation known to information theorists). This talk is intended for an audience with background in information theory and theoretical physics.
+<br>
+(Joint work with Jan Naudts in the former case and with TKL Wong in the latter case).		
+		</li>
+	</ul>	
+	
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+
+
+<tr>
+<td>08/05/2024, Wed </td>
+	<td>Final Project Presentation. <br>				
+
+	<ul>[Final Project Report Repository] 		<img src="../../../images/new.jpg" height="40">
+	<li> Description of Final Project: <a href="project/project.pdf">[ project.pdf ]</a>
+	</li>
+	<li> GitHub Repository for reports of Final Project 
+		<a href="https://github.com/yao-lab/yao-lab.github.io/tree/master/course/csic5011/2024/project/"> [ GitHub ] </a>
+	</li>
+	<li> GitHub Repository for Homeworks 
+		<a href="https://github.com/yao-lab/yao-lab.github.io/tree/master/course/csic5011/2024/homework/"> [ GitHub ] </a>
+	<p>
+	</li>
+
+
+	<li>  <B>CHAU Waiming*</B>. 
+		<br> 
+		Dimension Reduction Techniques for MNIST Clustering. 
+		<br>
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/CHAU_Waiming/poster.pdf"> report (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/CHAU_Waiming/slide.pdf"> slide (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/CHAU_Waiming/code/"> source (matlab) </a>]
+		[<a href="https://youtu.be/iHEf0oDuJjU"> video (youtube) </a>]
+		<p>
+	</li>
+	
+	<li> <B>LIU Yunqin</B>. 
+		<br> 
+		Manifold Learning and Classification methods for MNIST dataset.
+		<br>
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/LIU_Yunqin/report.pdf"> report (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/LIU_Yunqin/codes.zip"> source (.zip) </a>]
+		<p>
+	</li>
+
+	
+	<li>  <B> Inam Ulhaqazad</B>. 
+		<br> 
+		MNIST data reduction and performance analysis.
+		<br>
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/INAM/math5473_Project2.pdf"> report (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/INAM/Presentation_CSIC5011_Inam.pdf"> slides (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/INAM/CSIC5011_finalProject.ipynb"> source (ipynb) </a>]
+		<p>
+	</li>
+
+	<li> <B>CHEN Yuxuan</B>.  
+		<br> 
+		Application and Analysis of HodgeRank on Crowdsourced Datasets.
+		<br>
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/CHEN_Yuxuan/report.pdf"> report (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/CHEN_Yuxuan/finalproject-cyx.pptx"> slides (pptx) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/CHEN_Yuxuan/code/"> source (py) </a>]
+		<p>
+	</li>
+
+
+	<li> <B>ECHAVARRIA GALINDO Martin</B>. 
+		<br> 
+		Topological Exploration of Human Prefrontal Cortex Development Single-Cell RNA-seq Data. 
+		<br>
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/ECHAVARRIA_GALINDO_Martin/ECHAVARRIA_GALINDO_Martin.pdf"> report (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/ECHAVARRIA_GALINDO_Martin/Martin-Slides.pptx"> slides (pptx) </a>]
+		<p>
+	</li>
+
+	<li> <B>LEE Jooran, WANG Minghao</B>. 
+		<br> 
+		Topological analysis of the Human Prefrontal cortex.
+		<br>
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/LeeWang/Poster.pdf"> report (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/LeeWang/CSIC5011_slides.pdf"> slides (pdf) </a>]
+		[<a href="https://github.com/wmh1203/CSIC-5011-24fall/"> source (github) </a>]
+		<p>
+	</li>
+
+
+	<li> <B>LEE Young Kyu, KIM Jaehyeok, MA Jiabo and JIN Cheng</B>. 
+		<br> 
+		Dimension Reduction and Visualization on MNIST Data Series. 
+		<br>
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/LEEYoungKyu_KIMJaehyeok_MAJiabo_JINCheng/poster_final.pdf"> report (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/LEEYoungKyu_KIMJaehyeok_MAJiabo_JINCheng/math5473_KimJinMaLee.pptx"> slides (pptx) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/LEEYoungKyu_KIMJaehyeok_MAJiabo_JINCheng/code/"> source (ipynb) </a>]
+		<p>
+	</li>
+	
+	<li> * <B> HAMDAOUI Najoua</B>. 
+		<br> 
+		Condition assessment of pressurized tubular structure using wave data.
+		<br>
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/HAMDAOUI_Najoua/HAMDAOUI_Najoua_report.pdf"> report (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/HAMDAOUI_Najoua/HAMDAOUI_Najoua_presentation.pptx"> slides (pptx) </a>]
+		[<a href="https://hkust.zoom.us/rec/share/1o0VRGrwkEZonlZGyCKBkVNelJ7hUCZeUAwuqoX0wohY4drZXcf_wlwV8Nma7rCK.SUk30twirheMBDlW"> video (zoom) </a>]
+		<p>
+	</li>
+
+
+	<li>  <B>HU, Mingyun</B>. 
+		<br> 
+		Network node ranking methods: A case study with Chinese University Weblink. 
+		<br>
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/HU_Mingyun/MATH_5473_final_project.pdf"> report (pdf) </a>] 
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/HU_Mingyun/MATH_5473_presentation.pdf"> slides (pdf) </a>] 
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/HU_Mingyun/MATH5473_final_project.ipynb"> source (ipynb) </a>]
+		<p>
+	</li>
+
+
+
+	<li> <B>Anastasiia KAZOVSKAIA, Songjie XIE and Meiying ZHANG</B>. 
+		<br> 
+		Exploring Time-Series Data: Visualization, Clustering, and Topological Analysis with an SNP500 Case Study.
+		<br>
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/KazovskaiaXieZhang/KazovskaiaXieZhang.pdf"> report (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/KazovskaiaXieZhang/KAZOVSKAIA_Xie_Zhang.pptx"> slides (pptx) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/KazovskaiaXieZhang/source/"> source (ipynb) </a>]
+		<p>
+	</li>
+
+
+	<li> <B>LI, Ang</B>. 
+		<br> 
+		 Compressed Sensing for Structure Health Monitoring Data: Case in Tunnel Monitoring.
+		<br>
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/LI_Ang/Report_Ang_LI.pdf"> report (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/LI_Ang/Presentation_Ang_LI.pptx"> slides (pptx) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/LI_Ang/code/"> source (matlab) </a>]
+		<p>
+	</li>
+	
+
+	<li> <B>LI Mingchen*, Shihong ZHANG, Zinan LIN, Lige ZHAO</B>. 
+		<br> 
+		Applying manifold learning for automatic sorting of facial datasets.
+		<br>
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/LiZhangLinZhao/Poster.pdf"> report (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/LiZhangLinZhao/Slides.pptx"> slides (pptx) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/LiZhangLinZhao/Face_embedding.ipynb"> source (ipynb) </a>]
+		[<a href="https://www.bilibili.com/video/BV1mM4m1o73T/?share_source=copy_web&vd_source=073f1c80e1dfc46201e13efc0f790fd3"> presentation (bilibili) </a>]
+		<p>		
+	</li>
+
+
+	<li> <B>ZHANG Chen, BHATTACHARYA Saheli, and PENG Han</B>. 
+		<br> 
+		Ordering face dataset using mainifold learning. 
+		<br>
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/ZHANG_BHATTACHARYA_PENG/ZHANG_BHATTACHARYA_PENG.pdf"> report (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/ZHANG_BHATTACHARYA_PENG/CISC5011_slides.pptx"> slides (pptx) </a>]
+		[<a href="https: //github.com/mandgrapes/CISC5011-Project-Code/tree/main"> source (github) </a>]
+		<p>
+	</li>
+
+	<li>  - <B>XIONG, Kewei</B>. 
+		<br> 
+		Exploring Genetic Variations Among Samples by Dimensional Reduction.
+		<br>
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/XIONG_Kewei/report.pdf"> report (pdf) </a>] 
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/XIONG_Kewei/CSIC5011_kewei_slides.pptx"> slides (pptx) </a>] 
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/XIONG_Kewei/source/"> source (R) </a>]
+		<p>
+	</li>
+
+	<li>  - <B>CHEN, Tianhao*</B>. 
+		<br> 
+		Protein structure reconstruction with contact map.
+		<br>
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/CHEN_Tianhao/5473_poster.pdf"> poster (pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/CHEN_Tianhao/5473_pre_Tianhao.pptx"> slides (pptx) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/CHEN_Tianhao/Chroma.pdf"> slides (Chroma.pdf) </a>]
+		[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/csic5011/2024/project/CHEN_Tianhao/code/"> source (py) </a>]
+		[<a href="https://drive.google.com/file/d/1oOt6MoCAATVeSa04EsJErtsIMrF7qhz8/view?usp=sharing"> presentation (google) </a>]
+		<p>
+	</li>
+
+
+	</ul>
+	
+
+</td>
+<td> Y.Y. <br> </td>
+<td></td>
+</tr>
+
+
+
+<!---
+	
+
+<tr>
+<td>03/08/2019, Fri </td>
+<td>Lecture 08: Supervised PCA -- LDA and SIR <a href="https://yao-lab.github.io/book_datasci/">[ Chapter 1, Section 7 in new update on Mar 1, 2019 ]</a><br>
+<ul>[Reference]:
+<li> Dennis Cook, <span class="bibbook"> <a href="http://arxiv.org/pdf/0708.3774.pdf">Fisher Lecture: Dimensionality Reduction in Regression</a>. Statistical Science, 22(1):1-26, 2007. </span>
+</li>
+<li> Ker-Chau Li, <a href="http://www.tandfonline.com/doi/abs/10.1080/01621459.1991.10475035"> Sliced Inverse Regression for Dimension Reduction </a>. Journal of the American Statistical Association, 86(414):316-327, 1991 
+</li>
+<li> Wu, Liang, and Mukherjee. <span class="bibbook"> <a href="http://www2.stat.duke.edu/~km68/files/Wu-LSIR.pdf">Localized Sliced Inverse Regression</a>. NIPS 2009. <a href="http://www2.stat.duke.edu/~km68/lsir.htm"> [Matlab codes]</a></span>
+</li>
+<li> Jiang B and Liu JS. (2014) <span class="bibbook"> <a href="http://www.people.fas.harvard.edu/~junliu/SIRI/">Variable selection for general index models via sliced inverse regression</a>. Annals of Statistics, 42:1751-1786. <a href="http://www.people.fas.harvard.edu/~junliu/SIRI/SIRI.zip">[ R codes ]</a></span>
+</li> 
+<li> Wolfgang Hardle and Leopold Simar. Applied Multivariate Statistical Analysis. <span class="bibbook"> <a href="slides/SIR_chapter.pdf">Chapter 18.3: Sliced Inverse Regression</a>.</span>
+</li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+	
+<tr>
+<td>03/20/2019, Wed </td>
+<td>Lecture 11: Project 1 and An Introduction to Libra: Linearized Bregman Algorithms in High Dimensional Statistics <br>
+<ul>[ Reference ]:
+<li> <a href="slides/project1.pdf">  Project 1 [pdf] </a>.  </li>
+<li> <a href="slides/PKU_2018b.pdf">  Page 1-17: Introduction to Libra for high dimensional statistics [slides] </a>.  </li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>03/22/2019, Wed </td>
+<td>Lecture 12: Differential Inclusion Methods in High Dimensional Statistics <br>
+<ul>[ Reference ]:
+<li> <a href="slides/PKU_2018b.pdf">  Page 18-60: how does it work? [slides] </a>.  </li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+
+--->
+
+</tbody>
+</table>
+
+<br>
+
+<h3><a name="data">Datasets (to-be-updated)</a></h3>
+
+<ul>
+<br>
+<li> [Animal Sleep Data] <a href="http://math.stanford.edu/~yuany/course/data/sleep1.csv"> Animal species sleeping hours vs. other features </a>
+</li>
+<br>
+<li> [Anzhen Heart Data] <a href="http://math.stanford.edu/~yuany/course/data/heartData_20140401.xlsx"> Heart Operation Effect Prediction</a>, provided by Dr. Jinwen Wang, Anzhen Hospital
+</li>
+<br>
+<li> [Beer Data] <a href="http://math.stanford.edu/~yuany/course/data/Beers_20140514.xlsx"> 877 beers dataset</a>, provided by Mr. Richard Sun, Shanghai
+</li>
+<br>
+<li> [Crime Data] <a href="http://math.stanford.edu/~yuany/course/data/crime.zip"> Crime rates in 59 US cities during 1970-1992 </a>
+</li>
+<br>
+<li> [Real-Time-Bidding Algorithm Competition Data] <a href="http://contest.ipinyou.com/"> Contest Website </a>
+</li>
+<br>
+<li> <a name="hongloumeng">[&#32418;&#27004;&#26790;&#20154;&#29289;&#20107;&#20214;&#30697;&#38453;]</a> a 376-by-475 matrix (374-by-475 updated by WAN, Mengting) for character-event appearance in A Dream of Red Mansion (Xueqin Cao) <a href="https://yao-lab.github.io/dream-of-the-red-chamber">[ Dataset in Github ]</a> <a href="http://math.stanford.edu/~yuany/course/data/dream.RData"> [374 Characters dream.RData (for R load)] </a><a href="http://math.stanford.edu/~yuany/course/data/dream.Rd"> [dream.Rd (for R manual)] </a>  <a href="http://math.stanford.edu/~yuany/course/data/HongLouMeng374.txt"> [HongLouMeng374.txt] </a>  <a href="http://math.stanford.edu/~yuany/course/data/HongLouMeng376.csv"> [HongLouMeng376.csv] </a> <a href="http://math.stanford.edu/~yuany/course/data/hongloumeng376.mat"> [.mat] </a>
+<a href="http://math.stanford.edu/~yuany/course/data/readme.m"> [readme.m] </a>
+</li>
+<br>
+<li> <a name="data_xiyouji">[&#35199;&#28216;&#35760;]</a> characters-scene occurance matrices for 100 chapters <a href="https://yao-lab.github.io/journey-to-the-west">[ Dataset in GitHub ]</a> <a href="http://math.stanford.edu/~yuany/course/data/west.RData">[data in RData]</a> <a href="http://math.stanford.edu/~yuany/course/data/xiyouji.mat"> [data in matlab (302-by-408 matrix)] </a>
+<br>
+<table border="1" cellspacing="0">
+<tbody>
+<tr>
+<td align="left"><strong><a href="http://math.stanford.edu/~yuany/course/data/xiyouji/chap001-005.xls">chap001-005</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap006-009.xls">chap006-009</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap010-013.xls">chap010-013</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap014-017.xls">chap014-017</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap018-021.xls">chap018-021</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap022-025.xls">chap022-025</a></strong></td>
+</tr>
+<tr>
+<td align="left"><strong><a href="../data/xiyouji/chap026-029.xls">chap026-029</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap030-033.xls">chap030-033</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap034-037.xls">chap034-037</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap038-041.xls">chap038-041</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap042-045.xls">chap042-045</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap046-049.xls">chap046-049</a></strong></td>
+</tr>
+<tr>
+<td align="left"><strong><a href="../data/xiyouji/chap050-053.xls">chap050-053</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap054-057.xls">chap054-057</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap058-061.xls">chap058-061</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap062-065.xls">chap062-065</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap066-069.xls">chap066-069</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap070-073.xls">chap070-073</a></strong></td>
+</tr>
+<tr>
+<td align="left"><strong><a href="../data/xiyouji/chap074-077.xls">chap074-077</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap078-081.xls">chap078-081</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap082-085.xls">chap082-085</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap086-088.xls">chap086-088</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap089-091.xls">chap089-091</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap092-094.xls">chap092-094</a></strong></td>
+</tr>
+<tr>
+<td align="left"><strong><a href="../data/xiyouji/chap095-097.xls">chap095-097</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap098-100.xls">chap098-100</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/chap001-100_txt.zip">All in TXT</a></strong></td>
+<td align="left"><strong><a href="../data/xiyouji/readData.m">readData.m</a></strong></td>
+</tr>
+</tbody>
+</table>
+</li>
+<br>
+<li> <a name="keywords">[Keywords Pricing]</a> Keywords and profit index in paid search advertising, by Hansheng Wang (Guanghua, PKU). <a href="http://math.stanford.edu/~yuany/course/2010.spring/Keyword/SE_slice.jpg"> [sample file] </a> <a href="http://math.stanford.edu/~yuany/course/2010.spring/Keyword/readme.txt"> [readme.txt] </a>  <a href="http://math.stanford.edu/~yuany/course/2010.spring/Keyword/SE.csv"> [data in csv] </a>
+</li>
+<br>
+<li> [Radon Data] <a href="http://math.stanford.edu/~yuany/course/data/radon.csv"> Radon measurements of 12,687 houses in US </a>
+</li>
+<br>
+<li> [Wells Data] <a href="http://math.stanford.edu/~yuany/course/data/wells.csv"> Switch unsafe wells for arsenic pollution in Bangladesh </a>
+</li>
+<br>
+<li> to-be-done...
+</li>
+</ul>
+
+<hr>
+
+<address>
+by <a href="http://www.math.pku.edu.cn/teachers/yaoy">YAO, Yuan</a>.
+</address>
+
+</body>
+</html>
