@@ -580,7 +580,73 @@ In this talk, I will discuss how the test error will behave if a more suitable m
 <td>Y.Y.</td>
 <td></td>
 </tr>
-	
+
+
+	<tr>
+<td>06/04/2025, Mon</td>
+<td>Lecture 10: Transformer and Applications [<a href="../slides/Lecture09_transformer.pdf"> slides </a>]  
+	<br>
+	<ul>[Reference]:
+		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+		<li> Pytorch Twitter Sentiment Analysis: RNN, LSTM, BiLSTM, Multihead Self-Attention. 
+		[<a href="../notebook/PyTorch-RNN.ipynb"> RNN (ipynb) </a>] 
+		[<a href="../notebook/PyTorch-LSTM.ipynb"> LSTM (ipynb) </a>] 
+		[<a href="../notebook/PyTorch-BiLSTM.ipynb"> BiLSTM (ipynb) </a>] 
+		[<a href="../notebook/PyTorch-BiLSTM-with-MHSA.ipynb"> BiLSTM with Multihead Attention (ipynb) </a>] 	
+		[<a href="../notebook/PyTorch-BiLSTM-with-bertEmbedding.ipynb"> BERT embedding with BiLSTM (ipynb) </a>]
+		[<a href="https://www.kaggle.com/kazanova/sentiment140"> Sentiment140 dataset </a>]
+		</li>
+		<li> Pytorch Sentiment Analysis with IMDB data: RNN, (bi)-LSTM, CNN, Transformer, BERT, etc. 
+			[<a href="https://github.com/bentrevett/pytorch-sentiment-analysis"> GitHub </a>]
+		</li>
+		<li> Illustrated Transformer by Jay Alammar: [<a href="https://jalammar.github.io/illustrated-transformer/"> link </a>] </li>
+		<li> The Annotated Transformer Tutorial by Sasha Rush: [<a href="http://nlp.seas.harvard.edu/2018/04/03/attention.html"> link </a>]
+		</li>
+		<li> BERT generation of Shakespeare's sonnet: [<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/data/BERT_shakespeare_gen.ipynb"> BERT_shakespeare_gen.ipynb </a>]
+		</li>
+		<li> BERT next sentence generation of Shakespeare's sonnet and Chinese poems: 
+			[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/data/BERT_shakespeare_nextsen.ipynb"> BERT_shakespeare_nextsen.ipynb </a>]
+		</li>
+		<li> Chinese BERT (Whole-Word-Masking): [<a href="https://github.com/ymcui/Chinese-BERT-wwm"> link </a>]
+		</li>
+	</ul>	
+
+	<ul> [ Seminar ]
+		<li> <B>Title</B>: Advancements in Kernel Learning and Offline Reinforcement Learning through Generative Models [<a href=" "> slides </a>]</li>
+		<li> <B>Speaker</B>: Prof. <a href="https://www.wenjia-w.com/">Wenjia Wang</a>, HKUST-GZ </li>
+		<li> <B>Time</B>: 8:00pm </li>
+		<li> <B>Abstract</B>: In this talk, I will present two classes of my recent research. 
+
+In Part I, I will talk about random smoothing data augmentation. Random smoothing data augmentation is a unique form of regularization that can prevent overfitting by introducing noise to the input data, 
+			encouraging the model to learn more generalized features. In this work, we aim to bridge this gap by presenting a framework for random smoothing regularization that can adaptively and 
+			effectively learn a wide range of ground truth functions belonging to the classical Sobolev spaces. By using random smoothing regularization as novel convolution-based smoothing kernels, 
+			we can attain optimal convergence rates in these cases using a kernel gradient descent algorithm, either with early stopping or weight decay.
+
+In Part II, I will talk about our recent series of works on offline reinforcement learning.
+Due to the inability to interact with the environment, offline reinforcement learning (RL) methods face the challenge of estimating the Out-of-Distribution (OOD) points. 
+			Existing methods for addressing this issue either control policy to exclude the OOD action or make the Q-function pessimistic. However, these methods can be overly conservative or fail to identify OOD areas accurately. 
+			In this talk, I will be discussing our recent advancements in offline reinforcement learning, specifically focusing on the utilization of generative models such as GAN and diffusion models. 
+			Our proposed methods are evaluated on the D4RL benchmarks and have demonstrated significant improvements across numerous tasks. Theoretical results are provided for performance guarantee.
+		</li>
+		<li> <B>Bio</B>: Wenjia Wang is an assistant professor in the Data Science and Analysis Thrust at the Information Hub of the Hong Kong University of Science and Technology (Guangzhou). 
+			He obtained his Ph.D. in the School of Industrial & Systems Engineering at Georgia Institute of Technology. Wenjia Wang's research interests include uncertainty quantification, computer experiments, machine learning, stochastic simulation, and nonparametric statistics.
+		</li>
+		</ul>
+	<ul>[ Relevant Papers ]:
+		<li> Ding, L., Hu, T., Jiang, J., Li, D., Wang, W., & Yao, Y. (2024). Random smoothing regularization in kernel gradient descent learning. Journal of Machine Learning Research. 
+			[<a href="https://arxiv.org/abs/2305.03531"> arXiv:2305.03531 </a>] </li>
+		<li> Fang, L., Liu, R., Zhang, J., Wang, W., & Jing, B. Y. (2025). Diffusion Actor-Critic: Formulating Constrained Policy Iteration as Diffusion Noise Regression for Offline Reinforcement Learning. 
+			<I>The Thirteenth International Conference on Learning Representations (ICLR)</I>.</li>
+		<li> Zhang, J., Fang, L., Shi, K., Wang, W., & Jing, B. Y. (2024). Q-Distribution guided Q-learning for offline reinforcement learning: Uncertainty penalized Q-value via consistency model. 
+			<I>Neural Information Processing Systems (NeurIPS)</I>, 2024.</li>
+		<li> Zhang, J., Zhang, C., Wang, W., & Jing, B. Y. (2023). Constrained Policy Optimization with Explicit Behavior Density For Offline Reinforcement Learning. 
+			<I>Neural Information Processing Systems (NeurIPS)</I>, 2023.</li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
 	<!----
 
 
@@ -650,38 +716,6 @@ In this talk, I will discuss how the test error will behave if a more suitable m
 
 
 
-<tr>
-<td>22/04/2024, Mon</td>
-<td>Lecture 09: Transformer, GPT, and BERT [<a href="../slides/Lecture09_transformer.pdf"> slides </a>]  
-	<br>
-	<ul>[Reference]:
-		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
-		<li> Pytorch Twitter Sentiment Analysis: RNN, LSTM, BiLSTM, Multihead Self-Attention. 
-		[<a href="../notebook/PyTorch-RNN.ipynb"> RNN (ipynb) </a>] 
-		[<a href="../notebook/PyTorch-LSTM.ipynb"> LSTM (ipynb) </a>] 
-		[<a href="../notebook/PyTorch-BiLSTM.ipynb"> BiLSTM (ipynb) </a>] 
-		[<a href="../notebook/PyTorch-BiLSTM-with-MHSA.ipynb"> BiLSTM with Multihead Attention (ipynb) </a>] 	
-		[<a href="../notebook/PyTorch-BiLSTM-with-bertEmbedding.ipynb"> BERT embedding with BiLSTM (ipynb) </a>]
-		[<a href="https://www.kaggle.com/kazanova/sentiment140"> Sentiment140 dataset </a>]
-		</li>
-		<li> Pytorch Sentiment Analysis with IMDB data: RNN, (bi)-LSTM, CNN, Transformer, BERT, etc. 
-			[<a href="https://github.com/bentrevett/pytorch-sentiment-analysis"> GitHub </a>]
-		</li>
-		<li> Illustrated Transformer by Jay Alammar: [<a href="https://jalammar.github.io/illustrated-transformer/"> link </a>] </li>
-		<li> The Annotated Transformer Tutorial by Sasha Rush: [<a href="http://nlp.seas.harvard.edu/2018/04/03/attention.html"> link </a>]
-		</li>
-		<li> BERT generation of Shakespeare's sonnet: [<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/data/BERT_shakespeare_gen.ipynb"> BERT_shakespeare_gen.ipynb </a>]
-		</li>
-		<li> BERT next sentence generation of Shakespeare's sonnet and Chinese poems: 
-			[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/data/BERT_shakespeare_nextsen.ipynb"> BERT_shakespeare_nextsen.ipynb </a>]
-		</li>
-		<li> Chinese BERT (Whole-Word-Masking): [<a href="https://github.com/ymcui/Chinese-BERT-wwm"> link </a>]
-		</li>
-	</ul>	
-</td>
-<td>Y.Y.</td>
-<td></td>
-</tr>
 
 
 <tr>
