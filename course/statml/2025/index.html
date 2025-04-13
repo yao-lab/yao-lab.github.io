@@ -647,6 +647,59 @@ Due to the inability to interact with the environment, offline reinforcement lea
 <td></td>
 </tr>
 
+	<tr>
+<td>14/04/2025, Mon</td>
+<td>Seminars.
+	<br>
+	<ul><B>Title</B>: Transformers As Statisticians: Provable In-Context Learning With In-Context Algorithm Selection [<a href="https://www.stat.berkeley.edu/~songmei/Presentation/Algorithm_approx_BSJC.pdf"> slides </a>] [<a href="https://youtu.be/vKZ_I05sSj0?si=OSnLkWJP_oDlfcdg"> video </a>] 
+		<li> <B>Speaker</B>: Prof. <a href="https://www.stat.berkeley.edu/~songmei/">Song MEI</a>, University of California at Berkeley. </li>
+		<li> <B>Time</B>: 6:40pm </li>
+		<li> <B>Abstract</B>: 
+			Neural sequence models based on the transformer architecture have demonstrated remarkable \emph{in-context learning} (ICL) abilities, where they can perform new tasks when prompted with training and test examples, without any parameter update to the model. 
+			This work first provides a comprehensive statistical theory for transformers to perform ICL. Concretely, we show that transformers can implement a broad class of standard machine learning algorithms in context, such as least squares, ridge regression, 
+			Lasso, learning generalized linear models, and gradient descent on two-layer neural networks, with near-optimal predictive power on various in-context data distributions. Using an efficient implementation of in-context gradient descent as the underlying mechanism, 
+			our transformer constructions admit mild size bounds, and can be learned with polynomially many pretraining sequences.
+Building on these ``base'' ICL algorithms, intriguingly, we show that transformers can implement more complex ICL procedures involving \emph{in-context algorithm selection}, akin to what a statistician can do in real life -- A \emph{single} transformer can adaptively select different base ICL algorithms -- 
+			or even perform qualitatively different tasks -- on different input sequences, without any explicit prompting of the right algorithm or task. We both establish this in theory by explicit constructions, and also observe this phenomenon experimentally. 
+			In theory, we construct two general mechanisms for algorithm selection with concrete examples: pre-ICL testing, and post-ICL validation. As an example, we use the post-ICL validation mechanism to construct a transformer that can perform nearly Bayes-optimal ICL on a challenging 
+			task -- noisy linear models with mixed noise levels. Experimentally, we demonstrate the strong in-context algorithm selection capabilities of standard transformer architectures.		
+		</li>
+		<li> <B>Bio</B>: Song Mei is an Assistant Professor in the Department of Statistics and the Department of Electrical Engineering and Computer Sciences at UC Berkeley. In June 2020, he received Ph.D. from Stanford, with Prof. Andrea Montanari. 
+			Song's research is motivated by data science and AI, and lies at the intersection of statistics, machine learning, information theory, and computer science. His current research interests include language models and diffusion models, theory of deep learning, 
+			theory of reinforcement learning, high dimensional statistics, quantum algorithms, and uncertainty quantification. Song received Sloan Research Fellowship in 2025 and NSF career award in 2024.
+		</li>
+
+	</ul>
+	<ul>[ Relevant Papers ]:
+		<li> Yu Bai, Fan Chen, Huan Wang, Caiming Xiong, and Song Mei. Transformers as Statisticians: Provable In-Context Learning with In-Context Algorithm Selection. NeurIPS, 2023 (Oral). [<a href="https://arxiv.org/abs/2306.04637"> arXiv:2306.04637</a>]</li>
+	</ul>	
+
+		
+	<ul><B>Title</B>: Introducing Goedel-Prover: A Frontier Model for Open-Source Automated Theorem Proving [<a href=""> slides </a>]  
+		<li> <B>Speaker</B>: Prof. <a href="https://linyongver.github.io/Website/">Yong LIN</a>, Princeton University. </li>
+		<li> <B>Time</B>:8:00pm </li>
+		<li> <B>Abstract</B>: 
+			In this talk, I will introduce Goedel-Prover (<a href="https://goedel-lm.github.io/">https://goedel-lm.github.io/</a>), an open-source large language model (LLM) that achieves the state-of-the-art (SOTA) performance in automated formal proof generation for mathematical problems. 
+			The key challenge in this field is the scarcity of formalized math statements and proofs, which we tackle in the following ways. We train statement formalizers to translate the natural language math problems from Numina into formal language (Lean 4). 
+			We then iteratively build a large dataset of formal proofs by training a series of provers. Each prover succeeds in proving many statements that the previous ones could not, and these new proofs are added to the training set for the next prover. 
+			The final prover outperforms all existing open-source models in whole-proof generation. On the miniF2F benchmark, it achieves a 57.6% success rate (Pass@32), exceeding the previous best open-source model by 7.6%. 
+			On PutnamBench, Goedel-Prover successfully solves 7 problems (Pass@512), ranking first on the leaderboard. 
+			Furthermore, it generates 29.7K formal proofs for Lean Workbook problems, nearly doubling the 15.7K produced by earlier works.		
+		</li>
+		<li> <B>Bio</B>: Yong Lin is a postdoctoral fellow at Princeton Language and Intelligence (PLI), collaborating with Chi Jin, Sanjeev Arora, and Danqi Chen. He completed his PhD in Tong Zhang's group at the Hong Kong University of Science and Technology (HKUST). 
+			His research focuses on the trustworthiness and applications of machine learning, with particular emphasis on verifiable generation, LLM alignment, and out-of-distribution generalization. Currently, he leads the Goedel-Prover project at Princeton, 
+			where he trains LLMs for automated theorem proving in LEAN. Prior to his PhD, Yong worked as a Senior Machine Learning Engineer at Alibaba for 4 years, a leading tech company in China. 
+			He has published over 30 papers in top-tier ML, CV, and NLP conferences and received the Outstanding Paper Award at NAACL 2024. Additionally, he was awarded the Apple AI/ML PhD Fellowship in 2023 and the Hong Kong PhD Fellowship in 2020.
+		</li>
+
+	</ul>
+	<ul>[ Relevant Papers ]:
+		<li> Yong Lin, Shange Tang, Bohan Lyu, Jiayun Wu, Hongzhou Lin, Kaiyu Yang, Jia Li, Mengzhou Xia, Danqi Chen, Sanjeev Arora, Chi Jin. Goedel-Prover: A Frontier Model for Open-Source Automated Theorem Proving. [<a href="https://arxiv.org/abs/2502.07640"> arXiv:2502.07640</a>]</li>
+	</ul>	
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
 	<!----
 
 
