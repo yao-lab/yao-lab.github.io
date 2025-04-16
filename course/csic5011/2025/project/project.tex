@@ -1,0 +1,897 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\def\N{{\mathbb N}}
+\def\NN{{\mathcal N}}
+\def\R{{\mathbb R}}
+\def\E{{\mathbb E}}
+\def\rank{{\mathrm{rank}}}
+\def\tr{{\mathrm{trace}}}
+\def\P{{\mathrm{Prob}}}
+\def\sign{{\mathrm{sign}}}
+\def\diag{{\mathrm{diag}}}
+
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0.25 in}
+\setlength{\parskip}{0.1 in}
+
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{page}{1}
+   \setcounter{section}{0}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Topological and Geometric Data Reduction \hfill #4} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\Large \hfill #1  \hfill} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\it Instructor: #2\hfill #3} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{#1}{#1}
+   \vspace*{4mm}
+}
+
+\graphicspath{{figures/}}
+
+\begin{document}
+
+\lecture{Final Project}{Yuan Yao}{Due: 23:59 April 29, 2025}{16 April, 2025}
+
+%The problem below marked by $^*$ is optional with bonus credits. % For the experimental problem, include the source codes which are runnable under standard settings. 
+%
+%\begin{enumerate}
+%
+%\item {\em Manifold Learning}: The following codes by Todd Wittman contain major manifold learning algorithms talked on class.
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/Spring2011/matlab/mani.m}
+%
+%Precisely, eight algorithms are implemented in the codes: MDS, PCA, ISOMAP, LLE, Hessian Eigenmap, Laplacian Eigenmap, Diffusion Map, and LTSA. 
+%The following nine examples are given to compare these methods,
+%\begin{enumerate}
+%\item Swiss roll;
+%\item Swiss hole;
+%\item Corner Planes;
+%\item Punctured Sphere;
+%\item Twin Peaks;
+%\item 3D Clusters;
+%\item Toroidal Helix;
+%\item Gaussian;
+%\item Occluded Disks.
+%\end{enumerate}
+%Run the codes for each of the nine examples, and analyze the phenomena you observed. 
+%
+%\end{enumerate}
+
+%\newpage
+
+\section{Project Requirement and Datasets}
+
+In the below, we list some candidate datasets for your reference. You are also encouraged to work on your own datasets in the final project, upon the approval of the instructor. 
+
+\begin{enumerate}
+\item Pick up ONE (or more if you like) favourite dataset below to work. If you would like to work on a different problem outside the candidates we proposed, please email course instructor about your proposal.  
+\item Team work: we encourage you to form small team, up to FOUR persons per group, to work on the same problem. Each team must submit:
+\subitem(a) \emph{ONE report}, \emph{with a clear remark on each person's contribution}. The report can be in the format of a \emph{technical report within 8 pages}, e.g. NIPS conference style 
+\begin{center}
+\url{https://nips.cc/Conferences/2016/PaperInformation/StyleFiles} \\
+\noindent and a sample file at \\
+\url{https://arxiv.org/pdf/1606.04930.pdf} 
+\end{center}
+or of a \emph{poster}, e.g. 
+\begin{center}%\url{http://math.stanford.edu/~yuany/publications/poster_CleaveBioCPH2017_ForReview.pptx}
+\url{https://github.com/yuany-pku/2017_math6380/blob/master/project1/DongLoXia_poster.pptx}
+\end{center}
+\subitem*(b)\footnote{We plan to do final project presentation in the last lecture.} \emph{ONE short presentation video within 10 mins}, e.g. in Youtube or Bilibili link. You may submit your presentation slides together with the vieo link to help understanding. 
+\item In the report, (1) design or raise your scientific problems (a good problem is sometimes more important than solving it); (2) show your main results with a careful analysis supporting the results toward answering your problems. Remember: scientific analysis and reasoning are more important than merely the performance results. Reproducible source codes may be submitted via a \url{https://github.com/} link, through email as a zip file, or as an appendix of the report if it is not large. 
+\item Upon the start, submit your grouping information (representer/member) to the following address (\href{mailto:datascience.hw@gmail.com}{datascience.hw@gmail.com}) with Title: \underline{CSIC 5011: Project 2 [grouping]}. Then we shall create public folders and you should submit your report to your group folder under subfolder \texttt{[GROUP]/report}. % (\href{mailto:datascience\_hw@126.com}{datascience\_hw@126.com}). 
+\end{enumerate}
+
+%\newpage
+
+%\section*{Open Peer Review}
+%
+%In this exercise of open peer review, please write down your comments of the \emph{reports rather than of your own team} in the following format. Be considerate and careful with a precise description, avoiding offensive language. 
+%
+%Deadline is 23:59 Sunday May 31, 2020. Submit your review in \textbf{PLAIN TEXT} to the corresponding group's subfolder \texttt{0.peer-review/[GROUP]}. 
+%% email address (\href{mailto:datascience.hw@gmail.com}{datascience.hw@gmail.com}) with Title: \underline{CSIC 5011: Project 2 Review}. Rebuttal is open afterwards.
+%
+%\begin{itemize}
+%\item Summary of the report.
+%\item Describe the strengths of the report. 
+%\item Describe the weaknesses of the report.
+%\item Evaluation on quality of writing (1-5): Is the report clearly written? Is there a good use of examples and figures? Is it well organized? Are there problems with style and grammar? Are there issues with typos, formatting, references, etc.? Please make suggestions to improve the clarity of the paper, and provide details of typos.
+%\item Evaluation on presentation (1-5): Is the presentation clear and well organized? Are the language flow fluent and persuasive? Are the slides clear and well elaborated? Please make suggestions to improve the presentation.
+%\item Evaluation on creativity (1-5): Does the work propose any genuinely new ideas? Is this a work that you are eager to read and cite? Does it contain some state-of-the-art results? As a reviewer you should try to assess whether the ideas are truly new and creative. Novel combinations, adaptations or extensions of existing ideas are also valuable.
+%\item Confidence on your assessment (1-3)
+%(3- I have carefully read the paper and checked the results, 2- I just browse the paper without checking the details, 1- My assessment can be wrong)
+%\end{itemize}
+%
+%\newpage
+%
+%\section*{Rebuttal}
+%The rebuttal period starts from now, till 23:59 June 5, 2020. Restrict the number of characters of your rebuttal within {\bf{5,000}}. Submit your rebuttal in \textbf{PLAIN TEXT} format to the 
+%your group folder under subfolder \texttt{[GROUP]/rebuttal}. 
+%%email address (\href{mailto:datascience.hw@gmail.com}{datascience.hw@gmail.com}) with Title: \underline{CSIC 5011: Project 2 Rebuttal}.
+%
+%The following tips of rebuttal might be helpful for you to follow:
+%
+%1. The main aim of the rebuttal is to answer any specific questions that the reviewers might have raised, or to clarify any misunderstanding of the technical content of the paper.
+%
+%2. Keep your rebuttal short, to-the-point, and specific. In our experience, such rebuttals have the maximum impact.
+%
+%3. Always be polite and professional. Refrain from name calling or rude comments, especially in response to negative reviews
+%
+%4. Highlight the changes in your manuscripts had you made a simple revision.
+%
+%\newpage
+
+\section{Some classical image datasets}
+
+\subsection{Face dataset}
+
+The following dataset contains 33 faces of the same person ($Y\in \R^{112\times 92\times33}$) in different angles,
+
+\url{https://github.com/yao-lab/yao-lab.github.io/blob/master/data/face.mat}
+
+You may create a data matrix $X\in \R^{n\times p}$ where $n=33,p=112\times92=10304$ \\ (e.g. {\texttt{X=reshape(Y,[10304,33])';}} in matlab). You may try Python package 
+
+\url{https://scikit-learn.org/stable/modules/manifold.html#}
+
+\noindent For example, 
+\begin{enumerate}
+\item Explore the Diffusion map, or the second smallest eigenvector of Markov Chains defined on the point cloud data, to order the faces, i.e., let $W_{ij}=\exp(-\|x_i - x_j\|^2/t)$ with $D=\diag(\sum_j W_{ij})$ and define $L=D^{-1} W - I$, clearly $\lambda_0=0$ and take the (second) smallest nonzero eigenvalue $\lambda_1$ with corresponding eigenvector $v_1$, sort the faces by values $v_1(i)$, $i=1,\ldots,n$.  
+\item Explore the MDS-embedding of the 33 faces on top two eigenvectors: order the faces according to the top 1st eigenvector and visualize your results with figures. 
+\item Explore the ISOMAP-embedding of the 33 faces on the $k=5$ nearest neighbor graph and compare it against the MDS results. Note: you may try Tenenbaum's Matlab code \\
+{\url{https://github.com/yao-lab/yao-lab.github.io/blob/master/data/isomapII.m}}
+\item Explore the LLE/MLLE-embedding of the 33 faces on the $k=5$ nearest neighbor graph and compare it against ISOMAP. Note: you may try the following Matlab/Python code \\
+{\url{https://github.com/yao-lab/yao-lab.github.io/blob/master/data/lle.m}}, %\\
+%{\url{https://scikit-learn.org/stable/modules/manifold.html#modified-locally-linear-embedding}}
+\item Explore the LSTA-embedding of the 33 faces on the $k=5$ nearest neighbor graph and compare it against ISOMAP. Note: you may try the following Python code \\
+{\url{https://scikit-learn.org/stable/modules/manifold.html#local-tangent-space-alignment}}
+\item Explore the 2-D t-SNE embedding of the 33 faces. %Note: you may try the following Python code \\
+%{\url{https://scikit-learn.org/stable/modules/manifold.html#t-distributed-stochastic-neighbor-embedding-t-sne}}
+\end{enumerate}
+
+
+You might explore larger datasets with other manifold learning methods below.  
+
+\subsection{PubFig dataset} 
+The PubFig dataset is at 
+
+\url{http://www.cs.columbia.edu/CAVE/databases/pubfig/}
+
+\subsection{MNIST dataset }
+
+Yann LeCun's website contains original MNIST dataset of 60,000 training images and 10,000 test images. 
+
+\url{http://yann.lecun.com/exdb/mnist/}
+
+There are various ways to download and parse MNIST files. For example, Python users may refer to the following website:
+
+\url{https://github.com/datapythonista/mnist}
+
+or MXNET tutorial on mnist
+
+\url{https://mxnet.incubator.apache.org/tutorials/python/mnist.html}
+
+\subsection{Fashion-MNIST dataset}
+
+Zalando's Fashion-MNIST dataset of 60,000 training images and 10,000 test images, of size 28-by-28 in grayscale. 
+
+\url{https://github.com/zalandoresearch/fashion-mnist}
+
+
+%As a reference, here is Jason Wu, Peng Xu, and Nayeon Lee's exploration on the dataset in project 1:
+
+%\url{https://deeplearning-math.github.io/slides/Project1_WuXuLee.pdf}
+
+\subsection{Hand-written Digits} The website 
+
+\url{http://www-stat.stanford.edu/\~tibs/ElemStatLearn/datasets/zip.digits/}
+
+\noindent contains images of 10 handwritten digits (`$0$',...,`9');
+
+\subsection{Finance Data}
+The following data contains 1258-by-452 matrix with closed prices of 452 stocks in SNP'500 for workdays in 4 years.
+
+\url{https://yao-lab.github.io/data/snp452-data.mat}
+%\url{http://math.stanford.edu/~yuany/course/data/snp452-data.mat} 
+
+\noindent or in R: 
+
+%\url{http://math.stanford.edu/~yuany/course/data/snp500.Rda}
+\url{https://yao-lab.github.io/data/snp500.Rda}
+
+%You may use PCA to explore the `invisible hands' of markets.
+
+\subsection{Animal Sleeping Data} The following data contains animal sleeping hours together with other features: 
+
+%\url{http://math.stanford.edu/~yuany/course/data/sleep1.csv}
+\url{https://yao-lab.github.io/data/sleep1.csv}
+
+\subsection{US Crime Data} The following data contains crime rates in 59 US cities during 1970-1992:
+
+%\url{http://math.stanford.edu/~yuany/course/data/crime.zip}
+\url{https://yao-lab.github.io/data/crime.zip}
+
+\noindent Some students in previous classes study crime prediction in comparison with MLE and James-Stein, for example, see
+
+\url{https://github.com/yuany-pku/2017_math6380/blob/master/project1/DongLoXia_slides.pptx}
+
+\section{SNPs Data}
+This dataset contains a data matrix $X\in \R^{n\times p}$ of about $p=650,000$ columns of SNPs (Single Nucleid Polymorphisms) and $n=1064$ rows of peoples around the world (but there are 21 rows mostly with missing values). Each element is of three choices, $0$ (for `AA'), $1$ (for `AC'), $2$ (for `CC'), and some missing values marked by $9$. 
+
+\url{https://drive.google.com/file/d/1KMLPEG91mnzdK2pUlq2BkjOx2BsaZy9s/view?usp=sharing}
+
+\noindent which is big (151MB in zip and 2GB original txt). A fast access in the mainland China can be downloaded from:
+
+\url{https://pan.baidu.com/s/1jrv_UfbwWpi_-x5Rg1XS1A}  
+
+\noindent with password {\tt 678e}. Moreover, the following file contains the region where each people comes from, as well as two variables {\texttt{ind1}} and{\texttt{ind2}} such that $X({\texttt{ind1}},{\texttt{ind2}})$ removes all missing values. 
+
+\url{https://github.com/yao-lab/yao-lab.github.io/blob/master/data/HGDP_region.mat}
+
+Another cleaned dataset is due to Quanhua MU and Yoonhee Nam:  
+
+\begin{itemize}
+\item Genotyped data of the 1043 ($n$) subjects. 0(AA), 1(AC), 2(CC). Missing values are removed, only autosomal SNPs were selected ($p\approx 400K$). Google drive link: \\
+\url{https://drive.google.com/file/d/1a9I8_akfCMHBRrPMdnWkjyL9fKcQbJJq/view?usp=sharing}
+\noindent or 
+\url{https://pan.baidu.com/s/1vDi0cLWl6GiWgm7icaZy-w} 
+\noindent with password {\tt b5mv}.
+\item Sample Information of 1043 subjects. Google drive link: \\
+\url{https://drive.google.com/file/d/11Q-8B57WDQnrIV92b-h_WLqDGviiYsm2/view?usp=sharing} \\
+\end{itemize}
+
+A good reference for this data can be the following paper in Science, 
+
+\url{http://www.sciencemag.org/content/319/5866/1100.abstract}
+
+Explore the genetic variation of those persons with their geographic variations, by MDS/PCA. Since $p$ is big, explore random projections for dimensionality reduction.  
+
+
+\section{Robust PCA: Video Clip}
+
+%\subsection{Video}
+
+The following video clip (shoppingmall) has been widely used in literature for rank-sparsity decomposition of matrices. You may download the Matlab .mat file (50MB) from the following:
+
+\url{https://drive.google.com/file/d/1CuVAG3uWnwq6QmI3vARUizOF01Ubfz9k/view?usp=sharing}
+
+\noindent The original .avi file (234MB) can be downloaded at 
+
+\url{https://drive.google.com/file/d/10-wwUl10fzzgvVF_YX0E1bEuU2Q9hGNG/view?usp=sharing}
+
+\noindent For those students in mainland China, another fast access of the data can be found at 
+
+\url{https://pan.baidu.com/s/1CNSBhueMLpLiD7gxVpQsOA}  
+
+\noindent with access password {\tt z9f6}.
+
+%Dr. HanQin CAI introduced his accelerated alternative projection technique for nonconvex robust matrix decomposition, and his source codes can be downloaded at:
+%
+%\url{https://github.com/caesarcai/AccAltProj_for_RPCA}
+
+%\subsection{Social Network}
+%
+%The social network dataset of 100 universities can be downloaded at 
+%
+%\url{https://escience.rpi.edu/data/DA/fb100/}
+%
+%\noindent whose readme \url{https://escience.rpi.edu/data/DA/fb100/facebook100_readme_021011.txt}.
+%
+%Dr. Hanbaek Lyu's online robust dictionary learning algorithms can be found at the following links for your exploration: 
+%
+%\url{https://github.com/HanbaekLyu/ONMF_ONTF_NDL}
+%
+%\url{https://github.com/HanbaekLyu/RONMF}
+%
+
+
+
+\section{NIPS paper datasets}
+NIPS is one of the major machine learning conferences. The following datasets collect NIPS papers:
+
+\subsection{NIPS papers (1987-2016)} The following website: 
+
+\url{https://www.kaggle.com/benhamner/nips-papers}
+
+\noindent collects titles, authors, abstracts, and extracted text for all NIPS papers during 1987-2016. In particular the file {\texttt{paper\_authors.csv}} contains a sparse matrix of paper coauthors. 
+
+\subsection{NIPS words (1987-2015)} The following website:
+
+\url{https://archive.ics.uci.edu/ml/datasets/NIPS+Conference+Papers+1987-2015}
+
+\noindent collects the distribution of words in the full text of the NIPS conference papers published from 1987 to 2015. The dataset is in the form of a 11463 x 5812 matrix of word counts, containing 11463 words and 5811 NIPS conference papers (the first column contains the list of words). Each column contains the number of times each word appears in the corresponding document. The names of the columns give information about each document and its timestamp in the following format: {\texttt{Xyear\_paperID}}. 
+
+\section{Jiashun Jin's data on Coauthorship and Citation Networks for Statisticians}
+Thanks to Prof. Jiashun Jin at CMU, who provides his collection of citation and coauthor data for statisticians. The data set covers all papers between 2003 and the first quarter of 2012 from the Annals of Statistics, Journal of the American Statistical Association, Biometrika and Journal of the Royal Statistical Society Series B. The paper corrections and errata are not included. There are 3607 authors and 3248 papers in total. The zipped data file (14M) can be found at 
+
+\url{https://yao-lab.github.io/data/jiashun/Jiashun.zip}
+
+\noindent with an explanation file
+
+\url{https://yao-lab.github.io/data/jiashun/ReadMe.txt}
+
+With the aid of Mr. LI, Xiao, a subset consisting 35 COPSS award winners (\url{https://en.wikipedia.org/wiki/COPSS_Presidents\%27_Award}) up to 2015, is contained in the following file
+
+\url{https://yao-lab.github.io/data/copss.txt} 
+
+\noindent An example was given in the following article, A Tutorial of Libra: R Package of Linearized Bregman Algorithms in High Dimensional Statistics, downloaded at
+
+\url{https://arxiv.org/abs/1604.05910}
+
+\noindent with the associated R package Libra:
+
+\url{https://cran.r-project.org/web/packages/Libra/index.html}
+
+The citation of this dataset is: \emph{P. Ji and J. Jin. Coauthorship and citation networks for statisticians. Ann. Appl. Stat. Volume 10, Number 4 (2016), 1779-1812}, (\url{http://projecteuclid.org/current/euclid.aoas})
+
+
+
+
+\section{Co-appearance data in novels: Dream of Red Mansion and Journey to the West}
+
+A 374-by-475 binary matrix of character-event can be found at the course website, in .XLS, .CSV, .RData, and .MAT formats. For example the RData format is found at
+
+%\url{http://math.stanford.edu/~yuany/course/data/dream.RData} 
+\url{https://github.com/yuany-pku/dream-of-the-red-chamber/blob/master/dream.RData}
+
+\noindent with a readme file:
+
+\url{https://github.com/yuany-pku/dream-of-the-red-chamber/blob/master/dream.Rd}
+
+\noindent as well as the .txt file which is readable by R command {\tt read.table()},
+
+\url{https://github.com/yuany-pku/dream-of-the-red-chamber/blob/master/HongLouMeng374.txt}
+
+%\url{http://math.stanford.edu/~yuany/course/data/readme.m}
+\url{https://github.com/yuany-pku/dream-of-the-red-chamber/blob/master/README.md}
+
+Thanks to Ms. WAN, Mengting, who helps clean the data and kindly shares her BS thesis for your reference
+ 
+\url{https://yao-lab.github.io/reference/WANMengTing2013_HLM.pdf}
+
+%Among various choices of analysis, with this data matrix $X$, you may form a weighted graph $W=X * X'$, pursue PCA of $X$, and sparse SVD of $X$ etc. As an example, here is a project presentation by LI, Liying which gives an analysis of A Journey to the West (by Chen-En Wu) based on PCA, for the class Mathematical Introduction to Data Science in Fall 2012 where you may find more interesting approaches.
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/LiyingLI_Xiyouji2012_slides.pdf}
+
+Moreover you may find a similar matrix of 302-by-408 for the Journey to the West (by Chen-En Wu) at:
+
+\url{https://github.com/yuany-pku/journey-to-the-west}
+
+\noindent with R data format:
+
+\url{https://github.com/yuany-pku/journey-to-the-west/blob/master/west.RData}
+
+\noindent and Excel format:
+
+\url{https://github.com/yuany-pku/journey-to-the-west/blob/master/xiyouji.xls}
+%\url{http://math.stanford.edu/~yuany/course/data/xiyouji.mat}
+
+
+\section{Protein Folding} 
+Consider the 3D structure reconstruction based on incomplete MDS with uncertainty. Data file: 
+
+\url{http://yao-lab.github.io/data/protein3D.zip}
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.5\textwidth]{../2013_Spring_PKU/Yes_Human.png}  
+\caption{3D graphs of file PF00018\_2HDA.pdf (YES\_HUMAN/97-144, PDB 2HDA)}
+\label{yes_human}
+\end{center}
+\end{figure}
+
+\noindent In the file, you will find 3D coordinates for the following three protein families: 
+\subitem PF00013 (PCBP1\_HUMAN/281-343, PDB 1WVN), \\
+\subitem PF00018 (YES\_HUMAN/97-144, PDB 2HDA), and \\
+\subitem PF00254 (O45418\_CAEEL/24-118, PDB 1R9H). \\
+
+For example, the file {\tt PF00018\_2HDA.pdb} contains the 3D coordinates of alpha-carbons for a particular amino acid sequence in the family, YES\_HUMAN/97-144, read as
+
+{\tt{VALYDYEARTTEDLSFKKGERFQIINNTEGDWWEARSIATGKNGYIPS}}
+
+\noindent where the first line in the file is 
+
+97	V	0.967	18.470	4.342
+
+\noindent Here
+\begin{itemize}
+\item `97': start position 97 in the sequence
+\item `V': first character in the sequence
+\item $[x,y,z]$: 3D coordinates in unit $\AA$.
+\end{itemize}
+
+\noindent Figure \ref{yes_human} gives a 3D representation of its structure. 
+
+
+Given the 3D coordinates of the amino acids in the sequence, one can computer pairwise distance between amino acids, $[d_{ij}]^{l\times l}$ where $l$ is the sequence length. A \emph{contact map} is defined to be a graph $G_\theta=(V,E)$ consisting $l$ vertices for amino acids such that and edge $(i,j)\in E$ if $d_{ij} \leq \theta$, where the threshold is typically $\theta=5\AA$ or $8\AA$ here. 
+
+Can you recover the 3D structure of such proteins, up to an Euclidean transformation (rotation and translation), given noisy pairwise distances restricted on the contact map graph $G_\theta$, i.e. given noisy pairwise distances between vertex pairs whose true distances are no more than $\theta$? Design a noise model (e.g. Gaussian or uniformly bounded) for your experiments. 
+
+When $\theta=\infty$ without noise, classical MDS will work; but for a finite $\theta$ with noisy measurements, SDP approach can be useful. You may try the matlab package SNLSDP by Kim-Chuan Toh, Pratik Biswas, and Yinyu Ye, or the facial reduction speed up by Nathan Krislock and Henry Wolkowicz. Just for your reference, the following version SNLSDP is collected and updated by Mengyue ZHA in the class, 
+
+\url{https://github.com/Dolores2333/MATH5473/tree/main/HW5/SNLSDP}
+
+For python users, you may try the Python version of CVX (CVXPY): \url{https://www.cvxpy.org/install/index.html}. 
+
+
+%
+%\section{Transition Paths of Karate Club Network} 
+%The following dataset contains a 34-by-34 adjacency matrix $A$ of Zachery's Karate Club Network. 
+%
+%\url{https://github.com/yao-lab/yao-lab.github.io/blob/master/data/karate.mat}
+%
+%As shown in Figure \ref{fig:karate}, node 1 represents the coach of the club and node 34 is the owner (president) of the club. The undirected, unweighted edges between nodes represent
+%the affinity relation between club members. The story behind the network is this: the coach would like to raise the instruction fee while the president does not allow this; the conflicts finally result in a fission of the club -- the coach leaves the club with his funs and sets up his own club marked in red, and the blue nodes remain in the old club with the president.  
+%\begin{figure}[h]
+%\centering
+%\includegraphics[width=0.3\textwidth]{karate-a.pdf}
+%\caption{Zachery's Karate Club Network}\label{fig:karate}
+%\end{figure}
+%
+%A. Apply the spectral clustering via the Cheeger vector (the second smallest eigenvector associated with normalized Graph Laplacian) to bipartite the network into two components, and compare it with the ground truth fission above.  
+%
+%B. Perform the following experiment with the transition path analysis. 
+%\begin{enumerate}
+%\item Define a Markov chain according to the network structure, such that from each node a random walker will jump to its neighbors with equal probability, i.e. $P=D^{-1} A$ where $D=\diag(d_i)$ and $d_i = \sum_j A_{ij}$;
+%\item Compute its stationary distribution $\pi(i)\sim d_i$. 
+%\item Define the source set $V_0=\{1\}$ and the target set $V_1=\{34\}$, compute the committor function
+%\[  q(x) = Prob(\mbox{trajectory starting from $x$ hitting $V_1$ before $V_0$}) \]
+%by solving the following Dirichlet boundary problem
+%\[ (L q)(x) = 0, \ \ \ x\in V_u := V -\{1,34\}, \ \ \ q(1)=0,\ q(34)=1. \]
+%Find those edges which contains one node $q(x)\leq 0.5$ and the other node $q(x)\geq 0.5$. Such edge set defines a cut of the graph. 
+%\item Compute the effective flux on each edge $(x,y)$ by 
+%\[ J^+(x,y) = \max(J(x,y) - J(y,x), 0 ),\]
+%where
+%\[     J(x,y) = 
+%     \begin{cases}
+%       \pi(x) (1-q(x)) P_{xy}q(y), & x\neq y;\\
+%       0, & \text{otherwise}.
+%     \end{cases}
+%\]
+%\item Compute the transition flux through each node $x\in V$ by 
+%\[
+%     T(x) = \left\{\begin{array}{ll}
+%     \sum_{y \in V} J^+(x,y) ,& x\in V_0 \\
+%     \sum_{y\in V} J^+(y,x), & x\in V_1 \\
+%     \sum_{y\in V} J^+(x,y) = \sum_{y\in V} J^+(y,x), & x\in V_u 
+%     \end{array}\right.
+%\]
+%\item Visualize your results by plotting a directed graph, with an arrow on each edge indicating the effective flux direction $J^+(x,y)>0$, different color marking the cut set of the graph, and if possible edge/node size in proportion to the size of effective/transition flux.
+%\end{enumerate}
+%
+%A reference can be seen at:
+%\begin{itemize}
+%\item Weinan E, Jianfeng Lu, and Yuan Yao. {\it The Landscape of Complex Networks: Critical Nodes and A Hierarchical Decomposition}. Methods and Applications of Analysis, special issue in honor of Professor Stanley Osher on his 70th birthday, 20(4):383-404, 2013. \\ arXiv: \url{http://arxiv.org/abs/1204.6376}. \\
+%Pdf Link: \url{https://github.com/yao-lab/yao-lab.github.io/blob/master/reference/ELY.MAA13.pdf} 
+%\end{itemize}
+%
+%The following matlab codes implement the transition path analysis and reproduce the results in the paper above:
+%
+%\url{https://github.com/yao-lab/yao-lab.github.io/blob/master/data/karate_tpt.m}
+%
+%You may explore more networks, including the two other examples in the paper above:
+%
+%LAO-binding network (provided by Xuhui Huang): \url{https://github.com/yao-lab/yao-lab.github.io/blob/master/data/lao54.mat}
+%
+%Les Miserables social network: \url{https://github.com/yao-lab/yao-lab.github.io/blob/master/data/lesmis.mat}, or \url{https://github.com/yao-lab/yao-lab.github.io/blob/master/data/lesmis.txt}
+
+\section{Human Prefrontal Cortex Development Data}
+This dataset contains a single cell gene expression matrix $X\in \R^{n\times p}$ of $n=24153$ genes and $p=2394$ cells. Each value is in the unit of transcript-per-million ({TPM}\href{https://www.rna-seqblog.com/rpkm-fpkm-and-tpm-clearly-explained/}). The file of the dataset is in tab-delimited text format, where each row represents one gene (the first row is the cell ID) and each column represents one cell (the first column is the gene name). The size is about 33.2 Mb in gzipped format and about 160 Mb after decompression. Link to download the data:
+
+\url{https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE104276&format=file&file=GSE104276%5Fall%5Fpfc%5F2394%5FUMI%5FTPM%5FNOERCC%2Exls%2Egz}
+
+The single cells were collected in the human embryonic prefrontal cortex (PFC) from gestational weeks (GW) 8 to 26. More specifically, the cells were collected at GW8, GW9, GW10, GW12, GW13, GW16, GW19, GW23 and GW26, and included three and two biological replicates at GW10 and GW23, respectively. In the gene expression matrix, the cell ID contains both the time point and the donor information. For example, cell "GW10\_PFC1\_sc35" indicates that the cell was collected at gestational week 10 from donor 1. To learn more about the dataset you can visit the Gene Expression Omnibus (\href{https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE104276}{GSE104276}) or read the original publication in \textit{Nature}:
+
+\begin{itemize}
+\item 
+Zhong, S., Zhang, S., Fan, X. et al. A single-cell RNA-seq survey of the developmental landscape of the human prefrontal cortex, \emph{Nature} {\bf 555}, 524-528 (2018). \\
+\href{https://www.nature.com/articles/nature25980}{https://doi.org/10.1038/nature25980}.
+\end{itemize}
+
+Can you identify subgroups of cells from the data, and trace the developmental trajectories of these cells? Dimensionality reduction methods and single cell topological data analysis methods may help.
+
+
+\section{Dynamic Simplicial Complexes of Teacher-Student Contacts}
+Infection diseases like COVID-19 now influenced everyone's life and are a challenge for human to fight. The following data set contains the temporal network of contacts between the children and teachers in a primary school used in the study published in BMC Infectious Diseases 2014, 14:695. 
+
+\url{http://www.sociopatterns.org/datasets/primary-school-temporal-network-data/}
+
+The file contains a tab-separated list representing the active contacts during 20-second intervals of the data collection. Each line has the form ``\texttt{t i j Ci Cj}", where \texttt{i} and \texttt{j} are the anonymous IDs of the persons in contact, \texttt{Ci} and \texttt{Cj} are their classes, and the interval during which this contact was active is $[ \texttt{t} - 20s, \texttt{t} ]$. If multiple contacts are active in a given interval, you will see multiple lines starting with the same value of \texttt{t}. Time is measured in seconds.
+
+Based on such data, simplices are extracted through cliques of simultaneous contacts in the following directory by Austin Benson et al.: 
+
+\url{https://github.com/arbenson/ScHoLP-Data/tree/master/contact-primary-school}
+
+\noindent Specifically, for every unique timestamp in the dataset, a simplex is constructed for every maximal
+clique amongst the contact edges that exist for that timestamp. Timestamps were
+recorded in 20 second intervals.
+
+You may construct simplicial complexes (a collection of simplices that is closed under inclusion) from such data and study its topological properties (e.g. Betti numbers) with dynamic changes. 
+
+For those who are studying genomics can explore the phylogenetic trees and networks for genomics data of hCoV-19 at: 
+
+\url{https://www.gisaid.org/} 
+
+\section{PageRank and Chinese Universities}
+
+The following dataset contains Chinese (mainland) University Weblink during 12/2001-1/2002,
+
+\url{https://github.com/yao-lab/yao-lab.github.io/blob/master/data/univ_cn.mat}
+
+\noindent where $\tt{rank\_{}cn}$ is the research ranking of universities in that year, $\tt{univ\_{}cn}$ contains the webpages of universities, and $\tt{W\_{}cn}$ is the link matrix whose $(i,j)-th$ element gives the number of links from university
+$i$ to $j$. 
+ 
+\begin{enumerate}
+\item Compute PageRank with Google's hyperparameter $\alpha=0.85$;
+\item Compute HITS authority and hub ranking; 
+\item Compare these rankings against the research ranking (you may consider Spearman's $\rho$ and Kendall's $\tau$ to compare different rankings);  
+\item Compute extended PageRank with various hyperparameters $\alpha\in (0,1)$, investigate its effect on ranking. 
+\end{enumerate} 
+
+For your reference, an implementation of PageRank and HITs can be found at 
+
+\url{https://github.com/yao-lab/yao-lab.github.io/blob/master/data/pagerank.m}
+
+The following academic website link collects more countries with university links, for further explorations:
+
+\url{http://cybermetrics.wlv.ac.uk/database/} 
+
+
+
+\section{Crowdsourced Ranking Data on Allourideas}
+The following datasets are crowdsourced pairwise ranking from platform Allourideas by Professor Mathew Salganik of Princeton Sociology. You may explore it with HodgeRank etc. 
+
+%\subsection{Pairwise Votings on Project 2 Reports}
+%The following website hosts the crowdsourcing task on pairwise ranking on Project 2 reports:
+%
+%\url{http://www.allourideas.org/csic5011-project2}
+%
+%Up to Nov 26, 2017, the following dataset is collected at github:
+%
+%\url{https://github.com/yuany-pku/data/tree/master/allourideas/allourideas_csic5011-project2}
+%
+%\noindent where you may find 
+%
+%\begin{itemize}
+%\item explanation of data file formats: \url{https://github.com/yuany-pku/data/blob/master/allourideas/allourideas_csic5011-project2/allourideas%20-%20download%20your%20data.pdf}
+%\item 12 reports as candidates: \url{https://github.com/yuany-pku/data/blob/master/allourideas/allourideas_csic5011-project2/wikisurvey_report2_candidates_2017-11-26T07_20_24Z.csv}
+%\item all valid votings: \url{https://github.com/yuany-pku/data/blob/master/allourideas/allourideas_csic5011-project2/wikisurvey_report2_votes_2017-11-26T07_20_27Z.csv}
+%\item all nonvotings: \url{https://github.com/yuany-pku/data/blob/master/allourideas/allourideas_csic5011-project2/wikisurvey_report2_nonvotes_2017-11-26T07_20_30Z.csv} 
+%\end{itemize}
+
+\subsection{World College Rankings}
+The following website hosts the crowdsourcing task on pairwise ranking on 270 universities in the world:
+
+\url{http://www.allourideas.org/worldcollege}
+
+Up to Nov 26, 2017, the following dataset is collected at github:
+
+\url{https://github.com/yuany-pku/data/tree/master/allourideas/allourideas_worldcollege}
+
+\noindent where you may find 
+
+\begin{itemize}
+\item explanation of data file formats: \url{https://github.com/yuany-pku/data/blob/master/allourideas/allourideas_worldcollege/allourideas%20-%20download%20your%20data.pdf}
+\item 270 universities: \url{https://github.com/yuany-pku/data/blob/master/allourideas/allourideas_worldcollege/wikisurvey_colleges_candidates_2017-11-26T07_14_53Z.csv}
+\item all valid votings: \url{https://github.com/yuany-pku/data/blob/master/allourideas/allourideas_worldcollege/wikisurvey_colleges_votes_2017-11-26T07_15_02Z.csv}
+\item all nonvotings: \url{https://github.com/yuany-pku/data/blob/master/allourideas/allourideas_worldcollege/wikisurvey_colleges_nonvotes_2017-11-26T07_15_30Z.csv} 
+\end{itemize}
+
+This dataset has been used for various studies, e.g. Qianqian Xu, Jiechao Xiong, Xiaochun Cao, and Yuan Yao. False Discovery Rate Control and Statistical Quality Assessment of Annotators in Crowdsourced Ranking, ICML 2016, in \url{https://arxiv.org/abs/1605.05860v1}. An old dataset cleaned by Prof. Qianqian Xu from CAS can be found at
+
+\url{https://github.com/yao-lab/yao-lab.github.io/blob/master/data/college.csv}
+
+\subsection{Human Age Ranking}
+
+The following dataset is kindly provided by Qianqian Xu, CAS, for the exploration on class. 
+
+The dataset is contained in the following zip file.
+
+\url{https://github.com/yao-lab/yao-lab.github.io/blob/master/data/age.zip}
+
+\noindent where you may find
+\begin{enumerate}
+\item \texttt{readme.txt}: description of data
+\item \texttt{Agedata.mat}: data file collected
+\item \texttt{Groundtruth.mat}: Groundtruth
+\item \texttt{30 images.zip}: 30 human face images of different ages
+\end{enumerate}
+
+The basic problem is to rank the faces according to the ages, using all the information collected so far. A simple sub-problem is rank aggregation of ages from pairwise comparisons. If you are interested, you can try some generalized linear models (Qianqian Xu, Qingming Huang, Tingting Jiang, Bowei Yan, Weisi Lin, and Yuan Yao. HodgeRank on Random Graphs for Subjective Video Quality Assessment. IEEE Transactions on Multimedia, 14(3):844-857, 2012, \url{https://github.com/yao-lab/yao-lab.github.io/blob/master/reference/TMM12-final.pdf}) on this dataset, such as uniform model, Bradley-Terry model, Thurstone-Mosteller model, and Angular transform model. Compare maximum likelihood estimators and least square ones. The source code of this paper can be found at
+
+\url{https://github.com/qianqianxu010/TMM2012} 
+
+A recent study with wider data is: Qianqian Xu, Jiechao Xiong, Xiaochun Cao, Qingming Huang, Yuan Yao, “From Social to Individuals: a Parsimonious Path of Multi-level Models for Crowdsourced Preference Aggregation”, IEEE Transactions on Pattern Analysis and Machine Intelligence (PAMI), 41(4):844-856, 2019, where the source codes can be downloaded at
+
+\url{https://github.com/qianqianxu010/TPAMI2018}
+
+
+
+
+
+%\section{Robust Mean and Covariance Estimate by GAN}
+%
+%Choose a dataset in your favor, e.g. the stock price data from Yahoo!Finance shown in the notebook
+%
+%\url{https://github.com/yao-lab/yao-lab.github.io/blob/master/data/RobustGAN/Robust_GAN.ipynb}
+%
+%\noindent or other datasets in this final projects. Try:
+%\begin{enumerate}
+%\item robust mean and covariance (scatter) matrix estimation using GAN with different models (Gaussian, student-$t$, and general Elliptical distributions);
+%\item outlier detection using distribution of discriminator values;
+%\item robust PCA using top eigenvectors of robust covariance (scatter) matrices. 
+%\end{enumerate} 
+
+%{\em Nystr\"{o}m method:} In class, we have shown that every manifold learning algorithm can be regarded as Kernel PCA on graphs: (1) given $N$ data points, define a neighborhood graph with $N$ nodes for data points; (2) construct a positive semidefinite kernel $K$; (3) pursue spectral decomposition of $K$ to find the embedding (using top or bottom eigenvectors). However, this approach might suffer from the expensive computational cost in spectral decomposition of $K$ if $N$ is large and $K$ is non-sparse, e.g. ISOMAP and MDS. 
+%
+%To overcome this hurdle, Nystr\"{o}m method leads us to a scalable approach to compute eigenvectors of low rank matrices.  
+%Suppose that an $N$-by-$N$ positive semidefinite matrix $K\succeq 0$ admits the following block partition
+%\begin{equation}
+%K = \left[
+%\begin{array}{cc}
+%A & B \\
+%B^T & C
+%\end{array}
+%\right].
+%\end{equation}
+%where $A$ is an $n$-by-$n$ block. Assume that $A$ has the spectral decomposition $A=U \Lambda U^T$, $\Lambda=\diag(\lambda_i)$ ($\lambda_1\geq \lambda_2 \geq \ldots \lambda_k > \lambda_{k+1}=\ldots=0$) and $U=[u_1,\ldots,u_n]$ satisfies $U^TU=I$. 
+%\begin{enumerate}
+%\item Assume that $K=X X^T$ for some $X=[X_1; X_2] \in \R^{N\times k}$ with the block $X_1\in \R^{n\times k}$. Show that $X_1$ and $X_2$ can be decided by:
+%\begin{equation}\label{eq:x1}
+% X_1 = U_k \Lambda_k^{1/2}, 
+%\end{equation}
+%\begin{equation} \label{eq:x2}
+%X_2 = B^T U_k \Lambda_k^{-1/2}, 
+%\end{equation}
+%%\[ X_1 X_1^T = A \Rightarrow X_1 = U_k \Lambda_k^{1/2}, \]
+%%\[ X_1 X_2^T = B \Rightarrow X_2 = B^T U_k \Lambda_k^{-1/2}. \]  
+%where $U_k=[u_1, \ldots, u_k]$ consists of those $k$ columns of $U$ corresponding to top $k$ eigenvalues $\lambda_i$ ($i=1,\ldots,k$).  
+%\item Show that for general $K\succeq 0$, one can construct an approximation from \eqref{eq:x1} and \eqref{eq:x2}, 
+%\begin{equation}
+%\hat{K} = \left[
+%\begin{array}{cc}
+%A & B \\
+%B^T & \hat{C} 
+%\end{array}
+%\right].
+%\end{equation}
+%where $A=X_1 X_1^T$, $B= X_1 X_2^T$, and $\hat{C}=X_2 X_2^T =   B^T A^\dagger B$, $A^\dagger$ denoting the Moore-Penrose (pseudo-) inverse of $A$. Therefore $\|\hat{K}-K\|_F =\|C- B^T A^\dagger B\|_F$. Here the matrix $C-B^T A^\dagger B=:K/A$ is called the (generalized) \emph{Schur Complement} of $A$ in $K$.
+%\item Explore Nystr\"{o}m method on the Swiss-Roll dataset (\url{http://www.math.pku.edu.cn/teachers/yaoy/data/swiss_roll_data.mat} contains 3D-data X) with ISOMAP. To construct the block $A$, you may choose either of the following: 
+%\subitem $n$ random data points; 
+%\subitem *$n$ landmarks as minimax $k$-centers (\url{http://www.math.pku.edu.cn/teachers/yaoy/Spring2011/matlab/kcenter.m}); \\
+%Some references can be found at: 
+%\subitem[dVT04] Vin de Silva and J. B. Tenenbaum, ``Sparse multidimensional scaling using landmark points", 2004, downloadable at \url{http://pages.pomona.edu/~vds04747/public/papers/landmarks.pdf};  
+%\subitem[P05] John C. Platt, ``FastMap, MetricMap, and Landmark MDS are all Nystr\"{o}m Algorithms", 2005, downloadable at \url{http://research.microsoft.com/en-us/um/people/jplatt/nystrom2.pdf}. 
+%\item *Assume that $A$ is invertible, show that  
+%\[ \det(K) = \det(A)\cdot \det(K/A), \]
+%\item *Assume that $A$ is invertible, show that 
+%\[ \rank(K)=\rank(A)+\rank(K/A). \]
+%\item *Can you extend the identities in (c) and (d) to the case of noninvertible $A$? A good reference can be found at, 
+%\subitem[Q81] Diane V. Quellette, ``Schur Complements and Statistics", Linear Algebra and Its Applications, 36:187-295, 1981. \url{http://www.sciencedirect.com/science/article/pii/0024379581902329}
+%\end{enumerate}
+
+
+\end{document}
+
+
+
+
+%\section{Order the faces by Diffusion Map}
+%The following dataset contains 33 faces of the same person ($Y\in \R^{112\times 92\times33}$) in different angles,
+%
+%\url{https://github.com/yao-lab/yao-lab.github.io/blob/master/data/face.mat}
+%
+%You may create a data matrix $X\in \R^{n\times p}$ where $n=33,p=112\times92=10304$ \\ (e.g. {\texttt{X=reshape(Y,[10304,33])';}} in matlab).
+%
+%\begin{enumerate}
+%\item Explore the Diffusion map, or the second smallest eigenvector of Markov Chains defined on the point cloud data, to order the faces, i.e., let $W_{ij}=\exp(-\|x_i - x_j\|^2/t)$ with $D=\diag(\sum_j W_{ij})$ and define $L=D^{-1} W - I$, clearly $\lambda_0=0$ and take the (second) smallest nonzero eigenvalue $\lambda_1$ with corresponding eigenvector $v_1$, sort the faces by values $v_1(i)$, $i=1,\ldots,n$.  
+%\item Explore the MDS-embedding of the 33 faces on top two eigenvectors: order the faces according to the top 1st eigenvector and visualize your results with figures. 
+%\item Explore the ISOMAP-embedding of the 33 faces on the $k=5$ nearest neighbor graph and compare it against the MDS results. Note: you may try Tenenbaum's Matlab code \\
+%{\url{https://github.com/yao-lab/yao-lab.github.io/blob/master/data/isomapII.m}}
+%\item Explore the LLE-embedding of the 33 faces on the $k=5$ nearest neighbor graph and compare it against ISOMAP. Note: you may try the following Matlab code \\
+%{\url{https://github.com/yao-lab/yao-lab.github.io/blob/master/data/lle.m}}
+%\end{enumerate}
+%
+%You might explore larger datasets with other manifold learning methods, for example the PubFig dataset et al.
+%
+%\url{http://www.cs.columbia.edu/CAVE/databases/pubfig/}
+%
+
+
+
+
+%\section{Identification of Raphael's paintings from the forgeries}
+%
+%The following data, provided by Prof. Yang WANG from HKUST,
+%
+%\url{https://drive.google.com/folderview?id=0B-yDtwSjhaSCZ2FqN3AxQ3NJNTA&usp=sharing}
+%
+%\noindent contains a 28 digital paintings of Raphael or forgeries. Note that there are both jpeg and tiff files, so be careful with the bit depth in digitization. The following file
+%
+%\url{https://docs.google.com/document/d/1tMaaSIrYwNFZZ2cEJdx1DfFscIfERd5Dp2U7K1ekjTI/edit}
+%
+%\noindent contains the labels of such paintings, which are 
+%\begin{enumerate}
+%\item[1] Maybe Raphael - Disputed
+%\item[2] Raphael
+%\item[3] Raphael
+%\item[4] Raphael
+%\item[5] Raphael
+%\item[6] Raphael
+%\item[7] Maybe Raphael - Disputed
+%\item[8] Raphael
+%\item[9] Raphael
+%\item[10] Maybe Raphael - Disputed
+%\item[11] Not Raphael
+%\item[12] Not Raphael
+%\item[13] Not Raphael
+%\item[14] Not Raphael
+%\item[15] Not Raphael
+%\item[16] Not Raphael
+%\item[17] Not Raphael
+%\item[18] Not Raphael
+%\item[19] Not Raphael
+%\item[20] My Drawing (Raphael?)
+%\item[21] Raphael
+%\item[22] Raphael
+%\item[23] Maybe Raphael - Disputed
+%\item[24] Raphael
+%\item[25] Maybe Raphael - Disputed
+%\item[26] Maybe Raphael - Disputed
+%\item[27] Raphael
+%\item[28] Raphael
+%\end{enumerate}
+%Can you exploit the known Raphael vs. Not Raphael data to predict the identity of those 6 disputed paintings (maybe Raphael)? The following student poster report seems a good exploration
+%
+%\url{https://yao-lab.github.io/2015.fall.pku/poster/Raphael_LI%2CYue_1300010601.pdf}
+%
+%The following paper by Haixia Liu, Raymond Chan, and me studies Van Gogh's paintings which might be a reference for you:
+%
+%\url{http://dx.doi.org/10.1016/j.acha.2015.11.005}
+
+
+\section*{Datasets from Project 1}
+
+{\it All the following datasets have been given in project 1. But you may explore these data with various new techniques learned in class, e.g. Spectral clustering and ranking, Transition Path Analysis, Robust PCA via rank-sparsity decomposition or via GAN approach to robust covariance estimate (\url{https://github.com/zhuwzh/Robust-GAN-Scatter}), Manifold Learning, Topological Data Analysis (Mapper, Persistent Homology, etc.). }
+
+
+%%%%%%
+
+
+%\section{Drug Efficacy Data}
+%
+%Thanks to Prof. Xianting Ding at Shanghai Jiao Tong University and Prof. Chih-Ming Ho from University of California at Los Angeles, we have the following datasets on combinatorial drug efficacy.
+%
+%The first dataset consists of two experiments, all with the same 4 drugs in cell lines for attacking leukemia, with 256 experiments of combinatorial drug dosage at 4 levels. The response is the therapeutic window measuring the efficacy with a trade-off by toxicity. 
+% 
+% \url{http://math.stanford.edu/~yuany/course/data/Ding_4drugs.xlsx}
+%
+%\noindent whose drugs are explained in 
+%
+%\url{http://math.stanford.edu/~yuany/course/data/Ding_4drugs_readme.pdf}
+%
+%Can you find a good prediction of drug response efficacy using those combinatorial dosage levels? It was suggested that quadratic polynomials at logarithmic dosage levels are good models in personalized medicine, e.g. the following cover paper in Science \emph{Translation Medicine}:
+%
+%\url{http://stm.sciencemag.org/content/8/333/333ra49}
+%
+%\noindent with a sample 14 drug efficacy at level 2 experiment data in liver transplant: 
+%
+%\url{http://math.stanford.edu/yuany/course/data/TB-FSC-03A-data.xlsx}
+
+%\section{Drug Sensitivity Data by Cleave}
+%The following dataset is kindly provided by Cleave Co. Ltd. USA, for the exploration on class. {\textbf{Please keep its use only in this class and any publication will be subject to the approval of Cleave.}}
+%
+%The dataset is contained in the following zip file (73M).
+%
+%\url{http://math.stanford.edu/~yuany/course/data/cleave.zip}
+%
+%\noindent where you may find
+%\begin{enumerate}
+%\item \texttt{data explanation.pptx}: description of data in pptx
+%\item \texttt{data for Yuan Yao.xlsx}: data file
+%\item \texttt{Gene set collection 1 for Yuan Yao.txt}: gene set collection
+%\item \texttt{Gene set collection 2 for Yuan Yao.txt}: gene set collection
+%\item \texttt{reference}: a folder contains a survey paper on 40+ machine learning algorithms as well as some source codes -- \emph{Nature Biotechnology 32, 1202--1212 (2014)} (\url{http://www.nature.com/nbt/journal/v32/n12/full/nbt.2877.html})
+%\end{enumerate}
+%
+%The basic problem is to predict the drug response \texttt{IC50 within 72 hours}, using all the information collected so far, introduced by Ms. Lijing Wang with slides
+%
+%\url{http://math.stanford.edu/~yuany/course/2016.spring/cleave_lijing.pdf}
+%
+%\noindent as well as our CPH'2017 poster
+%
+%\url{http://math.stanford.edu/~yuany/publications/poster_CleaveBioCPH2017_ForReview.pdf}
+%
+%\noindent where the crucial discovery is that recursive variable selection by LASSO is more effective than one-stage LASSO. 
+
+%\subsection{The Characters in A Dream of Red Mansion} 
+%
+%A 376-by-475 matrix of character-event can be found at the course website, in .XLS, .CSV, and .MAT formats. For example the Matlab format is found at
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/data/hongloumeng/hongloumeng376.mat} 
+%
+%\noindent with a readme file:
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/data/hongloumeng/readme.m}
+%
+%Thanks to Ms. WAN, Mengting (now at UIUC), an update of data matrix consisting 374 characters (two of 376 are repeated) which is readable by R read.table() can be found at 
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/data/hongloumeng/HongLouMeng374.txt}
+%
+%\noindent She also kindly shares her BS thesis for your reference
+% 
+% \url{http://www.math.pku.edu.cn/teachers/yaoy/reference/WANMengTing2013_HLM.pdf}
+%
+%% Among various choices of analysis, with this data matrix $X$, you may form a weighted graph $W=X * X'$, pursue PCA of $X$. 
+%
+%\subsection{A Journal to the West} On course website, you may also find the link to this dataset with a 302-by-408 matrix, whose matlab format is saved at
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/Fall2011/xiyouji/xiyouji.mat}
+%
+%For your reference, here is a project presentation by Mr. LI, Liying (at PKU) which gives an analysis based on PCA
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/LiyingLI_Xiyouji2012_slides.pdf}
+%
+
+%\section{Heart PCI Operation Effect Prediction}
+%
+%The following data, provided by Dr. Jinwen Wang at Anzhen Hospital, 
+%
+%\url{http://math.stanford.edu/~yuany/course/data/heartData_20140401.xlsx}
+%
+%\noindent contains 2581 patients with 73 measurements (inputs) as well as a response variable indicating if after the heart operation there is a null-reflux state. This is a classification problem, with a challenge from the large amount of missing values. Sheet 3 and 4 in the file contains some explanation of the data and variables. 
+%
+%The problems are listed here:
+%\begin{enumerate}
+%\item The inputs (covariates) are of three kinds, measurements upon check-in, measurements before PCI operation, and measurements in PCI operations. For doctors, it is desired to find a prediction model based on measurements before the operation (including check-in). Sheet 2 in the file contains only such measurements.
+%\subitem The following two reports by LV, Yuan and LI, Xiao, respectively, might be interesting to you:
+%
+%\url{http://math.stanford.edu/~yuany/course/reference/MSThesis.LvYuan.pdf} 
+%
+%\url{http://arxiv.org/abs/1511.04656} 
+%
+%\item It is also an interesting problem how to predict the effect based on all measurements, with lots of missing values. Sheet 1 contains the full measurements. There are some good work by previous students, which are listed here for your reference: 
+%%\subitem The following two reports by LU, Yu and WANG, Qing, are probably inspiring to you.
+%%
+%%\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/LuYu_201303_BigHeart.pdf} 
+%%
+%%\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/WangQing_201303_BigHeart.pdf} 
+%
+%\subitem The following report by MIAO, Wang and LI, Yanfang, pioneers in missing value treatment. 
+%
+%\url{http://math.stanford.edu/~yuany/course/reference/MiaoLi2013S_project01.pdf}
+%
+%\end{enumerate} 
+
+%\emph{In the final project, it is desired to take only those measurements upon check-in to predict the probability of non-reflux (non-reflow) after PCI operations. An interpretable model adds a big value! You may compare with your first warm-up project to show your improvements.} 
+
+%\section{Air Quality Weibo Data} (courtesy of Prof. Xiaojin Zhu from University of Wisconsin at Madison) 
+%You can login my server:
+%
+%\texttt{ssh einstein@162.105.205.92}
+%
+%\noindent using the password I provided on class. 
+%
+%On the read-only folder \texttt{/data/AQweibo/}, the \texttt{AQICityData/} directory contains the Weibo posts, the AQI for 108 cities with (AQI) information during the study period
+%from 2013-11-18 to 2013-12-18 (both inclusive); Information for the spatiotempral bin (city,date) is in the directory \texttt{city\_date/}. See \texttt{README.txt} for more information.
+%
+%
+
