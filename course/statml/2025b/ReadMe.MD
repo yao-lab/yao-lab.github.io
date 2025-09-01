@@ -1,0 +1,2 @@
+- MATH 5470: Statistical Machine Learning
+-- Fall 2025, by Yuan YAO, HKUST
