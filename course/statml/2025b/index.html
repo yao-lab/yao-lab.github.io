@@ -466,6 +466,59 @@ Jingfeng Wu is a postdoctoral fellow at the Simons Institute for the Theory of C
 <td>Y.Y.</td>
 <td></td>
 </tr>
+
+	<tr>
+<td>11/04/2025, Tue</td>
+<td>Lecture 9: Transformer and Applications [<a href="../slides/Lecture09_transformer.pdf"> slides </a>]  
+	<br>
+	<ul>[Reference]:
+		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+		<li> Pytorch Twitter Sentiment Analysis: RNN, LSTM, BiLSTM, Multihead Self-Attention. 
+		[<a href="../notebook/PyTorch-RNN.ipynb"> RNN (ipynb) </a>] 
+		[<a href="../notebook/PyTorch-LSTM.ipynb"> LSTM (ipynb) </a>] 
+		[<a href="../notebook/PyTorch-BiLSTM.ipynb"> BiLSTM (ipynb) </a>] 
+		[<a href="../notebook/PyTorch-BiLSTM-with-MHSA.ipynb"> BiLSTM with Multihead Attention (ipynb) </a>] 	
+		[<a href="../notebook/PyTorch-BiLSTM-with-bertEmbedding.ipynb"> BERT embedding with BiLSTM (ipynb) </a>]
+		[<a href="https://www.kaggle.com/kazanova/sentiment140"> Sentiment140 dataset </a>]
+		</li>
+		<li> Pytorch Sentiment Analysis with IMDB data: RNN, (bi)-LSTM, CNN, Transformer, BERT, etc. 
+			[<a href="https://github.com/bentrevett/pytorch-sentiment-analysis"> GitHub </a>]
+		</li>
+		<li> Illustrated Transformer by Jay Alammar: [<a href="https://jalammar.github.io/illustrated-transformer/"> link </a>] </li>
+		<li> The Annotated Transformer Tutorial by Sasha Rush: [<a href="http://nlp.seas.harvard.edu/2018/04/03/attention.html"> link </a>]
+		</li>
+		<li> BERT generation of Shakespeare's sonnet: [<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/data/BERT_shakespeare_gen.ipynb"> BERT_shakespeare_gen.ipynb </a>]
+		</li>
+		<li> BERT next sentence generation of Shakespeare's sonnet and Chinese poems: 
+			[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/data/BERT_shakespeare_nextsen.ipynb"> BERT_shakespeare_nextsen.ipynb </a>]
+		</li>
+		<li> Chinese BERT (Whole-Word-Masking): [<a href="https://github.com/ymcui/Chinese-BERT-wwm"> link </a>]
+		</li>
+	</ul>	
+
+	<ul> [ Seminar ]
+		<li><B>Title</B>: Transformers As Statisticians: Provable In-Context Learning with In-Context Algorithm Selection. [<a href="../slides/Seminar_Mei_transformer_statistician_slides.pdf"> slides </a>] [<a href="https://youtu.be/vKZ_I05sSj0?si=OSnLkWJP_oDlfcdg"> video </a>] </li>  
+		<li> <B>Speaker</B>: Prof. <a href="https://www.stat.berkeley.edu/~songmei/">Song MEI</a>, University of California at Berkeley. </li>
+		<li> <B>Abstract</B>: 
+			Neural sequence models based on the transformer architecture have demonstrated remarkable <I>in-context learning</I> (ICL) abilities, where they can perform new tasks when prompted with training and test examples, without any parameter update to the model. 
+			This work first provides a comprehensive statistical theory for transformers to perform ICL. Concretely, we show that transformers can implement a broad class of standard machine learning algorithms in context, such as least squares, ridge regression, 
+			Lasso, learning generalized linear models, and gradient descent on two-layer neural networks, with near-optimal predictive power on various in-context data distributions. Using an efficient implementation of in-context gradient descent as the underlying mechanism, 
+			our transformer constructions admit mild size bounds, and can be learned with polynomially many pretraining sequences.
+Building on these ``base'' ICL algorithms, intriguingly, we show that transformers can implement more complex ICL procedures involving <I>in-context algorithm selection</I>, akin to what a statistician can do in real life -- A <I>single</I> transformer can adaptively select different base ICL algorithms -- 
+			or even perform qualitatively different tasks -- on different input sequences, without any explicit prompting of the right algorithm or task. We both establish this in theory by explicit constructions, and also observe this phenomenon experimentally. 
+			In theory, we construct two general mechanisms for algorithm selection with concrete examples: pre-ICL testing, and post-ICL validation. As an example, we use the post-ICL validation mechanism to construct a transformer that can perform nearly Bayes-optimal ICL on a challenging 
+			task -- noisy linear models with mixed noise levels. Experimentally, we demonstrate the strong in-context algorithm selection capabilities of standard transformer architectures.		
+		</li>
+		<li> <B>Bio</B>: Song Mei is an Assistant Professor in the Department of Statistics and the Department of Electrical Engineering and Computer Sciences at UC Berkeley. In June 2020, he received Ph.D. from Stanford, with Prof. Andrea Montanari. 
+			Song's research is motivated by data science and AI, and lies at the intersection of statistics, machine learning, information theory, and computer science. His current research interests include language models and diffusion models, theory of deep learning, 
+			theory of reinforcement learning, high dimensional statistics, quantum algorithms, and uncertainty quantification. Song received Sloan Research Fellowship in 2025 and NSF career award in 2024.
+		</li>
+		<li> <B>Reference</B>:Yu Bai, Fan Chen, Huan Wang, Caiming Xiong, and Song Mei. Transformers as Statisticians: Provable In-Context Learning with In-Context Algorithm Selection. NeurIPS, 2023 (Oral). [<a href="https://arxiv.org/abs/2306.04637"> arXiv:2306.04637</a>]</li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
 	
 	<!---
 
@@ -746,97 +799,13 @@ In this talk, I will discuss how the test error will behave if a more suitable m
 
 
 
-	<tr>
-<td>07/04/2025, Mon</td>
-<td>Lecture 10: Transformer and Applications [<a href="../slides/Lecture09_transformer.pdf"> slides </a>]  
-	<br>
-	<ul>[Reference]:
-		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
-		<li> Pytorch Twitter Sentiment Analysis: RNN, LSTM, BiLSTM, Multihead Self-Attention. 
-		[<a href="../notebook/PyTorch-RNN.ipynb"> RNN (ipynb) </a>] 
-		[<a href="../notebook/PyTorch-LSTM.ipynb"> LSTM (ipynb) </a>] 
-		[<a href="../notebook/PyTorch-BiLSTM.ipynb"> BiLSTM (ipynb) </a>] 
-		[<a href="../notebook/PyTorch-BiLSTM-with-MHSA.ipynb"> BiLSTM with Multihead Attention (ipynb) </a>] 	
-		[<a href="../notebook/PyTorch-BiLSTM-with-bertEmbedding.ipynb"> BERT embedding with BiLSTM (ipynb) </a>]
-		[<a href="https://www.kaggle.com/kazanova/sentiment140"> Sentiment140 dataset </a>]
-		</li>
-		<li> Pytorch Sentiment Analysis with IMDB data: RNN, (bi)-LSTM, CNN, Transformer, BERT, etc. 
-			[<a href="https://github.com/bentrevett/pytorch-sentiment-analysis"> GitHub </a>]
-		</li>
-		<li> Illustrated Transformer by Jay Alammar: [<a href="https://jalammar.github.io/illustrated-transformer/"> link </a>] </li>
-		<li> The Annotated Transformer Tutorial by Sasha Rush: [<a href="http://nlp.seas.harvard.edu/2018/04/03/attention.html"> link </a>]
-		</li>
-		<li> BERT generation of Shakespeare's sonnet: [<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/data/BERT_shakespeare_gen.ipynb"> BERT_shakespeare_gen.ipynb </a>]
-		</li>
-		<li> BERT next sentence generation of Shakespeare's sonnet and Chinese poems: 
-			[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/data/BERT_shakespeare_nextsen.ipynb"> BERT_shakespeare_nextsen.ipynb </a>]
-		</li>
-		<li> Chinese BERT (Whole-Word-Masking): [<a href="https://github.com/ymcui/Chinese-BERT-wwm"> link </a>]
-		</li>
-	</ul>	
 
-	<ul> [ Seminar ]
-		<li> <B>Title</B>: Advancements in Kernel Learning and Offline Reinforcement Learning through Generative Models [<a href="../slides/Seminar_WANG.Wenjia.Random_smoothing.pdf"> slides I </a>] [<a href="../slides/Seminar_WANG.Wenjia.Offline+RL.pdf"> slides II </a>]</li>
-		<li> <B>Speaker</B>: Prof. <a href="https://www.wenjia-w.com/">Wenjia Wang</a>, HKUST-GZ </li>
-		<li> <B>Time</B>: 8:00pm </li>
-		<li> <B>Abstract</B>: In this talk, I will present two classes of my recent research. 
-
-In Part I, I will talk about random smoothing data augmentation. Random smoothing data augmentation is a unique form of regularization that can prevent overfitting by introducing noise to the input data, 
-			encouraging the model to learn more generalized features. In this work, we aim to bridge this gap by presenting a framework for random smoothing regularization that can adaptively and 
-			effectively learn a wide range of ground truth functions belonging to the classical Sobolev spaces. By using random smoothing regularization as novel convolution-based smoothing kernels, 
-			we can attain optimal convergence rates in these cases using a kernel gradient descent algorithm, either with early stopping or weight decay.
-
-In Part II, I will talk about our recent series of works on offline reinforcement learning.
-Due to the inability to interact with the environment, offline reinforcement learning (RL) methods face the challenge of estimating the Out-of-Distribution (OOD) points. 
-			Existing methods for addressing this issue either control policy to exclude the OOD action or make the Q-function pessimistic. However, these methods can be overly conservative or fail to identify OOD areas accurately. 
-			In this talk, I will be discussing our recent advancements in offline reinforcement learning, specifically focusing on the utilization of generative models such as GAN and diffusion models. 
-			Our proposed methods are evaluated on the D4RL benchmarks and have demonstrated significant improvements across numerous tasks. Theoretical results are provided for performance guarantee.
-		</li>
-		<li> <B>Bio</B>: Wenjia Wang is an assistant professor in the Data Science and Analysis Thrust at the Information Hub of the Hong Kong University of Science and Technology (Guangzhou). 
-			He obtained his Ph.D. in the School of Industrial & Systems Engineering at Georgia Institute of Technology. Wenjia Wang's research interests include uncertainty quantification, computer experiments, machine learning, stochastic simulation, and nonparametric statistics.
-		</li>
-		</ul>
-	<ul>[ Relevant Papers ]:
-		<li> Ding, L., Hu, T., Jiang, J., Li, D., Wang, W., & Yao, Y. (2024). Random smoothing regularization in kernel gradient descent learning. Journal of Machine Learning Research. 
-			[<a href="https://arxiv.org/abs/2305.03531"> arXiv:2305.03531 </a>] </li>
-		<li> Fang, L., Liu, R., Zhang, J., Wang, W., & Jing, B. Y. (2025). Diffusion Actor-Critic: Formulating Constrained Policy Iteration as Diffusion Noise Regression for Offline Reinforcement Learning. 
-			<I>The Thirteenth International Conference on Learning Representations (ICLR)</I>.</li>
-		<li> Zhang, J., Fang, L., Shi, K., Wang, W., & Jing, B. Y. (2024). Q-Distribution guided Q-learning for offline reinforcement learning: Uncertainty penalized Q-value via consistency model. 
-			<I>Neural Information Processing Systems (NeurIPS)</I>, 2024.</li>
-		<li> Zhang, J., Zhang, C., Wang, W., & Jing, B. Y. (2023). Constrained Policy Optimization with Explicit Behavior Density For Offline Reinforcement Learning. 
-			<I>Neural Information Processing Systems (NeurIPS)</I>, 2023.</li>
-	</ul>
-</td>
-<td>Y.Y.</td>
-<td></td>
-</tr>
 
 	<tr>
 <td>14/04/2025, Mon</td>
 <td>Seminars.
 	<br>
-	<ul><B>Title: Transformers As Statisticians: Provable In-Context Learning with In-Context Algorithm Selection</B>. [<a href="../slides/Seminar_Mei_transformer_statistician_slides.pdf"> slides </a>] [<a href="https://youtu.be/vKZ_I05sSj0?si=OSnLkWJP_oDlfcdg"> video </a>] 
-		<li> <B>Speaker</B>: Prof. <a href="https://www.stat.berkeley.edu/~songmei/">Song MEI</a>, University of California at Berkeley. </li>
-		<li> <B>Time</B>: 6:40pm </li>
-		<li> <B>Abstract</B>: 
-			Neural sequence models based on the transformer architecture have demonstrated remarkable <I>in-context learning</I> (ICL) abilities, where they can perform new tasks when prompted with training and test examples, without any parameter update to the model. 
-			This work first provides a comprehensive statistical theory for transformers to perform ICL. Concretely, we show that transformers can implement a broad class of standard machine learning algorithms in context, such as least squares, ridge regression, 
-			Lasso, learning generalized linear models, and gradient descent on two-layer neural networks, with near-optimal predictive power on various in-context data distributions. Using an efficient implementation of in-context gradient descent as the underlying mechanism, 
-			our transformer constructions admit mild size bounds, and can be learned with polynomially many pretraining sequences.
-Building on these ``base'' ICL algorithms, intriguingly, we show that transformers can implement more complex ICL procedures involving <I>in-context algorithm selection</I>, akin to what a statistician can do in real life -- A <I>single</I> transformer can adaptively select different base ICL algorithms -- 
-			or even perform qualitatively different tasks -- on different input sequences, without any explicit prompting of the right algorithm or task. We both establish this in theory by explicit constructions, and also observe this phenomenon experimentally. 
-			In theory, we construct two general mechanisms for algorithm selection with concrete examples: pre-ICL testing, and post-ICL validation. As an example, we use the post-ICL validation mechanism to construct a transformer that can perform nearly Bayes-optimal ICL on a challenging 
-			task -- noisy linear models with mixed noise levels. Experimentally, we demonstrate the strong in-context algorithm selection capabilities of standard transformer architectures.		
-		</li>
-		<li> <B>Bio</B>: Song Mei is an Assistant Professor in the Department of Statistics and the Department of Electrical Engineering and Computer Sciences at UC Berkeley. In June 2020, he received Ph.D. from Stanford, with Prof. Andrea Montanari. 
-			Song's research is motivated by data science and AI, and lies at the intersection of statistics, machine learning, information theory, and computer science. His current research interests include language models and diffusion models, theory of deep learning, 
-			theory of reinforcement learning, high dimensional statistics, quantum algorithms, and uncertainty quantification. Song received Sloan Research Fellowship in 2025 and NSF career award in 2024.
-		</li>
 
-	</ul>
-	<ul>[ Relevant Papers ]:
-		<li> Yu Bai, Fan Chen, Huan Wang, Caiming Xiong, and Song Mei. Transformers as Statisticians: Provable In-Context Learning with In-Context Algorithm Selection. NeurIPS, 2023 (Oral). [<a href="https://arxiv.org/abs/2306.04637"> arXiv:2306.04637</a>]</li>
-	</ul>	
 
 		
 	<ul><B>Title: Introducing Goedel-Prover: A Frontier Model for Open-Source Automated Theorem Proving</B>. [<a href=""> slides </a>]  
