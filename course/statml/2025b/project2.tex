@@ -418,6 +418,50 @@ The current benchmark~\citep{fan2025safeprotein} attacks 2 protein language mode
 
 \textbf{Direction 2: Development of Novel Attacking Strategies} - Strateiges that go beyond the current five attacking strategies may include adversarial prompt engineering, multi-step generation schemes, and hybrid approaches that combine structural and sequence-based attacks to more effectively probe model vulnerabilities.
 
+\subsection{Evaluating Machine Learning Methods in Asset Pricing}
+
+\subsubsection{Objective}
+This project aims to deepen your understanding of machine learning applications in empirical asset pricing. You will critically engage with the methodology and models proposed in \textit{Chen, L., Pelger, M., \& Zhu, J. (2024). ``Deep Learning in Asset Pricing.'' Management Science, 70(2), 714--750.}  
+\href{https://doi.org/10.1287/mnsc.2023.4695}{https://doi.org/10.1287/mnsc.2023.4695}
+
+Specifically, you will replicate the paper's framework %but replace its original \textbf{Generative Adversarial Network (GAN)} model 
+and compare it with alternative machine learning methods discussed in \textit{Gu, S., Kelly, B., \& Xiu, D. (2020). ``Empirical Asset Pricing via Machine Learning.'' The Review of Financial Studies, 33(5), 2223--2273.}   \\
+\href{https://doi.org/10.1093/rfs/hhaa009}{https://doi.org/10.1093/rfs/hhaa009}
+
+\subsubsection{Tasks}
+
+\begin{enumerate}
+    \item \textbf{Reading and Understanding the Original Model}.  
+    Carefully read the sections in Chen, Pelger, and Zhu (2024) that describe the machine learning algorithms used, especially the implementation of the GAN-based asset pricing model.  
+    Understand how the GAN model learns the stochastic discount factor (SDF) and how the model performance is evaluated.
+    
+    \item \textbf{Alternative Machine Learning Implementations}.  
+    Refer to Gu, Kelly, and Xiu (2020) for various machine learning approaches used in empirical asset pricing, such as:
+    \begin{itemize}
+        \item Regularized linear models (e.g., LASSO, Ridge, Elastic Net)
+        \item Tree-based models (e.g., Random Forest, Gradient Boosted Trees)
+        \item Neural Networks
+    \end{itemize}
+    Compare the methods from Chen et al. (2024) with these alternative models.  
+    Apply appropriate \textbf{hyperparameter tuning methods} (e.g., cross-validation, grid search, random search) as described in Gu et al. (2020).
+    
+    \item \textbf{Empirical Evaluation}.  
+    Use the same dataset provided by Chen et al. (2024) to ensure comparability.  
+    Evaluate the performance of each model in pricing assets using standard metrics such as:
+    \begin{itemize}
+        \item Sharpe ratio of the estimated SDF
+        \item Pricing errors
+        \item $R^2$ in cross-sectional tests
+    \end{itemize}
+    Compare the results of different machine learning methods with the original GAN approach.
+    
+    \item \textbf{Resources}.  
+    Original code repository:  \\
+    \href{https://github.com/jasonzy121/Deep_Learning_Asset_Pricing}{https://github.com/jasonzy121/Deep\_Learning\_Asset\_Pricing}
+    
+    Data download link:  \\
+    \href{https://drive.google.com/drive/folders/1TrYzMUA_xLID5-gXOy_as8sH2ahLwz-l}{Google Drive Dataset}
+\end{enumerate}
 \bibliography{bib}
 
 %\subsection{Digital Historical Forensics by Prof. Lin DU}
