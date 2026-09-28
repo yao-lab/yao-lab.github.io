@@ -297,6 +297,30 @@ Email: Ms. WANG, Ruihe < <em> ruihe.wang (add "AT connect DOT ust DOT hk" afterw
 			<a href="https://github.com/mscaudill/IntroStatLearn/blob/master/notebooks/Ch7_Moving_Beyond_Linearity/Ch7_Lab.ipynb"> [Ch7_Lab.ipynb ] </a> </li> 
 	</li>
 	</ul>
+
+	<ul>[ Seminar ]
+		<li> <B>Title</B>: A Statistical View on Implicit Regularization: Gradient Descent Dominates Ridge [<a href="https://yao-lab.github.io/course/statml/slides/Seminar_wu2025risk_slides.pdf"> slides </a>]</li>
+		<li> <B>Speaker</B>: Dr. <a href="https://uuujf.github.io/">Jingfeng WU</a>, UC Berkeley </li>
+		<li> <B>Abstract</B>: A key puzzle in deep learning is how simple gradient methods find generalizable solutions without explicit regularization. This talk discusses the implicit regularization of gradient descent (GD) through the lens of statistical dominance. Using linear regression as a clean proxy, we present three surprising findings.
+
+First, GD dominates ridge regression: with comparable regularization, the excess risk of GD is always within a constant factor of ridge, but ridge can be polynomially worse even when tuned optimally. Second, GD is incomparable with online stochastic gradient descent (SGD). While it is known that for certain problems GD can be polynomially better than SGD, the reverse is also true: we construct problems, inspired by benign overfitting theory, where optimally stopped GD is polynomially worse. Finally, GD dominates SGD for a significant subclass of problems -- those with fast and continuously decaying covariance spectra -- which includes all problems satisfying the standard capacity condition.
+
+This is joint work with Peter Bartlett, Sham Kakade, Jason Lee, and Bin Yu.
+		<li> <B>Bio</B>: 
+	Jingfeng Wu is an assistant professor of Statistics at UC Berkeley. His research focuses on deep learning theory, optimization, and statistical learning. He earned his Ph.D. in Computer Science from Johns Hopkins University in 2023. Prior to that, he received a B.S. in Mathematics (2016) and an M.S. in Applied Mathematics (2019), both from Peking University. In 2023, he was recognized as a Rising Star in Data Science by the University of Chicago and UC San Diego.
+		</li>
+	</ul>
+
+		<ul>[Reference]:
+		<li> Daniel Soudry, Elad Hoffer, Mor Shpigel Nacson, Suriya Gunasekar, Nathan Srebro. <B>The Implicit Bias of Gradient Descent on Separable Data.</B> 
+		[<a href="https://arxiv.org/abs/1710.10345"> arXiv:1710.10345 </a>]. ICLR 2018. Gradient descent on logistic regression leads to max margin. </li>
+		<li> Matus Telgarsky. <B>Margins, Shrinkage, and Boosting.</B> <a href="https://arxiv.org/abs/1303.4172">[ arXiv:1303.4172 ]</a>. ICML 2013. An older paper on gradient descent on exponential/logistic loss 
+		leads to max margin. </li>
+		<li> Yuan Yao, <a href="http://www.disi.unige.it/person/RosascoL/">Lorenzo Rosasco</a> and <a href="http://www.pascal-network.org/Network/Researchers/150/">Andrea Caponnetto</a>. <B>On Early Stopping in Gradient Descent Learning.</B> <i>Constructive Approximation</i>, 2007, 26 (2): 289-315.
+[<a href="https://link.springer.com/article/10.1007/s00365-006-0663-2"> link </a>]
+</li>
+		<li> Jingfeng Wu, Peter L. Bartlett, Jason D. Lee, Sham M. Kakade, and Bin Yu. <B>Risk Comparisons in Linear Regression: Implicit Regularization Dominates Explicit Regularization.</B> <a href="https://arxiv.org/abs/2509.17251">[ arXiv:2509.17251 ]</a></li>
+	</ul>
 <!---
 	<ul>[ Mathematics Colloquium ]
 		<li> <B>Title</B>: A new machine learning algorithm, complex systems and AI predictions [<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/slides/Seminar_Xia.jpeg"> announcement </a>] [<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/course/statml/slides/Xia_2502HKUST.pdf"> slides </a>]</li>
