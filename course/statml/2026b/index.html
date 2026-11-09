@@ -463,6 +463,53 @@ Xia is currently co-editor-in-chief of 《知识分子》, he is one of the foun
 <td></td>
 </tr>
 
+	<tr>
+<td>11/09/2026, Mon</td>
+<td>Lecture 9: Transformer and Applications [<a href="../slides/Lecture09_transformer.pdf"> slides </a>] and Final Project Initialization [<a href="project2.pdf"> project2.pdf </a>] 
+	<br>
+	<ul>[Reference]:
+		<li> To view .ipynb files below, you may try <a href="https://nbviewer.jupyter.org/"> [ Jupyter NBViewer] </a> </li> 
+		<li> Pytorch Twitter Sentiment Analysis: RNN, LSTM, BiLSTM, Multihead Self-Attention. 
+		[<a href="../notebook/PyTorch-RNN.ipynb"> RNN (ipynb) </a>] 
+		[<a href="../notebook/PyTorch-LSTM.ipynb"> LSTM (ipynb) </a>] 
+		[<a href="../notebook/PyTorch-BiLSTM.ipynb"> BiLSTM (ipynb) </a>] 
+		[<a href="../notebook/PyTorch-BiLSTM-with-MHSA.ipynb"> BiLSTM with Multihead Attention (ipynb) </a>] 	
+		[<a href="../notebook/PyTorch-BiLSTM-with-bertEmbedding.ipynb"> BERT embedding with BiLSTM (ipynb) </a>]
+		[<a href="https://www.kaggle.com/kazanova/sentiment140"> Sentiment140 dataset </a>]
+		</li>
+		<li> Pytorch Sentiment Analysis with IMDB data: RNN, (bi)-LSTM, CNN, Transformer, BERT, etc. 
+			[<a href="https://github.com/bentrevett/pytorch-sentiment-analysis"> GitHub </a>]
+		</li>
+		<li> Illustrated Transformer by Jay Alammar: [<a href="https://jalammar.github.io/illustrated-transformer/"> link </a>] </li>
+		<li> The Annotated Transformer Tutorial by Sasha Rush: [<a href="http://nlp.seas.harvard.edu/2018/04/03/attention.html"> link </a>]
+		</li>
+		<li> BERT generation of Shakespeare's sonnet: [<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/data/BERT_shakespeare_gen.ipynb"> BERT_shakespeare_gen.ipynb </a>]
+		</li>
+		<li> BERT next sentence generation of Shakespeare's sonnet and Chinese poems: 
+			[<a href="https://github.com/yao-lab/yao-lab.github.io/blob/master/data/BERT_shakespeare_nextsen.ipynb"> BERT_shakespeare_nextsen.ipynb </a>]
+		</li>
+		<li> Chinese BERT (Whole-Word-Masking): [<a href="https://github.com/ymcui/Chinese-BERT-wwm"> link </a>]
+		</li>
+	</ul>	
+
+	<ul> [ Seminar ]
+		<li><B>Title</B>: Language Model Watermarking: Detecting andDesigning Statistical Dependence. [<a href="Seminar_LI_Xiang.jpg"> poster </a>] </li>  
+		<li> <B>Speaker</B>: Prof. <a href="https://lx10077.github.io/">Xiang LI</a>, University of Pennsylvania. </li>
+		<li> <B>Abstract</B>: 
+			The widespread use of language models has made the provenance of generated text an increasingly important concern. Major AI providers, including Google, OpenAI, and Anthropic, are adopting text watermarking, while the EU AI Act introduces requirements for machine-readable marking of AI-generated content. Watermarking creates a detectable signal by introducing statistical dependence between generated tokens and keyed pseudorandomness. 
+			In the first part, we introduce a statistical framework for detecting and using this dependence. We show how pivotal statistics enable testing without access to the model’s token probabilities, develop a minimax perspective on optimal detection, and discuss robustness to human edits. We also briefly describe extensions to estimating the proportion of watermarked content and localizing watermarked passages.
+			In the second part, we focus on our recent watermark, textGrain, an entropy-calibrated watermark that makes the trade-off between detectability and generation diversity explicit and controllable. Many watermarks preserve the model’s next-token distribution when averaged over secret keys, a property called unbiasedness. This guarantee alone, however, does not ensure diversity in repeated generation with the same key, limiting applications that rely on multiple distinct responses. We formulate watermark embedding as an optimal transport problem whose regularization penalty equals the average loss of sampling entropy, linking the dependence used for detection to reduced sampling diversity. This formulation allows us to calibrate the watermark to a prescribed entropy-loss budget. A block-based construction reduces computational cost, preserves unbiasedness, and supports integration with speculative sampling. We compare watermarks at comparable entropy retention and present empirical results on detection power, generation diversity, and task performance.		
+		</li>
+		<li> <B>Bio</B>: LI, Xiang is a Postdoctoral Researcher at the University of Pennsylvania and will join the Department of Statistics at Rutgers University as an Assistant Professor in January 2027. He received his Ph.D. in Statistics from Peking University. 
+			His research interests include statistics, optimization, and machine learning, with a current focus on the statistical foundations of large language models, particularly watermarking and evaluation.
+		</li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+
 	<!----
 		<tr>
 <td>09/11/2025, Thu </td>
